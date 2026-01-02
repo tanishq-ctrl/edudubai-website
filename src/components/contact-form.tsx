@@ -64,7 +64,7 @@ export function ContactForm() {
             Thank You for Your Message!
           </h3>
           <p className="text-lg text-neutral-text-muted mb-6">
-            We've received your inquiry and will get back to you within 24 hours.
+            We&apos;ve received your inquiry and will get back to you within 24 hours.
           </p>
           <Button
             onClick={() => setSuccess(false)}
@@ -83,7 +83,7 @@ export function ContactForm() {
       <CardHeader>
         <CardTitle className="text-2xl">Send us a Message</CardTitle>
         <CardDescription className="text-base">
-          Fill out the form below and we'll respond within 24 hours. All fields marked with * are required.
+          Fill out the form below and we&apos;ll respond within 24 hours. All fields marked with * are required.
         </CardDescription>
       </CardHeader>
       <CardContent>

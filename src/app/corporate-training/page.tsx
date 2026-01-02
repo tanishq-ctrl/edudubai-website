@@ -72,7 +72,7 @@ export default function CorporateTrainingPage() {
           <div className="space-y-4">
             <div>
               <h3 className="font-semibold text-brand-navy mb-2">1. Needs Assessment</h3>
-              <p className="text-neutral-text-muted">We analyze your organization's training requirements and skill gaps</p>
+              <p className="text-neutral-text-muted">We analyze your organization&apos;s training requirements and skill gaps</p>
             </div>
             <div>
               <h3 className="font-semibold text-brand-navy mb-2">2. Custom Program Design</h3>
@@ -93,13 +93,13 @@ export default function CorporateTrainingPage() {
       <div className="bg-gradient-to-br from-brand-navy to-brand-navy-dark text-white rounded-lg p-8 text-center">
         <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Team?</h2>
         <p className="text-xl text-white/90 mb-6">
-          Let's discuss how we can help your organization achieve its training goals
+          Let&apos;s discuss how we can help your organization achieve its training goals
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
           <LeadCaptureForm
             trigger={<Button size="lg" className="bg-brand-gold text-brand-navy hover:bg-brand-gold-light">Request Proposal</Button>}
             title="Request Corporate Training Proposal"
-            description="Tell us about your training needs and we'll create a customized proposal"
+            description="Tell us about your training needs and we&apos;ll create a customized proposal"
             formType="contact"
           />
           <WhatsAppButton source="corporate_training" size="lg" variant="outline" className="bg-transparent border-white text-white hover:bg-white/10" />

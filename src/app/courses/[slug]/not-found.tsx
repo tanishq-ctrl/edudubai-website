@@ -12,7 +12,7 @@ export default function CourseNotFound() {
         </div>
         <h1 className="text-3xl font-bold text-brand-navy mb-4">Course Not Found</h1>
         <p className="text-neutral-text-muted mb-8">
-          The course you're looking for doesn't exist or has been removed.
+          The course you&apos;re looking for doesn&apos;t exist or has been removed.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button asChild variant="default" className="bg-brand-navy hover:bg-brand-navy-dark">

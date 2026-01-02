@@ -69,7 +69,7 @@ export function SiteHeader() {
       e.stopPropagation()
     }
     trackWhatsAppClick("header")
-    openWhatsApp("I'm interested in learning more about EduDubai courses.")
+    openWhatsApp("I&apos;m interested in learning more about EduDubai courses.")
   }
 
   const headerClasses = `

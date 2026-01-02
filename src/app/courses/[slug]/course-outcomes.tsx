@@ -10,7 +10,7 @@ export function CourseOutcomes({ course }: CourseOutcomesProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-2xl">What You'll Learn</CardTitle>
+        <CardTitle className="text-2xl">What You&apos;ll Learn</CardTitle>
       </CardHeader>
       <CardContent>
         <ul className="space-y-4">

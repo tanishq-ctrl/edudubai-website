@@ -10,7 +10,7 @@ const testimonials = [
     name: "Sarah Al-Mansoori",
     role: "Senior Consultant",
     company: "Deloitte",
-    content: "EduDubai's courses transformed my career. The practical insights and expert instruction helped me secure a promotion within 6 months.",
+    content: "EduDubai&apos;s courses transformed my career. The practical insights and expert instruction helped me secure a promotion within 6 months.",
     rating: 5,
   },
   {
@@ -71,7 +71,7 @@ export function TestimonialsSection() {
                 </div>
                 <div className="flex-1">
                   <p className="text-lg md:text-xl text-neutral-text mb-8 italic leading-relaxed">
-                    "{currentTestimonial.content}"
+                    &ldquo;{currentTestimonial.content}&rdquo;
                   </p>
                   <div className="flex items-center justify-between">
                     <div>

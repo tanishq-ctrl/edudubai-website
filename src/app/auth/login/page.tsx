@@ -265,7 +265,7 @@ export default function LoginPage() {
         <Separator className="my-6" />
 
         <div className="text-center text-sm">
-          <span className="text-neutral-text-muted">Don't have an account? </span>
+          <span className="text-neutral-text-muted">Don&apos;t have an account? </span>
           <Link
             href={`/auth/register${searchParams.get("next") ? `?next=${encodeURIComponent(searchParams.get("next")!)}` : ""}`}
             className="text-brand-navy hover:text-brand-navy-dark font-semibold hover:underline"

@@ -93,7 +93,16 @@ export async function POST(req: NextRequest) {
     }
 
     // Get course details
-    const course = courseSlug ? getCourseBySlug(courseSlug) : null
+    if (!courseSlug) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: "Course slug is required",
+        },
+        { status: 400 }
+      )
+    }
+    const course = getCourseBySlug(courseSlug)
     if (!course) {
       return NextResponse.json(
         {
@@ -110,7 +119,7 @@ export async function POST(req: NextRequest) {
       const razorpay = getRazorpayClient()
       const order = await razorpay.orders.fetch(razorpay_order_id)
       // Convert from cents to USD
-      amountUsd = order.amount / 100
+      amountUsd = Number(order.amount) / 100
     } catch (error) {
       console.error("Error fetching order details:", error)
       // Use course price as fallback
@@ -161,6 +170,7 @@ export async function POST(req: NextRequest) {
       await sendLeadNotification({
         type: "PAYMENT_SUCCESS",
         payload: {
+          type: "PAYMENT_SUCCESS",
           name: email ? email.split("@")[0] : "Learner",
           email: email || "no-email@edudubai.org",
           courseTitle: course?.title || "Course Enrollment",

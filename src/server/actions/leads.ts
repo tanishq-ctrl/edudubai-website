@@ -38,6 +38,7 @@ export async function submitContactLead(data: unknown) {
     await sendLeadNotification({
       type: "contact",
       payload: {
+        type: "contact",
         name: validated.name,
         email: validated.email,
         phone: validated.phone,
@@ -75,6 +76,7 @@ export async function submitCorporateLead(data: unknown) {
     await sendLeadNotification({
       type: "corporate",
       payload: {
+        type: "corporate",
         name: validated.name,
         email: validated.email,
         phone: validated.phone,
@@ -124,6 +126,7 @@ export async function submitBrochureLead(data: unknown) {
     await sendLeadNotification({
       type: "brochure",
       payload: {
+        type: "brochure",
         name: validated.name,
         email: validated.email,
         phone: validated.phone,

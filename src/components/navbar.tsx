@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import { BookOpen } from "lucide-react"
 
+export function Navbar() {
   return (
     <nav className="border-b bg-white sticky top-0 z-50">
       <div className="container mx-auto px-4">

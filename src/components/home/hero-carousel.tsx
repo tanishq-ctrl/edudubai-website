@@ -34,7 +34,7 @@ const slides: SlideData[] = [
   {
     eyebrow: "EduDubai • Training & Consulting",
     headline: "Compliance Leadership Starts Here.",
-    subheadline: "Built for regulators' expectations — not checklists.",
+    subheadline: "Built for regulators&apos; expectations — not checklists.",
     primaryCTA: {
       text: "Explore Courses",
       href: "/courses",

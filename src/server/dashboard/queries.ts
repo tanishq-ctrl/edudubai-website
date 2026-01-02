@@ -107,8 +107,8 @@ export async function getDashboardStats(userId: string) {
       .select("status")
       .eq("user_id", userId)
 
-    const activeCourses = enrollments?.filter(e => e.status === "ACTIVE").length || 0
-    const completedCourses = enrollments?.filter(e => e.status === "COMPLETED").length || 0
+    const activeCourses = enrollments?.filter((e: { status: string }) => e.status === "ACTIVE").length || 0
+    const completedCourses = enrollments?.filter((e: { status: string }) => e.status === "COMPLETED").length || 0
 
     // Get payments count
     const { data: payments } = await supabase

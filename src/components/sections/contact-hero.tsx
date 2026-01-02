@@ -6,7 +6,7 @@ export function ContactHero() {
       image="/hero/contact.jpg"
       imageAlt="Get in Touch - Contact EduDubai"
       title="Get in Touch"
-      description="Have questions? We're here to help. Reach out to our team and we'll respond within 24 hours."
+      description="Have questions? We&apos;re here to help. Reach out to our team and we&apos;ll respond within 24 hours."
       eyebrow="EduDubai • Contact Us"
     />
   )

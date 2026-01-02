@@ -54,7 +54,7 @@ export default async function AdminPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-3xl font-bold text-brand-navy">
-                  {courses.reduce((acc, course) => acc + course._count.enrollments, 0)}
+                  {courses.reduce((acc: number, course: typeof courses[0]) => acc + course._count.enrollments, 0)}
                 </p>
               </CardContent>
             </Card>

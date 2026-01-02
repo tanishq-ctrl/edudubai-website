@@ -66,7 +66,7 @@ export default function ForgotPasswordPage() {
           <Alert className="mb-6 border-green-200 bg-green-50">
             <CheckCircle2 className="h-4 w-4 text-green-600" />
             <AlertDescription className="text-green-800">
-              If an account exists with {email}, we've sent a password reset link to your email.
+              If an account exists with {email}, we&apos;ve sent a password reset link to your email.
               Please check your inbox and follow the instructions.
             </AlertDescription>
           </Alert>
@@ -101,7 +101,7 @@ export default function ForgotPasswordPage() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-blue-50/30 py-12 px-4 sm:px-6 lg:px-8">
       <AuthCard
         title="Reset Password"
-        description="Enter your email address and we'll send you a link to reset your password"
+        description="Enter your email address and we&apos;ll send you a link to reset your password"
       >
         {error && (
           <Alert variant="destructive" className="mb-6">

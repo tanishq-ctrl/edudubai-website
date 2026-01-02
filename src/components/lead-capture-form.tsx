@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { trackBrochureDownload, trackContactFormSubmit } from "@/lib/analytics"
-import { submitBrochureLead } from "@/server/actions/leads"
+import { submitBrochureLead, submitContactLead } from "@/server/actions/leads"
 
 interface LeadCaptureFormProps {
   trigger: React.ReactNode
@@ -84,7 +84,7 @@ export function LeadCaptureForm({
           message: "",
         })
         setOpen(false)
-        alert("Thank you! We'll be in touch soon.")
+        alert("Thank you! We&apos;ll be in touch soon.")
       }
     } catch (error) {
       console.error("Error submitting form:", error)

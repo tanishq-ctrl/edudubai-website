@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
             id: user.id,
             full_name: fullName,
           })
-          .catch((err) => {
+          .catch((err: unknown) => {
             // Profile might be created by trigger, ignore error
             console.log('Profile creation skipped (might exist):', err)
           })

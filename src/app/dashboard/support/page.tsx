@@ -147,7 +147,7 @@ export default function SupportPage() {
           <CardHeader>
             <CardTitle>Submit a Request</CardTitle>
             <CardDescription>
-              We'll get back to you within 24 hours
+              We&apos;ll get back to you within 24 hours
             </CardDescription>
           </CardHeader>
           <CardContent>

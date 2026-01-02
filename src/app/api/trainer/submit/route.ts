@@ -250,11 +250,11 @@ export async function POST(request: Request) {
               <p style="font-size: 24px; font-weight: bold; color: #1e3a5f; font-family: monospace;">${applicationId}</p>
             </div>
             <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-              <h3 style="color: #1e3a5f; margin-top: 0;">What's Next?</h3>
+              <h3 style="color: #1e3a5f; margin-top: 0;">What&apos;s Next?</h3>
               <ul style="line-height: 1.8;">
                 <li>Our team will review your application within 5-7 business days</li>
-                <li>We'll contact you via email if we need any additional information</li>
-                <li>If selected, we'll reach out to discuss next steps and onboarding</li>
+                <li>We&apos;ll contact you via email if we need any additional information</li>
+                <li>If selected, we&apos;ll reach out to discuss next steps and onboarding</li>
               </ul>
             </div>
             <p style="color: #666; font-size: 14px; margin-top: 30px;">

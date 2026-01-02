@@ -48,11 +48,11 @@ export async function sendCorporateTrainingLead(data: {
           <p>We've received your corporate training inquiry from <strong>${data.company}</strong>.</p>
           <p>Our training team will review your requirements and contact you within 24 hours to discuss how we can help your organization.</p>
           <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #1e3a5f; margin-top: 0;">What's Next?</h3>
+            <h3 style="color: #1e3a5f; margin-top: 0;">What&apos;s Next?</h3>
             <ul style="line-height: 1.8;">
               <li>Our team will analyze your training needs</li>
-              <li>We'll create a customized proposal</li>
-              <li>We'll schedule a consultation call</li>
+              <li>We&apos;ll create a customized proposal</li>
+              <li>We&apos;ll schedule a consultation call</li>
             </ul>
           </div>
           <p>In the meantime, feel free to explore our courses or speak with an advisor.</p>

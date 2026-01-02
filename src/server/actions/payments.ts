@@ -76,7 +76,7 @@ export async function verifyRazorpayPayment(
     const paymentRecord = dataStore.createPayment({
       userId,
       courseId,
-      amount: payment.amount / 100, // Convert from paise to rupees
+      amount: Number(payment.amount) / 100, // Convert from paise to rupees
       currency: payment.currency.toUpperCase(),
       status: "COMPLETED",
       razorpayOrderId: orderId,

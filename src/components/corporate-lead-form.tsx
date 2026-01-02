@@ -69,7 +69,7 @@ export function CorporateLeadForm() {
             Thank You for Your Interest!
           </h3>
           <p className="text-lg text-neutral-text-muted mb-6">
-            We've received your corporate training inquiry. Our team will contact you 
+            We&apos;ve received your corporate training inquiry. Our team will contact you 
             within 24 hours to discuss your training needs.
           </p>
           <Button
@@ -91,7 +91,7 @@ export function CorporateLeadForm() {
           Get Started Today
         </CardTitle>
         <CardDescription className="text-white/80 text-lg">
-          Tell us about your training needs and we'll create a customized proposal
+          Tell us about your training needs and we&apos;ll create a customized proposal
         </CardDescription>
       </CardHeader>
       <CardContent>
