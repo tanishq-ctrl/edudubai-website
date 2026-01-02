@@ -58,7 +58,8 @@ export async function POST(req: NextRequest) {
       // Create payment record if not exists
       try {
         // Lazy import Prisma to avoid initialization during build
-        const { prisma } = await import("@/lib/prisma")
+        const { getPrisma } = await import("@/lib/prisma")
+        const prisma = getPrisma()
         await prisma.payment.upsert({
           where: {
             stripeId: payment.id, // Using stripeId field for Razorpay payment ID

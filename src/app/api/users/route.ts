@@ -7,7 +7,8 @@ export const runtime = 'nodejs'
 export async function POST(req: NextRequest) {
   try {
     // Lazy import Prisma to avoid initialization during build
-    const { prisma } = await import("@/lib/prisma")
+    const { getPrisma } = await import("@/lib/prisma")
+    const prisma = getPrisma()
     
     const { id, email, name } = await req.json()
 
