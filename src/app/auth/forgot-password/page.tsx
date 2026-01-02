@@ -61,7 +61,7 @@ export default function ForgotPasswordPage() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-blue-50/30 py-12 px-4 sm:px-6 lg:px-8">
         <AuthCard
           title="Check Your Email"
-          description="We've sent you a password reset link"
+          description="We&apos;ve sent you a password reset link"
         >
           <Alert className="mb-6 border-green-200 bg-green-50">
             <CheckCircle2 className="h-4 w-4 text-green-600" />

@@ -19,7 +19,7 @@ export default function CorporateTrainingPage() {
     {
       icon: Target,
       title: "Customized Programs",
-      description: "Tailored training solutions designed for your organization's specific needs",
+      description: "Tailored training solutions designed for your organization&apos;s specific needs",
     },
     {
       icon: Users,
@@ -44,7 +44,7 @@ export default function CorporateTrainingPage() {
         image="/hero/corporate.jpg"
         imageAlt="Corporate Training Solutions"
         title="Corporate Training Solutions"
-        description="Empower your workforce with world-class professional development programs tailored to your organization's needs."
+        description="Empower your workforce with world-class professional development programs tailored to your organization&apos;s needs."
         eyebrow="EduDubai • Corporate Training"
       />
       <Container className="py-12 md:py-16">

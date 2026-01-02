@@ -169,7 +169,7 @@ export function CorporateLeadForm() {
                 setFormData({ ...formData, trainingNeed: e.target.value })
               }
               required
-              placeholder="Describe your organization's training requirements..."
+              placeholder="Describe your organization&apos;s training requirements..."
               className="bg-white min-h-[100px]"
             />
           </div>
