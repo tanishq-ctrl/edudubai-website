@@ -34,6 +34,16 @@ export function SiteHeader() {
   const [authLoading, setAuthLoading] = useState(true)
   const pathname = usePathname()
   const isHomePage = pathname === "/"
+  // Pages that should have transparent navbar when not scrolled
+  const transparentNavPages = [
+    "/",
+    "/courses",
+    "/certifications",
+    "/corporate-training",
+    "/about",
+    "/contact",
+  ]
+  const shouldHaveTransparentNav = transparentNavPages.includes(pathname)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,7 +84,7 @@ export function SiteHeader() {
 
   const headerClasses = `
     fixed top-0 left-0 right-0 z-50 transition-all duration-300
-    ${isHomePage && !isScrolled
+    ${shouldHaveTransparentNav && !isScrolled
       ? "bg-transparent backdrop-blur-sm"
       : "bg-neutral-bg border-b border-neutral-border shadow-sm"
     }
@@ -92,8 +102,8 @@ export function SiteHeader() {
                   src="/edudubai-logo.png"
                   alt="EduDubai - Global Education and Training Specialist"
                   className={`h-12 w-auto object-contain transition-all duration-300 group-hover:opacity-90 ${
-                    // White logo on dark background (homepage not scrolled)
-                    isHomePage && !isScrolled
+                    // White logo on dark background (transparent nav pages not scrolled)
+                    shouldHaveTransparentNav && !isScrolled
                       ? "brightness-0 invert"
                       : // Dark logo on light background (scrolled or other pages)
                         "brightness-0"
@@ -109,7 +119,7 @@ export function SiteHeader() {
               <>
                 <BookOpen className="h-7 w-7 text-brand-gold transition-colors group-hover:text-brand-gold-light" />
                 <span className={`text-2xl font-bold transition-colors ${
-                  isHomePage && !isScrolled 
+                  shouldHaveTransparentNav && !isScrolled 
                     ? "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" 
                     : "text-brand-navy"
                 }`}>
@@ -130,11 +140,11 @@ export function SiteHeader() {
                   href={item.href}
                   className={`
                     text-sm font-medium transition-colors relative
-                    ${isHomePage && !isScrolled
+                    ${shouldHaveTransparentNav && !isScrolled
                       ? "text-white/90 hover:text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
                       : "text-neutral-text hover:text-brand-navy"
                     }
-                    ${isActive ? "text-brand-navy" : ""}
+                    ${isActive && (shouldHaveTransparentNav && !isScrolled) ? "text-white" : isActive ? "text-brand-navy" : ""}
                   `}
                 >
                   {item.name}
@@ -153,7 +163,7 @@ export function SiteHeader() {
               variant="ghost"
               className={`
                 text-sm font-medium
-                ${isHomePage && !isScrolled
+                ${shouldHaveTransparentNav && !isScrolled
                   ? "text-white/90 hover:text-white hover:bg-white/10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
                   : "text-neutral-text hover:text-brand-navy"
                 }
@@ -171,7 +181,7 @@ export function SiteHeader() {
                     variant="ghost"
                     className={`
                       text-sm font-medium
-                      ${isHomePage && !isScrolled
+                      ${shouldHaveTransparentNav && !isScrolled
                         ? "text-white/90 hover:text-white hover:bg-white/10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
                         : "text-neutral-text hover:text-brand-navy"
                       }
@@ -197,7 +207,7 @@ export function SiteHeader() {
                 variant="ghost"
                 size="icon"
                 className={`
-                  ${isHomePage && !isScrolled 
+                  ${shouldHaveTransparentNav && !isScrolled 
                     ? "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" 
                     : "text-neutral-text"}
                 `}
