@@ -117,7 +117,11 @@ export function SiteHeader() {
               </div>
             ) : (
               <>
-                <BookOpen className="h-7 w-7 text-brand-gold transition-colors group-hover:text-brand-gold-light" />
+                <BookOpen className={`h-7 w-7 transition-colors ${
+                  shouldHaveTransparentNav && !isScrolled
+                    ? "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+                    : "text-brand-gold group-hover:text-brand-gold-light"
+                }`} />
                 <span className={`text-2xl font-bold transition-colors ${
                   shouldHaveTransparentNav && !isScrolled 
                     ? "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" 
