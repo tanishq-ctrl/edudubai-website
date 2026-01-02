@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server"
 import { verifyWebhookSignature } from "@/lib/razorpay"
-import { prisma } from "@/lib/prisma"
 import { sendEnrollmentEmail } from "@/lib/email"
 
 // Ensure this route uses Node.js runtime for Vercel serverless
 export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
 
 /**
  * Razorpay Webhook Handler
