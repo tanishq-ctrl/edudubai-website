@@ -101,17 +101,13 @@ export function SiteHeader() {
                 <img
                   src="/edudubai-logo.png"
                   alt="EduDubai - Global Education and Training Specialist"
-                  className={`h-12 w-auto object-contain transition-all duration-300 group-hover:opacity-90 ${
-                    // White logo on dark background (transparent nav pages not scrolled)
-                    shouldHaveTransparentNav && !isScrolled
-                      ? "brightness-0 invert drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
-                      : // Dark logo on light background (scrolled or other pages)
-                        "brightness-0"
-                  }`}
+                  className="h-12 w-auto object-contain transition-all duration-300 group-hover:opacity-90"
                   style={{ 
                     backgroundColor: 'transparent',
                     display: 'block',
-                    filter: shouldHaveTransparentNav && !isScrolled ? 'drop-shadow(0 2px 8px rgba(0,0,0,0.9)) drop-shadow(0 4px 12px rgba(0,0,0,0.6))' : 'none',
+                    filter: shouldHaveTransparentNav && !isScrolled 
+                      ? 'brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.9)) drop-shadow(0 4px 12px rgba(0,0,0,0.6))'
+                      : 'brightness(0)',
                   }}
                   onError={() => setLogoError(true)}
                 />
