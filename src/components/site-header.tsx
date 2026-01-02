@@ -85,7 +85,7 @@ export function SiteHeader() {
   const headerClasses = `
     fixed top-0 left-0 right-0 z-50 transition-all duration-300
     ${shouldHaveTransparentNav && !isScrolled
-      ? "bg-transparent backdrop-blur-sm"
+      ? "bg-black/10 backdrop-blur-md"
       : "bg-neutral-bg border-b border-neutral-border shadow-sm"
     }
   `
@@ -104,13 +104,14 @@ export function SiteHeader() {
                   className={`h-12 w-auto object-contain transition-all duration-300 group-hover:opacity-90 ${
                     // White logo on dark background (transparent nav pages not scrolled)
                     shouldHaveTransparentNav && !isScrolled
-                      ? "brightness-0 invert"
+                      ? "brightness-0 invert drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
                       : // Dark logo on light background (scrolled or other pages)
                         "brightness-0"
                   }`}
                   style={{ 
                     backgroundColor: 'transparent',
                     display: 'block',
+                    filter: shouldHaveTransparentNav && !isScrolled ? 'drop-shadow(0 2px 8px rgba(0,0,0,0.9)) drop-shadow(0 4px 12px rgba(0,0,0,0.6))' : 'none',
                   }}
                   onError={() => setLogoError(true)}
                 />
@@ -119,12 +120,12 @@ export function SiteHeader() {
               <>
                 <BookOpen className={`h-7 w-7 transition-colors ${
                   shouldHaveTransparentNav && !isScrolled
-                    ? "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+                    ? "text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
                     : "text-brand-gold group-hover:text-brand-gold-light"
                 }`} />
                 <span className={`text-2xl font-bold transition-colors ${
                   shouldHaveTransparentNav && !isScrolled 
-                    ? "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" 
+                    ? "text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)] font-extrabold" 
                     : "text-brand-navy"
                 }`}>
                   EduDubai
@@ -143,12 +144,12 @@ export function SiteHeader() {
                   key={item.name}
                   href={item.href}
                   className={`
-                    text-sm font-medium transition-colors relative
+                    text-sm font-semibold transition-colors relative
                     ${shouldHaveTransparentNav && !isScrolled
-                      ? "text-white/90 hover:text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+                      ? "text-white hover:text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
                       : "text-neutral-text hover:text-brand-navy"
                     }
-                    ${isActive && (shouldHaveTransparentNav && !isScrolled) ? "text-white" : isActive ? "text-brand-navy" : ""}
+                    ${isActive && (shouldHaveTransparentNav && !isScrolled) ? "text-white font-bold" : isActive ? "text-brand-navy" : ""}
                   `}
                 >
                   {item.name}
@@ -170,9 +171,9 @@ export function SiteHeader() {
               asChild
               variant="ghost"
               className={`
-                text-sm font-medium
+                text-sm font-semibold
                 ${shouldHaveTransparentNav && !isScrolled
-                  ? "text-white/90 hover:text-white hover:bg-white/10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+                  ? "text-white hover:text-white hover:bg-white/10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
                   : "text-neutral-text hover:text-brand-navy"
                 }
               `}
@@ -216,7 +217,7 @@ export function SiteHeader() {
                 size="icon"
                 className={`
                   ${shouldHaveTransparentNav && !isScrolled 
-                    ? "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" 
+                    ? "text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]" 
                     : "text-neutral-text"}
                 `}
               >
