@@ -47,7 +47,7 @@ const termsContent = {
     {
       title: "Limitation of Liability",
       content: [
-        "EduDubai provides educational content and services 'as is.' We do not guarantee specific outcomes, job placements, or certification exam results. Our liability is limited to the amount paid for the course.",
+        "EduDubai provides educational content and services &apos;as is.&apos; We do not guarantee specific outcomes, job placements, or certification exam results. Our liability is limited to the amount paid for the course.",
       ],
     },
   ],
