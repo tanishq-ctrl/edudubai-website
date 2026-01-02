@@ -3,11 +3,19 @@ let PrismaClient: any
 
 function getPrismaClientModule() {
   if (!PrismaClient) {
+    // During build phase, don't try to load Prisma Client
+    if (process.env.NEXT_PHASE === 'phase-production-build') {
+      throw new Error('Prisma Client should not be accessed during build phase')
+    }
+    
     try {
       PrismaClient = require('@prisma/client').PrismaClient
-    } catch (error) {
-      // Prisma Client not generated yet - this should not happen in production
-      throw new Error('Prisma Client has not been generated. Please run "prisma generate" first.')
+    } catch (error: any) {
+      // Prisma Client not generated yet
+      if (error.code === 'MODULE_NOT_FOUND' || error.message?.includes('Prisma Client')) {
+        throw new Error('Prisma Client has not been generated. Please run "prisma generate" first.')
+      }
+      throw error
     }
   }
   return PrismaClient
@@ -19,21 +27,9 @@ const globalForPrisma = globalThis as unknown as {
 
 function getPrismaClient() {
   // Skip initialization during build phase
-  if (process.env.NEXT_PHASE === 'phase-production-build' || process.env.VERCEL === '1') {
-    // During Vercel build, try to initialize but handle gracefully if it fails
-    try {
-      const Prisma = getPrismaClientModule()
-      if (!globalForPrisma.prisma) {
-        globalForPrisma.prisma = new Prisma({
-          log: process.env.NODE_ENV === 'development' ? ['query'] : ['error'],
-        })
-      }
-      return globalForPrisma.prisma
-    } catch (error) {
-      // If Prisma Client isn't generated, return a mock that will fail gracefully
-      console.warn('Prisma Client not available during build:', error)
-      return {} as any
-    }
+  if (process.env.NEXT_PHASE === 'phase-production-build') {
+    // During build, throw an error to prevent usage
+    throw new Error('Prisma Client cannot be accessed during build phase. This route should be marked as dynamic.')
   }
   
   const Prisma = getPrismaClientModule()
