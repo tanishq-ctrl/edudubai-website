@@ -21,6 +21,7 @@ model User {
   
   enrollments   Enrollment[]
   payments      Payment[]
+  courses       Course[]  @relation("CourseInstructor")
   
   @@map("users")
 }
@@ -42,7 +43,7 @@ model Course {
   level         CourseLevel
   category      String
   instructorId  String
-  instructor    User      @relation(fields: [instructorId], references: [id], map: "course_instructor_fk")
+  instructor    User      @relation("CourseInstructor", fields: [instructorId], references: [id], map: "course_instructor_fk")
   published     Boolean   @default(false)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
