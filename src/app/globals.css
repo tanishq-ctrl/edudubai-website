@@ -68,6 +68,15 @@
   .animate-fade-up {
     animation: fade-up 0.8s ease-out;
   }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @keyframes scroll {

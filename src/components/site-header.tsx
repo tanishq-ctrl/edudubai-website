@@ -4,12 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "@/components/ui/sheet"
-import { Menu, X, BookOpen } from "lucide-react"
+import { BookOpen } from "lucide-react"
 import { Container } from "@/components/container"
 import { openWhatsApp } from "@/lib/whatsapp"
 import { trackWhatsAppClick } from "@/lib/analytics"
@@ -28,7 +23,6 @@ const navigation = [
 
 export function SiteHeader() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [logoError, setLogoError] = useState(false)
   const [user, setUser] = useState<User | null>(null)
   const [authLoading, setAuthLoading] = useState(true)
@@ -93,15 +87,15 @@ export function SiteHeader() {
   return (
     <header className={headerClasses}>
       <Container>
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-16 sm:h-20 items-center justify-between gap-2 sm:gap-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 group">
+          <Link href="/" className="flex items-center space-x-1 sm:space-x-2 group flex-shrink-0">
             {!logoError ? (
-              <div className="relative h-12 w-auto">
+              <div className="relative h-8 w-auto sm:h-12">
                 <img
                   src="/edudubai-logo.png"
                   alt="EduDubai - Global Education and Training Specialist"
-                  className="h-12 w-auto object-contain transition-all duration-300 group-hover:opacity-90"
+                  className="h-8 w-auto sm:h-12 object-contain transition-all duration-300 group-hover:opacity-90"
                   style={{ 
                     backgroundColor: 'transparent',
                     display: 'block',
@@ -114,12 +108,12 @@ export function SiteHeader() {
               </div>
             ) : (
               <>
-                <BookOpen className={`h-7 w-7 transition-colors ${
+                <BookOpen className={`h-5 w-5 sm:h-7 sm:w-7 transition-colors ${
                   shouldHaveTransparentNav && !isScrolled
                     ? "text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
                     : "text-brand-gold group-hover:text-brand-gold-light"
                 }`} />
-                <span className={`text-2xl font-bold transition-colors ${
+                <span className={`text-lg sm:text-2xl font-bold transition-colors ${
                   shouldHaveTransparentNav && !isScrolled 
                     ? "text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)] font-extrabold" 
                     : "text-brand-navy"
@@ -130,8 +124,8 @@ export function SiteHeader() {
             )}
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          {/* Navigation - Visible on all screens */}
+          <nav className="flex items-center space-x-2 sm:space-x-4 md:space-x-6 lg:space-x-8 overflow-x-auto scrollbar-hide flex-1 justify-center min-w-0">
             {navigation.map((item) => {
               const isActive = pathname === item.href || 
                 (item.href !== "/" && pathname.startsWith(item.href))
@@ -140,7 +134,7 @@ export function SiteHeader() {
                   key={item.name}
                   href={item.href}
                   className={`
-                    text-sm font-semibold transition-colors relative
+                    text-xs sm:text-sm font-semibold transition-colors relative whitespace-nowrap px-1 sm:px-2 py-2
                     ${shouldHaveTransparentNav && !isScrolled
                       ? "text-white hover:text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
                       : "text-neutral-text hover:text-brand-navy"
@@ -161,20 +155,24 @@ export function SiteHeader() {
             })}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center space-x-4">
+          {/* CTA Buttons - Visible on all screens */}
+          <div className="flex items-center space-x-1 sm:space-x-2 md:space-x-4 flex-shrink-0">
             <Button
               asChild
               variant="ghost"
+              size="sm"
               className={`
-                text-sm font-semibold
+                text-xs sm:text-sm font-semibold px-2 sm:px-4
                 ${shouldHaveTransparentNav && !isScrolled
                   ? "text-white hover:text-white hover:bg-white/10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
                   : "text-neutral-text hover:text-brand-navy"
                 }
               `}
             >
-              <Link href="/become-a-trainer">Become a Trainer</Link>
+              <Link href="/become-a-trainer" className="whitespace-nowrap">
+                <span className="hidden sm:inline">Become a Trainer</span>
+                <span className="sm:hidden">Trainer</span>
+              </Link>
             </Button>
             {!authLoading && (
               user ? (
@@ -184,10 +182,11 @@ export function SiteHeader() {
                   <Button
                     asChild
                     variant="ghost"
+                    size="sm"
                     className={`
-                      text-sm font-medium
+                      text-xs sm:text-sm font-semibold px-2 sm:px-4
                       ${shouldHaveTransparentNav && !isScrolled
-                        ? "text-white/90 hover:text-white hover:bg-white/10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+                        ? "text-white hover:text-white hover:bg-white/10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
                         : "text-neutral-text hover:text-brand-navy"
                       }
                     `}
@@ -196,7 +195,8 @@ export function SiteHeader() {
                   </Button>
                   <Button
                     asChild
-                    className="bg-brand-gold text-brand-navy hover:bg-brand-gold-light font-semibold"
+                    size="sm"
+                    className="bg-brand-gold text-brand-navy hover:bg-brand-gold-light font-semibold text-xs sm:text-sm px-2 sm:px-4"
                   >
                     <Link href="/auth/register">Register</Link>
                   </Button>
@@ -204,88 +204,6 @@ export function SiteHeader() {
               )
             )}
           </div>
-
-          {/* Mobile Menu Button */}
-          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-            <SheetTrigger asChild className="lg:hidden">
-              <Button
-                variant="ghost"
-                size="icon"
-                className={`
-                  ${shouldHaveTransparentNav && !isScrolled 
-                    ? "text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]" 
-                    : "text-neutral-text"}
-                `}
-              >
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Open menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-              <div className="flex flex-col space-y-6 mt-8">
-                {navigation.map((item) => {
-                  const isActive = pathname === item.href
-                  return (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`
-                        text-base font-medium transition-colors
-                        ${isActive ? "text-brand-navy" : "text-neutral-text"}
-                        hover:text-brand-navy
-                      `}
-                    >
-                      {item.name}
-                    </Link>
-                  )
-                })}
-                <div className="pt-6 border-t border-neutral-border space-y-4">
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="w-full"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <Link href="/become-a-trainer">Become a Trainer</Link>
-                  </Button>
-                  {!authLoading && (
-                    user ? (
-                      <>
-                        <Button
-                          asChild
-                          variant="outline"
-                          className="w-full"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          <Link href="/dashboard">Dashboard</Link>
-                        </Button>
-                        <UserMenu />
-                      </>
-                    ) : (
-                      <>
-                        <Button
-                          asChild
-                          variant="outline"
-                          className="w-full"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          <Link href="/auth/login">Login</Link>
-                        </Button>
-                        <Button
-                          asChild
-                          className="w-full bg-brand-gold text-brand-navy hover:bg-brand-gold-light font-semibold"
-                          onClick={() => setMobileMenuOpen(false)}
-                        >
-                          <Link href="/auth/register">Register</Link>
-                        </Button>
-                      </>
-                    )
-                  )}
-                </div>
-              </div>
-            </SheetContent>
-          </Sheet>
         </div>
       </Container>
     </header>
