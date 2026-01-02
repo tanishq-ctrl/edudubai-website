@@ -1,0 +1,136 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  image         String?
+  role          UserRole  @default(STUDENT)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  enrollments   Enrollment[]
+  payments      Payment[]
+  
+  @@map("users")
+}
+
+enum UserRole {
+  STUDENT
+  INSTRUCTOR
+  ADMIN
+}
+
+model Course {
+  id            String    @id @default(cuid())
+  title         String
+  description   String    @db.Text
+  slug          String    @unique
+  image         String?
+  price         Float
+  duration      Int       // in hours
+  level         CourseLevel
+  category      String
+  instructorId  String
+  instructor    User      @relation(fields: [instructorId], references: [id], map: "course_instructor_fk")
+  published     Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  modules       Module[]
+  enrollments   Enrollment[]
+  
+  @@map("courses")
+}
+
+enum CourseLevel {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+model Module {
+  id          String   @id @default(cuid())
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  title       String
+  description String?  @db.Text
+  order       Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  lessons     Lesson[]
+  
+  @@map("modules")
+}
+
+model Lesson {
+  id          String   @id @default(cuid())
+  moduleId    String
+  module      Module   @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  title       String
+  description String?  @db.Text
+  videoUrl    String?
+  content     String?  @db.Text
+  order       Int
+  duration    Int      // in minutes
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("lessons")
+}
+
+model Enrollment {
+  id          String        @id @default(cuid())
+  userId      String
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId    String
+  course      Course        @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  status      EnrollmentStatus @default(ACTIVE)
+  progress    Int           @default(0) // percentage
+  enrolledAt  DateTime      @default(now())
+  completedAt DateTime?
+  
+  @@unique([userId, courseId])
+  @@map("enrollments")
+}
+
+enum EnrollmentStatus {
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+model Payment {
+  id            String        @id @default(cuid())
+  userId        String
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId      String?
+  amount        Float
+  currency      String        @default("USD")
+  status        PaymentStatus
+  stripeId      String?       @unique
+  stripeSessionId String?     @unique
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  
+  @@map("payments")
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+

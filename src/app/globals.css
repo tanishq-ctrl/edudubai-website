@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand Colors - Premium PwC Style */
+    --brand-navy: 30 58 95; /* #1e3a5f */
+    --brand-navy-light: 45 79 124; /* #2d4f7c */
+    --brand-navy-dark: 15 31 53; /* #0f1f35 */
+    --brand-gold: 212 175 55; /* #d4af37 */
+    --brand-gold-light: 229 193 88; /* #e5c158 */
+    --brand-gold-dark: 184 148 31; /* #b8941f */
+    
+    /* Neutral Colors */
+    --neutral-bg: 255 255 255; /* White */
+    --neutral-bg-subtle: 249 250 251; /* Gray-50 */
+    --neutral-text: 17 24 39; /* Gray-900 */
+    --neutral-text-muted: 107 114 128; /* Gray-500 */
+    --neutral-border: 229 231 235; /* Gray-200 */
+    
+    /* shadcn/ui compatibility */
+    --background: var(--neutral-bg);
+    --foreground: var(--neutral-text);
+    --card: var(--neutral-bg);
+    --card-foreground: var(--neutral-text);
+    --popover: var(--neutral-bg);
+    --popover-foreground: var(--neutral-text);
+    --primary: var(--brand-navy);
+    --primary-foreground: 255 255 255;
+    --secondary: var(--neutral-bg-subtle);
+    --secondary-foreground: var(--neutral-text);
+    --muted: var(--neutral-bg-subtle);
+    --muted-foreground: var(--neutral-text-muted);
+    --accent: var(--brand-gold);
+    --accent-foreground: var(--brand-navy);
+    --destructive: 239 68 68;
+    --destructive-foreground: 255 255 255;
+    --border: var(--neutral-border);
+    --input: var(--neutral-border);
+    --ring: var(--brand-navy);
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-neutral-bg text-neutral-text antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer utilities {
+  .animate-scroll {
+    display: flex;
+    width: fit-content;
+    animation: scroll 90s linear infinite;
+    will-change: transform;
+  }
+  
+  .animate-scroll:hover {
+    animation-play-state: paused;
+  }
+  
+  .animate-fade-up {
+    animation: fade-up 0.8s ease-out;
+  }
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhance partner logos for better visibility */
+@layer components {
+  .partner-logo-enhance {
+    filter: brightness(1.15) contrast(1.2) saturate(1.15);
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  .partner-logo-enhance:hover {
+    filter: brightness(1.2) contrast(1.25) saturate(1.2);
+  }
+}
