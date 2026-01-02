@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { AuthCard } from "@/components/auth/auth-card"
 import { Button } from "@/components/ui/button"
@@ -19,7 +19,7 @@ const resetPasswordSchema = z.object({
   path: ["confirmPassword"],
 })
 
-export default function ResetPasswordPage() {
+function ResetPasswordForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [loading, setLoading] = useState(false)
@@ -136,7 +136,7 @@ export default function ResetPasswordPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-blue-50/30 py-12 px-4 sm:px-6 lg:px-8">
-        <AuthCard title="Reset Password" description="Enter your email address and we&apos;ll send you a link to reset your password">
+        <AuthCard title="Reset Password" description="Enter your new password">
           <div className="flex items-center justify-center py-8">
             <Loader2 className="h-6 w-6 animate-spin text-brand-navy" />
           </div>
