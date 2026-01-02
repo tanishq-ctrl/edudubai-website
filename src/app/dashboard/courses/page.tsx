@@ -15,6 +15,9 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
+// Mark as dynamic since it uses cookies
+export const dynamic = 'force-dynamic'
+
 export default async function CoursesPage() {
   let user
 

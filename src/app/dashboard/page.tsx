@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button"
 import { getDashboardStats } from "@/server/dashboard/queries"
 import { BookOpen, CheckCircle2, CreditCard, ArrowRight } from "lucide-react"
 
+// Mark as dynamic since it uses cookies
+export const dynamic = 'force-dynamic'
+
 export default async function DashboardPage() {
   let supabase
   let user

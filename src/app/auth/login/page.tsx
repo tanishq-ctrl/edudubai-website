@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { AuthCard } from "@/components/auth/auth-card"
 import { Button } from "@/components/ui/button"
@@ -20,7 +20,7 @@ const loginSchema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters"),
 })
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [loading, setLoading] = useState(false)
@@ -275,5 +275,21 @@ export default function LoginPage() {
         </div>
       </AuthCard>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-blue-50/30 py-12 px-4 sm:px-6 lg:px-8">
+        <AuthCard title="Welcome Back" description="Sign in to your account to continue learning">
+          <div className="flex items-center justify-center py-8">
+            <Loader2 className="h-6 w-6 animate-spin text-brand-navy" />
+          </div>
+        </AuthCard>
+      </div>
+    }>
+      <LoginForm />
+    </Suspense>
   )
 }

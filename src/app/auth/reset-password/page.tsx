@@ -132,3 +132,19 @@ export default function ResetPasswordPage() {
   )
 }
 
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-blue-50/30 py-12 px-4 sm:px-6 lg:px-8">
+        <AuthCard title="Reset Password" description="Enter your email address and we&apos;ll send you a link to reset your password">
+          <div className="flex items-center justify-center py-8">
+            <Loader2 className="h-6 w-6 animate-spin text-brand-navy" />
+          </div>
+        </AuthCard>
+      </div>
+    }>
+      <ResetPasswordForm />
+    </Suspense>
+  )
+}
+
