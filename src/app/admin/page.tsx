@@ -4,6 +4,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { AdminCoursesList } from "@/components/admin/courses-list"
 import { AdminUsersList } from "@/components/admin/users-list"
 
+// Mark as dynamic to prevent build-time Prisma access
+export const dynamic = 'force-dynamic'
+
 export default async function AdminPage() {
   // Phase 1: No authentication required
   // Phase 2: Add authentication check here
