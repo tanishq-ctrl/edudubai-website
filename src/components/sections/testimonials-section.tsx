@@ -71,7 +71,7 @@ export function TestimonialsSection() {
                 </div>
                 <div className="flex-1">
                   <p className="text-lg md:text-xl text-neutral-text mb-8 italic leading-relaxed">
-                    &ldquo;{currentTestimonial.content}&rdquo;
+                    &quot;{currentTestimonial.content}&quot;
                   </p>
                   <div className="flex items-center justify-between">
                     <div>
