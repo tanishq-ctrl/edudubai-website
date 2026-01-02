@@ -66,8 +66,8 @@ export function TestimonialsSection() {
           <Card className="border-2 border-neutral-border/50 bg-gradient-to-br from-white via-white/95 to-slate-50/80 backdrop-blur-sm shadow-2xl hover:shadow-3xl transition-all duration-300">
             <CardContent className="pt-8 pb-8 px-8">
               <div className="flex items-start space-x-6">
-                <div className="bg-gradient-to-br from-amber-200/30 via-yellow-200/20 to-orange-200/30 p-4 rounded-xl shadow-md">
-                  <Quote className="h-8 w-8 text-amber-600 flex-shrink-0" />
+                <div className="bg-gradient-to-br from-brand-gold/20 via-brand-gold/10 to-brand-gold-light/20 p-4 rounded-xl shadow-md">
+                  <Quote className="h-8 w-8 text-brand-gold flex-shrink-0" />
                 </div>
                 <div className="flex-1">
                   <p className="text-lg md:text-xl text-neutral-text mb-8 italic leading-relaxed">
