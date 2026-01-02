@@ -149,7 +149,11 @@ export function SiteHeader() {
                 >
                   {item.name}
                   {isActive && (
-                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-gold" />
+                    <span className={`absolute -bottom-1 left-0 right-0 h-0.5 ${
+                      shouldHaveTransparentNav && !isScrolled
+                        ? "bg-white"
+                        : "bg-brand-gold"
+                    }`} />
                   )}
                 </Link>
               )
