@@ -264,7 +264,7 @@ export function HeroCarousel() {
       </button>
 
       {/* Custom Pagination */}
-      <div className="swiper-pagination-custom absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2" />
+      <div className="swiper-pagination-custom absolute bottom-2 sm:bottom-3 md:bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2" />
 
       {/* Custom Styles */}
       <style jsx global>{`
