@@ -7,28 +7,28 @@ import { BookOpen } from "lucide-react"
 
 export function Navbar() {
   return (
-    <nav className="border-b bg-white sticky top-0 z-50">
+    <nav className="border-b bg-neutral-bg sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
-            <BookOpen className="h-6 w-6 text-navy" />
-            <span className="text-xl font-bold text-navy">EduDubai</span>
+            <BookOpen className="h-6 w-6 text-brand-navy" />
+            <span className="text-xl font-bold text-brand-navy">EduDubai</span>
           </Link>
 
           <div className="hidden md:flex items-center space-x-6">
-            <Link href="/courses" className="text-sm font-medium text-gray-700 hover:text-navy">
+            <Link href="/courses" className="text-sm font-medium text-neutral-text hover:text-brand-navy">
               Courses
             </Link>
-            <Link href="/certifications" className="text-sm font-medium text-gray-700 hover:text-navy">
+            <Link href="/certifications" className="text-sm font-medium text-neutral-text hover:text-brand-navy">
               Certifications
             </Link>
-            <Link href="/corporate-training" className="text-sm font-medium text-gray-700 hover:text-navy">
+            <Link href="/corporate-training" className="text-sm font-medium text-neutral-text hover:text-brand-navy">
               Corporate Training
             </Link>
-            <Link href="/about" className="text-sm font-medium text-gray-700 hover:text-navy">
+            <Link href="/about" className="text-sm font-medium text-neutral-text hover:text-brand-navy">
               About
             </Link>
-            <Link href="/contact" className="text-sm font-medium text-gray-700 hover:text-navy">
+            <Link href="/contact" className="text-sm font-medium text-neutral-text hover:text-brand-navy">
               Contact
             </Link>
           </div>

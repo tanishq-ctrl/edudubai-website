@@ -18,7 +18,7 @@ interface User {
 export function AdminUsersList({ users }: { users: User[] }) {
   return (
     <div>
-      <h2 className="text-2xl font-semibold text-navy mb-6">All Users</h2>
+      <h2 className="text-2xl font-semibold text-brand-navy mb-6">All Users</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {users.map((user) => (
           <Card key={user.id}>
@@ -32,15 +32,15 @@ export function AdminUsersList({ users }: { users: User[] }) {
             <CardContent>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Enrollments:</span>
+                  <span className="text-neutral-text-muted">Enrollments:</span>
                   <span className="font-medium">{user._count.enrollments}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Payments:</span>
+                  <span className="text-neutral-text-muted">Payments:</span>
                   <span className="font-medium">{user._count.payments}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Joined:</span>
+                  <span className="text-neutral-text-muted">Joined:</span>
                   <span className="font-medium">
                     {new Date(user.createdAt).toLocaleDateString()}
                   </span>

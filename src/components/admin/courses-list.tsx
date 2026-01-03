@@ -32,7 +32,7 @@ export function AdminCoursesList({ courses }: { courses: Course[] }) {
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-semibold text-navy">All Courses</h2>
+        <h2 className="text-2xl font-semibold text-brand-navy">All Courses</h2>
         <Button onClick={() => setOpen(true)}>
           <Plus className="h-4 w-4 mr-2" />
           Create Course
@@ -56,15 +56,15 @@ export function AdminCoursesList({ courses }: { courses: Course[] }) {
             <CardContent>
               <div className="space-y-2 mb-4">
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Price:</span>
+                  <span className="text-neutral-text-muted">Price:</span>
                   <span className="font-medium">${course.price}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Enrollments:</span>
+                  <span className="text-neutral-text-muted">Enrollments:</span>
                   <span className="font-medium">{course._count.enrollments}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Level:</span>
+                  <span className="text-neutral-text-muted">Level:</span>
                   <span className="font-medium">{course.level}</span>
                 </div>
               </div>
