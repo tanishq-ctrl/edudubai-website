@@ -72,17 +72,17 @@ export async function ExamPrepTracksSection() {
                   <div className="p-3 bg-brand-gold/10 rounded-lg">
                     <Icon className="h-6 w-6 text-brand-gold" />
                   </div>
-                  <span className="text-xs font-semibold text-brand-navy bg-neutral-bg-subtle px-3 py-1 rounded-full">
+                  <Badge variant="secondary" className="text-xs font-semibold">
                     {track.badge}
-                  </span>
+                  </Badge>
                 </div>
                 <CardTitle className="text-xl mb-3">{course.title}</CardTitle>
                 <CardDescription className="line-clamp-3">
                   {course.shortDescription}
                 </CardDescription>
-                <div className="flex flex-wrap gap-2 mt-4">
+                <div className="flex flex-wrap items-center gap-2 mt-4">
                   {course.deliveryModes.map((mode) => (
-                    <DeliveryFormatBadge key={mode} format={mode} />
+                    <DeliveryFormatBadge key={mode} format={mode} className="text-xs" />
                   ))}
                 </div>
               </CardHeader>
