@@ -48,23 +48,23 @@ export function PageHeroImage({
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_40%,_rgba(0,0,0,0.1)_100%)]" />
 
       {/* Content */}
-      <Container className="relative z-10 h-full flex items-center">
-        <div className="max-w-6xl w-full md:text-left text-center space-y-6 md:space-y-8 animate-fade-up">
+      <Container className="relative z-10 h-full flex items-center px-4 sm:px-6">
+        <div className="max-w-6xl w-full mx-auto md:text-left text-center space-y-4 sm:space-y-6 md:space-y-8 animate-fade-up py-8 sm:py-12 md:py-0">
           {/* Eyebrow */}
           {eyebrow && (
-            <div className="text-base md:text-lg font-extrabold uppercase tracking-widest text-[#f4d03f] drop-shadow-[0_4px_8px_rgba(0,0,0,1)] [text-shadow:_-1px_-1px_0_rgba(0,0,0,0.8),1px_1px_0_rgba(0,0,0,0.8),0_0_10px_rgba(244,208,63,0.5)]">
+            <div className="text-sm sm:text-base md:text-lg font-extrabold uppercase tracking-widest text-[#f4d03f] drop-shadow-[0_4px_8px_rgba(0,0,0,1)] [text-shadow:_-1px_-1px_0_rgba(0,0,0,0.8),1px_1px_0_rgba(0,0,0,0.8),0_0_10px_rgba(244,208,63,0.5)] px-2">
               {eyebrow}
             </div>
           )}
 
           {/* Headline */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-[64px] font-bold leading-tight tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px] font-bold leading-[1.1] sm:leading-tight tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] px-2 break-words">
             {title}
           </h1>
 
           {/* Description */}
           {description && (
-            <p className="text-lg md:text-xl lg:text-2xl text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)] max-w-3xl md:max-w-2xl">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)] max-w-3xl md:max-w-2xl mx-auto md:mx-0 px-2">
               {description}
             </p>
           )}

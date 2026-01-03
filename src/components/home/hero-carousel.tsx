@@ -179,30 +179,30 @@ export function HeroCarousel() {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_rgba(0,0,0,0.15)_100%)]" />
 
             {/* Content */}
-            <Container className="relative z-10 h-full flex items-center">
-              <div className="max-w-6xl w-full md:text-left text-center space-y-6 md:space-y-8 animate-fade-up">
+            <Container className="relative z-10 h-full flex items-center px-4 sm:px-6">
+              <div className="max-w-6xl w-full mx-auto md:text-left text-center space-y-4 sm:space-y-6 md:space-y-8 animate-fade-up py-8 sm:py-12 md:py-0">
                 {/* Eyebrow */}
-                <div className="text-base md:text-lg font-extrabold uppercase tracking-widest text-[#f4d03f] drop-shadow-[0_4px_8px_rgba(0,0,0,1)] [text-shadow:_-1px_-1px_0_rgba(0,0,0,0.8),1px_1px_0_rgba(0,0,0,0.8),0_0_10px_rgba(244,208,63,0.5)]">
+                <div className="text-sm sm:text-base md:text-lg font-extrabold uppercase tracking-widest text-[#f4d03f] drop-shadow-[0_4px_8px_rgba(0,0,0,1)] [text-shadow:_-1px_-1px_0_rgba(0,0,0,0.8),1px_1px_0_rgba(0,0,0,0.8),0_0_10px_rgba(244,208,63,0.5)] px-2">
                   {slide.eyebrow}
                 </div>
 
                 {/* Headline */}
-                <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-[64px] font-bold leading-tight tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px] font-bold leading-[1.1] sm:leading-tight tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] px-2 break-words">
                   {slide.headline}
                 </h1>
 
                 {/* Subheadline */}
-                <p className="text-lg md:text-xl lg:text-2xl text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)] max-w-3xl md:max-w-2xl">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)] max-w-3xl md:max-w-2xl mx-auto md:mx-0 px-2">
                   {slide.subheadline}
                 </p>
 
                 {/* CTAs */}
-                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4 justify-center md:justify-start px-2">
                   <Button
                     asChild
                     size="lg"
                     variant="gold"
-                    className="bg-gradient-to-r from-brand-gold to-brand-gold-light text-brand-navy hover:from-brand-gold-light hover:to-brand-gold font-semibold px-8 py-6 text-base md:text-lg shadow-xl shadow-brand-gold/30 hover:shadow-brand-gold/50 transition-all hover:scale-105"
+                    className="bg-gradient-to-r from-brand-gold to-brand-gold-light text-brand-navy hover:from-brand-gold-light hover:to-brand-gold font-semibold px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base md:text-lg shadow-xl shadow-brand-gold/30 hover:shadow-brand-gold/50 transition-all hover:scale-105 w-full sm:w-auto"
                   >
                     <Link href={slide.primaryCTA.href}>
                       {slide.primaryCTA.text}
@@ -212,7 +212,7 @@ export function HeroCarousel() {
                     asChild
                     size="lg"
                     variant="outline"
-                    className="bg-white/15 backdrop-blur-sm border-2 border-white/70 text-white hover:bg-white/25 hover:border-white font-semibold px-8 py-6 text-base md:text-lg transition-all hover:scale-105 shadow-lg"
+                    className="bg-white/15 backdrop-blur-sm border-2 border-white/70 text-white hover:bg-white/25 hover:border-white font-semibold px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base md:text-lg transition-all hover:scale-105 shadow-lg w-full sm:w-auto"
                   >
                     <Link href={slide.secondaryCTA.href}>
                       {slide.secondaryCTA.text}
@@ -227,11 +227,11 @@ export function HeroCarousel() {
 
       {/* Custom Navigation Arrows */}
       <button
-        className="swiper-button-prev-custom absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
+        className="swiper-button-prev-custom absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-sm border border-white/30 flex items-center justify-center transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
         aria-label="Previous slide"
       >
         <svg
-          className="w-6 h-6 md:w-7 md:h-7 text-white"
+          className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -245,11 +245,11 @@ export function HeroCarousel() {
         </svg>
       </button>
       <button
-        className="swiper-button-next-custom absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
+        className="swiper-button-next-custom absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-sm border border-white/30 flex items-center justify-center transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
         aria-label="Next slide"
       >
         <svg
-          className="w-6 h-6 md:w-7 md:h-7 text-white"
+          className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -264,7 +264,7 @@ export function HeroCarousel() {
       </button>
 
       {/* Custom Pagination */}
-      <div className="swiper-pagination-custom absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2" />
+      <div className="swiper-pagination-custom absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2" />
 
       {/* Custom Styles */}
       <style jsx global>{`
