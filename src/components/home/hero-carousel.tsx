@@ -179,7 +179,7 @@ export function HeroCarousel() {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_rgba(0,0,0,0.15)_100%)]" />
 
             {/* Content */}
-            <Container className="relative z-10 h-full flex items-center px-4 sm:px-6">
+            <Container className="relative z-10 h-full flex items-center px-4 sm:px-6 pb-8 sm:pb-12 md:pb-16">
               <div className="max-w-6xl w-full mx-auto text-center space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8 animate-fade-up">
                 {/* Eyebrow */}
                 <div className="text-sm sm:text-base md:text-lg font-extrabold uppercase tracking-widest text-[#f4d03f] drop-shadow-[0_4px_8px_rgba(0,0,0,1)] [text-shadow:_-1px_-1px_0_rgba(0,0,0,0.8),1px_1px_0_rgba(0,0,0,0.8),0_0_10px_rgba(244,208,63,0.5)] px-2 text-center">
@@ -197,7 +197,7 @@ export function HeroCarousel() {
                 </p>
 
                 {/* CTAs */}
-                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 pt-1 sm:pt-2 md:pt-4 justify-center px-2">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 pt-1 sm:pt-2 md:pt-4 justify-center px-2 pb-0">
                   <Button
                     asChild
                     size="default"
