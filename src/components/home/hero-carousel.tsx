@@ -269,17 +269,28 @@ export function HeroCarousel() {
       {/* Custom Styles */}
       <style jsx global>{`
         .swiper-pagination-bullet-custom {
-          width: 12px;
-          height: 12px;
+          width: 10px;
+          height: 10px;
           background: rgba(255, 255, 255, 0.5);
           opacity: 1;
           transition: all 0.3s ease;
           cursor: pointer;
         }
+        @media (min-width: 640px) {
+          .swiper-pagination-bullet-custom {
+            width: 12px;
+            height: 12px;
+          }
+        }
         .swiper-pagination-bullet-active-custom {
           background: #d4af37;
-          width: 32px;
+          width: 24px;
           border-radius: 6px;
+        }
+        @media (min-width: 640px) {
+          .swiper-pagination-bullet-active-custom {
+            width: 32px;
+          }
         }
       `}</style>
     </section>
