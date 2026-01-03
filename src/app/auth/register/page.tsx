@@ -156,13 +156,18 @@ function RegisterForm() {
       const supabase = createClient()
       const next = searchParams.get("next") || "/dashboard"
       
-      // Get the callback URL
-      const callbackUrl = `${window.location.origin}/auth/callback?next=${encodeURIComponent(next)}`
+      // Get the callback URL - use environment variable if available, otherwise use window.location
+      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || window.location.origin
+      const callbackUrl = `${siteUrl}/auth/callback?next=${encodeURIComponent(next)}`
       
       const { data, error: oauthError } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
           redirectTo: callbackUrl,
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent',
+          },
         },
       })
 
