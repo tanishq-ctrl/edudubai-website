@@ -179,30 +179,30 @@ export function HeroCarousel() {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_rgba(0,0,0,0.15)_100%)]" />
 
             {/* Content */}
-            <Container className="relative z-10 h-full flex items-center px-4 sm:px-6">
-              <div className="max-w-6xl w-full mx-auto text-center space-y-4 sm:space-y-6 md:space-y-8 animate-fade-up py-8 sm:py-12 md:py-0">
+            <Container className="relative z-10 h-full flex items-end pb-8 sm:items-center sm:pb-0 px-4 sm:px-6">
+              <div className="max-w-6xl w-full mx-auto text-center space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8 animate-fade-up pt-12 sm:pt-8 md:pt-0">
                 {/* Eyebrow */}
-                <div className="text-base sm:text-base md:text-lg font-extrabold uppercase tracking-widest text-[#f4d03f] drop-shadow-[0_4px_8px_rgba(0,0,0,1)] [text-shadow:_-1px_-1px_0_rgba(0,0,0,0.8),1px_1px_0_rgba(0,0,0,0.8),0_0_10px_rgba(244,208,63,0.5)] px-2 text-center">
+                <div className="text-sm sm:text-base md:text-lg font-extrabold uppercase tracking-widest text-[#f4d03f] drop-shadow-[0_4px_8px_rgba(0,0,0,1)] [text-shadow:_-1px_-1px_0_rgba(0,0,0,0.8),1px_1px_0_rgba(0,0,0,0.8),0_0_10px_rgba(244,208,63,0.5)] px-2 text-center">
                   {slide.eyebrow}
                 </div>
 
                 {/* Headline */}
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px] font-bold leading-[1.1] sm:leading-tight tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] px-2 break-words text-center">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-[1.1] sm:leading-tight tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] px-2 break-words text-center">
                   {slide.headline}
                 </h1>
 
                 {/* Subheadline */}
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)] max-w-3xl mx-auto px-2 text-center">
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)] max-w-3xl mx-auto px-2 text-center line-clamp-2 sm:line-clamp-none">
                   {slide.subheadline}
                 </p>
 
                 {/* CTAs */}
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4 justify-center px-2">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 pt-1 sm:pt-2 md:pt-4 justify-center px-2">
                   <Button
                     asChild
-                    size="lg"
+                    size="default"
                     variant="gold"
-                    className="bg-gradient-to-r from-brand-gold to-brand-gold-light text-brand-navy hover:from-brand-gold-light hover:to-brand-gold font-semibold px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base md:text-lg shadow-xl shadow-brand-gold/30 hover:shadow-brand-gold/50 transition-all hover:scale-105 w-full sm:w-auto"
+                    className="bg-gradient-to-r from-brand-gold to-brand-gold-light text-brand-navy hover:from-brand-gold-light hover:to-brand-gold font-semibold px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 text-xs sm:text-sm md:text-base lg:text-lg shadow-xl shadow-brand-gold/30 hover:shadow-brand-gold/50 transition-all hover:scale-105 w-full sm:w-auto"
                   >
                     <Link href={slide.primaryCTA.href}>
                       {slide.primaryCTA.text}
@@ -210,9 +210,9 @@ export function HeroCarousel() {
                   </Button>
                   <Button
                     asChild
-                    size="lg"
+                    size="default"
                     variant="outline"
-                    className="bg-white/15 backdrop-blur-sm border-2 border-white/70 text-white hover:bg-white/25 hover:border-white font-semibold px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base md:text-lg transition-all hover:scale-105 shadow-lg w-full sm:w-auto"
+                    className="bg-white/15 backdrop-blur-sm border-2 border-white/70 text-white hover:bg-white/25 hover:border-white font-semibold px-4 sm:px-6 md:px-8 py-3 sm:py-4 md:py-6 text-xs sm:text-sm md:text-base lg:text-lg transition-all hover:scale-105 shadow-lg w-full sm:w-auto"
                   >
                     <Link href={slide.secondaryCTA.href}>
                       {slide.secondaryCTA.text}
