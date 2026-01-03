@@ -146,7 +146,7 @@ export function LeadCaptureForm({
                   <Label htmlFor="message">Message</Label>
                   <textarea
                     id="message"
-                    className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                    className="flex min-h-[80px] w-full rounded-md border-2 border-neutral-border bg-neutral-bg px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-navy focus-visible:border-brand-navy"
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   />
