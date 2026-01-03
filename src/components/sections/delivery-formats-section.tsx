@@ -55,7 +55,7 @@ export function DeliveryFormatsSection() {
                   <div className={`${format.bgColor} w-20 h-20 rounded-xl flex items-center justify-center mb-6 shadow-lg`}>
                     <Icon className={`h-10 w-10 ${format.color}`} />
                   </div>
-                  <CardTitle className="text-2xl font-bold">{format.title}</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-neutral-text">{format.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <CardDescription className="text-base leading-relaxed text-neutral-text">
