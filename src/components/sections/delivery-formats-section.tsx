@@ -58,7 +58,7 @@ export function DeliveryFormatsSection() {
                   <CardTitle className="text-2xl font-bold">{format.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="text-base leading-relaxed">
+                  <CardDescription className="text-base leading-relaxed text-neutral-text">
                     {format.description}
                   </CardDescription>
                 </CardContent>
