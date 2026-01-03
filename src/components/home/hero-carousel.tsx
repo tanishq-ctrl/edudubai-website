@@ -118,7 +118,7 @@ export function HeroCarousel() {
   }, [swiperInstance])
 
   return (
-    <section className="relative w-full h-[55vh] md:h-[70vh] min-h-[420px] overflow-hidden">
+    <section className="relative w-full h-[60vh] sm:h-[55vh] md:h-[70vh] min-h-[480px] sm:min-h-[420px] overflow-hidden">
       <Swiper
         modules={[Autoplay, Navigation, Pagination, A11y]}
         spaceBetween={0}
