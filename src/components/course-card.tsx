@@ -28,13 +28,11 @@ export function CourseCard({ course }: CourseCardProps) {
         </div>
       )}
       <CardHeader className="flex-1 pb-4">
-        <div className="flex items-start justify-between mb-4 gap-2">
-          <div className="flex flex-wrap gap-2 flex-1">
-            {course.deliveryModes.map((mode) => (
-              <DeliveryFormatBadge key={mode} format={mode} />
-            ))}
-          </div>
-          <Badge variant="secondary" className="text-xs shrink-0">
+        <div className="flex flex-wrap items-center gap-2 mb-4">
+          {course.deliveryModes.map((mode) => (
+            <DeliveryFormatBadge key={mode} format={mode} className="text-xs" />
+          ))}
+          <Badge variant="secondary" className="text-xs">
             {course.category.replace(/_/g, " ")}
           </Badge>
         </div>

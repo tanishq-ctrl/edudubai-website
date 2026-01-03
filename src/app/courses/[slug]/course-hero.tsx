@@ -18,14 +18,14 @@ export function CourseHero({ course }: CourseHeroProps) {
       <Container className="pt-32 pb-12 md:pt-36 md:pb-16">
         <div className="max-w-4xl">
           {/* Badges */}
-          <div className="flex flex-wrap items-center gap-3 mb-6">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-6">
             {course.deliveryModes.map((mode) => (
-              <DeliveryFormatBadge key={mode} format={mode} />
+              <DeliveryFormatBadge key={mode} format={mode} className="text-xs sm:text-sm" />
             ))}
-            <Badge variant="secondary" className="text-sm">
+            <Badge variant="secondary" className="text-xs sm:text-sm">
               {course.category.replace(/_/g, " ")}
             </Badge>
-            <Badge variant="outline" className="text-sm">
+            <Badge variant="outline" className="text-xs sm:text-sm border-neutral-border">
               {course.level}
             </Badge>
           </div>

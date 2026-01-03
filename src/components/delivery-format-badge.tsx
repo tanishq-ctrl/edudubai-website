@@ -32,9 +32,9 @@ export function DeliveryFormatBadge({ format, className }: DeliveryFormatBadgePr
   const { label, icon: Icon, className: badgeClassName } = config[format as DeliveryMode]
 
   return (
-    <Badge className={`${badgeClassName} ${className}`}>
-      <Icon className="h-3 w-3 mr-1" />
-      {label}
+    <Badge className={`${badgeClassName} ${className} text-xs font-semibold border-0`}>
+      <Icon className="h-3 w-3 mr-1 flex-shrink-0" />
+      <span className="whitespace-nowrap">{label}</span>
     </Badge>
   )
 }
