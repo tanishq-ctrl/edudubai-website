@@ -22,6 +22,17 @@ Google authentication is handled entirely through Supabase. You **do NOT** need 
    https://your-domain.vercel.app/auth/callback
    http://localhost:3000/auth/callback (for local development)
    ```
+   
+   **Where to find this in Supabase:**
+   - Go to Supabase Dashboard → Authentication → URL Configuration
+   - Look for "Redirect URLs" section
+   - Add your Vercel production URL: `https://your-domain.vercel.app/auth/callback`
+   - Add localhost for development: `http://localhost:3000/auth/callback`
+   
+   **Where to find your Vercel URL:**
+   - Go to Vercel Dashboard → Your Project → Settings → Domains
+   - Use your production domain (e.g., `https://edudubai.vercel.app` or your custom domain)
+   - Add `/auth/callback` to the end
 
 ### 2. Vercel Environment Variables
 
@@ -41,14 +52,24 @@ If you haven't created Google OAuth credentials yet:
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Create a new project or select existing one
-3. Enable **Google+ API** (or Google Identity API)
+3. Enable **Google+ API** (or **Google Identity Services API**)
 4. Go to **Credentials** → **Create Credentials** → **OAuth 2.0 Client ID**
 5. Application type: **Web application**
 6. **Authorized redirect URIs**: Add:
    ```
    https://your-project.supabase.co/auth/v1/callback
    ```
-   (This is Supabase's OAuth callback endpoint)
+   ⚠️ **IMPORTANT**: This is Supabase's callback URL, NOT your Vercel URL!
+   
+   **Where to find your Supabase project URL:**
+   - Go to Supabase Dashboard → Settings → API
+   - Look for "Project URL" (e.g., `https://abcdefghijklmnop.supabase.co`)
+   - Use that URL + `/auth/v1/callback`
+   
+   **Example:**
+   - If your Supabase Project URL is: `https://xyzabc123.supabase.co`
+   - Then add: `https://xyzabc123.supabase.co/auth/v1/callback`
+   
 7. Copy the **Client ID** and **Client Secret**
 8. Add them to Supabase Dashboard → Authentication → Providers → Google
 
