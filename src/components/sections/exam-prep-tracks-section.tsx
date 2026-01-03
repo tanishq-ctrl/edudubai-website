@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import { DeliveryFormatBadge } from "@/components/delivery-format-badge"
 import { CourseImage } from "@/components/course-image"
 import { getCourseBySlugNew } from "@/server/actions/courses"
