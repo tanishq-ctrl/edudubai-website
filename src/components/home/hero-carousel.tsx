@@ -179,8 +179,8 @@ export function HeroCarousel() {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_rgba(0,0,0,0.15)_100%)]" />
 
             {/* Content */}
-            <Container className="relative z-10 h-full flex items-end pb-8 sm:items-center sm:pb-0 px-4 sm:px-6">
-              <div className="max-w-6xl w-full mx-auto text-center space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8 animate-fade-up pt-12 sm:pt-8 md:pt-0">
+            <Container className="relative z-10 h-full flex items-center px-4 sm:px-6">
+              <div className="max-w-6xl w-full mx-auto text-center space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8 animate-fade-up">
                 {/* Eyebrow */}
                 <div className="text-sm sm:text-base md:text-lg font-extrabold uppercase tracking-widest text-[#f4d03f] drop-shadow-[0_4px_8px_rgba(0,0,0,1)] [text-shadow:_-1px_-1px_0_rgba(0,0,0,0.8),1px_1px_0_rgba(0,0,0,0.8),0_0_10px_rgba(244,208,63,0.5)] px-2 text-center">
                   {slide.eyebrow}
@@ -227,11 +227,11 @@ export function HeroCarousel() {
 
       {/* Custom Navigation Arrows */}
       <button
-        className="swiper-button-prev-custom absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-sm border border-white/30 flex items-center justify-center transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
+        className="swiper-button-prev-custom absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full bg-black/20 hover:bg-black/40 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/30"
         aria-label="Previous slide"
       >
         <svg
-          className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white"
+          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 text-white/80"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -245,11 +245,11 @@ export function HeroCarousel() {
         </svg>
       </button>
       <button
-        className="swiper-button-next-custom absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-black/50 hover:bg-black/70 backdrop-blur-sm border border-white/30 flex items-center justify-center transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50"
+        className="swiper-button-next-custom absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full bg-black/20 hover:bg-black/40 backdrop-blur-sm border border-white/20 flex items-center justify-center transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/30"
         aria-label="Next slide"
       >
         <svg
-          className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white"
+          className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7 text-white/80"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
