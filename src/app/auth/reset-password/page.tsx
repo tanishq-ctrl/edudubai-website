@@ -30,12 +30,24 @@ function ResetPasswordForm() {
   })
 
   useEffect(() => {
+    let attempts = 0
+    const maxAttempts = 10
+
     const checkSession = async () => {
       const supabase = createClient()
       const { data: { session } } = await supabase.auth.getSession()
 
-      // If there's no session, we can't reset the password
-      if (!session) {
+      if (session) {
+        setError(null)
+        console.log("[ResetPassword] Valid recovery session found.")
+        return
+      }
+
+      // If no session, try again a few times (Supabase handshake takes time)
+      if (attempts < maxAttempts) {
+        attempts++
+        setTimeout(checkSession, 500)
+      } else {
         setError("Invalid or expired reset link. Please request a new password reset.")
       }
     }
