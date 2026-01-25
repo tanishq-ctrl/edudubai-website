@@ -142,25 +142,29 @@ function RegisterForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-brand-navy relative overflow-hidden px-6">
-      {/* Cinematic Background */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-gold/10 rounded-full blur-[120px] -mr-64 -mt-64" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px] -ml-32 -mb-32" />
+    <div className="min-h-screen flex items-center justify-center bg-neutral-bg-subtle/50 relative overflow-hidden px-6 pt-20">
+      {/* Cinematic Elements */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-navy/5 rounded-full blur-[120px] -mr-32 -mt-32" />
 
-      <div className="w-full max-w-[600px] relative z-20">
-        <div className="bg-white rounded-[2.5rem] shadow-[0_48px_80px_-24px_rgba(0,0,0,0.3)] overflow-hidden">
+      <div className="w-full max-w-[650px] relative z-20">
+        <div className="bg-white rounded-[2.5rem] shadow-[0_48px_100px_-24px_rgba(0,0,0,0.15)] overflow-hidden border-t-8 border-t-brand-gold">
           <div className="flex flex-col md:flex-row h-full">
-            {/* Left Info Bar */}
-            <div className="hidden md:flex md:w-[160px] bg-brand-navy p-8 text-white flex-col justify-between relative overflow-hidden border-r border-white/5">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-gold/10 rounded-full blur-3xl -mr-16 -mt-16" />
-              <div className="relative z-10 space-y-6">
-                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold vertical-text transform rotate-180" style={{ writingMode: 'vertical-lr' }}>
-                  ENROLLMENT
-                </div>
+            {/* Info Panel */}
+            <div className="hidden md:flex md:w-1/3 bg-brand-navy p-8 text-white flex-col justify-between relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-3xl -mr-16 -mt-16" />
+              <div className="space-y-6 relative z-10">
+                <h3 className="text-xl font-bold leading-tight">
+                  Global Specialist Enrollment
+                </h3>
+                <ul className="space-y-4 text-xs text-white/60 font-medium">
+                  <li className="flex gap-2">✓ Exam Diagnostic Access</li>
+                  <li className="flex gap-2">✓ DIFC/ADGM Study Circles</li>
+                  <li className="flex gap-2">✓ Instant Course Enrollment</li>
+                </ul>
               </div>
-              <div className="relative z-10">
-                <div className="h-12 w-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
-                  <User className="h-6 w-6 text-brand-gold" />
+              <div className="relative z-10 pt-12">
+                <div className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                  <User className="h-5 w-5 text-brand-gold" />
                 </div>
               </div>
             </div>
@@ -168,15 +172,15 @@ function RegisterForm() {
             <div className="flex-1 p-8 md:p-12">
               <div className="space-y-8">
                 {showVerification ? (
-                  <div className="space-y-8 animate-fade-in">
+                  <div className="space-y-8 animate-fade-in text-center">
                     <div>
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold bg-brand-gold/5 px-3 py-1 rounded-full border border-brand-gold/10 mb-4 inline-block">
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold block mb-2">
                         Security Check
                       </span>
-                      <h1 className="text-3xl font-black text-brand-navy tracking-tight leading-loose uppercase">
+                      <h1 className="text-3xl font-black text-brand-navy tracking-tight leading-none uppercase">
                         Verify Code
                       </h1>
-                      <p className="text-neutral-text-muted text-[10px] font-bold uppercase tracking-wider mt-2">Checking connection to {formData.email}</p>
+                      <p className="text-neutral-text-muted text-[10px] font-bold uppercase tracking-widest mt-4">Email connection: {formData.email}</p>
                     </div>
 
                     <form onSubmit={handleVerify} className="space-y-6">
@@ -212,11 +216,11 @@ function RegisterForm() {
                 ) : (
                   <div className="space-y-8">
                     <div>
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold bg-brand-gold/5 px-3 py-1 rounded-full border border-brand-gold/10 mb-4 inline-block">
-                        New Specialist
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold block mb-2">
+                        Specialist Enrollment
                       </span>
-                      <h1 className="text-3xl font-black text-brand-navy tracking-tight leading-loose uppercase">
-                        Register Account
+                      <h1 className="text-3xl font-black text-brand-navy tracking-tight leading-none uppercase">
+                        Create Account
                       </h1>
                     </div>
 
@@ -229,7 +233,7 @@ function RegisterForm() {
 
                     <form onSubmit={handleSubmit} className="space-y-4">
                       <div className="space-y-1">
-                        <Label htmlFor="fullName" className="text-[10px] font-bold uppercase text-neutral-text-muted">Full Specialist Name</Label>
+                        <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Full Specialist Name</Label>
                         <Input
                           id="fullName"
                           placeholder="John Doe"
@@ -241,7 +245,7 @@ function RegisterForm() {
                       </div>
 
                       <div className="space-y-1">
-                        <Label htmlFor="email" className="text-[10px] font-bold uppercase text-neutral-text-muted">Corporate Email</Label>
+                        <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Corporate Email</Label>
                         <Input
                           id="email"
                           type="email"
@@ -255,7 +259,7 @@ function RegisterForm() {
 
                       <div className="grid grid-cols-2 gap-3">
                         <div className="space-y-1">
-                          <Label htmlFor="password" className="text-[10px] font-bold uppercase text-neutral-text-muted">Password</Label>
+                          <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Password</Label>
                           <Input
                             id="password"
                             type="password"
@@ -267,7 +271,7 @@ function RegisterForm() {
                           />
                         </div>
                         <div className="space-y-1">
-                          <Label htmlFor="confirmPassword" className="text-[10px] font-bold uppercase text-neutral-text-muted">Confirm</Label>
+                          <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Confirm</Label>
                           <Input
                             id="confirmPassword"
                             type="password"
@@ -313,7 +317,7 @@ function RegisterForm() {
                         Already part of the network?{" "}
                         <Link
                           href={`/auth/login${searchParams.get("next") ? `?next=${encodeURIComponent(searchParams.get("next")!)}` : ""}`}
-                          className="text-brand-navy font-black hover:underline underline-offset-4 decoration-2"
+                          className="text-brand-navy font-black hover:underline underline-offset-4"
                         >
                           Authenticate
                         </Link>
@@ -326,7 +330,7 @@ function RegisterForm() {
           </div>
         </div>
 
-        <p className="mt-8 text-center text-white/20 text-[9px] font-black uppercase tracking-[0.5em] italic">
+        <p className="mt-8 text-center text-neutral-text-muted/30 text-[9px] font-black uppercase tracking-[0.5em] italic">
           EduDubai Professional Specialist Network
         </p>
       </div>
