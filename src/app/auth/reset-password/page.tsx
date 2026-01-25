@@ -52,7 +52,6 @@ function ResetPasswordForm() {
       if (session) {
         setError(null)
         setLoading(false)
-        console.log("[ResetPassword] Recovery session confirmed.")
         return
       }
 
@@ -121,6 +120,7 @@ function ResetPasswordForm() {
               id="password"
               type="password"
               placeholder="••••••••"
+              autoComplete="new-password"
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               required
@@ -137,6 +137,7 @@ function ResetPasswordForm() {
               id="confirmPassword"
               type="password"
               placeholder="••••••••"
+              autoComplete="new-password"
               value={formData.confirmPassword}
               onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
               required

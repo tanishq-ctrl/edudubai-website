@@ -12,10 +12,7 @@ export function AuthHandler() {
 
         // Listen for auth state changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
-            console.log("[AuthHandler] Event:", event)
-
             if (event === "PASSWORD_RECOVERY") {
-                console.log("[AuthHandler] Password recovery detected, redirecting...")
                 router.push("/auth/reset-password")
             }
         })
@@ -24,7 +21,6 @@ export function AuthHandler() {
         const handleHash = () => {
             const hash = window.location.hash
             if (hash && (hash.includes("type=recovery") || hash.includes("error_code=otp_expired"))) {
-                console.log("[AuthHandler] Recovery fragment detected in hash:", hash)
                 router.push("/auth/reset-password")
             }
         }
