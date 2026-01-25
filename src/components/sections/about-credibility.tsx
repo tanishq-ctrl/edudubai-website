@@ -4,27 +4,27 @@ import { Award, Users, BookOpen, Building2 } from "lucide-react"
 const credibilityBlocks = [
   {
     icon: Users,
-    value: "10,000+",
-    label: "Professionals Trained",
-    description: "Trusted by thousands of professionals across industries",
+    value: "12,400+",
+    label: "Certified Specialists",
+    description: "Empowering the next generation of compliance leaders in MENA",
   },
   {
     icon: BookOpen,
-    value: "50+",
-    label: "Courses Available",
-    description: "Comprehensive curriculum covering all major domains",
+    value: "42+",
+    label: "Global Programs",
+    description: "Authorized curriculum for ACAMS, GCI, and Regulatory bodies",
   },
   {
     icon: Award,
-    value: "95%",
-    label: "Satisfaction Rate",
-    description: "Consistently high ratings from our learners",
+    value: "92%",
+    label: "Exam Pass Rate",
+    description: "Industry-leading first-time success for rigorous certifications",
   },
   {
     icon: Building2,
-    value: "500+",
-    label: "Corporate Clients",
-    description: "Serving leading organizations across the region",
+    value: "250+",
+    label: "Banking Partners",
+    description: "Trusted by leading GCC financial institutions and law firms",
   },
 ]
 
