@@ -142,7 +142,12 @@ export function LeadFormPopup() {
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
-            <DialogContent className="sm:max-w-[550px] border-t-8 border-t-brand-gold p-0 overflow-hidden bg-white shadow-2xl">
+            <DialogContent
+                hideCloseButton
+                onInteractOutside={(e) => e.preventDefault()}
+                onEscapeKeyDown={(e) => e.preventDefault()}
+                className="sm:max-w-[550px] border-t-8 border-t-brand-gold p-0 overflow-hidden bg-white shadow-2xl"
+            >
                 {submitted ? (
                     <div className="py-20 flex flex-col items-center text-center space-y-6 animate-fade-in px-6">
                         <div className="h-20 w-20 bg-green-100 rounded-full flex items-center justify-center ring-8 ring-green-50">
