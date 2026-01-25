@@ -51,106 +51,84 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col pt-20 bg-neutral-bg overflow-hidden">
-      <div className="flex-1 flex flex-col lg:flex-row">
-        {/* Left Pane - Executive Info */}
-        <div className="hidden lg:flex w-[45%] bg-brand-navy p-20 flex-col justify-center relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-gold/5 rounded-full blur-[120px] -mr-64 -mt-64" />
+    <div className="min-h-screen flex items-center justify-center bg-brand-navy relative overflow-hidden px-6">
+      {/* Cinematic Background */}
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-gold/10 rounded-full blur-[120px] -mr-64 -mt-64" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px] -ml-32 -mb-32" />
 
-          <div className="relative z-10 space-y-16">
-            <div className="space-y-6">
-              <h2 className="text-5xl font-black text-white leading-tight tracking-tight uppercase">
-                Secure <br />
-                <span className="text-brand-gold">Access Recovery</span>
-              </h2>
-              <p className="text-white/60 text-xl font-medium leading-relaxed max-w-md">
-                Initiating a secure credentials reset for your professional academy profile.
-              </p>
+      <div className="w-full max-w-[500px] relative z-20">
+        <div className="bg-white rounded-[2.5rem] shadow-[0_48px_80px_-24px_rgba(0,0,0,0.3)] overflow-hidden">
+          <div className="flex flex-col md:flex-row h-full">
+            {/* Left Info Bar */}
+            <div className="hidden md:flex md:w-[140px] bg-brand-navy p-6 text-white flex-col justify-between relative overflow-hidden border-r border-white/5">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-brand-gold/10 rounded-full blur-2xl -mr-12 -mt-12" />
+              <div className="relative z-10 space-y-6">
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold vertical-text transform rotate-180" style={{ writingMode: 'vertical-lr' }}>
+                  RECOVERY
+                </div>
+              </div>
+              <div className="relative z-10">
+                <div className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+                  <Mail className="h-5 w-5 text-brand-gold" />
+                </div>
+              </div>
             </div>
 
-            <div className="space-y-8">
-              {[
-                "256-Bit Encrypted Link Delivery",
-                "Instant Access Restoration",
-                "Verified Security Protocol",
-                "Global Identity Shield"
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-5 group">
-                  <div className="h-12 w-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-brand-gold/20 group-hover:border-brand-gold/30 transition-all shadow-xl">
-                    <CheckCircle2 className="h-6 w-6 text-brand-gold" />
-                  </div>
-                  <span className="text-white/80 text-lg font-bold tracking-tight">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+            <div className="flex-1 p-8 md:p-12">
+              <div className="space-y-8">
+                {success ? (
+                  <div className="space-y-8 animate-fade-in text-center">
+                    <div>
+                      <div className="h-20 w-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <CheckCircle2 className="h-10 w-10 text-green-600" />
+                      </div>
+                      <h2 className="text-2xl font-black text-brand-navy uppercase tracking-tight">Transmission Sent</h2>
+                      <p className="text-neutral-text-muted text-[10px] font-bold uppercase tracking-wider mt-4">
+                        A secure master key has been sent to your email.
+                      </p>
+                    </div>
 
-          <div className="absolute bottom-10 left-20 border-t border-white/10 pt-8 w-[calc(100%-160px)]">
-            <p className="text-[10px] uppercase font-black tracking-[0.4em] text-white/30 whitespace-nowrap">
-              Official EduDubai Security Protocol • MENA Region
-            </p>
-          </div>
-        </div>
+                    <div className="pt-4 flex flex-col gap-4">
+                      <Button
+                        onClick={() => {
+                          setSuccess(false)
+                          setEmail("")
+                        }}
+                        variant="outline"
+                        className="h-11 border-neutral-border text-brand-navy font-black rounded-xl text-xs hover:bg-neutral-bg-subtle"
+                      >
+                        Resend Connection
+                      </Button>
 
-        {/* Right Pane - Reset form */}
-        <div className="flex-1 flex flex-col justify-center items-center py-12 px-6 lg:px-20 bg-neutral-bg-subtle/30 overflow-y-auto">
-          <div className="w-full max-w-[500px]">
-            <div className="bg-white border border-neutral-border shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] p-8 md:p-14 rounded-[3rem] relative transition-all">
-              <div className="absolute top-0 left-0 right-0 h-2.5 bg-brand-gold" />
-
-              {success ? (
-                <div className="text-center py-12 space-y-10 animate-fade-in">
-                  <div className="flex justify-center">
-                    <div className="h-28 w-28 bg-green-50 rounded-full flex items-center justify-center ring-[12px] ring-green-50/50">
-                      <CheckCircle2 className="h-14 w-14 text-green-600" />
+                      <Link
+                        href="/auth/login"
+                        className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold hover:text-brand-navy flex items-center justify-center gap-2 transition-all"
+                      >
+                        <ArrowLeft className="h-4 w-4" /> Back to Sign In
+                      </Link>
                     </div>
                   </div>
-                  <div className="space-y-4">
-                    <h2 className="text-3xl font-black text-brand-navy tracking-tight uppercase">Transmission Success</h2>
-                    <p className="text-neutral-text-muted text-base font-bold italic leading-relaxed">
-                      If <span className="text-brand-navy underline decoration-brand-gold decoration-2">{email}</span> is registered, a secure recovery master key has been sent.
-                    </p>
-                  </div>
-
-                  <div className="pt-8 flex flex-col gap-5">
-                    <Button
-                      onClick={() => {
-                        setSuccess(false)
-                        setEmail("")
-                      }}
-                      variant="outline"
-                      className="h-16 border-2 border-neutral-border text-brand-navy font-black rounded-2xl text-lg hover:bg-neutral-bg-subtle"
-                    >
-                      Resend Connection
-                    </Button>
-
-                    <Link
-                      href="/auth/login"
-                      className="text-[11px] font-black uppercase tracking-[0.3em] text-brand-gold hover:text-brand-navy flex items-center justify-center gap-3 transition-all"
-                    >
-                      <ArrowLeft className="h-5 w-5" /> Back to Dashboard Login
-                    </Link>
-                  </div>
-                </div>
-              ) : (
-                <div className="space-y-12">
-                  <div className="text-center space-y-3">
-                    <h1 className="text-4xl font-black text-brand-navy tracking-tight">Access Recovery</h1>
-                    <p className="text-neutral-text-muted text-[11px] font-black tracking-[0.2em] uppercase italic">Corporate ID matching required</p>
-                  </div>
-
-                  {error && (
-                    <div className="p-4 border border-red-500/20 bg-red-50 text-red-700 rounded-2xl flex gap-3">
-                      <AlertCircle className="h-5 w-5 mt-0.5" />
-                      <p className="text-xs font-bold leading-relaxed text-left">{error}</p>
+                ) : (
+                  <div className="space-y-8">
+                    <div>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold bg-brand-gold/5 px-3 py-1 rounded-full border border-brand-gold/10 mb-4 inline-block">
+                        Access Recovery
+                      </span>
+                      <h1 className="text-3xl font-black text-brand-navy tracking-tight leading-loose uppercase">
+                        Recover Access
+                      </h1>
                     </div>
-                  )}
 
-                  <form onSubmit={handleSubmit} className="space-y-8">
-                    <div className="space-y-3">
-                      <Label htmlFor="email" className="text-[10px] font-black uppercase tracking-[0.25em] text-neutral-text-muted ml-2">Registered Connection</Label>
-                      <div className="relative group">
-                        <Mail className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-neutral-text-muted/40 group-focus-within:text-brand-gold transition-all" />
+                    {error && (
+                      <div className="p-4 border border-red-500/10 bg-red-50 text-red-700 rounded-xl flex gap-3 text-xs font-bold shadow-sm">
+                        <AlertCircle className="h-4 w-4 mt-0.5" />
+                        {error}
+                      </div>
+                    )}
+
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div className="space-y-1">
+                        <Label htmlFor="email" className="text-[10px] font-bold uppercase text-neutral-text-muted">Registered Email</Label>
                         <Input
                           id="email"
                           type="email"
@@ -158,42 +136,37 @@ export default function ForgotPasswordPage() {
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           required
-                          disabled={loading}
-                          className="h-16 pl-14 bg-neutral-bg-subtle border-0 rounded-2xl focus:ring-2 focus:ring-brand-gold transition-all font-bold"
+                          className="h-11 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold font-bold"
                         />
                       </div>
+
+                      <Button
+                        type="submit"
+                        className="w-full bg-brand-navy hover:bg-brand-navy-dark text-white font-black py-7 text-base rounded-2xl shadow-xl transition-all flex gap-2"
+                        disabled={loading}
+                      >
+                        {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <>Transmit Security Link <Send className="h-5 w-5" /></>}
+                      </Button>
+                    </form>
+
+                    <div className="text-center pt-2">
+                      <Link
+                        href="/auth/login"
+                        className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-neutral-text-muted hover:text-brand-navy transition-all"
+                      >
+                        <ArrowLeft className="h-4 w-4" /> Return to Login
+                      </Link>
                     </div>
-
-                    <Button
-                      type="submit"
-                      className="w-full h-16 bg-brand-navy hover:bg-brand-navy-dark text-white font-black text-xl rounded-2xl shadow-xl transition-all hover:scale-[1.02] flex gap-3 items-center justify-center group"
-                      disabled={loading}
-                    >
-                      {loading ? (
-                        <Loader2 className="h-7 w-7 animate-spin" />
-                      ) : (
-                        <>Transmit Security Link <Send className="h-6 w-6 group-hover:translate-x-1.5 group-hover:-translate-y-1.5 transition-transform" /></>
-                      )}
-                    </Button>
-                  </form>
-
-                  <div className="text-center pt-4">
-                    <Link
-                      href="/auth/login"
-                      className="inline-flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.3em] text-neutral-text-muted hover:text-brand-gold transition-all"
-                    >
-                      <ArrowLeft className="h-5 w-5" /> Return to Login
-                    </Link>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
-
-            <p className="mt-12 text-center text-neutral-text-muted/30 text-[10px] font-black uppercase tracking-[0.5em] italic whitespace-nowrap">
-              Authorized Credentials Management • EduDubai
-            </p>
           </div>
         </div>
+
+        <p className="mt-8 text-center text-white/20 text-[9px] font-black uppercase tracking-[0.5em] italic">
+          EduDubai Professional Specialist Network
+        </p>
       </div>
     </div>
   )

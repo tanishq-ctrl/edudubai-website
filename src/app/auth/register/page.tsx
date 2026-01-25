@@ -142,124 +142,106 @@ function RegisterForm() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col pt-20 bg-neutral-bg overflow-hidden">
-      <div className="flex-1 flex flex-col lg:flex-row">
-        {/* Left Pane - Executive Info */}
-        <div className="hidden lg:flex w-[45%] bg-brand-navy p-20 flex-col justify-center relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-gold/5 rounded-full blur-[120px] -mr-64 -mt-64" />
+    <div className="min-h-screen flex items-center justify-center bg-brand-navy relative overflow-hidden px-6">
+      {/* Cinematic Background */}
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-gold/10 rounded-full blur-[120px] -mr-64 -mt-64" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px] -ml-32 -mb-32" />
 
-          <div className="relative z-10 space-y-16">
-            <div className="space-y-6">
-              <h2 className="text-5xl font-black text-white leading-tight tracking-tight uppercase">
-                Your Global <br />
-                <span className="text-brand-gold">Specialist Journey</span> Starts here
-              </h2>
-              <p className="text-white/60 text-xl font-medium leading-relaxed max-w-md">
-                Join the MENA region&apos;s most prestigious network of certified compliance and financial specialists.
-              </p>
+      <div className="w-full max-w-[600px] relative z-20">
+        <div className="bg-white rounded-[2.5rem] shadow-[0_48px_80px_-24px_rgba(0,0,0,0.3)] overflow-hidden">
+          <div className="flex flex-col md:flex-row h-full">
+            {/* Left Info Bar */}
+            <div className="hidden md:flex md:w-[160px] bg-brand-navy p-8 text-white flex-col justify-between relative overflow-hidden border-r border-white/5">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-gold/10 rounded-full blur-3xl -mr-16 -mt-16" />
+              <div className="relative z-10 space-y-6">
+                <div className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold vertical-text transform rotate-180" style={{ writingMode: 'vertical-lr' }}>
+                  ENROLLMENT
+                </div>
+              </div>
+              <div className="relative z-10">
+                <div className="h-12 w-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
+                  <User className="h-6 w-6 text-brand-gold" />
+                </div>
+              </div>
             </div>
 
-            <div className="space-y-8">
-              {[
-                "Instant Course Access Post-Payment",
-                "Recognized Certification Badge",
-                "Premium Networking Hub",
-                "Elite Study Resources"
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-5 group">
-                  <div className="h-12 w-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-brand-gold/20 group-hover:border-brand-gold/30 transition-all shadow-xl">
-                    <CheckCircle2 className="h-6 w-6 text-brand-gold" />
-                  </div>
-                  <span className="text-white/80 text-lg font-bold tracking-tight">{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="absolute bottom-10 left-20 border-t border-white/10 pt-8 w-[calc(100%-160px)]">
-            <p className="text-[10px] uppercase font-black tracking-[0.4em] text-white/30 whitespace-nowrap">
-              Trusted by Leaders at DIFC, ADGM, and Global Banks
-            </p>
-          </div>
-        </div>
-
-        {/* Right Pane - Registration Form */}
-        <div className="flex-1 flex flex-col justify-center items-center py-12 px-6 lg:px-20 bg-neutral-bg-subtle/30 overflow-y-auto">
-          <div className="w-full max-w-[550px]">
-            <div className="bg-white border border-neutral-border shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] p-8 md:p-14 rounded-[3rem] relative transition-all">
-              <div className="absolute top-0 left-0 right-0 h-2.5 bg-brand-gold" />
-
-              {showVerification ? (
-                <div className="space-y-10 animate-fade-in py-6">
-                  <div className="text-center space-y-4">
-                    <h1 className="text-3xl font-black text-brand-navy tracking-tight">Security Verification</h1>
-                    <p className="text-neutral-text-muted text-[11px] font-black tracking-[0.2em] uppercase">Checking connection to {formData.email}</p>
-                  </div>
-
-                  <form onSubmit={handleVerify} className="space-y-8 text-center">
-                    <Input
-                      id="code"
-                      type="text"
-                      placeholder="000 000"
-                      maxLength={6}
-                      className="h-20 text-center text-5xl tracking-[0.5em] font-black bg-neutral-bg-subtle border-0 rounded-2xl"
-                      value={verificationCode}
-                      onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, ""))}
-                      required
-                      disabled={verifying}
-                    />
-
-                    <Button
-                      type="submit"
-                      className="w-full h-16 bg-brand-navy hover:bg-brand-navy-dark text-white font-black text-xl rounded-2xl shadow-xl transition-all"
-                      disabled={verifying || verificationCode.length !== 6}
-                    >
-                      {verifying ? "Processing..." : "Complete Enrollment"}
-                    </Button>
-
-                    <button
-                      type="button"
-                      className="text-neutral-text-muted/60 hover:text-brand-navy text-[10px] font-black uppercase tracking-[0.3em] transition-all"
-                      onClick={() => setShowVerification(false)}
-                    >
-                      ← Return to Registration
-                    </button>
-                  </form>
-                </div>
-              ) : (
-                <div className="space-y-10">
-                  <div className="text-center space-y-3">
-                    <h1 className="text-4xl font-black text-brand-navy tracking-tight">Create Account</h1>
-                    <p className="text-neutral-text-muted text-[11px] font-black tracking-[0.2em] uppercase">Join the MENA elite certification network</p>
-                  </div>
-
-                  {error && (
-                    <div className="p-4 border border-red-500/20 bg-red-50 text-red-700 rounded-2xl flex gap-3">
-                      <AlertCircle className="h-5 w-5 mt-0.5" />
-                      <p className="text-xs font-bold leading-relaxed">{error}</p>
+            <div className="flex-1 p-8 md:p-12">
+              <div className="space-y-8">
+                {showVerification ? (
+                  <div className="space-y-8 animate-fade-in">
+                    <div>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold bg-brand-gold/5 px-3 py-1 rounded-full border border-brand-gold/10 mb-4 inline-block">
+                        Security Check
+                      </span>
+                      <h1 className="text-3xl font-black text-brand-navy tracking-tight leading-loose uppercase">
+                        Verify Code
+                      </h1>
+                      <p className="text-neutral-text-muted text-[10px] font-bold uppercase tracking-wider mt-2">Checking connection to {formData.email}</p>
                     </div>
-                  )}
 
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="space-y-2">
-                      <Label className="text-[10px] font-black uppercase tracking-[0.25em] text-neutral-text-muted ml-2">Full Specialist Name</Label>
-                      <div className="relative group">
-                        <User className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-neutral-text-muted/40 group-focus-within:text-brand-gold transition-colors" />
+                    <form onSubmit={handleVerify} className="space-y-6">
+                      <Input
+                        id="code"
+                        type="text"
+                        placeholder="000 000"
+                        maxLength={6}
+                        className="h-16 text-center text-4xl tracking-[0.4em] font-black bg-neutral-bg-subtle border-0 rounded-2xl focus:ring-2 focus:ring-brand-gold"
+                        value={verificationCode}
+                        onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, ""))}
+                        required
+                        disabled={verifying}
+                      />
+
+                      <Button
+                        type="submit"
+                        className="w-full bg-brand-navy hover:bg-brand-navy-dark text-white font-black py-7 text-base rounded-2xl shadow-xl transition-all"
+                        disabled={verifying || verificationCode.length !== 6}
+                      >
+                        {verifying ? "Syncing..." : "Complete Enrollment"}
+                      </Button>
+
+                      <button
+                        type="button"
+                        className="w-full text-neutral-text-muted/60 hover:text-brand-navy text-[10px] font-black uppercase tracking-[0.3em] transition-all"
+                        onClick={() => setShowVerification(false)}
+                      >
+                        ← Return to Registration
+                      </button>
+                    </form>
+                  </div>
+                ) : (
+                  <div className="space-y-8">
+                    <div>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold bg-brand-gold/5 px-3 py-1 rounded-full border border-brand-gold/10 mb-4 inline-block">
+                        New Specialist
+                      </span>
+                      <h1 className="text-3xl font-black text-brand-navy tracking-tight leading-loose uppercase">
+                        Register Account
+                      </h1>
+                    </div>
+
+                    {error && (
+                      <div className="p-4 border border-red-500/10 bg-red-50 text-red-700 rounded-xl flex gap-3 text-xs font-bold shadow-sm">
+                        <AlertCircle className="h-4 w-4 mt-0.5" />
+                        {error}
+                      </div>
+                    )}
+
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      <div className="space-y-1">
+                        <Label htmlFor="fullName" className="text-[10px] font-bold uppercase text-neutral-text-muted">Full Specialist Name</Label>
                         <Input
                           id="fullName"
                           placeholder="John Doe"
                           value={formData.fullName}
                           onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                           required
-                          className="h-16 pl-14 bg-neutral-bg-subtle border-0 rounded-2xl focus:ring-2 focus:ring-brand-gold transition-all font-bold"
+                          className="h-11 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold font-bold"
                         />
                       </div>
-                    </div>
 
-                    <div className="space-y-2">
-                      <Label className="text-[10px] font-black uppercase tracking-[0.25em] text-neutral-text-muted ml-2">Corporate Email</Label>
-                      <div className="relative group">
-                        <Mail className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-neutral-text-muted/40 group-focus-within:text-brand-gold transition-colors" />
+                      <div className="space-y-1">
+                        <Label htmlFor="email" className="text-[10px] font-bold uppercase text-neutral-text-muted">Corporate Email</Label>
                         <Input
                           id="email"
                           type="email"
@@ -267,93 +249,86 @@ function RegisterForm() {
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           required
-                          className="h-16 pl-14 bg-neutral-bg-subtle border-0 rounded-2xl focus:ring-2 focus:ring-brand-gold transition-all font-bold"
+                          className="h-11 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold font-bold"
                         />
                       </div>
-                    </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label className="text-[10px] font-black uppercase tracking-[0.25em] text-neutral-text-muted ml-2">Password</Label>
-                        <Input
-                          id="password"
-                          type="password"
-                          placeholder="••••••••"
-                          value={formData.password}
-                          onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                          required
-                          className="h-16 bg-neutral-bg-subtle border-0 rounded-2xl focus:ring-2 focus:ring-brand-gold transition-all font-bold tracking-widest"
-                        />
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="space-y-1">
+                          <Label htmlFor="password" className="text-[10px] font-bold uppercase text-neutral-text-muted">Password</Label>
+                          <Input
+                            id="password"
+                            type="password"
+                            placeholder="••••"
+                            value={formData.password}
+                            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                            required
+                            className="h-11 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold tracking-widest"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <Label htmlFor="confirmPassword" className="text-[10px] font-bold uppercase text-neutral-text-muted">Confirm</Label>
+                          <Input
+                            id="confirmPassword"
+                            type="password"
+                            placeholder="••••"
+                            value={formData.confirmPassword}
+                            onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                            required
+                            className="h-11 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold tracking-widest"
+                          />
+                        </div>
                       </div>
-                      <div className="space-y-2">
-                        <Label className="text-[10px] font-black uppercase tracking-[0.25em] text-neutral-text-muted ml-2">Confirm</Label>
-                        <Input
-                          id="confirmPassword"
-                          type="password"
-                          placeholder="••••••••"
-                          value={formData.confirmPassword}
-                          onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                          required
-                          className="h-16 bg-neutral-bg-subtle border-0 rounded-2xl focus:ring-2 focus:ring-brand-gold transition-all font-bold tracking-widest"
-                        />
+
+                      <Button
+                        type="submit"
+                        className="w-full bg-brand-navy hover:bg-brand-navy-dark text-white font-black py-7 text-base rounded-2xl shadow-xl transition-all hover:scale-[1.02] flex gap-2 mt-4"
+                        disabled={loading}
+                      >
+                        {loading ? "Registering..." : <>Enroll Specialist <ArrowRight className="h-5 w-5" /></>}
+                      </Button>
+                    </form>
+
+                    <div className="relative pt-2">
+                      <div className="absolute inset-0 flex items-center">
+                        <div className="w-full border-t border-neutral-border/50" />
+                      </div>
+                      <div className="relative flex justify-center text-[10px] font-black uppercase tracking-[0.3em] bg-white px-3">
+                        <span className="text-neutral-text-muted/50">Rapid Sync</span>
                       </div>
                     </div>
 
                     <Button
-                      type="submit"
-                      className="w-full h-16 bg-brand-navy hover:bg-brand-navy-dark text-white font-black text-xl rounded-2xl shadow-xl transition-all hover:scale-[1.02] flex gap-3 items-center justify-center group mt-4"
-                      disabled={loading}
+                      type="button"
+                      variant="outline"
+                      onClick={handleGoogleSignUp}
+                      disabled={loading || googleLoading}
+                      className="w-full h-11 border-neutral-border/50 rounded-xl flex gap-3 text-xs font-bold hover:bg-neutral-bg-subtle transition-all active:scale-95 shadow-sm"
                     >
-                      {loading ? "Registering..." : <>Enroll Specialist <ArrowRight className="h-6 w-6 group-hover:translate-x-1.5 transition-transform" /></>}
+                      {googleLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <><Chrome className="h-4 w-4 text-red-500" /> Sync with Google</>}
                     </Button>
-                  </form>
 
-                  <div className="relative my-10">
-                    <div className="absolute inset-0 flex items-center">
-                      <div className="w-full border-t border-neutral-border/50" />
-                    </div>
-                    <div className="relative flex justify-center text-[10px] font-black tracking-[0.3em] uppercase italic">
-                      <span className="bg-white px-6 text-neutral-text-muted/50">Rapid Sync</span>
+                    <div className="text-center pt-2">
+                      <p className="text-neutral-text-muted/70 text-xs font-bold">
+                        Already part of the network?{" "}
+                        <Link
+                          href={`/auth/login${searchParams.get("next") ? `?next=${encodeURIComponent(searchParams.get("next")!)}` : ""}`}
+                          className="text-brand-navy font-black hover:underline underline-offset-4 decoration-2"
+                        >
+                          Authenticate
+                        </Link>
+                      </p>
                     </div>
                   </div>
-
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="w-full h-15 border-2 border-neutral-border hover:bg-neutral-bg-subtle text-brand-navy font-black rounded-2xl flex items-center justify-center gap-4 transition-all active:scale-95"
-                    onClick={handleGoogleSignUp}
-                    disabled={loading || googleLoading}
-                  >
-                    {googleLoading ? (
-                      "Connecting..."
-                    ) : (
-                      <>
-                        <Chrome className="h-6 w-6 text-red-500" />
-                        Sync with Google
-                      </>
-                    )}
-                  </Button>
-
-                  <div className="mt-10 text-center">
-                    <p className="text-neutral-text-muted/70 text-sm font-bold">
-                      Already part of the network?{" "}
-                      <Link
-                        href={`/auth/login${searchParams.get("next") ? `?next=${encodeURIComponent(searchParams.get("next")!)}` : ""}`}
-                        className="text-brand-gold hover:text-brand-navy font-black underline underline-offset-4 decoration-2 transition-all"
-                      >
-                        Authenticate here
-                      </Link>
-                    </p>
-                  </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
-
-            <p className="mt-10 text-center text-neutral-text-muted/30 text-[10px] font-black uppercase tracking-[0.5em] italic">
-              Verified Secure Enrollment Portal • EduDubai
-            </p>
           </div>
         </div>
+
+        <p className="mt-8 text-center text-white/20 text-[9px] font-black uppercase tracking-[0.5em] italic">
+          EduDubai Professional Specialist Network
+        </p>
       </div>
     </div>
   )
