@@ -102,14 +102,19 @@ export function LeadFormPopup() {
                 return
             }
 
-            // 1. Capture Lead (CRM Sync) - Skip if just logging in
-            if (view === "register") {
-                await fetch("/api/leads", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email, name, company, phone, course, source: "popup_registration" }),
-                })
-            }
+            // 1. Capture Lead (CRM Sync)
+            await fetch("/api/leads", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email,
+                    name: name || email.split('@')[0],
+                    company,
+                    phone,
+                    course,
+                    source: `popup_${view}`
+                }),
+            })
 
             // 2. Register/Login user in Supabase
             if (view === "register") {

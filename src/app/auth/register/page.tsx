@@ -59,6 +59,23 @@ function RegisterForm() {
 
     try {
       const validatedData = registerSchema.parse(formData)
+
+      // 1. Capture Lead (CRM Sync)
+      try {
+        await fetch("/api/leads", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: validatedData.email,
+            name: validatedData.fullName,
+            source: "standalone_registration"
+          }),
+        })
+      } catch (leadErr) {
+        console.error("Failed to capture lead:", leadErr)
+        // Continue with registration even if lead capture fails
+      }
+
       const supabase = createClient()
       const { error: signUpError } = await supabase.auth.signUp({
         email: validatedData.email,

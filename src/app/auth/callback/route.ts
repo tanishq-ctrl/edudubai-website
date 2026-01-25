@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
 
   if (code) {
     const supabase = await createClient()
-    
+
     if (!supabase) {
       return NextResponse.redirect(new URL('/auth/login?error=Configuration error', request.url))
     }
@@ -36,10 +36,18 @@ export async function GET(request: NextRequest) {
 
       if (!profile) {
         // Create profile for OAuth user
-        const fullName = user.user_metadata?.full_name || 
-                        user.user_metadata?.name || 
-                        user.email?.split('@')[0] || 
-                        'User'
+        const fullName = user.user_metadata?.full_name ||
+          user.user_metadata?.name ||
+          user.email?.split('@')[0] ||
+          'User'
+
+        // 1. Sync to CRM (Systeme.io)
+        const { syncLeadToSystemeIO } = await import("@/lib/systeme-io")
+        await syncLeadToSystemeIO({
+          email: user.email!,
+          firstName: fullName,
+          courseInterest: "OAuth Registration"
+        }).catch(err => console.error("[CRM Sync] OAuth Lead failed:", err))
 
         await supabase
           .from('profiles')
