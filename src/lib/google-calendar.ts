@@ -40,12 +40,6 @@ export async function getUpcomingEvents(): Promise<CalendarEvent[]> {
         }
 
         return data.items
-            .filter((item: any) => {
-                const desc = (item.description || "").toLowerCase();
-                const title = (item.summary || "").toLowerCase();
-                // ONLY show events that have a LinkedIn link or the #public tag
-                return desc.includes("linkedin.com/events") || desc.includes("#public") || title.includes("#public");
-            })
             .map((item: any) => {
                 const description = item.description || "";
 
@@ -61,16 +55,15 @@ export async function getUpcomingEvents(): Promise<CalendarEvent[]> {
 
                 const start = new Date(item.start.dateTime || item.start.date);
 
-                // Clean description of tags and speaker lines
+                // Clean description of speaker lines and HTML
                 const cleanDesc = description
                     .replace(/<[^>]*>?/gm, '') // Remove HTML
                     .replace(/Speaker:[^\n]+/i, '') // Remove speaker line
-                    .replace(/#\w+/g, '') // Remove hashtags
                     .trim();
 
                 return {
                     id: item.id,
-                    title: item.summary.replace("#public", "").trim(),
+                    title: item.summary,
                     description: cleanDesc.substring(0, 160) + (cleanDesc.length > 160 ? "..." : ""),
                     date: start.toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' }),
                     time: start.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true, timeZoneName: 'short' }),
