@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { getSiteUrl } from "@/lib/env"
+import { AuthHandler } from "@/components/auth/auth-handler"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -50,6 +51,7 @@ export default function RootLayout({
         <main className="min-h-screen">{children}</main>
         <SiteFooter />
         <Toaster />
+        <AuthHandler />
         <LeadFormPopup />
         {/* Tawk.to Chat Widget */}
         <Script id="tawk-to" strategy="afterInteractive">

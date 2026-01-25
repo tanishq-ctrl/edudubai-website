@@ -207,6 +207,9 @@ export function LeadFormPopup() {
                                 <DialogTitle className="text-3xl font-black text-brand-navy tracking-tight leading-none">
                                     {view === "forgot-password" ? "Recover Access" : view === "register" ? "Create Account" : "Sign In"}
                                 </DialogTitle>
+                                <DialogDescription className="sr-only">
+                                    Please provide your professional details to access the EduDubai specialist network.
+                                </DialogDescription>
                             </DialogHeader>
 
                             <form onSubmit={handleSubmit} className="space-y-4">

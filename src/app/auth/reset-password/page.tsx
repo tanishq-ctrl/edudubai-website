@@ -30,12 +30,18 @@ function ResetPasswordForm() {
   })
 
   useEffect(() => {
-    // Check if we have the necessary hash/token
-    const hash = searchParams.get("hash")
-    if (!hash) {
-      setError("Invalid reset link. Please request a new password reset.")
+    const checkSession = async () => {
+      const supabase = createClient()
+      const { data: { session } } = await supabase.auth.getSession()
+
+      // If there's no session, we can't reset the password
+      if (!session) {
+        setError("Invalid or expired reset link. Please request a new password reset.")
+      }
     }
-  }, [searchParams])
+
+    checkSession()
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
