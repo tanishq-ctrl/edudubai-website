@@ -29,7 +29,9 @@ export function LeadFormPopup() {
     const [loading, setLoading] = useState(false)
     const [submitted, setSubmitted] = useState(false)
     const [googleLoading, setGoogleLoading] = useState(false)
-    const [view, setView] = useState<"register" | "login" | "forgot-password">("register")
+    const [view, setView] = useState<"register" | "login" | "forgot-password" | "verify-otp" | "new-password">("register")
+    const [otp, setOtp] = useState("")
+    const [newPassword, setNewPassword] = useState("")
     const pathname = usePathname()
     const router = useRouter()
 
@@ -94,11 +96,35 @@ export function LeadFormPopup() {
             const supabase = createClient()
 
             if (view === "forgot-password") {
-                const { error: resetError } = await supabase.auth.resetPasswordForEmail(email, {
-                    redirectTo: `${window.location.origin}/auth/reset-password`,
-                })
+                const { error: resetError } = await supabase.auth.resetPasswordForEmail(email)
                 if (resetError) throw resetError
+                setView("verify-otp")
+                setLoading(false)
+                return
+            }
+
+            if (view === "verify-otp") {
+                const { error: verifyError } = await supabase.auth.verifyOtp({
+                    email,
+                    token: otp,
+                    type: 'recovery'
+                })
+                if (verifyError) throw verifyError
+                setView("new-password")
+                setLoading(false)
+                return
+            }
+
+            if (view === "new-password") {
+                const { error: updateError } = await supabase.auth.updateUser({
+                    password: newPassword
+                })
+                if (updateError) throw updateError
                 setSubmitted(true)
+                setTimeout(() => {
+                    setOpen(false)
+                    router.push("/dashboard")
+                }, 2000)
                 return
             }
 
@@ -201,14 +227,14 @@ export function LeadFormPopup() {
                             <DialogHeader className="mb-6">
                                 <div className="flex items-center justify-between">
                                     <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold">
-                                        {view === "register" ? "Enrollment" : view === "login" ? "Welcome Back" : "Password Recovery"}
+                                        {view === "register" ? "Enrollment" : view === "login" ? "Welcome Back" : view === "forgot-password" ? "Password Recovery" : view === "verify-otp" ? "Security Check" : "Update Password"}
                                     </span>
                                 </div>
                                 <DialogTitle className="text-3xl font-black text-brand-navy tracking-tight leading-none">
-                                    {view === "forgot-password" ? "Recover Access" : view === "register" ? "Create Account" : "Sign In"}
+                                    {view === "forgot-password" ? "Recover Access" : view === "register" ? "Create Account" : view === "login" ? "Sign In" : view === "verify-otp" ? "Enter Code" : "New Security Key"}
                                 </DialogTitle>
                                 <DialogDescription className="sr-only">
-                                    Please provide your professional details to access the EduDubai specialist network.
+                                    {view === "verify-otp" ? "Enter the 6-digit code sent to your email." : "Manage your specialist account access."}
                                 </DialogDescription>
                             </DialogHeader>
 
@@ -250,12 +276,48 @@ export function LeadFormPopup() {
                                     </>
                                 )}
 
-                                <div className="space-y-1">
-                                    <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Email Address</Label>
-                                    <Input name="email" type="email" placeholder="you@company.com" required className="h-11 bg-neutral-bg-subtle border-0 rounded-xl" />
-                                </div>
+                                {view !== "new-password" && (
+                                    <div className="space-y-1">
+                                        <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Email Address</Label>
+                                        <Input
+                                            name="email"
+                                            type="email"
+                                            placeholder="you@company.com"
+                                            required
+                                            readOnly={view === "verify-otp"}
+                                            className="h-11 bg-neutral-bg-subtle border-0 rounded-xl"
+                                        />
+                                    </div>
+                                )}
 
-                                {view !== "forgot-password" && (
+                                {view === "verify-otp" && (
+                                    <div className="space-y-1">
+                                        <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Verification Code</Label>
+                                        <Input
+                                            placeholder="000000"
+                                            required
+                                            value={otp}
+                                            onChange={(e) => setOtp(e.target.value)}
+                                            className="h-11 bg-neutral-bg-subtle border-0 rounded-xl text-center text-lg font-bold tracking-[0.5em]"
+                                        />
+                                    </div>
+                                )}
+
+                                {view === "new-password" && (
+                                    <div className="space-y-1">
+                                        <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">New Password</Label>
+                                        <Input
+                                            type="password"
+                                            placeholder="••••••••"
+                                            required
+                                            value={newPassword}
+                                            onChange={(e) => setNewPassword(e.target.value)}
+                                            className="h-11 bg-neutral-bg-subtle border-0 rounded-xl font-bold tracking-widest"
+                                        />
+                                    </div>
+                                )}
+
+                                {(view === "login" || view === "register") && (
                                     <div className="space-y-1">
                                         <div className="flex justify-between items-center">
                                             <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Password</Label>
@@ -282,30 +344,34 @@ export function LeadFormPopup() {
                                         <Loader2 className="h-5 w-5 animate-spin" />
                                     ) : (
                                         <>
-                                            {view === "register" ? "Generate Access" : view === "login" ? "Enter Dashboard" : "Push Reset Link"}
+                                            {view === "register" ? "Generate Access" : view === "login" ? "Enter Dashboard" : view === "forgot-password" ? "Send Code" : view === "verify-otp" ? "Verify Code" : "Update Password"}
                                             <ArrowRight className="h-5 w-5" />
                                         </>
                                     )}
                                 </Button>
 
-                                <div className="space-y-4 pt-2">
-                                    <div className="relative">
-                                        <Separator className="bg-neutral-border/50" />
-                                        <span className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-3 text-[10px] font-black text-neutral-text-muted">OR</span>
+                                {view !== "verify-otp" && view !== "new-password" && (
+                                    <div className="space-y-4 pt-2">
+                                        <div className="relative">
+                                            <Separator className="bg-neutral-border/50" />
+                                            <span className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-3 text-[10px] font-black text-neutral-text-muted">OR</span>
+                                        </div>
+
+                                        <Button
+                                            type="button"
+                                            variant="outline"
+                                            onClick={handleGoogleSignIn}
+                                            disabled={googleLoading}
+                                            className="w-full h-11 border-neutral-border/50 rounded-xl flex gap-3 text-xs font-bold"
+                                        >
+                                            {googleLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <><Chrome className="h-4 w-4 text-red-500" /> Continue with Google</>}
+                                        </Button>
                                     </div>
+                                )}
 
-                                    <Button
-                                        type="button"
-                                        variant="outline"
-                                        onClick={handleGoogleSignIn}
-                                        disabled={googleLoading}
-                                        className="w-full h-11 border-neutral-border/50 rounded-xl flex gap-3 text-xs font-bold"
-                                    >
-                                        {googleLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <><Chrome className="h-4 w-4 text-red-500" /> Continue with Google</>}
-                                    </Button>
-
+                                <div className="pt-2">
                                     <div className="text-center">
-                                        {view === "forgot-password" ? (
+                                        {view === "forgot-password" || view === "verify-otp" || view === "new-password" ? (
                                             <button type="button" onClick={() => setView("login")} className="text-brand-navy font-bold text-xs flex items-center justify-center gap-1 w-full hover:underline">
                                                 <ArrowLeft className="h-3 w-3" /> Back to Sign In
                                             </button>
