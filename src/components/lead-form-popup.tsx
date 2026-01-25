@@ -34,15 +34,25 @@ export function LeadFormPopup() {
     const router = useRouter()
 
     useEffect(() => {
-        const hasSubmitted = sessionStorage.getItem("lead_submitted")
-        const isAuthPage = pathname.includes("/auth") || pathname.includes("/payment") || pathname.includes("/dashboard")
+        const checkAuth = async () => {
+            const supabase = createClient()
+            const { data: { session } } = await supabase.auth.getSession()
 
-        if (!hasSubmitted && !isAuthPage) {
-            const timer = setTimeout(() => {
-                setOpen(true)
-            }, 3000)
-            return () => clearTimeout(timer)
+            const hasSubmitted = sessionStorage.getItem("lead_submitted")
+            const isAuthPage = pathname.includes("/auth") || pathname.includes("/payment") || pathname.includes("/dashboard")
+
+            // If user is already logged in, do not show popup
+            if (session) return
+
+            if (!hasSubmitted && !isAuthPage) {
+                const timer = setTimeout(() => {
+                    setOpen(true)
+                }, 3000)
+                return () => clearTimeout(timer)
+            }
         }
+
+        checkAuth()
     }, [pathname])
 
     const handleGoogleSignIn = async () => {
