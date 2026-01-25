@@ -26,6 +26,8 @@ const navigation = [
   { name: "Contact", href: "/contact" },
 ]
 
+import { HeaderLogo } from "@/components/layout/header-logo"
+
 export function SiteHeader() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -34,7 +36,7 @@ export function SiteHeader() {
   const [authLoading, setAuthLoading] = useState(true)
   const pathname = usePathname()
   const isHomePage = pathname === "/"
-  // Pages that should have transparent navbar when not scrolled
+
   const transparentNavPages = [
     "/",
     "/courses",
@@ -56,31 +58,17 @@ export function SiteHeader() {
 
   useEffect(() => {
     const supabase = createClient()
-    
-    // Get initial user
     supabase.auth.getUser().then(({ data: { user } }) => {
       setUser(user)
       setAuthLoading(false)
     })
 
-    // Listen for auth changes
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null)
     })
 
     return () => subscription.unsubscribe()
   }, [])
-
-  const handleWhatsAppClick = (e?: React.MouseEvent) => {
-    if (e) {
-      e.preventDefault()
-      e.stopPropagation()
-    }
-    trackWhatsAppClick("header")
-    openWhatsApp("I&apos;m interested in learning more about EduDubai courses.")
-  }
 
   const headerClasses = `
     fixed top-0 left-0 right-0 z-50 transition-all duration-300
@@ -94,46 +82,18 @@ export function SiteHeader() {
     <header className={headerClasses}>
       <Container>
         <div className="flex h-20 items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 group">
-            {!logoError ? (
-              <div className="relative h-12 w-auto">
-                <img
-                  src="/edudubai-logo.png"
-                  alt="EduDubai - Global Education and Training Specialist"
-                  className="h-12 w-auto object-contain transition-all duration-300 group-hover:opacity-90"
-                  style={{ 
-                    backgroundColor: 'transparent',
-                    display: 'block',
-                    filter: shouldHaveTransparentNav && !isScrolled 
-                      ? 'brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0,0,0,0.9)) drop-shadow(0 4px 12px rgba(0,0,0,0.6))'
-                      : 'brightness(0)',
-                  }}
-                  onError={() => setLogoError(true)}
-                />
-              </div>
-            ) : (
-              <>
-                <BookOpen className={`h-7 w-7 transition-colors ${
-                  shouldHaveTransparentNav && !isScrolled
-                    ? "text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
-                    : "text-brand-gold group-hover:text-brand-gold-light"
-                }`} />
-                <span className={`text-2xl font-bold transition-colors ${
-                  shouldHaveTransparentNav && !isScrolled 
-                    ? "text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)] font-extrabold" 
-                    : "text-brand-navy"
-                }`}>
-                  EduDubai
-                </span>
-              </>
-            )}
-          </Link>
+          <HeaderLogo
+            isTransparent={shouldHaveTransparentNav}
+            isScrolled={isScrolled}
+            logoError={logoError}
+            setLogoError={setLogoError}
+          />
+
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => {
-              const isActive = pathname === item.href || 
+              const isActive = pathname === item.href ||
                 (item.href !== "/" && pathname.startsWith(item.href))
               return (
                 <Link
@@ -150,11 +110,10 @@ export function SiteHeader() {
                 >
                   {item.name}
                   {isActive && (
-                    <span className={`absolute -bottom-1 left-0 right-0 h-0.5 ${
-                      shouldHaveTransparentNav && !isScrolled
-                        ? "bg-white"
-                        : "bg-brand-gold"
-                    }`} />
+                    <span className={`absolute -bottom-1 left-0 right-0 h-0.5 ${shouldHaveTransparentNav && !isScrolled
+                      ? "bg-white"
+                      : "bg-brand-gold"
+                      }`} />
                   )}
                 </Link>
               )
@@ -212,8 +171,8 @@ export function SiteHeader() {
                 variant="ghost"
                 size="icon"
                 className={`
-                  ${shouldHaveTransparentNav && !isScrolled 
-                    ? "text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]" 
+                  ${shouldHaveTransparentNav && !isScrolled
+                    ? "text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
                     : "text-neutral-text"}
                 `}
               >
@@ -224,7 +183,7 @@ export function SiteHeader() {
             <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-neutral-bg">
               <div className="flex flex-col space-y-6 mt-8">
                 {navigation.map((item) => {
-                  const isActive = pathname === item.href || 
+                  const isActive = pathname === item.href ||
                     (item.href !== "/" && pathname.startsWith(item.href))
                   return (
                     <Link

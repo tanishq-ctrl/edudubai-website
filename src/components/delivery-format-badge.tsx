@@ -22,11 +22,6 @@ export function DeliveryFormatBadge({ format, className }: DeliveryFormatBadgePr
       icon: Video,
       className: "bg-blue-600 text-white",
     },
-    SELF_PACED: {
-      label: "Self-Paced",
-      icon: BookOpen,
-      className: "bg-brand-gold text-brand-navy",
-    },
   }
 
   const { label, icon: Icon, className: badgeClassName } = config[format as DeliveryMode]

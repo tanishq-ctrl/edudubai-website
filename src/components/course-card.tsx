@@ -16,15 +16,27 @@ export function CourseCard({ course }: CourseCardProps) {
     <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-2 border-neutral-border hover:border-brand-gold h-full flex flex-col group bg-gradient-to-br from-white via-white/98 to-slate-50/90">
       {/* Course Image */}
       {course.imageUrl && (
-        <div className="relative w-full aspect-video bg-gradient-to-br from-brand-navy to-brand-navy-dark overflow-hidden">
-          <CourseImage
-            src={course.imageUrl}
-            alt={course.title}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+        <div className="relative w-full aspect-[4/3] bg-brand-navy p-6 flex items-center justify-center overflow-hidden border-b border-brand-gold/20">
+          {/* Abstract light beam effect */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/10 blur-[80px] rounded-full -mr-32 -mt-32 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-500/10 blur-[60px] rounded-full -ml-24 -mb-24 pointer-events-none" />
+
+          <div className="relative w-full h-full shadow-[0_20px_50px_rgba(0,0,0,0.5)] group-hover:shadow-[0_40px_80px_rgba(0,0,0,0.8)] transition-all duration-700 rounded-lg overflow-hidden group-hover:scale-105 group-hover:-rotate-1">
+            <CourseImage
+              src={course.imageUrl}
+              alt={course.title}
+              fill
+              className="object-contain"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
+
+          {/* Premium "Live Now" or "Official" corner tag */}
+          <div className="absolute top-4 left-4 z-20">
+            <span className="bg-brand-navy/60 backdrop-blur-md border border-white/10 text-white text-[9px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full shadow-2xl">
+              Official Curriculum
+            </span>
+          </div>
         </div>
       )}
       <CardHeader className="flex-1 pb-4">
@@ -61,9 +73,9 @@ export function CourseCard({ course }: CourseCardProps) {
               ${course.priceUsd.toLocaleString()}
             </div>
           </div>
-          <Button 
-            asChild 
-            variant="outline" 
+          <Button
+            asChild
+            variant="outline"
             size="sm"
             className="border-brand-navy text-brand-navy hover:bg-brand-navy hover:text-white transition-colors"
           >

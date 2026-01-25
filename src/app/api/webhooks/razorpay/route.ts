@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
 
     // Verify webhook signature
     const isValid = verifyWebhookSignature(body, signature)
-    
+
     if (!isValid) {
       console.error("Invalid webhook signature received")
       return NextResponse.json(
@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
 
       // Fetch order to get metadata
       const order = event.payload.payment.entity.order_id
-      
+
       // Extract metadata from notes (if stored in order)
       // Note: Razorpay stores notes in the order, we need to fetch it
       // For now, we'll handle this in the verify endpoint
@@ -58,8 +58,7 @@ export async function POST(req: NextRequest) {
       // Create payment record if not exists
       try {
         // Lazy import Prisma to avoid initialization during build
-        const { getPrisma } = await import("@/lib/prisma")
-        const prisma = getPrisma()
+        const { default: prisma } = await import("@/lib/prisma")
         await prisma.payment.upsert({
           where: {
             stripeId: payment.id, // Using stripeId field for Razorpay payment ID

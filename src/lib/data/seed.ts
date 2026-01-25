@@ -1,6 +1,6 @@
 // In-memory seed data for Phase 1 (no database)
 
-export type DeliveryFormat = "IN_PERSON" | "LIVE_VIRTUAL" | "SELF_PACED"
+export type DeliveryFormat = "IN_PERSON" | "LIVE_VIRTUAL"
 
 export interface Course {
   id: string
@@ -123,7 +123,7 @@ export function seedData() {
       duration: 35,
       level: "BEGINNER",
       category: "Data & Analytics",
-      deliveryFormat: "SELF_PACED",
+      deliveryFormat: "LIVE_VIRTUAL",
       instructor: {
         name: "Mohammed Al-Rashid",
         email: "mohammed@edudubai.com",
@@ -202,7 +202,7 @@ export function seedData() {
       duration: 60,
       level: "INTERMEDIATE",
       category: "Project Management",
-      deliveryFormat: "SELF_PACED",
+      deliveryFormat: "LIVE_VIRTUAL",
       instructor: {
         name: "David Chen",
         email: "david@edudubai.com",

@@ -19,7 +19,7 @@ Update your Razorpay dashboard with the correct contact information.
    - **Business Email:** training@edudubai.org
    - **Contact Phone:** +971 50 3130 946
    - **Business Name:** EduDubai
-   - **Business Address:** Dubai, UAE (update with your actual address if needed)
+   - **Business Address:** MENA (update with your actual address if needed)
 6. Click **"Save"** to apply changes
 
 ### 2. Payment Page Settings

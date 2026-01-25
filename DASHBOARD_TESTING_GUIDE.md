@@ -120,7 +120,7 @@ Follow these steps to verify all dashboard pages are working correctly.
 
 2. **Edit Profile**
    - Change "Phone" field (e.g., "+971501234567")
-   - Change "Country" field (e.g., "UAE")
+   - Change "Country" field (e.g., "MENA")
    - Click "Save Changes" button
    - ✅ Should see: Loading spinner
    - ✅ Should see: Success message "Profile updated successfully"

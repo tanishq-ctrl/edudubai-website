@@ -184,13 +184,23 @@ export async function POST(req: NextRequest) {
       // Don't fail the request if email fails
     }
 
-    // Send confirmation email to learner if email provided
-    if (email && course) {
+    // Send confirmation email and sync to Systeme.io
+    const finalEmail = email || user?.email
+    if (finalEmail && course) {
       try {
-        await sendEnrollmentEmail(email, course.title)
+        // Send internal notification email
+        await sendEnrollmentEmail(finalEmail, course.title)
+
+        // SYNC TO SYSTEME.IO
+        const { syncToSystemeIO } = await import("@/lib/systeme-io")
+        await syncToSystemeIO({
+          email: finalEmail,
+          firstName: user?.email ? user.email.split("@")[0] : finalEmail.split("@")[0],
+          courseTitle: course.title,
+          courseSlug: courseSlug,
+        })
       } catch (error) {
-        console.error("Error sending enrollment email to learner:", error)
-        // Don't fail the request if email fails
+        console.error("Error sending enrollment notifications:", error)
       }
     }
 
@@ -200,7 +210,7 @@ export async function POST(req: NextRequest) {
     })
   } catch (error: any) {
     console.error("Unexpected error in payment verification:", error)
-    
+
     // Never leak internal error details
     return NextResponse.json(
       {

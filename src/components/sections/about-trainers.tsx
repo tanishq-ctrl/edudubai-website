@@ -18,8 +18,8 @@ const teamMembers = [
     name: "Sanjay Prabhu",
     role: "Director – GRC Consulting & Training",
     image: "/team/sanjay-prabhu.jpg", // Placeholder path
-    description: "Sanjay Prabhu is a highly experienced Compliance Trainer and Consultant with over 18 years in trade finance and banking operations, 5+ years in consulting and auditing, and 9+ years dedicated to training and managing compliance frameworks across banks, exchange houses, DNFBPs, and DPMS in Dubai, UAE.",
-    expertise: "His expertise spans UAE regulations (CBUAE, SCA, ADGM, DIFC), UN and OFAC sanctions, as well as FATF standards. A Certified Compliance Manager (GCI, Australia), CFCS, and CTP (FAA, Kuala Lumpur), Sanjay specializes in AML/CFT, KYC/CDD, FATCA/CRS, sanctions, GDPR, and RegTech reporting and delivered 2,500+ training and academic sessions.",
+    description: "Sanjay Prabhu is a highly experienced Compliance Trainer and Consultant with over 18 years in trade finance and banking operations, 5+ years in consulting and auditing, and 9+ years dedicated to training and managing compliance frameworks across banks, exchange houses, DNFBPs, and DPMS in MENA.",
+    expertise: "His expertise spans MENA regulations (CBMENA, SCA, ADGM, DIFC), UN and OFAC sanctions, as well as FATF standards. A Certified Compliance Manager (GCI, Australia), CFCS, and CTP (FAA, Kuala Lumpur), Sanjay specializes in AML/CFT, KYC/CDD, FATCA/CRS, sanctions, GDPR, and RegTech reporting and delivered 2,500+ training and academic sessions.",
   },
 ]
 

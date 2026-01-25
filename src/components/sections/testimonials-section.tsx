@@ -8,30 +8,50 @@ import { Quote } from "lucide-react"
 const testimonials = [
   {
     name: "Sarah Al-Mansoori",
-    role: "Senior Consultant",
-    company: "Deloitte",
-    content: "EduDubai&apos;s courses transformed my career. The practical insights and expert instruction helped me secure a promotion within 6 months.",
+    role: "Senior Compliance Officer",
+    content: "EduDubai's CAMS prep course was instrumental in my success. The focus on local MENA regulations alongside global standards gave me a significant edge in my current role.",
     rating: 5,
   },
   {
     name: "Ahmed Hassan",
-    role: "Project Manager",
-    company: "Emirates Group",
-    content: "The self-paced format was perfect for my busy schedule. I could learn at my own pace while applying concepts directly to my work.",
+    role: "AML Analyst",
+    content: "The practical case studies on Trade-Based Money Laundering were exceptionally detailed. I was able to implement new detection patterns in our monitoring system immediately after the workshop.",
     rating: 5,
   },
   {
     name: "Priya Sharma",
-    role: "Data Analyst",
-    company: "ADNOC",
-    content: "Outstanding quality and comprehensive curriculum. The live virtual sessions were engaging and the instructors were industry experts.",
+    role: "Risk & Governance Manager",
+    content: "Completing the CCM certification through EduDubai was a turning point. The instructors are clearly practitioners, not just lecturers, which makes the complex GCI curriculum much easier to grasp.",
     rating: 5,
   },
   {
     name: "Mohammed Al-Rashid",
-    role: "IT Director",
-    company: "Etisalat",
-    content: "Best investment in my professional development. The certifications are recognized industry-wide and opened new career opportunities.",
+    role: "MLRO",
+    content: "The executive level insights provided during the LIVE Virtual sessions were top-notch. It's rare to find training that balances theoretical compliance with the harsh realities of regulatory reporting.",
+    rating: 5,
+  },
+  {
+    name: "Fatima Al-Zahra",
+    role: "KYC Specialist",
+    content: "Excellent focus on Customer Due Diligence. The advanced KYC workshop cleared up many ambiguities regarding Ultimate Beneficial Ownership (UBO) structures that we struggle with daily.",
+    rating: 5,
+  },
+  {
+    name: "Rajesh Kumar",
+    role: "Internal Audit Manager",
+    content: "The Sanctions Compliance Specialist program was exceptionally well-structured. It has improved our internal audit-readiness significantly when dealing with complex OFAC and UN sanctions regimes.",
+    rating: 5,
+  },
+  {
+    name: "Hussain Abbas",
+    role: "Head of Operations",
+    content: "The FATCA & CRS reporting workshop was a lifesaver. What used to be a confusing manual process for our team is now handled with much more confidence thanks to the technical depth of the training.",
+    rating: 5,
+  },
+  {
+    name: "Lindsey Morgan",
+    role: "Regulatory Liaison Officer",
+    content: "The GCI curriculum and EduDubai's delivery style are perfectly matched. The clarity brought to cross-border regulatory requirements has made our communication with regional authorities much smoother.",
     rating: 5,
   },
 ]
@@ -79,7 +99,7 @@ export function TestimonialsSection() {
                         {currentTestimonial.name}
                       </div>
                       <div className="text-sm text-neutral-text-muted">
-                        {currentTestimonial.role}, {currentTestimonial.company}
+                        {currentTestimonial.role}
                       </div>
                     </div>
                     <div className="flex space-x-1">
@@ -97,11 +117,10 @@ export function TestimonialsSection() {
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`h-2.5 rounded-full transition-all ${
-                  index === currentIndex
-                    ? "w-10 bg-brand-gold shadow-lg"
-                    : "w-2.5 bg-neutral-border hover:bg-brand-gold/50"
-                }`}
+                className={`h-2.5 rounded-full transition-all ${index === currentIndex
+                  ? "w-10 bg-brand-gold shadow-lg"
+                  : "w-2.5 bg-neutral-border hover:bg-brand-gold/50"
+                  }`}
                 aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}

@@ -38,7 +38,7 @@ const partnerCertifications = [
       "The most advanced global certification in Compliance and Anti-Money Laundering, covering governance, AML/CFT, sanctions, FATCA/CRS, investigations, and regulatory oversight.",
     level: "ADVANCED",
     duration: 60,
-    deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON", "SELF_PACED"] as const,
+    deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON"] as const,
     icon: Users,
     badge: "GCI CCM",
     imageUrl: "/images/certifications/certified-compliance-manager.jpg",

@@ -32,7 +32,7 @@ const partners = [
   // Middle East & Gulf Region Banks
   { name: "Emirates NBD", imagePath: "/images/partners/emirates-nbd.png" },
   { name: "First Abu Dhabi Bank", imagePath: "/images/partners/fab.png" },
-  { name: "Dubai Islamic Bank", imagePath: "/images/partners/dib.png" },
+  { name: "MENA Islamic Bank", imagePath: "/images/partners/dib.png" },
   { name: "Qatar National Bank", imagePath: "/images/partners/qnb.png" },
   { name: "Mashreq Bank", imagePath: "/images/partners/mashreq.png" },
   // Compliance & Professional Organizations
@@ -43,21 +43,21 @@ const partners = [
   { name: "LexisNexis", imagePath: "/images/partners/lexisnexis.png" },
   // Exchange Houses & FinTech
   { name: "Al Ansari Exchange", imagePath: "/images/partners/al-ansari.png" },
-  { name: "UAE Exchange", imagePath: "/images/partners/uae-exchange.png" },
+  { name: "MENA Exchange", imagePath: "/images/partners/uae-exchange.png" },
 ]
 
 export function TrustBar() {
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-50 via-blue-50/60 to-indigo-50/80 border-y border-neutral-border/50 overflow-hidden relative">
+    <section className="py-10 bg-gradient-to-br from-slate-50 via-blue-50/60 to-indigo-50/80 border-y border-neutral-border/50 overflow-hidden relative">
       {/* Enhanced gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-100/20 via-transparent to-indigo-100/20"></div>
       <Container className="relative z-10">
-        <div className="text-center mb-8">
-          <p className="text-base md:text-lg font-bold text-brand-navy uppercase tracking-wide">
+        <div className="text-center mb-6">
+          <p className="text-sm md:text-base font-bold text-brand-navy uppercase tracking-wide">
             Trusted by AML & Compliance Professionals Worldwide
           </p>
         </div>
-        
+
         {/* Infinite scrolling logo banner */}
         <div className="relative w-full overflow-hidden">
           <div className="flex animate-scroll">
@@ -75,7 +75,7 @@ export function TrustBar() {
                 </div>
               ))}
             </div>
-            
+
             {/* Duplicate set for seamless loop */}
             <div className="flex items-center gap-12 flex-shrink-0" aria-hidden="true">
               {partners.map((partner, index) => (

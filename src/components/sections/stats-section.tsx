@@ -5,10 +5,10 @@ import { Container } from "@/components/container"
 import { Card, CardContent } from "@/components/ui/card"
 
 const stats = [
-  { label: "Sessions Delivered", value: 5000, suffix: "+" },
-  { label: "Learners Trained", value: 10000, suffix: "+" },
-  { label: "Countries", value: 50, suffix: "+" },
-  { label: "Certifications", value: 25, suffix: "+" },
+  { label: "Sessions Delivered", value: 850, suffix: "+" },
+  { label: "Learners Trained", value: 2500, suffix: "+" },
+  { label: "Countries", value: 12, suffix: "+" },
+  { label: "Certifications", value: 8, suffix: "+" },
 ]
 
 export function StatsSection() {
@@ -65,7 +65,7 @@ export function StatsSection() {
   }, [hasAnimated])
 
   return (
-    <section id="stats-section" className="py-20 md:py-28 bg-gradient-to-br from-slate-50 via-blue-50/60 to-indigo-50/80 relative overflow-hidden">
+    <section id="stats-section" className="py-12 md:py-16 bg-gradient-to-br from-slate-50 via-blue-50/60 to-indigo-50/80 relative overflow-hidden">
       {/* Enhanced gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-100/20 via-transparent to-indigo-100/20"></div>
       <Container className="relative z-10">
@@ -91,7 +91,7 @@ export function StatsSection() {
             ]
             return (
               <Card key={stat.label} className={`border-2 border-neutral-border/50 ${borderColors[index]} transition-all duration-300 hover:shadow-2xl ${shadowColors[index]} bg-gradient-to-br from-white via-white/95 to-slate-50/80 backdrop-blur-sm hover:scale-105`}>
-                <CardContent className="pt-6 text-center">
+                <CardContent className="py-4 md:py-6 text-center">
                   <div className={`text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-br ${colorGradients[index]} bg-clip-text text-transparent mb-2`}>
                     {counts[index].toLocaleString()}
                     {stat.suffix}

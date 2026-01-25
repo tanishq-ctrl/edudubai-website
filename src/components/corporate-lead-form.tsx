@@ -69,7 +69,7 @@ export function CorporateLeadForm() {
             Thank You for Your Interest!
           </h3>
           <p className="text-lg text-neutral-text-muted mb-6">
-            We&apos;ve received your corporate training inquiry. Our team will contact you 
+            We&apos;ve received your corporate training inquiry. Our team will contact you
             within 24 hours to discuss your training needs.
           </p>
           <Button
@@ -190,7 +190,6 @@ export function CorporateLeadForm() {
               <SelectContent>
                 <SelectItem value="IN_PERSON">In-Person</SelectItem>
                 <SelectItem value="LIVE_VIRTUAL">Live Virtual</SelectItem>
-                <SelectItem value="SELF_PACED">Self-Paced eLearning</SelectItem>
                 <SelectItem value="HYBRID">Hybrid (Combination)</SelectItem>
               </SelectContent>
             </Select>

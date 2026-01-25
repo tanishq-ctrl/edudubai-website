@@ -77,11 +77,10 @@ const specializations = [
 const deliveryModes = [
   { value: "IN_PERSON", label: "In-Person" },
   { value: "LIVE_VIRTUAL", label: "Live Virtual" },
-  { value: "SELF_PACED", label: "Self-Paced" },
 ]
 
 const regions = [
-  "UAE",
+  "MENA",
   "GCC",
   "India",
   "Online Global",
@@ -249,7 +248,7 @@ export function TrainerApplicationForm() {
     try {
       // Create FormData for file upload
       const submitData = new FormData()
-      
+
       // Append all form fields
       Object.entries(formData).forEach(([key, value]) => {
         if (key === "cv_file" || key === "sample_deck") {
@@ -526,11 +525,10 @@ export function TrainerApplicationForm() {
                   <Badge
                     key={spec}
                     variant={formData.specializations.includes(spec) ? "default" : "outline"}
-                    className={`cursor-pointer ${
-                      formData.specializations.includes(spec)
+                    className={`cursor-pointer ${formData.specializations.includes(spec)
                         ? "bg-brand-gold text-brand-navy"
                         : "hover:bg-brand-gold/10"
-                    }`}
+                      }`}
                     onClick={() => toggleSpecialization(spec)}
                   >
                     {spec}
@@ -563,11 +561,10 @@ export function TrainerApplicationForm() {
                   <Badge
                     key={region}
                     variant={formData.regions.includes(region) ? "default" : "outline"}
-                    className={`cursor-pointer ${
-                      formData.regions.includes(region)
+                    className={`cursor-pointer ${formData.regions.includes(region)
                         ? "bg-brand-gold text-brand-navy"
                         : "hover:bg-brand-gold/10"
-                    }`}
+                      }`}
                     onClick={() => toggleRegion(region)}
                   >
                     {region}
@@ -621,11 +618,10 @@ export function TrainerApplicationForm() {
                   <Badge
                     key={lang}
                     variant={formData.languages.includes(lang) ? "default" : "outline"}
-                    className={`cursor-pointer ${
-                      formData.languages.includes(lang)
+                    className={`cursor-pointer ${formData.languages.includes(lang)
                         ? "bg-brand-gold text-brand-navy"
                         : "hover:bg-brand-gold/10"
-                    }`}
+                      }`}
                     onClick={() => toggleLanguage(lang)}
                   >
                     {lang}
@@ -722,7 +718,7 @@ export function TrainerApplicationForm() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="AED">AED (UAE Dirham)</SelectItem>
+                    <SelectItem value="AED">AED (MENA Dirham)</SelectItem>
                     <SelectItem value="USD">USD (US Dollar)</SelectItem>
                     <SelectItem value="INR">INR (Indian Rupee)</SelectItem>
                     <SelectItem value="GBP">GBP (British Pound)</SelectItem>

@@ -34,7 +34,7 @@ const slides: SlideData[] = [
   {
     eyebrow: "EduDubai • Training & Consulting",
     headline: "Compliance Leadership Starts Here.",
-    subheadline: "Built for regulators&apos; expectations — not checklists.",
+    subheadline: "Built for regulators & expectations — not checklists.",
     primaryCTA: {
       text: "Explore Courses",
       href: "/courses",
@@ -128,10 +128,10 @@ export function HeroCarousel() {
           prefersReducedMotion
             ? false
             : {
-                delay: 6500,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-              }
+              delay: 6500,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }
         }
         navigation={{
           nextEl: ".swiper-button-next-custom",

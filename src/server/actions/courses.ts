@@ -1,8 +1,8 @@
 "use server"
 
-import { 
-  getAllCourses, 
-  getFeaturedCourses, 
+import {
+  getAllCourses,
+  getFeaturedCourses,
   getCourseBySlug as getCourseBySlugHelper,
   getCategories,
   getCoursesByCategory,
@@ -22,7 +22,7 @@ function mapToLegacyFormat(course: any) {
     duration: course.duration,
     level: course.level,
     category: course.category,
-    deliveryFormat: course.deliveryModes[0] || "SELF_PACED", // Use first delivery mode for legacy
+    deliveryFormat: course.deliveryModes[0] || "LIVE_VIRTUAL", // Use first delivery mode for legacy
     instructor: {
       name: "Expert Instructor",
       email: "training@edudubai.org",

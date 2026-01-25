@@ -46,7 +46,7 @@ export function ContactInfo() {
               <div className="font-semibold text-brand-navy mb-1">Address</div>
               <div className="text-neutral-text-muted">
                 Business Bay<br />
-                Dubai, UAE
+                MENA
               </div>
             </div>
           </div>

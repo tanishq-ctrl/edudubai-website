@@ -2,18 +2,15 @@
 
 import { useState, useEffect, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
-import { AuthCard } from "@/components/auth/auth-card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Alert, AlertDescription } from "@/components/ui/alert"
-import { Separator } from "@/components/ui/separator"
 import { createClient } from "@/lib/supabase/client"
 import { clearAuthCookies, isInvalidCookieError } from "@/lib/auth-utils"
-import { Loader2, AlertCircle } from "lucide-react"
+import { Loader2, AlertCircle, Chrome, Mail, Lock, ArrowRight, CheckCircle2 } from "lucide-react"
 import Link from "next/link"
 import { z } from "zod"
-import { Chrome } from "lucide-react"
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -32,32 +29,23 @@ function LoginForm() {
   })
 
   useEffect(() => {
-    // Check for OAuth errors in URL
     const errorParam = searchParams.get("error")
-    if (errorParam) {
-      setError(decodeURIComponent(errorParam))
-    }
+    if (errorParam) setError(decodeURIComponent(errorParam))
 
-    // Check if user is already logged in
     const checkUser = async () => {
       try {
         const supabase = createClient()
         const { data: { user }, error } = await supabase.auth.getUser()
-        
-        // If there's an auth error with invalid cookies, clear them
         if (error && isInvalidCookieError(error)) {
-          console.log('[Login] Clearing invalid cookies')
           clearAuthCookies()
           await supabase.auth.signOut()
           return
         }
-        
         if (user) {
           const next = searchParams.get("next") || "/dashboard"
           router.replace(next)
         }
       } catch (err) {
-        // Supabase might not be configured, ignore
         console.log("Auth check skipped:", err)
       }
     }
@@ -70,9 +58,7 @@ function LoginForm() {
     setError(null)
 
     try {
-      // Validate form data
       const validatedData = loginSchema.parse(formData)
-
       const supabase = createClient()
       const { data, error: signInError } = await supabase.auth.signInWithPassword({
         email: validatedData.email,
@@ -85,50 +71,11 @@ function LoginForm() {
         return
       }
 
-      if (!data.user) {
-        setError("Login failed. Please try again.")
-        setLoading(false)
-        return
-      }
-
-      if (!data.session) {
-        setError("Session not created. Please try again.")
-        setLoading(false)
-        return
-      }
-
-      // The browser client automatically sets cookies via createBrowserClient
-      // Wait for cookies to be written
-      await new Promise(resolve => setTimeout(resolve, 500))
-
-      // Verify the session is accessible on the client
-      const { data: { session: verifySession }, error: verifyError } = await supabase.auth.getSession()
-      
-      console.log('[Login] Session verification:', {
-        hasSession: !!verifySession,
-        userId: verifySession?.user?.id || null,
-        error: verifyError?.message || null,
-      })
-
-      if (!verifySession) {
-        console.error('[Login] Session verification failed:', verifyError)
-        setError("Session not persisted. Please try again.")
-        setLoading(false)
-        return
-      }
-
-      // Get the redirect destination
       const next = searchParams.get("next") || "/dashboard"
-      
-      // Use window.location for a full page reload to ensure middleware sees fresh cookies
-      // This is more reliable than router.push for auth flows
-      console.log('[Login] Redirecting to:', next)
       window.location.href = next
     } catch (err) {
       if (err instanceof z.ZodError) {
         setError(err.errors[0].message)
-      } else if (err instanceof Error && err.message.includes("Missing Supabase")) {
-        setError("Authentication is not configured. Please contact support.")
       } else {
         setError("An error occurred. Please try again.")
       }
@@ -139,146 +86,191 @@ function LoginForm() {
   const handleGoogleSignIn = async () => {
     setGoogleLoading(true)
     setError(null)
-
     try {
       const supabase = createClient()
       const next = searchParams.get("next") || "/dashboard"
-      
-      // Get the callback URL - use environment variable if available, otherwise use window.location
-      const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || window.location.origin
+      const siteUrl = window.location.origin
       const callbackUrl = `${siteUrl}/auth/callback?next=${encodeURIComponent(next)}`
-      
-      const { data, error: oauthError } = await supabase.auth.signInWithOAuth({
+
+      const { error: oauthError } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
           redirectTo: callbackUrl,
-          queryParams: {
-            access_type: 'offline',
-            prompt: 'consent',
-          },
         },
       })
 
-      if (oauthError) {
-        setError(oauthError.message || "Failed to sign in with Google")
-        setGoogleLoading(false)
-        return
-      }
-
-      // The OAuth flow will redirect the user
-      // No need to handle redirect here as Supabase handles it
-    } catch (err) {
-      console.error('[Login] Google OAuth error:', err)
-      setError("An error occurred with Google sign-in. Please try again.")
+      if (oauthError) throw oauthError
+    } catch (err: any) {
+      setError(err.message || "Failed to sign in with Google")
       setGoogleLoading(false)
     }
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-blue-50/30 py-12 px-4 sm:px-6 lg:px-8">
-      <AuthCard
-        title="Welcome Back"
-        description="Sign in to your account to continue learning"
-      >
-        {error && (
-          <Alert variant="destructive" className="mb-6">
-            <AlertCircle className="h-4 w-4" />
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        )}
+    <div className="min-h-screen flex flex-col pt-20 bg-neutral-bg overflow-hidden">
+      <div className="flex-1 flex flex-col lg:flex-row">
+        {/* Left Pane - Executive Info */}
+        <div className="hidden lg:flex w-[45%] bg-brand-navy p-20 flex-col justify-center relative overflow-hidden">
+          {/* Decorative Elements */}
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-gold/5 rounded-full blur-[120px] -mr-64 -mt-64" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/5 rounded-full blur-[100px] -ml-32 -mb-32" />
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="you@example.com"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              required
-              disabled={loading}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <Label htmlFor="password">Password</Label>
-              <Link
-                href="/auth/forgot-password"
-                className="text-sm text-brand-navy hover:text-brand-navy-dark hover:underline"
-              >
-                Forgot password?
-              </Link>
+          <div className="relative z-10 space-y-16">
+            <div className="space-y-6">
+              <h2 className="text-5xl font-black text-white leading-tight tracking-tight uppercase">
+                Empowering the <br />
+                <span className="text-brand-gold">Compliance Elite</span>
+              </h2>
+              <p className="text-white/60 text-xl font-medium leading-relaxed max-w-md">
+                Access your personalized training environment and track your progress towards global certification.
+              </p>
             </div>
-            <Input
-              id="password"
-              type="password"
-              placeholder="••••••••"
-              value={formData.password}
-              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              required
-              disabled={loading}
-            />
+
+            <div className="space-y-8">
+              {[
+                "Instant Exam Diagnostic Access",
+                "Personalized Study Roadmap",
+                "Global Certification Tracking",
+                "Direct Trainer Consultation"
+              ].map((item, i) => (
+                <div key={i} className="flex items-center gap-5 group">
+                  <div className="h-12 w-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-brand-gold/20 group-hover:border-brand-gold/30 transition-all shadow-xl">
+                    <CheckCircle2 className="h-6 w-6 text-brand-gold" />
+                  </div>
+                  <span className="text-white/80 text-lg font-bold tracking-tight">{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <Button
-            type="submit"
-            className="w-full bg-brand-navy hover:bg-brand-navy-dark text-white"
-            disabled={loading}
-          >
-            {loading ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Signing in...
-              </>
-            ) : (
-              "Sign In"
-            )}
-          </Button>
-        </form>
-
-        <div className="relative my-6">
-          <div className="absolute inset-0 flex items-center">
-            <Separator />
-          </div>
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-white px-2 text-neutral-text-muted">Or continue with</span>
+          <div className="absolute bottom-10 left-20 border-t border-white/10 pt-8 w-[calc(100%-160px)]">
+            <p className="text-[10px] uppercase font-black tracking-[0.4em] text-white/30 whitespace-nowrap">
+              Official Certification Partner • DIFC • ADGM • UAE
+            </p>
           </div>
         </div>
 
-        <Button
-          type="button"
-          variant="outline"
-          className="w-full border-2"
-          onClick={handleGoogleSignIn}
-          disabled={loading || googleLoading}
-        >
-          {googleLoading ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Connecting...
-            </>
-          ) : (
-            <>
-              <Chrome className="mr-2 h-4 w-4" />
-              Continue with Google
-            </>
-          )}
-        </Button>
+        {/* Right Pane - Professional Login Form */}
+        <div className="flex-1 flex flex-col justify-center items-center py-12 px-6 lg:px-20 bg-neutral-bg-subtle/30 overflow-y-auto">
+          <div className="w-full max-w-[500px]">
+            <div className="bg-white border border-neutral-border shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] p-8 md:p-14 rounded-[3rem] relative transition-all">
+              <div className="absolute top-0 left-0 right-0 h-2.5 bg-brand-gold" />
 
-        <Separator className="my-6" />
+              <div className="text-center mb-12 space-y-3">
+                <h1 className="text-4xl font-black text-brand-navy tracking-tight">Welcome Back</h1>
+                <p className="text-neutral-text-muted text-[11px] font-black tracking-[0.2em] uppercase">Sign in to your learning portal</p>
+              </div>
 
-        <div className="text-center text-sm">
-          <span className="text-neutral-text-muted">Don&apos;t have an account? </span>
-          <Link
-            href={`/auth/register${searchParams.get("next") ? `?next=${encodeURIComponent(searchParams.get("next")!)}` : ""}`}
-            className="text-brand-navy hover:text-brand-navy-dark font-semibold hover:underline"
-          >
-            Sign up
-          </Link>
+              {error && (
+                <div className="mb-8 p-4 border border-red-500/20 bg-red-50 text-red-700 rounded-2xl flex gap-3 items-start">
+                  <AlertCircle className="h-5 w-5 mt-0.5" />
+                  <p className="text-xs font-bold leading-relaxed">{error}</p>
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="space-y-3">
+                  <Label htmlFor="email" className="text-[10px] font-black uppercase tracking-[0.25em] text-neutral-text-muted ml-2">Email Connection</Label>
+                  <div className="relative group">
+                    <Mail className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-neutral-text-muted/40 group-focus-within:text-brand-gold transition-colors" />
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="you@company.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      required
+                      disabled={loading}
+                      className="h-16 pl-14 bg-neutral-bg-subtle border-0 rounded-2xl focus:ring-2 focus:ring-brand-gold transition-all font-bold text-brand-navy placeholder:font-medium placeholder:text-neutral-text-muted/40"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between ml-2">
+                    <Label htmlFor="password" className="text-[10px] font-black uppercase tracking-[0.25em] text-neutral-text-muted">Security Key</Label>
+                    <Link
+                      href="/auth/forgot-password"
+                      className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold hover:text-brand-navy transition-all"
+                    >
+                      Forgot Password?
+                    </Link>
+                  </div>
+                  <div className="relative group">
+                    <Lock className="absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-neutral-text-muted/40 group-focus-within:text-brand-gold transition-colors" />
+                    <Input
+                      id="password"
+                      type="password"
+                      placeholder="••••••••"
+                      value={formData.password}
+                      onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                      required
+                      disabled={loading}
+                      className="h-16 pl-14 bg-neutral-bg-subtle border-0 rounded-2xl focus:ring-2 focus:ring-brand-gold transition-all font-bold tracking-widest"
+                    />
+                  </div>
+                </div>
+
+                <Button
+                  type="submit"
+                  className="w-full h-16 bg-brand-navy hover:bg-brand-navy-dark text-white font-black text-xl rounded-2xl shadow-xl transition-all hover:scale-[1.02] flex gap-3 items-center justify-center group"
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <Loader2 className="h-7 w-7 animate-spin" />
+                  ) : (
+                    <>
+                      Push to Dashboard <ArrowRight className="h-6 w-6 group-hover:translate-x-1.5 transition-transform" />
+                    </>
+                  )}
+                </Button>
+              </form>
+
+              <div className="relative my-12">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-neutral-border/50" />
+                </div>
+                <div className="relative flex justify-center text-[10px] font-black tracking-[0.3em] uppercase italic">
+                  <span className="bg-white px-6 text-neutral-text-muted/50">Rapid Access</span>
+                </div>
+              </div>
+
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full h-15 border-2 border-neutral-border hover:bg-neutral-bg-subtle text-brand-navy font-black rounded-2xl flex items-center justify-center gap-4 transition-all active:scale-95 text-base"
+                onClick={handleGoogleSignIn}
+                disabled={loading || googleLoading}
+              >
+                {googleLoading ? (
+                  <Loader2 className="h-6 w-6 animate-spin" />
+                ) : (
+                  <>
+                    <Chrome className="h-6 w-6 text-red-500" />
+                    Sync with Google
+                  </>
+                )}
+              </Button>
+
+              <div className="mt-12 text-center">
+                <p className="text-neutral-text-muted/70 text-sm font-bold">
+                  New to the academy?{" "}
+                  <Link
+                    href={`/auth/register${searchParams.get("next") ? `?next=${encodeURIComponent(searchParams.get("next")!)}` : ""}`}
+                    className="text-brand-gold hover:text-brand-navy font-black underline underline-offset-4 decoration-2 transition-all"
+                  >
+                    Create an account
+                  </Link>
+                </p>
+              </div>
+            </div>
+
+            <p className="mt-12 text-center text-neutral-text-muted/30 text-[10px] font-black uppercase tracking-[0.5em] italic">
+              256-Bit SSL Encypted Authorization Portal
+            </p>
+          </div>
         </div>
-      </AuthCard>
+      </div>
     </div>
   )
 }
@@ -286,12 +278,8 @@ function LoginForm() {
 export default function LoginPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-white to-blue-50/30 py-12 px-4 sm:px-6 lg:px-8">
-        <AuthCard title="Welcome Back" description="Sign in to your account to continue learning">
-          <div className="flex items-center justify-center py-8">
-            <Loader2 className="h-6 w-6 animate-spin text-brand-navy" />
-          </div>
-        </AuthCard>
+      <div className="min-h-screen flex items-center justify-center bg-brand-navy">
+        <Loader2 className="h-10 w-10 animate-spin text-brand-gold" />
       </div>
     }>
       <LoginForm />

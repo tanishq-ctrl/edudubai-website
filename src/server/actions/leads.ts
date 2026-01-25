@@ -19,7 +19,7 @@ const corporateLeadSchema = z.object({
   email: z.string().email("Invalid email address"),
   phone: z.string().min(5, "Phone number is required"),
   trainingNeed: z.string().min(10, "Training need must be at least 10 characters"),
-  preferredDelivery: z.enum(["IN_PERSON", "LIVE_VIRTUAL", "SELF_PACED", "HYBRID"]),
+  preferredDelivery: z.enum(["IN_PERSON", "LIVE_VIRTUAL", "HYBRID"]),
 })
 
 const brochureLeadSchema = z.object({
@@ -56,12 +56,12 @@ export async function submitContactLead(data: unknown) {
       }
     }
     console.error("Error submitting contact lead:", error)
-    
+
     // Return a user-friendly error message instead of throwing
-    const errorMessage = error instanceof Error 
-      ? error.message 
+    const errorMessage = error instanceof Error
+      ? error.message
       : "Failed to send message. Please check your connection and try again."
-    
+
     return {
       success: false,
       error: errorMessage,

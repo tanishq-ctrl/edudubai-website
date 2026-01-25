@@ -102,7 +102,7 @@ export function SiteFooter() {
                   <MapPin className="h-5 w-5 text-brand-gold mr-3 mt-0.5 flex-shrink-0" />
                   <div>
                     <div className="text-sm font-medium mb-1">Location</div>
-                    <div className="text-white/80 text-sm">Dubai, UAE</div>
+                    <div className="text-white/80 text-sm">MENA</div>
                   </div>
                 </li>
                 <li>

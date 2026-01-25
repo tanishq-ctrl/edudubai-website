@@ -6,12 +6,35 @@ import { CourseHero } from "./course-hero"
 import { CourseSidebar } from "./course-sidebar"
 import { CourseOutcomes } from "./course-outcomes"
 import { CourseWhoItsFor } from "./course-who-its-for"
+import { CourseWhyChooseUs } from "./course-why-choose-us"
 import { CourseDeliveryFormats } from "./course-delivery-formats"
 import { CourseFAQ } from "./course-faq"
+
+import { Metadata } from "next"
 
 interface CourseDetailPageProps {
   params: {
     slug: string
+  }
+}
+
+export async function generateMetadata({ params }: CourseDetailPageProps): Promise<Metadata> {
+  const course = await getCourseBySlugNew(params.slug)
+
+  if (!course) {
+    return {
+      title: "Course Not Found | EduDubai",
+    }
+  }
+
+  return {
+    title: `${course.title} | EduDubai`,
+    description: course.shortDescription,
+    openGraph: {
+      title: course.title,
+      description: course.shortDescription,
+      images: [course.imageUrl || "/edudubai-logo.png"],
+    },
   }
 }
 
@@ -32,6 +55,7 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
           <div className="lg:col-span-2 space-y-12">
             <CourseOutcomes course={course} />
             <CourseWhoItsFor course={course} />
+            <CourseWhyChooseUs course={course} />
             <CourseDeliveryFormats course={course} />
             <CourseFAQ course={course} />
           </div>

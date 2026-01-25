@@ -19,10 +19,10 @@ This document lists additional banks, financial institutions, and companies you 
 
 ## 🏦 Middle East & Gulf Region Banks
 
-### UAE Banks
+### MENA Banks
 - **Emirates NBD** - `emirates-nbd.png`
 - **First Abu Dhabi Bank (FAB)** - `fab.png`
-- **Dubai Islamic Bank (DIB)** - `dib.png`
+- **MENA Islamic Bank (DIB)** - `dib.png`
 - **Mashreq Bank** - `mashreq.png`
 - **RAK Bank** - `rak-bank.png`
 - **National Bank of Fujairah** - `nbf.png`
@@ -63,7 +63,7 @@ This document lists additional banks, financial institutions, and companies you 
 
 ### Exchange Houses & Remittance
 - **Al Ansari Exchange** - `al-ansari.png`
-- **UAE Exchange** - `uae-exchange.png`
+- **MENA Exchange** - `uae-exchange.png`
 - **Al Fardan Exchange** - `al-fardan.png`
 - **Lulu Exchange** - `lulu-exchange.png`
 
@@ -102,9 +102,9 @@ This document lists additional banks, financial institutions, and companies you 
 
 ### High Priority (Most Credible for AML/Compliance):
 1. **ACAMS** - Leading AML certification body
-2. **Standard Chartered** - Major presence in UAE/Middle East
-3. **Emirates NBD** - Largest UAE bank
-4. **First Abu Dhabi Bank (FAB)** - Major UAE bank
+2. **Standard Chartered** - Major presence in MENA/Middle East
+3. **Emirates NBD** - Largest MENA bank
+4. **First Abu Dhabi Bank (FAB)** - Major MENA bank
 5. **PwC** - Big 4, strong in compliance consulting
 6. **Deloitte** - Big 4, strong in risk & compliance
 7. **Refinitiv** - Leading compliance data provider
@@ -113,11 +113,11 @@ This document lists additional banks, financial institutions, and companies you 
 10. **Deutsche Bank** - Global investment bank
 
 ### Medium Priority (Regional Relevance):
-11. **Dubai Islamic Bank (DIB)** - Islamic banking leader
+11. **MENA Islamic Bank (DIB)** - Islamic banking leader
 12. **Qatar National Bank (QNB)** - Regional leader
 13. **KPMG** - Big 4
 14. **EY** - Big 4
-15. **Al Ansari Exchange** - Major UAE exchange house
+15. **Al Ansari Exchange** - Major MENA exchange house
 
 ### Nice to Have (Diversity):
 16. **ADNOC** - For corporate training credibility

@@ -34,7 +34,7 @@ Please add the following logo images to this directory:
 **Middle East & Gulf Region Banks:**
 21. **emirates-nbd.png** - Emirates NBD logo
 22. **fab.png** - First Abu Dhabi Bank (FAB) logo
-23. **dib.png** - Dubai Islamic Bank (DIB) logo
+23. **dib.png** - MENA Islamic Bank (DIB) logo
 24. **qnb.png** - Qatar National Bank (QNB) logo
 25. **mashreq.png** - Mashreq Bank logo
 
@@ -48,7 +48,7 @@ Please add the following logo images to this directory:
 
 **Exchange Houses & FinTech:**
 30. **al-ansari.png** - Al Ansari Exchange logo
-31. **uae-exchange.png** - UAE Exchange logo
+31. **uae-exchange.png** - MENA Exchange logo
 
 ## Image Specifications
 

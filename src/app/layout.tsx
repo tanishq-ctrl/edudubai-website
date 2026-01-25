@@ -36,6 +36,8 @@ export const metadata: Metadata = {
   },
 }
 
+import { LeadFormPopup } from "@/components/lead-form-popup"
+
 export default function RootLayout({
   children,
 }: {
@@ -48,6 +50,7 @@ export default function RootLayout({
         <main className="min-h-screen">{children}</main>
         <SiteFooter />
         <Toaster />
+        <LeadFormPopup />
         {/* Tawk.to Chat Widget */}
         <Script id="tawk-to" strategy="afterInteractive">
           {`

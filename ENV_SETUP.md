@@ -80,7 +80,7 @@ ADMIN_NOTIFY_EMAIL=training@edudubai.org
 NEXT_PUBLIC_WHATSAPP_NUMBER=+971501234567
 ```
 
-**Format:** Include country code (e.g., +971 for UAE, +1 for US)
+**Format:** Include country code (e.g., +971 for MENA, +1 for US)
 
 **Note:** This is optional. If not set, defaults to a placeholder number.
 

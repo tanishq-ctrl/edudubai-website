@@ -28,7 +28,6 @@ const categories: { value: Category; label: string }[] = [
 const deliveryModes: { value: DeliveryMode; label: string }[] = [
   { value: "IN_PERSON", label: "In-Person" },
   { value: "LIVE_VIRTUAL", label: "Live Virtual" },
-  { value: "SELF_PACED", label: "Self-Paced" },
 ]
 
 export function CourseFilters() {
