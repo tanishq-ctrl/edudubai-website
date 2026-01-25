@@ -27,14 +27,11 @@ export async function GET(request: NextRequest) {
     const { data: { user } } = await supabase.auth.getUser()
 
     if (user) {
-      // Check if profile exists, create if not
-      const { data: profile } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', user.id)
-        .single()
+      // Check if user was created very recently (last 60 seconds)
+      // This helps detect 'New' users even if a DB trigger already created the profile
+      const isNewUser = new Date(user.created_at).getTime() > Date.now() - 60000
 
-      if (!profile) {
+      if (isNewUser) {
         // Create profile for OAuth user
         const fullName = user.user_metadata?.full_name ||
           user.user_metadata?.name ||
@@ -49,6 +46,7 @@ export async function GET(request: NextRequest) {
           courseInterest: "OAuth Registration"
         }).catch(err => console.error("[CRM Sync] OAuth Lead failed:", err))
 
+        // Ensure profile exists (in case there's no DB trigger)
         await supabase
           .from('profiles')
           .insert({
