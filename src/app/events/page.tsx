@@ -99,10 +99,21 @@ export default function EventsPage() {
                         </div>
 
                         <div className="flex flex-wrap gap-4 pt-4">
-                            <Button size="lg" className="h-16 px-10 bg-brand-gold text-brand-navy hover:bg-brand-gold-light font-black text-lg rounded-2xl shadow-lg ring-offset-brand-navy focus:ring-brand-gold">
-                                Join Next Masterclass <ArrowRight className="ml-2 h-5 w-5" />
+                            <Button
+                                size="lg"
+                                className="h-16 px-10 bg-brand-gold text-brand-navy hover:bg-brand-gold-light font-black text-lg rounded-2xl shadow-xl transition-all hover:scale-105 active:scale-95"
+                                asChild
+                            >
+                                <Link href={events.length > 0 ? events[0].registrationUrl : "#events-grid"}>
+                                    Join Next Masterclass <ArrowRight className="ml-2 h-5 w-5" />
+                                </Link>
                             </Button>
-                            <Button variant="outline" size="lg" className="h-16 px-10 border-white/20 text-white hover:bg-white/10 font-black text-lg rounded-2xl transition-all">
+                            <Button
+                                variant="outline"
+                                size="lg"
+                                onClick={() => document.getElementById('newsletter-section')?.scrollIntoView({ behavior: 'smooth' })}
+                                className="h-16 px-10 border-white/30 text-white hover:bg-white/10 font-black text-lg rounded-2xl backdrop-blur-md transition-all hover:border-white/60 active:scale-95"
+                            >
                                 Subscribe to Alerts <Bell className="ml-2 h-5 w-5" />
                             </Button>
                         </div>
@@ -132,7 +143,7 @@ export default function EventsPage() {
             </div>
 
             {/* Events Grid */}
-            <section className="py-24 lg:py-32">
+            <section id="events-grid" className="py-24 lg:py-32">
                 <Container>
                     <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
                         <div className="max-w-2xl space-y-4 text-left">
@@ -215,7 +226,7 @@ export default function EventsPage() {
             </section>
 
             {/* Newsletter/Alerts Section */}
-            <section className="py-24 lg:py-32 bg-brand-navy relative overflow-hidden">
+            <section id="newsletter-section" className="py-24 lg:py-32 bg-brand-navy relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-gold/10 rounded-full blur-[120px] -mr-64 -mt-64" />
                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] -ml-32 -mb-32" />
 
