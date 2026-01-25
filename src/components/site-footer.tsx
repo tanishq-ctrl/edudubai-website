@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Mail, Phone, MapPin, BookOpen } from "lucide-react"
 import { Container } from "@/components/container"
 import { getWhatsAppLink } from "@/lib/whatsapp"
@@ -125,15 +126,12 @@ export function SiteFooter() {
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               <div className="flex items-center space-x-3">
                 {!logoError ? (
-                  <div className="relative h-8 w-auto">
-                    <img
+                  <div className="relative h-8 w-24">
+                    <Image
                       src="/edudubai-logo.png"
                       alt="EduDubai"
-                      className="h-8 w-auto object-contain opacity-90 brightness-0 invert"
-                      style={{ 
-                        backgroundColor: 'transparent',
-                        display: 'block',
-                      }}
+                      fill
+                      className="object-contain opacity-90 brightness-0 invert"
                       onError={() => setLogoError(true)}
                     />
                   </div>
