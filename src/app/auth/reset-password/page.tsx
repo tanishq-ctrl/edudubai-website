@@ -30,43 +30,54 @@ function ResetPasswordForm() {
   })
 
   useEffect(() => {
-    let attempts = 0
-    const maxAttempts = 15 // Wait up to 7.5 seconds
-
-    const checkSession = async () => {
+    const checkVerification = async () => {
       const supabase = createClient()
 
-      // 1. Check for errors in the URL hash (common when links are old)
-      const hash = window.location.hash
-      if (hash.includes("error_description")) {
-        const params = new URLSearchParams(hash.substring(1).replace(/&/g, '&'))
-        const errorMsg = params.get("error_description")?.replace(/\+/g, ' ')
-        setError(errorMsg || "This reset link is no longer valid. Please request a new one.")
+      // 1. Check if we have a code in the URL (from the new template)
+      const code = searchParams.get("code")
+
+      if (code) {
+        console.log("[ResetPassword] Verifying with code...")
+        const { error: verifyError } = await supabase.auth.exchangeCodeForSession(code)
+        if (verifyError) {
+          setError("This reset link has expired or was already used. Please request a new one.")
+          setLoading(false)
+          return
+        }
+        setError(null)
         setLoading(false)
         return
       }
 
-      // 2. Check current session
+      // 2. Fallback: Check current session (if redirected by AuthHandler)
       const { data: { session } } = await supabase.auth.getSession()
-
       if (session) {
         setError(null)
         setLoading(false)
         return
       }
 
-      // 3. Polling for session (Supabase client often needs a few seconds to parse the hash)
-      if (attempts < maxAttempts) {
-        attempts++
-        setTimeout(checkSession, 500)
-      } else {
-        setError("Your session could not be verified. This usually happens if the link is old or already used.")
+      // 3. Last fallback: Check hash
+      const hash = window.location.hash
+      if (hash.includes("error_description")) {
+        setError("Your reset session has expired. Please request a new link.")
         setLoading(false)
+        return
       }
+
+      // If nothing found after loading, show error
+      setTimeout(async () => {
+        const { data: { session: secondCheck } } = await supabase.auth.getSession()
+        if (!secondCheck) {
+          setError("We couldn't verify your reset link. Please try requesting a new one.")
+        }
+        setLoading(false)
+      }, 2000)
     }
 
-    checkSession()
-  }, [])
+    setLoading(true)
+    checkVerification()
+  }, [searchParams])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
