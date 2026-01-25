@@ -21,6 +21,7 @@ const navigation = [
   { name: "Home", href: "/" },
   { name: "Courses", href: "/courses" },
   { name: "Certifications", href: "/certifications" },
+  { name: "Events", href: "/events" },
   { name: "Corporate", href: "/corporate-training" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
@@ -42,6 +43,7 @@ export function SiteHeader() {
     "/courses",
     "/certifications",
     "/corporate-training",
+    "/events",
     "/about",
     "/contact",
   ]
