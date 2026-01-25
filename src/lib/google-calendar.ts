@@ -26,10 +26,18 @@ export async function getUpcomingEvents(): Promise<CalendarEvent[]> {
         const now = new Date().toISOString();
         const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events?key=${apiKey}&timeMin=${now}&orderBy=startTime&singleEvents=true`;
 
-        const response = await fetch(url, { next: { revalidate: 3600 } }); // Cache for 1 hour
+        const response = await fetch(url, { next: { revalidate: 60 } }); // Sync every minute
         const data = await response.json();
 
-        if (!data.items) return [];
+        if (data.error) {
+            console.error("Google Calendar API Error:", data.error.message);
+            return [];
+        }
+
+        if (!data.items) {
+            console.log("No upcoming events found on Google Calendar.");
+            return [];
+        }
 
         return data.items.map((item: any) => {
             // Parse description for potential metadata (LinkedIn URL, Speaker Name, etc.)
