@@ -31,24 +31,38 @@ function ResetPasswordForm() {
 
   useEffect(() => {
     let attempts = 0
-    const maxAttempts = 10
+    const maxAttempts = 15 // Wait up to 7.5 seconds
 
     const checkSession = async () => {
       const supabase = createClient()
+
+      // 1. Check for errors in the URL hash (common when links are old)
+      const hash = window.location.hash
+      if (hash.includes("error_description")) {
+        const params = new URLSearchParams(hash.substring(1).replace(/&/g, '&'))
+        const errorMsg = params.get("error_description")?.replace(/\+/g, ' ')
+        setError(errorMsg || "This reset link is no longer valid. Please request a new one.")
+        setLoading(false)
+        return
+      }
+
+      // 2. Check current session
       const { data: { session } } = await supabase.auth.getSession()
 
       if (session) {
         setError(null)
-        console.log("[ResetPassword] Valid recovery session found.")
+        setLoading(false)
+        console.log("[ResetPassword] Recovery session confirmed.")
         return
       }
 
-      // If no session, try again a few times (Supabase handshake takes time)
+      // 3. Polling for session (Supabase client often needs a few seconds to parse the hash)
       if (attempts < maxAttempts) {
         attempts++
         setTimeout(checkSession, 500)
       } else {
-        setError("Invalid or expired reset link. Please request a new password reset.")
+        setError("Your session could not be verified. This usually happens if the link is old or already used.")
+        setLoading(false)
       }
     }
 
