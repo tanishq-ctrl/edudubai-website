@@ -4,27 +4,31 @@ import { Award, Users, BookOpen, Building2 } from "lucide-react"
 const credibilityBlocks = [
   {
     icon: Users,
-    value: "12,400+",
+    value: "2,500+",
     label: "Certified Specialists",
-    description: "Empowering the next generation of compliance leaders in MENA",
-  },
-  {
-    icon: BookOpen,
-    value: "42+",
-    label: "Global Programs",
-    description: "Authorized curriculum for ACAMS, GCI, and Regulatory bodies",
+    description: "Professionals trained and certified through our intensive programs",
+    gradient: "from-blue-600 to-cyan-600",
   },
   {
     icon: Award,
-    value: "92%",
-    label: "Exam Pass Rate",
-    description: "Industry-leading first-time success for rigorous certifications",
+    value: "8+",
+    label: "Elite Certifications",
+    description: "Industry-recognized credentials from ACAMS, GCI, and more",
+    gradient: "from-amber-600 to-orange-600",
   },
   {
     icon: Building2,
-    value: "250+",
-    label: "Banking Partners",
-    description: "Trusted by leading GCC financial institutions and law firms",
+    value: "850+",
+    label: "Professional Sessions",
+    description: "High-impact training sessions delivered across the MENA region",
+    gradient: "from-indigo-600 to-purple-600",
+  },
+  {
+    icon: BookOpen,
+    value: "12+",
+    label: "Global Jurisdictions",
+    description: "Serving specialists across DIFC, ADGM, and international markets",
+    gradient: "from-emerald-600 to-teal-600",
   },
 ]
 
@@ -45,21 +49,21 @@ export function AboutCredibility() {
           return (
             <Card
               key={index}
-              className="text-center border-2 border-neutral-border hover:border-brand-gold transition-colors"
+              className="text-center border-2 border-neutral-border/50 hover:border-brand-gold transition-all duration-300 hover:shadow-xl group bg-white/50 backdrop-blur-sm"
             >
-              <CardContent className="pt-6">
-                <div className="flex justify-center mb-4">
-                  <div className="p-3 bg-brand-gold/10 rounded-lg">
-                    <Icon className="h-8 w-8 text-brand-gold" />
+              <CardContent className="pt-8 pb-8">
+                <div className="flex justify-center mb-6">
+                  <div className="p-4 bg-neutral-bg-subtle rounded-2xl group-hover:scale-110 transition-transform duration-300">
+                    <Icon className={`h-7 w-7 bg-gradient-to-br ${block.gradient} bg-clip-text`} style={{ color: block.gradient.split(' ')[0].replace('from-', '') }} />
                   </div>
                 </div>
-                <div className="text-3xl md:text-4xl font-bold text-brand-navy mb-2">
+                <div className={`text-4xl lg:text-5xl font-black bg-gradient-to-br ${block.gradient} bg-clip-text text-transparent mb-3 tracking-tight`}>
                   {block.value}
                 </div>
-                <div className="text-sm font-semibold text-brand-navy mb-2">
+                <div className="text-xs font-black uppercase tracking-[0.2em] text-brand-navy mb-4">
                   {block.label}
                 </div>
-                <div className="text-xs text-neutral-text-muted">
+                <div className="text-[11px] leading-relaxed text-neutral-text-muted font-medium px-4">
                   {block.description}
                 </div>
               </CardContent>
