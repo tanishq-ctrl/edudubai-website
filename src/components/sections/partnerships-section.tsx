@@ -1,6 +1,6 @@
 import { Container } from "@/components/container"
 import { Card, CardContent } from "@/components/ui/card"
-import { ShieldCheck, GraduationCap, Award, Globe } from "lucide-react"
+import Image from "next/image"
 
 const partnerships = [
     {
@@ -12,7 +12,7 @@ const partnerships = [
             "Examination Vouchers Included",
             "Industry-Leading Certifications"
         ],
-        icon: ShieldCheck,
+        logo: "/images/partners/gci-australia.png",
         color: "text-brand-gold",
         bgColor: "bg-brand-gold/10"
     },
@@ -25,7 +25,7 @@ const partnerships = [
             "Comprehensive Practice Exams",
             "Executive Study Support"
         ],
-        icon: GraduationCap,
+        logo: "/images/partners/hock-international.png",
         color: "text-blue-600",
         bgColor: "bg-blue-600/10"
     }
@@ -46,13 +46,19 @@ export function PartnershipsSection() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
                     {partnerships.map((partner) => {
-                        const Icon = partner.icon
                         return (
                             <Card key={partner.name} className="border border-neutral-border hover:border-brand-gold/50 transition-all duration-500 hover:shadow-xl bg-white group hover:-translate-y-1">
                                 <CardContent className="p-8">
                                     <div className="flex items-start gap-6 mb-6">
-                                        <div className={`${partner.bgColor} w-14 h-14 rounded-lg flex items-center justify-center flex-shrink-0`}>
-                                            <Icon className={`h-7 w-7 ${partner.color}`} />
+                                        <div className={`${partner.bgColor} w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0 overflow-hidden p-2`}>
+                                            <div className="relative w-full h-full">
+                                                <Image
+                                                    src={partner.logo}
+                                                    alt={partner.name}
+                                                    fill
+                                                    className="object-contain"
+                                                />
+                                            </div>
                                         </div>
                                         <div>
                                             <h3 className="text-xl font-bold text-brand-navy mb-1">{partner.name}</h3>
