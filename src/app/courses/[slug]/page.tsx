@@ -28,10 +28,18 @@ export async function generateMetadata({ params }: CourseDetailPageProps): Promi
   }
 
   return {
-    title: `${course.title} | EduDubai`,
-    description: course.shortDescription,
+    title: `${course.title} | International Professional Certification`,
+    description: `${course.shortDescription} Master the ${course.title} with EduDubai's global professional training track. Worldwide recognized certification training.`,
+    keywords: [
+      course.title,
+      `${course.title} Certification`,
+      "Global Compliance Training",
+      "Professional Education",
+      "International Specialist Certification",
+      "Online Professional Courses"
+    ],
     openGraph: {
-      title: course.title,
+      title: `${course.title} - Global Professional Training | EduDubai`,
       description: course.shortDescription,
       images: [course.imageUrl || "/edudubai-logo.png"],
     },
@@ -45,8 +53,66 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
     notFound()
   }
 
+  // JSON-LD Structured Data for Course
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": course.title,
+    "description": course.shortDescription,
+    "provider": {
+      "@type": "Organization",
+      "name": "EduDubai",
+      "sameAs": "https://edudubai.org"
+    },
+    "image": course.imageUrl || "https://edudubai.org/edudubai-logo.png",
+    "offers": {
+      "@type": "Offer",
+      "category": "Professional Education",
+      "availability": "https://schema.org/InStock"
+    },
+    "courseCode": course.slug.toUpperCase(),
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": ["Online", "Live Virtual", "Self-Paced"],
+      "location": "Global / Online"
+    }
+  }
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://edudubai.org"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Courses",
+        "item": "https://edudubai.org/courses"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": course.title,
+        "item": `https://edudubai.org/courses/${course.slug}`
+      }
+    ]
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <CourseDetailClient courseId={course.id} courseTitle={course.title} />
       <CourseHero course={course} />
       <Container className="py-12">

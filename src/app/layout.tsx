@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import Script from "next/script"
 import "./globals.css"
+import { GoogleAnalytics } from "@next/third-parties/google"
 import { Toaster } from "@/components/ui/toaster"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
@@ -17,23 +18,42 @@ const inter = Inter({
 const siteUrl = getSiteUrl()
 
 export const metadata: Metadata = {
-  title: "EduDubai - Premium Professional Education",
-  description: "Transform your career with premium professional courses",
+  title: {
+    default: "EduDubai - Global Online Professional Education & Compliance",
+    template: "%s | EduDubai"
+  },
+  description: "EduDubai is a premier global online provider of CAMS Certification, AML Training, and GCI Compliance courses. Industry-leading professional education managed out of India for worldwide specialists.",
+  keywords: [
+    "Global CAMS Certification Online",
+    "International AML Training",
+    "Certified Compliance Manager Course",
+    "GCI Certification Worldwide",
+    "Professional Online Compliance Training",
+    "Sanctions Compliance specialist training",
+    "Anti-Money Laundering Certification India",
+    "Financial Crime Training Global",
+    "Regulatory Compliance Worldwide",
+    "Corporate Governance Training"
+  ],
   icons: {
     icon: "/favicon.png",
   },
   metadataBase: new URL(siteUrl),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "EduDubai - Premium Professional Education",
-    description: "Transform your career with premium professional courses",
+    title: "EduDubai - Global Online Professional Compliance Certification",
+    description: "Advance your global career with industry-leading compliance tracks. Authorized GCI training and ACAMS preparation available worldwide.",
     url: siteUrl,
     siteName: "EduDubai",
+    locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "EduDubai - Premium Professional Education",
-    description: "Transform your career with premium professional courses",
+    title: "EduDubai - Global Compliance & AML Training",
+    description: "Leading worldwide online professional education provider for AML, CAMS, and Financial Crime certifications.",
   },
 }
 
@@ -47,6 +67,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className={inter.className}>
+        <GoogleAnalytics gaId="G-GKHHHPDR1V" />
+        <Script id="google-ads" strategy="afterInteractive">
+          {`
+            window.gtag('config', 'GT-WRGG3DMG');
+          `}
+        </Script>
         <SiteHeader />
         <main className="min-h-screen">{children}</main>
         <SiteFooter />
