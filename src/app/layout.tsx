@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: "EduDubai - Premium Professional Education",
   description: "Transform your career with premium professional courses",
   icons: {
-    icon: "/edudubai-logo.png",
+    icon: "/favicon.png",
   },
   metadataBase: new URL(siteUrl),
   openGraph: {
