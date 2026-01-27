@@ -3,12 +3,8 @@ import { Container } from "@/components/container"
 import { getCourseBySlugNew } from "@/server/actions/courses"
 import { CourseDetailClient } from "./page-client"
 import { CourseHero } from "./course-hero"
-import { CourseSidebar } from "./course-sidebar"
-import { CourseOutcomes } from "./course-outcomes"
-import { CourseWhoItsFor } from "./course-who-its-for"
-import { CourseWhyChooseUs } from "./course-why-choose-us"
-import { CourseDeliveryFormats } from "./course-delivery-formats"
-import { CourseFAQ } from "./course-faq"
+import { CourseCustomContent } from "./course-custom-content"
+import { CGSSCustomContent } from "./cgss-custom"
 
 import { Metadata } from "next"
 
@@ -24,6 +20,15 @@ export async function generateMetadata({ params }: CourseDetailPageProps): Promi
   if (!course) {
     return {
       title: "Course Not Found | EduDubai",
+    }
+  }
+
+  // Custom metadata for CGSS
+  if (params.slug === "certified-global-sanctions-specialist") {
+    return {
+      title: "CGSS Certification Training MENA | Certified Global Sanctions Specialist Course | Edu-Dubai",
+      description: "Master global sanctions compliance with ACAMS CGSS certification training. 40-hour program covering OFAC, EU, UN sanctions. Flexible schedules. Expert instructors.",
+      keywords: ["CGSS certification", "sanctions compliance training MENA", "ACAMS CGSS course", "global sanctions specialist", "OFAC training", "EU sanctions", "sanctions screening", "AML sanctions", "MENA compliance training", "financial crime certification"],
     }
   }
 
@@ -115,25 +120,11 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
       />
       <CourseDetailClient courseId={course.id} courseTitle={course.title} />
       <CourseHero course={course} />
-      <Container className="py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-2 space-y-12">
-            <CourseOutcomes course={course} />
-            <CourseWhoItsFor course={course} />
-            <CourseWhyChooseUs course={course} />
-            <CourseDeliveryFormats course={course} />
-            <CourseFAQ course={course} />
-          </div>
-
-          {/* Sticky Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="lg:sticky lg:top-24">
-              <CourseSidebar course={course} />
-            </div>
-          </div>
-        </div>
-      </Container>
+      {course.slug === "certified-global-sanctions-specialist" ? (
+        <CGSSCustomContent course={course} />
+      ) : (
+        <CourseCustomContent course={course} />
+      )}
     </>
   )
 }

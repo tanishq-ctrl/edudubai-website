@@ -78,7 +78,7 @@ export default function RootLayout({
         <SiteFooter />
         <Toaster />
         <AuthHandler />
-        <LeadFormPopup />
+        {/* <LeadFormPopup /> */}
         {/* Tawk.to Chat Widget */}
         <Script id="tawk-to" strategy="afterInteractive">
           {`

@@ -20,14 +20,14 @@ const credibilityBlocks = [
     icon: Building2,
     value: "850+",
     label: "Professional Sessions",
-    description: "High-impact training sessions delivered across the MENA region",
+    description: "High-impact training sessions delivered across global financial markets",
     gradient: "from-indigo-600 to-purple-600",
   },
   {
     icon: BookOpen,
     value: "12+",
     label: "Global Jurisdictions",
-    description: "Serving specialists across DIFC, ADGM, and international markets",
+    description: "Serving specialists across international regulatory hubs and global markets",
     gradient: "from-emerald-600 to-teal-600",
   },
 ]

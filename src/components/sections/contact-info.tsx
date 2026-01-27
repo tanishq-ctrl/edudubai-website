@@ -28,28 +28,36 @@ export function ContactInfo() {
             <div className="p-2 bg-brand-gold/10 rounded-lg">
               <Phone className="h-5 w-5 text-brand-gold" />
             </div>
-            <div>
-              <div className="font-semibold text-brand-navy mb-1">Phone</div>
-              <a
-                href="tel:+919665642862"
-                className="text-neutral-text-muted hover:text-brand-navy transition-colors"
-              >
-                +91 9665642862
-              </a>
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <div className="p-2 bg-brand-gold/10 rounded-lg">
-              <MapPin className="h-5 w-5 text-brand-gold" />
-            </div>
-            <div>
-              <div className="font-semibold text-brand-navy mb-1">Address</div>
-              <div className="text-neutral-text-muted">
-                Business Bay<br />
-                MENA
+            <div className="space-y-2">
+              <div className="font-semibold text-brand-navy mb-1 text-sm uppercase tracking-wider">Regional Support</div>
+              <div className="flex flex-col gap-1">
+                <a
+                  href="tel:+919665642862"
+                  className="text-neutral-text-muted hover:text-brand-navy transition-colors text-sm"
+                >
+                  <span className="font-bold text-brand-navy/70">India:</span> +91 96656 42862
+                </a>
+                <a
+                  href="tel:+971503130946"
+                  className="text-neutral-text-muted hover:text-brand-navy transition-colors text-sm"
+                >
+                  <span className="font-bold text-brand-navy/70">MENA:</span> +971 50 3130 946
+                </a>
               </div>
             </div>
           </div>
+          {/* <div className="flex items-start gap-3">
+  <div className="p-2 bg-brand-gold/10 rounded-lg">
+    <MapPin className="h-5 w-5 text-brand-gold" />
+  </div>
+  <div>
+    <div className="font-semibold text-brand-navy mb-1">Address</div>
+    <div className="text-neutral-text-muted">
+      Global Online Operations<br />
+      Headquarters / India
+    </div>
+  </div>
+</div> */}
           <div className="flex items-start gap-3">
             <div className="p-2 bg-brand-gold/10 rounded-lg">
               <Clock className="h-5 w-5 text-brand-gold" />

@@ -11,24 +11,24 @@ export const courses: Course[] = [
     deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON"],
     deliverySchedules: [
       {
-        name: "Weekday Evening Batch",
-        schedule: "Mon & Wed | 7:00 PM – 9:00 PM",
-        duration: "6 Weeks"
+        name: "Weekday Batch",
+        schedule: "Mon – Thu",
+        duration: "5:00 PM – 9:00 PM (Dubai Time)"
       },
       {
-        name: "Weekend Intensive Batch",
-        schedule: "Sundays | 10:00 AM – 2:00 PM",
-        duration: "6 Weeks"
+        name: "Weekend Batch",
+        schedule: "Sat & Sun",
+        duration: "9:00 AM – 1:00 PM (Dubai Time)"
       },
       {
         name: "Corporate / In-House",
-        schedule: "Customizable schedules",
-        duration: "3-5 consecutive days"
+        schedule: "Customized schedule and delivery",
+        duration: "Concise 2–4 day format"
       }
     ],
     level: "ADVANCED",
     duration: 40,
-    priceUsd: 765,
+    priceUsd: 350,
     currency: "USD",
     outcomes: [
       "Understand how money launderers and terrorist financiers move funds through banks, insurance, and DNFBPs",
@@ -44,27 +44,55 @@ export const courses: Course[] = [
       "Auditors",
       "Risk Managers"
     ],
+    programOverview: {
+      whatIs: "The Certified Anti-Money Laundering Specialist (CAMS) is the global gold standard in AML certifications, recognized by financial institutions and regulators worldwide.",
+      whyItMatters: "As financial crime becomes more sophisticated, the demand for certified AML professionals is at an all-time high. CAMS proves your expertise in detecting and preventing money laundering.",
+      jobReadySkills: "Learn to build robust AML frameworks, conduct effective customer due diligence, and satisfy regulatory requirements in the MENA region and beyond."
+    },
+    audienceCategories: [
+      {
+        title: "🏦 Financial Institutions",
+        roles: ["Compliance Officers", "AML Investigators", "Risk Managers", "Internal Auditors", "Retail & Commercial Bankers"]
+      },
+      {
+        title: "⚖️ Law & Regulation",
+        roles: ["Law Enforcement Agents", "Regulators", "Legal Counsel", "Financial Intelligence Unit Staff"]
+      }
+    ],
+    examInfo: {
+      questions: "120",
+      duration: "210 Minutes",
+      passingScore: "75/120 (approx. 63%)",
+      format: "Multiple Choice & Multiple Select",
+      requirements: [
+        "40 Eligibility Credits (Education, Experience, Training)",
+        "Active ACAMS Membership",
+        "Official CAMS Study Guide Mastery"
+      ]
+    },
     whyChooseUs: {
-      title: "Why Choose EduDubai?",
-      description: "While other institutes offer \"crash courses\" of just 30–32 hours, EduDubai provides a full 40-Hour Flagship Program. This ensures you meet the strict 40 Eligibility Credits required by ACAMS to even register for the exam—something shorter courses fail to guarantee.",
+      title: "Why Choose Edu-Dubai?",
+      description: "While other institutes offer \"crash courses\" of just 30–32 hours, Edu-Dubai provides a full 40-Hour Flagship Program. This ensures you meet the strict 40 Eligibility Credits required by ACAMS to even register for the exam.",
       points: [
-        "Don't Just Study, Practice: We are one of the few providers to include AI-Driven Mock Exams that simulate the difficulty of the actual test.",
-        "Pass Guarantee: We are so confident in our training that if you don't pass, we offer free retraining in our next batch.",
-        "The \"Gap\" Filler: Most providers skip the complex \"US Patriot Act\" details because it's boring. We double down on it because it's 30% of the exam."
+        "Pass Guarantee: We offer free retraining in our next batch if you don't pass.",
+        "AI-Driven Mock Exams: Practice with simulations that mimic the actual ACAMS exam environment.",
+        "Expert Practitioners: Learn from instructors with decades of field experience in MENA banking.",
+        "MENA Focus: Real-world cases from UAE, Saudi Arabia, and regional financial hubs."
       ]
     },
     faq: [
       {
         question: "Do I need prior experience?",
-        answer: "While ACAMS recommends experience, our course covers the fundamentals, making it accessible for beginners."
+        answer: "While ACAMS recommends experience, our course covers the fundamentals, making it accessible for baseline professional knowledge."
       },
       {
         question: "Is the exam fee included?",
-        answer: "No, the exam fee is paid directly to ACAMS. Our fee covers the expert-led training."
+        answer: "No, the ACAMS exam fee is paid directly to ACAMS. Our fee covers the expert-led training and preparation."
       }
     ],
     featured: true,
     imageUrl: "/images/certifications/certified-anti-money-laundering-specialist.jpg",
+    issuingBody: "ACAMS"
   },
   {
     id: "cgss",
@@ -76,31 +104,31 @@ export const courses: Course[] = [
     deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON"],
     deliverySchedules: [
       {
-        name: "Weekday Evening Batch",
-        schedule: "Tue & Thu | 7:00 PM – 9:00 PM",
-        duration: "5 Weeks"
+        name: "Weekday Batch",
+        schedule: "Mon – Thu",
+        duration: "5:00 PM – 9:00 PM (Dubai Time)"
       },
       {
-        name: "Weekend Intensive Batch",
-        schedule: "Sundays | 2:00 PM – 6:00 PM",
-        duration: "5 Weeks"
+        name: "Weekend Batch",
+        schedule: "Sat & Sun",
+        duration: "9:00 AM – 1:00 PM (Dubai Time)"
       },
       {
         name: "Corporate / In-House",
-        schedule: "Customizable schedules",
-        duration: "3-Day Bootcamp"
+        schedule: "Customized schedule and delivery",
+        duration: "Concise 2–4 day format"
       }
     ],
     level: "ADVANCED",
     duration: 40,
-    priceUsd: 1090,
+    priceUsd: 350,
     currency: "USD",
     outcomes: [
       "Understand the history, purpose, and types of sanctions (Sectoral, Comprehensive, Targeted)",
       "Navigate the differences between OFAC (USA), UN, and EU sanctions",
       "Master best practices for name and payment screening, including fuzzy logic and resolving false positives",
       "Detect stripping, nesting, and trade-based sanctions evasion",
-      "Master global sanctions regimes and regulatory frameworks"
+      "Conduct in-depth sanctions investigations and regulatory reporting"
     ],
     whoItsFor: [
       "Sanctions Screening Analysts",
@@ -109,91 +137,148 @@ export const courses: Course[] = [
       "Compliance Staff",
       "Sanctions Compliance Officers and Managers"
     ],
+    programOverview: {
+      whatIs: "The Certified Global Sanctions Specialist (CGSS) is ACAMS' premier certification for professionals managing the complex world of global sanctions.",
+      whyItMatters: "With global enforcement hitting record highs, organizations need specialists who can interpret complex EU, UN, and OFAC requirements.",
+      jobReadySkills: "Master name screening, payment filtering, and evasion detection to protect your firm from multi-billion dollar penalties."
+    },
+    audienceCategories: [
+      {
+        title: "🏦 Financial Sector",
+        roles: ["Sanctions Compliance Officers", "AML Investigators", "KYC/CDD Teams", "Correspondent Banking Staff", "Trade Finance Operations"]
+      },
+      {
+        title: "🚢 Global Trade & Logistics",
+        roles: ["Export/Import Compliance", "Shipping Officers", "Freight Forwarders", "Legal & Risk Governance"]
+      }
+    ],
+    examInfo: {
+      questions: "100",
+      duration: "150 Minutes",
+      passingScore: "75%",
+      format: "Multiple Choice Questions",
+      requirements: [
+        "No formal prerequisites for training",
+        "Official ACAMS CGSS Study Guide Mastery",
+        "Proctored online exam format"
+      ]
+    },
     whyChooseUs: {
-      title: "Why Choose EduDubai?",
-      description: "Sanctions is the hardest topic to self-study because the rules change daily. Unlike generic \"online recordings\" offered by others, our course is Live & Current.",
+      title: "Why Choose Edu-Dubai?",
+      description: "Sanctions is the hardest topic to self-study because rules change daily. Our course is live, current, and taught by field experts.",
       points: [
-        "Real-World War Rooms: We don't just teach the OFAC list; we run \"Sanctions War Room\" simulations where you have to decide—in real-time—whether to block a transaction involving Russia, Iran, or Venezuela.",
-        "Trade Finance Focus: 40% of the CGSS exam is about shipping and trade. Most trainers are generalists; our instructors are Trade Finance Specialists who understand the difference between a Bill of Lading and a Letter of Indemnity.",
-        "Visual Learning: We use proprietary \"Sanctions Flowcharts\" to simplify complex ownership structures (50% Rule) that usually confuse students."
+        "Sanctions War Rooms: Real-time simulations deciding whether to block transactions involving major regimes.",
+        "Trade Finance Focus: Deep dives into shipping documents, Bill of Ladings, and trade-based evasion.",
+        "92% Pass Rate: Proven methodology to secure your certification on the first attempt.",
+        "MENA Expert Instructors: Taught by professionals with 15+ years experience in UAE and GCC banking."
       ]
     },
     faq: [
       {
         question: "Is this harder than CAMS?",
-        answer: "It is more specialized. If you work in Trade Finance or payment filtering, you may find it more relevant than general AML."
+        answer: "It is more specialized. If you work in Trade Finance or payment filtering, you may find it more relevant and naturally intuitive."
       },
       {
         question: "Does this cover Russia/Iran sanctions?",
-        answer: "Yes, we use real-world examples of major sanctions regimes to explain compliance principles."
+        answer: "Yes, we use the most current real-world examples including recent Russia and Middle East sanctions regimes."
       }
     ],
     featured: true,
     imageUrl: "/images/certifications/certified-global-sanctions-specialist.jpg",
+    issuingBody: "ACAMS"
   },
   {
     id: "aml-specialist",
     slug: "anti-money-laundering-specialist",
     title: "Anti-Money Laundering Specialist (AMLS)",
-    shortDescription: "The GCI Anti-Money Laundering Specialist (AMLS) certification is designed for professionals who need a practical, hands-on understanding of AML without the high cost of other global certifications.",
+    shortDescription: "The GCI Anti-Money Laundering Specialist (AMLS) certification is designed for professionals who need a practical, hands-on understanding of AML.",
     longDescription: "The GCI Anti-Money Laundering Specialist (AMLS) certification is designed for professionals who need a practical, hands-on understanding of AML without the high cost of other global certifications. This course focuses on the 'how-to'—how to write a policy, how to screen a customer, and how to detect a suspicious transaction—making it ideal for operational staff and those new to the field.",
     category: "AML_CFT",
     deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON"],
     deliverySchedules: [
       {
-        name: "Weekday Evening Batch",
-        schedule: "Mon & Wed | 7:00 PM – 9:00 PM",
-        duration: "4 Weeks"
+        name: "Weekday Batch",
+        schedule: "Mon – Thu",
+        duration: "5:00 PM – 9:00 PM (Dubai Time)"
       },
       {
-        name: "Weekend Intensive Batch",
-        schedule: "Saturdays | 10:00 AM – 2:00 PM",
-        duration: "4 Weeks"
+        name: "Weekend Batch",
+        schedule: "Sat & Sun",
+        duration: "9:00 AM – 1:00 PM (Dubai Time)"
       },
       {
         name: "Corporate / In-House",
-        schedule: "Customizable schedules",
-        duration: "2-3 Days"
+        schedule: "Customized schedule and delivery",
+        duration: "Concise 2–3 day format"
       }
     ],
     level: "INTERMEDIATE",
     duration: 24,
-    priceUsd: 410,
+    priceUsd: 849,
     currency: "USD",
     outcomes: [
-      "Understand Money Laundering Cycle: Placement, Layering, and Integration in modern contexts (including Crypto)",
-      "Master KYC & Onboarding: Practical steps for verifying customer identity and beneficial ownership",
-      "Implement Risk-Based Approach: How to score customers as Low, Medium, or High risk",
-      "Learn Reporting: How to draft a high-quality Suspicious Transaction Report (STR)",
-      "Design and implement risk-based AML/CTF frameworks"
+      "Understand Money Laundering Cycle: Placement, Layering, and Integration",
+      "Master KYC & Onboarding: Practical steps for verifying customer identity",
+      "Implement Risk-Based Approach: How to score customers accurately",
+      "Learn Reporting: How to draft high-quality Suspicious Transaction Reports (STRs)",
+      "Understand the global regulatory landscape for AML/CTF"
     ],
     whoItsFor: [
       "Entry-level Compliance staff",
       "Front-line staff (Tellers, RMs)",
       "Real Estate Agents",
       "Jewelers",
-      "AML & Financial Crime Professionals"
+      "Legal and Accounting Professionals"
     ],
+    programOverview: {
+      whatIs: "The Anti-Money Laundering Specialist (AMLS) is a practical, job-focused certification by GCI designed for operational excellence in AML.",
+      whyItMatters: "It provides the essential toolkit for front-line and middle-office staff to detect illicit activity without the academic overhead of other programs.",
+      jobReadySkills: "Write effective AML policies, conduct customer risk scoring, and master the art of filing Suspicious Transaction Reports."
+    },
+    audienceCategories: [
+      {
+        title: "🏦 Financial Support",
+        roles: ["Compliance Assistants", "Transaction Monitors", "Branch Managers", "Customer Service Representatives"]
+      },
+      {
+        title: "💍 Non-Financial Sector (DNFBPs)",
+        roles: ["Real Estate Brokers", "Dealers in Precious Metals", "Lawyers", "Accountants", "Art Dealers"]
+      }
+    ],
+    examInfo: {
+      questions: "50",
+      duration: "90 Minutes",
+      passingScore: "70%",
+      format: "Multiple Choice Questions",
+      requirements: [
+        "Open enrollment",
+        "Official AMLS Study Material provided",
+        "Online proctored examination"
+      ]
+    },
     whyChooseUs: {
-      title: "Why Choose EduDubai?",
-      description: "We are an Authorized GCI Partner. Many \"General Institutes\" in MENA sell exam prep but cannot sell you the exam voucher. With EduDubai, you get the Official Bundle.",
+      title: "Why Choose Edu-Dubai?",
+      description: "As an Authorized GCI Partner, we provide the official curriculum and exam bundle, ensuring you have everything needed to succeed.",
       points: [
-        "Better Value than ADGM: You get the same Official GCI Curriculum and the same Internationally Recognized Certificate as the big government academies, but at 50% of the cost and with more flexible evening schedules.",
-        "The \"Checklist\" Advantage: We don't just teach theory; we give you editable Word/Excel templates for KYC Forms, Risk Assessments, and STRs that you can take back to your office and use the next day."
+        "Practical Templates: Receive editable KYC forms, risk assessment tools, and STR templates for your firm.",
+        "Official Partner: We are the designated partner for GCI training in the MENA region.",
+        "Focused Learning: No unnecessary theory—just the tools you need to do your job effectively tomorrow.",
+        "Affordable Certification: International designation at a more accessible cost point."
       ]
     },
     faq: [
       {
         question: "Is GCI recognized?",
-        answer: "Yes, GCI is a growing international body. EduDubai is an Authorized Training Partner."
+        answer: "Yes, GCI (Global Compliance Institute) is a recognized international certification body for compliance professionals."
       },
       {
         question: "Is the exam difficult?",
-        answer: "The exam is 50 multiple-choice questions. Our students have a very high pass rate."
+        answer: "The exam is designed to test practical application. Our students maintain a high pass rate due to our hands-on training style."
       }
     ],
     featured: true,
     imageUrl: "/images/certifications/anti-money-laundering-specialist.jpg",
+    issuingBody: "GCI"
   },
   {
     id: "fatca-crs-specialist",
@@ -205,60 +290,84 @@ export const courses: Course[] = [
     deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON"],
     deliverySchedules: [
       {
-        name: "Weekday Evening Batch",
-        schedule: "Tue & Thu | 7:00 PM – 9:00 PM",
-        duration: "3 Weeks"
+        name: "Weekday Batch",
+        schedule: "Mon – Thu",
+        duration: "5:00 PM – 9:00 PM (Dubai Time)"
       },
       {
-        name: "Weekend Intensive Batch",
-        schedule: "Sundays | 10:00 AM – 2:00 PM",
-        duration: "3 Weeks"
+        name: "Weekend Batch",
+        schedule: "Sat & Sun",
+        duration: "9:00 AM – 1:00 PM (Dubai Time)"
       },
       {
         name: "Corporate / In-House",
-        schedule: "2-Day Intensive Workshop",
-        duration: "2 Days"
+        schedule: "Customized schedule and delivery",
+        duration: "Concise 2-day format"
       }
     ],
     level: "INTERMEDIATE",
     duration: 16,
-    priceUsd: 410,
+    priceUsd: 849,
     currency: "USD",
     outcomes: [
-      "Understand FATCA vs. CRS: The key differences in scope, penalties, and implementation",
-      "Master Entity Classification: How to distinguish between FFIs, NFFEs, and Active vs. Passive entities",
-      "Learn Documentation: How to correctly fill and validate IRS Forms W-9 and the W-8 series",
-      "Identify Indicia: Indicators of US status or foreign tax residency",
-      "Navigate CRS framework and participating jurisdictions"
+      "Understand FATCA vs. CRS: The key differences in scope and implementation",
+      "Master Entity Classification: FFI, NFFE, and Active vs. Passive entities",
+      "Learn Documentation: How to correctly validate IRS Forms W-9 and W-8 series",
+      "Identify Indicia: US status and foreign tax residency indicators",
+      "Master the reporting process for local and international authorities"
     ],
     whoItsFor: [
       "Tax Officers",
       "Finance Managers",
       "Client Onboarding & KYC Teams",
       "Investment Fund Administrators",
-      "FATCA & CRS Responsible Officers"
+      "Responsible Officers (ROs)"
     ],
+    programOverview: {
+      whatIs: "FATCA & CRS Specialist (FCS) is a critical operational certification covering US and international automatic exchange of information (AEOI) requirements.",
+      whyItMatters: "Regulators heavily penalize firms for incorrect tax classification. Expertise in AEOI is a must-have for modern financial institutions.",
+      jobReadySkills: "Validate complex tax forms, manage annual reporting cycles, and ensure your firm stays compliant with international tax treaties."
+    },
+    audienceCategories: [
+      {
+        title: "🏢 Banking & Finance",
+        roles: ["Tax Compliance Officers", "KYC Managers", "Operations Staff", "Finance Leads"]
+      },
+      {
+        title: "💼 Asset Management",
+        roles: ["Fund Administrators", "Wealth Managers", "Custodial Service Teams"]
+      }
+    ],
+    examInfo: {
+      questions: "50",
+      duration: "90 Minutes",
+      passingScore: "70%",
+      format: "Multiple Choice Questions",
+      requirements: [
+        "Proctored online exam",
+        "Official GCI study guide",
+        "Open to all professionals"
+      ]
+    },
     whyChooseUs: {
-      title: "Why Choose EduDubai?",
-      description: "Most FATCA training is designed for tax lawyers, making it impossible for banking staff to understand. EduDubai breaks it down for Operations Teams.",
+      title: "Why Choose Edu-Dubai?",
+      description: "We turn complex tax Law into simple bank Operations. We speak the language of the Front Office, not just tax lawyers.",
       points: [
-        "No \"Tax Lawyer\" Jargon: We speak the language of the Front Office. We teach you exactly how to look at a passport and decide if a customer is a \"US Person.\"",
-        "Form W-9 Mastery: We dedicate full sessions to filling out IRS forms. While competitors talk about the law, we teach you how to process the paper.",
-        "The \"Nil Report\" Guide: We show you exactly how to file a report when you have nothing to report—a common headache for Compliance Officers that other courses ignore."
+        "No Tax Jargon: We teach you how to look at a passport and determine tax status without needing a law degree.",
+        "Form W-8 Mastery: Detailed workshops on validating the most difficult IRS forms to process.",
+        "The Nil Report Guide: Step-by-step instructions on filing when you have zero reportable accounts.",
+        "Local MENA Context: Focus on the reporting portals used in UAE, KSA, and Bahrain."
       ]
     },
     faq: [
       {
-        question: "Is this course technical?",
-        answer: "It covers the operational side (forms and due diligence) rather than deep legal tax advice, making it perfect for bank staff."
-      },
-      {
-        question: "What is included in the certification fee?",
-        answer: "The total fee of USD 774 includes training fee (USD 275) and certification fee (USD 499), which covers the proctored exam, study materials, and certification."
+        question: "Is this course too technical?",
+        answer: "It is operational. We focus on the forms and the due diligence rather than deep tax legal theory, making it perfect for bank staff."
       }
     ],
     featured: true,
     imageUrl: "/images/certifications/fatca-crs-specialist.jpg",
+    issuingBody: "GCI"
   },
   {
     id: "sanctions-compliance-specialist",
@@ -270,31 +379,31 @@ export const courses: Course[] = [
     deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON"],
     deliverySchedules: [
       {
-        name: "Weekday Evening Batch",
-        schedule: "Mon & Wed | 7:00 PM – 9:00 PM",
-        duration: "4 Weeks"
+        name: "Weekday Batch",
+        schedule: "Mon – Thu",
+        duration: "5:00 PM – 9:00 PM (Dubai Time)"
       },
       {
-        name: "Weekend Intensive Batch",
-        schedule: "Saturdays | 2:00 PM – 6:00 PM",
-        duration: "4 Weeks"
+        name: "Weekend Batch",
+        schedule: "Sat & Sun",
+        duration: "9:00 AM – 1:00 PM (Dubai Time)"
       },
       {
         name: "Corporate / In-House",
-        schedule: "2-3 Day Workshop",
-        duration: "2-3 Days"
+        schedule: "Customized schedule and delivery",
+        duration: "Concise 2–3 day format"
       }
     ],
     level: "INTERMEDIATE",
     duration: 24,
-    priceUsd: 410,
+    priceUsd: 849,
     currency: "USD",
     outcomes: [
-      "Understand Sanctions Lists: UN, EU, OFAC, and HM Treasury lists",
-      "Master Name Screening: How algorithms work (Exact match vs. Fuzzy logic) and handling false positives",
-      "Analyze SWIFT Messages: Payment messages (MT103, MT202) for sanctions risks",
-      "Identify Trade Finance Sanctions: Dual-use goods and red flags in shipping documents",
-      "Navigate global sanctions regimes (UN, EU, OFAC, UK, Australia)"
+      "Understand Sanctions Lists: UN, EU, OFAC, and local MENA lists",
+      "Master Name Screening: Algorithms (Fuzzy logic) and handling false positives",
+      "Analyze SWIFT Messages: Spotting risks in MT103/MT202 messages",
+      "Identify Trade red flags: Dual-use goods and shipping anomalies",
+      "Manage escalation protocols for true sanctions hits"
     ],
     whoItsFor: [
       "Payment Operations Staff",
@@ -302,26 +411,51 @@ export const courses: Course[] = [
       "Sanctions Alerts Investigators",
       "Sanctions Compliance Officers"
     ],
+    programOverview: {
+      whatIs: "The Sanctions Compliance Specialist (SCS) is an operational certification by GCI for the professionals clearing daily screening alerts.",
+      whyItMatters: "Processes and systems are only as good as the people running them. SCS ensures your team has the technical skill to clear false hits safely.",
+      jobReadySkills: "Decode SWIFT messages, fine-tune fuzzy logic algorithms, and master the investigative path for sanctions alerts."
+    },
+    audienceCategories: [
+      {
+        title: "🏧 Banking Operations",
+        roles: ["Payment Clearers", "SWIFT Desk Staff", "Alert Investigators", "Remittance Teams"]
+      },
+      {
+        title: "🏛️ Regulatory",
+        roles: ["Compliance Testers", "Internal Auditors", "Regulatory Reporting Teams"]
+      }
+    ],
+    examInfo: {
+      questions: "50",
+      duration: "90 Minutes",
+      passingScore: "70%",
+      format: "Multiple Choice",
+      requirements: [
+        "Official SCS Material",
+        "Online exam",
+        "No prior prerequisites"
+      ]
+    },
     whyChooseUs: {
-      title: "Why Choose EduDubai?",
-      description: "This is the only course in the market designed specifically for the \"Alert Investigator.\"",
+      title: "Why Choose Edu-Dubai?",
+      description: "This is the only course in the market designed specifically for the 'Alert Investigator.'",
       points: [
-        "Tools Over Theory: While others discuss the history of sanctions, we train you on Fuzzy Logic Algorithms. You will learn why \"Mohammad Ali\" might match with \"Mhd Aly\" and how to justify closing that alert.",
-        "SWIFT Message Decoding: We are the only institute that teaches you how to read raw MT103 and MT202 payment messages to spot hidden sanctions evasion—a skill normally reserved for senior bankers."
+        "Tools Over Theory: Learn why 'Mohammad Ali' matches 'Mhd Aly' and how to justify closing the alert correctly.",
+        "SWIFT Message Decoding: We teach you how to read raw MT messages to spot hidden sanctions evasion.",
+        "Operational Roadmap: Practical workflows for escalating and blocking transactions in real-time.",
+        "MENA Authority: Focus on regional sanctions and local reporting requirements."
       ]
     },
     faq: [
       {
         question: "How does this differ from CGSS?",
-        answer: "This is a more concise, operationally focused certification ideal for junior to mid-level analysts."
-      },
-      {
-        question: "What is the total program fee?",
-        answer: "The total fee is USD 849, which includes training, exam preparation, and the proctored certification exam."
+        answer: "This is a more concise, operationally focused certification ideal for junior to mid-level analysts focused on daily alert clearing."
       }
     ],
     featured: true,
     imageUrl: "/images/certifications/sanctions-compliance-specialist.jpg",
+    issuingBody: "GCI"
   },
   {
     id: "regulatory-compliance-specialist",
@@ -333,194 +467,420 @@ export const courses: Course[] = [
     deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON"],
     deliverySchedules: [
       {
-        name: "Weekday Evening Batch",
-        schedule: "Tue & Thu | 7:00 PM – 9:00 PM",
-        duration: "4 Weeks"
+        name: "Weekday Batch",
+        schedule: "Mon – Thu",
+        duration: "5:00 PM – 9:00 PM (Dubai Time)"
       },
       {
-        name: "Weekend Intensive Batch",
-        schedule: "Sundays | 10:00 AM – 2:00 PM",
-        duration: "4 Weeks"
+        name: "Weekend Batch",
+        schedule: "Sat & Sun",
+        duration: "9:00 AM – 1:00 PM (Dubai Time)"
       },
       {
         name: "Corporate / In-House",
-        schedule: "3-Day Workshop",
-        duration: "3 Days"
+        schedule: "Customized schedule and delivery",
+        duration: "Concise 3-day format"
       }
     ],
     level: "INTERMEDIATE",
     duration: 24,
-    priceUsd: 410,
+    priceUsd: 849,
     currency: "USD",
     outcomes: [
-      "Understand The Compliance Function: Structuring the department and its independence from business lines",
-      "Master Regulatory Relationships: How to handle on-site inspections and correspondence with Central Banks",
-      "Implement Risk-Based Monitoring: Creating a 'Compliance Monitoring Plan' (CMP) to test internal controls",
-      "Manage Conflict of Interest: Chinese Walls, gifts policies, and personal account dealing",
-      "Establish effective internal controls and governance"
+      "Understand The Compliance Function: Independence and structure",
+      "Manage Regulatory Relationships: Handling inspections and Central Bank letters",
+      "Implement Risk-Based Monitoring: Creating an effective Monitoring Plan (CMP)",
+      "Manage Conflict of Interest: Chinese Walls, gifts, and personal dealing",
+      "Establish internal governance and ethics frameworks"
     ],
     whoItsFor: [
       "Newly appointed Compliance Officers",
       "Internal Auditors moving into Compliance",
       "Managers in regulated entities",
-      "Compliance Officers and Managers"
+      "Regulatory Affairs Specialists"
     ],
+    programOverview: {
+      whatIs: "Regulatory Compliance Specialist (RCS) covers the broad governance and regulatory management responsibilities of a compliance officer.",
+      whyItMatters: "Technical AML skill is not enough. You must know how to manage your regulator and your firm's internal ethical standards.",
+      jobReadySkills: "Conduct internal compliance audits, draft regulatory responses, and build a risk-based monitoring program from scratch."
+    },
+    audienceCategories: [
+      {
+        title: "🏦 Financial Guardian",
+        roles: ["Compliance Officers", "Audit Managers", "Risk Leads", "Company Secretaries"]
+      },
+      {
+        title: "💼 High-Risk Sectors",
+        roles: ["Exchange House Managers", "Brokerage Compliance", "Insurance Governance Teams"]
+      }
+    ],
+    examInfo: {
+      questions: "50",
+      duration: "90 Minutes",
+      passingScore: "70%",
+      format: "Multiple Choice",
+      requirements: [
+        "Official GCI Study guide mastery",
+        "Online proctored exam",
+        "Recommended 1-2 years experience"
+      ]
+    },
     whyChooseUs: {
-      title: "Why Choose EduDubai?",
-      description: "Compliance isn't just about reading laws; it's about managing the Central Bank.",
+      title: "Why Choose Edu-Dubai?",
+      description: "Compliance isn't just about reading laws; it's about managing your local regulator (Central Bank, DFSA, ADGM).",
       points: [
-        "The \"Soft Skills\" of Compliance: We teach you how to write a letter to the Regulator that doesn't get you in trouble. No other technical course covers this critical communication skill.",
-        "Inspection Survival Guide: Our instructors include former auditors who show you exactly what to do (and what NOT to do) when the Central Bank inspectors arrive at your reception."
+        "Soft Skills Mastery: Learn how to write letters to the Regulator that minimize risk and professional exposure.",
+        "Inspection Survival: Tips from former auditors on surviving the 'On-Site Inspection' process.",
+        "Practical Governance: Build real-world Chinese Walls and conflict of interest policies.",
+        "MENA Focus: Tailored to regional regulatory styles and expectations."
       ]
     },
     faq: [
       {
         question: "Is this only for banks?",
-        answer: "No, the principles apply to Exchange Houses, Brokers, and Insurance firms as well."
-      },
-      {
-        question: "What is the program delivery mode?",
-        answer: "The program is delivered virtually via MS Teams or Zoom, making it accessible from anywhere."
+        answer: "No, the RCS principles are critical for Exchange Houses, Brokers, Real Estate, and Insurance firms as well."
       }
     ],
     featured: true,
     imageUrl: "/images/certifications/regulatory-compliance-specialist.jpg",
+    issuingBody: "GCI"
   },
   {
     id: "certified-compliance-manager",
     slug: "certified-compliance-manager",
     title: "Certified Compliance Manager (CCM)",
-    shortDescription: "The CCM is the most comprehensive executive-level certification offered by GCI. It integrates five core disciplines—AML, KYC, Sanctions, Regulatory Compliance, and FATCA/CRS—into a single powerful curriculum.",
-    longDescription: "The CCM is the most comprehensive executive-level certification offered by GCI. It integrates five core disciplines—AML, KYC, Sanctions, Regulatory Compliance, and FATCA/CRS—into a single powerful curriculum. This course transforms you from an operational analyst into a strategic leader capable of designing frameworks, managing regulatory examinations, and protecting the institution's reputation.",
+    shortDescription: "The CCM is the most comprehensive executive-level certification offered by GCI. It integrates five core disciplines into a single curriculum.",
+    longDescription: "The CCM is the most comprehensive executive-level certification offered by GCI. It integrates five core disciplines—AML, KYC, Sanctions, Regulatory Compliance, and FATCA/CRS—into a single powerful curriculum. This course transforms you from an operational analyst into a strategic leader capable of designing frameworks and managing regulatory audits.",
     category: "GOVERNANCE",
     deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON"],
     deliverySchedules: [
       {
-        name: "Weekday Evening Batch",
-        schedule: "Mon, Wed, Fri | 7:00 PM – 9:30 PM",
-        duration: "8 Weeks"
+        name: "Weekday Batch",
+        schedule: "Mon – Thu",
+        duration: "5:00 PM – 9:00 PM (Dubai Time)"
       },
       {
-        name: "Weekend Executive Batch",
-        schedule: "Saturdays | 10:00 AM – 3:00 PM",
-        duration: "8 Weeks"
+        name: "Weekend Batch",
+        schedule: "Sat & Sun",
+        duration: "9:00 AM – 1:00 PM (Dubai Time)"
       },
       {
         name: "Corporate / In-House",
-        schedule: "5-Day Intensive Management Bootcamp",
-        duration: "5 Days"
+        schedule: "Customized schedule and delivery",
+        duration: "Concise 5-day bootcamp"
       }
     ],
     level: "ADVANCED",
     duration: 45,
-    priceUsd: 1090,
+    priceUsd: 1599,
     currency: "USD",
     outcomes: [
-      "Build Integrated Frameworks: Create a 'Unified Compliance Policy' covering AML, Sanctions, and Tax",
-      "Master Advanced Investigations: Managing complex cross-border investigations and Law Enforcement requests",
-      "Implement Regulatory Management: Strategies for handling Central Bank inspections and remediation plans",
-      "Conduct Risk Assessment: Enterprise-Wide Risk Assessment (EWRA)",
-      "Develop robust AML & Compliance systems",
-      "Prepare senior management and board-level reports"
+      "Build Integrated Frameworks: Unified AML, Sanctions, and Tax policies",
+      "Master Advanced Investigations: Cross-border cases and Law Enforcement requests",
+      "Implement Regulatory Management: Handling inspections and remediation plans",
+      "Conduct Enterprise Risk Assessments: Complex EWRA methodologies",
+      "Direct Board-level reporting and strategic compliance oversight"
     ],
     whoItsFor: [
       "Aspiring MLROs",
-      "Compliance Heads",
+      "Heads of Compliance",
       "Internal Audit Managers",
-      "Senior Operations Managers",
-      "Compliance Managers and Senior Compliance Officers",
-      "AML / CFT Professionals"
+      "Senior Risk Professionals",
+      "Strategic L&D Managers"
     ],
+    programOverview: {
+      whatIs: "The Certified Compliance Manager (CCM) is the pinnacle executive certification integrating all major compliance pillars into one strategic leadership role.",
+      whyItMatters: "The market needs leaders, not just analysts. CCM prepares you to own the compliance function at an institutional level.",
+      jobReadySkills: "Design global compliance frameworks, lead multi-disciplinary teams, and interact at the Board and Regulatory executive levels."
+    },
+    audienceCategories: [
+      {
+        title: "👔 Executive Leadership",
+        roles: ["Heads of Compliance", "MLROs", "Chief Risk Officers", "Senior Audit Managers"]
+      },
+      {
+        title: "📈 Career Path",
+        roles: ["Aspiring Managers", "Deputy MLROs", "Compliance Consultants"]
+      }
+    ],
+    examInfo: {
+      questions: "150",
+      duration: "180 Minutes",
+      passingScore: "75% (Min 50% per chapter)",
+      format: "Multiple Choice Questions",
+      requirements: [
+        "Executive-level study guide",
+        "Online proctored exam",
+        "One year GCI membership included"
+      ]
+    },
     whyChooseUs: {
-      title: "Why Choose EduDubai?",
-      description: "The CCM is a beast of an exam. Doing it alone (Self-Study) has a high failure rate. EduDubai offers the Executive Mentorship Model.",
+      title: "Why Choose Edu-Dubai?",
+      description: "The CCM is a beast of an exam. We offer an Executive Mentorship Model to ensure you cross the finish line.",
       points: [
-        "Strategy, Not Just Tactics: We shift your mindset from \"How do I clear this alert?\" to \"How do I design a Global Compliance Framework?\" This is essential for passing the CCM.",
-        "The \"Board Report\" Workshop: We teach you how to draft and present the Quarterly MLRO Report to a Board of Directors—a skill that will define your career as a Manager.",
-        "Exclusive Study Circle: You get access to a private WhatsApp group with other Senior Compliance Managers to discuss exam questions and industry trends 24/7."
+        "Strategy Mentorship: We shift your mindset from 'clearing alerts' to 'designing global frameworks.'",
+        "The Boardroom Workshop: Learn to draft and present high-stakes reports to the Board of Directors.",
+        "Exclusive Study Circle: Network with other Senior Compliance Managers in our private mentorship group.",
+        "MENA Leadership: Taught by regional MLROs with real-world institutional experience."
       ]
     },
     faq: [
       {
-        question: "Is this higher than the Specialist courses?",
-        answer: "Yes. The CCM is an advanced designation for those who want to manage compliance functions."
-      },
-      {
-        question: "What is included in the certification fee?",
-        answer: "The GCI Certification Fee of USD 1,099 includes one-year membership, study guide, practice questions, online proctored exam, e-certificate, digital badge, and one free exam retake."
-      },
-      {
-        question: "What is the exam format?",
-        answer: "The exam is 180 minutes with 150 multiple-choice questions. The pass mark is 75% overall with a minimum 50% per chapter. Results are displayed immediately upon submission."
+        question: "Is this much harder than Specialist courses?",
+        answer: "Yes, it tests strategic decision-making and function management, not just operational steps."
       }
     ],
     featured: true,
     imageUrl: "/images/certifications/certified-compliance-manager.jpg",
+    issuingBody: "GCI"
   },
   {
     id: "tbml",
     slug: "trade-based-money-laundering",
     title: "Trade Based Money Laundering (TBML)",
     shortDescription: "Trade-Based Money Laundering (TBML) is widely recognized as the most complex method of moving illicit value.",
-    longDescription: "Trade-Based Money Laundering (TBML) is widely recognized as the most complex method of moving illicit value. This specialized course is designed for Trade Finance and Compliance professionals who need to look beyond the 'name screen' and understand the transaction itself. We decode the complexities of Letters of Credit, Guarantees, and Open Accounts to teach you how to spot price manipulation, phantom shipments, and dual-use goods.",
+    longDescription: "Trade-Based Money Laundering (TBML) is widely recognized as the most complex method of moving illicit value. This specialized course is designed for Trade Finance and Compliance professionals who need to look beyond the 'name screen' and understand the transaction itself. We decode Letters of Credit and Open Accounts to teach you how to spot price manipulation and phantom shipments.",
     category: "AML_CFT",
     deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON"],
     deliverySchedules: [
       {
-        name: "Weekday Evening Batch",
-        schedule: "Tue & Thu | 7:00 PM – 9:00 PM",
-        duration: "4 Weeks"
+        name: "Weekday Batch",
+        schedule: "Mon – Thu",
+        duration: "5:00 PM – 9:00 PM (Dubai Time)"
       },
       {
-        name: "Weekend Intensive Batch",
-        schedule: "Sundays | 2:00 PM – 6:00 PM",
-        duration: "4 Weeks"
+        name: "Weekend Batch",
+        schedule: "Sat & Sun",
+        duration: "9:00 AM – 1:00 PM (Dubai Time)"
       },
       {
         name: "Corporate / In-House",
-        schedule: "2-Day Specialized Workshop",
-        duration: "2 Days"
+        schedule: "Customized schedule and delivery",
+        duration: "Concise 2-day workshop"
       }
     ],
     level: "ADVANCED",
     duration: 24,
-    priceUsd: 550,
+    priceUsd: 849,
     currency: "USD",
     outcomes: [
-      "Understand Trade Lifecycle: The flow of documents (Bill of Lading, Invoice) and where fraud happens",
-      "Detect Typologies: Over/Under-Invoicing, Multiple Invoicing, and Phantom Shipments",
-      "Identify Dual-Use Goods: Items with both civil and military applications",
-      "Master Vessel Tracking: Track ships to detect 'Dark Activity' or sanctions evasion",
-      "Analyze trade documentation for anomalies"
+      "Understand Trade Lifecycle: Bill of Lading, Invoices, and fraud red flags",
+      "Detect Typologies: Over/Under-Invoicing and Phantom Shipments",
+      "Identify Dual-Use Goods: Strategic military/civilian applications",
+      "Master Vessel Tracking: Identifying 'Dark Activity' and ship-to-ship transfers",
+      "Analyze full sets of shipping documents for potential money laundering"
     ],
     whoItsFor: [
-      "Trade Finance Operations Staff",
+      "Trade Finance Ops Staff",
       "Commercial Lenders",
       "Sanctions Investigators",
-      "Trade Finance Professionals",
-      "AML and Compliance Officers"
+      "Correspondent Banking Managers"
     ],
+    programOverview: {
+      whatIs: "Trade-Based Money Laundering (TBML) is a specialized advanced technical course decoding the documents and flows of global trade fraud.",
+      whyItMatters: "Traditional AML fails to catch trade fraud. You must understand the underlying shipping documents to protect your firm.",
+      jobReadySkills: "Scan Bills of Lading for anomalies, track vessels globally, and detect price manipulation in complex trade financing."
+    },
+    audienceCategories: [
+      {
+        title: "🚢 Trade Specialist",
+        roles: ["Trade Finance Officers", "L/C Processors", "Shipment Investigators"]
+      },
+      {
+        title: "🏦 Advanced Compliance",
+        roles: ["High-Level AML Investigators", "Sanctions Experts", "Corporate Risk Managers"]
+      }
+    ],
+    examInfo: {
+      questions: "N/A (Certificate of Completion)",
+      duration: "Practical Assessment",
+      passingScore: "Successful Workshop Completion",
+      format: "Case Study & practical Workshop",
+      requirements: [
+        "Basic Trade Finance knowledge recommended",
+        "Successful completion of Lab sessions",
+        "Attendance of all practical modules"
+      ]
+    },
     whyChooseUs: {
-      title: "Why Choose EduDubai?",
-      description: "You cannot learn Trade Finance from a book; you need to see the documents. EduDubai offers the only Live Document Workshop in the region.",
+      title: "Why Choose Edu-Dubai?",
+      description: "You cannot learn trade fraud from a book; you need to see the documents. We host a live document workshop in every session.",
       points: [
-        "The \"Red Flag\" Lab: We give you real (sanitized) sets of shipping documents—Invoices, Packing Lists, Bills of Lading—and challenge you to find the fraud.",
-        "Vessel Tracking LIVE: We log into live vessel tracking tools (like MarineTraffic) in class to show you how to spot \"Dark Activity\" and ship-to-ship transfers.",
-        "Price Disruption: We offer this specialized technical training at a fraction of the cost of international banking academies."
+        "The Red Flag Lab: Practice on real sanitized document sets (Invoices, Packing Lists, BoLs) to find the fraud.",
+        "Vessel Tracking LIVE: Log into professional maritime tracking tools in class to spot 'Dark Activity' at sea.",
+        "Global trade context: Specialized training for the major trade hubs in MENA (Jebel Ali, etc.).",
+        "Practical Experts: Taught by professionals who clear hundreds of trade alerts daily."
       ]
     },
     faq: [
       {
         question: "Is this suitable for beginners?",
-        answer: "We recommend having a basic understanding of banking or trade finance before taking this course."
-      },
-      {
-        question: "What is included in the program?",
-        answer: "The program includes comprehensive TBML training, case studies, practical exercises, and certification upon completion."
+        answer: "We recommend having a basic understanding of banking or trade finance flows before taking this advanced course."
       }
     ],
     featured: true,
     imageUrl: "/images/certifications/trade-based-money-laundering.jpg",
+    issuingBody: "GCI"
+  },
+  {
+    id: "cma",
+    slug: "certified-management-accountant",
+    title: "Certified Management Accountant (CMA)",
+    shortDescription: "The CMA is the gold standard in management accounting and financial management.",
+    longDescription: "The Certified Management Accountant (CMA) credential is the advanced professional certification that delivers tangible value. It is the global benchmark for management accountants and financial professionals. Master the skills of strategic financial management and performance measurement—ensuring you are ready to drive business results in a complex global economy.",
+    category: "TAX",
+    deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON"],
+    deliverySchedules: [
+      {
+        name: "Morning Batch",
+        schedule: "Sun – Wed",
+        duration: "10:00 AM – 1:00 PM (Dubai Time)"
+      },
+      {
+        name: "Weekend Batch",
+        schedule: "Sat",
+        duration: "10:00 AM – 4:00 PM (Dubai Time)"
+      }
+    ],
+    level: "ADVANCED",
+    duration: 60,
+    priceUsd: 850,
+    currency: "USD",
+    outcomes: [
+      "Master Financial Planning, Performance, and Analytics",
+      "Gain expertise in Strategic Financial Management",
+      "Prepare for the Part 1 and Part 2 CMA exams with confidence",
+      "Learn to apply management accounting principles in real-world scenarios",
+      "Understand ethics in the professional accounting environment"
+    ],
+    whoItsFor: [
+      "Finance Managers",
+      "Cost Accountants",
+      "Financial Analysts",
+      "Budgeting Managers",
+      "Strategic Planners"
+    ],
+    programOverview: {
+      whatIs: "The CMA is a globally recognized certification that validates your expertise in financial planning, analysis, control, and decision support.",
+      whyItMatters: "CMAs earn more and advance faster. It proves your ability to think strategically and lead finance functions.",
+      jobReadySkills: "Performance measurement, budgeting, risk management, and strategic financial decision making."
+    },
+    audienceCategories: [
+      {
+        title: "📈 Finance & Strategy",
+        roles: ["Financial Controllers", "CFOs", "Strategy Analysts", "FP&A Professionals"]
+      }
+    ],
+    examInfo: {
+      questions: "100 MCQs + 2 Essay Scenarios",
+      duration: "4 Hours (Each Part)",
+      passingScore: "360/500",
+      format: "Computer Based",
+      requirements: [
+        "Bachelor's Degree",
+        "2 Years Professional Experience",
+        "Active IMA Membership"
+      ]
+    },
+    whyChooseUs: {
+      title: "Why Choose Edu-Dubai?",
+      description: "As a Hock International partner, we provide the best-in-class study materials and diagnostic tools to ensure you pass on your first try.",
+      points: [
+        "Hock Study Suite: Access to world-class videos, textbooks, and test banks.",
+        "Progress Tracking: Weekly feedback on your performance and focus areas.",
+        "Exam Simulation: Practice under real exam conditions with our software.",
+        "Expert Coaching: Learn from industry veterans who simplify complex concepts."
+      ]
+    },
+    faq: [
+      {
+        question: "How many parts are in the CMA exam?",
+        answer: "There are two parts: Part 1 (Financial Planning, Performance, and Analytics) and Part 2 (Strategic Financial Management)."
+      }
+    ],
+    featured: true,
+    imageUrl: "/images/certifications/certified-management-accountant.jpg",
+    issuingBody: "HOCK_INTERNATIONAL"
+  },
+  {
+    id: "cia",
+    slug: "certified-internal-auditor",
+    title: "Certified Internal Auditor (CIA)",
+    shortDescription: "The CIA is the only globally recognized certification for internal auditors.",
+    longDescription: "The Certified Internal Auditor (CIA) designation is the only globally recognized certification for internal auditors. CIAs are equipped with the skills and knowledge to conduct effective internal audits, manage risk, and add value to their organizations. This course covers everything from the basics of internal auditing to advanced topics like risk management and governance.",
+    category: "GOVERNANCE",
+    deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON"],
+    deliverySchedules: [
+      {
+        name: "Evening Batch",
+        schedule: "Mon & Wed",
+        duration: "6:30 PM – 9:30 PM (Dubai Time)"
+      },
+      {
+        name: "Weekend Intensive",
+        schedule: "Fri",
+        duration: "2:00 PM – 8:00 PM (Dubai Time)"
+      }
+    ],
+    level: "ADVANCED",
+    duration: 50,
+    priceUsd: 820,
+    currency: "USD",
+    outcomes: [
+      "Master the Fundamentals of Internal Auditing",
+      "Understand Internal Audit Practice and Knowledge Elements",
+      "Prepare for all three parts of the CIA exam",
+      "Learn to assess risk and evaluate internal controls",
+      "Develop skills in governance, risk, and control (GRC)"
+    ],
+    whoItsFor: [
+      "Internal Auditors",
+      "External Auditors",
+      "Compliance Officers",
+      "Risk Management Professionals",
+      "Accounting Students"
+    ],
+    programOverview: {
+      whatIs: "The CIA is the premier global certification for internal audit professionals, awarded by the IIA.",
+      whyItMatters: "CIA status proves your professionalism and commitment to the industry standard for internal audit excellence.",
+      jobReadySkills: "Internal control evaluation, risk management auditing, and organizational governance oversight."
+    },
+    audienceCategories: [
+      {
+        title: "🛡️ Audit & Risk",
+        roles: ["Chief Audit Executives", "Audit Managers", "IT Auditors", "GRC Specialists"]
+      }
+    ],
+    examInfo: {
+      questions: "125 (Part 1), 100 (Part 2 & 3)",
+      duration: "150 mins (Part 1), 120 mins (Part 2 & 3)",
+      passingScore: "600/750",
+      format: "MCQ (Multiple Choice)",
+      requirements: [
+        "Bachelor's Degree or Equivalent",
+        "Character Reference",
+        "Verified Professional Experience"
+      ]
+    },
+    whyChooseUs: {
+      title: "Why Choose Edu-Dubai?",
+      description: "We use Hock International's award-winning curriculum to ensure our students have the most comprehensive audit training in the UAE.",
+      points: [
+        "Hock Adaptive Learning: Focuses your study time on your weakest areas.",
+        "Interactive Workshops: Dive deep into real-world audit scenarios.",
+        "Mock Exams: Full-length simulations to build exam stamina.",
+        "Certified Experts: Learn from instructors who hold the CIA designation themselves."
+      ]
+    },
+    faq: [
+      {
+        question: "Is the exam fee separate?",
+        answer: "Yes, exam registration and fees are handled directly with The IIA."
+      }
+    ],
+    featured: true,
+    imageUrl: "/images/certifications/certified-internal-auditor.jpg",
+    issuingBody: "HOCK_INTERNATIONAL"
   },
 ]
 
@@ -543,6 +903,10 @@ export function getCategories(): Category[] {
 
 export function getCoursesByCategory(category: Category): Course[] {
   return courses.filter(course => course.category === category)
+}
+
+export function getCoursesByIssuingBody(body: string): Course[] {
+  return courses.filter(course => course.issuingBody === body)
 }
 
 export function getCoursesByDeliveryMode(mode: DeliveryMode): Course[] {

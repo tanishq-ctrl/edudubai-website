@@ -16,12 +16,19 @@ import { trackWhatsAppClick } from "@/lib/analytics"
 import { UserMenu } from "@/components/user-menu"
 import { createClient } from "@/lib/supabase/client"
 import type { User } from "@supabase/supabase-js"
+import { ChevronDown } from "lucide-react"
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "Courses", href: "/courses" },
-  { name: "Certifications", href: "/certifications" },
-  { name: "Events", href: "/events" },
+  {
+    name: "Global Certifications",
+    href: "/courses",
+    subItems: [
+      { name: "ACAMS", href: "/courses?body=ACAMS" },
+      { name: "GCI", href: "/courses?body=GCI" },
+      { name: "Hock International", href: "/courses?body=HOCK_INTERNATIONAL" },
+    ]
+  },
   { name: "Corporate", href: "/corporate-training" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
@@ -46,8 +53,10 @@ export function SiteHeader() {
     "/events",
     "/about",
     "/contact",
+    "/become-a-trainer",
   ]
-  const shouldHaveTransparentNav = transparentNavPages.includes(pathname)
+  const isCoursePage = pathname.startsWith("/courses/")
+  const shouldHaveTransparentNav = transparentNavPages.includes(pathname) || isCoursePage
 
   useEffect(() => {
     const handleScroll = () => {
@@ -97,6 +106,49 @@ export function SiteHeader() {
             {navigation.map((item) => {
               const isActive = pathname === item.href ||
                 (item.href !== "/" && pathname.startsWith(item.href))
+
+              if (item.subItems) {
+                return (
+                  <div key={item.name} className="relative group py-2">
+                    <button
+                      className={`
+                        text-sm font-semibold transition-colors relative flex items-center gap-1
+                        ${shouldHaveTransparentNav && !isScrolled
+                          ? "text-white hover:text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+                          : "text-neutral-text hover:text-brand-navy"
+                        }
+                        ${isActive && (shouldHaveTransparentNav && !isScrolled) ? "text-white font-bold" : isActive ? "text-brand-navy" : ""}
+                      `}
+                    >
+                      {item.name}
+                      <ChevronDown className="h-4 w-4 opacity-70 group-hover:rotate-180 transition-transform duration-300" />
+                      {isActive && (
+                        <span className={`absolute -bottom-1 left-0 right-0 h-0.5 ${shouldHaveTransparentNav && !isScrolled
+                          ? "bg-white"
+                          : "bg-brand-gold"
+                          }`} />
+                      )}
+                    </button>
+
+                    {/* Hover Dropdown */}
+                    <div className="absolute top-full left-0 pt-2 opacity-0 translate-y-2 invisible group-hover:opacity-100 group-hover:translate-y-0 group-hover:visible transition-all duration-300 z-50">
+                      <div className="w-64 bg-white border border-neutral-border p-2 shadow-2xl rounded-xl">
+                        {item.subItems.map((sub) => (
+                          <Link
+                            key={sub.name}
+                            href={sub.href}
+                            className="w-full px-4 py-3 text-sm font-medium text-neutral-text hover:bg-neutral-bg-subtle hover:text-brand-navy rounded-lg transition-all flex items-center justify-between group/item"
+                          >
+                            {sub.name}
+                            <BookOpen className="h-4 w-4 opacity-0 group-hover/item:opacity-40 transition-opacity" />
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )
+              }
+
               return (
                 <Link
                   key={item.name}
@@ -187,6 +239,29 @@ export function SiteHeader() {
                 {navigation.map((item) => {
                   const isActive = pathname === item.href ||
                     (item.href !== "/" && pathname.startsWith(item.href))
+
+                  if (item.subItems) {
+                    return (
+                      <div key={item.name} className="flex flex-col space-y-4">
+                        <span className="text-xs font-bold uppercase tracking-wider text-neutral-text-muted px-1">
+                          {item.name}
+                        </span>
+                        <div className="flex flex-col space-y-3 pl-4 border-l border-neutral-border">
+                          {item.subItems.map((sub) => (
+                            <Link
+                              key={sub.name}
+                              href={sub.href}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className="text-base font-medium text-neutral-text hover:text-brand-navy"
+                            >
+                              {sub.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )
+                  }
+
                   return (
                     <Link
                       key={item.name}

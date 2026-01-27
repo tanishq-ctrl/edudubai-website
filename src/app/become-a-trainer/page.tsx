@@ -57,7 +57,7 @@ export default function BecomeATrainerPage() {
               Become a Trainer
             </h1>
             <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Join Edu Dubai&apos;s network of expert trainers and help professionals excel in compliance, risk management, and finance.
+              Join EduDubai&apos;s network of expert trainers and help professionals excel in compliance, risk management, and finance.
             </p>
             <div className="flex flex-wrap justify-center gap-3 mb-8">
               {qualificationAreas.map((area) => (
@@ -129,4 +129,3 @@ export default function BecomeATrainerPage() {
     </div>
   )
 }
-

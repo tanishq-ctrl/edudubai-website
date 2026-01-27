@@ -13,12 +13,13 @@ interface CoursesPageProps {
     q?: string
     category?: string
     mode?: string
+    body?: string
   }
 }
 
 export default async function CoursesPage({ searchParams }: CoursesPageProps) {
   const allCourses = await getAllCoursesNew()
-  
+
   // Filter courses based on search params
   let filteredCourses = allCourses
 
@@ -44,6 +45,13 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
   if (searchParams.mode) {
     filteredCourses = filteredCourses.filter((course) =>
       course.deliveryModes.includes(searchParams.mode as DeliveryMode)
+    )
+  }
+
+  // Issuing Body filter
+  if (searchParams.body) {
+    filteredCourses = filteredCourses.filter(
+      (course) => course.issuingBody === searchParams.body
     )
   }
 

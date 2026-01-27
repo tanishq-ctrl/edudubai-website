@@ -12,14 +12,14 @@ const teamMembers = [
     role: "Founder and CEO",
     image: "/team/sonali-prabhu.jpg", // Placeholder path
     description: "Sonali Prabhu is a seasoned banking professional with extensive experience in Banking Operations, Policy Implementation, and Regulatory Compliance at HDFC Bank, one of the top 10 global banks.",
-    expertise: "Her expertise in AML/CFT, sanctions screening, and audit management drives operational excellence and adherence to global GRC standards. Leveraging her deep industry knowledge, she fosters a culture of compliance, positioning Edu Dubai as a trusted provider of world-class training to the financial sector.",
+    expertise: "Her expertise in AML/CFT, sanctions screening, and audit management drives operational excellence and adherence to global GRC standards. Leveraging her deep industry knowledge, she fosters a culture of compliance, positioning EduDubai as a trusted provider of world-class training to the financial sector.",
   },
   {
     name: "Sanjay Prabhu",
     role: "Director – GRC Consulting & Training",
     image: "/team/sanjay-prabhu.jpg", // Placeholder path
-    description: "Sanjay Prabhu is a highly experienced Compliance Trainer and Consultant with over 18 years in trade finance and banking operations, 5+ years in consulting and auditing, and 9+ years dedicated to training and managing compliance frameworks across banks, exchange houses, DNFBPs, and DPMS in MENA.",
-    expertise: "His expertise spans MENA regulations (CBMENA, SCA, ADGM, DIFC), UN and OFAC sanctions, as well as FATF standards. A Certified Compliance Manager (GCI, Australia), CFCS, and CTP (FAA, Kuala Lumpur), Sanjay specializes in AML/CFT, KYC/CDD, FATCA/CRS, sanctions, GDPR, and RegTech reporting and delivered 2,500+ training and academic sessions.",
+    description: "Sanjay Prabhu is a highly experienced Compliance Trainer and Consultant with over 18 years in trade finance and banking operations, 5+ years in consulting and auditing, and 9+ years dedicated to training and managing compliance frameworks across international banks, exchange houses, and DNFBPs globally.",
+    expertise: "His expertise spans international regulations and FATF standards. A Certified Compliance Manager (GCI, Australia), CFCS, and CTP (FAA, Kuala Lumpur), Sanjay specializes in AML/CFT, KYC/CDD, FATCA/CRS, sanctions, GDPR, and RegTech reporting and delivered 2,500+ training and academic sessions.",
   },
 ]
 
@@ -31,7 +31,7 @@ export function AboutTrainers() {
           Our Team
         </h2>
         <p className="text-lg text-neutral-text-muted max-w-2xl mx-auto">
-          Meet the experienced professionals leading Edu Dubai&apos;s mission
+          Meet the experienced professionals leading EduDubai&apos;s mission
         </p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -45,7 +45,7 @@ export function AboutTrainers() {
 
 function TeamMemberCard({ member }: { member: typeof teamMembers[0] }) {
   const [imageError, setImageError] = useState(false)
-  
+
   return (
     <Card className="border-2 border-neutral-border hover:border-brand-gold transition-all hover:shadow-xl overflow-hidden h-full">
       <div className="flex flex-col md:flex-row h-full">
@@ -73,7 +73,7 @@ function TeamMemberCard({ member }: { member: typeof teamMembers[0] }) {
             )}
           </div>
         </div>
-        
+
         {/* Content Section - Consistent padding */}
         <div className="flex-1 flex flex-col p-6">
           <CardHeader className="p-0 mb-4">
@@ -100,4 +100,3 @@ function TeamMemberCard({ member }: { member: typeof teamMembers[0] }) {
     </Card>
   )
 }
-

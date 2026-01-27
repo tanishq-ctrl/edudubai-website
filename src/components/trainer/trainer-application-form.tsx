@@ -80,10 +80,10 @@ const deliveryModes = [
 ]
 
 const regions = [
-  "MENA",
-  "GCC",
+  "Global",
   "India",
-  "Online Global",
+  "Middle East",
+  "Online Only",
 ]
 
 const languages = [
@@ -327,7 +327,7 @@ export function TrainerApplicationForm() {
           </div>
           <CardTitle className="text-3xl font-bold text-brand-navy">Application Submitted!</CardTitle>
           <CardDescription className="text-lg mt-2">
-            Thank you for your interest in becoming a trainer with Edu Dubai.
+            Thank you for your interest in becoming a trainer with EduDubai.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -526,8 +526,8 @@ export function TrainerApplicationForm() {
                     key={spec}
                     variant={formData.specializations.includes(spec) ? "default" : "outline"}
                     className={`cursor-pointer ${formData.specializations.includes(spec)
-                        ? "bg-brand-gold text-brand-navy"
-                        : "hover:bg-brand-gold/10"
+                      ? "bg-brand-gold text-brand-navy"
+                      : "hover:bg-brand-gold/10"
                       }`}
                     onClick={() => toggleSpecialization(spec)}
                   >
@@ -562,8 +562,8 @@ export function TrainerApplicationForm() {
                     key={region}
                     variant={formData.regions.includes(region) ? "default" : "outline"}
                     className={`cursor-pointer ${formData.regions.includes(region)
-                        ? "bg-brand-gold text-brand-navy"
-                        : "hover:bg-brand-gold/10"
+                      ? "bg-brand-gold text-brand-navy"
+                      : "hover:bg-brand-gold/10"
                       }`}
                     onClick={() => toggleRegion(region)}
                   >
@@ -619,8 +619,8 @@ export function TrainerApplicationForm() {
                     key={lang}
                     variant={formData.languages.includes(lang) ? "default" : "outline"}
                     className={`cursor-pointer ${formData.languages.includes(lang)
-                        ? "bg-brand-gold text-brand-navy"
-                        : "hover:bg-brand-gold/10"
+                      ? "bg-brand-gold text-brand-navy"
+                      : "hover:bg-brand-gold/10"
                       }`}
                     onClick={() => toggleLanguage(lang)}
                   >
@@ -718,9 +718,9 @@ export function TrainerApplicationForm() {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="AED">AED (MENA Dirham)</SelectItem>
                     <SelectItem value="USD">USD (US Dollar)</SelectItem>
                     <SelectItem value="INR">INR (Indian Rupee)</SelectItem>
+                    <SelectItem value="AED">AED (UAE Dirham)</SelectItem>
                     <SelectItem value="GBP">GBP (British Pound)</SelectItem>
                     <SelectItem value="EUR">EUR (Euro)</SelectItem>
                   </SelectContent>

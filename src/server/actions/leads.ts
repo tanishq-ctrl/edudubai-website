@@ -3,6 +3,7 @@
 import { z } from "zod"
 import { sendLeadNotification, sendBrochureEmail } from "@/lib/email"
 import { getCourseBySlugNew } from "./courses"
+import { syncLeadToSystemeIO } from "@/lib/systeme-io"
 
 // Validation schemas
 const contactLeadSchema = z.object({
@@ -35,6 +36,7 @@ export async function submitContactLead(data: unknown) {
   try {
     const validated = contactLeadSchema.parse(data)
 
+    // 1. Send notification to admin
     await sendLeadNotification({
       type: "contact",
       payload: {
@@ -47,6 +49,15 @@ export async function submitContactLead(data: unknown) {
       },
     })
 
+    // 2. Sync to Systeme.io CRM
+    await syncLeadToSystemeIO({
+      email: validated.email,
+      firstName: validated.name,
+      phone: validated.phone,
+      company: validated.company,
+      courseInterest: "Contact Form / General Inquiry"
+    })
+
     return { success: true }
   } catch (error) {
     if (error instanceof z.ZodError) {
@@ -57,7 +68,6 @@ export async function submitContactLead(data: unknown) {
     }
     console.error("Error submitting contact lead:", error)
 
-    // Return a user-friendly error message instead of throwing
     const errorMessage = error instanceof Error
       ? error.message
       : "Failed to send message. Please check your connection and try again."
@@ -73,6 +83,7 @@ export async function submitCorporateLead(data: unknown) {
   try {
     const validated = corporateLeadSchema.parse(data)
 
+    // 1. Send notification to admin
     await sendLeadNotification({
       type: "corporate",
       payload: {
@@ -86,7 +97,16 @@ export async function submitCorporateLead(data: unknown) {
       },
     })
 
-    // Send confirmation email to the lead
+    // 2. Sync to Systeme.io CRM
+    await syncLeadToSystemeIO({
+      email: validated.email,
+      firstName: validated.name,
+      phone: validated.phone,
+      company: validated.company,
+      courseInterest: "Corporate Training Inquiry"
+    })
+
+    // 3. Send confirmation email to the lead
     await sendBrochureEmail({
       to: validated.email,
       courseTitle: "Corporate Training Proposal",
@@ -116,13 +136,9 @@ export async function submitBrochureLead(data: unknown) {
       if (course) {
         courseTitle = course.title
       }
-    } else if (validated.courseId) {
-      // If we only have courseId, we'd need to fetch it differently
-      // For now, use generic title
-      courseTitle = "Course Brochure"
     }
 
-    // Send notification to admin
+    // 1. Send notification to admin
     await sendLeadNotification({
       type: "brochure",
       payload: {
@@ -136,8 +152,17 @@ export async function submitBrochureLead(data: unknown) {
       },
     })
 
-    // Send brochure email to user
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://edudubai.com"
+    // 2. Sync to Systeme.io CRM
+    await syncLeadToSystemeIO({
+      email: validated.email,
+      firstName: validated.name,
+      phone: validated.phone,
+      company: validated.company,
+      courseInterest: `Brochure Request: ${courseTitle}`
+    })
+
+    // 3. Send brochure email to user
+    const appUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://edudubai.org"
     const brochureLink = validated.courseSlug
       ? `${appUrl}/courses/${validated.courseSlug}`
       : `${appUrl}/courses`

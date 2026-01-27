@@ -43,5 +43,22 @@ export interface Course {
   featured: boolean
   imageUrl?: string // Optional image URL for course thumbnail
   heroImageUrl?: string // Optional specialized image for course hero section
+  examInfo?: {
+    questions?: string
+    duration?: string
+    passingScore?: string
+    format?: string
+    requirements?: string[]
+  }
+  programOverview?: {
+    whatIs?: string
+    whyItMatters?: string
+    jobReadySkills?: string
+  }
+  audienceCategories?: Array<{
+    title: string
+    roles: string[]
+  }>
+  issuingBody: "ACAMS" | "GCI" | "HOCK_INTERNATIONAL"
 }
 

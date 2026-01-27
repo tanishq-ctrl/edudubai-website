@@ -9,7 +9,7 @@ const testimonials = [
   {
     name: "Sarah Al-Mansoori",
     role: "Senior Compliance Officer",
-    content: "EduDubai's CAMS prep course was instrumental in my success. The focus on local MENA regulations alongside global standards gave me a significant edge in my current role.",
+    content: "EduDubai's CAMS prep course was instrumental in my success. The focus on complex international regulations alongside global standards gave me a significant edge in my current role.",
     rating: 5,
   },
   {

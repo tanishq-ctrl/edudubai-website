@@ -40,6 +40,9 @@ export function CourseFilters() {
   const [selectedMode, setSelectedMode] = useState<DeliveryMode | "all">(
     (searchParams.get("mode") as DeliveryMode) || "all"
   )
+  const [selectedBody, setSelectedBody] = useState<string | "all">(
+    searchParams.get("body") || "all"
+  )
 
   useEffect(() => {
     // Debounce search to avoid too many URL updates
@@ -48,13 +51,14 @@ export function CourseFilters() {
       if (searchQuery) params.set("q", searchQuery)
       if (selectedCategory !== "all") params.set("category", selectedCategory)
       if (selectedMode !== "all") params.set("mode", selectedMode)
+      if (selectedBody !== "all") params.set("body", selectedBody)
 
       const queryString = params.toString()
       router.push(`/courses${queryString ? `?${queryString}` : ""}`, { scroll: false })
     }, searchQuery ? 300 : 0) // Debounce search, immediate for filters
 
     return () => clearTimeout(timer)
-  }, [searchQuery, selectedCategory, selectedMode, router])
+  }, [searchQuery, selectedCategory, selectedMode, selectedBody, router])
 
   const handleSearchChange = (value: string) => {
     setSearchQuery(value)
@@ -72,9 +76,10 @@ export function CourseFilters() {
     setSearchQuery("")
     setSelectedCategory("all")
     setSelectedMode("all")
+    setSelectedBody("all")
   }
 
-  const hasActiveFilters = searchQuery || selectedCategory !== "all" || selectedMode !== "all"
+  const hasActiveFilters = searchQuery || selectedCategory !== "all" || selectedMode !== "all" || selectedBody !== "all"
 
   return (
     <div className="space-y-6">

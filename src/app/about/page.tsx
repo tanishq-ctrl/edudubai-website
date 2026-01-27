@@ -5,6 +5,13 @@ import { AboutWhoWeServe } from "@/components/sections/about-who-we-serve"
 import { AboutCredibility } from "@/components/sections/about-credibility"
 import { AboutTrainers } from "@/components/sections/about-trainers"
 import { AboutPageClient } from "./page-client"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "About Us | Global Compliance & Professional Education Specialist",
+  description: "Learn about EduDubai's mission to provide world-class regulatory compliance training, AML/CFT certification, and professional development to specialists globally.",
+  keywords: ["Compliance Training Team", "AML Experts", "Professional Education History", "EduDubai Mission", "Global Regulatory Specialists"],
+}
 
 export default function AboutPage() {
   return (
@@ -15,7 +22,7 @@ export default function AboutPage() {
         <AboutExpertise />
         <AboutWhoWeServe />
         <AboutCredibility />
-        <AboutTrainers />
+        {/* <AboutTrainers /> */}
       </Container>
     </>
   )

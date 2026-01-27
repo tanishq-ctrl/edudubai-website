@@ -32,7 +32,7 @@ const partners = [
   // Middle East & Gulf Region Banks
   { name: "Emirates NBD", imagePath: "/images/partners/emirates-nbd.png" },
   { name: "First Abu Dhabi Bank", imagePath: "/images/partners/fab.png" },
-  { name: "MENA Islamic Bank", imagePath: "/images/partners/dib.png" },
+  { name: "Dubai Islamic Bank", imagePath: "/images/partners/dib.png" },
   { name: "Qatar National Bank", imagePath: "/images/partners/qnb.png" },
   { name: "Mashreq Bank", imagePath: "/images/partners/mashreq.png" },
   // Compliance & Professional Organizations
@@ -43,7 +43,7 @@ const partners = [
   { name: "LexisNexis", imagePath: "/images/partners/lexisnexis.png" },
   // Exchange Houses & FinTech
   { name: "Al Ansari Exchange", imagePath: "/images/partners/al-ansari.png" },
-  { name: "MENA Exchange", imagePath: "/images/partners/uae-exchange.png" },
+  { name: "Global Exchange", imagePath: "/images/partners/uae-exchange.png" },
 ]
 
 export function TrustBar() {
@@ -96,4 +96,3 @@ export function TrustBar() {
     </section>
   )
 }
-

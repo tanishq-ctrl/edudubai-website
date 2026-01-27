@@ -16,7 +16,7 @@ export default function HomePage() {
       <TrustBar />
       <StatsSection />
       <PartnershipsSection />
-      <FindYourPath />
+      {/* <FindYourPath /> */}
       <FeaturedCoursesSection />
       <TestimonialsSection />
       <CorporateCTASection />

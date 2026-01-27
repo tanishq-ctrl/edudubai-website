@@ -62,7 +62,7 @@ export function AboutExpertise() {
           Our Expertise
         </h2>
         <p className="text-lg text-neutral-text-muted max-w-3xl mx-auto text-center">
-          At Edu Dubai, we believe that training should be tailored, practical, and relevant to specific business needs and we offer in-depth training and consulting services on:
+          At EduDubai, we believe that training should be tailored, practical, and relevant to specific business needs and we offer in-depth training and consulting services on:
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -93,4 +93,3 @@ export function AboutExpertise() {
     </section>
   )
 }
-

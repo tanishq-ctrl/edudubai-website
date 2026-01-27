@@ -89,23 +89,33 @@ export function SiteFooter() {
                 </li>
                 <li className="flex items-start">
                   <Phone className="h-5 w-5 text-brand-gold mr-3 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <div className="text-sm font-medium mb-1">Phone</div>
-                    <a
-                      href="tel:+919665642862"
-                      className="text-white/80 hover:text-brand-gold transition-colors text-sm"
-                    >
-                      +91 9665642862
-                    </a>
+                  <div className="flex flex-col gap-2">
+                    <div className="text-sm font-medium">Regional Support</div>
+                    <div className="flex flex-col gap-1.5">
+                      <a
+                        href="tel:+919665642862"
+                        className="text-white/80 hover:text-brand-gold transition-colors text-[13px] flex items-center gap-2"
+                      >
+                        <span className="text-[10px] font-black uppercase text-brand-gold/60 border border-brand-gold/20 px-1.5 rounded">India</span>
+                        +91 96656 42862
+                      </a>
+                      <a
+                        href="tel:+971503130946"
+                        className="text-white/80 hover:text-brand-gold transition-colors text-[13px] flex items-center gap-2"
+                      >
+                        <span className="text-[10px] font-black uppercase text-brand-gold/60 border border-brand-gold/20 px-1.5 rounded">MENA</span>
+                        +971 50 3130 946
+                      </a>
+                    </div>
                   </div>
                 </li>
-                <li className="flex items-start">
+                {/* <li className="flex items-start">
                   <MapPin className="h-5 w-5 text-brand-gold mr-3 mt-0.5 flex-shrink-0" />
                   <div>
                     <div className="text-sm font-medium mb-1">Location</div>
                     <div className="text-white/80 text-sm">Global / India</div>
                   </div>
-                </li>
+                </li> */}
                 <li>
                   <a
                     href={getWhatsAppLink()}

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { useRouter, usePathname } from "next/navigation"
+import { usePathname } from "next/navigation"
 import {
     Dialog,
     DialogContent,
@@ -19,28 +19,21 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { Loader2, CheckCircle2, UserPlus, LogIn, Mail, ShieldCheck, Chrome, ArrowRight, ArrowLeft } from "lucide-react"
+import { Loader2, CheckCircle2, Mail, ShieldCheck, ArrowRight, Phone, User } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
-import { Separator } from "@/components/ui/separator"
-import Link from "next/link"
 
 export function LeadFormPopup() {
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false)
     const [submitted, setSubmitted] = useState(false)
-    const [googleLoading, setGoogleLoading] = useState(false)
-    const [view, setView] = useState<"register" | "login" | "forgot-password" | "verify-otp" | "new-password">("register")
-    const [otp, setOtp] = useState("")
-    const [newPassword, setNewPassword] = useState("")
     const pathname = usePathname()
-    const router = useRouter()
 
     useEffect(() => {
         const checkAuth = async () => {
             const supabase = createClient()
             const { data: { session } } = await supabase.auth.getSession()
 
-            const hasSubmitted = sessionStorage.getItem("lead_submitted")
+            const hasSubmitted = localStorage.getItem("lead_submitted")
             const isAuthPage = pathname.includes("/auth") || pathname.includes("/payment") || pathname.includes("/dashboard")
 
             // If user is already logged in, do not show popup
@@ -57,29 +50,6 @@ export function LeadFormPopup() {
         checkAuth()
     }, [pathname])
 
-    const handleGoogleSignIn = async () => {
-        setGoogleLoading(true)
-        try {
-            const supabase = createClient()
-            const siteUrl = window.location.origin
-            const callbackUrl = `${siteUrl}/auth/callback?next=/dashboard`
-
-            const { error: oauthError } = await supabase.auth.signInWithOAuth({
-                provider: 'google',
-                options: {
-                    redirectTo: callbackUrl,
-                },
-            })
-
-            if (oauthError) throw oauthError
-        } catch (error: any) {
-            console.error("Google Auth error:", error)
-            alert(error.message || "Could not connect to Google")
-        } finally {
-            setGoogleLoading(false)
-        }
-    }
-
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setLoading(true)
@@ -87,95 +57,33 @@ export function LeadFormPopup() {
         const formData = new FormData(e.currentTarget)
         const email = formData.get("email") as string
         const name = formData.get("name") as string
-        const company = formData.get("company") as string
         const phone = formData.get("phone") as string
         const course = formData.get("course") as string
-        const password = formData.get("password") as string
 
         try {
-            const supabase = createClient()
-
-            if (view === "forgot-password") {
-                const { error: resetError } = await supabase.auth.resetPasswordForEmail(email)
-                if (resetError) throw resetError
-                setView("verify-otp")
-                setLoading(false)
-                return
-            }
-
-            if (view === "verify-otp") {
-                const { error: verifyError } = await supabase.auth.verifyOtp({
-                    email,
-                    token: otp,
-                    type: 'recovery'
-                })
-                if (verifyError) throw verifyError
-                setView("new-password")
-                setLoading(false)
-                return
-            }
-
-            if (view === "new-password") {
-                const { error: updateError } = await supabase.auth.updateUser({
-                    password: newPassword
-                })
-                if (updateError) throw updateError
-                setSubmitted(true)
-                setTimeout(() => {
-                    setOpen(false)
-                    router.push("/dashboard")
-                }, 2000)
-                return
-            }
-
-            // 1. Capture Lead (CRM Sync)
+            // 1. Capture Lead (CRM Sync to Systeme.io via API)
             await fetch("/api/leads", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     email,
-                    name: name || email.split('@')[0],
-                    company,
+                    name,
                     phone,
                     course,
-                    source: `popup_${view}`
+                    source: "popup_v2_lead_only"
                 }),
             })
 
-            // 2. Register/Login user in Supabase
-            if (view === "register") {
-                const { error: signUpError } = await supabase.auth.signUp({
-                    email,
-                    password,
-                    options: {
-                        data: {
-                            full_name: name,
-                            company: company,
-                            phone: phone,
-                        }
-                    }
-                })
-                if (signUpError) throw signUpError
-            } else {
-                const { error: signInError } = await supabase.auth.signInWithPassword({
-                    email,
-                    password,
-                })
-                if (signInError) throw signInError
-            }
-
             setSubmitted(true)
-            sessionStorage.setItem("lead_submitted", "true")
+            localStorage.setItem("lead_submitted", "true")
 
             setTimeout(() => {
                 setOpen(false)
-                router.push("/dashboard")
-                router.refresh()
-            }, 2000)
+            }, 3000)
 
         } catch (error: any) {
-            console.error("Auth/Lead error:", error)
-            alert(error.message || "An error occurred. Please try again.")
+            console.error("Lead submission error:", error)
+            alert("An error occurred. Please try again.")
         } finally {
             setLoading(false)
         }
@@ -195,13 +103,11 @@ export function LeadFormPopup() {
                             <CheckCircle2 className="h-12 w-12 text-green-600" />
                         </div>
                         <div className="space-y-2">
-                            <h3 className="text-3xl font-black text-brand-navy tracking-tight">
-                                {view === "forgot-password" ? "Request Sent" : "Success"}
+                            <h3 className="text-3xl font-black text-brand-navy tracking-tight uppercase">
+                                You're on the list
                             </h3>
                             <p className="text-lg text-neutral-text-muted">
-                                {view === "forgot-password"
-                                    ? `We've sent a recovery link to your email.`
-                                    : "Redirecting you to your professional dashboard..."}
+                                Thank you for joining. You'll receive the latest certification updates and exam alerts in your inbox.
                             </p>
                         </div>
                     </div>
@@ -210,181 +116,125 @@ export function LeadFormPopup() {
                         {/* Info Panel */}
                         <div className="hidden md:flex md:w-1/3 bg-brand-navy p-8 text-white flex-col justify-between relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-3xl -mr-16 -mt-16" />
-                            <div className="space-y-6 relative z-10 text-center md:text-left">
+                            <div className="space-y-6 relative z-10">
                                 <h3 className="text-xl font-bold leading-tight">
-                                    Global Specialist Onboarding
+                                    Global Certification Updates
                                 </h3>
                                 <ul className="space-y-4 text-xs text-white/60 font-medium">
-                                    <li className="flex gap-2">✓ Exam Diagnostic Access</li>
-                                    <li className="flex gap-2">✓ DIFC/ADGM Study Circles</li>
-                                    <li className="flex gap-2">✓ Instant Course Enrollment</li>
+                                    <li className="flex gap-2 items-center">
+                                        <ShieldCheck className="h-4 w-4 text-brand-gold" />
+                                        <span>Exam Release Alerts</span>
+                                    </li>
+                                    <li className="flex gap-2 items-center">
+                                        <ShieldCheck className="h-4 w-4 text-brand-gold" />
+                                        <span>GCI Study Guides</span>
+                                    </li>
+                                    <li className="flex gap-2 items-center">
+                                        <ShieldCheck className="h-4 w-4 text-brand-gold" />
+                                        <span>Industry Briefings</span>
+                                    </li>
                                 </ul>
+                            </div>
+                            <div className="relative z-10 pt-8">
+                                <div className="text-[10px] font-bold uppercase text-white/40 tracking-widest">
+                                    Join 5,000+ Professionals
+                                </div>
                             </div>
                         </div>
 
                         {/* Form Panel */}
                         <div className="flex-1 p-8">
                             <DialogHeader className="mb-6">
-                                <div className="flex items-center justify-between">
-                                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold">
-                                        {view === "register" ? "Enrollment" : view === "login" ? "Welcome Back" : view === "forgot-password" ? "Password Recovery" : view === "verify-otp" ? "Security Check" : "Update Password"}
-                                    </span>
-                                </div>
-                                <DialogTitle className="text-3xl font-black text-brand-navy tracking-tight leading-none">
-                                    {view === "forgot-password" ? "Recover Access" : view === "register" ? "Create Account" : view === "login" ? "Sign In" : view === "verify-otp" ? "Enter Code" : "New Security Key"}
+                                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold block mb-2">
+                                    Stay Ahead of the Curve
+                                </span>
+                                <DialogTitle className="text-3xl font-black text-brand-navy tracking-tight leading-none uppercase">
+                                    Certification Insider
                                 </DialogTitle>
-                                <DialogDescription className="sr-only">
-                                    {view === "verify-otp" ? "Enter the 6-digit code sent to your email." : "Manage your specialist account access."}
+                                <DialogDescription className="text-xs text-neutral-text-muted mt-2 font-medium">
+                                    Sign up to receive exclusive guides, exam prep tips, and the latest news on international professional certifications.
                                 </DialogDescription>
                             </DialogHeader>
 
-                            <form onSubmit={handleSubmit} className="space-y-4">
-                                {view === "register" && (
-                                    <>
-                                        <div className="grid grid-cols-2 gap-3">
-                                            <div className="space-y-1">
-                                                <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Full Name</Label>
-                                                <Input name="name" placeholder="John" required className="h-11 bg-neutral-bg-subtle border-0 rounded-xl" />
-                                            </div>
-                                            <div className="space-y-1">
-                                                <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Phone</Label>
-                                                <Input name="phone" placeholder="+971" required className="h-11 bg-neutral-bg-subtle border-0 rounded-xl" />
-                                            </div>
-                                        </div>
-                                        <div className="space-y-1">
-                                            <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Company</Label>
-                                            <Input name="company" placeholder="DIFC / ADGM / Firm Name" required className="h-11 bg-neutral-bg-subtle border-0 rounded-xl" />
-                                        </div>
-                                        <div className="space-y-1">
-                                            <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Interested In</Label>
-                                            <Select name="course" required>
-                                                <SelectTrigger className="h-11 bg-neutral-bg-subtle border-0 rounded-xl">
-                                                    <SelectValue placeholder="Select Specialization" />
-                                                </SelectTrigger>
-                                                <SelectContent>
-                                                    <SelectItem value="cams">Certified Anti-Money Laundering Specialist (CAMS)</SelectItem>
-                                                    <SelectItem value="cgss">Certified Global Sanctions Specialist (CGSS)</SelectItem>
-                                                    <SelectItem value="ccm">Certified Compliance Manager (CCM)</SelectItem>
-                                                    <SelectItem value="aml-specialist">Anti-Money Laundering Specialist (AMLS)</SelectItem>
-                                                    <SelectItem value="sanctions-specialist">Sanctions Compliance Specialist (SCS)</SelectItem>
-                                                    <SelectItem value="regulatory-specialist">Regulatory Compliance Specialist (RCS)</SelectItem>
-                                                    <SelectItem value="fatca-crs">FATCA & CRS Specialist (FCS)</SelectItem>
-                                                    <SelectItem value="tbml">Trade Based Money Laundering (TBML)</SelectItem>
-                                                </SelectContent>
-                                            </Select>
-                                        </div>
-                                    </>
-                                )}
+                            <form onSubmit={handleSubmit} className="space-y-5">
+                                <div className="space-y-1.5">
+                                    <Label className="text-[10px] font-bold uppercase text-neutral-text-muted flex gap-2 items-center">
+                                        <User className="h-3 w-3" /> Full Name
+                                    </Label>
+                                    <Input
+                                        name="name"
+                                        placeholder="Enter your full name"
+                                        required
+                                        className="h-11 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold font-bold"
+                                    />
+                                </div>
 
-                                {view !== "new-password" && (
-                                    <div className="space-y-1">
-                                        <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Email Address</Label>
-                                        <Input
-                                            name="email"
-                                            type="email"
-                                            placeholder="you@company.com"
-                                            required
-                                            readOnly={view === "verify-otp"}
-                                            className="h-11 bg-neutral-bg-subtle border-0 rounded-xl"
-                                        />
-                                    </div>
-                                )}
+                                <div className="space-y-1.5">
+                                    <Label className="text-[10px] font-bold uppercase text-neutral-text-muted flex gap-2 items-center">
+                                        <Phone className="h-3 w-3" /> Phone Number
+                                    </Label>
+                                    <Input
+                                        name="phone"
+                                        placeholder="+91 -- --- ----"
+                                        required
+                                        className="h-11 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold font-bold"
+                                    />
+                                </div>
 
-                                {view === "verify-otp" && (
-                                    <div className="space-y-1">
-                                        <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Verification Code</Label>
-                                        <Input
-                                            placeholder="000000"
-                                            required
-                                            value={otp}
-                                            onChange={(e) => setOtp(e.target.value)}
-                                            className="h-11 bg-neutral-bg-subtle border-0 rounded-xl text-center text-lg font-bold tracking-[0.5em]"
-                                        />
-                                    </div>
-                                )}
+                                <div className="space-y-1.5">
+                                    <Label className="text-[10px] font-bold uppercase text-neutral-text-muted flex gap-2 items-center">
+                                        <Mail className="h-3 w-3" /> Email Address
+                                    </Label>
+                                    <Input
+                                        name="email"
+                                        type="email"
+                                        placeholder="you@company.com"
+                                        required
+                                        className="h-11 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold font-bold"
+                                    />
+                                </div>
 
-                                {view === "new-password" && (
-                                    <div className="space-y-1">
-                                        <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">New Password</Label>
-                                        <Input
-                                            type="password"
-                                            placeholder="••••••••"
-                                            required
-                                            value={newPassword}
-                                            onChange={(e) => setNewPassword(e.target.value)}
-                                            className="h-11 bg-neutral-bg-subtle border-0 rounded-xl font-bold tracking-widest"
-                                        />
-                                    </div>
-                                )}
-
-                                {(view === "login" || view === "register") && (
-                                    <div className="space-y-1">
-                                        <div className="flex justify-between items-center">
-                                            <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Password</Label>
-                                            {view === "login" && (
-                                                <button
-                                                    type="button"
-                                                    onClick={() => setView("forgot-password")}
-                                                    className="text-[9px] font-bold uppercase text-brand-gold hover:underline"
-                                                >
-                                                    Forgot?
-                                                </button>
-                                            )}
-                                        </div>
-                                        <Input name="password" type="password" placeholder="••••••••" required className="h-11 bg-neutral-bg-subtle border-0 rounded-xl" />
-                                    </div>
-                                )}
+                                <div className="space-y-1.5">
+                                    <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Interested In</Label>
+                                    <Select name="course" required>
+                                        <SelectTrigger className="h-11 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold font-bold text-left">
+                                            <SelectValue placeholder="Select Specialization" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="cams">CAMS Certification</SelectItem>
+                                            <SelectItem value="cgss">CGSS Certification</SelectItem>
+                                            <SelectItem value="ccm">CCM (Global Compliance)</SelectItem>
+                                            <SelectItem value="aml-specialist">AML Specialist</SelectItem>
+                                            <SelectItem value="sanctions-specialist">Sanctions Specialist</SelectItem>
+                                            <SelectItem value="regulatory-specialist">Regulatory Specialist</SelectItem>
+                                            <SelectItem value="corporate-training">Corporate Training</SelectItem>
+                                            <SelectItem value="other">Other Inquiry</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
 
                                 <Button
                                     type="submit"
-                                    className="w-full bg-brand-navy hover:bg-brand-navy-dark text-white font-black py-7 text-base rounded-2xl shadow-xl transition-all hover:scale-[1.02] flex gap-2"
+                                    className="w-full bg-brand-navy hover:bg-brand-navy-dark text-white font-black py-7 text-base rounded-2xl shadow-xl transition-all hover:scale-[1.02] flex gap-2 mt-2"
                                     disabled={loading}
                                 >
                                     {loading ? (
                                         <Loader2 className="h-5 w-5 animate-spin" />
                                     ) : (
                                         <>
-                                            {view === "register" ? "Generate Access" : view === "login" ? "Enter Dashboard" : view === "forgot-password" ? "Send Code" : view === "verify-otp" ? "Verify Code" : "Update Password"}
-                                            <ArrowRight className="h-5 w-5" />
+                                            Get Exclusive Updates <ArrowRight className="h-5 w-5" />
                                         </>
                                     )}
                                 </Button>
 
-                                {view !== "verify-otp" && view !== "new-password" && (
-                                    <div className="space-y-4 pt-2">
-                                        <div className="relative">
-                                            <Separator className="bg-neutral-border/50" />
-                                            <span className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-3 text-[10px] font-black text-neutral-text-muted">OR</span>
-                                        </div>
-
-                                        <Button
-                                            type="button"
-                                            variant="outline"
-                                            onClick={handleGoogleSignIn}
-                                            disabled={googleLoading}
-                                            className="w-full h-11 border-neutral-border/50 rounded-xl flex gap-3 text-xs font-bold"
-                                        >
-                                            {googleLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <><Chrome className="h-4 w-4 text-red-500" /> Continue with Google</>}
-                                        </Button>
-                                    </div>
-                                )}
-
-                                <div className="pt-2">
-                                    <div className="text-center">
-                                        {view === "forgot-password" || view === "verify-otp" || view === "new-password" ? (
-                                            <button type="button" onClick={() => setView("login")} className="text-brand-navy font-bold text-xs flex items-center justify-center gap-1 w-full hover:underline">
-                                                <ArrowLeft className="h-3 w-3" /> Back to Sign In
-                                            </button>
-                                        ) : (
-                                            <button
-                                                type="button"
-                                                onClick={() => setView(view === "register" ? "login" : "register")}
-                                                className="text-brand-navy font-bold text-xs hover:underline"
-                                            >
-                                                {view === "register" ? "Already a student? Log In" : "New specialist? Register Now"}
-                                            </button>
-                                        )}
-                                    </div>
+                                <div className="pt-2 text-center">
+                                    <button
+                                        type="button"
+                                        onClick={() => setOpen(false)}
+                                        className="text-[10px] font-bold uppercase text-neutral-text-muted/60 hover:text-brand-navy transition-colors tracking-widest"
+                                    >
+                                        I'll explore first
+                                    </button>
                                 </div>
                             </form>
                         </div>
