@@ -62,7 +62,7 @@ export function CourseHero({ course }: CourseHeroProps) {
                   source={`course_${course.slug}_hero`}
                   variant="outline"
                   size="lg"
-                  className="w-full sm:w-auto bg-white/5 backdrop-blur-md border border-white/20 text-white hover:bg-white/10 px-8 py-6 text-lg font-bold rounded-full"
+                  className="w-full sm:w-auto bg-white/5 backdrop-blur-md border border-white/20 text-white hover:bg-white/10 hover:text-white px-8 py-6 text-lg font-bold rounded-full transition-colors"
                 />
               </div>
 

@@ -21,7 +21,7 @@ export function CourseCard({ course }: CourseCardProps) {
           <div className="absolute top-0 right-0 w-64 h-64 bg-brand-gold/10 blur-[80px] rounded-full -mr-32 -mt-32 pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-blue-500/10 blur-[60px] rounded-full -ml-24 -mb-24 pointer-events-none" />
 
-          <div className="relative w-full h-full shadow-[0_20px_50px_rgba(0,0,0,0.5)] group-hover:shadow-[0_40px_80px_rgba(0,0,0,0.8)] transition-all duration-700 rounded-lg overflow-hidden group-hover:scale-105 group-hover:-rotate-1">
+          <div className="relative w-full h-full shadow-[0_20px_50px_rgba(0,0,0,0.5)] group-hover:shadow-[0_40px_80px_rgba(0,0,0,0.8)] transition-all duration-700 rounded-lg overflow-hidden">
             <CourseImage
               src={course.imageUrl}
               alt={course.title}
