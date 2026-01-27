@@ -5,14 +5,14 @@ import { Phone, Mail, MapPin } from "lucide-react"
 import { Course } from "@/lib/types"
 
 interface CGSSCustomContentProps {
-    course: Course
+  course: Course
 }
 
 export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
-    return (
-        <div className="cgss-custom-wrapper">
-            <style dangerouslySetInnerHTML={{
-                __html: `
+  return (
+    <div className="cgss-custom-wrapper">
+      <style dangerouslySetInnerHTML={{
+        __html: `
         .cgss-custom-wrapper {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
           line-height: 1.6;
@@ -358,249 +358,252 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
         }
       ` }} />
 
-            {/* Program Overview Section */}
-            <section id="overview" className="cgss-section">
-                <div className="cgss-container">
-                    <h2 className="cgss-section-title">ACAMS CGSS Certification Training MENA</h2>
-                    <p className="cgss-section-subtitle">The premier sanctions compliance certification for financial crime professionals in the MENA region</p>
+      {/* Training Schedule */}
+      <section id="schedule" className="cgss-section cgss-schedule-section">
+        <div className="cgss-container">
+          <h2 className="cgss-section-title">Flexible CGSS Training Schedule Options across the globe</h2>
+          <p className="cgss-section-subtitle">Choose the format that fits your professional schedule</p>
 
-                    <div className="cgss-overview-grid">
-                        <article className="cgss-overview-card">
-                            <h3>What is CGSS?</h3>
-                            <p>The <strong>Certified Global Sanctions Specialist (CGSS)</strong> is ACAMS&apos; flagship certification for sanctions compliance professionals. This comprehensive training covers UN, OFAC, EU, and UK sanctions frameworks, screening technologies, due diligence procedures, and investigation techniques essential for banking, finance, and trade compliance roles.</p>
-                        </article>
+          <div className="cgss-schedule-grid">
+            <article className="cgss-schedule-card">
+              <h3>📅 Weekday Batch</h3>
+              <div className="cgss-schedule-details">
+                <p><strong>Days:</strong> Mon – Thu</p>
+                <p><strong>Time:</strong> 5:00 PM – 9:00 PM (Dubai Time)</p>
+                <p><strong>Duration:</strong> 10 sessions × 4 hours = 40 hours</p>
+                <p><strong>Ideal for:</strong> Working professionals</p>
+              </div>
+              <span className="cgss-schedule-badge">Most Popular</span>
+            </article>
 
-                        <article className="cgss-overview-card">
-                            <h3>Why CGSS Matters</h3>
-                            <p>With global sanctions enforcement increasing and penalties reaching billions of dollars, organizations need certified specialists who understand complex sanctions regimes. CGSS certification demonstrates expertise in sanctions compliance, risk management, and regulatory requirements demanded by employers and regulators across the Middle East.</p>
-                        </article>
+            <article className="cgss-schedule-card">
+              <h3>📅 Weekend Batch</h3>
+              <div className="cgss-schedule-details">
+                <p><strong>Days:</strong> Sat & Sun</p>
+                <p><strong>Time:</strong> 9:00 AM – 1:00 PM (Dubai Time)</p>
+                <p><strong>Duration:</strong> 10 sessions × 4 hours = 40 hours</p>
+                <p><strong>Ideal for:</strong> Perfect for weekend learners</p>
+              </div>
+              <span className="cgss-schedule-badge">Weekend Intensive</span>
+            </article>
 
-                        <article className="cgss-overview-card">
-                            <h3>Job-Ready Skills</h3>
-                            <p>This practical, hands-on program builds real-world capability in sanctions screening, KYC due diligence, beneficial ownership verification, trade-based evasion detection, payment screening, and regulatory reporting. Learn from actual enforcement cases and apply techniques immediately in your compliance role.</p>
-                        </article>
-                    </div>
-                </div>
-            </section>
+            <article className="cgss-schedule-card">
+              <h3>🏢 Corporate / In-House</h3>
+              <div className="cgss-schedule-details">
+                <p><strong>Format:</strong> Customized schedule and delivery</p>
+                <p><strong>Duration:</strong> Concise 2–4 day format</p>
+                <p><strong>Ideal for:</strong> Based on organizational requirements</p>
+              </div>
+              <span className="cgss-schedule-badge">Custom Solution</span>
+            </article>
+          </div>
+        </div>
+      </section>
 
-            {/* Learning Outcomes */}
-            <section id="outcomes" className="cgss-section">
-                <div className="cgss-container">
-                    <h2 className="cgss-section-title">What You Will Master in This CGSS Training</h2>
-                    <p className="cgss-section-subtitle">Comprehensive sanctions compliance skills for banking, finance, and trade professionals</p>
+      {/* Program Overview Section */}
+      <section id="overview" className="cgss-section">
+        <div className="cgss-container">
+          <h2 className="cgss-section-title">ACAMS CGSS Certification Training across the globe</h2>
+          <p className="cgss-section-subtitle">The premier sanctions compliance certification for financial crime professionals across the globe</p>
 
-                    <div className="cgss-outcomes-grid">
-                        <div className="cgss-outcome-item">
-                            <div className="cgss-outcome-icon">1</div>
-                            <div className="cgss-outcome-text"><strong>Navigate Global Sanctions Regimes:</strong> Master OFAC, EU, UN, UK sanctions frameworks with real-world case studies from banking, trade finance, and correspondent banking sectors</div>
-                        </div>
+          <div className="cgss-overview-grid">
+            <article className="cgss-overview-card">
+              <h3>What is CGSS?</h3>
+              <p>The <strong>Certified Global Sanctions Specialist (CGSS)</strong> is ACAMS&apos; flagship certification for sanctions compliance professionals. This comprehensive training covers UN, OFAC, EU, and UK sanctions frameworks, screening technologies, due diligence procedures, and investigation techniques essential for banking, finance, and trade compliance roles.</p>
+            </article>
 
-                        <div className="cgss-outcome-item">
-                            <div className="cgss-outcome-icon">2</div>
-                            <div className="cgss-outcome-text"><strong>Build Compliance Programs:</strong> Design and assess risk-based sanctions compliance programs including governance structures, policies, procedures, and internal controls</div>
-                        </div>
+            <article className="cgss-overview-card">
+              <h3>Why CGSS Matters</h3>
+              <p>With global sanctions enforcement increasing and penalties reaching billions of dollars, organizations need certified specialists who understand complex sanctions regimes. CGSS certification demonstrates expertise in sanctions compliance, risk management, and regulatory requirements demanded by employers and regulators across the globe.</p>
+            </article>
 
-                        <div className="cgss-outcome-item">
-                            <div className="cgss-outcome-icon">3</div>
-                            <div className="cgss-outcome-text"><strong>Detect Sanctions Evasion:</strong> Identify trade-based money laundering, maritime sanctions evasion, beneficial ownership concealment, and payment manipulation schemes</div>
-                        </div>
+            <article className="cgss-overview-card">
+              <h3>Job-Ready Skills</h3>
+              <p>This practical, hands-on program builds real-world capability in sanctions screening, KYC due diligence, beneficial ownership verification, trade-based evasion detection, payment screening, and regulatory reporting. Learn from actual enforcement cases and apply techniques immediately in your compliance role.</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-                        <div className="cgss-outcome-item">
-                            <div className="cgss-outcome-icon">4</div>
-                            <div className="cgss-outcome-text"><strong>Perform Due Diligence & Screening:</strong> Conduct name screening, payment screening, KYC procedures, beneficial ownership verification, and manage false positives effectively</div>
-                        </div>
+      {/* Learning Outcomes */}
+      <section id="outcomes" className="cgss-section">
+        <div className="cgss-container">
+          <h2 className="cgss-section-title">What You Will Master in This CGSS Training</h2>
+          <p className="cgss-section-subtitle">Comprehensive sanctions compliance skills for banking, finance, and trade professionals</p>
 
-                        <div className="cgss-outcome-item">
-                            <div className="cgss-outcome-icon">5</div>
-                            <div className="cgss-outcome-text"><strong>Conduct Investigations:</strong> Execute sanctions investigations, asset freeze procedures, regulatory reporting, escalation protocols, and licensing requirements</div>
-                        </div>
+          <div className="cgss-outcomes-grid">
+            <div className="cgss-outcome-item">
+              <div className="cgss-outcome-icon">1</div>
+              <div className="cgss-outcome-text"><strong>Navigate Global Sanctions Regimes:</strong> Master OFAC, EU, UN, UK sanctions frameworks with real-world case studies from banking, trade finance, and correspondent banking sectors</div>
+            </div>
 
-                        <div className="cgss-outcome-item">
-                            <div className="cgss-outcome-icon">6</div>
-                            <div className="cgss-outcome-text"><strong>Pass CGSS Exam:</strong> Prepare confidently with exam strategies, practice questions, time management techniques, and study guide navigation for first-attempt success</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <div className="cgss-outcome-item">
+              <div className="cgss-outcome-icon">2</div>
+              <div className="cgss-outcome-text"><strong>Build Compliance Programs:</strong> Design and assess risk-based sanctions compliance programs including governance structures, policies, procedures, and internal controls</div>
+            </div>
 
-            {/* Training Schedule */}
-            <section id="schedule" className="cgss-section cgss-schedule-section">
-                <div className="cgss-container">
-                    <h2 className="cgss-section-title">Flexible CGSS Training Schedule Options in MENA</h2>
-                    <p className="cgss-section-subtitle">Choose the format that fits your professional schedule</p>
+            <div className="cgss-outcome-item">
+              <div className="cgss-outcome-icon">3</div>
+              <div className="cgss-outcome-text"><strong>Detect Sanctions Evasion:</strong> Identify trade-based money laundering, maritime sanctions evasion, beneficial ownership concealment, and payment manipulation schemes</div>
+            </div>
 
-                    <div className="cgss-schedule-grid">
-                        <article className="cgss-schedule-card">
-                            <h3>📅 Weekday Batch</h3>
-                            <div className="cgss-schedule-details">
-                                <p><strong>Days:</strong> Mon – Thu</p>
-                                <p><strong>Time:</strong> 5:00 PM – 9:00 PM (Dubai Time)</p>
-                                <p><strong>Duration:</strong> 10 sessions × 4 hours = 40 hours</p>
-                                <p><strong>Ideal for:</strong> Working professionals</p>
-                            </div>
-                            <span className="cgss-schedule-badge">Most Popular</span>
-                        </article>
+            <div className="cgss-outcome-item">
+              <div className="cgss-outcome-icon">4</div>
+              <div className="cgss-outcome-text"><strong>Perform Due Diligence & Screening:</strong> Conduct name screening, payment screening, KYC procedures, beneficial ownership verification, and manage false positives effectively</div>
+            </div>
 
-                        <article className="cgss-schedule-card">
-                            <h3>📅 Weekend Batch</h3>
-                            <div className="cgss-schedule-details">
-                                <p><strong>Days:</strong> Sat & Sun</p>
-                                <p><strong>Time:</strong> 9:00 AM – 1:00 PM (Dubai Time)</p>
-                                <p><strong>Duration:</strong> 10 sessions × 4 hours = 40 hours</p>
-                                <p><strong>Ideal for:</strong> Perfect for weekend learners</p>
-                            </div>
-                            <span className="cgss-schedule-badge">Weekend Intensive</span>
-                        </article>
+            <div className="cgss-outcome-item">
+              <div className="cgss-outcome-icon">5</div>
+              <div className="cgss-outcome-text"><strong>Conduct Investigations:</strong> Execute sanctions investigations, asset freeze procedures, regulatory reporting, escalation protocols, and licensing requirements</div>
+            </div>
 
-                        <article className="cgss-schedule-card">
-                            <h3>🏢 Corporate / In-House</h3>
-                            <div className="cgss-schedule-details">
-                                <p><strong>Format:</strong> Customized schedule and delivery</p>
-                                <p><strong>Duration:</strong> Concise 2–4 day format</p>
-                                <p><strong>Ideal for:</strong> Based on organizational requirements</p>
-                            </div>
-                            <span className="cgss-schedule-badge">Custom Solution</span>
-                        </article>
-                    </div>
-                </div>
-            </section>
+            <div className="cgss-outcome-item">
+              <div className="cgss-outcome-icon">6</div>
+              <div className="cgss-outcome-text"><strong>Pass CGSS Exam:</strong> Prepare confidently with exam strategies, practice questions, time management techniques, and study guide navigation for first-attempt success</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            {/* Who Should Attend */}
-            <section id="audience" className="cgss-section cgss-audience-section">
-                <div className="cgss-container">
-                    <h2 className="cgss-section-title">Who Should Attend CGSS Training?</h2>
-                    <p className="cgss-section-subtitle">This certification is essential for compliance, AML, KYC, and risk professionals across financial and non-financial sectors</p>
+      {/* Training Schedule */}
 
-                    <div className="cgss-audience-grid">
-                        <article className="cgss-audience-category">
-                            <h3>🏦 Financial Sector Professionals</h3>
-                            <ul className="cgss-role-list">
-                                <li><strong>Sanctions Compliance Officers</strong> and Sanctions Analysts</li>
-                                <li><strong>AML Investigators</strong>, Transaction Monitoring Analysts, FIU Staff</li>
-                                <li><strong>MLRO / Deputy MLRO</strong> (Money Laundering Reporting Officers)</li>
-                                <li><strong>KYC / CDD / EDD Teams</strong> performing customer due diligence</li>
-                                <li><strong>Correspondent Banking</strong> and Payments Operations staff</li>
-                                <li><strong>Trade Finance, Treasury, FX</strong> and Remittance Operations</li>
-                                <li><strong>Internal Audit</strong> and Compliance Testing Teams</li>
-                                <li><strong>Risk Management</strong> and Compliance Officers in banks</li>
-                            </ul>
-                        </article>
 
-                        <article className="cgss-audience-category">
-                            <h3>🏢 Non-Financial Sector Professionals</h3>
-                            <ul className="cgss-role-list">
-                                <li><strong>Export / Import Compliance Officers</strong> in trading companies</li>
-                                <li><strong>Shipping & Logistics Compliance</strong> Professionals</li>
-                                <li><strong>DPMS Sector Compliance</strong> (Dealers in Precious Metals & Stones)</li>
-                                <li><strong>Corporate Legal, Risk & Governance</strong> Professionals</li>
-                                <li><strong>Compliance Technology</strong>, Screening & RegTech teams</li>
-                                <li><strong>Free Zone Compliance Officers</strong> in MENA free zones</li>
-                                <li><strong>Government & Regulatory Affairs</strong> Specialists</li>
-                                <li><strong>Consultants & Advisory Firms</strong> serving compliance clients</li>
-                            </ul>
-                        </article>
-                    </div>
-                </div>
-            </section>
+      {/* Who Should Attend */}
+      <section id="audience" className="cgss-section cgss-audience-section">
+        <div className="cgss-container">
+          <h2 className="cgss-section-title">Who Should Attend CGSS Training?</h2>
+          <p className="cgss-section-subtitle">This certification is essential for compliance, AML, KYC, and risk professionals across financial and Designated Non-Financial Businesses and Professions (DNFBPs)</p>
 
-            {/* Why Edu-Dubai */}
-            <section id="benefits" className="cgss-section">
-                <div className="cgss-container">
-                    <h2 className="cgss-section-title">Why Choose Edu-Dubai for CGSS Training?</h2>
-                    <p className="cgss-section-subtitle">Leading sanctions compliance training provider in the MENA region</p>
+          <div className="cgss-audience-grid">
+            <article className="cgss-audience-category">
+              <h3>🏦 Financial Sector Professionals</h3>
+              <ul className="cgss-role-list">
+                <li><strong>Sanctions Compliance Officers</strong> and Sanctions Analysts</li>
+                <li><strong>AML Investigators</strong>, Transaction Monitoring Analysts, FIU Staff</li>
+                <li><strong>MLRO / Deputy MLRO</strong> (Money Laundering Reporting Officers)</li>
+                <li><strong>KYC / CDD / EDD Teams</strong> performing customer due diligence</li>
+                <li><strong>Correspondent Banking</strong> and Payments Operations staff</li>
+                <li><strong>Trade Finance, Treasury, FX</strong> and Remittance Operations</li>
+                <li><strong>Internal Audit</strong> and Compliance Testing Teams</li>
+                <li><strong>Risk Management</strong> and Compliance Officers in banks</li>
+              </ul>
+            </article>
 
-                    <div className="cgss-benefits-grid">
-                        <article className="cgss-benefit-card">
-                            <h4><span className="cgss-benefit-icon">✓</span> Expert Instructors</h4>
-                            <p>Our trainers aren&apos;t just teachers; they are senior compliance executives with direct experience in sanctions screening and investigations at major international banks.</p>
-                        </article>
+            <article className="cgss-audience-category">
+              <h3>🏢 Non-Financial Sector Professionals</h3>
+              <ul className="cgss-role-list">
+                <li><strong>Export / Import Compliance Officers</strong> in trading companies</li>
+                <li><strong>Shipping & Logistics Compliance</strong> Professionals</li>
+                <li><strong>DPMS Sector Compliance</strong> (Dealers in Precious Metals & Stones)</li>
+                <li><strong>Corporate Legal, Risk & Governance</strong> Professionals</li>
+                <li><strong>Compliance Technology</strong>, Screening & RegTech teams</li>
+                <li><strong>Free Zone Compliance Officers</strong> in free zones across the globe</li>
+                <li><strong>Government & Regulatory Affairs</strong> Specialists</li>
+                <li><strong>Consultants & Advisory Firms</strong> serving compliance clients</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
 
-                        <article className="cgss-benefit-card">
-                            <h4><span className="cgss-benefit-icon">✓</span> Complete Materials</h4>
-                            <p>Receive ACAMS CGSS Study Guide, scenario-based practice quizzes, 100-question practice exam, and comprehensive reference materials</p>
-                        </article>
+      {/* Why Edu-Dubai */}
+      <section id="benefits" className="cgss-section">
+        <div className="cgss-container">
+          <h2 className="cgss-section-title">Why Choose Edu-Dubai for CGSS Training?</h2>
+          <p className="cgss-section-subtitle">Leading sanctions compliance training provider across the globe</p>
 
-                        <article className="cgss-benefit-card">
-                            <h4><span className="cgss-benefit-icon">✓</span> Real Case Studies</h4>
-                            <p>Learn from actual enforcement actions including HSBC, BNP Paribas, Standard Chartered cases with detailed analysis of compliance failures and lessons learned</p>
-                        </article>
+          <div className="cgss-benefits-grid">
+            <article className="cgss-benefit-card">
+              <h4><span className="cgss-benefit-icon">✓</span> Expert Instructors</h4>
+              <p>Our trainers aren&apos;t just teachers; they are senior compliance executives with direct experience in sanctions screening and investigations at major international banks.</p>
+            </article>
 
-                        <article className="cgss-benefit-card">
-                            <h4><span className="cgss-benefit-icon">✓</span> Small Class Sizes</h4>
-                            <p>Limited to 25 participants per batch ensuring personalized attention, interactive discussions, and direct instructor engagement throughout the program</p>
-                        </article>
+            <article className="cgss-benefit-card">
+              <h4><span className="cgss-benefit-icon">✓</span> Complete Materials</h4>
+              <p>Receive ACAMS CGSS Study Guide, scenario-based practice quizzes, 100-question practice exam, and comprehensive reference materials</p>
+            </article>
 
-                        <article className="cgss-benefit-card">
-                            <h4><span className="cgss-benefit-icon">✓</span> Flexible Delivery</h4>
-                            <p>Choose from weekday evening, weekend, virtual online, or customized in-house corporate training formats to match your schedule and learning preferences</p>
-                        </article>
+            <article className="cgss-benefit-card">
+              <h4><span className="cgss-benefit-icon">✓</span> Real Case Studies</h4>
+              <p>Learn from actual enforcement actions including HSBC, BNP Paribas, Standard Chartered cases with detailed analysis of compliance failures and lessons learned</p>
+            </article>
 
-                        <article className="cgss-benefit-card">
-                            <h4><span className="cgss-benefit-icon">✓</span> Post-Training Support</h4>
-                            <p>Access 90-day post-training support including exam preparation guidance, study tips, and instructor consultation to ensure your certification success</p>
-                        </article>
+            <article className="cgss-benefit-card">
+              <h4><span className="cgss-benefit-icon">✓</span> Small Class Sizes</h4>
+              <p>Limited to 15 participants per batch ensuring personalized attention, interactive discussions, and direct instructor engagement throughout the program</p>
+            </article>
 
-                        <article className="cgss-benefit-card">
-                            <h4><span className="cgss-benefit-icon">✓</span> Proven Track Record</h4>
-                            <p>Join 500+ certified professionals trained by Edu-Dubai with 92% first-attempt pass rate and strong career advancement outcomes</p>
-                        </article>
+            <article className="cgss-benefit-card">
+              <h4><span className="cgss-benefit-icon">✓</span> Flexible Delivery</h4>
+              <p>Choose from weekday evening, weekend, virtual online, or customized in-house corporate training formats to match your schedule and learning preferences</p>
+            </article>
 
-                        <article className="cgss-benefit-card">
-                            <h4><span className="cgss-benefit-icon">✓</span> Networking Opportunities</h4>
-                            <p>Connect with compliance professionals from leading MENA banks, financial institutions, and multinational corporations in the region</p>
-                        </article>
-                    </div>
-                </div>
-            </section>
+            <article className="cgss-benefit-card">
+              <h4><span className="cgss-benefit-icon">✓</span> Post-Training Support</h4>
+              <p>Access 90-day post-training support including exam preparation guidance, study tips, and instructor consultation to ensure your certification success</p>
+            </article>
 
-            {/* Exam Information */}
-            <section id="exam" className="cgss-section cgss-exam-section">
-                <div className="cgss-container">
-                    <h2 className="cgss-section-title">CGSS Certification Exam Details</h2>
-                    <p className="cgss-section-subtitle">Everything you need to know about the ACAMS CGSS certification exam</p>
+            <article className="cgss-benefit-card">
+              <h4><span className="cgss-benefit-icon">✓</span> Proven Track Record</h4>
+              <p>Join 500+ certified professionals trained by Edu-Dubai with 92% first-attempt pass rate and strong career advancement outcomes</p>
+            </article>
 
-                    <div className="cgss-exam-grid">
-                        <div className="cgss-exam-stat">
-                            <div className="cgss-exam-stat-number">100</div>
-                            <div className="cgss-exam-stat-label">Multiple Choice Questions</div>
-                        </div>
+            <article className="cgss-benefit-card">
+              <h4><span className="cgss-benefit-icon">✓</span> Networking Opportunities</h4>
+              <p>Connect with compliance professionals from leading banks, financial institutions, and multinational corporations across the globe</p>
+            </article>
+          </div>
+        </div>
+      </section>
 
-                        <div className="cgss-exam-stat">
-                            <div className="cgss-exam-stat-number">150</div>
-                            <div className="cgss-exam-stat-label">Minutes Duration</div>
-                        </div>
+      {/* Exam Information */}
+      <section id="exam" className="cgss-section cgss-exam-section">
+        <div className="cgss-container">
+          <h2 className="cgss-section-title">CGSS Certification Exam Details</h2>
+          <p className="cgss-section-subtitle">Everything you need to know about the ACAMS CGSS certification exam</p>
 
-                        <div className="cgss-exam-stat">
-                            <div className="cgss-exam-stat-number">75%</div>
-                            <div className="cgss-exam-stat-label">Passing Score Required</div>
-                        </div>
+          <div className="cgss-exam-grid">
+            <div className="cgss-exam-stat">
+              <div className="cgss-exam-stat-number">100</div>
+              <div className="cgss-exam-stat-label">Multiple Choice Questions</div>
+            </div>
 
-                        <div className="cgss-exam-stat">
-                            <div className="cgss-exam-stat-number">Online</div>
-                            <div className="cgss-exam-stat-label">Proctored Exam Format</div>
-                        </div>
-                    </div>
+            <div className="cgss-exam-stat">
+              <div className="cgss-exam-stat-number">150</div>
+              <div className="cgss-exam-stat-label">Minutes Duration</div>
+            </div>
 
-                    <div className="cgss-exam-requirements">
-                        <h3>Exam Eligibility & Requirements</h3>
-                        <ul>
-                            <li><strong>No Prerequisites:</strong> Open to all professionals seeking sanctions compliance expertise</li>
-                            <li><strong>Study Materials:</strong> ACAMS CGSS Study Guide included in training</li>
-                            <li><strong>Exam Registration:</strong> Register directly through ACAMS website after completing training</li>
-                            <li><strong>Exam Fee:</strong> USD $795 for ACAMS members | USD $995 for non-members (separate from training fee)</li>
-                            <li><strong>Validity:</strong> 180 days from registration to schedule and complete your exam</li>
-                            <li><strong>Recertification:</strong> 30 ACAMS credits every 3 years to maintain certification</li>
-                            <li><strong>Language:</strong> Exam available in English only</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+            <div className="cgss-exam-stat">
+              <div className="cgss-exam-stat-number">75%</div>
+              <div className="cgss-exam-stat-label">Passing Score Required</div>
+            </div>
 
-            {/* FAQ Section */}
+            <div className="cgss-exam-stat">
+              <div className="cgss-exam-stat-number">Online</div>
+              <div className="cgss-exam-stat-label">Proctored Exam Format</div>
+            </div>
+          </div>
+
+          <div className="cgss-exam-requirements">
+            <h3>Exam Eligibility & Requirements</h3>
+            <ul>
+              <li><strong>No Prerequisites:</strong> Open to all professionals seeking sanctions compliance expertise</li>
+              <li><strong>Study Materials:</strong> ACAMS CGSS Study Guide included in training</li>
+              <li><strong>Exam Registration:</strong> Register directly through ACAMS website after completing training</li>
+              <li><strong>Exam Fee:</strong> USD $795 for ACAMS members | USD $995 for non-members (separate from training fee)</li>
+              <li><strong>Validity:</strong> 180 days from registration to schedule and complete your exam</li>
+              <li><strong>Recertification:</strong> 30 ACAMS credits every 3 years to maintain certification</li>
+              <li><strong>Language:</strong> Exam available in English only</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section
             <section id="faq" className="cgss-section cgss-faq-section">
                 <div className="cgss-container">
                     <h2 className="cgss-section-title">Frequently Asked Questions</h2>
-                    <p className="cgss-section-subtitle">Common questions about CGSS certification training in MENA</p>
+                    <p className="cgss-section-subtitle">Common questions about CGSS certification training across the globe</p>
 
                     <div className="cgss-faq-item">
                         <div className="cgss-faq-question">What is the difference between CGSS and CAMS certification?</div>
@@ -608,8 +611,8 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
                     </div>
 
                     <div className="cgss-faq-item">
-                        <div className="cgss-faq-question">Is CGSS certification recognized in the MENA region?</div>
-                        <div className="cgss-faq-answer">Yes, CGSS is highly valued by Central Banks, DFSA, ADGM, and major banks across the MENA region. Leading institutions actively seek CGSS-certified professionals for sanctions compliance roles.</div>
+                        <div className="cgss-faq-question">Is CGSS certification recognized across the globe?</div>
+                        <div className="cgss-faq-answer">Yes, CGSS is highly valued by Central Banks, DFSA, ADGM, and major banks across the globe. Leading institutions actively seek CGSS-certified professionals for sanctions compliance roles.</div>
                     </div>
 
                     <div className="cgss-faq-item">
@@ -624,7 +627,7 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
 
                     <div className="cgss-faq-item">
                         <div className="cgss-faq-question">Can I attend the training online or must it be in-person?</div>
-                        <div className="cgss-faq-answer">We offer both formats. Live virtual training via Zoom/Teams provides the same interactive experience as classroom training with real-time instructor interaction, breakout sessions, and Q&A. In-person training is available at our MENA training facilities. Both formats cover identical content and provide the same certification preparation.</div>
+                        <div className="cgss-faq-answer">We offer both formats. Live virtual training via Zoom/Teams provides the same interactive experience as classroom training with real-time instructor interaction, breakout sessions, and Q&A. In-person training is available at our global training facilities. Both formats cover identical content and provide the same certification preparation.</div>
                     </div>
 
                     <div className="cgss-faq-item">
@@ -643,6 +646,7 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
                     </div>
                 </div>
             </section>
-        </div>
-    )
+            */}
+    </div>
+  )
 }

@@ -32,6 +32,31 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
 
   return (
     <div className="course-custom-wrapper">
+      {/* Training Schedule */}
+      {course.deliverySchedules && (
+        <section id="schedule" className="course-section course-schedule-section">
+          <div className="course-container">
+            <h2 className="course-section-title">Flexible Training Schedule Options</h2>
+            <p className="course-section-subtitle">Choose the format that fits your professional schedule</p>
+
+            <div className="course-schedule-grid">
+              {course.deliverySchedules.map((schedule, idx) => (
+                <article className="course-schedule-card" key={idx}>
+                  <h3>{schedule.name}</h3>
+                  <div className="course-schedule-details">
+                    <p><strong>Days:</strong> {schedule.schedule}</p>
+                    <p><strong>Time:</strong> {schedule.duration}</p>
+                  </div>
+                  <span className="course-schedule-badge">
+                    {idx === 0 ? "Most Popular" : idx === 1 ? "Intensive" : "Custom Solution"}
+                  </span>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <style dangerouslySetInnerHTML={{
         __html: `
         .course-custom-wrapper {
@@ -379,6 +404,8 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
         }
       ` }} />
 
+
+
       {/* Program Overview Section */}
       <section id="overview" className="course-section">
         <div className="course-container">
@@ -420,31 +447,6 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
           </div>
         </div>
       </section>
-
-      {/* Training Schedule */}
-      {course.deliverySchedules && (
-        <section id="schedule" className="course-section course-schedule-section">
-          <div className="course-container">
-            <h2 className="course-section-title">Flexible Training Schedule Options</h2>
-            <p className="course-section-subtitle">Choose the format that fits your professional schedule</p>
-
-            <div className="course-schedule-grid">
-              {course.deliverySchedules.map((schedule, idx) => (
-                <article className="course-schedule-card" key={idx}>
-                  <h3>{schedule.name}</h3>
-                  <div className="course-schedule-details">
-                    <p><strong>Days:</strong> {schedule.schedule}</p>
-                    <p><strong>Time:</strong> {schedule.duration}</p>
-                  </div>
-                  <span className="course-schedule-badge">
-                    {idx === 0 ? "Most Popular" : idx === 1 ? "Intensive" : "Custom Solution"}
-                  </span>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Who Should Attend */}
       <section id="audience" className="course-section course-audience-section">
@@ -533,7 +535,7 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* FAQ Section
       <section id="faq" className="course-section course-faq-section">
         <div className="course-container">
           <h2 className="course-section-title">Frequently Asked Questions</h2>
@@ -547,6 +549,7 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
           ))}
         </div>
       </section>
+      */}
     </div>
   )
 }

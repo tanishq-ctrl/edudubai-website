@@ -27,7 +27,7 @@ export const courses: Course[] = [
       }
     ],
     level: "ADVANCED",
-    duration: 40,
+    duration: 100,
     priceUsd: 350,
     currency: "USD",
     outcomes: [
@@ -72,7 +72,7 @@ export const courses: Course[] = [
     },
     whyChooseUs: {
       title: "Why Choose Edu-Dubai?",
-      description: "While other institutes offer \"crash courses\" of just 30–32 hours, Edu-Dubai provides a full 40-Hour Flagship Program. This ensures you meet the strict 40 Eligibility Credits required by ACAMS to even register for the exam.",
+      description: "While other institutes offer \"crash courses\" of just 30–32 hours, Edu-Dubai provides a full 100-Hour Flagship Program. This ensures you meet the strict 40 Eligibility Credits required by ACAMS to even register for the exam.",
       points: [
         "Pass Guarantee: We offer free retraining in our next batch if you don't pass.",
         "AI-Driven Mock Exams: Practice with simulations that mimic the actual ACAMS exam environment.",
