@@ -72,7 +72,7 @@ export function LeadCaptureForm({ courseTitle, courseId, courseSlug }: LeadCaptu
                         </p>
                     </div>
                     <p className="text-sm text-slate-400">
-                        We've sent the session details and joining link to your email address.
+                        We&apos;ve sent the session details and joining link to your email address.
                         Please check your inbox (and spam folder).
                     </p>
                     <div className="pt-4 w-full">

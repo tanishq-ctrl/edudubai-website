@@ -512,7 +512,7 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
                     <div className="cgss-benefits-grid">
                         <article className="cgss-benefit-card">
                             <h4><span className="cgss-benefit-icon">✓</span> Expert Instructors</h4>
-                            <p>Learn from CGSS-certified professionals with 15+ years of real-world sanctions compliance experience in major international banks and financial institutions</p>
+                            <p>Our trainers aren&apos;t just teachers; they are senior compliance executives with direct experience in sanctions screening and investigations at major international banks.</p>
                         </article>
 
                         <article className="cgss-benefit-card">

@@ -96,7 +96,7 @@ export function PartnershipsSection() {
                                 </h4>
 
                                 <p className="text-neutral-text-muted mb-8 leading-relaxed flex-grow">
-                                    We partner with HOCK International to deliver the world's most effective CMA (Certified Management Accountant) preparation. By combining HOCK's comprehensive textbooks, videos, and exam software with our expert classroom instruction, we ensure high pass rates.
+                                    We partner with HOCK International to deliver the world&apos;s most effective CMA (Certified Management Accountant) preparation. By combining HOCK&apos;s comprehensive textbooks, videos, and exam software with our expert classroom instruction, we ensure high pass rates.
                                 </p>
 
                                 <div className="space-y-3 mb-8">
