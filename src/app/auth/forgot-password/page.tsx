@@ -258,16 +258,14 @@ export default function ForgotPasswordPage() {
                       </form>
                     )}
 
-                    {view !== "success" && (
-                      <div className="text-center pt-2">
-                        <Link
-                          href="/auth/login"
-                          className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-neutral-text-muted hover:text-brand-navy transition-all"
-                        >
-                          <ArrowLeft className="h-4 w-4" /> Return to Login
-                        </Link>
-                      </div>
-                    )}
+                    <div className="text-center pt-2">
+                      <Link
+                        href="/auth/login"
+                        className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-neutral-text-muted hover:text-brand-navy transition-all"
+                      >
+                        <ArrowLeft className="h-4 w-4" /> Return to Login
+                      </Link>
+                    </div>
                   </div>
                 )}
               </div>
