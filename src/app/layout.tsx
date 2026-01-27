@@ -80,6 +80,7 @@ export default function RootLayout({
         <AuthHandler />
         {/* <LeadFormPopup /> */}
         {/* Tawk.to Chat Widget */}
+        {/* Tawk.to Chat Widget
         <Script id="tawk-to" strategy="afterInteractive">
           {`
             var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -93,6 +94,7 @@ export default function RootLayout({
             })();
           `}
         </Script>
+        */}
       </body>
     </html>
   )
