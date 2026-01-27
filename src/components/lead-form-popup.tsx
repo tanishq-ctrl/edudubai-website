@@ -104,10 +104,10 @@ export function LeadFormPopup() {
                         </div>
                         <div className="space-y-2">
                             <h3 className="text-3xl font-black text-brand-navy tracking-tight uppercase">
-                                You're on the list
+                                You&apos;re on the list
                             </h3>
                             <p className="text-lg text-neutral-text-muted">
-                                Don&apos;t miss this opportunity to advance your career.ceive the latest certification updates and exam alerts in your inbox.
+                                Don&apos;t miss this opportunity to advance your career. You will receive the latest certification updates and exam alerts in your inbox.
                             </p>
                         </div>
                     </div>
@@ -152,7 +152,7 @@ export function LeadFormPopup() {
                                     Certification Insider
                                 </DialogTitle>
                                 <DialogDescription className="text-xs text-neutral-text-muted mt-2 font-medium">
-                                    Register now to get the complete course syllabus, exam guide, and free career consultation. It&apos;s fast and easy. on international professional certifications.
+                                    Register now to get the complete course syllabus, exam guide, and free career consultation. It&apos;s fast and easy.
                                 </DialogDescription>
                             </DialogHeader>
 
@@ -163,7 +163,7 @@ export function LeadFormPopup() {
                                     </Label>
                                     <Input
                                         name="name"
-                                        placeholder="We&apos;ll send the details to your email immediately."
+                                        placeholder="Enter your full name"
                                         required
                                         className="h-11 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold font-bold"
                                     />
@@ -233,7 +233,7 @@ export function LeadFormPopup() {
                                         onClick={() => setOpen(false)}
                                         className="text-[10px] font-bold uppercase text-neutral-text-muted/60 hover:text-brand-navy transition-colors tracking-widest"
                                     >
-                                        I'll explore first
+                                        I&apos;ll explore first
                                     </button>
                                 </div>
                             </form>
