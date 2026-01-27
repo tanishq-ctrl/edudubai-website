@@ -367,7 +367,7 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
                     <div className="cgss-overview-grid">
                         <article className="cgss-overview-card">
                             <h3>What is CGSS?</h3>
-                            <p>The <strong>Certified Global Sanctions Specialist (CGSS)</strong> is ACAMS' flagship certification for sanctions compliance professionals. This comprehensive training covers UN, OFAC, EU, and UK sanctions frameworks, screening technologies, due diligence procedures, and investigation techniques essential for banking, finance, and trade compliance roles.</p>
+                            <p>The <strong>Certified Global Sanctions Specialist (CGSS)</strong> is ACAMS&apos; flagship certification for sanctions compliance professionals. This comprehensive training covers UN, OFAC, EU, and UK sanctions frameworks, screening technologies, due diligence procedures, and investigation techniques essential for banking, finance, and trade compliance roles.</p>
                         </article>
 
                         <article className="cgss-overview-card">
@@ -639,7 +639,7 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
 
                     <div className="cgss-faq-item">
                         <div className="cgss-faq-question">Does Edu-Dubai offer corporate training for banks and financial institutions?</div>
-                        <div className="cgss-faq-answer">Yes, we provide customized in-house CGSS training for corporate clients. Programs can be tailored to your organization's specific sanctions compliance needs, delivered at your office or our facility, and scheduled to minimize business disruption. Contact us for volume pricing and custom curriculum options.</div>
+                        <div className="cgss-faq-answer">Yes, we provide customized in-house CGSS training for corporate clients. Programs can be tailored to your organization&apos;s specific sanctions compliance needs, delivered at your office or our facility, and scheduled to minimize business disruption. Contact us for volume pricing and custom curriculum options.</div>
                     </div>
                 </div>
             </section>
