@@ -201,14 +201,17 @@ export function LeadFormPopup() {
                                             <SelectValue placeholder="Select Specialization" />
                                         </SelectTrigger>
                                         <SelectContent>
-                                            <SelectItem value="cams">CAMS Certification</SelectItem>
-                                            <SelectItem value="cgss">CGSS Certification</SelectItem>
-                                            <SelectItem value="ccm">CCM (Global Compliance)</SelectItem>
-                                            <SelectItem value="aml-specialist">AML Specialist</SelectItem>
-                                            <SelectItem value="sanctions-specialist">Sanctions Specialist</SelectItem>
-                                            <SelectItem value="regulatory-specialist">Regulatory Specialist</SelectItem>
-                                            <SelectItem value="corporate-training">Corporate Training</SelectItem>
-                                            <SelectItem value="other">Other Inquiry</SelectItem>
+                                            <SelectItem value="cams">Certified Anti-Money Laundering Specialist (CAMS)</SelectItem>
+                                            <SelectItem value="cgss">Certified Global Sanctions Specialist (CGSS)</SelectItem>
+                                            <SelectItem value="ccm">Certified Compliance Manager (CCM)</SelectItem>
+                                            <SelectItem value="aml-specialist">Anti-Money Laundering Specialist (AMLS)</SelectItem>
+                                            <SelectItem value="sanctions-specialist">Sanctions Compliance Specialist (SCS)</SelectItem>
+                                            <SelectItem value="regulatory-specialist">Regulatory Compliance Specialist (RCS)</SelectItem>
+                                            <SelectItem value="fatca-crs-specialist">FATCA & CRS Specialist (FCS)</SelectItem>
+                                            <SelectItem value="trade-based-money-laundering">Trade Based Money Laundering (TBML)</SelectItem>
+                                            <SelectItem value="certified-management-accountant">Certified Management Accountant (CMA)</SelectItem>
+                                            <SelectItem value="corporate-training">Corporate Training Inquiry</SelectItem>
+                                            <SelectItem value="other">General Inquiry</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>
