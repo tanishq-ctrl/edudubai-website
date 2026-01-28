@@ -17,20 +17,20 @@ const privacyContent = {
     {
       title: "2. Information We Collect",
       content: [
-        "• Personal Information: Name, email address, phone number, mailing address, and other contact details provided when you register or fill out forms on our website.",
-        "• Payment Information: Credit/debit card details and transaction history when you make payments for our services.",
-        "• Technical Data: IP address, browser type, operating system, and browsing behaviour collected through cookies and similar technologies."
+        "• <strong>Personal Information:</strong> Name, email address, phone number, mailing address, and other contact details provided when you register or fill out forms on our website.",
+        "• <strong>Payment Information:</strong> Credit/debit card details and transaction history when you make payments for our services.",
+        "• <strong>Technical Data:</strong> IP address, browser type, operating system, and browsing behaviour collected through cookies and similar technologies."
       ],
     },
     {
       title: "3. Use of Cookies",
       content: [
         "Our website uses cookies to enhance your browsing experience. Cookies are small files stored on your device that help us understand your preferences and improve our services.",
-        "Purpose of Cookies:",
+        "<strong>Purpose of Cookies:</strong>",
         "• Remember your login details.",
         "• Analyze website traffic and usage patterns.",
         "• Customize content based on your interests.",
-        "Managing Cookies:",
+        "<strong>Managing Cookies:</strong>",
         "• You can choose to accept or decline cookies through your browser settings.",
         "• Disabling cookies may affect website functionality."
       ],
@@ -38,18 +38,18 @@ const privacyContent = {
     {
       title: "4. How We Use Your Information",
       content: [
-        "• To Provide Services: Process registrations, payments, and deliver educational content.",
-        "• Communication: Send notifications, updates, and respond to inquiries.",
-        "• Marketing: Share promotional materials, with your consent.",
-        "• Improvement: Analyze data to enhance our website and services."
+        "• <strong>To Provide Services:</strong> Process registrations, payments, and deliver educational content.",
+        "• <strong>Communication:</strong> Send notifications, updates, and respond to inquiries.",
+        "• <strong>Marketing:</strong> Share promotional materials, with your consent.",
+        "• <strong>Improvement:</strong> Analyze data to enhance our website and services."
       ],
     },
     {
       title: "5. Data Security",
       content: [
         "We implement appropriate security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction.",
-        "• Encryption: Sensitive data like payment information is encrypted during transmission.",
-        "• Access Control: Personal data is accessible only to authorized personnel who need it for designated purposes."
+        "• <strong>Encryption:</strong> Sensitive data like payment information is encrypted during transmission.",
+        "• <strong>Access Control:</strong> Personal data is accessible only to authorized personnel who need it for designated purposes."
       ],
     },
     {
@@ -82,8 +82,8 @@ const privacyContent = {
       title: "10. Changes to This Privacy Policy",
       content: [
         "We may update this Privacy Policy periodically to reflect changes in our practices or legal requirements.",
-        "• Notification of Changes: Updates will be posted on this page with the revised date.",
-        "• Effective Date: Changes become effective when posted."
+        "• <strong>Notification of Changes:</strong> Updates will be posted on this page with the revised date.",
+        "• <strong>Effective Date:</strong> Changes become effective when posted."
       ],
     },
     {

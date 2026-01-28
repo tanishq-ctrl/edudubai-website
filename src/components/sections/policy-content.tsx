@@ -20,9 +20,11 @@ export function PolicyContent({ sections }: PolicyContentProps) {
           <CardContent>
             <div className="space-y-3 text-neutral-text">
               {section.content.map((paragraph, pIndex) => (
-                <p key={pIndex} className="leading-relaxed">
-                  {paragraph}
-                </p>
+                <p
+                  key={pIndex}
+                  className="leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: paragraph }}
+                />
               ))}
             </div>
           </CardContent>

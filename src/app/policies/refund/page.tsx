@@ -8,45 +8,24 @@ const refundContent = {
   lastUpdated: "Last updated: January 2025",
   sections: [
     {
-      title: "Refund Eligibility",
+      title: "Training Delivery Fees",
       content: [
-        "Refunds are available under the following conditions:",
-        "• Request submitted within 7 days of enrollment",
-        "• Less than 20% of course content has been accessed",
-        "• Refund request submitted via email to training@edudubai.org",
-        "• No certification exam vouchers have been issued",
+        "<strong>Refunds and Cancellations for Edu Dubai Training delivery Fees:</strong>",
+        "• Cancellations made more than 7 days before the course start date are eligible for a full refund minus a <strong>non-refundable administrative fee of USD 50</strong>. The refund will be processed within 7 working days and credited to your bank account.",
+        "• Cancellations made within 7 days of the course start date are <strong>not eligible for a refund</strong>. However, you have the option to enroll in a similar course in the next available batch at no additional training fee.",
       ],
     },
     {
-      title: "Processing Time",
+      title: "Third-Party Certification Fees",
       content: [
-        "• Refund requests are reviewed within 2 business days",
-        "• Approved refunds are processed within 5-7 business days",
-        "• Refunds are credited to the original payment method",
-        "• Processing fees may apply as per payment provider terms",
+        "• All fees for third-party certification registrations are <strong>non-refundable</strong>. Once enrolled, <strong>cancellation or refund is not permitted</strong>.",
+        "• Rescheduling of certification exams may be subject to the policies of the third-party certification body. Any additional fees for rescheduling are your responsibility.",
       ],
     },
     {
-      title: "Non-Refundable Items",
+      title: "Course Cancellation by Edu Dubai",
       content: [
-        "The following are not eligible for refunds:",
-        "• Corporate training programs once commenced",
-        "• Customized or bespoke training solutions",
-        "• Certification exam fees paid to third-party organizations (e.g., ACAMS)",
-        "• Courses accessed beyond 20% completion",
-        "• Refund requests submitted after 7 days from enrollment",
-      ],
-    },
-    {
-      title: "Partial Refunds",
-      content: [
-        "In exceptional circumstances, partial refunds may be considered on a case-by-case basis. Contact our support team to discuss your situation.",
-      ],
-    },
-    {
-      title: "Course Transfers",
-      content: [
-        "Instead of a refund, you may request to transfer your enrollment to another course of equal or higher value. Transfer requests must be made within 7 days of enrollment.",
+        "• If we cancel a course, you will be offered a full refund or the option to enroll in a similar course. The refund will be processed within 7 working days and credited to your bank account.",
       ],
     },
   ],

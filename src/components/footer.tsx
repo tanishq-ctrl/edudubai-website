@@ -63,24 +63,25 @@ export function Footer() {
                   Corporate Training
                 </Link>
               </li>
-              <li>
-                <Link href="/policies" className="hover:text-brand-gold transition-colors">
-                  Policies
-                </Link>
-              </li>
+
             </ul>
           </div>
           <div>
-            <h3 className="font-semibold mb-4">Support</h3>
+            <h3 className="font-semibold text-brand-gold mb-4">Policies</h3>
             <ul className="space-y-2 text-sm text-white/80">
               <li>
-                <Link href="/help" className="hover:text-brand-gold transition-colors">
-                  Help Center
+                <Link href="/policies/privacy" className="hover:text-brand-gold transition-colors">
+                  Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/faq" className="hover:text-brand-gold transition-colors">
-                  FAQ
+                <Link href="/policies/terms" className="hover:text-brand-gold transition-colors">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/policies/refund" className="hover:text-brand-gold transition-colors">
+                  Refund Policy
                 </Link>
               </li>
             </ul>
