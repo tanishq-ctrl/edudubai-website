@@ -19,7 +19,7 @@ export function CourseHero({ course }: CourseHeroProps) {
   const whatsappMessage = `Hi, I'm interested in learning more about: ${course.title}`
 
   return (
-    <section className="relative w-full pt-28 pb-12 md:pt-32 md:pb-16 flex items-center bg-brand-navy overflow-hidden min-h-[500px] lg:min-h-[600px]">
+    <section className="relative w-full pt-24 pb-8 md:pt-28 md:pb-10 flex items-center bg-brand-navy overflow-hidden min-h-[500px] lg:min-h-[550px]">
       {/* Premium Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[#0A192F]" />
@@ -29,10 +29,10 @@ export function CourseHero({ course }: CourseHeroProps) {
       </div>
 
       <Container className="relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
 
           {/* Left Content */}
-          <div className="lg:col-span-7 space-y-6 md:space-y-8 animate-fade-up">
+          <div className="lg:col-span-7 space-y-5 animate-fade-up">
             <div className="flex flex-wrap items-center gap-3">
               <Badge className="bg-brand-gold text-brand-navy hover:bg-brand-gold-light border-0 px-4 py-1.5 font-bold shadow-lg shadow-brand-gold/20 tracking-wide uppercase text-[10px]">
                 {course.category.replace(/_/g, " ")}
@@ -44,7 +44,7 @@ export function CourseHero({ course }: CourseHeroProps) {
 
             <div className="flex flex-col lg:flex-row gap-6 items-start justify-between">
               <div className="space-y-4 max-w-2xl">
-                <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
                   {course.title}
                 </h1>
                 <p className="text-base md:text-lg text-white/70 leading-relaxed font-medium">
@@ -56,9 +56,9 @@ export function CourseHero({ course }: CourseHeroProps) {
                   <Image
                     src="/images/badges/cgss-seal.png"
                     alt="CGSS Exam Prep - 40 Credit Hours"
-                    width={160}
-                    height={160}
-                    className="drop-shadow-2xl w-40 h-40 lg:w-48 lg:h-48"
+                    width={280}
+                    height={280}
+                    className="drop-shadow-2xl w-32 h-32 lg:w-60 lg:h-60"
                   />
                 </div>
               )}
