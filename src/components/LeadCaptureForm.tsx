@@ -156,14 +156,14 @@ export function LeadCaptureForm({ courseTitle, courseId, courseSlug }: LeadCaptu
                     <Button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-[#FF2D55] hover:bg-[#E6294D] text-white font-bold py-3 h-auto rounded-full flex flex-col shadow-lg shadow-[#FF2D55]/20 group transition-all mt-3"
+                        className="w-full bg-[#FF2D55] hover:bg-[#E6294D] text-white font-bold py-4 h-auto rounded-full flex flex-col shadow-lg shadow-[#FF2D55]/20 group transition-all mt-3"
                     >
                         {loading ? (
-                            <Loader2 className="h-5 w-5 animate-spin" />
+                            <Loader2 className="h-6 w-6 animate-spin" />
                         ) : (
                             <>
-                                <span className="text-base leading-none mb-0.5">Reserve My Free Seat</span>
-                                <span className="text-[10px] font-medium opacity-90 leading-none">(First Session Free)</span>
+                                <span className="text-lg md:text-xl font-black uppercase tracking-wide leading-none mb-1">Reserve My Free Seat</span>
+                                <span className="text-xs md:text-sm font-bold opacity-90 leading-none">(First Session Free)</span>
                             </>
                         )}
                     </Button>

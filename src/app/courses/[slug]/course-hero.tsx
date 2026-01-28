@@ -9,6 +9,7 @@ import { Download } from "lucide-react"
 import { EnrollRazorpay } from "@/components/enroll-razorpay"
 import { Course } from "@/lib/types"
 import { LeadCaptureForm } from "@/components/LeadCaptureForm"
+import Image from "next/image"
 
 interface CourseHeroProps {
   course: Course
@@ -41,13 +42,26 @@ export function CourseHero({ course }: CourseHeroProps) {
               ))}
             </div>
 
-            <div className="space-y-4">
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
-                {course.title}
-              </h1>
-              <p className="text-base md:text-lg text-white/70 max-w-2xl leading-relaxed font-medium">
-                {course.shortDescription}
-              </p>
+            <div className="flex flex-col lg:flex-row gap-6 items-start justify-between">
+              <div className="space-y-4 max-w-2xl">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
+                  {course.title}
+                </h1>
+                <p className="text-base md:text-lg text-white/70 leading-relaxed font-medium">
+                  {course.shortDescription}
+                </p>
+              </div>
+              {course.id === 'cgss' && (
+                <div className="flex-shrink-0 animate-fade-in animate-float">
+                  <Image
+                    src="/images/badges/cgss-seal.png"
+                    alt="CGSS Exam Prep - 40 Credit Hours"
+                    width={160}
+                    height={160}
+                    className="drop-shadow-2xl w-40 h-40 lg:w-48 lg:h-48"
+                  />
+                </div>
+              )}
             </div>
 
             {/* Combined Info Grid and CTAs */}
