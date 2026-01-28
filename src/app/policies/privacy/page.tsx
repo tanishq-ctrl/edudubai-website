@@ -8,54 +8,97 @@ const privacyContent = {
   lastUpdated: "Last updated: January 2025",
   sections: [
     {
-      title: "Information We Collect",
+      title: "Introduction",
       content: [
-        "We collect information that you provide directly to us when you enroll in courses, create an account, or contact us. This includes:",
-        "• Name, email address, and phone number",
-        "• Payment information (processed securely through Razorpay)",
-        "• Company information (for corporate training inquiries)",
-        "• Course progress and completion data",
-        "• Communication preferences",
+        "This Privacy Policy outlines how Edu Dubai (\"we,\" \"our,\" or \"us\") collects, uses, and protects the personal information of users (\"you\" or \"your\") who visit our website www.edudubai.org and use our services in India.",
+        "We are committed to protecting your privacy and ensuring that your personal information is handled securely and responsibly. This policy explains the types of personal data we collect, how we use it, and the measures we take to safeguard it."
       ],
     },
     {
-      title: "How We Use Your Information",
+      title: "2. Information We Collect",
       content: [
-        "We use the information we collect to:",
-        "• Provide, maintain, and improve our services",
-        "• Process payments and manage enrollments",
-        "• Send course materials and updates",
-        "• Communicate with you about your account and courses",
-        "• Send marketing communications (with your consent)",
-        "• Respond to your inquiries and provide customer support",
+        "• Personal Information: Name, email address, phone number, mailing address, and other contact details provided when you register or fill out forms on our website.",
+        "• Payment Information: Credit/debit card details and transaction history when you make payments for our services.",
+        "• Technical Data: IP address, browser type, operating system, and browsing behaviour collected through cookies and similar technologies."
       ],
     },
     {
-      title: "Data Security",
+      title: "3. Use of Cookies",
       content: [
-        "We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. This includes:",
-        "• Encryption of sensitive data in transit and at rest",
-        "• Regular security assessments and updates",
-        "• Access controls and authentication mechanisms",
-        "• Secure payment processing through certified providers",
+        "Our website uses cookies to enhance your browsing experience. Cookies are small files stored on your device that help us understand your preferences and improve our services.",
+        "Purpose of Cookies:",
+        "• Remember your login details.",
+        "• Analyze website traffic and usage patterns.",
+        "• Customize content based on your interests.",
+        "Managing Cookies:",
+        "• You can choose to accept or decline cookies through your browser settings.",
+        "• Disabling cookies may affect website functionality."
       ],
     },
     {
-      title: "Data Retention",
+      title: "4. How We Use Your Information",
       content: [
-        "We retain your personal information for as long as necessary to provide our services and fulfill the purposes outlined in this policy. Course completion records and certifications are retained indefinitely for your access.",
+        "• To Provide Services: Process registrations, payments, and deliver educational content.",
+        "• Communication: Send notifications, updates, and respond to inquiries.",
+        "• Marketing: Share promotional materials, with your consent.",
+        "• Improvement: Analyze data to enhance our website and services."
       ],
     },
     {
-      title: "Your Rights",
+      title: "5. Data Security",
       content: [
-        "You have the right to:",
-        "• Access your personal information",
-        "• Correct inaccurate data",
-        "• Request deletion of your data",
-        "• Opt-out of marketing communications",
-        "• Withdraw consent for data processing",
-        "To exercise these rights, please contact us at training@edudubai.org",
+        "We implement appropriate security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction.",
+        "• Encryption: Sensitive data like payment information is encrypted during transmission.",
+        "• Access Control: Personal data is accessible only to authorized personnel who need it for designated purposes."
+      ],
+    },
+    {
+      title: "6. Third-Party Disclosure",
+      content: [
+        "We do not sell, trade, or rent your personal information to third parties.",
+        "• We may share data with trusted partners who assist us in operating our website and conducting our business, provided they agree to keep your information confidential.",
+        "• We may disclose information when required by law."
+      ],
+    },
+    {
+      title: "7. External Links",
+      content: [
+        "Our website may contain links to external sites. We are not responsible for the content or privacy practices of these websites. We encourage you to review their privacy policies."
+      ],
+    },
+    {
+      title: "8. Social Media Platforms",
+      content: [
+        "Engagement with our content on social media platforms is subject to the terms and privacy policies of those platforms. We advise caution when sharing personal information on social media."
+      ],
+    },
+    {
+      title: "9. Children's Privacy",
+      content: [
+        "Our services are not intended for users under the age of 18 without parental consent. We do not knowingly collect personal information from minors."
+      ],
+    },
+    {
+      title: "10. Changes to This Privacy Policy",
+      content: [
+        "We may update this Privacy Policy periodically to reflect changes in our practices or legal requirements.",
+        "• Notification of Changes: Updates will be posted on this page with the revised date.",
+        "• Effective Date: Changes become effective when posted."
+      ],
+    },
+    {
+      title: "11. Your Rights",
+      content: [
+        "Under Indian law, you have the right to:",
+        "• Access and review the personal information we hold about you.",
+        "• Request corrections to inaccurate or incomplete data.",
+        "• Withdraw consent for data processing where applicable."
+      ],
+    },
+    {
+      title: "12. Contact Us",
+      content: [
+        "For questions or concerns about this Privacy Policy or your personal data, please contact us."
       ],
     },
   ],
