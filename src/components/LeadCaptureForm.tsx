@@ -73,7 +73,7 @@ export function LeadCaptureForm({ courseTitle, courseId, courseSlug }: LeadCaptu
                     </div>
                     <p className="text-sm text-slate-400">
                         We&apos;ve sent the session details and joining link to your email address.
-                        Please check your inbox (and spam folder).
+                        Please check your inbox (promotions and spam folder).
                     </p>
                     <div className="pt-4 w-full">
                         <Button
@@ -129,14 +129,13 @@ export function LeadCaptureForm({ courseTitle, courseId, courseSlug }: LeadCaptu
 
                     <div className="space-y-1">
                         <Label htmlFor="phone" className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
-                            Phone Number*
+                            WhatsApp Number (Optional)
                         </Label>
                         <Input
                             id="phone"
                             name="phone"
                             type="tel"
                             placeholder="+1 (555) 000-0000"
-                            required
                             className="h-10 border-slate-200 focus:ring-[#FF2D55] focus:border-[#FF2D55] text-sm"
                         />
                     </div>

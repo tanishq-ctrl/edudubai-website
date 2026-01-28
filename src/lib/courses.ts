@@ -97,7 +97,7 @@ export const courses: Course[] = [
   {
     id: "cgss",
     slug: "certified-global-sanctions-specialist",
-    title: "Certified Global Sanctions Specialist (CGSS)",
+    title: "Certified Global Sanctions Specialist (CGSS®)",
     shortDescription: "In an era of rapid geopolitical change, Sanctions Compliance has become a critical skill. The CGSS course dives deep into the complex web of UN, EU, and OFAC sanctions regimes.",
     longDescription: "In an era of rapid geopolitical change, Sanctions Compliance has become a critical skill. The CGSS course dives deep into the complex web of UN, EU, and OFAC sanctions regimes. This training moves beyond basic lists to teach you the logic of sanctions—how to screen effectively, how to investigate false positives versus true hits, and how to manage the risks of evasion techniques like stripping and nesting.",
     category: "SANCTIONS",

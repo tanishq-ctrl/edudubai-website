@@ -42,7 +42,7 @@ export function CourseHero({ course }: CourseHeroProps) {
             </div>
 
             <div className="space-y-4">
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight uppercase tracking-tight">
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
                 {course.title}
               </h1>
               <p className="text-base md:text-lg text-white/70 max-w-2xl leading-relaxed font-medium">
@@ -92,7 +92,7 @@ export function CourseHero({ course }: CourseHeroProps) {
                   <p className="text-white font-bold text-lg uppercase tracking-tighter">{course.level}</p>
                 </div>
                 <div className="space-y-0.5">
-                  <span className="text-[#FF2D55] text-[10px] font-black uppercase tracking-[0.2em]">Tuition Fee</span>
+                  <span className="text-[#FF2D55] text-[10px] font-black uppercase tracking-[0.2em]">Training Fee</span>
                   <p className="text-white font-bold text-lg tracking-tighter">${course.priceUsd.toLocaleString()}</p>
                 </div>
                 <div className="space-y-0.5">

@@ -52,7 +52,7 @@ const slides: SlideData[] = [
     subheadline: "Live cohorts, case-led learning, readiness diagnostics.",
     primaryCTA: {
       text: "Join CAMS Prep",
-      href: "/courses?category=AML_CFT",
+      href: "/courses/certified-anti-money-laundering-specialist",
     },
     secondaryCTA: {
       text: "Download Brochure",
@@ -82,11 +82,11 @@ const slides: SlideData[] = [
     subheadline: "Customized programs across GCC, India, and global teams.",
     primaryCTA: {
       text: "Corporate Training",
-      href: "/corporate",
+      href: "/corporate-training",
     },
     secondaryCTA: {
       text: "Become a Trainer",
-      href: "/become-a-trainer",
+      href: "/become-a-trainer", // Links to trainer registration
     },
     image: "/hero/slide-4.jpg",
     imageAlt: "Corporate training and organizational development",
@@ -179,7 +179,7 @@ export function HeroCarousel() {
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_rgba(0,0,0,0.15)_100%)]" />
 
             {/* Content */}
-            <Container className="relative z-10 h-full flex items-center px-4 sm:px-6 pb-4 sm:pb-6 md:pb-8">
+            <Container className="relative z-10 h-full flex flex-col justify-end items-center px-4 sm:px-6 pb-12 sm:pb-16 md:pb-20">
               <div className="max-w-6xl w-full mx-auto text-center space-y-3 sm:space-y-4 md:space-y-6 lg:space-y-8 animate-fade-up">
                 {/* Eyebrow */}
                 <div className="text-sm sm:text-base md:text-lg font-extrabold uppercase tracking-widest text-[#f4d03f] drop-shadow-[0_4px_8px_rgba(0,0,0,1)] [text-shadow:_-1px_-1px_0_rgba(0,0,0,0.8),1px_1px_0_rgba(0,0,0,0.8),0_0_10px_rgba(244,208,63,0.5)] px-2 text-center">
@@ -191,10 +191,11 @@ export function HeroCarousel() {
                   {slide.headline}
                 </h1>
 
-                {/* Subheadline */}
+                {/* Subheadline
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)] max-w-3xl mx-auto px-2 text-center line-clamp-2 sm:line-clamp-none">
                   {slide.subheadline}
                 </p>
+                */}
 
                 {/* CTAs */}
                 <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 pt-1 sm:pt-2 md:pt-4 justify-center px-2 pb-0">
