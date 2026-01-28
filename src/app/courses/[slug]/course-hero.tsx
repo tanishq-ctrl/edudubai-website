@@ -1,9 +1,11 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
 import { Container } from "@/components/container"
 import { Badge } from "@/components/ui/badge"
 import { DeliveryFormatBadge } from "@/components/delivery-format-badge"
 import { WhatsAppButton } from "@/components/whatsapp-button"
+import { Download } from "lucide-react"
 import { EnrollRazorpay } from "@/components/enroll-razorpay"
 import { Course } from "@/lib/types"
 import { LeadCaptureForm } from "@/components/LeadCaptureForm"
@@ -64,6 +66,19 @@ export function CourseHero({ course }: CourseHeroProps) {
                   size="lg"
                   className="w-full sm:w-auto bg-white/5 backdrop-blur-md border border-white/20 text-white hover:bg-white/10 hover:text-white px-8 py-6 text-lg font-bold rounded-full transition-colors"
                 />
+                {course.id === 'cgss' && (
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="lg"
+                    className="w-full sm:w-auto flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/20 text-white hover:bg-white/10 hover:text-white px-8 py-6 text-lg font-bold rounded-full transition-colors"
+                  >
+                    <a href="/handbooks/cgss-handbook.pdf" download="CGSS-Handbook.pdf">
+                      <Download className="w-4 h-4" />
+                      CGSS Handbook
+                    </a>
+                  </Button>
+                )}
               </div>
 
               {/* Enhanced Stats Grid */}
