@@ -565,36 +565,39 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
           <div className="cgss-exam-grid">
             <div className="cgss-exam-stat">
               <div className="cgss-exam-stat-number">100</div>
-              <div className="cgss-exam-stat-label">Multiple Choice Questions</div>
+              <div className="cgss-exam-stat-label">MCQ & MRQ</div>
             </div>
 
             <div className="cgss-exam-stat">
-              <div className="cgss-exam-stat-number">150</div>
-              <div className="cgss-exam-stat-label">Minutes Duration</div>
+              <div className="cgss-exam-stat-number">175 min</div>
+              <div className="cgss-exam-stat-label">Exam Duration</div>
             </div>
 
             <div className="cgss-exam-stat">
               <div className="cgss-exam-stat-number">75%</div>
-              <div className="cgss-exam-stat-label">Passing Score Required</div>
+              <div className="cgss-exam-stat-label">Passing Standard</div>
             </div>
 
             <div className="cgss-exam-stat">
-              <div className="cgss-exam-stat-number">Online</div>
-              <div className="cgss-exam-stat-label">Proctored Exam Format</div>
+              <div className="cgss-exam-stat-number" style={{ fontSize: '24px' }}>Computer-based Exam</div>
+              <div className="cgss-exam-stat-label">Proctored via Pearson</div>
             </div>
           </div>
 
           <div className="cgss-exam-requirements">
             <h3>Exam Eligibility & Requirements</h3>
             <ul>
-              <li><strong>No Prerequisites:</strong> Open to all professionals seeking sanctions compliance expertise</li>
-              <li><strong>Study Materials:</strong> ACAMS CGSS Study Guide included in training</li>
-              <li><strong>Exam Registration:</strong> Register directly through ACAMS website after completing training</li>
-              <li><strong>Exam Fee:</strong> USD $795 for ACAMS members | USD $995 for non-members (separate from training fee)</li>
-              <li><strong>Validity:</strong> 180 days from registration to schedule and complete your exam</li>
-              <li><strong>Recertification:</strong> 30 ACAMS credits every 3 years to maintain certification</li>
-              <li><strong>Language:</strong> Exam available in English only</li>
+              <li><strong>Prerequisites:</strong> Candidates must hold an active ACAMS membership and meet the 40 eligibility credit requirement</li>
+              <li><strong>Study Materials:</strong> Official ACAMS CGSS Study Guide provided through the ACAMS LMS upon registration.</li>
+              <li><strong>Exam Registration:</strong> Candidates must apply and register directly through the ACAMS website.</li>
+              <li><strong>Exam Fee:</strong> Private Sector: $1,995 | Public Sector (Government): $1,495<br />
+                <span style={{ fontSize: '0.9em', color: '#666' }}>Fees are determined by ACAMS and are separate from third-party training provider fees.</span></li>
+              <li><strong>Recertification:</strong> Earn 30 recertification credits every three years</li>
+              <li><strong>Language:</strong> English, Arabic, French, Japanese, and Chinese</li>
             </ul>
+            <p style={{ marginTop: '15px', borderTop: '1px solid #ddd', paddingTop: '10px', fontSize: '0.85em', color: '#666', lineHeight: '1.4' }}>
+              <strong>Disclaimer:</strong> CGSS® is a certification program administered by ACAMS. Exam structure, eligibility, fees, language availability, and policies are subject to change by ACAMS. Candidates should always refer to the official ACAMS Candidate Handbook for the most current information.
+            </p>
           </div>
         </div>
       </section>

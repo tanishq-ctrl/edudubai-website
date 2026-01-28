@@ -153,14 +153,15 @@ export const courses: Course[] = [
       }
     ],
     examInfo: {
-      questions: "100",
-      duration: "150 Minutes",
+      questions: "100 MCQ & MRQ",
+      duration: "175 Minutes",
       passingScore: "75%",
-      format: "Multiple Choice Questions",
+      format: "Computer-based Exam Proctored via Pearson",
       requirements: [
-        "No formal prerequisites for training",
-        "Official ACAMS CGSS Study Guide Mastery",
-        "Proctored online exam format"
+        "Candidates must hold an active ACAMS membership",
+        "Meet the 40 eligibility credit requirement",
+        "Apply and register directly through the ACAMS website",
+        "Earn 30 recertification credits every three years"
       ]
     },
     whyChooseUs: {
