@@ -219,7 +219,7 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
 
         .course-audience-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
           gap: 40px;
         }
 
@@ -438,12 +438,26 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
           <p className="course-section-subtitle">Comprehensive {course.category.replace(/_/g, ' ')} skills for banking and finance professionals</p>
 
           <div className="course-outcomes-grid">
-            {course.outcomes.slice(0, 6).map((outcome, idx) => (
-              <div className="course-outcome-item" key={idx}>
-                <div className="course-outcome-icon">{idx + 1}</div>
-                <div className="course-outcome-text">{outcome}</div>
-              </div>
-            ))}
+            {course.outcomes.slice(0, 6).map((outcome, idx) => {
+              const parts = outcome.split(':')
+              const title = parts[0]
+              const description = parts.slice(1).join(':')
+
+              return (
+                <div className="course-outcome-item" key={idx}>
+                  <div className="course-outcome-icon">{idx + 1}</div>
+                  <div className="course-outcome-text">
+                    {description ? (
+                      <>
+                        <strong>{title}:</strong> {description}
+                      </>
+                    ) : (
+                      outcome
+                    )}
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -486,12 +500,18 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
               "90-Day Post-Training Support",
               "Proven Pass Rate across MENA",
               "Global Recognition within the Industry"
-            ]).map((point, idx) => (
-              <article className="course-benefit-card" key={idx}>
-                <h4><span className="course-benefit-icon">✓</span> {idx === 0 ? "Expert Tip" : idx === 1 ? "Resources" : idx === 2 ? "Quality" : idx === 3 ? "Support" : idx === 4 ? "Results" : "Network"}</h4>
-                <p>{point}</p>
-              </article>
-            ))}
+            ]).map((point, idx) => {
+              const parts = point.split(':')
+              const title = parts.length > 1 ? parts[0] : (idx === 0 ? "Expert Tip" : idx === 1 ? "Resources" : idx === 2 ? "Quality" : idx === 3 ? "Support" : idx === 4 ? "Results" : "Network")
+              const text = parts.length > 1 ? parts.slice(1).join(':') : point
+
+              return (
+                <article className="course-benefit-card" key={idx}>
+                  <h4><span className="course-benefit-icon">✓</span> {title}</h4>
+                  <p>{text}</p>
+                </article>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -510,7 +530,7 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
 
             <div className="course-exam-stat">
               <div className="course-exam-stat-number">{examInfo.duration}</div>
-              <div className="course-exam-stat-label">Minutes Duration</div>
+              <div className="course-exam-stat-label">Duration</div>
             </div>
 
             <div className="course-exam-stat">
@@ -519,18 +539,33 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
             </div>
 
             <div className="course-exam-stat">
-              <div className="course-exam-stat-number">{(examInfo.format || "Online").split(' ')[0]}</div>
+              <div className="course-exam-stat-number">{examInfo.format || "Online"}</div>
               <div className="course-exam-stat-label">Exam Format</div>
             </div>
           </div>
 
           <div className="course-exam-requirements">
             <h3>Requirements & Process</h3>
-            <ul>
-              {(examInfo.requirements || []).map((req, idx) => (
-                <li key={idx}><strong>{req}</strong></li>
-              ))}
-            </ul>
+            {examInfo.requirements && typeof examInfo.requirements[0] !== 'string' ? (
+              <div className="space-y-6">
+                {(examInfo.requirements as Array<{ title: string; items: string[] }>).map((section, idx) => (
+                  <div key={idx}>
+                    <h4 className="text-lg font-bold text-brand-navy mb-2 border-b border-brand-gold/20 pb-1">{section.title}</h4>
+                    <ul>
+                      {section.items.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <ul>
+                {(examInfo.requirements || []).map((req, idx) => (
+                  <li key={idx}><strong>{req as string}</strong></li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       </section>

@@ -48,7 +48,7 @@ export interface Course {
     duration?: string
     passingScore?: string
     format?: string
-    requirements?: string[]
+    requirements?: string[] | Array<{ title: string; items: string[] }>
   }
   programOverview?: {
     whatIs?: string

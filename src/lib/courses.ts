@@ -31,11 +31,11 @@ export const courses: Course[] = [
     priceUsd: 350,
     currency: "USD",
     outcomes: [
-      "Understand how money launderers and terrorist financiers move funds through banks, insurance, and DNFBPs",
-      "Master FATF 40 Recommendations, EU Directives, and the USA PATRIOT Act",
-      "Build an effective AML compliance program, including KYC/CDD and Enhanced Due Diligence (EDD)",
-      "Conduct internal investigations and file Suspicious Activity Reports (SARs/STRs)",
-      "Master the critical pillars of AML—Risk Assessment, Internal Controls, Independent Audit, and Training"
+      "Understand ML/TF Methods: Across banks, insurance, MSBs, DNFBPs, and real estate sectors",
+      "Master Global Standards: FATF, Basel, Wolfsberg, EU AMLD, USA PATRIOT Act, OFAC",
+      "Build AML Programs: KYC/CDD, EDD, governance, controls, and monitoring systems",
+      "Conduct Investigations: SAR/STR filing, fund tracing, law enforcement coordination",
+      "Apply Risk-Based Judgment: Enterprise-wide risk assessment, sanctions decisions, audit response"
     ],
     whoItsFor: [
       "Compliance Officers",
@@ -45,39 +45,45 @@ export const courses: Course[] = [
       "Risk Managers"
     ],
     programOverview: {
-      whatIs: "The Certified Anti-Money Laundering Specialist (CAMS) is the global gold standard in AML certifications, recognized by financial institutions and regulators worldwide.",
-      whyItMatters: "As financial crime becomes more sophisticated, the demand for certified AML professionals is at an all-time high. CAMS proves your expertise in detecting and preventing money laundering.",
-      jobReadySkills: "Learn to build robust AML frameworks, conduct effective customer due diligence, and satisfy regulatory requirements in the MENA region and beyond."
+      whatIs: "A scenario-driven, regulator-aligned CAMS® preparation program designed to help professionals Prepare, Apply, and Defend compliance decisions. Aligned with ACAMS Candidate Handbook & Exam Blueprint.",
+      whyItMatters: "As financial crime grows more complex, regulators expect professionals to demonstrate strong judgment, defensibility, and accountability. This program builds regulator-ready thinking.",
+      jobReadySkills: "Develop practical AML skills to: Handle real investigations, Manage alerts and escalations, Draft defensible SAR/STRs, Support audits and regulators, and Manage sanctions and PEP risk."
     },
     audienceCategories: [
       {
         title: "🏦 Financial Institutions",
-        roles: ["Compliance Officers", "AML Investigators", "Risk Managers", "Internal Auditors", "Retail & Commercial Bankers"]
+        roles: ["Compliance Officers", "AML Investigators", "Risk Managers", "Internal Auditors", "Bankers"]
       },
       {
         title: "⚖️ Law & Regulation",
-        roles: ["Law Enforcement Agents", "Regulators", "Legal Counsel", "Financial Intelligence Unit Staff"]
+        roles: ["Regulators", "FIU Staff", "Law Enforcement", "Legal Counsel", "Governance Officers"]
+      },
+      {
+        title: "🏢 Industry & DNFBPs",
+        roles: ["Exchange Houses", "MSBs", "Real Estate", "TCSPs", "Auditors", "Consultants"]
       }
     ],
     examInfo: {
       questions: "120",
-      duration: "210 Minutes",
-      passingScore: "75/120 (approx. 63%)",
-      format: "Multiple Choice & Multiple Select",
+      duration: "210 Minutes (3.5 Hours)",
+      passingScore: "75%",
+      format: "Online Proctored Exam",
       requirements: [
-        "40 Eligibility Credits (Education, Experience, Training)",
-        "Active ACAMS Membership",
-        "Official CAMS Study Guide Mastery"
+        { title: "Eligibility", items: ["Open to AML & Compliance Professionals", "No mandatory prerequisites"] },
+        { title: "Training", items: ["25 Days × 4 Hours = 100 Hours", "5 Full Mock Exams", "Performance Reviews"] },
+        { title: "Registration Process", items: ["Enroll with Edu-Dubai", "Complete Training", "Register on ACAMS®", "Schedule Exam", "Get Certified"] },
+        { title: "Fees", items: ["Training: USD 350", "Exam & Membership: Payable to ACAMS® separately"] }
       ]
     },
     whyChooseUs: {
       title: "Why Choose Edu-Dubai?",
       description: "While other institutes offer \"crash courses\" of just 30–32 hours, Edu-Dubai provides a full 100-Hour Flagship Program. This ensures you meet the strict 40 Eligibility Credits required by ACAMS to even register for the exam.",
       points: [
-        "Pass Guarantee: We offer free retraining in our next batch if you don't pass.",
-        "AI-Driven Mock Exams: Practice with simulations that mimic the actual ACAMS exam environment.",
-        "Expert Practitioners: Learn from instructors with decades of field experience in MENA banking.",
-        "MENA Focus: Real-world cases from UAE, Saudi Arabia, and regional financial hubs."
+        "Expert Training: Regulator-aligned instructors with MENA experience.",
+        "Quality Learning: Scenario-based, exam-focused, practical approach.",
+        "Resources: Mock exams, simulations, case labs.",
+        "Support: Ongoing mentoring and extended exam support.",
+        "Ethics First: No dumps. No shortcuts. No compromises."
       ]
     },
     faq: [
@@ -284,80 +290,88 @@ export const courses: Course[] = [
   {
     id: "fatca-crs-specialist",
     slug: "fatca-crs-specialist",
-    title: "FATCA & CRS Specialist (FCS)",
-    shortDescription: "The Foreign Account Tax Compliance Act (FATCA) and Common Reporting Standard (CRS) are mandatory for almost all financial institutions today.",
-    longDescription: "The Foreign Account Tax Compliance Act (FATCA) and Common Reporting Standard (CRS) are mandatory for almost all financial institutions today. This specialized course demystifies the complex IRS forms and OECD standards. We transform 'tax jargon' into clear operational steps, teaching you exactly how to classify customers, validate W-8/W-9 forms, and manage the annual reporting cycle.",
+    title: "FATCA & CRS Specialist (FCS®)",
+    shortDescription: "Globally recognized FATCA & CRS certification by GCI, accredited by LIBF (UK).",
+    longDescription: "The FCS® Certification Program provides comprehensive training on FATCA and CRS implementation, reporting, and governance. Designed to help professionals manage international tax compliance obligations and regulatory reporting with confidence. It is accredited by GCI and The London Institute of Banking & Finance (UK).",
     category: "FATCA_CRS",
     deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON"],
     deliverySchedules: [
       {
-        name: "Weekday Batch",
-        schedule: "Mon – Thu",
-        duration: "5:00 PM – 9:00 PM (Dubai Time)"
+        name: "Regional Live Virtual Batches",
+        schedule: "Twice Every Month",
+        duration: "Dubai: 9AM-3PM | India: 10:30AM-4:30PM | Singapore: 1PM"
       },
       {
-        name: "Weekend Batch",
-        schedule: "Sat & Sun",
-        duration: "9:00 AM – 1:00 PM (Dubai Time)"
+        name: "Weekend / Fast-Track Batch",
+        schedule: "Available on Demand",
+        duration: "Intensive Exam-Focused Format"
       },
       {
         name: "Corporate / In-House",
-        schedule: "Customized schedule and delivery",
-        duration: "Concise 2-day format"
+        schedule: "Customized",
+        duration: "Flexible Delivery"
       }
     ],
     level: "INTERMEDIATE",
     duration: 16,
-    priceUsd: 849,
+    priceUsd: 774,
     currency: "USD",
     outcomes: [
-      "Understand FATCA vs. CRS: The key differences in scope and implementation",
-      "Master Entity Classification: FFI, NFFE, and Active vs. Passive entities",
-      "Learn Documentation: How to correctly validate IRS Forms W-9 and W-8 series",
-      "Identify Indicia: US status and foreign tax residency indicators",
-      "Master the reporting process for local and international authorities"
+      "FATCA Agreements & Scope: Model 1 & Model 2 IGAs, FFI agreements, Entity classification, Compliance obligations",
+      "FATCA Registration & Governance: IRS registration, GIIN management, IDES setup, Certification & renewal, Risk management",
+      "FATCA Documentation & Due Diligence: Compliance frameworks, Responsible Officer roles, Pre-existing & new accounts, W-9, W-8BEN, Secrecy waivers",
+      "FATCA Reporting: Entity and account reporting, Shareholder reporting, Payment reporting, Pooled and nil reporting",
+      "CRS Compliance Management: Participating jurisdictions, Individual & entity accounts, Anti-avoidance rules, FATCA vs CRS comparison"
     ],
     whoItsFor: [
-      "Tax Officers",
-      "Finance Managers",
-      "Client Onboarding & KYC Teams",
-      "Investment Fund Administrators",
-      "Responsible Officers (ROs)"
+      "FATCA/CRS Officers",
+      "Banking & Insurance Professionals",
+      "Compliance Managers",
+      "Central Bank Staff",
+      "Tax Consultants"
     ],
     programOverview: {
-      whatIs: "FATCA & CRS Specialist (FCS) is a critical operational certification covering US and international automatic exchange of information (AEOI) requirements.",
-      whyItMatters: "Regulators heavily penalize firms for incorrect tax classification. Expertise in AEOI is a must-have for modern financial institutions.",
-      jobReadySkills: "Validate complex tax forms, manage annual reporting cycles, and ensure your firm stays compliant with international tax treaties."
+      whatIs: "The FCS® Certification Program provides comprehensive training on FATCA and CRS implementation, reporting, and governance. Designed to help professionals manage international tax compliance obligations and regulatory reporting with confidence. Accredited by GCI and The London Institute of Banking & Finance (UK).",
+      whyItMatters: "Non-compliance with FATCA and CRS can lead to Regulatory penalties, Withholding taxes, Cross-border restrictions, and Reputational damage. This program enables organizations to Maintain global tax transparency, Reduce compliance risk, and Meet international regulatory expectations.",
+      jobReadySkills: "Develop hands-on FATCA & CRS compliance expertise including: Entity classification, Due diligence framework design, Documentation validation, Reportable account identification, Regulatory reporting preparation, and Audit response management."
     },
     audienceCategories: [
       {
-        title: "🏢 Banking & Finance",
-        roles: ["Tax Compliance Officers", "KYC Managers", "Operations Staff", "Finance Leads"]
+        title: "� Financial Institutions",
+        roles: ["FATCA/CRS Officers", "Banking & Insurance Professionals", "Brokerage & Investment Teams", "Compliance Managers"]
       },
       {
-        title: "💼 Asset Management",
-        roles: ["Fund Administrators", "Wealth Managers", "Custodial Service Teams"]
+        title: "🏛️ Regulators & Authorities",
+        roles: ["Central Bank Staff", "Tax Authority Officials", "Financial Regulators", "Policy Officers"]
+      },
+      {
+        title: "⚖️ Advisors & Providers",
+        roles: ["Tax Consultants", "Legal Advisors", "Reporting System Providers", "RegTech Vendors"]
       }
     ],
     examInfo: {
-      questions: "50",
-      duration: "90 Minutes",
-      passingScore: "70%",
-      format: "Multiple Choice Questions",
+      questions: "50 Scenario-Based Questions",
+      duration: "Online Proctored Exam",
+      passingScore: "75%",
+      format: "Multiple Choice",
       requirements: [
-        "Proctored online exam",
-        "Official GCI study guide",
-        "Open to all professionals"
+        { title: "Eligibility", items: ["Open to compliance, tax, and reporting professionals", "No mandatory prerequisites"] },
+        { title: "Training Structure", items: ["Duration: 2 Days (Intensive Program)", "Includes:", "Exam Preparation", "Multiple Mock Tests", "Case Simulations"] },
+        { title: "Registration Process", items: ["Enroll with Edu-Dubai", "Attend Live Training", "Complete Practice Assessments", "Sit for Proctored Exam", "Receive Certification"] },
+        { title: "Fees", items: ["GCI Certification: USD 499", "Training Fee: USD 275", "Total: USD 774"] },
+        { title: "Personalized Support", items: ["Individual performance assessment", "Half-day free reinforcement (if needed)", "Ongoing mentoring"] }
       ]
     },
     whyChooseUs: {
       title: "Why Choose Edu-Dubai?",
-      description: "We turn complex tax Law into simple bank Operations. We speak the language of the Front Office, not just tax lawyers.",
+      description: "Leading professional training provider in the MENA region.",
       points: [
-        "No Tax Jargon: We teach you how to look at a passport and determine tax status without needing a law degree.",
-        "Form W-8 Mastery: Detailed workshops on validating the most difficult IRS forms to process.",
-        "The Nil Report Guide: Step-by-step instructions on filing when you have zero reportable accounts.",
-        "Local MENA Context: Focus on the reporting portals used in UAE, KSA, and Bahrain."
+        "Accredited Curriculum: Aligned with global FATCA & CRS standards.",
+        "Practical Training: Real implementation case studies.",
+        "Advanced Resources: Mock audits and reporting simulations.",
+        "Expert Faculty: Trainers with international tax compliance experience.",
+        "Extended Support: Free reinforcement sessions if required.",
+        "First-Attempt Focus: Our goal is certification success."
       ]
     },
     faq: [
@@ -373,79 +387,88 @@ export const courses: Course[] = [
   {
     id: "sanctions-compliance-specialist",
     slug: "sanctions-compliance-specialist",
-    title: "Sanctions Compliance Specialist (SCS)",
-    shortDescription: "While other sanctions courses focus on law, the GCI Sanctions Compliance Specialist (SCS) focuses on operations.",
-    longDescription: "While other sanctions courses focus on law, the GCI Sanctions Compliance Specialist (SCS) focuses on operations. This course is perfect for the staff who actually sit behind the screen: the people clearing alerts and processing payments. We cover the 'Three Pillars' of Sanctions—Processes, Systems, and Reports—to ensure your team knows exactly which button to push and why.",
+    title: "Sanctions Compliance Specialist (SCS®)",
+    shortDescription: "Globally recognized sanctions compliance certification by GCI Australia, accredited by LIBF (UK).",
+    longDescription: "The SCS® Certification Program provides comprehensive training in global sanctions compliance, covering UN, EU, OFAC, UK, and Australian frameworks. Designed to help professionals understand, implement, and defend sanctions controls while mitigating regulatory and reputational risk. It is accredited by GCI Australia and The London Institute of Banking & Finance (UK).",
     category: "SANCTIONS",
     deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON"],
     deliverySchedules: [
       {
-        name: "Weekday Batch",
-        schedule: "Mon – Thu",
-        duration: "5:00 PM – 9:00 PM (Dubai Time)"
+        name: "Evening Batch (Live Virtual)",
+        schedule: "Mon – Thu (9th Dec – 19th Dec 2024)",
+        duration: "UAE: 5:00 PM – 8:00 PM | India: 6:30 PM – 9:30 PM"
       },
       {
-        name: "Weekend Batch",
-        schedule: "Sat & Sun",
-        duration: "9:00 AM – 1:00 PM (Dubai Time)"
+        name: "Weekend Support Sessions",
+        schedule: "As per batch schedule",
+        duration: "Dedicated Exam Prep & Mock Support"
       },
       {
         name: "Corporate / In-House",
-        schedule: "Customized schedule and delivery",
-        duration: "Concise 2–3 day format"
+        schedule: "Customized",
+        duration: "Flexible Delivery Format"
       }
     ],
     level: "INTERMEDIATE",
-    duration: 24,
+    duration: 30,
     priceUsd: 849,
     currency: "USD",
     outcomes: [
-      "Understand Sanctions Lists: UN, EU, OFAC, and local MENA lists",
-      "Master Name Screening: Algorithms (Fuzzy logic) and handling false positives",
-      "Analyze SWIFT Messages: Spotting risks in MT103/MT202 messages",
-      "Identify Trade red flags: Dual-use goods and shipping anomalies",
-      "Manage escalation protocols for true sanctions hits"
+      "Sanctions & Proliferation Finance: Sanctions, embargoes, CPF concepts, UN, EU, OFAC frameworks, Sectoral/targeted sanctions, Proliferation finance risk indicators",
+      "International Sanctions Regimes: UN, EU, UK, US, Australia sanctions systems, Role of regulators and institutions, Global enforcement coordination",
+      "Processes & Systems: CAAT tools, Screening system configuration, False positive management, Customer onboarding controls, SWIFT message screening, Wolfsberg Guidance implementation",
+      "Reporting & Violation Analysis: Violation report structure, Root cause analysis, Regulatory reporting obligations, Documentation standards",
+      "Governance & Controls: Policy design, Risk frameworks, Internal reviews, Remediation planning"
     ],
     whoItsFor: [
-      "Payment Operations Staff",
-      "Trade Finance Officers",
-      "Sanctions Alerts Investigators",
-      "Sanctions Compliance Officers"
+      "Sanctions Officers",
+      "Compliance Managers",
+      "Trade Finance Teams",
+      "Remittance Professionals",
+      "Risk Officers",
+      "Regulators",
+      "Screening System Providers"
     ],
     programOverview: {
-      whatIs: "The Sanctions Compliance Specialist (SCS) is an operational certification by GCI for the professionals clearing daily screening alerts.",
-      whyItMatters: "Processes and systems are only as good as the people running them. SCS ensures your team has the technical skill to clear false hits safely.",
-      jobReadySkills: "Decode SWIFT messages, fine-tune fuzzy logic algorithms, and master the investigative path for sanctions alerts."
+      whatIs: "The SCS® Certification Program provides comprehensive training in global sanctions compliance, covering UN, EU, OFAC, UK, and Australian frameworks. Designed to help professionals understand, implement, and defend sanctions controls while mitigating regulatory and reputational risk. Accredited by GCI Australia and The London Institute of Banking & Finance (UK).",
+      whyItMatters: "Sanctions violations can result in Heavy financial penalties, Criminal liability, Reputational damage, and Regulatory restrictions. This program equips professionals to Prevent breaches, Strengthen screening systems, Improve governance, Respond to regulators, and Build defensible compliance frameworks.",
+      jobReadySkills: "Develop practical sanctions compliance capabilities including: Sanctions risk assessment, Name screening optimization, False positive reduction, SWIFT and transaction monitoring, De-risking management, Regulatory reporting, Violation investigation, and Documentation standards. Graduates become operationally ready for sanctions roles."
     },
     audienceCategories: [
       {
-        title: "🏧 Banking Operations",
-        roles: ["Payment Clearers", "SWIFT Desk Staff", "Alert Investigators", "Remittance Teams"]
+        title: "� Financial Institutions",
+        roles: ["Sanctions Officers", "Compliance Managers", "Trade Finance Teams", "Remittance Professionals", "Risk Officers"]
       },
       {
-        title: "🏛️ Regulatory",
-        roles: ["Compliance Testers", "Internal Auditors", "Regulatory Reporting Teams"]
+        title: "⚖️ Regulators & Authorities",
+        roles: ["Central Bank Staff", "FIU Personnel", "Supervisory Officers", "Policy Analysts"]
+      },
+      {
+        title: "🖥️ Technology & Systems",
+        roles: ["Screening System Providers", "Compliance Software Teams", "Risk Analytics Professionals"]
       }
     ],
     examInfo: {
-      questions: "50",
+      questions: "50 Questions",
       duration: "90 Minutes",
-      passingScore: "70%",
-      format: "Multiple Choice",
+      passingScore: "75%",
+      format: "Proctored Exam (Online)",
       requirements: [
-        "Official SCS Material",
-        "Online exam",
-        "No prior prerequisites"
+        { title: "Eligibility", items: ["Open to compliance, sanctions, and risk professionals", "No mandatory prerequisites"] },
+        { title: "Training Structure", items: ["Total Duration: 30 Hours", "Includes:", "10 Hours Exam Preparation", "Multiple Mock Tests", "Practice Screenings"] },
+        { title: "Registration Process", items: ["Enroll with Edu-Dubai", "Attend Virtual Training", "Complete Mock Assessments", "Sit for Proctored Exam", "Receive Certification"] },
+        { title: "Fees", items: ["GCI Certification: USD 499", "Training Fee: USD 350", "Total: USD 849"] }
       ]
     },
     whyChooseUs: {
       title: "Why Choose Edu-Dubai?",
-      description: "This is the only course in the market designed specifically for the 'Alert Investigator.'",
+      description: "Leading professional training provider in the MENA region.",
       points: [
-        "Tools Over Theory: Learn why 'Mohammad Ali' matches 'Mhd Aly' and how to justify closing the alert correctly.",
-        "SWIFT Message Decoding: We teach you how to read raw MT messages to spot hidden sanctions evasion.",
-        "Operational Roadmap: Practical workflows for escalating and blocking transactions in real-time.",
-        "MENA Authority: Focus on regional sanctions and local reporting requirements."
+        "Accredited Training: Official SCS-aligned curriculum.",
+        "Practical Approach: Real-life violation cases and simulations.",
+        "Advanced Resources: Mock screenings and exam simulations.",
+        "Expert Faculty: Trainers with international sanctions experience.",
+        "Continuous Support: Mentoring until certification."
       ]
     },
     faq: [
