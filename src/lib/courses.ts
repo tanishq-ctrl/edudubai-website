@@ -484,79 +484,89 @@ export const courses: Course[] = [
   {
     id: "regulatory-compliance-specialist",
     slug: "regulatory-compliance-specialist",
-    title: "Regulatory Compliance Specialist (RCS)",
-    shortDescription: "Compliance is more than just stopping money laundering—it is about managing the relationship with your regulator.",
-    longDescription: "Compliance is more than just stopping money laundering—it is about managing the relationship with your regulator. The RCS course covers the broader scope of the Compliance Officer's role. From managing regulatory correspondence to conducting 'Compliance Monitoring' visits within your own firm, this course teaches you how to be an effective internal guardian of ethics and rules.",
+    title: "Regulatory Compliance Specialist (RCS®)",
+    shortDescription: "Globally recognized compliance certification by GCI Australia, accredited by LIBF (UK).",
+    longDescription: "The RCS® Certification Program delivers comprehensive training in regulatory compliance, governance, and risk-based supervision. Designed to prepare professionals to manage regulatory inspections, build strong control environments, and demonstrate defensible compliance practices. Accredited by GCI Australia and The London Institute of Banking & Finance (UK).",
     category: "GOVERNANCE",
     deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON"],
     deliverySchedules: [
       {
-        name: "Weekday Batch",
-        schedule: "Mon – Thu",
-        duration: "5:00 PM – 9:00 PM (Dubai Time)"
+        name: "Live Virtual Intensive Batch",
+        schedule: "24th – 28th February 2025",
+        duration: "Dubai: 9AM–1PM | India: 10:30AM–3:30PM | Singapore: 1PM–5PM"
       },
       {
-        name: "Weekend Batch",
-        schedule: "Sat & Sun",
-        duration: "9:00 AM – 1:00 PM (Dubai Time)"
+        name: "Fast-Track Exam Prep Sessions",
+        schedule: "As per Batch Plan",
+        duration: "Dedicated Review & Mock Tests"
       },
       {
         name: "Corporate / In-House",
-        schedule: "Customized schedule and delivery",
-        duration: "Concise 3-day format"
+        schedule: "Customized",
+        duration: "Flexible Delivery"
       }
     ],
     level: "INTERMEDIATE",
-    duration: 24,
+    duration: 20,
     priceUsd: 849,
     currency: "USD",
     outcomes: [
-      "Understand The Compliance Function: Independence and structure",
-      "Manage Regulatory Relationships: Handling inspections and Central Bank letters",
-      "Implement Risk-Based Monitoring: Creating an effective Monitoring Plan (CMP)",
-      "Manage Conflict of Interest: Chinese Walls, gifts, and personal dealing",
-      "Establish internal governance and ethics frameworks"
+      "Global Regulatory Frameworks: BIS, BCBS, GDPR, Local and international regulations, Supervisory expectations",
+      "Compliance Testing & Monitoring: Testing methodologies, Control assessments, Policy adherence checks, Risk indicator monitoring",
+      "Internal Controls & Governance: Compliance department roles, Collaboration with audit, risk, legal, Board and management reporting",
+      "Risk-Based Compliance Management: Residual risk measurement, Control optimization, Continuous monitoring",
+      "Regulatory Examinations & Reporting: Audit responses, Breach reporting, Regulator communication, Remediation planning"
     ],
     whoItsFor: [
-      "Newly appointed Compliance Officers",
-      "Internal Auditors moving into Compliance",
-      "Managers in regulated entities",
-      "Regulatory Affairs Specialists"
+      "Compliance Officers",
+      "Risk Managers",
+      "Governance Professionals",
+      "Internal Auditors",
+      "Operations Managers",
+      "Supervisory Staff",
+      "Compliance Consultants"
     ],
     programOverview: {
-      whatIs: "Regulatory Compliance Specialist (RCS) covers the broad governance and regulatory management responsibilities of a compliance officer.",
-      whyItMatters: "Technical AML skill is not enough. You must know how to manage your regulator and your firm's internal ethical standards.",
-      jobReadySkills: "Conduct internal compliance audits, draft regulatory responses, and build a risk-based monitoring program from scratch."
+      whatIs: "The RCS® Certification Program delivers comprehensive training in regulatory compliance, governance, and risk-based supervision. Designed to prepare professionals to manage regulatory inspections, build strong control environments, and demonstrate defensible compliance practices. Accredited by GCI Australia and The London Institute of Banking & Finance (UK).",
+      whyItMatters: "Regulatory failures can result in Financial penalties, License restrictions, Increased supervision, Management accountability, and Reputational loss. This program empowers professionals to Strengthen governance frameworks, Reduce compliance breaches, Improve examination outcomes, and Build regulator confidence.",
+      jobReadySkills: "Develop advanced compliance capabilities including: Regulatory gap analysis, Compliance testing frameworks, Control effectiveness reviews, Risk monitoring systems, Breach management, Regulatory reporting, and Governance oversight."
     },
     audienceCategories: [
       {
-        title: "🏦 Financial Guardian",
-        roles: ["Compliance Officers", "Audit Managers", "Risk Leads", "Company Secretaries"]
+        title: "🏦 Financial Institutions",
+        roles: ["Compliance Officers", "Risk Managers", "Governance Professionals", "Internal Auditors", "Operations Managers"]
       },
       {
-        title: "💼 High-Risk Sectors",
-        roles: ["Exchange House Managers", "Brokerage Compliance", "Insurance Governance Teams"]
+        title: "🏛️ Regulators & Authorities",
+        roles: ["Supervisory Staff", "Policy Officers", "Regulatory Analysts"]
+      },
+      {
+        title: "⚖️ Advisory & Consulting",
+        roles: ["Compliance Consultants", "Legal Advisors", "Governance Specialists"]
       }
     ],
     examInfo: {
-      questions: "50",
-      duration: "90 Minutes",
-      passingScore: "70%",
-      format: "Multiple Choice",
+      questions: "50 Multiple-Choice Questions",
+      duration: "Online Proctored Exam",
+      passingScore: "75%",
+      format: "Online Proctored Exam",
       requirements: [
-        "Official GCI Study guide mastery",
-        "Online proctored exam",
-        "Recommended 1-2 years experience"
+        { title: "Eligibility", items: ["Open to compliance, risk, and governance professionals", "No mandatory prerequisites"] },
+        { title: "Training Structure", items: ["Duration: 20 Hours (5 Days × 4 Hours)", "Includes:", "8 Hours Exam Preparation", "Multiple Mock Tests", "Audit Simulations"] },
+        { title: "Registration Process", items: ["Enroll with Edu-Dubai", "Attend Live Virtual Sessions", "Complete Practice Assessments", "Sit for Proctored Exam", "Receive Certification"] },
+        { title: "Fees", items: ["GCI Certification: USD 499", "Edu-Dubai Training: USD 350", "Total: USD 849"] }
       ]
     },
     whyChooseUs: {
       title: "Why Choose Edu-Dubai?",
-      description: "Compliance isn't just about reading laws; it's about managing your local regulator (Central Bank, DFSA, ADGM).",
+      description: "Leading professional training provider in the MENA region.",
       points: [
-        "Soft Skills Mastery: Learn how to write letters to the Regulator that minimize risk and professional exposure.",
-        "Inspection Survival: Tips from former auditors on surviving the 'On-Site Inspection' process.",
-        "Practical Governance: Build real-world Chinese Walls and conflict of interest policies.",
-        "MENA Focus: Tailored to regional regulatory styles and expectations."
+        "Accredited Program: Aligned with GCI and LIBF standards.",
+        "Practical Learning: Live audits, simulations, and case studies.",
+        "Expert Faculty: Senior trainers with regulatory experience.",
+        "Advanced Resources: Mock exams and compliance toolkits.",
+        "Extended Support: Ongoing mentoring until certification.",
+        "Exam Success Focus: First-attempt certification priority."
       ]
     },
     faq: [
@@ -572,80 +582,88 @@ export const courses: Course[] = [
   {
     id: "certified-compliance-manager",
     slug: "certified-compliance-manager",
-    title: "Certified Compliance Manager (CCM)",
-    shortDescription: "The CCM is the most comprehensive executive-level certification offered by GCI. It integrates five core disciplines into a single curriculum.",
-    longDescription: "The CCM is the most comprehensive executive-level certification offered by GCI. It integrates five core disciplines—AML, KYC, Sanctions, Regulatory Compliance, and FATCA/CRS—into a single powerful curriculum. This course transforms you from an operational analyst into a strategic leader capable of designing frameworks and managing regulatory audits.",
+    title: "Certified Compliance Manager (CCM®)",
+    shortDescription: "Flagship leadership certification by GCI Australia for senior compliance professionals.",
+    longDescription: "The CCM® Certification Program prepares professionals to think, decide, and defend like senior compliance leaders. Built on EduDubai’s Prepare – Apply – Defend Framework, this regulator-aligned program focuses on enterprise-wide governance across AML/CFT, Sanctions, FATCA/CRS, KYC, and Regulatory Compliance. Fully aligned with GCI’s official CCM Handbook, syllabus, and exam weightage.",
     category: "GOVERNANCE",
     deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON"],
     deliverySchedules: [
       {
-        name: "Weekday Batch",
-        schedule: "Mon – Thu",
-        duration: "5:00 PM – 9:00 PM (Dubai Time)"
+        name: "Weekday / Evening Batches",
+        schedule: "Designed for Working Professionals",
+        duration: "Morning & Evening Options (Global Time Zones)"
       },
       {
-        name: "Weekend Batch",
-        schedule: "Sat & Sun",
-        duration: "9:00 AM – 1:00 PM (Dubai Time)"
+        name: "Weekend / Fast-Track Batch",
+        schedule: "Intensive Exam-Focused Format",
+        duration: "As per Batch Plan"
       },
       {
         name: "Corporate / In-House",
-        schedule: "Customized schedule and delivery",
-        duration: "Concise 5-day bootcamp"
+        schedule: "Customized",
+        duration: "Flexible Delivery"
       }
     ],
     level: "ADVANCED",
-    duration: 45,
+    duration: 60,
     priceUsd: 1599,
     currency: "USD",
     outcomes: [
-      "Build Integrated Frameworks: Unified AML, Sanctions, and Tax policies",
-      "Master Advanced Investigations: Cross-border cases and Law Enforcement requests",
-      "Implement Regulatory Management: Handling inspections and remediation plans",
-      "Conduct Enterprise Risk Assessments: Complex EWRA methodologies",
-      "Direct Board-level reporting and strategic compliance oversight"
+      "Customer Onboarding & KYC (26%): Risk-based onboarding, Customer classification, Digital KYC & e-KYC, Lifecycle management, Geographic & product risks",
+      "AML & CFT Management (24%): ML/TF typologies, Fintech & virtual assets, Transaction monitoring systems, Correspondent banking risks, Blockchain misuse",
+      "Sanctions & Embargoes (21%): Sanctions fundamentals, CPF risks, Screening systems, Payment & trade exposure, Violation reporting",
+      "Regulatory Compliance Management (12%): Compliance governance, Regulatory Control Matrix, Examination handling, RFI/RIM processes, Audit vs compliance testing",
+      "FATCA & CRS Governance (17%): IGAs & obligations, Registration & GIIN, Documentation, Reporting structures, FATCA vs CRS differences"
     ],
     whoItsFor: [
-      "Aspiring MLROs",
-      "Heads of Compliance",
-      "Internal Audit Managers",
-      "Senior Risk Professionals",
-      "Strategic L&D Managers"
+      "Compliance Officers & Managers",
+      "MLROs & Deputies",
+      "Risk & Governance Heads",
+      "Supervisory Officers",
+      "Consultants"
     ],
     programOverview: {
-      whatIs: "The Certified Compliance Manager (CCM) is the pinnacle executive certification integrating all major compliance pillars into one strategic leadership role.",
-      whyItMatters: "The market needs leaders, not just analysts. CCM prepares you to own the compliance function at an institutional level.",
-      jobReadySkills: "Design global compliance frameworks, lead multi-disciplinary teams, and interact at the Board and Regulatory executive levels."
+      whatIs: "The CCM® Certification Program prepares professionals to think, decide, and defend like senior compliance leaders. Built on EduDubai’s unique framework, it focuses on enterprise-wide governance across AML/CFT, Sanctions, FATCA/CRS, KYC, and Regulatory Compliance.",
+      whyItMatters: "Regulators no longer assess policies alone—they assess Leadership judgment, Governance effectiveness, Control maturity, Accountability, and Decision defensibility. This program empowers you to Prevent systemic compliance failures, Lead regulatory engagements, and Defend decisions confidently.",
+      jobReadySkills: "Develop executive-level compliance capabilities including: Enterprise risk governance, Integrated compliance frameworks, Regulatory inspection management, Multi-domain risk supervision, Board reporting, Cross-functional leadership, and Crisis response."
     },
     audienceCategories: [
       {
-        title: "👔 Executive Leadership",
-        roles: ["Heads of Compliance", "MLROs", "Chief Risk Officers", "Senior Audit Managers"]
+        title: "🏦 Financial Institutions",
+        roles: ["Compliance Officers & Managers", "MLROs & Deputies", "AML Investigators", "Risk & Governance Heads"]
       },
       {
-        title: "📈 Career Path",
-        roles: ["Aspiring Managers", "Deputy MLROs", "Compliance Consultants"]
+        title: "🏛️ Regulators & Authorities",
+        roles: ["Supervisory Officers", "FIU Staff", "Policy Analysts"]
+      },
+      {
+        title: "🏢 Industry & DNFBPs",
+        roles: ["Exchange Houses & MSBs", "Real Estate & TCSPs", "Lawyers & Auditors", "Consultants"]
       }
     ],
     examInfo: {
-      questions: "150",
+      questions: "150 Multiple-Choice Questions",
       duration: "180 Minutes",
-      passingScore: "75% (Min 50% per chapter)",
-      format: "Multiple Choice Questions",
+      passingScore: "75% (Minimum 50% per Module)",
+      format: "Online Proctored Exam",
       requirements: [
-        "Executive-level study guide",
-        "Online proctored exam",
-        "One year GCI membership included"
+        { title: "Eligibility", items: ["Compliance, risk, and governance professionals", "Senior and mid-management roles preferred"] },
+        { title: "Training Structure", items: ["Instructor-Led: 12 Days × 5 Hours = 60 Hours", "Guided Self-Study (GCI Standards)", "Scenario Reviews", "Mock Exams"] },
+        { title: "Registration Process", items: ["Enroll with EduDubai", "Attend Instructor-Led Program", "Complete Guided Study", "Attempt Mock Exams", "Sit for Proctored Exam", "Receive Certification"] },
+        { title: "Fees", items: ["Full Package (GCI + Exam + Training): USD 1,599", "Training Only (No GCI): USD 500"] },
+        { title: "Personalized Support", items: ["Individual performance assessment", "Free reinforcement sessions", "Weak-area strengthening", "Exam confidence building"] }
       ]
     },
     whyChooseUs: {
       title: "Why Choose Edu-Dubai?",
-      description: "The CCM is a beast of an exam. We offer an Executive Mentorship Model to ensure you cross the finish line.",
+      description: "Available Across: India | UAE | GCC | Southeast Asia | Africa | MENA",
       points: [
-        "Strategy Mentorship: We shift your mindset from 'clearing alerts' to 'designing global frameworks.'",
-        "The Boardroom Workshop: Learn to draft and present high-stakes reports to the Board of Directors.",
-        "Exclusive Study Circle: Network with other Senior Compliance Managers in our private mentorship group.",
-        "MENA Leadership: Taught by regional MLROs with real-world institutional experience."
+        "Prepare – Apply – Defend Framework: Unique leadership-oriented methodology.",
+        "Full Exam Alignment: Mapped to GCI syllabus & weightage.",
+        "Scenario-Based Learning: No memorization. No dumps.",
+        "Senior Faculty: Trainers with regulatory leadership experience.",
+        "Extended Mentorship: Support until certification.",
+        "First-Attempt Success Focus: Performance over participation."
       ]
     },
     faq: [
