@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Mail, Phone, MapPin, BookOpen } from "lucide-react"
+import { Mail, Phone, MapPin, BookOpen, Instagram, Linkedin, Youtube, Twitter, Facebook } from "lucide-react"
 import { Container } from "@/components/container"
 import { getWhatsAppLink } from "@/lib/whatsapp"
 
@@ -126,6 +126,25 @@ export function SiteFooter() {
                     <span className="mr-2">💬</span>
                     Chat on WhatsApp
                   </a>
+                </li>
+                <li>
+                  <div className="flex space-x-5 mt-4">
+                    <a href="https://www.instagram.com/growwithedudubai/" aria-label="Instagram" className="text-white/70 hover:text-brand-gold transition-colors">
+                      <Instagram className="h-6 w-6" />
+                    </a>
+                    <a href="https://www.linkedin.com/company/edudubai-india-mena/" aria-label="LinkedIn" className="text-white/70 hover:text-brand-gold transition-colors">
+                      <Linkedin className="h-6 w-6" />
+                    </a>
+                    <a href="https://www.youtube.com/@Edudubai" aria-label="YouTube" className="text-white/70 hover:text-brand-gold transition-colors">
+                      <Youtube className="h-6 w-6" />
+                    </a>
+                    <a href="https://x.com/EduDubai_off" aria-label="X (Twitter)" className="text-white/70 hover:text-brand-gold transition-colors">
+                      <Twitter className="h-6 w-6" />
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61571238204920" aria-label="Facebook" className="text-white/70 hover:text-brand-gold transition-colors">
+                      <Facebook className="h-6 w-6" />
+                    </a>
+                  </div>
                 </li>
               </ul>
             </div>

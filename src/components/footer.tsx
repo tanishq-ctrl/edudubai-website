@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { BookOpen } from "lucide-react"
+import { BookOpen, Instagram, Linkedin, Youtube, Twitter, Facebook } from "lucide-react"
 
 export function Footer() {
   return (
@@ -14,6 +14,23 @@ export function Footer() {
             <p className="text-white/80 text-sm">
               Premium professional education for career advancement
             </p>
+            <div className="flex space-x-4 mt-6">
+              <Link href="https://www.instagram.com/growwithedudubai/" aria-label="Instagram" className="text-white/70 hover:text-brand-gold transition-colors">
+                <Instagram className="h-5 w-5" />
+              </Link>
+              <Link href="https://www.linkedin.com/company/edudubai-india-mena/" aria-label="LinkedIn" className="text-white/70 hover:text-brand-gold transition-colors">
+                <Linkedin className="h-5 w-5" />
+              </Link>
+              <Link href="https://www.youtube.com/@Edudubai" aria-label="YouTube" className="text-white/70 hover:text-brand-gold transition-colors">
+                <Youtube className="h-5 w-5" />
+              </Link>
+              <Link href="https://x.com/EduDubai_off" aria-label="X (Twitter)" className="text-white/70 hover:text-brand-gold transition-colors">
+                <Twitter className="h-5 w-5" />
+              </Link>
+              <Link href="https://www.facebook.com/profile.php?id=61571238204920" aria-label="Facebook" className="text-white/70 hover:text-brand-gold transition-colors">
+                <Facebook className="h-5 w-5" />
+              </Link>
+            </div>
           </div>
           <div>
             <h3 className="font-semibold mb-4">Courses</h3>
