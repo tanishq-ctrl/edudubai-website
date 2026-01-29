@@ -764,166 +764,168 @@ export const courses: Course[] = [
     imageUrl: "/images/certifications/trade-based-money-laundering.jpg",
     issuingBody: "GCI"
   },
-  {
-    id: "cma",
-    slug: "certified-management-accountant",
-    title: "Certified Management Accountant (CMA)",
-    shortDescription: "The CMA is the gold standard in management accounting and financial management.",
-    longDescription: "The Certified Management Accountant (CMA) credential is the advanced professional certification that delivers tangible value. It is the global benchmark for management accountants and financial professionals. Master the skills of strategic financial management and performance measurement—ensuring you are ready to drive business results in a complex global economy.",
-    category: "TAX",
-    deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON"],
-    deliverySchedules: [
-      {
-        name: "Morning Batch",
-        schedule: "Sun – Wed",
-        duration: "10:00 AM – 1:00 PM (Dubai Time)"
+  /*
+    {
+      id: "cma",
+      slug: "certified-management-accountant",
+      title: "Certified Management Accountant (CMA)",
+      shortDescription: "The CMA is the gold standard in management accounting and financial management.",
+      longDescription: "The Certified Management Accountant (CMA) credential is the advanced professional certification that delivers tangible value. It is the global benchmark for management accountants and financial professionals. Master the skills of strategic financial management and performance measurement—ensuring you are ready to drive business results in a complex global economy.",
+      category: "TAX",
+      deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON"],
+      deliverySchedules: [
+        {
+          name: "Morning Batch",
+          schedule: "Sun – Wed",
+          duration: "10:00 AM – 1:00 PM (Dubai Time)"
+        },
+        {
+          name: "Weekend Batch",
+          schedule: "Sat",
+          duration: "10:00 AM – 4:00 PM (Dubai Time)"
+        }
+      ],
+      level: "ADVANCED",
+      duration: 60,
+      priceUsd: 850,
+      currency: "USD",
+      outcomes: [
+        "Master Financial Planning, Performance, and Analytics",
+        "Gain expertise in Strategic Financial Management",
+        "Prepare for the Part 1 and Part 2 CMA exams with confidence",
+        "Learn to apply management accounting principles in real-world scenarios",
+        "Understand ethics in the professional accounting environment"
+      ],
+      whoItsFor: [
+        "Finance Managers",
+        "Cost Accountants",
+        "Financial Analysts",
+        "Budgeting Managers",
+        "Strategic Planners"
+      ],
+      programOverview: {
+        whatIs: "The CMA is a globally recognized certification that validates your expertise in financial planning, analysis, control, and decision support.",
+        whyItMatters: "CMAs earn more and advance faster. It proves your ability to think strategically and lead finance functions.",
+        jobReadySkills: "Performance measurement, budgeting, risk management, and strategic financial decision making."
       },
-      {
-        name: "Weekend Batch",
-        schedule: "Sat",
-        duration: "10:00 AM – 4:00 PM (Dubai Time)"
-      }
-    ],
-    level: "ADVANCED",
-    duration: 60,
-    priceUsd: 850,
-    currency: "USD",
-    outcomes: [
-      "Master Financial Planning, Performance, and Analytics",
-      "Gain expertise in Strategic Financial Management",
-      "Prepare for the Part 1 and Part 2 CMA exams with confidence",
-      "Learn to apply management accounting principles in real-world scenarios",
-      "Understand ethics in the professional accounting environment"
-    ],
-    whoItsFor: [
-      "Finance Managers",
-      "Cost Accountants",
-      "Financial Analysts",
-      "Budgeting Managers",
-      "Strategic Planners"
-    ],
-    programOverview: {
-      whatIs: "The CMA is a globally recognized certification that validates your expertise in financial planning, analysis, control, and decision support.",
-      whyItMatters: "CMAs earn more and advance faster. It proves your ability to think strategically and lead finance functions.",
-      jobReadySkills: "Performance measurement, budgeting, risk management, and strategic financial decision making."
-    },
-    audienceCategories: [
-      {
-        title: "📈 Finance & Strategy",
-        roles: ["Financial Controllers", "CFOs", "Strategy Analysts", "FP&A Professionals"]
-      }
-    ],
-    examInfo: {
-      questions: "100 MCQs + 2 Essay Scenarios",
-      duration: "4 Hours (Each Part)",
-      passingScore: "360/500",
-      format: "Computer Based",
-      requirements: [
-        "Bachelor's Degree",
-        "2 Years Professional Experience",
-        "Active IMA Membership"
-      ]
-    },
-    whyChooseUs: {
-      title: "Why Choose Edu-Dubai?",
-      description: "As a Hock International partner, we provide the best-in-class study materials and diagnostic tools to ensure you pass on your first try.",
-      points: [
-        "Hock Study Suite: Access to world-class videos, textbooks, and test banks.",
-        "Progress Tracking: Weekly feedback on your performance and focus areas.",
-        "Exam Simulation: Practice under real exam conditions with our software.",
-        "Expert Coaching: Learn from industry veterans who simplify complex concepts."
-      ]
-    },
-    faq: [
-      {
-        question: "How many parts are in the CMA exam?",
-        answer: "There are two parts: Part 1 (Financial Planning, Performance, and Analytics) and Part 2 (Strategic Financial Management)."
-      }
-    ],
-    featured: true,
-    imageUrl: "/images/certifications/certified-management-accountant.jpg",
-    issuingBody: "HOCK_INTERNATIONAL"
-  },
-  {
-    id: "cia",
-    slug: "certified-internal-auditor",
-    title: "Certified Internal Auditor (CIA)",
-    shortDescription: "The CIA is the only globally recognized certification for internal auditors.",
-    longDescription: "The Certified Internal Auditor (CIA) designation is the only globally recognized certification for internal auditors. CIAs are equipped with the skills and knowledge to conduct effective internal audits, manage risk, and add value to their organizations. This course covers everything from the basics of internal auditing to advanced topics like risk management and governance.",
-    category: "GOVERNANCE",
-    deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON"],
-    deliverySchedules: [
-      {
-        name: "Evening Batch",
-        schedule: "Mon & Wed",
-        duration: "6:30 PM – 9:30 PM (Dubai Time)"
+      audienceCategories: [
+        {
+          title: "📈 Finance & Strategy",
+          roles: ["Financial Controllers", "CFOs", "Strategy Analysts", "FP&A Professionals"]
+        }
+      ],
+      examInfo: {
+        questions: "100 MCQs + 2 Essay Scenarios",
+        duration: "4 Hours (Each Part)",
+        passingScore: "360/500",
+        format: "Computer Based",
+        requirements: [
+          "Bachelor's Degree",
+          "2 Years Professional Experience",
+          "Active IMA Membership"
+        ]
       },
-      {
-        name: "Weekend Intensive",
-        schedule: "Fri",
-        duration: "2:00 PM – 8:00 PM (Dubai Time)"
-      }
-    ],
-    level: "ADVANCED",
-    duration: 50,
-    priceUsd: 820,
-    currency: "USD",
-    outcomes: [
-      "Master the Fundamentals of Internal Auditing",
-      "Understand Internal Audit Practice and Knowledge Elements",
-      "Prepare for all three parts of the CIA exam",
-      "Learn to assess risk and evaluate internal controls",
-      "Develop skills in governance, risk, and control (GRC)"
-    ],
-    whoItsFor: [
-      "Internal Auditors",
-      "External Auditors",
-      "Compliance Officers",
-      "Risk Management Professionals",
-      "Accounting Students"
-    ],
-    programOverview: {
-      whatIs: "The CIA is the premier global certification for internal audit professionals, awarded by the IIA.",
-      whyItMatters: "CIA status proves your professionalism and commitment to the industry standard for internal audit excellence.",
-      jobReadySkills: "Internal control evaluation, risk management auditing, and organizational governance oversight."
+      whyChooseUs: {
+        title: "Why Choose Edu-Dubai?",
+        description: "As a Hock International partner, we provide the best-in-class study materials and diagnostic tools to ensure you pass on your first try.",
+        points: [
+          "Hock Study Suite: Access to world-class videos, textbooks, and test banks.",
+          "Progress Tracking: Weekly feedback on your performance and focus areas.",
+          "Exam Simulation: Practice under real exam conditions with our software.",
+          "Expert Coaching: Learn from industry veterans who simplify complex concepts."
+        ]
+      },
+      faq: [
+        {
+          question: "How many parts are in the CMA exam?",
+          answer: "There are two parts: Part 1 (Financial Planning, Performance, and Analytics) and Part 2 (Strategic Financial Management)."
+        }
+      ],
+      featured: true,
+      imageUrl: "/images/certifications/certified-management-accountant.jpg",
+      issuingBody: "HOCK_INTERNATIONAL"
     },
-    audienceCategories: [
-      {
-        title: "🛡️ Audit & Risk",
-        roles: ["Chief Audit Executives", "Audit Managers", "IT Auditors", "GRC Specialists"]
-      }
-    ],
-    examInfo: {
-      questions: "125 (Part 1), 100 (Part 2 & 3)",
-      duration: "150 mins (Part 1), 120 mins (Part 2 & 3)",
-      passingScore: "600/750",
-      format: "MCQ (Multiple Choice)",
-      requirements: [
-        "Bachelor's Degree or Equivalent",
-        "Character Reference",
-        "Verified Professional Experience"
-      ]
+    {
+      id: "cia",
+      slug: "certified-internal-auditor",
+      title: "Certified Internal Auditor (CIA)",
+      shortDescription: "The CIA is the only globally recognized certification for internal auditors.",
+      longDescription: "The Certified Internal Auditor (CIA) designation is the only globally recognized certification for internal auditors. CIAs are equipped with the skills and knowledge to conduct effective internal audits, manage risk, and add value to their organizations. This course covers everything from the basics of internal auditing to advanced topics like risk management and governance.",
+      category: "GOVERNANCE",
+      deliveryModes: ["LIVE_VIRTUAL", "IN_PERSON"],
+      deliverySchedules: [
+        {
+          name: "Evening Batch",
+          schedule: "Mon & Wed",
+          duration: "6:30 PM – 9:30 PM (Dubai Time)"
+        },
+        {
+          name: "Weekend Intensive",
+          schedule: "Fri",
+          duration: "2:00 PM – 8:00 PM (Dubai Time)"
+        }
+      ],
+      level: "ADVANCED",
+      duration: 50,
+      priceUsd: 820,
+      currency: "USD",
+      outcomes: [
+        "Master the Fundamentals of Internal Auditing",
+        "Understand Internal Audit Practice and Knowledge Elements",
+        "Prepare for all three parts of the CIA exam",
+        "Learn to assess risk and evaluate internal controls",
+        "Develop skills in governance, risk, and control (GRC)"
+      ],
+      whoItsFor: [
+        "Internal Auditors",
+        "External Auditors",
+        "Compliance Officers",
+        "Risk Management Professionals",
+        "Accounting Students"
+      ],
+      programOverview: {
+        whatIs: "The CIA is the premier global certification for internal audit professionals, awarded by the IIA.",
+        whyItMatters: "CIA status proves your professionalism and commitment to the industry standard for internal audit excellence.",
+        jobReadySkills: "Internal control evaluation, risk management auditing, and organizational governance oversight."
+      },
+      audienceCategories: [
+        {
+          title: "🛡️ Audit & Risk",
+          roles: ["Chief Audit Executives", "Audit Managers", "IT Auditors", "GRC Specialists"]
+        }
+      ],
+      examInfo: {
+        questions: "125 (Part 1), 100 (Part 2 & 3)",
+        duration: "150 mins (Part 1), 120 mins (Part 2 & 3)",
+        passingScore: "600/750",
+        format: "MCQ (Multiple Choice)",
+        requirements: [
+          "Bachelor's Degree or Equivalent",
+          "Character Reference",
+          "Verified Professional Experience"
+        ]
+      },
+      whyChooseUs: {
+        title: "Why Choose Edu-Dubai?",
+        description: "We use Hock International's award-winning curriculum to ensure our students have the most comprehensive audit training in the UAE.",
+        points: [
+          "Hock Adaptive Learning: Focuses your study time on your weakest areas.",
+          "Interactive Workshops: Dive deep into real-world audit scenarios.",
+          "Mock Exams: Full-length simulations to build exam stamina.",
+          "Certified Experts: Learn from instructors who hold the CIA designation themselves."
+        ]
+      },
+      faq: [
+        {
+          question: "Is the exam fee separate?",
+          answer: "Yes, exam registration and fees are handled directly with The IIA."
+        }
+      ],
+      featured: true,
+      imageUrl: "/images/certifications/certified-internal-auditor.jpg",
+      issuingBody: "HOCK_INTERNATIONAL"
     },
-    whyChooseUs: {
-      title: "Why Choose Edu-Dubai?",
-      description: "We use Hock International's award-winning curriculum to ensure our students have the most comprehensive audit training in the UAE.",
-      points: [
-        "Hock Adaptive Learning: Focuses your study time on your weakest areas.",
-        "Interactive Workshops: Dive deep into real-world audit scenarios.",
-        "Mock Exams: Full-length simulations to build exam stamina.",
-        "Certified Experts: Learn from instructors who hold the CIA designation themselves."
-      ]
-    },
-    faq: [
-      {
-        question: "Is the exam fee separate?",
-        answer: "Yes, exam registration and fees are handled directly with The IIA."
-      }
-    ],
-    featured: true,
-    imageUrl: "/images/certifications/certified-internal-auditor.jpg",
-    issuingBody: "HOCK_INTERNATIONAL"
-  },
+  */
 ]
 
 // Helper functions
