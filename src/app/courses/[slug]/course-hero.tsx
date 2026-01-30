@@ -62,6 +62,17 @@ export function CourseHero({ course }: CourseHeroProps) {
                   />
                 </div>
               )}
+              {course.id === 'cams' && (
+                <div className="flex-shrink-0 animate-fade-in animate-float">
+                  <Image
+                    src="/images/badges/cams-seal.png"
+                    alt="CAMS Exam Prep"
+                    width={280}
+                    height={280}
+                    className="drop-shadow-2xl w-32 h-32 lg:w-60 lg:h-60"
+                  />
+                </div>
+              )}
             </div>
 
             {/* Combined Info Grid and CTAs */}
@@ -90,6 +101,19 @@ export function CourseHero({ course }: CourseHeroProps) {
                     <a href="/handbooks/cgss-handbook.pdf" download="CGSS-Handbook.pdf">
                       <Download className="w-4 h-4" />
                       CGSS Handbook
+                    </a>
+                  </Button>
+                )}
+                {course.id === 'cams' && (
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="lg"
+                    className="w-full sm:w-auto flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/20 text-white hover:bg-white/10 hover:text-white px-8 py-6 text-lg font-bold rounded-full transition-colors"
+                  >
+                    <a href="/handbooks/cams-handbook.pdf" download="CAMS-Handbook.pdf">
+                      <Download className="w-4 h-4" />
+                      CAMS Handbook
                     </a>
                   </Button>
                 )}
