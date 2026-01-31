@@ -71,6 +71,7 @@ export default function RootLayout({
         <Script id="google-ads" strategy="afterInteractive">
           {`
             window.gtag('config', 'GT-WRGG3DMG');
+            window.gtag('config', 'AW-17858231822');
           `}
         </Script>
         <SiteHeader />
