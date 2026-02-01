@@ -29,7 +29,7 @@ export function ContactInfo() {
               <Phone className="h-5 w-5 text-brand-gold" />
             </div>
             <div className="space-y-2">
-              <div className="font-semibold text-brand-navy mb-1 text-sm uppercase tracking-wider">Regional Support</div>
+              <div className="font-semibold text-brand-navy mb-1 text-sm uppercase tracking-wider">Contact Us</div>
               <div className="flex flex-col gap-1">
                 <a
                   href="tel:+919665642862"
@@ -80,7 +80,7 @@ export function ContactInfo() {
         </CardHeader>
         <CardContent>
           <p className="text-white/80 mb-4">
-            Prefer to chat? Connect with our advisors on WhatsApp for instant support.
+            Prefer to chat? Connect with our advisors on WhatsApp for Immediate Course Assistance.
           </p>
           <WhatsAppButton
             source="contact_page"
@@ -101,8 +101,8 @@ export function ContactInfo() {
               <span className="font-medium text-brand-navy">Within 24 hours</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-neutral-text-muted">WhatsApp</span>
-              <span className="font-medium text-brand-navy">Instant</span>
+              <span className="text-neutral-text-muted">Course Guidance</span>
+              <span className="font-medium text-brand-navy">Immediate Course Assistance</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-neutral-text-muted">Phone</span>

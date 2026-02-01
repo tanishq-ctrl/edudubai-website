@@ -90,7 +90,7 @@ export function SiteFooter() {
                 <li className="flex items-start">
                   <Phone className="h-5 w-5 text-brand-gold mr-3 mt-0.5 flex-shrink-0" />
                   <div className="flex flex-col gap-2">
-                    <div className="text-sm font-medium">Regional Support</div>
+                    <div className="text-sm font-medium">Contact Us</div>
                     <div className="flex flex-col gap-1.5">
                       <a
                         href="tel:+919665642862"
@@ -124,7 +124,7 @@ export function SiteFooter() {
                     className="inline-flex items-center text-sm font-medium text-brand-gold hover:text-brand-gold-light transition-colors"
                   >
                     <span className="mr-2">💬</span>
-                    Chat on WhatsApp
+                    Course Guidance
                   </a>
                 </li>
                 <li>

@@ -13,17 +13,17 @@ interface WhatsAppButtonProps {
   className?: string
 }
 
-export function WhatsAppButton({ 
-  message, 
+export function WhatsAppButton({
+  message,
   source = "general",
   variant = "default",
   size = "default",
-  className 
+  className
 }: WhatsAppButtonProps) {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
-    
+
     try {
       trackWhatsAppClick(source)
       openWhatsApp(message)
@@ -41,7 +41,7 @@ export function WhatsAppButton({
       type="button"
     >
       <MessageCircle className="h-4 w-4 mr-2" />
-      Talk to Advisor
+      Enrollment Inquiry
     </Button>
   )
 }
