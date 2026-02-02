@@ -48,11 +48,11 @@ const partners = [
 
 export function TrustBar() {
   return (
-    <section className="py-10 bg-gradient-to-br from-slate-50 via-blue-50/60 to-indigo-50/80 border-y border-neutral-border/50 overflow-hidden relative">
-      {/* Enhanced gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-100/20 via-transparent to-indigo-100/20"></div>
+    <section className="py-8 md:py-10 bg-gradient-to-br from-neutral-bg-subtle via-slate-50 to-neutral-bg border-y border-neutral-border/50 overflow-hidden relative">
+      {/* Subtle brand-aligned gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/5 via-transparent to-brand-gold/5"></div>
       <Container className="relative z-10">
-        <div className="text-center mb-6">
+        <div className="text-center mb-4">
           <p className="text-sm md:text-base font-bold text-brand-navy uppercase tracking-wide">
             Trusted by AML & Compliance Professionals Worldwide
           </p>

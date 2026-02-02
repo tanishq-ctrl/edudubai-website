@@ -5,7 +5,7 @@ import { Building2, ArrowRight } from "lucide-react"
 
 export function CorporateCTASection() {
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-r from-brand-navy to-brand-navy-dark text-white">
+    <section className="py-12 md:py-14 bg-gradient-to-r from-brand-navy to-brand-navy-dark text-white">
       <Container>
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <div className="flex justify-center mb-4">
@@ -17,14 +17,15 @@ export function CorporateCTASection() {
             Transform Your Organization with Corporate Training
           </h2>
           <p className="text-xl text-white/90 max-w-2xl mx-auto">
-            Customized training solutions designed to upskill your workforce, 
+            Customized training solutions designed to upskill your workforce,
             drive innovation, and achieve measurable business results.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
             <Button
               asChild
-              size="lg"
-              className="bg-brand-gold text-brand-navy hover:bg-brand-gold-light font-semibold px-8 py-6 text-lg group"
+              size="xl"
+              variant="gold"
+              className="group"
             >
               <Link href="/corporate-training">
                 Explore Corporate Solutions
@@ -33,9 +34,9 @@ export function CorporateCTASection() {
             </Button>
             <Button
               asChild
-              size="lg"
+              size="xl"
               variant="outline"
-              className="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-6 text-lg"
+              className="bg-transparent border-white text-white hover:bg-white/10"
             >
               <Link href="/contact">Request a Proposal</Link>
             </Button>

@@ -314,7 +314,7 @@ export const courses: Course[] = [
     ],
     level: "INTERMEDIATE",
     duration: 16,
-    priceUsd: 774,
+    priceUsd: 849,
     currency: "USD",
     outcomes: [
       "FATCA Agreements & Scope: Model 1 & Model 2 IGAs, FFI agreements, Entity classification, Compliance obligations",
@@ -410,7 +410,7 @@ export const courses: Course[] = [
       }
     ],
     level: "INTERMEDIATE",
-    duration: 30,
+    duration: 16,
     priceUsd: 849,
     currency: "USD",
     outcomes: [
@@ -507,7 +507,7 @@ export const courses: Course[] = [
       }
     ],
     level: "INTERMEDIATE",
-    duration: 20,
+    duration: 16,
     priceUsd: 849,
     currency: "USD",
     outcomes: [
@@ -605,7 +605,7 @@ export const courses: Course[] = [
       }
     ],
     level: "ADVANCED",
-    duration: 60,
+    duration: 100,
     priceUsd: 1599,
     currency: "USD",
     outcomes: [
@@ -703,7 +703,7 @@ export const courses: Course[] = [
     ],
     level: "ADVANCED",
     duration: 24,
-    priceUsd: 849,
+    priceUsd: 350,
     currency: "USD",
     outcomes: [
       "Understand Trade Lifecycle: Bill of Lading, Invoices, and fraud red flags",
@@ -762,7 +762,7 @@ export const courses: Course[] = [
     ],
     featured: true,
     imageUrl: "/images/certifications/trade-based-money-laundering.jpg",
-    issuingBody: "GCI"
+    issuingBody: "ACAMS"
   },
   /*
     {

@@ -65,29 +65,29 @@ export function StatsSection() {
   }, [hasAnimated])
 
   return (
-    <section id="stats-section" className="py-12 md:py-16 bg-gradient-to-br from-slate-50 via-blue-50/60 to-indigo-50/80 relative overflow-hidden">
-      {/* Enhanced gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-100/20 via-transparent to-indigo-100/20"></div>
+    <section id="stats-section" className="py-10 md:py-12 bg-gradient-to-br from-neutral-bg-subtle via-slate-50 to-neutral-bg relative overflow-hidden">
+      {/* Subtle brand-aligned gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/5 via-transparent to-brand-gold/5"></div>
       <Container className="relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {stats.map((stat, index) => {
             const colorGradients = [
-              "from-indigo-600 to-purple-600",
-              "from-blue-600 to-cyan-600",
-              "from-emerald-600 to-teal-600",
-              "from-amber-600 to-orange-600",
+              "from-brand-navy to-brand-navy-light",
+              "from-brand-gold-dark to-brand-gold",
+              "from-brand-navy-light to-brand-navy",
+              "from-brand-gold to-brand-gold-light",
             ]
             const borderColors = [
-              "hover:border-indigo-400",
-              "hover:border-blue-400",
-              "hover:border-emerald-400",
-              "hover:border-amber-400",
+              "hover:border-brand-navy/40",
+              "hover:border-brand-gold/40",
+              "hover:border-brand-navy/40",
+              "hover:border-brand-gold/40",
             ]
             const shadowColors = [
-              "hover:shadow-indigo-200/30",
-              "hover:shadow-blue-200/30",
-              "hover:shadow-emerald-200/30",
-              "hover:shadow-amber-200/30",
+              "hover:shadow-brand-navy/10",
+              "hover:shadow-brand-gold/20",
+              "hover:shadow-brand-navy/10",
+              "hover:shadow-brand-gold/20",
             ]
             return (
               <Card key={stat.label} className={`border-2 border-neutral-border/50 ${borderColors[index]} transition-all duration-300 hover:shadow-2xl ${shadowColors[index]} bg-gradient-to-br from-white via-white/95 to-slate-50/80 backdrop-blur-sm hover:scale-105`}>

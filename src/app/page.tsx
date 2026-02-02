@@ -13,11 +13,11 @@ export default function HomePage() {
     <>
       <HomePageClient />
       <HeroCarousel />
-      <TrustBar />
-      <StatsSection />
       <PartnershipsSection />
       {/* <FindYourPath /> */}
       <FeaturedCoursesSection />
+      {/* TrustBar now integrated into HeroCarousel bottom */}
+      <StatsSection />
       <TestimonialsSection />
       <CorporateCTASection />
     </>

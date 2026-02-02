@@ -5,20 +5,39 @@
 @layer base {
   :root {
     /* Brand Colors - Premium PwC Style */
-    --brand-navy: 30 58 95; /* #1e3a5f */
-    --brand-navy-light: 45 79 124; /* #2d4f7c */
-    --brand-navy-dark: 15 31 53; /* #0f1f35 */
-    --brand-gold: 212 175 55; /* #d4af37 */
-    --brand-gold-light: 229 193 88; /* #e5c158 */
-    --brand-gold-dark: 184 148 31; /* #b8941f */
-    
+    --brand-navy: 30 58 95;
+    /* #1e3a5f */
+    --brand-navy-light: 45 79 124;
+    /* #2d4f7c */
+    --brand-navy-dark: 15 31 53;
+    /* #0f1f35 */
+    --brand-gold: 212 175 55;
+    /* #d4af37 */
+    --brand-gold-light: 229 193 88;
+    /* #e5c158 */
+    --brand-gold-dark: 184 148 31;
+    /* #b8941f */
+
     /* Neutral Colors */
-    --neutral-bg: 255 255 255; /* White */
-    --neutral-bg-subtle: 249 250 251; /* Gray-50 */
-    --neutral-text: 17 24 39; /* Gray-900 */
-    --neutral-text-muted: 107 114 128; /* Gray-500 */
-    --neutral-border: 229 231 235; /* Gray-200 */
-    
+    --neutral-bg: 255 255 255;
+    /* White */
+    --neutral-bg-subtle: 249 250 251;
+    /* Gray-50 */
+    --neutral-text: 17 24 39;
+    /* Gray-900 */
+    --neutral-text-muted: 107 114 128;
+    /* Gray-500 */
+    --neutral-border: 229 231 235;
+    /* Gray-200 */
+
+    /* Spacing System - Consistent rhythm */
+    --spacing-section-sm: 3rem;
+    /* 48px */
+    --spacing-section-md: 5rem;
+    /* 80px */
+    --spacing-section-lg: 7rem;
+    /* 112px */
+
     /* shadcn/ui compatibility */
     --background: var(--neutral-bg);
     --foreground: var(--neutral-text);
@@ -47,6 +66,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-neutral-bg text-neutral-text antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
@@ -57,25 +77,42 @@
   .animate-scroll {
     display: flex;
     width: fit-content;
-    animation: scroll 90s linear infinite;
+    animation: scroll 30s linear infinite;
     will-change: transform;
   }
-  
+
   .animate-scroll:hover {
     animation-play-state: paused;
   }
-  
+
   .animate-fade-up {
     animation: fade-up 0.8s ease-out;
   }
-  
+
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.7s ease-out;
+  }
+
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-  
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Smooth transitions for all interactive elements */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .transition-smooth-slow {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
@@ -83,6 +120,7 @@
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }
@@ -93,6 +131,29 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -100,9 +161,12 @@
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -121,7 +185,7 @@
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
   }
-  
+
   .partner-logo-enhance:hover {
     filter: brightness(1.2) contrast(1.25) saturate(1.2);
   }

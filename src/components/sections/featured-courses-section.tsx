@@ -8,11 +8,11 @@ export async function FeaturedCoursesSection() {
   const featuredCourses = await getFeaturedCoursesNew()
 
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-br from-slate-50 via-blue-50/60 to-indigo-50/80 relative overflow-hidden">
-      {/* Enhanced gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-100/20 via-transparent to-indigo-100/20"></div>
+    <section className="py-12 md:py-14 bg-gradient-to-br from-neutral-bg-subtle via-slate-50 to-neutral-bg relative overflow-hidden">
+      {/* Subtle brand-aligned gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/5 via-transparent to-brand-gold/5"></div>
       <Container className="relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h2 className="text-4xl md:text-5xl font-bold text-brand-navy mb-4">
             Featured Courses
           </h2>
@@ -25,11 +25,11 @@ export async function FeaturedCoursesSection() {
             <CourseCard key={course.id} course={course} />
           ))}
         </div>
-        <div className="text-center mt-16">
-          <Button 
-            asChild 
-            size="lg" 
-            className="bg-gradient-to-r from-brand-gold to-brand-gold-light text-brand-navy hover:from-brand-gold-light hover:to-brand-gold font-semibold px-10 py-7 text-lg shadow-2xl shadow-brand-gold/30 hover:shadow-brand-gold/50 transition-all hover:scale-105"
+        <div className="text-center mt-10">
+          <Button
+            asChild
+            size="xl"
+            variant="gold"
           >
             <Link href="/courses">View All Courses</Link>
           </Button>

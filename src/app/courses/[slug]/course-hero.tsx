@@ -34,11 +34,11 @@ export function CourseHero({ course }: CourseHeroProps) {
           {/* Left Content */}
           <div className="lg:col-span-7 space-y-5 animate-fade-up">
             <div className="flex flex-wrap items-center gap-3">
-              <Badge className="bg-brand-gold text-brand-navy hover:bg-brand-gold-light border-0 px-4 py-1.5 font-bold shadow-lg shadow-brand-gold/20 tracking-wide uppercase text-[10px]">
+              <Badge className="bg-brand-gold text-brand-navy hover:bg-brand-gold/90 border-0 px-4 py-2 font-extrabold shadow-lg shadow-brand-gold/30 tracking-wider uppercase text-xs">
                 {course.category.replace(/_/g, " ")}
               </Badge>
               {course.deliveryModes.map((mode) => (
-                <DeliveryFormatBadge key={mode} format={mode} className="py-1.5 px-3 backdrop-blur-md bg-white/10 border border-white/20 text-[10px]" />
+                <DeliveryFormatBadge key={mode} format={mode} className="py-2 px-4 backdrop-blur-md bg-white/95 border-0 text-xs font-extrabold shadow-md" />
               ))}
             </div>
 
