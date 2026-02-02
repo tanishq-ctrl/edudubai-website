@@ -189,4 +189,14 @@
   .partner-logo-enhance:hover {
     filter: brightness(1.2) contrast(1.25) saturate(1.2);
   }
+
+  /* Hide scrollbar for certification logos */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }

@@ -217,14 +217,19 @@ export function HeroCarousel() {
               {/* Certification Logos - Responsive sizing for mobile */}
               {slide.certifications && (
                 <div className={cn(
-                  "absolute inset-x-0 flex justify-center z-20 pointer-events-none px-4",
-                  index === 1 ? "top-32 md:top-28" : "top-24 md:top-20"
+                  "absolute inset-x-0 flex justify-center z-20 pointer-events-none px-2 sm:px-4",
+                  index === 1 ? "top-32 md:top-28" : index === 2 ? "top-32 md:top-28" : "top-24 md:top-20"
                 )}>
-                  <div className="flex flex-wrap justify-center items-center gap-3 md:gap-8 lg:gap-12 pointer-events-auto max-w-full">
+                  <div className={cn(
+                    "flex justify-center items-center pointer-events-auto",
+                    index === 2
+                      ? "flex-nowrap gap-2 sm:gap-3 md:gap-6 lg:gap-10 overflow-x-auto max-w-full scrollbar-hide"
+                      : "flex-wrap gap-2 sm:gap-3 md:gap-8 lg:gap-12 max-w-full"
+                  )}>
                     {slide.certifications.map((cert, certIndex) => (
                       <div
                         key={certIndex}
-                        className="transition-transform duration-300 hover:scale-110"
+                        className="transition-transform duration-300 hover:scale-110 flex-shrink-0"
                       >
                         <Image
                           src={cert.imagePath}
@@ -234,7 +239,9 @@ export function HeroCarousel() {
                           className={cn(
                             index === 1
                               ? "w-20 h-20 sm:w-24 sm:h-24 md:w-36 md:h-36 lg:w-40 lg:h-40 object-contain"
-                              : "w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain",
+                              : index === 2
+                                ? "w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain"
+                                : "w-14 h-14 sm:w-18 sm:h-18 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain",
                             slide.whiteLogos
                               ? "brightness-0 invert drop-shadow-2xl opacity-90"
                               : "mix-blend-multiply contrast-[1.1] brightness-[1.05]"
