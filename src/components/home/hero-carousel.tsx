@@ -17,7 +17,7 @@ import "swiper/css/navigation"
 import "swiper/css/pagination"
 
 interface SlideData {
-  eyebrow: string
+  eyebrow?: string
   headline: string
   subheadline: string
   primaryCTA: {
@@ -40,8 +40,8 @@ interface SlideData {
 const slides: SlideData[] = [
   {
     eyebrow: "EduDubai • Training & Consulting",
-    headline: "Compliance Leadership Starts Here.",
-    subheadline: "Built for regulators & expectations — not checklists.",
+    headline: "Compliance Leadership\nStarts Here.",
+    subheadline: "Think the way regulators expect, No Shortcuts",
     primaryCTA: {
       text: "Explore Courses",
       href: "/courses",
@@ -50,7 +50,6 @@ const slides: SlideData[] = [
     imageAlt: "Professional compliance training and consulting",
   },
   {
-    eyebrow: "Exam Preparation",
     headline: "ACAMS Exam Prep",
     subheadline: "Live cohorts, case-led learning, readiness diagnostics.",
     primaryCTA: {
@@ -72,7 +71,6 @@ const slides: SlideData[] = [
     whiteLogos: true,
   },
   {
-    eyebrow: "Exam Preparation",
     headline: "GCI Exam Prep",
     subheadline: "Global Compliance Institute certified training with expert guidance.",
     primaryCTA: {
@@ -95,7 +93,7 @@ const slides: SlideData[] = [
   },
   {
     eyebrow: "For Organizations",
-    headline: "Corporate Training That Moves Metrics.",
+    headline: "Corporate Training\nThat Moves Metrics.",
     subheadline: "Customized programs across GCC, India, and global teams.",
     primaryCTA: {
       text: "Corporate Training",
@@ -211,20 +209,20 @@ export function HeroCarousel() {
 
             {/* Content - Left Aligned */}
             <Container className={cn(
-              "relative z-10 h-full flex items-center",
+              "relative z-10 h-full flex flex-col items-start",
+              // Center all slides on mobile; keep Slides 1 & 4 centered on desktop
+              (index === 0 || index === 3) ? "justify-center" : "justify-center md:justify-start md:pt-32 lg:pt-36",
               !slide.certifications && "pb-16 md:pb-24"
             )}>
-              {/* Certification Logos - Responsive sizing for mobile */}
+              {/* Certification Logos - Stays above text on all screens to prevent overlap */}
               {slide.certifications && (
                 <div className={cn(
-                  "absolute inset-x-0 flex justify-center z-20 pointer-events-none px-2 sm:px-4",
-                  index === 1 ? "top-32 md:top-28" : index === 2 ? "top-32 md:top-28" : "top-24 md:top-20"
+                  "relative z-20 pointer-events-none md:px-0",
+                  "mb-6 md:mb-10 justify-start w-full", // Consistent flow for all screens
                 )}>
                   <div className={cn(
-                    "flex justify-center items-center pointer-events-auto",
-                    index === 2
-                      ? "flex-nowrap gap-2 sm:gap-3 md:gap-6 lg:gap-10 overflow-x-auto max-w-full scrollbar-hide"
-                      : "flex-wrap gap-2 sm:gap-3 md:gap-8 lg:gap-12 max-w-full"
+                    "flex justify-start items-center pointer-events-auto",
+                    "flex-nowrap gap-3 sm:gap-4 md:gap-8 lg:gap-12 max-w-full overflow-x-auto scrollbar-hide md:overflow-visible"
                   )}>
                     {slide.certifications.map((cert, certIndex) => (
                       <div
@@ -238,10 +236,10 @@ export function HeroCarousel() {
                           height={140}
                           className={cn(
                             index === 1
-                              ? "w-20 h-20 sm:w-24 sm:h-24 md:w-36 md:h-36 lg:w-40 lg:h-40 object-contain"
+                              ? "w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain"
                               : index === 2
-                                ? "w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain"
-                                : "w-14 h-14 sm:w-18 sm:h-18 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain",
+                                ? "w-14 h-14 sm:w-16 sm:h-16 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain"
+                                : "w-14 h-14 sm:w-14 sm:h-14 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain",
                             slide.whiteLogos
                               ? "brightness-0 invert drop-shadow-2xl opacity-90"
                               : "mix-blend-multiply contrast-[1.1] brightness-[1.05]"
@@ -253,17 +251,26 @@ export function HeroCarousel() {
                 </div>
               )}
 
-              <div className="max-w-2xl text-left space-y-6 lg:space-y-8 animate-fade-up">
+
+
+              <div className="md:max-w-2xl text-left space-y-6 lg:space-y-8 animate-fade-up w-full">
                 {/* Badge */}
-                <div className="inline-flex">
-                  <span className="px-4 py-2 bg-brand-gold text-brand-navy text-xs sm:text-sm font-bold uppercase tracking-wider rounded-md shadow-lg">
-                    {slide.eyebrow}
-                  </span>
-                </div>
+
+                {slide.eyebrow && (
+                  <div className="inline-flex">
+                    <span className="px-4 py-2 bg-brand-gold text-brand-navy text-xs sm:text-sm font-bold uppercase tracking-wider rounded-md shadow-lg">
+                      {slide.eyebrow}
+                    </span>
+                  </div>
+                )}
 
                 {/* Headline */}
                 <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white drop-shadow-2xl">
-                  {slide.headline}
+                  {slide.headline.split('\n').map((line, i) => (
+                    <span key={i} className="block">
+                      {line}
+                    </span>
+                  ))}
                 </h1>
 
                 {/* Subheadline */}
@@ -304,7 +311,7 @@ export function HeroCarousel() {
 
       {/* Custom Navigation Arrows */}
       <button
-        className="swiper-button-prev-custom absolute left-3 sm:left-6 md:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-md border border-white/30 hover:border-white/50 flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50 active:scale-95"
+        className="swiper-button-prev-custom absolute left-3 sm:left-6 md:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-md border border-white/30 hover:border-white/50 hidden sm:flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50 active:scale-95"
         aria-label="Previous slide"
       >
         <svg
@@ -322,7 +329,7 @@ export function HeroCarousel() {
         </svg>
       </button>
       <button
-        className="swiper-button-next-custom absolute right-3 sm:right-6 md:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-md border border-white/30 hover:border-white/50 flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50 active:scale-95"
+        className="swiper-button-next-custom absolute right-3 sm:right-6 md:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-md border border-white/30 hover:border-white/50 hidden sm:flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50 active:scale-95"
         aria-label="Next slide"
       >
         <svg
