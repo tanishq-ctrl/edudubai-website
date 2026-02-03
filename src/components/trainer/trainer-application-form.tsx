@@ -131,7 +131,7 @@ export function TrainerApplicationForm() {
             </div>
             <CardTitle className="text-3xl font-bold text-brand-navy">Application Received!</CardTitle>
             <CardDescription className="text-lg mt-2 px-6">
-              Thank you for applying to join EduDubai. We're excited to review your profile.
+              Thank you for applying to join EduDubai. We&apos;re excited to review your profile.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-8 p-8">
