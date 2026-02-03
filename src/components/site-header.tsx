@@ -29,10 +29,11 @@ const navigation = [
       { name: "Hock International", href: "/courses?body=HOCK_INTERNATIONAL" },
     ]
   },
-  { name: "Corporate", href: "/corporate-training" },
-  { name: "About", href: "/about" },
+  { name: "Corporate Training", href: "/corporate-training" },
+  { name: "About Us", href: "/about" },
   { name: "Contact", href: "/contact" },
 ]
+
 
 import { HeaderLogo } from "@/components/layout/header-logo"
 

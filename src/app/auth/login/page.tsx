@@ -107,140 +107,126 @@ function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-neutral-bg-subtle/50 relative overflow-hidden px-6 pt-20">
-      {/* Cinematic Elements */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-navy/5 rounded-full blur-[120px] -mr-32 -mt-32" />
+    <div className="min-h-screen flex items-start justify-center bg-gradient-to-b from-neutral-bg to-white px-4 pt-32 pb-16">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-brand-navy mb-2">
+            Welcome Back
+          </h1>
+          <p className="text-neutral-text">
+            Sign in to access your dashboard
+          </p>
+        </div>
 
-      <div className="w-full max-w-[650px] relative z-20">
-        <div className="bg-white rounded-[2.5rem] shadow-[0_48px_100px_-24px_rgba(0,0,0,0.15)] overflow-hidden border-t-8 border-t-brand-gold">
-          <div className="flex flex-col md:flex-row h-full">
-            {/* Info Panel - Exact Copy from Popup */}
-            <div className="hidden md:flex md:w-1/3 bg-brand-navy p-8 text-white flex-col justify-between relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-3xl -mr-16 -mt-16" />
-              <div className="space-y-6 relative z-10">
-                <h3 className="text-xl font-bold leading-tight">
-                  Global Specialist Onboarding
-                </h3>
-                <ul className="space-y-4 text-xs text-white/60 font-medium">
-                  <li className="flex gap-2">✓ Exam Diagnostic Access</li>
-                  <li className="flex gap-2">✓ DIFC/ADGM Study Circles</li>
-                  <li className="flex gap-2">✓ Instant Course Enrollment</li>
-                </ul>
-              </div>
-              <div className="relative z-10 pt-12">
-                <div className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-                  <Lock className="h-5 w-5 text-brand-gold" />
-                </div>
-              </div>
+        <div className="bg-white rounded-2xl shadow-lg border border-neutral-border p-8">
+          {error && (
+            <Alert className="mb-6 border-red-200 bg-red-50">
+              <AlertCircle className="h-4 w-4 text-red-600" />
+              <AlertDescription className="text-red-800 text-sm">
+                {error}
+              </AlertDescription>
+            </Alert>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="space-y-2">
+              <Label htmlFor="email" className="text-sm font-semibold text-brand-navy">
+                Email Address
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="you@company.com"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                required
+                disabled={loading}
+                className="h-11 border-neutral-border focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+              />
             </div>
 
-            <div className="flex-1 p-8 md:p-12">
-              <div className="space-y-8">
-                <div>
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold block mb-2">
-                    Welcome Back
-                  </span>
-                  <h1 className="text-3xl font-black text-brand-navy tracking-tight leading-none uppercase">
-                    Sign In
-                  </h1>
-                </div>
-
-                {error && (
-                  <div className="p-4 border border-red-500/10 bg-red-50 text-red-700 rounded-xl flex gap-3 text-xs font-bold shadow-sm">
-                    <AlertCircle className="h-4 w-4 mt-0.5" />
-                    {error}
-                  </div>
-                )}
-
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-1">
-                    <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Email Address</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="you@company.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      required
-                      disabled={loading}
-                      className="h-11 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold transition-all font-bold"
-                    />
-                  </div>
-
-                  <div className="space-y-1">
-                    <div className="flex justify-between items-center">
-                      <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Password</Label>
-                      <Link
-                        href="/auth/forgot-password"
-                        className="text-[9px] font-black uppercase text-brand-gold hover:underline"
-                      >
-                        Forgot?
-                      </Link>
-                    </div>
-                    <Input
-                      id="password"
-                      type="password"
-                      placeholder="••••••••"
-                      value={formData.password}
-                      onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                      required
-                      disabled={loading}
-                      className="h-11 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold transition-all font-bold tracking-widest"
-                    />
-                  </div>
-
-                  <Button
-                    type="submit"
-                    className="w-full bg-brand-navy hover:bg-brand-navy-dark text-white font-black py-7 text-base rounded-2xl shadow-xl transition-all hover:scale-[1.02] flex gap-2"
-                    disabled={loading}
-                  >
-                    {loading ? (
-                      <Loader2 className="h-5 w-5 animate-spin" />
-                    ) : (
-                      <>
-                        Enter Dashboard <ArrowRight className="h-5 w-5" />
-                      </>
-                    )}
-                  </Button>
-                </form>
-
-                <div className="relative pt-2">
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-neutral-border/50" />
-                  </div>
-                  <div className="relative flex justify-center text-[10px] font-black uppercase tracking-[0.3em] bg-white px-3">
-                    <span className="text-neutral-text-muted/50">OR</span>
-                  </div>
-                </div>
-
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={handleGoogleSignIn}
-                  disabled={loading || googleLoading}
-                  className="w-full h-11 border-neutral-border/50 rounded-xl flex gap-3 text-xs font-bold hover:bg-neutral-bg-subtle transition-all active:scale-95 shadow-sm"
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <Label htmlFor="password" className="text-sm font-semibold text-brand-navy">
+                  Password
+                </Label>
+                <Link
+                  href="/auth/forgot-password"
+                  className="text-sm text-brand-gold hover:text-brand-gold-light font-medium"
                 >
-                  {googleLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <><Chrome className="h-4 w-4 text-red-500" /> Continue with Google</>}
-                </Button>
-
-                <div className="text-center pt-2">
-                  <p className="text-neutral-text-muted/70 text-xs font-bold">
-                    New specialist?{" "}
-                    <Link
-                      href={`/auth/register${searchParams.get("next") ? `?next=${encodeURIComponent(searchParams.get("next")!)}` : ""}`}
-                      className="text-brand-navy font-black hover:underline underline-offset-4"
-                    >
-                      Register Now
-                    </Link>
-                  </p>
-                </div>
+                  Forgot password?
+                </Link>
               </div>
+              <Input
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+                value={formData.password}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                required
+                disabled={loading}
+                className="h-11 border-neutral-border focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+              />
             </div>
+
+            <Button
+              type="submit"
+              className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white font-semibold h-11"
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                  Signing in...
+                </>
+              ) : (
+                <>
+                  Sign In
+                  <ArrowRight className="h-4 w-4 ml-2" />
+                </>
+              )}
+            </Button>
+          </form>
+
+          <div className="relative my-6">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-neutral-border" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-4 bg-white text-neutral-text-muted">Or continue with</span>
+            </div>
+          </div>
+
+          <Button
+            type="button"
+            variant="outline"
+            onClick={handleGoogleSignIn}
+            disabled={loading || googleLoading}
+            className="w-full h-11 border-neutral-border hover:bg-neutral-bg"
+          >
+            {googleLoading ? (
+              <Loader2 className="h-4 w-4 animate-spin mr-2" />
+            ) : (
+              <Chrome className="h-4 w-4 mr-2 text-red-500" />
+            )}
+            Continue with Google
+          </Button>
+
+          <div className="mt-6 text-center">
+            <p className="text-sm text-neutral-text">
+              Don't have an account?{" "}
+              <Link
+                href={`/auth/register${searchParams.get("next") ? `?next=${encodeURIComponent(searchParams.get("next")!)}` : ""}`}
+                className="text-brand-navy font-semibold hover:text-brand-navy/80"
+              >
+                Register now
+              </Link>
+            </p>
           </div>
         </div>
 
-        <p className="mt-8 text-center text-neutral-text-muted/30 text-[9px] font-black uppercase tracking-[0.5em] italic">
-          EduDubai Professional Specialist Network
+        <p className="mt-6 text-center text-xs text-neutral-text-muted">
+          By signing in, you agree to our Terms of Service and Privacy Policy
         </p>
       </div>
     </div>

@@ -50,20 +50,26 @@ export default function BecomeATrainerPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-neutral-bg to-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-brand-navy to-brand-navy/90 text-white pt-32 pb-16 md:pt-36 md:pb-24">
-        <Container>
+      <section
+        className="relative bg-brand-navy text-white pt-32 pb-16 md:pt-36 md:pb-24 bg-cover bg-center"
+        style={{
+          backgroundImage: 'url(/hero/trainer.jpg)',
+        }}
+      >
+
+        <Container className="relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] mb-6">
               Become a Trainer
             </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Join EduDubai&apos;s network of expert trainers and help professionals excel in compliance, risk management, and finance.
+            <p className="text-lg md:text-xl lg:text-2xl text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)] mb-8 max-w-2xl mx-auto">
+              Join Edu Dubai today and leverage our global reach, attractive incentives, and the opportunity to make a significant impact in compliance training and consulting.
             </p>
             <div className="flex flex-wrap justify-center gap-3 mb-8">
               {qualificationAreas.map((area) => (
                 <span
                   key={area}
-                  className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium border border-white/20"
+                  className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-semibold border border-white/20"
                 >
                   {area}
                 </span>
@@ -73,57 +79,95 @@ export default function BecomeATrainerPage() {
         </Container>
       </section>
 
-      <Container className="py-12 md:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <Container className="py-12 md:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Main Form Section */}
-          <div className="lg:col-span-2">
-            {/* How It Works */}
-            <section className="mb-12">
-              <h2 className="text-3xl font-bold text-brand-navy mb-8 text-center">
-                How It Works
+          <div className="lg:col-span-2 order-2 lg:order-1">
+            {/* Application Form */}
+            <TrainerApplicationForm />
+
+            {/* How It Works - Moved below form */}
+            <section className="mt-20">
+              <h2 className="text-3xl font-bold text-brand-navy mb-8 text-center lg:text-left">
+                Our Evaluation Process
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {howItWorks.map((item, index) => (
-                  <Card key={index} className="border-2 border-neutral-border hover:border-brand-gold transition-all text-center">
-                    <CardContent className="pt-6">
-                      <div className="w-12 h-12 rounded-full bg-brand-gold/10 flex items-center justify-center mx-auto mb-4">
-                        <span className="text-2xl font-bold text-brand-gold">{item.step}</span>
-                      </div>
-                      <h3 className="text-lg font-semibold text-brand-navy mb-2">{item.title}</h3>
+                  <div key={index} className="flex gap-4 p-6 bg-white rounded-xl border border-neutral-border shadow-sm hover:shadow-md transition-shadow">
+                    <div className="w-10 h-10 rounded-full bg-brand-gold/10 flex items-center justify-center flex-shrink-0">
+                      <span className="text-lg font-bold text-brand-gold">{item.step}</span>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-brand-navy mb-1">{item.title}</h3>
                       <p className="text-sm text-neutral-text-muted">{item.description}</p>
-                    </CardContent>
-                  </Card>
+                    </div>
+                  </div>
                 ))}
               </div>
             </section>
-
-            {/* Application Form */}
-            <TrainerApplicationForm />
           </div>
 
-          {/* Sticky Sidebar - What We Look For */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-24">
-              <Card className="border-2 border-brand-gold/20 bg-gradient-to-br from-white to-brand-gold/5">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="p-2 bg-brand-gold/10 rounded-lg">
-                      <Award className="h-6 w-6 text-brand-gold" />
-                    </div>
-                    <h3 className="text-xl font-bold text-brand-navy">What We Look For</h3>
+
+          {/* Sticky Sidebar - Eligibility Criteria */}
+          <div className="lg:col-span-1 order-1 lg:order-2">
+            <div className="sticky top-6 max-h-[calc(100vh-3rem)] overflow-y-auto">
+
+              <Card className="border-2 border-brand-gold/30 bg-white shadow-xl overflow-hidden">
+                <div className="bg-gradient-to-r from-brand-navy to-brand-navy/90 p-5 text-white">
+                  <div className="flex items-center gap-3">
+                    <Award className="h-7 w-7 text-brand-gold" />
+                    <h3 className="text-2xl font-bold tracking-tight">Eligibility Criteria</h3>
                   </div>
-                  <ul className="space-y-4">
-                    {whatWeLookFor.map((item, index) => (
-                      <li key={index} className="flex items-start gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-brand-gold mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-neutral-text leading-relaxed">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                </div>
+                <CardContent className="p-8 space-y-7">
+                  <div className="space-y-6">
+                    <div className="pb-5 border-b border-neutral-border/50">
+                      <h4 className="font-bold text-brand-navy flex items-center gap-2.5 mb-3 text-base">
+                        <div className="p-1.5 bg-brand-gold/10 rounded-md">
+                          <Users className="h-4 w-4 text-brand-gold" />
+                        </div>
+                        Experience
+                      </h4>
+                      <p className="text-[15px] text-neutral-text leading-relaxed">
+                        A minimum of <span className="font-semibold text-brand-navy">5 years</span> of practical experience in GRC, Anti-Financial Crime, Accounting, Auditing, or Taxation, ideally in a senior role within a reputable financial institution. Retired bankers and seasoned professionals are highly encouraged to apply.
+                      </p>
+                    </div>
+
+                    <div className="pb-5 border-b border-neutral-border">
+                      <h4 className="font-bold text-brand-navy flex items-center gap-2.5 mb-3 text-base">
+                        <div className="p-1.5 bg-brand-gold/10 rounded-md">
+                          <Award className="h-4 w-4 text-brand-gold" />
+                        </div>
+                        Certification
+                      </h4>
+                      <p className="text-[15px] text-neutral-text leading-relaxed mb-2">
+                        Professional certification in Compliance or Anti-Financial Crime from recognized bodies such as:
+                      </p>
+                      <p className="text-[15px] font-semibold text-brand-navy leading-relaxed">
+                        ACCA, CIA, ACFCS, ACAMS, GCI, ICA, CISI, IIA, ACFE, or CIMA
+                      </p>
+                    </div>
+
+
+
+                    <div>
+                      <h4 className="font-bold text-brand-navy flex items-center gap-2.5 mb-3 text-base">
+                        <div className="p-1.5 bg-brand-gold/10 rounded-md">
+                          <FileText className="h-4 w-4 text-brand-gold" />
+                        </div>
+                        Training Delivery
+                      </h4>
+                      <p className="text-[15px] text-neutral-text leading-relaxed">
+                        At least <span className="font-semibold text-brand-navy">3 years</span> of experience in both face-to-face, in-person or virtual training delivery with reputable providers. Recommendations may be requested.
+                      </p>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </div>
           </div>
+
+
         </div>
       </Container>
     </div>

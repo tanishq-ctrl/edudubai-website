@@ -102,179 +102,188 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-neutral-bg-subtle/50 relative overflow-hidden px-6 pt-20 pb-20">
-      {/* Cinematic Elements */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-navy/5 rounded-full blur-[120px] -mr-32 -mt-32" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-gold/5 rounded-full blur-[100px] -ml-32 -mb-32" />
-
-      <div className="w-full max-w-[650px] relative z-20">
-        <div className="bg-white rounded-[2.5rem] shadow-[0_48px_100px_-24px_rgba(0,0,0,0.15)] overflow-hidden border-t-8 border-t-brand-gold">
-          <div className="flex flex-col md:flex-row h-full min-h-[450px]">
-            {/* Info Panel */}
-            <div className="hidden md:flex md:w-1/3 bg-brand-navy p-8 text-white flex-col justify-between relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-3xl -mr-16 -mt-16" />
-              <div className="space-y-6 relative z-10">
-                <h3 className="text-xl font-bold leading-tight">
-                  Security Recovery
-                </h3>
-                <ul className="space-y-4 text-xs text-white/60 font-medium">
-                  <li className="flex gap-2 items-center">
-                    <ShieldCheck className="h-4 w-4 text-brand-gold" />
-                    <span>Encrypted Protocol</span>
-                  </li>
-                  <li className="flex gap-2 items-center">
-                    <ShieldCheck className="h-4 w-4 text-brand-gold" />
-                    <span>Identity Verification</span>
-                  </li>
-                  <li className="flex gap-2 items-center">
-                    <ShieldCheck className="h-4 w-4 text-brand-gold" />
-                    <span>Secure Reset</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="relative z-10 pt-12">
-                <div className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-                  <Lock className="h-5 w-5 text-brand-gold" />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex-1 p-8 md:p-12 flex flex-col justify-center">
-              <div className="space-y-8">
-                {view === "success" ? (
-                  <div className="space-y-8 animate-fade-in text-center py-6">
-                    <div className="h-20 w-20 bg-green-50 rounded-full flex items-center justify-center mx-auto ring-8 ring-green-50/50">
-                      <CheckCircle2 className="h-10 w-10 text-green-600" />
-                    </div>
-                    <div>
-                      <h2 className="text-3xl font-black text-brand-navy uppercase tracking-tight leading-none">Security Updated</h2>
-                      <p className="text-neutral-text-muted text-[11px] font-bold uppercase tracking-widest mt-6 bg-green-50/50 py-3 px-4 rounded-xl border border-green-200/50">
-                        Password reset successful. Redirecting to login...
-                      </p>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="space-y-6">
-                    <div>
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold block mb-2">
-                        {view === "request" ? "Authentication Protocol" : view === "verify" ? "Security Check" : "Final Step"}
-                      </span>
-                      <h1 className="text-3xl font-black text-brand-navy tracking-tight leading-none uppercase">
-                        {view === "request" ? "Recover Access" : view === "verify" ? "Verify Identity" : "New Security Key"}
-                      </h1>
-                      {view === "verify" && (
-                        <p className="text-[10px] text-neutral-text-muted font-bold mt-2 uppercase tracking-widest">
-                          Verification code sent to {email}
-                        </p>
-                      )}
-                    </div>
-
-                    {error && (
-                      <div className="p-4 border border-red-500/10 bg-red-50 text-red-700 rounded-xl flex gap-3 text-[11px] font-bold shadow-sm">
-                        <AlertCircle className="h-4 w-4 mt-0.5" />
-                        {error}
-                      </div>
-                    )}
-
-                    {view === "request" && (
-                      <form onSubmit={handleRequestReset} className="space-y-6">
-                        <div className="space-y-2">
-                          <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Account Email</Label>
-                          <Input
-                            type="email"
-                            placeholder="you@company.com"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                            className="h-12 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold font-bold"
-                          />
-                        </div>
-
-                        <Button
-                          type="submit"
-                          className="w-full bg-brand-navy hover:bg-brand-navy-dark text-white font-black py-7 text-base rounded-2xl shadow-xl transition-all flex gap-2"
-                          disabled={loading}
-                        >
-                          {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <>Send Verification Code <Send className="h-5 w-5" /></>}
-                        </Button>
-                      </form>
-                    )}
-
-                    {view === "verify" && (
-                      <form onSubmit={handleVerifyOtp} className="space-y-6">
-                        <div className="space-y-2">
-                          <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Enter 6-Digit Code</Label>
-                          <Input
-                            placeholder="000000"
-                            value={otp}
-                            onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
-                            maxLength={6}
-                            required
-                            className="h-16 text-center text-3xl font-black tracking-[0.5em] bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold"
-                          />
-                        </div>
-
-                        <div className="flex flex-col gap-3">
-                          <Button
-                            type="submit"
-                            className="w-full bg-brand-navy hover:bg-brand-navy-dark text-white font-black py-7 text-base rounded-2xl shadow-xl transition-all flex gap-2"
-                            disabled={loading || otp.length !== 6}
-                          >
-                            {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <>Verify Identity <ShieldCheck className="h-5 w-5" /></>}
-                          </Button>
-
-                          <button
-                            type="button"
-                            onClick={() => setView("request")}
-                            className="text-[10px] font-black uppercase tracking-widest text-neutral-text-muted hover:text-brand-navy transition-all py-2"
-                          >
-                            Back to email
-                          </button>
-                        </div>
-                      </form>
-                    )}
-
-                    {view === "reset" && (
-                      <form onSubmit={handleResetPassword} className="space-y-6">
-                        <div className="space-y-2">
-                          <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">New Secure Password</Label>
-                          <Input
-                            type="password"
-                            placeholder="••••••••"
-                            value={newPassword}
-                            onChange={(e) => setNewPassword(e.target.value)}
-                            required
-                            className="h-12 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold font-bold tracking-widest"
-                          />
-                        </div>
-
-                        <Button
-                          type="submit"
-                          className="w-full bg-brand-navy hover:bg-brand-navy-dark text-white font-black py-7 text-base rounded-2xl shadow-xl transition-all flex gap-2"
-                          disabled={loading}
-                        >
-                          {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <>Finalize Recovery <Lock className="h-5 w-5" /></>}
-                        </Button>
-                      </form>
-                    )}
-
-                    <div className="text-center pt-2">
-                      <Link
-                        href="/auth/login"
-                        className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-neutral-text-muted hover:text-brand-navy transition-all"
-                      >
-                        <ArrowLeft className="h-4 w-4" /> Return to Login
-                      </Link>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+    <div className="min-h-screen flex items-start justify-center bg-gradient-to-b from-neutral-bg to-white px-4 pt-32 pb-24">
+      <div className="w-full max-w-md">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-brand-navy mb-2">
+            {view === "success" ? "Password Reset" : "Forgot Password"}
+          </h1>
+          <p className="text-neutral-text">
+            {view === "request" && "Enter your email to receive a reset code"}
+            {view === "verify" && "Enter the verification code we sent you"}
+            {view === "reset" && "Create a new password for your account"}
+            {view === "success" && "Your password has been updated"}
+          </p>
         </div>
 
-        <p className="mt-8 text-center text-neutral-text-muted/30 text-[9px] font-black uppercase tracking-[0.5em] italic">
-          Authorized Credentials Management • EduDubai Professional Specialist Network
+        <div className="bg-white rounded-2xl shadow-lg border border-neutral-border p-8">
+          {view === "success" ? (
+            <div className="space-y-6 text-center py-6">
+              <div className="h-16 w-16 bg-green-50 rounded-full flex items-center justify-center mx-auto">
+                <CheckCircle2 className="h-8 w-8 text-green-600" />
+              </div>
+              <div>
+                <h2 className="text-xl font-bold text-brand-navy mb-2">
+                  Password Updated Successfully
+                </h2>
+                <p className="text-sm text-neutral-text">
+                  Redirecting you to login...
+                </p>
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-6">
+              {error && (
+                <div className="p-4 border border-red-200 bg-red-50 text-red-700 rounded-xl flex gap-3 text-sm">
+                  <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                  <span>{error}</span>
+                </div>
+              )}
+
+              {view === "request" && (
+                <form onSubmit={handleRequestReset} className="space-y-5">
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="text-sm font-semibold text-brand-navy">
+                      Email Address
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="you@company.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      disabled={loading}
+                      className="h-11 border-neutral-border focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white font-semibold h-11"
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                        Sending code...
+                      </>
+                    ) : (
+                      <>
+                        Send Reset Code
+                        <Send className="h-4 w-4 ml-2" />
+                      </>
+                    )}
+                  </Button>
+                </form>
+              )}
+
+              {view === "verify" && (
+                <form onSubmit={handleVerifyOtp} className="space-y-5">
+                  <div className="space-y-2">
+                    <Label htmlFor="otp" className="text-sm font-semibold text-brand-navy">
+                      Verification Code
+                    </Label>
+                    <p className="text-xs text-neutral-text mb-2">
+                      Code sent to {email}
+                    </p>
+                    <Input
+                      id="otp"
+                      type="text"
+                      placeholder="Enter 6-digit code"
+                      value={otp}
+                      onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
+                      maxLength={6}
+                      required
+                      disabled={loading}
+                      className="h-14 text-center text-2xl tracking-widest font-semibold border-neutral-border focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white font-semibold h-11"
+                    disabled={loading || otp.length !== 6}
+                  >
+                    {loading ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                        Verifying...
+                      </>
+                    ) : (
+                      <>
+                        Verify Code
+                        <ShieldCheck className="h-4 w-4 ml-2" />
+                      </>
+                    )}
+                  </Button>
+
+                  <button
+                    type="button"
+                    onClick={() => setView("request")}
+                    className="w-full text-sm text-neutral-text hover:text-brand-navy font-medium"
+                  >
+                    ← Back to email
+                  </button>
+                </form>
+              )}
+
+              {view === "reset" && (
+                <form onSubmit={handleResetPassword} className="space-y-5">
+                  <div className="space-y-2">
+                    <Label htmlFor="newPassword" className="text-sm font-semibold text-brand-navy">
+                      New Password
+                    </Label>
+                    <Input
+                      id="newPassword"
+                      type="password"
+                      placeholder="Create a strong password"
+                      value={newPassword}
+                      onChange={(e) => setNewPassword(e.target.value)}
+                      required
+                      disabled={loading}
+                      className="h-11 border-neutral-border focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+                    />
+                    <p className="text-xs text-neutral-text-muted">
+                      Password must be at least 6 characters
+                    </p>
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white font-semibold h-11"
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                        Updating password...
+                      </>
+                    ) : (
+                      <>
+                        Reset Password
+                        <Lock className="h-4 w-4 ml-2" />
+                      </>
+                    )}
+                  </Button>
+                </form>
+              )}
+
+              <div className="text-center pt-4 border-t border-neutral-border">
+                <Link
+                  href="/auth/login"
+                  className="inline-flex items-center gap-2 text-sm text-neutral-text hover:text-brand-navy font-medium"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back to login
+                </Link>
+              </div>
+            </div>
+          )}
+        </div>
+
+        <p className="mt-6 text-center text-xs text-neutral-text-muted">
+          Need help? Contact our support team
         </p>
       </div>
     </div>

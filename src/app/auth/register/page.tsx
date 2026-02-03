@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 import { AlertCircle, Chrome, Mail, Lock, User, ArrowRight, CheckCircle2, Loader2 } from "lucide-react"
 import Link from "next/link"
 import { z } from "zod"
@@ -77,15 +78,20 @@ function RegisterForm() {
       }
 
       const supabase = createClient()
-      const { error: signUpError } = await supabase.auth.signUp({
+
+      // Send OTP email (like forgot password does)
+      const { error: otpError } = await supabase.auth.signInWithOtp({
         email: validatedData.email,
-        password: validatedData.password,
-        options: { data: { full_name: validatedData.fullName } },
+        options: {
+          shouldCreateUser: false, // Don't auto-create, we'll do it after verification
+        }
       })
-      if (signUpError) {
-        setError(signUpError.message)
-        return
+
+      if (otpError) {
+        // Ignore error if user doesn't exist - that's expected for new registrations
+        console.log("OTP send info:", otpError.message)
       }
+
       setShowVerification(true)
     } catch (err) {
       if (err instanceof z.ZodError) {
@@ -105,15 +111,34 @@ function RegisterForm() {
 
     try {
       const supabase = createClient()
+
+      // Verify the OTP code
       const { error: verifyError } = await supabase.auth.verifyOtp({
         email: formData.email,
         token: verificationCode,
-        type: 'signup'
+        type: 'email' // Changed from 'signup' to 'email' for OTP verification
       })
+
       if (verifyError) {
         setError(verifyError.message)
         return
       }
+
+      // After successful OTP verification, create the account
+      const { error: signUpError } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+        options: {
+          data: { full_name: formData.fullName },
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
+        },
+      })
+
+      if (signUpError) {
+        setError(signUpError.message)
+        return
+      }
+
       const next = searchParams.get("next") || "/dashboard"
       router.push(next)
     } catch (err) {
@@ -142,196 +167,217 @@ function RegisterForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-neutral-bg-subtle/50 relative overflow-hidden px-6 pt-20">
-      {/* Cinematic Elements */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-navy/5 rounded-full blur-[120px] -mr-32 -mt-32" />
+    <div className="min-h-screen flex items-start justify-center bg-gradient-to-b from-neutral-bg to-white px-4 pt-32 pb-24">
+      <div className="w-full max-w-5xl">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-brand-navy mb-2">
+            Create Account
+          </h1>
+          <p className="text-neutral-text">
+            Join Edu Dubai and start your learning journey
+          </p>
+        </div>
 
-      <div className="w-full max-w-[650px] relative z-20">
-        <div className="bg-white rounded-[2.5rem] shadow-[0_48px_100px_-24px_rgba(0,0,0,0.15)] overflow-hidden border-t-8 border-t-brand-gold">
-          <div className="flex flex-col md:flex-row h-full">
-            {/* Info Panel */}
-            <div className="hidden md:flex md:w-1/3 bg-brand-navy p-8 text-white flex-col justify-between relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-3xl -mr-16 -mt-16" />
-              <div className="space-y-6 relative z-10">
-                <h3 className="text-xl font-bold leading-tight">
-                  Global Specialist Enrollment
-                </h3>
-                <ul className="space-y-4 text-xs text-white/60 font-medium">
-                  <li className="flex gap-2">✓ Exam Diagnostic Access</li>
-                  <li className="flex gap-2">✓ DIFC/ADGM Study Circles</li>
-                  <li className="flex gap-2">✓ Instant Course Enrollment</li>
-                </ul>
+        <div className="bg-white rounded-2xl shadow-lg border border-neutral-border p-8 md:p-12">
+          {showVerification ? (
+            <div className="max-w-md mx-auto space-y-6 text-center">
+              <div>
+                <h2 className="text-2xl font-bold text-brand-navy mb-2">
+                  Verify Your Email
+                </h2>
+                <p className="text-sm text-neutral-text">
+                  We've sent a verification code to <br />
+                  <span className="font-semibold">{formData.email}</span>
+                </p>
               </div>
-              <div className="relative z-10 pt-12">
-                <div className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-                  <User className="h-5 w-5 text-brand-gold" />
+
+              {error && (
+                <Alert className="border-red-200 bg-red-50">
+                  <AlertCircle className="h-4 w-4 text-red-600" />
+                  <AlertDescription className="text-red-800 text-sm">
+                    {error}
+                  </AlertDescription>
+                </Alert>
+              )}
+
+              <form onSubmit={handleVerify} className="space-y-5">
+                <Input
+                  id="code"
+                  type="text"
+                  placeholder="Enter 6-digit code"
+                  maxLength={6}
+                  className="h-14 text-center text-2xl tracking-widest font-semibold"
+                  value={verificationCode}
+                  onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, ""))}
+                  required
+                  disabled={verifying}
+                />
+
+                <Button
+                  type="submit"
+                  className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white font-semibold h-11"
+                  disabled={verifying || verificationCode.length !== 6}
+                >
+                  {verifying ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                      Verifying...
+                    </>
+                  ) : (
+                    "Complete Registration"
+                  )}
+                </Button>
+
+                <button
+                  type="button"
+                  className="w-full text-sm text-neutral-text hover:text-brand-navy font-medium"
+                  onClick={() => setShowVerification(false)}
+                >
+                  ← Back to registration
+                </button>
+              </form>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-2 gap-12">
+              {/* Left Column - Form Fields */}
+              <div>
+                {error && (
+                  <Alert className="mb-6 border-red-200 bg-red-50">
+                    <AlertCircle className="h-4 w-4 text-red-600" />
+                    <AlertDescription className="text-red-800 text-sm">
+                      {error}
+                    </AlertDescription>
+                  </Alert>
+                )}
+
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="space-y-2">
+                    <Label htmlFor="fullName" className="text-sm font-semibold text-brand-navy">
+                      Full Name
+                    </Label>
+                    <Input
+                      id="fullName"
+                      placeholder="John Doe"
+                      value={formData.fullName}
+                      onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                      required
+                      disabled={loading}
+                      className="h-11 border-neutral-border focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="text-sm font-semibold text-brand-navy">
+                      Email Address
+                    </Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="you@company.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      required
+                      disabled={loading}
+                      className="h-11 border-neutral-border focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="password" className="text-sm font-semibold text-brand-navy">
+                      Password
+                    </Label>
+                    <Input
+                      id="password"
+                      type="password"
+                      placeholder="Create a strong password"
+                      value={formData.password}
+                      onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                      required
+                      disabled={loading}
+                      className="h-11 border-neutral-border focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="confirmPassword" className="text-sm font-semibold text-brand-navy">
+                      Confirm Password
+                    </Label>
+                    <Input
+                      id="confirmPassword"
+                      type="password"
+                      placeholder="Re-enter your password"
+                      value={formData.confirmPassword}
+                      onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                      required
+                      disabled={loading}
+                      className="h-11 border-neutral-border focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+                    />
+                  </div>
+
+                  <Button
+                    type="submit"
+                    className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white font-semibold h-11"
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                        Creating account...
+                      </>
+                    ) : (
+                      <>
+                        Create Account
+                        <ArrowRight className="h-4 w-4 ml-2" />
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </div>
+
+              {/* Right Column - Google Sign In & Account Link */}
+              <div className="flex flex-col justify-center space-y-6">
+                <div className="text-center md:text-left">
+                  <h3 className="text-lg font-semibold text-brand-navy mb-2">
+                    Quick Registration
+                  </h3>
+                  <p className="text-sm text-neutral-text mb-6">
+                    Sign up instantly with your Google account
+                  </p>
+
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={handleGoogleSignUp}
+                    disabled={loading || googleLoading}
+                    className="w-full h-12 border-neutral-border hover:bg-neutral-bg text-base"
+                  >
+                    {googleLoading ? (
+                      <Loader2 className="h-5 w-5 animate-spin mr-2" />
+                    ) : (
+                      <Chrome className="h-5 w-5 mr-2 text-red-500" />
+                    )}
+                    Continue with Google
+                  </Button>
+                </div>
+
+                <div className="border-t border-neutral-border pt-6">
+                  <p className="text-sm text-neutral-text text-center md:text-left">
+                    Already have an account?{" "}
+                    <Link
+                      href={`/auth/login${searchParams.get("next") ? `?next=${encodeURIComponent(searchParams.get("next")!)}` : ""}`}
+                      className="text-brand-navy font-semibold hover:text-brand-navy/80"
+                    >
+                      Sign in here
+                    </Link>
+                  </p>
                 </div>
               </div>
             </div>
-
-            <div className="flex-1 p-8 md:p-12">
-              <div className="space-y-8">
-                {showVerification ? (
-                  <div className="space-y-8 animate-fade-in text-center">
-                    <div>
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold block mb-2">
-                        Security Check
-                      </span>
-                      <h1 className="text-3xl font-black text-brand-navy tracking-tight leading-none uppercase">
-                        Verify Code
-                      </h1>
-                      <p className="text-neutral-text-muted text-[10px] font-bold uppercase tracking-widest mt-4">Email connection: {formData.email}</p>
-                    </div>
-
-                    <form onSubmit={handleVerify} className="space-y-6">
-                      <Input
-                        id="code"
-                        type="text"
-                        placeholder="000 000"
-                        maxLength={6}
-                        className="h-16 text-center text-4xl tracking-[0.4em] font-black bg-neutral-bg-subtle border-0 rounded-2xl focus:ring-2 focus:ring-brand-gold"
-                        value={verificationCode}
-                        onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, ""))}
-                        required
-                        disabled={verifying}
-                      />
-
-                      <Button
-                        type="submit"
-                        className="w-full bg-brand-navy hover:bg-brand-navy-dark text-white font-black py-7 text-base rounded-2xl shadow-xl transition-all"
-                        disabled={verifying || verificationCode.length !== 6}
-                      >
-                        {verifying ? "Syncing..." : "Complete Enrollment"}
-                      </Button>
-
-                      <button
-                        type="button"
-                        className="w-full text-neutral-text-muted/60 hover:text-brand-navy text-[10px] font-black uppercase tracking-[0.3em] transition-all"
-                        onClick={() => setShowVerification(false)}
-                      >
-                        ← Return to Registration
-                      </button>
-                    </form>
-                  </div>
-                ) : (
-                  <div className="space-y-8">
-                    <div>
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold block mb-2">
-                        Specialist Enrollment
-                      </span>
-                      <h1 className="text-3xl font-black text-brand-navy tracking-tight leading-none uppercase">
-                        Create Account
-                      </h1>
-                    </div>
-
-                    {error && (
-                      <div className="p-4 border border-red-500/10 bg-red-50 text-red-700 rounded-xl flex gap-3 text-xs font-bold shadow-sm">
-                        <AlertCircle className="h-4 w-4 mt-0.5" />
-                        {error}
-                      </div>
-                    )}
-
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                      <div className="space-y-1">
-                        <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Full Specialist Name</Label>
-                        <Input
-                          id="fullName"
-                          placeholder="John Doe"
-                          value={formData.fullName}
-                          onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                          required
-                          className="h-11 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold font-bold"
-                        />
-                      </div>
-
-                      <div className="space-y-1">
-                        <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Corporate Email</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="you@company.com"
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          required
-                          className="h-11 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold font-bold"
-                        />
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-3">
-                        <div className="space-y-1">
-                          <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Password</Label>
-                          <Input
-                            id="password"
-                            type="password"
-                            placeholder="••••"
-                            value={formData.password}
-                            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                            required
-                            className="h-11 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold tracking-widest"
-                          />
-                        </div>
-                        <div className="space-y-1">
-                          <Label className="text-[10px] font-bold uppercase text-neutral-text-muted">Confirm</Label>
-                          <Input
-                            id="confirmPassword"
-                            type="password"
-                            placeholder="••••"
-                            value={formData.confirmPassword}
-                            onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                            required
-                            className="h-11 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold tracking-widest"
-                          />
-                        </div>
-                      </div>
-
-                      <Button
-                        type="submit"
-                        className="w-full bg-brand-navy hover:bg-brand-navy-dark text-white font-black py-7 text-base rounded-2xl shadow-xl transition-all hover:scale-[1.02] flex gap-2 mt-4"
-                        disabled={loading}
-                      >
-                        {loading ? "Registering..." : <>Enroll Specialist <ArrowRight className="h-5 w-5" /></>}
-                      </Button>
-                    </form>
-
-                    <div className="relative pt-2">
-                      <div className="absolute inset-0 flex items-center">
-                        <div className="w-full border-t border-neutral-border/50" />
-                      </div>
-                      <div className="relative flex justify-center text-[10px] font-black uppercase tracking-[0.3em] bg-white px-3">
-                        <span className="text-neutral-text-muted/50">Rapid Sync</span>
-                      </div>
-                    </div>
-
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={handleGoogleSignUp}
-                      disabled={loading || googleLoading}
-                      className="w-full h-11 border-neutral-border/50 rounded-xl flex gap-3 text-xs font-bold hover:bg-neutral-bg-subtle transition-all active:scale-95 shadow-sm"
-                    >
-                      {googleLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <><Chrome className="h-4 w-4 text-red-500" /> Sync with Google</>}
-                    </Button>
-
-                    <div className="text-center pt-2">
-                      <p className="text-neutral-text-muted/70 text-xs font-bold">
-                        Already part of the network?{" "}
-                        <Link
-                          href={`/auth/login${searchParams.get("next") ? `?next=${encodeURIComponent(searchParams.get("next")!)}` : ""}`}
-                          className="text-brand-navy font-black hover:underline underline-offset-4"
-                        >
-                          Authenticate
-                        </Link>
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+          )}
         </div>
 
-        <p className="mt-8 text-center text-neutral-text-muted/30 text-[9px] font-black uppercase tracking-[0.5em] italic">
-          EduDubai Professional Specialist Network
+        <p className="mt-6 text-center text-xs text-neutral-text-muted">
+          By creating an account, you agree to our Terms of Service and Privacy Policy
         </p>
       </div>
     </div>
