@@ -7,44 +7,22 @@ import { resend } from "@/lib/resend"
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!
 
-// Validation schema
+// Simplified validation schema matching the new one-step form
 const applicationSchema = z.object({
   full_name: z.string().min(2),
   email: z.string().email(),
   phone: z.string().min(10),
   country: z.string().min(1),
   linkedin_url: z.string().url(),
-  portfolio_url: z.string().url().optional().nullable(),
-  current_role: z.string().min(2),
-  experience_years: z.number().min(0),
-  training_years: z.number().min(0),
-  specializations: z.array(z.string()).min(1),
-  delivery_modes: z.array(z.string()).min(1),
-  regions: z.array(z.string()).min(1),
-  certifications: z.string().min(10),
-  summary: z.string().min(200).max(1200),
-  languages: z.array(z.string()).min(1),
-  regulated_entities: z.boolean(),
-  creates_assessments: z.boolean(),
-  availability: z.string().min(1),
-  fee_model: z.string().min(1),
-  rate_currency: z.string().min(1),
-  rate_min: z.number().min(0),
-  rate_max: z.number().optional().nullable(),
-  start_date: z.string().optional().nullable(),
-  notes: z.string().optional().nullable(),
-  cv_file_url: z.string().optional(),
-  sample_deck_url: z.string().optional().nullable(),
+  video_url: z.string().url().optional().nullable(),
+  cv_file_url: z.string(),
   consent: z.boolean().refine((val) => val === true),
 })
 
 export async function POST(request: Request) {
   try {
     if (!supabaseUrl || !supabaseServiceKey) {
-      console.error("Supabase configuration missing:", {
-        hasUrl: !!supabaseUrl,
-        hasServiceKey: !!supabaseServiceKey,
-      })
+      console.error("Supabase configuration missing")
       return NextResponse.json(
         { error: "Server configuration error. Please contact support." },
         { status: 500 }
@@ -55,7 +33,6 @@ export async function POST(request: Request) {
 
     // Extract files
     const cvFile = formData.get("cv_file") as File | null
-    const sampleDeckFile = formData.get("sample_deck") as File | null
 
     if (!cvFile) {
       return NextResponse.json(
@@ -64,17 +41,10 @@ export async function POST(request: Request) {
       )
     }
 
-    // Validate file sizes
+    // Validate file sizes (10MB)
     if (cvFile.size > 10 * 1024 * 1024) {
       return NextResponse.json(
         { error: "CV file must be less than 10MB" },
-        { status: 400 }
-      )
-    }
-
-    if (sampleDeckFile && sampleDeckFile.size > 20 * 1024 * 1024) {
-      return NextResponse.json(
-        { error: "Sample deck must be less than 20MB" },
         { status: 400 }
       )
     }
@@ -90,14 +60,11 @@ export async function POST(request: Request) {
     // Upload files to Supabase Storage
     const bucketName = process.env.TRAINER_UPLOAD_BUCKET || "trainer-uploads"
     const timestamp = Date.now()
-    const cvFileName = `cv_${timestamp}_${cvFile.name}`
-    const sampleDeckFileName = sampleDeckFile
-      ? `deck_${timestamp}_${sampleDeckFile.name}`
-      : null
+    const cvFileName = `cv_${timestamp}_${cvFile.name.replace(/\s+/g, '_')}`
 
     // Upload CV
     const cvArrayBuffer = await cvFile.arrayBuffer()
-    const { data: cvUploadData, error: cvUploadError } = await supabase.storage
+    const { error: cvUploadError } = await supabase.storage
       .from(bucketName)
       .upload(cvFileName, cvArrayBuffer, {
         contentType: cvFile.type,
@@ -112,56 +79,15 @@ export async function POST(request: Request) {
       )
     }
 
-    // Store file paths (not URLs) - we'll generate signed URLs on-demand via API route
-    const cvFilePath = cvFileName
-    const sampleDeckFilePath = sampleDeckFileName
-
-    // Upload sample deck if provided
-    if (sampleDeckFile) {
-      const deckArrayBuffer = await sampleDeckFile.arrayBuffer()
-      const { data: deckUploadData, error: deckUploadError } = await supabase.storage
-        .from(bucketName)
-        .upload(sampleDeckFileName!, deckArrayBuffer, {
-          contentType: sampleDeckFile.type,
-          upsert: false,
-        })
-
-      if (deckUploadError) {
-        console.error("Sample deck upload error:", deckUploadError)
-        // Don't fail the whole submission if deck upload fails
-      }
-    }
-
-    // Parse form data
+    // Parse application data
     const applicationData = {
       full_name: formData.get("full_name") as string,
       email: formData.get("email") as string,
       phone: formData.get("phone") as string,
       country: formData.get("country") as string,
       linkedin_url: formData.get("linkedin_url") as string,
-      portfolio_url: (formData.get("portfolio_url") as string) || null,
-      current_role: formData.get("current_role") as string,
-      experience_years: parseInt(formData.get("experience_years") as string),
-      training_years: parseInt(formData.get("training_years") as string),
-      specializations: JSON.parse(formData.get("specializations") as string),
-      delivery_modes: JSON.parse(formData.get("delivery_modes") as string),
-      regions: JSON.parse(formData.get("regions") as string),
-      certifications: formData.get("certifications") as string,
-      summary: formData.get("summary") as string,
-      languages: JSON.parse(formData.get("languages") as string),
-      regulated_entities: formData.get("regulated_entities") === "true",
-      creates_assessments: formData.get("creates_assessments") === "true",
-      availability: formData.get("availability") as string,
-      fee_model: formData.get("fee_model") as string,
-      rate_currency: formData.get("rate_currency") as string,
-      rate_min: parseInt(formData.get("rate_min") as string),
-      rate_max: formData.get("rate_max")
-        ? parseInt(formData.get("rate_max") as string)
-        : null,
-      start_date: (formData.get("start_date") as string) || null,
-      notes: (formData.get("notes") as string) || null,
-      cv_file_url: cvFilePath,
-      sample_deck_url: sampleDeckFilePath,
+      video_url: (formData.get("video_url") as string) || null,
+      cv_file_url: cvFileName,
       consent: formData.get("consent") === "true",
     }
 
@@ -181,7 +107,7 @@ export async function POST(request: Request) {
     if (dbError) {
       console.error("Database error:", dbError)
       return NextResponse.json(
-        { error: "Failed to save application" },
+        { error: "Failed to save application to database" },
         { status: 500 }
       )
     }
@@ -204,35 +130,18 @@ export async function POST(request: Request) {
               <p><strong>Email:</strong> ${validatedData.email}</p>
               <p><strong>Phone:</strong> ${validatedData.phone}</p>
               <p><strong>Country:</strong> ${validatedData.country}</p>
-              <p><strong>Current Role:</strong> ${validatedData.current_role}</p>
-              <p><strong>Experience:</strong> ${validatedData.experience_years} years industry, ${validatedData.training_years} years training</p>
-              <p><strong>Specializations:</strong> ${validatedData.specializations.join(", ")}</p>
-              <p><strong>Regions:</strong> ${validatedData.regions.join(", ")}</p>
-              <p><strong>Availability:</strong> ${validatedData.availability}</p>
-              <p><strong>Fee Model:</strong> ${validatedData.fee_model}</p>
-              <p><strong>Rate:</strong> ${validatedData.rate_min} ${validatedData.rate_currency}${validatedData.rate_max ? ` - ${validatedData.rate_max}` : ""}</p>
-            </div>
-            <div style="margin: 20px 0;">
-              <h3 style="color: #1e3a5f;">Professional Summary</h3>
-              <p style="background-color: #f5f5f5; padding: 15px; border-radius: 8px; white-space: pre-wrap;">${validatedData.summary}</p>
-            </div>
-            <div style="margin: 20px 0;">
-              <h3 style="color: #1e3a5f;">Certifications</h3>
-              <p style="background-color: #f5f5f5; padding: 15px; border-radius: 8px; white-space: pre-wrap;">${validatedData.certifications}</p>
+              ${validatedData.video_url ? `<p><strong>Video Link:</strong> <a href="${validatedData.video_url}" target="_blank">${validatedData.video_url}</a></p>` : "<p><strong>Video Link:</strong> Not provided</p>"}
             </div>
             <div style="margin: 20px 0;">
               <p><strong>LinkedIn:</strong> <a href="${validatedData.linkedin_url}" target="_blank">${validatedData.linkedin_url}</a></p>
-              ${validatedData.portfolio_url ? `<p><strong>Portfolio:</strong> <a href="${validatedData.portfolio_url}" target="_blank">${validatedData.portfolio_url}</a></p>` : ""}
-              <p><strong>CV:</strong> <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://edudubai.com'}/api/trainer/files/${encodeURIComponent(cvFilePath)}" target="_blank">Download CV</a></p>
-              ${sampleDeckFilePath ? `<p><strong>Sample Deck:</strong> <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://edudubai.com'}/api/trainer/files/${encodeURIComponent(sampleDeckFilePath)}" target="_blank">Download Sample Deck</a></p>` : ""}
+              <p><strong>CV:</strong> <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://edudubai.com'}/api/trainer/files/${encodeURIComponent(cvFileName)}" target="_blank">Download CV</a></p>
             </div>
-            <p style="color: #666; font-size: 14px;">Please review this application within 5-7 business days.</p>
+            <p style="color: #666; font-size: 14px;">This application was submitted via the new simplified one-step form.</p>
           </div>
         `,
       })
     } catch (emailError) {
       console.error("Failed to send admin email:", emailError)
-      // Don't fail the submission if email fails
     }
 
     // Send applicant confirmation email
@@ -250,11 +159,11 @@ export async function POST(request: Request) {
               <p style="font-size: 24px; font-weight: bold; color: #1e3a5f; font-family: monospace;">${applicationId}</p>
             </div>
             <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-              <h3 style="color: #1e3a5f; margin-top: 0;">What&apos;s Next?</h3>
+              <h3 style="color: #1e3a5f; margin-top: 0;">What's Next?</h3>
               <ul style="line-height: 1.8;">
-                <li>Our team will review your application within 5-7 business days</li>
-                <li>We&apos;ll contact you via email if we need any additional information</li>
-                <li>If selected, we&apos;ll reach out to discuss next steps and onboarding</li>
+                <li>Our team will review your credentials and video explanation</li>
+                <li>We'll contact you via email if we need any additional information</li>
+                <li>If selected, we'll reach out to discuss next steps and onboarding</li>
               </ul>
             </div>
             <p style="color: #666; font-size: 14px; margin-top: 30px;">
@@ -269,7 +178,6 @@ export async function POST(request: Request) {
       })
     } catch (emailError) {
       console.error("Failed to send confirmation email:", emailError)
-      // Don't fail the submission if email fails
     }
 
     return NextResponse.json({
@@ -290,4 +198,3 @@ export async function POST(request: Request) {
     )
   }
 }
-
