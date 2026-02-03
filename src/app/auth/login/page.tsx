@@ -214,7 +214,7 @@ function LoginForm() {
 
           <div className="mt-6 text-center">
             <p className="text-sm text-neutral-text">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link
                 href={`/auth/register${searchParams.get("next") ? `?next=${encodeURIComponent(searchParams.get("next")!)}` : ""}`}
                 className="text-brand-navy font-semibold hover:text-brand-navy/80"

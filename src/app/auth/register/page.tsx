@@ -186,7 +186,7 @@ function RegisterForm() {
                   Verify Your Email
                 </h2>
                 <p className="text-sm text-neutral-text">
-                  We've sent a verification code to <br />
+                  We&apos;ve sent a verification code to <br />
                   <span className="font-semibold">{formData.email}</span>
                 </p>
               </div>
