@@ -74,6 +74,15 @@ export function LeadFormPopup() {
                 }),
             })
 
+            // Google Ads Conversion Tracking
+            if (typeof window !== "undefined" && (window as any).gtag) {
+                (window as any).gtag("event", "conversion", {
+                    send_to: "AW-17858231822",
+                    event_category: "lead",
+                    event_label: course || "popup_lead"
+                });
+            }
+
             setSubmitted(true)
             localStorage.setItem("lead_submitted", "true")
 

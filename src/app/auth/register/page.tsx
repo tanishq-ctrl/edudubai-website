@@ -72,6 +72,15 @@ function RegisterForm() {
             source: "standalone_registration"
           }),
         })
+
+        // Google Ads Conversion Tracking (Conversion Label can be added here once provided)
+        if (typeof window !== "undefined" && (window as any).gtag) {
+          (window as any).gtag("event", "conversion", {
+            send_to: "AW-17858231822",
+            event_category: "registration",
+            event_label: "standalone_registration"
+          });
+        }
       } catch (leadErr) {
         console.error("Failed to capture lead:", leadErr)
         // Continue with registration even if lead capture fails

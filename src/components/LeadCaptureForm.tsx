@@ -46,6 +46,15 @@ export function LeadCaptureForm({ courseTitle, courseId, courseSlug }: LeadCaptu
 
             if (!response.ok) throw new Error("Failed to submit")
 
+            // Google Ads Conversion Tracking
+            if (typeof window !== "undefined" && (window as any).gtag) {
+                (window as any).gtag("event", "conversion", {
+                    send_to: "AW-17858231822",
+                    event_category: "lead",
+                    event_label: courseTitle
+                });
+            }
+
             setSubmitted(true)
             localStorage.setItem(`lead_submitted_${courseSlug}`, "true")
         } catch (err) {
