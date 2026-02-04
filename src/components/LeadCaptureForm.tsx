@@ -49,7 +49,7 @@ export function LeadCaptureForm({ courseTitle, courseId, courseSlug }: LeadCaptu
             // Google Ads Conversion Tracking
             if (typeof window !== "undefined" && (window as any).gtag) {
                 (window as any).gtag("event", "conversion", {
-                    send_to: "AW-17858231822",
+                    send_to: "AW-17858231822/Kt1dCLPxp_IbEI78u8NC",
                     event_category: "lead",
                     event_label: courseTitle
                 });
