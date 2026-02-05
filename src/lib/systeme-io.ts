@@ -171,18 +171,15 @@ export async function syncLeadToSystemeIO(data: {
 
         // 1. First Attempt: Full Sync
         let contactResponse = await syncAttempt(true);
-
-        // 2. Fallback: If 422 (Missing Field), try Minimal Sync
-        if (contactResponse.status === 422) {
-            console.warn("[Systeme.io] Custom fields missing in account. Retrying with Core Fields...");
-            contactResponse = await syncAttempt(false);
-        }
-
         let contactData;
+        let updateNeeded = false;
+
+        // If 400 (Already Exists) or 422 (Validation/Duplicate), we need to handle it
         if (!contactResponse.ok) {
             const errText = await contactResponse.text();
+            console.warn(`[Systeme.io] Initial Sync Failed (${contactResponse.status}): ${errText}`);
 
-            // If still failing or already exists, fetch the contact to get the ID for tagging
+            // If it failed, check if the contact actually exists
             const emailParam = encodeURIComponent(data.email);
             const listResponse = await fetch(`https://api.systeme.io/api/contacts?email=${emailParam}`, {
                 headers: { "X-API-Key": apiKey }
@@ -190,13 +187,55 @@ export async function syncLeadToSystemeIO(data: {
             const listData = await listResponse.json();
             contactData = listData.items?.find((item: any) => item.email.toLowerCase() === data.email.toLowerCase());
 
-            console.log(`[Systeme.io] Contact lookup: ${contactData ? "FOUND" : "NOT FOUND"}`);
+            if (contactData) {
+                console.log(`[Systeme.io] Contact FOUND (ID: ${contactData.id}). Attempting to update fields...`);
+                updateNeeded = true;
+            } else if (contactResponse.status === 422) {
+                // Only if contact really doesn't exist and we got 422, try minimal sync as last resort
+                console.warn("[Systeme.io] Contact not found but custom fields rejected. Retrying with Core Fields...");
+                contactResponse = await syncAttempt(false);
+                if (contactResponse.ok) {
+                    contactData = await contactResponse.json();
+                } else {
+                    const retryErr = await contactResponse.text();
+                    console.error(`[Systeme.io] Retry (Core Fields) also failed: ${retryErr}`);
+                }
+            }
         } else {
             contactData = await contactResponse.json();
             console.log(`[Systeme.io] Contact Synced (ID: ${contactData.id})`);
         }
 
-        if (!contactData) return;
+        if (!contactData) {
+            console.error("[Systeme.io] Could not recover contact after error.");
+            return;
+        }
+
+        // 2. If we found an existing contact, try to UPDATE the custom fields
+        // Note: Systeme.io API uses PUT /contacts/{id} to update
+        if (updateNeeded) {
+            const fields = [{ slug: "first_name", value: data.firstName }];
+            if (data.phone) fields.push({ slug: "phone_number", value: data.phone });
+            if (data.company) fields.push({ slug: "company_name", value: data.company });
+            if (data.courseInterest) fields.push({ slug: "course_interest", value: data.courseInterest });
+
+            const updateResponse = await fetch(`https://api.systeme.io/api/contacts/${contactData.id}`, {
+                method: "PATCH", // Trying PATCH for update as PUT resulted in 405
+                headers: {
+                    "Content-Type": "application/merge-patch+json",
+                    "X-API-Key": apiKey,
+                },
+                body: JSON.stringify({ fields }),
+            });
+
+            if (updateResponse.ok) {
+                console.log(`[Systeme.io] Successfully updated fields for existing contact ${contactData.id}`);
+            } else {
+                // Fallback: Try POST if PUT fails (some APIs use POST for updates)
+                // Or it might be that Systeme.io doesn't allow field updates easily via public API on existing contacts without specific flow.
+                console.warn(`[Systeme.io] Update failed: ${await updateResponse.text()}`);
+            }
+        }
 
         // 3. Find and Assign the "LEADS" Tag
         const tagsResponse = await fetch("https://api.systeme.io/api/tags", {
