@@ -19,7 +19,7 @@ export function CourseHero({ course }: CourseHeroProps) {
   const whatsappMessage = `Hi, I'm interested in learning more about: ${course.title}`
 
   return (
-    <section className="relative w-full pt-24 pb-8 md:pt-28 md:pb-10 flex items-center bg-brand-navy overflow-hidden min-h-[500px] lg:min-h-[550px]">
+    <section className="relative w-full pt-28 pb-12 md:pt-32 md:pb-20 flex flex-col bg-brand-navy overflow-hidden min-h-[500px] lg:min-h-[550px]">
       {/* Premium Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-[#0A192F]" />
@@ -33,7 +33,7 @@ export function CourseHero({ course }: CourseHeroProps) {
 
           {/* Left Content */}
           <div className="lg:col-span-7 space-y-5 animate-fade-up">
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3 mt-2 sm:mt-0">
               <Badge className="bg-brand-gold text-brand-navy hover:bg-brand-gold/90 border-0 px-4 py-2 font-extrabold shadow-lg shadow-brand-gold/30 tracking-wider uppercase text-xs">
                 {course.category.replace(/_/g, " ")}
               </Badge>
@@ -83,6 +83,7 @@ export function CourseHero({ course }: CourseHeroProps) {
                   courseTitle={course.title}
                   size="lg"
                   className="w-full sm:w-auto bg-brand-gold text-brand-navy hover:bg-brand-gold-light font-black px-10 py-6 text-lg rounded-full shadow-2xl shadow-brand-gold/20"
+                  scrollToId="lead-capture-section"
                 />
                 <WhatsAppButton
                   message={whatsappMessage}
@@ -146,7 +147,7 @@ export function CourseHero({ course }: CourseHeroProps) {
 
           {/* Right Content - Lead Form */}
           <div className="lg:col-span-5 animate-fade-in lg:mt-0 mt-12 flex justify-center lg:justify-end">
-            <div className="w-full max-w-[440px]">
+            <div id="lead-capture-section" className="w-full max-w-[440px]">
               <LeadCaptureForm
                 courseTitle={course.title}
                 courseId={course.id}

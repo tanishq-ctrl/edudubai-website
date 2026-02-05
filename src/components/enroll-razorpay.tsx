@@ -22,6 +22,7 @@ interface EnrollRazorpayProps {
   className?: string
   size?: "default" | "sm" | "lg" | "icon"
   variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link"
+  scrollToId?: string
 }
 
 declare global {
@@ -36,6 +37,7 @@ export function EnrollRazorpay({
   className,
   size = "lg",
   variant = "default",
+  scrollToId,
 }: EnrollRazorpayProps) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
@@ -94,6 +96,23 @@ export function EnrollRazorpay({
   }
 
   const handleEnrollClick = () => {
+    // Mobile optimized: scroll to lead form if scrollToId is provided
+    if (scrollToId && window.innerWidth < 1024) { // lg breakpoint is 1024px
+      const element = document.getElementById(scrollToId)
+      if (element) {
+        // Account for loose/fixed header height (approx 80px) plus some breathing room
+        const headerOffset = 120
+        const elementPosition = element.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.scrollY - headerOffset
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        })
+        return
+      }
+    }
+
     // Check if user is authenticated
     if (!isAuthenticated) {
       // Redirect to register with next parameter
@@ -227,24 +246,31 @@ export function EnrollRazorpay({
     }
   }
 
-        return (
+  return (
+    <>
+      <Button
+        onClick={handleEnrollClick}
+        disabled={loading || checkingAuth}
+        className={className}
+        size={size}
+        variant={variant}
+      >
+        {loading || checkingAuth ? (
           <>
-            <Button
-              onClick={handleEnrollClick}
-              disabled={loading || checkingAuth}
-              className={className}
-              size={size}
-              variant={variant}
-            >
-              {loading || checkingAuth ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  {checkingAuth ? "Checking..." : "Processing..."}
-                </>
-              ) : (
-                "Enroll Now"
-              )}
-            </Button>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            {checkingAuth ? "Checking..." : "Processing..."}
+          </>
+        ) : (
+          scrollToId ? (
+            <>
+              <span className="lg:hidden">Reserve My Free Seat</span>
+              <span className="hidden lg:inline">Enroll Now</span>
+            </>
+          ) : (
+            "Enroll Now"
+          )
+        )}
+      </Button>
 
       <Dialog open={showEmailDialog} onOpenChange={setShowEmailDialog}>
         <DialogContent className="sm:max-w-[425px]">
