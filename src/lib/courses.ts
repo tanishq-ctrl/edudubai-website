@@ -679,7 +679,7 @@ export const courses: Course[] = [
   {
     id: "tbml",
     slug: "trade-based-money-laundering",
-    title: "Trade Based Money Laundering (TBML)",
+    title: "Trade Finance and Trade-Based Money Laundering (TBML)",
     shortDescription: "Trade-Based Money Laundering (TBML) is widely recognized as the most complex method of moving illicit value.",
     longDescription: "Trade-Based Money Laundering (TBML) is widely recognized as the most complex method of moving illicit value. This specialized course is designed for Trade Finance and Compliance professionals who need to look beyond the 'name screen' and understand the transaction itself. We decode Letters of Credit and Open Accounts to teach you how to spot price manipulation and phantom shipments.",
     category: "AML_CFT",
@@ -702,56 +702,91 @@ export const courses: Course[] = [
       }
     ],
     level: "ADVANCED",
-    duration: 24,
+    duration: 40,
     priceUsd: 350,
     currency: "USD",
     outcomes: [
-      "Understand Trade Lifecycle: Bill of Lading, Invoices, and fraud red flags",
-      "Detect Typologies: Over/Under-Invoicing and Phantom Shipments",
-      "Identify Dual-Use Goods: Strategic military/civilian applications",
-      "Master Vessel Tracking: Identifying 'Dark Activity' and ship-to-ship transfers",
-      "Analyze full sets of shipping documents for potential money laundering"
+      "Understand Trade & Trade Finance Fundamentals: Learn how goods move across borders, how trade is financed, key trade documents, Incoterms, payment methods, and trade finance products such as documentary credits, collections, guarantees, and trade loans.",
+      "Identify Trade-Based Financial Crime Risk: Assess TBML risk across customers, jurisdictions, products, and channels, including shell companies, dual-use goods, high-risk trade corridors, and complex delivery models.",
+      "Recognize TBML Typologies & Trade Abuse: Understand common TBML techniques such as over-/under-invoicing, misrepresentation of goods, document manipulation, trade diversion, and U-turn transactions using real-world case examples.",
+      "Understand Sanctions & Tax Evasion Through Trade: Explore how trade is used to evade sanctions, arms embargoes, VAT, customs duties, and export controls, including transshipment and open-sea cargo switching.",
+      "Apply Global Guidance & Controls: Learn expected controls such as KYC in trade, trade activity screening, trade cost awareness, digital trade documentation, AI-enabled monitoring, and network analysis in investigations.",
+      "Successfully Complete the ACAMS TBML Assessment: Prepare to confidently pass the 20-question final assessment and earn your official ACAMS TBML Certificate and credits."
     ],
     whoItsFor: [
-      "Trade Finance Ops Staff",
-      "Commercial Lenders",
-      "Sanctions Investigators",
-      "Correspondent Banking Managers"
+      "Trade Finance Operations Teams",
+      "AML & Transaction Monitoring Analysts",
+      "Sanctions Compliance Officers",
+      "Import/Export & Logistics Pros",
+      "Risk Managers & MLROs"
     ],
     programOverview: {
-      whatIs: "Trade-Based Money Laundering (TBML) is a specialized advanced technical course decoding the documents and flows of global trade fraud.",
-      whyItMatters: "Traditional AML fails to catch trade fraud. You must understand the underlying shipping documents to protect your firm.",
-      jobReadySkills: "Scan Bills of Lading for anomalies, track vessels globally, and detect price manipulation in complex trade financing."
+      whatIs: "The Trade Finance and Trade-Based Money Laundering (TBML) Certificate is an official ACAMS program designed to build a strong foundation in international trade, trade finance products, and trade-based financial crime risks.",
+      whyItMatters: "Trade finance is one of the highest-risk yet least-understood areas of financial crime compliance, often exploited through documentation abuse and complex trade structures.",
+      jobReadySkills: "This program builds practical trade finance awareness, enabling professionals to identify TBML red flags, assess trade-related risks, and apply global control and regulatory expectations across AML, sanctions, and compliance functions."
     },
     audienceCategories: [
       {
-        title: "🚢 Trade Specialist",
-        roles: ["Trade Finance Officers", "L/C Processors", "Shipment Investigators"]
+        title: "🏦 Financial Sector Professionals",
+        roles: [
+          "Trade Finance Operations & Processing Teams",
+          "AML, CDD, EDD & Transaction Monitoring Analysts",
+          "Sanctions & Export Control Compliance Officers",
+          "Correspondent Banking & Payments Teams",
+          "MLRO / Deputy MLRO",
+          "Risk Management & Compliance Officers",
+          "Internal Audit & Compliance Testing Teams"
+        ]
       },
       {
-        title: "🏦 Advanced Compliance",
-        roles: ["High-Level AML Investigators", "Sanctions Experts", "Corporate Risk Managers"]
+        title: "🏢 Non-Financial Sector Professionals",
+        roles: [
+          "Import / Export & Trade Compliance Officers",
+          "Shipping, Logistics & Freight Forwarding Professionals",
+          "DPMS Sector (Dealers in Precious Metals & Stones)",
+          "Corporate Legal, Governance & Risk Teams",
+          "Free Zone Compliance Officers",
+          "Consultants & Advisory Professionals"
+        ]
       }
     ],
     examInfo: {
-      questions: "N/A (Certificate of Completion)",
-      duration: "Practical Assessment",
-      passingScore: "Successful Workshop Completion",
-      format: "Case Study & practical Workshop",
+      questions: "20 MCQs",
+      duration: "~4 Hours (Self-Paced)",
+      passingScore: "80%",
+      format: "Online Assessment",
       requirements: [
-        "Basic Trade Finance knowledge recommended",
-        "Successful completion of Lab sessions",
-        "Attendance of all practical modules"
+        {
+          title: "Exam Eligibility & Requirements",
+          items: [
+            "Prerequisites: None",
+            "Study Format: Online, self-paced (with guided support through EduDubai)",
+            "Attempts: Multiple attempts allowed",
+            "Certificate: Digital ACAMS TBML Certificate upon passing",
+            "Credits Earned: 4 ACAMS Credits",
+            "Validity: Certificate does not expire",
+            "Language: English"
+          ]
+        },
+        {
+          title: "Disclaimer",
+          items: [
+            "Assessment access, certificate issuance, and credit allocation are governed by ACAMS. Training fees charged by EduDubai are separate from ACAMS certificate fees."
+          ]
+        }
       ]
     },
     whyChooseUs: {
       title: "Why Choose Edu-Dubai?",
       description: "You cannot learn trade fraud from a book; you need to see the documents. We host a live document workshop in every session.",
       points: [
-        "The Red Flag Lab: Practice on real sanitized document sets (Invoices, Packing Lists, BoLs) to find the fraud.",
-        "Vessel Tracking LIVE: Log into professional maritime tracking tools in class to spot 'Dark Activity' at sea.",
-        "Global trade context: Specialized training for the major trade hubs in MENA (Jebel Ali, etc.).",
-        "Practical Experts: Taught by professionals who clear hundreds of trade alerts daily."
+        "Expert-Led Instruction: Training delivered by senior AML, sanctions, and trade finance professionals with real-world experience in banking, exchange houses, and regulatory compliance.",
+        "Official ACAMS-Aligned Coverage: Our training strictly aligns with the official ACAMS TBML certificate syllabus and learning outcomes.",
+        "Real-World Trade Case Studies: Understand TBML risk using realistic trade scenarios, red flags, and enforcement-driven examples.",
+        "Small Interactive Batches: Limited participants per batch to ensure discussion, clarity, and instructor interaction.",
+        "Flexible Delivery Formats: Live virtual sessions, structured workshops, or customized in-house training for banks and corporates.",
+        "Assessment & Certificate Guidance: Clear guidance on completing the ACAMS assessment and earning your certificate and credits.",
+        "Career Foundation Value: Ideal stepping-stone for advanced certifications such as CAMS, CGSS, CAFS, and specialist financial crime roles."
       ]
     },
     faq: [

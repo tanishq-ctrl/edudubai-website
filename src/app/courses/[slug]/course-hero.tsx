@@ -118,6 +118,19 @@ export function CourseHero({ course }: CourseHeroProps) {
                     </a>
                   </Button>
                 )}
+                {course.id === 'tbml' && (
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="lg"
+                    className="w-full sm:w-auto flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/20 text-white hover:bg-white/10 hover:text-white px-8 py-6 text-lg font-bold rounded-full transition-colors"
+                  >
+                    <a href="/handbooks/tbml-handbook.pdf" download="TBML-Handbook.pdf">
+                      <Download className="w-4 h-4" />
+                      TBML Handbook
+                    </a>
+                  </Button>
+                )}
               </div>
 
               {/* Enhanced Stats Grid */}

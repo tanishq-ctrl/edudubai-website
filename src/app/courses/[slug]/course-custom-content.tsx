@@ -545,19 +545,41 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
           </div>
 
           <div className="course-exam-requirements">
-            <h3>Requirements & Process</h3>
+            <h3>Exam Eligibility & Requirements</h3>
             {examInfo.requirements && typeof examInfo.requirements[0] !== 'string' ? (
-              <div className="space-y-6">
-                {(examInfo.requirements as Array<{ title: string; items: string[] }>).map((section, idx) => (
-                  <div key={idx}>
-                    <h4 className="text-lg font-bold text-brand-navy mb-2 border-b border-brand-gold/20 pb-1">{section.title}</h4>
-                    <ul>
-                      {section.items.map((item, i) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+              <div>
+                {(examInfo.requirements as Array<{ title: string; items: string[] }>).map((section, idx) => {
+                  if (section.title === "Disclaimer") {
+                    return (
+                      <p key={idx} style={{ marginTop: '15px', borderTop: '1px solid #ddd', paddingTop: '10px', fontSize: '0.85em', color: '#666', lineHeight: '1.4' }}>
+                        <strong>Disclaimer:</strong> {section.items[0]}
+                      </p>
+                    )
+                  }
+
+                  return (
+                    <div key={idx} className={idx > 0 ? "mt-6" : ""}>
+                      {section.title !== "Exam Eligibility & Requirements" && (
+                        <h4 className="text-lg font-bold text-brand-navy mb-2 border-b border-brand-gold/20 pb-1">{section.title}</h4>
+                      )}
+                      <ul>
+                        {section.items.map((item, i) => {
+                          const firstColonIndex = item.indexOf(':');
+                          if (firstColonIndex !== -1) {
+                            const title = item.substring(0, firstColonIndex);
+                            const desc = item.substring(firstColonIndex + 1);
+                            return (
+                              <li key={i}>
+                                <strong>{title}:</strong>{desc}
+                              </li>
+                            );
+                          }
+                          return <li key={i}>{item}</li>;
+                        })}
+                      </ul>
+                    </div>
+                  )
+                })}
               </div>
             ) : (
               <ul>
