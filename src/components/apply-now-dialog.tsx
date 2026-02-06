@@ -92,6 +92,16 @@ export function ApplyNowDialog({
             })
 
             if (result.success) {
+                // Google Ads Conversion Tracking
+                if (typeof window !== "undefined" && (window as any).gtag) {
+                    (window as any).gtag("event", "conversion", {
+                        send_to: "AW-17858231822/Kt1dCLPxp_IbEI78u8NC",
+                        value: 1.0,
+                        currency: "INR",
+                        event_callback: () => console.log("Conversion tracked")
+                    });
+                }
+
                 setSuccess(true)
                 // We handle success UI inside the dialog, no toast needed essentially, 
                 // but keeping it for consistency if helpful.

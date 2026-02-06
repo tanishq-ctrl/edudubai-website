@@ -79,8 +79,8 @@ export function MasterClassPopup() {
             if (typeof window !== "undefined" && (window as any).gtag) {
                 (window as any).gtag("event", "conversion", {
                     send_to: "AW-17858231822/Kt1dCLPxp_IbEI78u8NC",
-                    event_category: "lead",
-                    event_label: course.title
+                    value: 1.0,
+                    currency: "INR"
                 });
             }
 
