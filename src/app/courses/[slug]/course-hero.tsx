@@ -72,6 +72,17 @@ export function CourseHero({ course }: CourseHeroProps) {
                   />
                 </div>
               )}
+              {course.id === 'tbml' && (
+                <div className="flex-shrink-0 animate-fade-in animate-float">
+                  <Image
+                    src="/images/badges/tbml-seal.png"
+                    alt="TBML Exam Prep"
+                    width={280}
+                    height={280}
+                    className="drop-shadow-2xl w-32 h-32 lg:w-60 lg:h-60"
+                  />
+                </div>
+              )}
             </div>
 
             {/* Combined Info Grid and CTAs */}
