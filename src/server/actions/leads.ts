@@ -3,7 +3,7 @@
 import { z } from "zod"
 import { sendLeadNotification, sendBrochureEmail } from "@/lib/email"
 import { getCourseBySlugNew } from "./courses"
-import { syncLeadToSystemeIO } from "@/lib/systeme-io"
+import { syncLeadToSystemeIO, syncApplicationToSystemeIO } from "@/lib/systeme-io"
 
 // Validation schemas
 const contactLeadSchema = z.object({
@@ -184,5 +184,60 @@ export async function submitBrochureLead(data: unknown) {
     }
     console.error("Error submitting brochure lead:", error)
     throw error
+  }
+}
+
+// Schema for Course Application (Apply Now Popup)
+const courseApplicationSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
+  phone: z.string().min(5, "Phone number is required"),
+  courseTitle: z.string().min(1, "Course title is required"),
+  courseSlug: z.string().optional(),
+})
+
+export async function submitCourseApplication(data: unknown) {
+  try {
+    const validated = courseApplicationSchema.parse(data)
+
+    // 1. Send notification to admin (reuse existing structure or create new type)
+    await sendLeadNotification({
+      type: "brochure", // Reusing brochure type for now as it's similar (interested in a course)
+      payload: {
+        type: "brochure",
+        name: validated.name,
+        email: validated.email,
+        phone: validated.phone,
+        courseTitle: validated.courseTitle,
+        company: "Applied via Website Popup",
+        courseId: validated.courseSlug || "unknown"
+      },
+    })
+
+    // 2. Sync to Systeme.io with specific "Potential_Conversions" tag
+    await syncApplicationToSystemeIO({
+      email: validated.email,
+      firstName: validated.name,
+      phone: validated.phone,
+      courseInterest: validated.courseTitle
+    })
+
+    // 3. Send confirmation email (Optional: Reusing brochure email or generic success)
+    // For now, we will verify the user instruction just wanted systeme.io sync.
+    // If they want an email, we can add it later. The "Apply Now" implies interest.
+
+    return { success: true }
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return {
+        success: false,
+        error: error.errors[0]?.message || "Validation failed",
+      }
+    }
+    console.error("Error submitting course application:", error)
+    return {
+      success: false,
+      error: "Something went wrong. Please try again.",
+    }
   }
 }

@@ -6,9 +6,8 @@ import { Badge } from "@/components/ui/badge"
 import { DeliveryFormatBadge } from "@/components/delivery-format-badge"
 import { WhatsAppButton } from "@/components/whatsapp-button"
 import { Download } from "lucide-react"
-import { EnrollRazorpay } from "@/components/enroll-razorpay"
+import { ApplyNowDialog } from "@/components/apply-now-dialog"
 import { Course } from "@/lib/types"
-import { LeadCaptureForm } from "@/components/LeadCaptureForm"
 import Image from "next/image"
 
 interface CourseHeroProps {
@@ -78,12 +77,11 @@ export function CourseHero({ course }: CourseHeroProps) {
             {/* Combined Info Grid and CTAs */}
             <div className="space-y-4">
               <div className="flex flex-col sm:flex-row items-center gap-4">
-                <EnrollRazorpay
+                <ApplyNowDialog
                   courseSlug={course.slug}
                   courseTitle={course.title}
                   size="lg"
                   className="w-full sm:w-auto bg-brand-gold text-brand-navy hover:bg-brand-gold-light font-black px-10 py-6 text-lg rounded-full shadow-2xl shadow-brand-gold/20"
-                  scrollToId="lead-capture-section"
                 />
                 <WhatsAppButton
                   message={whatsappMessage}
@@ -134,7 +132,7 @@ export function CourseHero({ course }: CourseHeroProps) {
               </div>
 
               {/* Enhanced Stats Grid */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 p-4 sm:p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl max-w-3xl">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 p-4 sm:p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl max-w-3xl">
                 <div className="space-y-0.5">
                   <span className="text-brand-gold text-[10px] font-black uppercase tracking-[0.2em]">Duration</span>
                   <p className="text-white font-bold text-lg">{course.duration} Hours</p>
@@ -142,10 +140,6 @@ export function CourseHero({ course }: CourseHeroProps) {
                 <div className="space-y-0.5">
                   <span className="text-brand-gold text-[10px] font-black uppercase tracking-[0.2em]">Level</span>
                   <p className="text-white font-bold text-lg uppercase tracking-tighter">{course.level}</p>
-                </div>
-                <div className="space-y-0.5">
-                  <span className="text-[#FF2D55] text-[10px] font-black uppercase tracking-[0.2em]">Training Fee</span>
-                  <p className="text-white font-bold text-lg tracking-tighter">${course.priceUsd.toLocaleString()}</p>
                 </div>
                 <div className="space-y-0.5">
                   <span className="text-green-400 text-[10px] font-black uppercase tracking-[0.2em]">Enrollment</span>
@@ -158,14 +152,21 @@ export function CourseHero({ course }: CourseHeroProps) {
             </div>
           </div>
 
-          {/* Right Content - Lead Form */}
+          {/* Right Content - Course Image */}
           <div className="lg:col-span-5 animate-fade-in lg:mt-0 mt-12 flex justify-center lg:justify-end">
-            <div id="lead-capture-section" className="w-full max-w-[440px]">
-              <LeadCaptureForm
-                courseTitle={course.title}
-                courseId={course.id}
-                courseSlug={course.slug}
-              />
+            <div className="relative w-full max-w-[400px] aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl ring-2 ring-white/10">
+              {/* Removed gradient overlay for clearer image */}
+              {(course.heroImageUrl || course.imageUrl) && (
+                <Image
+                  src={course.heroImageUrl || course.imageUrl || ""}
+                  alt={course.title}
+                  fill
+                  className="object-cover"
+                  priority
+                  quality={100}
+                  unoptimized
+                />
+              )}
             </div>
           </div>
 

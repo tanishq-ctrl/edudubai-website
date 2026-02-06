@@ -268,3 +268,121 @@ export async function syncLeadToSystemeIO(data: {
         console.error("[Systeme.io] Lead sync CRASHED:", error);
     }
 }
+
+/**
+ * Syncs a course application (from Apply Now popup) to Systeme.io
+ * Saves to custom fields and applies the 'Potential_Conversions' tag.
+ */
+export async function syncApplicationToSystemeIO(data: {
+    email: string;
+    firstName: string;
+    phone?: string;
+    courseInterest: string;
+}) {
+    const apiKey = process.env.SYSTEME_IO_API_KEY;
+    if (!apiKey) return;
+
+    try {
+        console.log(`[Systeme.io] Syncing application: ${data.email}`);
+
+        // Helper to perform the sync
+        const syncAttempt = async (withCustomFields: boolean) => {
+            const fields = [{ slug: "first_name", value: data.firstName }];
+
+            if (withCustomFields) {
+                if (data.phone) fields.push({ slug: "phone_number", value: data.phone });
+                fields.push({ slug: "course_interest", value: data.courseInterest });
+            }
+
+            return await fetch("https://api.systeme.io/api/contacts", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-API-Key": apiKey,
+                },
+                body: JSON.stringify({ email: data.email, fields }),
+            });
+        };
+
+        // 1. Create or Update Contact
+        let contactResponse = await syncAttempt(true);
+        let contactData;
+        let updateNeeded = false;
+
+        if (!contactResponse.ok) {
+            const errText = await contactResponse.text();
+            console.warn(`[Systeme.io] Application Sync Failed (${contactResponse.status}): ${errText}`);
+
+            // Fetch existing contact
+            const emailParam = encodeURIComponent(data.email);
+            const listResponse = await fetch(`https://api.systeme.io/api/contacts?email=${emailParam}`, {
+                headers: { "X-API-Key": apiKey }
+            });
+            const listData = await listResponse.json();
+            contactData = listData.items?.find((item: any) => item.email.toLowerCase() === data.email.toLowerCase());
+
+            if (contactData) {
+                updateNeeded = true;
+            } else if (contactResponse.status === 422) {
+                // Retry with minimal fields if validation failed
+                contactResponse = await syncAttempt(false);
+                if (contactResponse.ok) {
+                    contactData = await contactResponse.json();
+                }
+            }
+        } else {
+            contactData = await contactResponse.json();
+        }
+
+        if (!contactData) {
+            console.error("[Systeme.io] Could not recover contact for application.");
+            return;
+        }
+
+        // 2. Update fields if needed
+        if (updateNeeded) {
+            const fields = [
+                { slug: "first_name", value: data.firstName },
+                { slug: "course_interest", value: data.courseInterest }
+            ];
+            if (data.phone) fields.push({ slug: "phone_number", value: data.phone });
+
+            await fetch(`https://api.systeme.io/api/contacts/${contactData.id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/merge-patch+json",
+                    "X-API-Key": apiKey,
+                },
+                body: JSON.stringify({ fields }),
+            });
+        }
+
+        // 3. Assign "Potential_Conversions" Tag
+        const tagsResponse = await fetch("https://api.systeme.io/api/tags", {
+            headers: { "X-API-Key": apiKey }
+        });
+        const tagsData = await tagsResponse.json();
+        const targetTagName = "Potential_Conversions"; // User specified tag
+        const conversionTag = tagsData.items?.find((t: any) =>
+            t.name.trim() === targetTagName
+        );
+
+        if (conversionTag) {
+            await fetch(`https://api.systeme.io/api/contacts/${contactData.id}/tags`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-API-Key": apiKey,
+                },
+                body: JSON.stringify({ tagId: conversionTag.id }),
+            });
+            console.log(`[Systeme.io] SUCCESS: '${targetTagName}' tag applied.`);
+        } else {
+            console.warn(`[Systeme.io] Tag '${targetTagName}' not found.`);
+        }
+
+        return contactData;
+    } catch (error) {
+        console.error("[Systeme.io] Application sync CRASHED:", error);
+    }
+}

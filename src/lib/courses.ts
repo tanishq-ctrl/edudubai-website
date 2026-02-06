@@ -72,7 +72,12 @@ export const courses: Course[] = [
         { title: "Eligibility", items: ["Open to AML & Compliance Professionals", "No mandatory prerequisites"] },
         { title: "Training", items: ["25 Days × 4 Hours = 100 Hours", "5 Full Mock Exams", "Performance Reviews"] },
         { title: "Registration Process", items: ["Enroll with Edu-Dubai", "Complete Training", "Register on ACAMS®", "Schedule Exam", "Get Certified"] },
-        { title: "Fees", items: ["Training: USD 350", "Exam & Membership: Payable to ACAMS® separately"] }
+        {
+          title: "Disclaimer",
+          items: [
+            "Assessment access, certificate issuance, and credit allocation are governed by ACAMS. Training fees charged by EduDubai are separate from ACAMS certificate fees."
+          ]
+        }
       ]
     },
     whyChooseUs: {
@@ -98,6 +103,7 @@ export const courses: Course[] = [
     ],
     featured: true,
     imageUrl: "/images/certifications/certified-anti-money-laundering-specialist.jpg",
+    heroImageUrl: "/images/certifications/cams-flyer.png",
     issuingBody: "ACAMS"
   },
   {
@@ -164,10 +170,21 @@ export const courses: Course[] = [
       passingScore: "75%",
       format: "Computer-based Exam Proctored via Pearson",
       requirements: [
-        "Candidates must hold an active ACAMS membership",
-        "Meet the 40 eligibility credit requirement",
-        "Apply and register directly through the ACAMS website",
-        "Earn 30 recertification credits every three years"
+        {
+          title: "Eligibility & Requirements",
+          items: [
+            "Candidates must hold an active ACAMS membership",
+            "Meet the 40 eligibility credit requirement",
+            "Apply and register directly through the ACAMS website",
+            "Earn 30 recertification credits every three years"
+          ]
+        },
+        {
+          title: "Disclaimer",
+          items: [
+            "Assessment access, certificate issuance, and credit allocation are governed by ACAMS. Training fees charged by EduDubai are separate from ACAMS certificate fees."
+          ]
+        }
       ]
     },
     whyChooseUs: {
@@ -192,6 +209,7 @@ export const courses: Course[] = [
     ],
     featured: true,
     imageUrl: "/images/certifications/certified-global-sanctions-specialist.jpg",
+    heroImageUrl: "/images/certifications/cgss-flyer.png",
     issuingBody: "ACAMS"
   },
   {
@@ -258,9 +276,20 @@ export const courses: Course[] = [
       passingScore: "70%",
       format: "Multiple Choice Questions",
       requirements: [
-        "Open enrollment",
-        "Official AMLS Study Material provided",
-        "Online proctored examination"
+        {
+          title: "Eligibility",
+          items: [
+            "Open enrollment",
+            "Official AMLS Study Material provided",
+            "Online proctored examination"
+          ]
+        },
+        {
+          title: "Disclaimer",
+          items: [
+            "Assessment access, certificate issuance, and credit allocation are governed by GCI. Training fees charged by EduDubai are separate from GCI certificate fees unless specified otherwise in a bundle."
+          ]
+        }
       ]
     },
     whyChooseUs: {
@@ -285,6 +314,7 @@ export const courses: Course[] = [
     ],
     featured: true,
     imageUrl: "/images/certifications/anti-money-laundering-specialist.jpg",
+    heroImageUrl: "/images/certifications/amls-flyer.png",
     issuingBody: "GCI"
   },
   {
@@ -358,8 +388,13 @@ export const courses: Course[] = [
         { title: "Eligibility", items: ["Open to compliance, tax, and reporting professionals", "No mandatory prerequisites"] },
         { title: "Training Structure", items: ["Duration: 2 Days (Intensive Program)", "Includes:", "Exam Preparation", "Multiple Mock Tests", "Case Simulations"] },
         { title: "Registration Process", items: ["Enroll with Edu-Dubai", "Attend Live Training", "Complete Practice Assessments", "Sit for Proctored Exam", "Receive Certification"] },
-        { title: "Fees", items: ["GCI Certification: USD 499", "Training Fee: USD 275", "Total: USD 774"] },
-        { title: "Personalized Support", items: ["Individual performance assessment", "Half-day free reinforcement (if needed)", "Ongoing mentoring"] }
+        { title: "Personalized Support", items: ["Individual performance assessment", "Half-day free reinforcement (if needed)", "Ongoing mentoring"] },
+        {
+          title: "Disclaimer",
+          items: [
+            "Assessment access, certificate issuance, and credit allocation are governed by GCI. Training fees charged by EduDubai are separate from GCI certificate fees unless specified otherwise in a bundle."
+          ]
+        }
       ]
     },
     whyChooseUs: {
@@ -382,6 +417,7 @@ export const courses: Course[] = [
     ],
     featured: true,
     imageUrl: "/images/certifications/fatca-crs-specialist.jpg",
+    heroImageUrl: "/images/certifications/fcs-flyer.png",
     issuingBody: "GCI"
   },
   {
@@ -455,9 +491,14 @@ export const courses: Course[] = [
       format: "Proctored Exam (Online)",
       requirements: [
         { title: "Eligibility", items: ["Open to compliance, sanctions, and risk professionals", "No mandatory prerequisites"] },
-        { title: "Training Structure", items: ["Total Duration: 30 Hours", "Includes:", "10 Hours Exam Preparation", "Multiple Mock Tests", "Practice Screenings"] },
+        { title: "Training Structure", items: ["Total Duration: 16 Hours", "Includes:", "10 Hours Exam Preparation", "Multiple Mock Tests", "Practice Screenings"] },
         { title: "Registration Process", items: ["Enroll with Edu-Dubai", "Attend Virtual Training", "Complete Mock Assessments", "Sit for Proctored Exam", "Receive Certification"] },
-        { title: "Fees", items: ["GCI Certification: USD 499", "Training Fee: USD 350", "Total: USD 849"] }
+        {
+          title: "Disclaimer",
+          items: [
+            "Assessment access, certificate issuance, and credit allocation are governed by GCI. Training fees charged by EduDubai are separate from GCI certificate fees unless specified otherwise in a bundle."
+          ]
+        }
       ]
     },
     whyChooseUs: {
@@ -479,6 +520,7 @@ export const courses: Course[] = [
     ],
     featured: true,
     imageUrl: "/images/certifications/sanctions-compliance-specialist.jpg",
+    heroImageUrl: "/images/certifications/scs-flyer.png",
     issuingBody: "GCI"
   },
   {
@@ -552,9 +594,14 @@ export const courses: Course[] = [
       format: "Online Proctored Exam",
       requirements: [
         { title: "Eligibility", items: ["Open to compliance, risk, and governance professionals", "No mandatory prerequisites"] },
-        { title: "Training Structure", items: ["Duration: 20 Hours (5 Days × 4 Hours)", "Includes:", "8 Hours Exam Preparation", "Multiple Mock Tests", "Audit Simulations"] },
+        { title: "Training Structure", items: ["Duration: 16 Hours (4 Days × 4 Hours)", "Includes:", "8 Hours Exam Preparation", "Multiple Mock Tests", "Audit Simulations"] },
         { title: "Registration Process", items: ["Enroll with Edu-Dubai", "Attend Live Virtual Sessions", "Complete Practice Assessments", "Sit for Proctored Exam", "Receive Certification"] },
-        { title: "Fees", items: ["GCI Certification: USD 499", "Edu-Dubai Training: USD 350", "Total: USD 849"] }
+        {
+          title: "Disclaimer",
+          items: [
+            "Assessment access, certificate issuance, and credit allocation are governed by GCI. Training fees charged by EduDubai are separate from GCI certificate fees unless specified otherwise in a bundle."
+          ]
+        }
       ]
     },
     whyChooseUs: {
@@ -577,6 +624,7 @@ export const courses: Course[] = [
     ],
     featured: true,
     imageUrl: "/images/certifications/regulatory-compliance-specialist.jpg",
+    heroImageUrl: "/images/certifications/rcs-flyer.png",
     issuingBody: "GCI"
   },
   {
@@ -648,10 +696,15 @@ export const courses: Course[] = [
       format: "Online Proctored Exam",
       requirements: [
         { title: "Eligibility", items: ["Compliance, risk, and governance professionals", "Senior and mid-management roles preferred"] },
-        { title: "Training Structure", items: ["Instructor-Led: 12 Days × 5 Hours = 60 Hours", "Guided Self-Study (GCI Standards)", "Scenario Reviews", "Mock Exams"] },
+        { title: "Training Structure", items: ["Instructor-Led: 20 Days × 5 Hours = 100 Hours", "Guided Self-Study (GCI Standards)", "Scenario Reviews", "Mock Exams"] },
         { title: "Registration Process", items: ["Enroll with EduDubai", "Attend Instructor-Led Program", "Complete Guided Study", "Attempt Mock Exams", "Sit for Proctored Exam", "Receive Certification"] },
-        { title: "Fees", items: ["Full Package (GCI + Exam + Training): USD 1,599", "Training Only (No GCI): USD 500"] },
-        { title: "Personalized Support", items: ["Individual performance assessment", "Free reinforcement sessions", "Weak-area strengthening", "Exam confidence building"] }
+        { title: "Personalized Support", items: ["Individual performance assessment", "Free reinforcement sessions", "Weak-area strengthening", "Exam confidence building"] },
+        {
+          title: "Disclaimer",
+          items: [
+            "Assessment access, certificate issuance, and credit allocation are governed by GCI. Training fees charged by EduDubai are separate from GCI certificate fees unless specified otherwise in a bundle."
+          ]
+        }
       ]
     },
     whyChooseUs: {
@@ -674,6 +727,7 @@ export const courses: Course[] = [
     ],
     featured: true,
     imageUrl: "/images/certifications/certified-compliance-manager.jpg",
+    heroImageUrl: "/images/certifications/ccm-flyer.png",
     issuingBody: "GCI"
   },
   {
@@ -797,6 +851,7 @@ export const courses: Course[] = [
     ],
     featured: true,
     imageUrl: "/images/certifications/trade-based-money-laundering.jpg",
+    heroImageUrl: "/images/certifications/tbml-flyer.png",
     issuingBody: "ACAMS"
   },
   /*

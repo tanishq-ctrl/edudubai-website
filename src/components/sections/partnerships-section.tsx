@@ -108,12 +108,10 @@ export function PartnershipsSection() {
                                     ))}
                                 </div>
 
-                                <Link href="/courses?body=HOCK_INTERNATIONAL" className="w-full">
-                                    <Button className="w-full bg-brand-navy hover:bg-brand-navy-light text-white group-hover:bg-brand-gold group-hover:text-brand-navy transition-colors">
-                                        View CMA Details
-                                        <ArrowRight className="ml-2 h-4 w-4" />
-                                    </Button>
-                                </Link>
+                                <Button className="w-full bg-brand-navy hover:bg-brand-navy-light text-white group-hover:bg-brand-gold group-hover:text-brand-navy transition-colors">
+                                    View CMA Details
+                                    <ArrowRight className="ml-2 h-4 w-4" />
+                                </Button>
                             </div>
                         </CardContent>
                     </Card>

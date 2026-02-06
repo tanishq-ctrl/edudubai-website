@@ -71,18 +71,11 @@ export function CourseCard({ course }: CourseCardProps) {
         </div>
 
         {/* Footer Area: Price & CTA - Better alignment */}
-        <div className="flex items-end justify-between gap-4">
-          <div className="flex flex-col">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Starting from</span>
-            <span className="text-3xl font-black text-brand-navy leading-none">
-              ${course.priceUsd.toLocaleString()}
-            </span>
-          </div>
-
+        <div className="flex items-end justify-between gap-4 mt-auto">
           <Button
             asChild
             size="lg"
-            className="bg-brand-navy hover:bg-brand-navy/90 text-white font-semibold px-6 h-11 rounded-md shadow-sm hover:shadow-md transition-all duration-300"
+            className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white font-semibold px-6 h-11 rounded-md shadow-sm hover:shadow-md transition-all duration-300"
           >
             <Link href={`/courses/${course.slug}`}>View Details</Link>
           </Button>

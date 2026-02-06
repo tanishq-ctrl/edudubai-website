@@ -26,7 +26,6 @@ const navigation = [
     subItems: [
       { name: "ACAMS", href: "/courses?body=ACAMS" },
       { name: "GCI", href: "/courses?body=GCI" },
-      { name: "Hock International", href: "/courses?body=HOCK_INTERNATIONAL" },
     ]
   },
   { name: "Corporate Training", href: "/corporate-training" },
