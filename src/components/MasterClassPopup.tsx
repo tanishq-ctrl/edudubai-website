@@ -33,8 +33,8 @@ export function MasterClassPopup() {
     useEffect(() => {
         const hasSubmitted = localStorage.getItem("master_class_popup_submitted")
         if (!hasSubmitted) {
-            // Small delay for better UX
-            const timer = setTimeout(() => setOpen(true), 2000)
+            // Delay for better UX - show after 15 seconds
+            const timer = setTimeout(() => setOpen(true), 15000)
             return () => clearTimeout(timer)
         }
     }, [])
