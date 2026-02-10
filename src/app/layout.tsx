@@ -57,7 +57,6 @@ export const metadata: Metadata = {
   },
 }
 
-import { LeadFormPopup } from "@/components/lead-form-popup"
 
 export default function RootLayout({
   children,
@@ -79,7 +78,6 @@ export default function RootLayout({
         <SiteFooter />
         <Toaster />
         <AuthHandler />
-        {/* <LeadFormPopup /> */}
         {/* Tawk.to Chat Widget */}
         {/* Tawk.to Chat Widget
         <Script id="tawk-to" strategy="afterInteractive">

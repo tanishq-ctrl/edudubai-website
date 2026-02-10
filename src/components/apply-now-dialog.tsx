@@ -279,10 +279,6 @@ export function ApplyNowDialog({
                                 <span className="text-lg font-black uppercase tracking-wide leading-none">Enroll Now</span>
                             )}
                         </Button>
-
-                        <p className="text-[10px] text-center text-slate-400 font-medium pb-2">
-                            Secure connection. 100% Privacy Protected.
-                        </p>
                     </form>
                 </div>
             </DialogContent>

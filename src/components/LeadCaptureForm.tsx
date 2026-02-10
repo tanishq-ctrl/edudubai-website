@@ -176,10 +176,6 @@ export function LeadCaptureForm({ courseTitle, courseId, courseSlug }: LeadCaptu
                             </>
                         )}
                     </Button>
-
-                    <p className="text-[9px] text-center text-slate-400 font-medium pt-1.5">
-                        Secure connection. 100% Privacy Protected.
-                    </p>
                 </form>
             </CardContent>
         </Card>

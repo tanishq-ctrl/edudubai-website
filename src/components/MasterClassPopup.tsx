@@ -236,14 +236,10 @@ export function MasterClassPopup() {
                             ) : (
                                 <>
                                     <span className="text-lg font-black uppercase tracking-wide leading-none mb-1">Reserve My Free Seat</span>
-                                    <span className="text-xs font-bold opacity-90 leading-none">(First Session Free)</span>
+                                    <span className="text-base font-bold opacity-90 leading-none">(First Session Free)</span>
                                 </>
                             )}
                         </Button>
-
-                        <p className="text-[10px] text-center text-slate-400 font-medium pb-2">
-                            Secure connection. 100% Privacy Protected.
-                        </p>
                     </form>
                 </div>
             </DialogContent>
