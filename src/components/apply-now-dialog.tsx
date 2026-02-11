@@ -197,7 +197,7 @@ export function ApplyNowDialog({
                 <div className="p-6 pt-8">
                     <DialogHeader>
                         <DialogTitle className="text-xl md:text-2xl font-black text-brand-navy leading-tight">
-                            Enroll Now
+                            Enroll Now for Free Master Class
                         </DialogTitle>
                         <DialogDescription className="text-sm font-medium text-slate-500 mt-2">
                             Start your professional journey with <strong>{courseTitle}</strong>. Fill in your details below.
@@ -276,7 +276,10 @@ export function ApplyNowDialog({
                             {loading ? (
                                 <Loader2 className="h-6 w-6 animate-spin" />
                             ) : (
-                                <span className="text-lg font-black uppercase tracking-wide leading-none">Enroll Now</span>
+                                <>
+                                    <span className="text-lg font-black uppercase tracking-wide leading-none mb-1">Reserve My Free Seat</span>
+                                    <span className="text-base font-bold opacity-90 leading-none">(First Session Free)</span>
+                                </>
                             )}
                         </Button>
                     </form>
