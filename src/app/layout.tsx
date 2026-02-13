@@ -69,8 +69,12 @@ export default function RootLayout({
         <GoogleAnalytics gaId="G-GKHHHPDR1V" />
         <Script id="google-ads" strategy="afterInteractive">
           {`
-            window.gtag('config', 'GT-WRGG3DMG');
-            window.gtag('config', 'AW-17858231822');
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'GT-WRGG3DMG');
+            gtag('config', 'AW-17858231822');
           `}
         </Script>
         <SiteHeader />

@@ -50,6 +50,8 @@ export function LeadCaptureForm({ courseTitle, courseId, courseSlug }: LeadCaptu
             if (typeof window !== "undefined" && (window as any).gtag) {
                 (window as any).gtag("event", "conversion", {
                     send_to: "AW-17858231822/Kt1dCLPxp_IbEI78u8NC",
+                    value: 1.0,
+                    currency: "INR",
                     event_category: "lead",
                     event_label: courseTitle
                 });
