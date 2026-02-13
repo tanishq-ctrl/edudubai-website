@@ -5,9 +5,8 @@ export function CoursesHero() {
     <PageHeroImage
       image="/hero/courses.jpg"
       imageAlt="Course Catalog - Professional development courses"
-      title="Course Catalog"
-      description="Explore our comprehensive range of professional development courses designed to advance your career in compliance, risk, and finance."
-      eyebrow="EduDubai • Courses"
+      title="Global Certifications"
+      titleClassName="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[80px]"
     />
   )
 }

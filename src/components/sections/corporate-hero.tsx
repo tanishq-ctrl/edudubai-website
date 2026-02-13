@@ -7,7 +7,6 @@ export function CorporateHero() {
       imageAlt="Corporate Training Solutions"
       title="Corporate Training Solutions"
       description="Empower your workforce with world-class compliance, risk management, and professional development programs tailored to your organization's needs."
-      eyebrow="EduDubai • Corporate Training"
     />
   )
 }

@@ -2,13 +2,16 @@
 
 import Image from "next/image"
 import { Container } from "@/components/container"
+import { cn } from "@/lib/utils"
 
 interface PageHeroImageProps {
   image: string
   imageAlt: string
   title: string
-  description?: string
+  description?: string | React.ReactNode
   eyebrow?: string
+  titleClassName?: string
+  align?: "center" | "left"
 }
 
 export function PageHeroImage({
@@ -17,7 +20,11 @@ export function PageHeroImage({
   title,
   description,
   eyebrow,
+  titleClassName,
+  align = "center",
 }: PageHeroImageProps) {
+  const isLeft = align === "left"
+
   return (
     <section className="relative w-full h-[55vh] md:h-[70vh] min-h-[420px] overflow-hidden">
       {/* Background Image */}
@@ -49,22 +56,35 @@ export function PageHeroImage({
 
       {/* Content */}
       <Container className="relative z-10 h-full flex items-center px-4 sm:px-6">
-        <div className="max-w-6xl w-full mx-auto text-center space-y-4 sm:space-y-6 md:space-y-8 animate-fade-up py-8 sm:py-12 md:py-0">
+        <div className={cn(
+          "max-w-6xl w-full space-y-4 sm:space-y-6 md:space-y-8 animate-fade-up py-8 sm:py-12 md:py-0",
+          isLeft ? "text-left" : "mx-auto text-center"
+        )}>
           {/* Eyebrow */}
           {eyebrow && (
-            <div className="text-base sm:text-base md:text-lg font-extrabold uppercase tracking-widest text-[#f4d03f] drop-shadow-[0_4px_8px_rgba(0,0,0,1)] [text-shadow:_-1px_-1px_0_rgba(0,0,0,0.8),1px_1px_0_rgba(0,0,0,0.8),0_0_10px_rgba(244,208,63,0.5)] px-2 text-center">
+            <div className={cn(
+              "text-base sm:text-base md:text-lg font-extrabold uppercase tracking-widest text-[#f4d03f] drop-shadow-[0_4px_8px_rgba(0,0,0,1)] [text-shadow:_-1px_-1px_0_rgba(0,0,0,0.8),1px_1px_0_rgba(0,0,0,0.8),0_0_10px_rgba(244,208,63,0.5)] px-2",
+              isLeft ? "text-left pl-0" : "text-center"
+            )}>
               {eyebrow}
             </div>
           )}
 
           {/* Headline */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px] font-bold leading-[1.1] sm:leading-tight tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] px-2 break-words text-center">
+          <h1 className={cn(
+            "text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px] font-bold leading-[1.1] sm:leading-tight tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] px-2 break-words",
+            isLeft ? "text-left pl-0" : "text-center",
+            titleClassName
+          )}>
             {title}
           </h1>
 
           {/* Description */}
           {description && (
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)] max-w-3xl mx-auto px-2 text-center">
+            <p className={cn(
+              "text-base sm:text-lg md:text-xl lg:text-2xl text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)] hover:drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] transition-all duration-300 max-w-3xl px-2",
+              isLeft ? "text-left ml-0 pl-0" : "mx-auto text-center"
+            )}>
               {description}
             </p>
           )}

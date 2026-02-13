@@ -69,9 +69,8 @@ export default function CorporateTrainingPage() {
       <PageHeroImage
         image="/hero/corporate.jpg"
         imageAlt="Corporate Training Solutions"
-        title="Corporate Excellence Reimagined"
-        description="Empower your leadership and workforce with specialized professional development programs engineered for modern regulatory environments."
-        eyebrow="Institutional Solutions"
+        title="Corporate Training"
+        titleClassName="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[80px]"
       />
 
       {/* Services Grid */}

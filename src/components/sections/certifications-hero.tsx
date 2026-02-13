@@ -7,7 +7,6 @@ export function CertificationsHero() {
       imageAlt="Global Certifications & Exam Preparation"
       title="Global Certifications & Exam Preparation"
       description="Prepare for industry-recognized certifications with expert-led training, comprehensive study materials, and proven exam strategies."
-      eyebrow="EduDubai • Certifications"
     />
   )
 }
