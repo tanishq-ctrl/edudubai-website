@@ -220,3 +220,166 @@ export async function sendEnrollmentEmail(to: string, courseTitle: string) {
   }
 }
 
+interface ScholarshipApplicationParams {
+  fullName: string
+  email: string
+  mobile: string
+  country: string
+  nationality: string
+  jobTitle: string
+  organization?: string
+  yearsExperience: string
+  previouslyAttempted: string
+  reasonForApplying: string
+  selfFunding: string
+  typedName: string
+  signatureDate: string
+}
+
+export async function sendScholarshipNotification(application: ScholarshipApplicationParams) {
+  const adminEmail = process.env.ADMIN_NOTIFY_EMAIL || "training@edudubai.org"
+
+  try {
+    if (!process.env.RESEND_API_KEY) {
+      console.warn("RESEND_API_KEY not configured - scholarship notification email not sent")
+      return
+    }
+
+    const result = await resend.emails.send({
+      from: "EduDubai <onboarding@resend.dev>",
+      to: adminEmail,
+      subject: `New Scholarship Application - ${application.fullName}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto;">
+          <div style="background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8f 100%); padding: 30px; text-align: center; border-radius: 8px 8px 0 0;">
+            <h1 style="color: #ffffff; margin: 0; font-size: 28px;">🎓 New Scholarship Application</h1>
+            <p style="color: #d4af37; margin: 10px 0 0 0; font-size: 16px;">CAMS Ramadan Global Scholarship 2026</p>
+          </div>
+          
+          <div style="background-color: #ffffff; padding: 30px; border: 1px solid #e0e0e0; border-top: none;">
+            <!-- Basic Information -->
+            <div style="margin-bottom: 30px;">
+              <h2 style="color: #1e3a5f; border-bottom: 2px solid #d4af37; padding-bottom: 10px; margin-bottom: 15px;">
+                📋 Basic Information
+              </h2>
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 8px 0; width: 180px;"><strong>Full Name:</strong></td>
+                  <td style="padding: 8px 0;">${application.fullName}</td>
+                </tr>
+                <tr style="background-color: #f9f9f9;">
+                  <td style="padding: 8px 0;"><strong>Email:</strong></td>
+                  <td style="padding: 8px 0;"><a href="mailto:${application.email}" style="color: #2d5a8f;">${application.email}</a></td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 0;"><strong>Mobile:</strong></td>
+                  <td style="padding: 8px 0;"><a href="tel:${application.mobile}" style="color: #2d5a8f;">${application.mobile}</a></td>
+                </tr>
+                <tr style="background-color: #f9f9f9;">
+                  <td style="padding: 8px 0;"><strong>Country:</strong></td>
+                  <td style="padding: 8px 0;">${application.country}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 0;"><strong>Nationality:</strong></td>
+                  <td style="padding: 8px 0;">${application.nationality}</td>
+                </tr>
+              </table>
+            </div>
+
+            <!-- Professional Background -->
+            <div style="margin-bottom: 30px;">
+              <h2 style="color: #1e3a5f; border-bottom: 2px solid #d4af37; padding-bottom: 10px; margin-bottom: 15px;">
+                💼 Professional Background
+              </h2>
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 8px 0; width: 180px;"><strong>Job Title:</strong></td>
+                  <td style="padding: 8px 0;">${application.jobTitle}</td>
+                </tr>
+                <tr style="background-color: #f9f9f9;">
+                  <td style="padding: 8px 0;"><strong>Organization:</strong></td>
+                  <td style="padding: 8px 0;">${application.organization || "Not provided"}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 8px 0;"><strong>Experience:</strong></td>
+                  <td style="padding: 8px 0;">${application.yearsExperience}</td>
+                </tr>
+                <tr style="background-color: #f9f9f9;">
+                  <td style="padding: 8px 0;"><strong>Previously Attempted CAMS:</strong></td>
+                  <td style="padding: 8px 0;"><span style="display: inline-block; padding: 4px 12px; background-color: ${application.previouslyAttempted === "yes" ? "#ffeaa7" : "#dfe6e9"}; border-radius: 12px; font-weight: bold;">${application.previouslyAttempted.toUpperCase()}</span></td>
+                </tr>
+              </table>
+            </div>
+
+            <!-- Financial Need Assessment -->
+            <div style="margin-bottom: 30px;">
+              <h2 style="color: #1e3a5f; border-bottom: 2px solid #d4af37; padding-bottom: 10px; margin-bottom: 15px;">
+                💰 Financial Need Assessment
+              </h2>
+              <div style="margin-bottom: 15px;">
+                <strong>Why are they applying?</strong>
+                <div style="background-color: #f5f5f5; padding: 15px; border-left: 4px solid #d4af37; margin-top: 8px; line-height: 1.6; white-space: pre-wrap; font-size: 14px;">${application.reasonForApplying}</div>
+              </div>
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 8px 0; width: 180px;"><strong>Self-Funding Status:</strong></td>
+                  <td style="padding: 8px 0;"><span style="display: inline-block; padding: 4px 12px; background-color: #e3f2fd; border-radius: 12px; font-weight: bold;">${application.selfFunding}</span></td>
+                </tr>
+              </table>
+            </div>
+
+            <!-- Signature -->
+            <div style="margin-bottom: 20px;">
+              <h2 style="color: #1e3a5f; border-bottom: 2px solid #d4af37; padding-bottom: 10px; margin-bottom: 15px;">
+                ✍️ Digital Signature
+              </h2>
+              <table style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 8px 0; width: 180px;"><strong>Typed Name:</strong></td>
+                  <td style="padding: 8px 0; font-style: italic;">${application.typedName}</td>
+                </tr>
+                <tr style="background-color: #f9f9f9;">
+                  <td style="padding: 8px 0;"><strong>Date:</strong></td>
+                  <td style="padding: 8px 0;">${application.signatureDate}</td>
+                </tr>
+              </table>
+            </div>
+
+            <!-- Action Buttons -->
+            <div style="background-color: #f0f4f8; padding: 20px; border-radius: 8px; text-align: center; margin-top: 30px;">
+              <p style="margin: 0 0 15px 0; color: #666; font-size: 14px;">Review this application in your dashboard</p>
+              <a href="${process.env.NEXT_PUBLIC_APP_URL || "https://edudubai.com"}/admin/scholarships" 
+                 style="display: inline-block; background-color: #d4af37; color: #1e3a5f; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; margin: 5px;">
+                View in Dashboard
+              </a>
+              <a href="mailto:${application.email}" 
+                 style="display: inline-block; background-color: #1e3a5f; color: #ffffff; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; margin: 5px;">
+                Contact Applicant
+              </a>
+            </div>
+          </div>
+          
+          <div style="background-color: #f5f5f5; padding: 15px; text-align: center; border-radius: 0 0 8px 8px; border: 1px solid #e0e0e0; border-top: none;">
+            <p style="margin: 0; color: #666; font-size: 12px;">
+              This is an automated notification from EduDubai Scholarship Application System
+            </p>
+          </div>
+        </div>
+      `,
+    })
+
+    if (result.error) {
+      console.error("Resend API error:", result.error)
+      throw new Error(`Failed to send scholarship notification: ${result.error.message || "Unknown error"}`)
+    }
+
+    console.log("Scholarship notification email sent successfully:", result.data?.id)
+    return result
+  } catch (error) {
+    console.error("Error sending scholarship notification email:", error)
+    // Don't throw - we still want the application to be saved even if email fails
+    return null
+  }
+}
+
+

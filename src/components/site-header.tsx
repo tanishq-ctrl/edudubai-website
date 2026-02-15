@@ -26,6 +26,7 @@ const navigation = [
     subItems: [
       { name: "ACAMS", href: "/courses?body=ACAMS" },
       { name: "GCI", href: "/courses?body=GCI" },
+      { name: "CAMS Ramadan Scholarship", href: "/cams-ramadan-scholarship" },
     ]
   },
   { name: "Corporate Training", href: "/corporate-training" },

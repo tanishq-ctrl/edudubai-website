@@ -135,3 +135,45 @@ enum PaymentStatus {
   REFUNDED
 }
 
+model ScholarshipApplication {
+  id                    String   @id @default(cuid())
+  
+  // Basic Information
+  fullName              String
+  email                 String
+  mobile                String
+  country               String
+  nationality           String
+  
+  // Professional Background
+  jobTitle              String
+  organization          String?
+  yearsExperience       String
+  previouslyAttempted   String
+  
+  // Financial Need Assessment
+  reasonForApplying     String   @db.Text
+  selfFunding           String
+  
+  // Commitment Declaration
+  availabilityConfirm   Boolean
+  accuracyConfirm       Boolean
+  typedName             String
+  signatureDate         String
+  
+  // Metadata
+  status                ApplicationStatus @default(PENDING)
+  reviewNotes           String?  @db.Text
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  
+  @@map("scholarship_applications")
+}
+
+enum ApplicationStatus {
+  PENDING
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+  WAITLISTED
+}
