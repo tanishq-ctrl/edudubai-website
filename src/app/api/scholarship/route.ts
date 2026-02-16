@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server"
-import { PrismaClient } from "@prisma/client"
+import { prisma } from "@/lib/prisma"
 import { sendScholarshipNotification } from "@/lib/email"
-
-const prisma = new PrismaClient()
 
 /**
  * Syncs scholarship application to Systeme.io
@@ -258,7 +256,5 @@ export async function POST(req: Request) {
         return NextResponse.json({
             error: "Internal Server Error. Please try again."
         }, { status: 500 })
-    } finally {
-        await prisma.$disconnect()
     }
 }
