@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server"
-import { prisma } from "@/lib/prisma"
+import { createClient } from "@supabase/supabase-js"
 import { sendScholarshipNotification } from "@/lib/email"
+
+// Use service role key for server-side operations
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!
 
 /**
  * Syncs scholarship application to Systeme.io
@@ -172,10 +176,19 @@ export async function POST(req: Request) {
         // Extract first name from full name
         const firstName = fullName.split(' ')[0]
 
+        // Create Supabase client with service role key
+        const supabase = createClient(supabaseUrl, supabaseServiceKey, {
+            auth: {
+                autoRefreshToken: false,
+                persistSession: false,
+            },
+        })
+
         // 1. Save to Supabase Database
         try {
-            const application = await prisma.scholarshipApplication.create({
-                data: {
+            const { data: application, error: dbError } = await supabase
+                .from('scholarship_applications')
+                .insert({
                     fullName,
                     email,
                     mobile,
@@ -191,8 +204,14 @@ export async function POST(req: Request) {
                     accuracyConfirm,
                     typedName,
                     signatureDate: date,
-                }
-            })
+                    status: 'PENDING',
+                })
+                .select()
+                .single()
+
+            if (dbError) {
+                throw dbError
+            }
 
             console.log(`[Database] Scholarship application saved with ID: ${application.id}`)
         } catch (dbError) {
