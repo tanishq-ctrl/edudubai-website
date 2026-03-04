@@ -155,9 +155,11 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Missing required professional background" }, { status: 400 })
         }
 
-        if (!reasonForApplying || reasonForApplying.length < 150 || reasonForApplying.length > 250) {
+        // Word count validation (approximate counting)
+        const wordCount = reasonForApplying ? reasonForApplying.trim().split(/\s+/).length : 0
+        if (!reasonForApplying || wordCount < 30 || reasonForApplying.length > 5000) {
             return NextResponse.json({
-                error: "Please provide a reason for applying between 150-250 words"
+                error: "Please provide a reason for applying (at least 30 words)"
             }, { status: 400 })
         }
 
@@ -219,9 +221,9 @@ export async function POST(req: Request) {
             // We'll continue even if DB fails, so Systeme.io and email still work
         }
 
-        // 2. Send Email Notification to Admin
-        try {
-            await sendScholarshipNotification({
+        // Run Email Notification and Systeme.io Sync concurrently to prevent Vercel 504 Timeouts
+        await Promise.allSettled([
+            sendScholarshipNotification({
                 fullName,
                 email,
                 mobile,
@@ -235,16 +237,9 @@ export async function POST(req: Request) {
                 selfFunding,
                 typedName,
                 signatureDate: date
-            })
-            console.log(`[Email] Scholarship notification sent for: ${email}`)
-        } catch (emailError) {
-            console.error("[Email] Failed to send scholarship notification:", emailError)
-            // Continue even if email fails
-        }
+            }).catch(e => console.error("[Email] Concurrent Email Failed:", e)),
 
-        // 3. Sync to Systeme.io
-        try {
-            await syncScholarshipToSystemeIO({
+            syncScholarshipToSystemeIO({
                 email,
                 firstName,
                 fullName,
@@ -257,11 +252,8 @@ export async function POST(req: Request) {
                 previouslyAttempted,
                 reasonForApplying,
                 selfFunding
-            })
-        } catch (systemeError) {
-            console.error("[Systeme.io] Failed to sync scholarship:", systemeError)
-            // Continue even if Systeme.io fails
-        }
+            }).catch(e => console.error("[Systeme.io] Concurrent Sync Failed:", e))
+        ])
 
         // Log the application for debugging
         console.log(`[Scholarship] New application from ${fullName} (${email})`)

@@ -47,8 +47,26 @@ export function ScholarshipForm() {
             })
 
             if (!response.ok) {
-                const errorData = await response.json()
-                throw new Error(errorData.error || "Failed to submit application")
+                let errorMessage = "Failed to submit application"
+                try {
+                    const errorText = await response.text()
+                    // Try to parse as JSON first
+                    try {
+                        const errorData = JSON.parse(errorText)
+                        errorMessage = errorData.error || errorMessage
+                    } catch (e) {
+                        // If not JSON, check if it's a server error page
+                        console.error("Non-JSON error response:", errorText.substring(0, 100))
+                        if (errorText.includes("server error")) {
+                            errorMessage = "A server error occurred. Please try again later."
+                        } else {
+                            errorMessage = errorText.substring(0, 100)
+                        }
+                    }
+                } catch (e) {
+                    // Fallback
+                }
+                throw new Error(errorMessage)
             }
 
             // Google Ads Conversion Tracking
@@ -275,16 +293,16 @@ export function ScholarshipForm() {
                             <div className="space-y-1.5">
                                 <Label htmlFor="reasonForApplying" className="text-xs font-semibold text-slate-700">
                                     Why are you applying for the Ramadan Global Scholarship? <span className="text-red-500">*</span>
-                                    <span className="text-slate-500 font-normal ml-1">(150–250 words)</span>
+                                    <span className="text-slate-500 font-normal ml-1">(at least 30 words)</span>
                                 </Label>
                                 <Textarea
                                     id="reasonForApplying"
                                     name="reasonForApplying"
                                     placeholder="Share your story, career goals, and how this scholarship would impact your professional development..."
                                     required
-                                    rows={5}
-                                    minLength={150}
-                                    maxLength={250}
+                                    rows={4}
+                                    minLength={50}
+                                    maxLength={3000}
                                     className="bg-slate-50 border-slate-300 text-sm resize-none"
                                 />
                             </div>
