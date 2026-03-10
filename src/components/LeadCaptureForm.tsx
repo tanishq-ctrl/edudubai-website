@@ -173,8 +173,8 @@ export function LeadCaptureForm({ courseTitle, courseId, courseSlug }: LeadCaptu
                             <Loader2 className="h-6 w-6 animate-spin" />
                         ) : (
                             <>
-                                <span className="text-lg md:text-xl font-black uppercase tracking-wide leading-none mb-1">Reserve My Free Seat</span>
-                                <span className="text-xs md:text-sm font-bold opacity-90 leading-none">(First Session Free)</span>
+                                <span className="text-lg md:text-xl font-black uppercase tracking-wide leading-none mb-1">LIMITED SEATS</span>
+                                <span className="text-xs md:text-sm font-bold opacity-90 leading-none">(Reserve Your Spot Now)</span>
                             </>
                         )}
                     </Button>

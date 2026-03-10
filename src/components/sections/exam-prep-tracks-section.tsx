@@ -9,7 +9,7 @@ import { Award, BookOpen, TrendingUp } from "lucide-react"
 
 const examPrepTracks = [
   {
-    slug: "certified-anti-money-laundering-specialist",
+    slug: "cams",
     icon: Award,
     badge: "CAMS",
   },

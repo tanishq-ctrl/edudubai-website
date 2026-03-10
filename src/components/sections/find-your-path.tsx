@@ -21,7 +21,7 @@ const paths = [
         description: "Deep dive into AML techniques, KYC/CDD protocols, and financial investigation strategies.",
         icon: Shield,
         recommended: "CAMS Prep / AML Specialist (AMLS)",
-        href: "/courses/certified-anti-money-laundering-specialist",
+        href: "/courses/cams",
         color: "from-blue-700 to-blue-900",
         iconColor: "text-blue-100"
     },

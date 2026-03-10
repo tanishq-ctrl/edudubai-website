@@ -1,0 +1,990 @@
+TimeUTC,timestampInMs,requestPath,requestMethod,requestQueryString,responseStatusCode,requestId,requestUserAgent,level,environment,branch,vercelCache,type,function,host,deploymentDomain,deploymentId,durationMs,region,maxMemoryUsed,memorySize,message,projectId,traceId,sessionId,invocationId,instanceId,concurrency
+2026-02-20 08:18:08,1771575488995,www.edudubai.org/auth/register,GET,_rsc=1wtp7,200,c7kt6-1771575488546-b39582ad412a,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",info,production,main,HIT,middleware,/auth/register,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/auth/register',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 4,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:18:08,1771575488546,www.edudubai.org/auth/register,GET,_rsc=1wtp7,200,c7kt6-1771575488546-b39582ad412a,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,555,bom1,259,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX21C1JVB8CNGT6DG28GR6J,Ninnn1fwEaOF,1
+2026-02-20 08:18:08,1771575488546,www.edudubai.org/auth/register,GET,_rsc=1wtp7,200,c7kt6-1771575488546-b39582ad412a,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,HIT,static,/auth/register,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,516,dxb1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:18:08,1771575488580,www.edudubai.org/auth/login,GET,_rsc=1wtp7,200,8mkwg-1771575488543-0a101ec435d6,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",info,production,main,HIT,middleware,/auth/login,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/auth/login',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 4,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:18:08,1771575488543,www.edudubai.org/auth/login,GET,_rsc=1wtp7,200,8mkwg-1771575488543-0a101ec435d6,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,10,bom1,262,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX21C1F132MMQSQGM7EV577,kIM7Uz1n5Xo2,1
+2026-02-20 08:18:08,1771575488543,www.edudubai.org/auth/login,GET,_rsc=1wtp7,200,8mkwg-1771575488543-0a101ec435d6,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,HIT,static,/auth/login,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,121,dxb1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:18:08,1771575488934,www.edudubai.org/courses,GET,_rsc=1wtp7,200,cdds5-1771575488527-df7328710792,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",info,production,main,MISS,middleware,/courses,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/courses',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 4,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:18:08,1771575488527,www.edudubai.org/courses,GET,_rsc=1wtp7,200,cdds5-1771575488527-df7328710792,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,MISS,function,/courses.rsc,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,28,dxb1,246,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX21CEBQZ2J0ABVTQZHDY6Z,BEQVj49on1Zy,1
+2026-02-20 08:18:08,1771575488527,www.edudubai.org/courses,GET,_rsc=1wtp7,200,cdds5-1771575488527-df7328710792,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,MISS,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,514,bom1,258,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX21C0ZRJBDSE2CGE0EDMX5,AfqzU7Ew0imN,1
+2026-02-20 08:18:08,1771575488970,www.edudubai.org/become-a-trainer,GET,_rsc=1wtp7,200,db5z4-1771575488517-b00f9042b81f,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",info,production,main,HIT,middleware,/become-a-trainer,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/become-a-trainer',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 4,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:18:08,1771575488517,www.edudubai.org/become-a-trainer,GET,_rsc=1wtp7,200,db5z4-1771575488517-b00f9042b81f,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,HIT,middleware,src/middleware,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,541,bom1,255,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX21C0NBPHTA3012RNAKJFV,jHrCnQb1UFqV,1
+2026-02-20 08:18:08,1771575488517,www.edudubai.org/become-a-trainer,GET,_rsc=1wtp7,200,db5z4-1771575488517-b00f9042b81f,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,HIT,static,/become-a-trainer,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,516,dxb1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:18:08,1771575488554,www.edudubai.org/contact,GET,_rsc=1wtp7,200,cdds5-1771575488513-727790a9c4e5,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",info,production,main,HIT,middleware,/contact,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/contact',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 4,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:18:08,1771575488513,www.edudubai.org/contact,GET,_rsc=1wtp7,200,cdds5-1771575488513-727790a9c4e5,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,13,bom1,262,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX21C0JGE8FX4P2145S751B,kIM7Uz1n5Xo2,1
+2026-02-20 08:18:08,1771575488513,www.edudubai.org/contact,GET,_rsc=1wtp7,200,cdds5-1771575488513-727790a9c4e5,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,HIT,static,/contact,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,103,dxb1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:18:08,1771575488388,www.edudubai.org/about,GET,_rsc=1wtp7,200,8mkwg-1771575488296-b0abb223d615,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",info,production,main,HIT,middleware,/about,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/about',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:18:08,1771575488296,www.edudubai.org/about,GET,_rsc=1wtp7,200,8mkwg-1771575488296-b0abb223d615,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,10,bom1,261,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX21BSR8N0G6W71RW6K6E1J,kIM7Uz1n5Xo2,1
+2026-02-20 08:18:08,1771575488296,www.edudubai.org/about,GET,_rsc=1wtp7,200,8mkwg-1771575488296-b0abb223d615,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,HIT,static,/about,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,148,dxb1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:18:08,1771575488404,www.edudubai.org/corporate-training,GET,_rsc=1wtp7,200,c7kt6-1771575488294-9a5f0d9e608e,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",info,production,main,HIT,middleware,/corporate-training,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/corporate-training',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:18:08,1771575488294,www.edudubai.org/corporate-training,GET,_rsc=1wtp7,200,c7kt6-1771575488294-9a5f0d9e608e,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,10,bom1,261,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX21BSPK5VPZ6GGYZSHZFEZ,kIM7Uz1n5Xo2,1
+2026-02-20 08:18:08,1771575488294,www.edudubai.org/corporate-training,GET,_rsc=1wtp7,200,c7kt6-1771575488294-9a5f0d9e608e,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,HIT,static,/corporate-training,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,131,dxb1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:18:08,1771575488372,www.edudubai.org/cams-ramadan-scholarship,GET,_rsc=1wtp7,200,cdds5-1771575488292-8460e8085dbc,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",info,production,main,HIT,middleware,/cams-ramadan-scholarship,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/cams-ramadan-scholarship',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:18:08,1771575488292,www.edudubai.org/cams-ramadan-scholarship,GET,_rsc=1wtp7,200,cdds5-1771575488292-8460e8085dbc,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,HIT,middleware,src/middleware,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,9,bom1,261,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX21BSM60M49VNVCEQK3C84,kIM7Uz1n5Xo2,1
+2026-02-20 08:18:08,1771575488292,www.edudubai.org/cams-ramadan-scholarship,GET,_rsc=1wtp7,200,cdds5-1771575488292-8460e8085dbc,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,HIT,static,/cams-ramadan-scholarship,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,136,dxb1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:18:08,1771575488353,www.edudubai.org/courses,GET,body=GCI&_rsc=1wtp7,200,cdds5-1771575488292-75a2e419d9ce,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",info,production,main,MISS,middleware,/courses,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/courses',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:18:08,1771575488292,www.edudubai.org/courses,GET,body=GCI&_rsc=1wtp7,200,cdds5-1771575488292-75a2e419d9ce,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,MISS,function,/courses.rsc,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,15,dxb1,245,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX21BVMKNZEAC5AQHX943HY,BEQVj49on1Zy,1
+2026-02-20 08:18:08,1771575488292,www.edudubai.org/courses,GET,body=GCI&_rsc=1wtp7,200,cdds5-1771575488292-75a2e419d9ce,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,MISS,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,11,bom1,261,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX21BSNWR9N3VHHETWNCVS4,kIM7Uz1n5Xo2,1
+2026-02-20 08:18:08,1771575488335,www.edudubai.org/courses,GET,body=ACAMS&_rsc=1wtp7,200,db5z4-1771575488289-dd86da33298d,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",info,production,main,MISS,middleware,/courses,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/courses',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:18:08,1771575488289,www.edudubai.org/courses,GET,body=ACAMS&_rsc=1wtp7,200,db5z4-1771575488289-dd86da33298d,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,MISS,function,/courses.rsc,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,111,dxb1,245,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX21BVFXQN1SG2V6K691NKB,BEQVj49on1Zy,1
+2026-02-20 08:18:08,1771575488289,www.edudubai.org/courses,GET,body=ACAMS&_rsc=1wtp7,200,db5z4-1771575488289-dd86da33298d,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,MISS,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,18,bom1,260,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX21BSHQ8XHHPBNCN0NPTB8,kIM7Uz1n5Xo2,1
+2026-02-20 08:18:06,1771575486882,www.edudubai.org/,GET,,200,db5z4-1771575486125-52fb8352bb85,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",info,production,main,HIT,middleware,/,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:18:06,1771575486125,www.edudubai.org/,GET,,200,db5z4-1771575486125-52fb8352bb85,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,HIT,middleware,src/middleware,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,545,bom1,260,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX219PVSM09E4AWVS5C7YPN,kIM7Uz1n5Xo2,1
+2026-02-20 08:18:06,1771575486125,www.edudubai.org/,GET,,200,db5z4-1771575486125-52fb8352bb85,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,HIT,static,/,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,796,dxb1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:18:05,1771575485935,edudubai.org/,GET,,307,t78pf-1771575485935-5900d3d24c43,"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.3 Safari/605.1.15",,production,main,,static,/,edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,12,dxb1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:17:51,1771575471401,www.edudubai.org/meta.json,GET,,404,dcf26-1771575471295-98576b0c79de,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:17:51,1771575471295,www.edudubai.org/meta.json,GET,,404,dcf26-1771575471295-98576b0c79de,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,8,iad1,264,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX20V8DTPET8JYH819Z4BH9,M8ALBOufLjqm,1
+2026-02-20 08:17:51,1771575471295,www.edudubai.org/meta.json,GET,,404,dcf26-1771575471295-98576b0c79de,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,121,iad1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:17:45,1771575465448,www.edudubai.org/meta.json,GET,,404,mw2rq-1771575465384-a40183f0469e,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:17:45,1771575465384,www.edudubai.org/meta.json,GET,,404,mw2rq-1771575465384-a40183f0469e,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,38,fra1,259,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX20NDKJ2E2RS0HBXSQA3R3,nH2aWox5SVEv,1
+2026-02-20 08:17:45,1771575465384,www.edudubai.org/meta.json,GET,,404,mw2rq-1771575465384-a40183f0469e,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,68,fra1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:17:10,1771575430895,www.edudubai.org/meta.json,GET,,404,kp66s-1771575430855-1e14e154b18a,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:17:10,1771575430855,www.edudubai.org/meta.json,GET,,404,kp66s-1771575430855-1e14e154b18a,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,19,sfo1,263,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1ZKPGARZQ3BD04QEY2123,g9U9PhhmfVjO,1
+2026-02-20 08:17:10,1771575430855,www.edudubai.org/meta.json,GET,,404,kp66s-1771575430855-1e14e154b18a,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,46,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:17:09,1771575429058,www.edudubai.org/meta.json,GET,,404,8gtvg-1771575428974-0b1bec098682,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:17:08,1771575428974,www.edudubai.org/meta.json,GET,,404,8gtvg-1771575428974-0b1bec098682,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,15,iad1,264,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1ZHXEQYZ142A841SA4Q9B,M8ALBOufLjqm,1
+2026-02-20 08:17:08,1771575428974,www.edudubai.org/meta.json,GET,,404,8gtvg-1771575428974-0b1bec098682,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,cle1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:16:57,1771575417861,www.edudubai.org/meta.json,GET,,404,phtkj-1771575417805-76d187eb6585,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:16:57,1771575417805,www.edudubai.org/meta.json,GET,,404,phtkj-1771575417805-76d187eb6585,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,31,sfo1,262,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1Z6Z4W6BSVY71VS7W28Q4,g9U9PhhmfVjO,1
+2026-02-20 08:16:57,1771575417805,www.edudubai.org/meta.json,GET,,404,phtkj-1771575417805-76d187eb6585,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,83,pdx1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:15:14,1771575314941,www.edudubai.org/meta.json,GET,,404,dr9vp-1771575314903-625dc0af920b,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:15:14,1771575314903,www.edudubai.org/meta.json,GET,,404,dr9vp-1771575314903-625dc0af920b,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,8,iad1,264,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1W2F4X541K726NBHQEEE9,M8ALBOufLjqm,1
+2026-02-20 08:15:14,1771575314903,www.edudubai.org/meta.json,GET,,404,dr9vp-1771575314903-625dc0af920b,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,41,iad1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:48,1771575228905,www.edudubai.org/meta.json,GET,,404,6jntg-1771575228879-0daaab6dc053,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:48,1771575228879,www.edudubai.org/meta.json,GET,,404,6jntg-1771575228879-0daaab6dc053,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,10,iad1,263,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1SEERDSVEENNAA7WKAYJB,M8ALBOufLjqm,1
+2026-02-20 08:13:48,1771575228879,www.edudubai.org/meta.json,GET,,404,6jntg-1771575228879-0daaab6dc053,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,30,iad1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:29,1771575209110,www.edudubai.org/auth/login,GET,next=%2Fdashboard,,2prf6-1771575209087-2987ac4fb767,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,,middleware,,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/auth/login',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:29,1771575209087,www.edudubai.org/auth/login,GET,next=%2Fdashboard,,2prf6-1771575209087-2987ac4fb767,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,13,sfo1,261,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RV41QD7WP0VQMHAX5KH6,aZU1m6ywkE2N,1
+2026-02-20 08:13:30,1771575210217,www.edudubai.org/admin,GET,,200,9fdrg-1771575208415-be001a40708d,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,MISS,function,/admin,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"prisma:error 
+Invalid `prisma.course.findMany()` invocation:
+
+
+error: Environment variable not found: DATABASE_URL.
+  -->  schema.prisma:10
+   | 
+ 9 |   provider = ""postgresql""
+10 |   url      = env(""DATABASE_URL"")
+   | 
+
+Validation Error Count: 1",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:30,1771575210220,www.edudubai.org/admin,GET,,200,9fdrg-1771575208415-be001a40708d,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",error,production,main,MISS,function,/admin,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"Error fetching courses: PrismaClientInitializationError: 
+Invalid `prisma.course.findMany()` invocation:
+
+
+error: Environment variable not found: DATABASE_URL.
+  -->  schema.prisma:10
+   | 
+ 9 |   provider = ""postgresql""
+10 |   url      = env(""DATABASE_URL"")
+   | 
+
+Validation Error Count: 1
+    at $n.handleRequestError (/var/task/node_modules/@prisma/client/runtime/library.js:121:7615)
+    at $n.handleAndLogRequestError (/var/task/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/var/task/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/var/task/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async n (/var/task/.next/server/app/admin/page.js:1:21660)
+    at async v (/var/task/.next/server/app/admin/page.js:1:18602) {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:30,1771575210221,www.edudubai.org/admin,GET,,200,9fdrg-1771575208415-be001a40708d,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,MISS,function,/admin,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"prisma:error 
+Invalid `prisma.user.findMany()` invocation:
+
+
+error: Environment variable not found: DATABASE_URL.
+  -->  schema.prisma:10
+   | 
+ 9 |   provider = ""postgresql""
+10 |   url      = env(""DATABASE_URL"")
+   | 
+
+Validation Error Count: 1",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:30,1771575210222,www.edudubai.org/admin,GET,,200,9fdrg-1771575208415-be001a40708d,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",error,production,main,MISS,function,/admin,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"Error fetching users: PrismaClientInitializationError: 
+Invalid `prisma.user.findMany()` invocation:
+
+
+error: Environment variable not found: DATABASE_URL.
+  -->  schema.prisma:10
+   | 
+ 9 |   provider = ""postgresql""
+10 |   url      = env(""DATABASE_URL"")
+   | 
+
+Validation Error Count: 1
+    at $n.handleRequestError (/var/task/node_modules/@prisma/client/runtime/library.js:121:7615)
+    at $n.handleAndLogRequestError (/var/task/node_modules/@prisma/client/runtime/library.js:121:6623)
+    at $n.request (/var/task/node_modules/@prisma/client/runtime/library.js:121:6307)
+    at async l (/var/task/node_modules/@prisma/client/runtime/library.js:130:9633)
+    at async o (/var/task/.next/server/app/admin/page.js:1:22956)
+    at async v (/var/task/.next/server/app/admin/page.js:1:18632) {
+  clientVersion: '5.22.0',
+  errorCode: undefined
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:29,1771575209100,www.edudubai.org/admin,GET,,200,9fdrg-1771575208415-be001a40708d,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,MISS,middleware,/admin,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/admin',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208415,www.edudubai.org/admin,GET,,200,9fdrg-1771575208415-be001a40708d,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,MISS,middleware,src/middleware,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,553,sfo1,259,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RTF1FFAD7XHBTV89YG1X,IZOuqe1vgtrE,1
+2026-02-20 08:13:28,1771575208415,www.edudubai.org/admin,GET,,200,9fdrg-1771575208415-be001a40708d,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,MISS,function,/admin,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,683,dxb1,278,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RVG0W6SH41RN7E73ARV1,NEKSgSW7MPKx,1
+2026-02-20 08:13:29,1771575209103,www.edudubai.org/admin_panel,GET,,404,nthjt-1771575208411-6e44a75fb39c,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/admin_panel',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208411,www.edudubai.org/admin_panel,GET,,404,nthjt-1771575208411-6e44a75fb39c,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,561,sfo1,259,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RTEXYCCCX0W16VADA31V,NnwaoXsxh5ng,1
+2026-02-20 08:13:28,1771575208411,www.edudubai.org/admin_panel,GET,,404,nthjt-1771575208411-6e44a75fb39c,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,709,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:29,1771575209088,www.edudubai.org/superadmin,GET,,404,fqhpd-1771575208409-7b03c3408377,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,HIT,middleware,/404,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/superadmin',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208409,www.edudubai.org/superadmin,GET,,404,fqhpd-1771575208409-7b03c3408377,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,HIT,middleware,src/middleware,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,549,sfo1,256,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RTEWAC9Q5ZXDNV0XHR1K,lZswL3FavuyP,1
+2026-02-20 08:13:28,1771575208409,www.edudubai.org/superadmin,GET,,404,fqhpd-1771575208409-7b03c3408377,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,HIT,static,/404,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,692,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:29,1771575209125,www.edudubai.org/manage,GET,,404,4nsbx-1771575208409-d371ffdeebeb,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/manage',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208409,www.edudubai.org/manage,GET,,404,4nsbx-1771575208409-d371ffdeebeb,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,575,sfo1,258,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RTEYADGP779CMW79MHFW,g9U9PhhmfVjO,1
+2026-02-20 08:13:28,1771575208409,www.edudubai.org/manage,GET,,404,4nsbx-1771575208409-d371ffdeebeb,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,730,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:29,1771575209064,www.edudubai.org/cms,GET,,404,n7whl-1771575208408-d9a06f24892e,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,HIT,middleware,/404,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/cms',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208408,www.edudubai.org/cms,GET,,404,n7whl-1771575208408-d9a06f24892e,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,HIT,middleware,src/middleware,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,522,sfo1,256,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RTET393CBX3YJ6T18AWK,fUnmfn4mfLtG,1
+2026-02-20 08:13:28,1771575208408,www.edudubai.org/cms,GET,,404,n7whl-1771575208408-d9a06f24892e,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,HIT,static,/404,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,668,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:29,1771575209075,www.edudubai.org/adm,GET,,,jcrxk-1771575208408-8d2669f571e5,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,,middleware,,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/adm',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208408,www.edudubai.org/adm,GET,,,jcrxk-1771575208408-8d2669f571e5,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,538,sfo1,259,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RTEWAC9Q5ZXDNM4M87SY,Ob259lJtQKq3,1
+2026-02-20 08:13:29,1771575209085,www.edudubai.org/administrator,GET,,404,jbxw7-1771575208408-133108c4b8f4,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,HIT,middleware,/404,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/administrator',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208408,www.edudubai.org/administrator,GET,,404,jbxw7-1771575208408-133108c4b8f4,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,HIT,middleware,src/middleware,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,546,sfo1,258,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RTEV4YAZ0FPEQ0Y46R64,FgSCz0MbGNxo,1
+2026-02-20 08:13:28,1771575208408,www.edudubai.org/administrator,GET,,404,jbxw7-1771575208408-133108c4b8f4,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,HIT,static,/404,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,690,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:29,1771575209105,www.edudubai.org/panel,GET,,,dlhjk-1771575208408-484fbb12be5a,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,,middleware,,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/panel',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208408,www.edudubai.org/panel,GET,,,dlhjk-1771575208408-484fbb12be5a,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,538,sfo1,259,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RTEV4YAZ0FPEQ1JN6T8T,18xDhFX0e8BK,1
+2026-02-20 08:13:29,1771575209107,www.edudubai.org/siteadmin,GET,,,sn6z5-1771575208407-96ee3afc2f1c,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,,middleware,,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/siteadmin',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208407,www.edudubai.org/siteadmin,GET,,,sn6z5-1771575208407-96ee3afc2f1c,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,566,sfo1,259,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RTET393CBX3YJ5F7JBGX,0G9Wd7NYWj1T,1
+2026-02-20 08:13:29,1771575209040,www.edudubai.org/manager,GET,,404,m7kp9-1771575208407-769bdd3f8ea8,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,HIT,middleware,/404,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/manager',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208407,www.edudubai.org/manager,GET,,404,m7kp9-1771575208407-769bdd3f8ea8,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,HIT,middleware,src/middleware,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,505,sfo1,255,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RTET393CBX3YJ1NAEXHW,HVhKR9UFKoIY,1
+2026-02-20 08:13:28,1771575208407,www.edudubai.org/manager,GET,,404,m7kp9-1771575208407-769bdd3f8ea8,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,HIT,static,/404,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,643,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:29,1771575209066,www.edudubai.org/admin_area,GET,,,b8h5x-1771575208407-c1e06c7a785a,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,,middleware,,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/admin_area',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208407,www.edudubai.org/admin_area,GET,,,b8h5x-1771575208407-c1e06c7a785a,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,526,sfo1,257,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RTEV4YAZ0FPEPYX06A8N,yXkPnkMQTDaF,1
+2026-02-20 08:13:29,1771575209088,www.edudubai.org/webadmin,GET,,404,q7wrw-1771575208406-147d8bdc6cae,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,HIT,middleware,/404,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/webadmin',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208406,www.edudubai.org/webadmin,GET,,404,q7wrw-1771575208406-147d8bdc6cae,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,HIT,middleware,src/middleware,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,548,sfo1,257,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RTEST2C1JJP90XEPTFEV,gw06yPY0RDMC,1
+2026-02-20 08:13:28,1771575208406,www.edudubai.org/webadmin,GET,,404,q7wrw-1771575208406-147d8bdc6cae,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,HIT,static,/404,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,692,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:29,1771575209068,www.edudubai.org/sysadmin,GET,,404,q7wrw-1771575208406-0b24f7cc7bdb,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,HIT,middleware,/404,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/sysadmin',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208406,www.edudubai.org/sysadmin,GET,,404,q7wrw-1771575208406-0b24f7cc7bdb,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,HIT,middleware,src/middleware,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,539,sfo1,258,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RTER8GG2K9QSPR73SQ50,z2oCan4EL9HE,1
+2026-02-20 08:13:28,1771575208406,www.edudubai.org/sysadmin,GET,,404,q7wrw-1771575208406-0b24f7cc7bdb,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,HIT,static,/404,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,674,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:29,1771575209099,www.edudubai.org/backend,GET,,,cj7lt-1771575208406-e73ae8fda733,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,,middleware,,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/backend',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208406,www.edudubai.org/backend,GET,,,cj7lt-1771575208406-e73ae8fda733,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,546,sfo1,257,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RTET393CBX3YJ1W9S2NJ,69U0QGbj2PlW,1
+2026-02-20 08:13:29,1771575209073,www.edudubai.org/dashboard,GET,,,2prf6-1771575208405-d0b04b25a4f6,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,,middleware,,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/dashboard',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:29,1771575209073,www.edudubai.org/dashboard,GET,,,2prf6-1771575208405-d0b04b25a4f6,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,,middleware,,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,[Middleware] Redirecting unauthenticated user from /dashboard to /auth/login,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208405,www.edudubai.org/dashboard,GET,,,2prf6-1771575208405-d0b04b25a4f6,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,537,sfo1,259,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RTEST2C1JJP90YD6KECV,aZU1m6ywkE2N,1
+2026-02-20 08:13:28,1771575208399,www.edudubai.org/manager/,GET,,308,m7kp9-1771575208399-ca7376670fb6,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,redirect,/manager/,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,5,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208398,www.edudubai.org/sysadmin/,GET,,308,q7wrw-1771575208398-e0d8eed196c9,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,redirect,/sysadmin/,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,5,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208398,www.edudubai.org/manage/,GET,,308,4nsbx-1771575208398-9b829cca8e63,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,redirect,/manage/,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,8,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:29,1771575209101,www.edudubai.org/admin_login.php,GET,,,wlbm6-1771575208397-f827fabd0cf5,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,,middleware,,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/admin_login.php',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208397,www.edudubai.org/admin_login.php,GET,,,wlbm6-1771575208397-f827fabd0cf5,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,569,sfo1,257,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RTENDC56XKKAC6BYPHND,eXNfNQv2DV7F,1
+2026-02-20 08:13:29,1771575209066,www.edudubai.org/admin-login.php,GET,,,vxftw-1771575208397-eef3132f1592,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,,middleware,,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/admin-login.php',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208397,www.edudubai.org/admin-login.php,GET,,,vxftw-1771575208397-eef3132f1592,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,528,sfo1,256,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RTENDC56XKKAC8QY1X2J,2MsCWBMbqhxO,1
+2026-02-20 08:13:28,1771575208397,www.edudubai.org/backend/,GET,,308,q7wrw-1771575208397-a5e0226c5309,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,redirect,/backend/,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,6,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208397,www.edudubai.org/cms/,GET,,308,n7whl-1771575208397-7227b0cf0efd,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,redirect,/cms/,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,8,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208397,www.edudubai.org/superadmin/,GET,,308,fqhpd-1771575208397-bfc33021fe42,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,redirect,/superadmin/,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,9,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208397,www.edudubai.org/admin/,GET,,308,9fdrg-1771575208397-78a809ff3464,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,redirect,/admin/,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,15,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:29,1771575209092,www.edudubai.org/admin.php,GET,,,96kvc-1771575208397-8ffdcc65b030,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,,middleware,,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/admin.php',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208397,www.edudubai.org/admin.php,GET,,,96kvc-1771575208397-8ffdcc65b030,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,542,sfo1,256,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RTEP862K0GGAQ09A1WTJ,0ozg8yInbQ29,1
+2026-02-20 08:13:29,1771575209069,www.edudubai.org/adm.php,GET,,,rmgdm-1771575208396-13a3a5d510a4,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",info,production,main,,middleware,,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/adm.php',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208396,www.edudubai.org/adm.php,GET,,,rmgdm-1771575208396-13a3a5d510a4,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,538,sfo1,257,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1RTENDC56XKKAC51BBBFC,c36R1Oj2oZsP,1
+2026-02-20 08:13:28,1771575208395,www.edudubai.org/admin_area/,GET,,308,nthjt-1771575208395-fee917a06273,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,redirect,/admin_area/,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,9,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208395,www.edudubai.org/dashboard/,GET,,308,lmfhd-1771575208395-b122f4de3e2c,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,redirect,/dashboard/,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,7,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:13:28,1771575208395,www.edudubai.org/adm/,GET,,308,jbxw7-1771575208395-f670c8b64674,"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",,production,main,,redirect,/adm/,www.edudubai.org,edudubai-website-gss2hidur-tanishq-prabhus-projects.vercel.app,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,11,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:12:26,1771575146466,www.edudubai.org/meta.json,GET,,404,gmmww-1771575146373-adb4da279107,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:12:26,1771575146373,www.edudubai.org/meta.json,GET,,404,gmmww-1771575146373-adb4da279107,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,44,fra1,259,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1PXX5G1XN214KHCKPPHVD,nH2aWox5SVEv,1
+2026-02-20 08:12:26,1771575146373,www.edudubai.org/meta.json,GET,,404,gmmww-1771575146373-adb4da279107,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,96,fra1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:12:03,1771575123896,www.edudubai.org/meta.json,GET,,404,v9zxk-1771575123864-607d719500c1,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:12:03,1771575123864,www.edudubai.org/meta.json,GET,,404,v9zxk-1771575123864-607d719500c1,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,7,iad1,263,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1P7X2ZG5FFQ2G1SF8JMFC,M8ALBOufLjqm,1
+2026-02-20 08:12:03,1771575123864,www.edudubai.org/meta.json,GET,,404,v9zxk-1771575123864-607d719500c1,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,35,iad1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:11:48,1771575108440,www.edudubai.org/meta.json,GET,,404,9cf8t-1771575108395-6c77edeeb8cd,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:11:48,1771575108395,www.edudubai.org/meta.json,GET,,404,9cf8t-1771575108395-6c77edeeb8cd,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,12,iad1,263,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1NRSY0NC2KF18JJ7K7DRC,M8ALBOufLjqm,1
+2026-02-20 08:11:48,1771575108395,www.edudubai.org/meta.json,GET,,404,9cf8t-1771575108395-6c77edeeb8cd,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,55,cle1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:11:45,1771575105453,www.edudubai.org/meta.json,GET,,404,zdkn6-1771575104689-85ed39889bdb,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:11:44,1771575104689,www.edudubai.org/meta.json,GET,,404,zdkn6-1771575104689-85ed39889bdb,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,494,lhr1,259,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1NN9PAY1AGEYA6M9J448V,pYcMLTGWUcYD,1
+2026-02-20 08:11:44,1771575104689,www.edudubai.org/meta.json,GET,,404,zdkn6-1771575104689-85ed39889bdb,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,782,lhr1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:09:47,1771574987782,www.edudubai.org/meta.json,GET,,404,q7sz8-1771574987094-2c042d47bb3e,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:09:47,1771574987094,www.edudubai.org/meta.json,GET,,404,q7sz8-1771574987094-2c042d47bb3e,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,535,sfo1,258,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1J2BCG8BXDHRNXASS0YAR,9YuY8fabKkj6,1
+2026-02-20 08:09:47,1771574987094,www.edudubai.org/meta.json,GET,,404,q7sz8-1771574987094-2c042d47bb3e,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,709,pdx1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:07:28,1771574848788,www.edudubai.org/meta.json,GET,,404,7f59c-1771574848755-53c76b18519a,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:07:28,1771574848755,www.edudubai.org/meta.json,GET,,404,7f59c-1771574848755-53c76b18519a,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,8,iad1,263,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1DV84ZZKSX2C3T3GFT81F,M8ALBOufLjqm,1
+2026-02-20 08:07:28,1771574848755,www.edudubai.org/meta.json,GET,,404,7f59c-1771574848755-53c76b18519a,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,36,iad1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:07:10,1771574830234,www.edudubai.org/meta.json,GET,,404,kplgl-1771574830193-fd9fc8ef7e18,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:07:10,1771574830193,www.edudubai.org/meta.json,GET,,404,kplgl-1771574830193-fd9fc8ef7e18,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,10,iad1,263,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1D940510MZP2WMKZP6PPP,M8ALBOufLjqm,1
+2026-02-20 08:07:10,1771574830193,www.edudubai.org/meta.json,GET,,404,kplgl-1771574830193-fd9fc8ef7e18,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,49,iad1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:07:04,1771574824019,www.edudubai.org/meta.json,GET,,404,m46lb-1771574823272-88b38ebd235c,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:07:03,1771574823272,www.edudubai.org/meta.json,GET,,404,m46lb-1771574823272-88b38ebd235c,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,567,fra1,256,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1D2BTCN29Y80A31G0E4DQ,nH2aWox5SVEv,1
+2026-02-20 08:07:03,1771574823272,www.edudubai.org/meta.json,GET,,404,m46lb-1771574823272-88b38ebd235c,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,780,fra1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:05:02,1771574702173,www.edudubai.org/meta.json,GET,,404,2n9d6-1771574702140-2ead1b46ee59,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:05:02,1771574702140,www.edudubai.org/meta.json,GET,,404,2n9d6-1771574702140-2ead1b46ee59,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,9,iad1,263,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX19C2CQMS4WSF0CW7J8946,M8ALBOufLjqm,1
+2026-02-20 08:05:02,1771574702140,www.edudubai.org/meta.json,GET,,404,2n9d6-1771574702140-2ead1b46ee59,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,36,iad1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:04:13,1771574653846,www.edudubai.org/meta.json,GET,,404,4tslc-1771574653816-6833a9cd1547,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:04:13,1771574653816,www.edudubai.org/meta.json,GET,,404,4tslc-1771574653816-6833a9cd1547,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,7,iad1,263,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX17WW169115VY0BB7PYJNS,M8ALBOufLjqm,1
+2026-02-20 08:04:13,1771574653816,www.edudubai.org/meta.json,GET,,404,4tslc-1771574653816-6833a9cd1547,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,39,iad1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:04:06,1771574646396,www.edudubai.org/meta.json,GET,,404,lnrmt-1771574646360-e041c1b47635,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:04:06,1771574646360,www.edudubai.org/meta.json,GET,,404,lnrmt-1771574646360-e041c1b47635,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,8,iad1,263,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX17NK9GX0SPBKEZ6YBCCXC,M8ALBOufLjqm,1
+2026-02-20 08:04:06,1771574646360,www.edudubai.org/meta.json,GET,,404,lnrmt-1771574646360-e041c1b47635,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,cle1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:02:42,1771574562139,www.edudubai.org/meta.json,GET,,404,crx5c-1771574562100-dbeca7ef6a84,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:02:42,1771574562100,www.edudubai.org/meta.json,GET,,404,crx5c-1771574562100-dbeca7ef6a84,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,15,iad1,263,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX153A1GT8CS3YSQZFJWC13,M8ALBOufLjqm,1
+2026-02-20 08:02:42,1771574562100,www.edudubai.org/meta.json,GET,,404,crx5c-1771574562100-dbeca7ef6a84,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,41,iad1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:01:24,1771574484881,www.edudubai.org/meta.json,GET,,404,mg65j-1771574484840-9623276ef28f,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:01:24,1771574484840,www.edudubai.org/meta.json,GET,,404,mg65j-1771574484840-9623276ef28f,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,8,iad1,263,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX12QVV9WMB1PGCYKWXDQ63,M8ALBOufLjqm,1
+2026-02-20 08:01:24,1771574484840,www.edudubai.org/meta.json,GET,,404,mg65j-1771574484840-9623276ef28f,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,45,iad1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:01:00,1771574460592,www.edudubai.org/meta.json,GET,,404,htr2d-1771574460555-4f8edc6802c2,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:01:00,1771574460555,www.edudubai.org/meta.json,GET,,404,htr2d-1771574460555-4f8edc6802c2,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,22,iad1,263,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX1204SCH2XHSJE5P24X6J5,M8ALBOufLjqm,1
+2026-02-20 08:01:00,1771574460555,www.edudubai.org/meta.json,GET,,404,htr2d-1771574460555-4f8edc6802c2,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,52,iad1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:00:15,1771574415199,www.edudubai.org/meta.json,GET,,404,xpvcj-1771574414301-da3222878060,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 08:00:14,1771574414301,www.edudubai.org/meta.json,GET,,404,xpvcj-1771574414301-da3222878060,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,572,lhr1,258,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX10K40HZDP8WRRNX3H68MJ,vkM946ma0XH6,1
+2026-02-20 08:00:14,1771574414301,www.edudubai.org/meta.json,GET,,404,xpvcj-1771574414301-da3222878060,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,921,lhr1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:59:28,1771574368453,www.edudubai.org/meta.json,GET,,404,s2cvb-1771574368415-28937256d426,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:59:28,1771574368415,www.edudubai.org/meta.json,GET,,404,s2cvb-1771574368415-28937256d426,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,22,sfo1,255,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX0Z65AHT070GZKWAP5Q0RQ,wBn2vDP0hc3r,1
+2026-02-20 07:59:28,1771574368415,www.edudubai.org/meta.json,GET,,404,s2cvb-1771574368415-28937256d426,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,42,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:56:51,1771574211552,www.edudubai.org/,GET,_rsc=2pz14,200,9txvc-1771574211531-50cd51075867,"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/23C71 Instagram 417.1.0.39.73 (iPhone16,2; iOS 26_2_1; en_US; en; scale=3.00; 1290x2796; IABMV/1; 885644877) Safari/604.1",info,production,main,HIT,middleware,/index,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:56:51,1771574211531,www.edudubai.org/,GET,_rsc=2pz14,200,9txvc-1771574211531-50cd51075867,"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/23C71 Instagram 417.1.0.39.73 (iPhone16,2; iOS 26_2_1; en_US; en; scale=3.00; 1290x2796; IABMV/1; 885644877) Safari/604.1",,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,12,sfo1,261,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX0TCYF9VWNGGXN35CDKBCZ,wBn2vDP0hc3r,1
+2026-02-20 07:56:51,1771574211531,www.edudubai.org/,GET,_rsc=2pz14,200,9txvc-1771574211531-50cd51075867,"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/23C71 Instagram 417.1.0.39.73 (iPhone16,2; iOS 26_2_1; en_US; en; scale=3.00; 1290x2796; IABMV/1; 885644877) Safari/604.1",,production,main,HIT,static,/index,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,580,sfo1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:56:50,1771574210113,www.edudubai.org/cams-ramadan-scholarship,GET,utm_medium=paid&utm_source=ig&utm_id=120240668479220444&utm_content=120240668479210444&utm_term=120240668479200444&utm_campaign=120240668479220444&fbclid=PAZXh0bgNhZW0BMABhZGlkAasuQEfqbRxzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAaeL9skykMoxoMvl07BbApYhs96rAIxT_hIglYrvv8iKSFWg0XVhNPJbfOv7GQ_aem_jzvGcghR-kOd5s1JNlDAFg,,r9mzv-1771574210056-cc4632d6f3db,"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/23C71 Instagram 417.1.0.39.73 (iPhone16,2; iOS 26_2_1; en_US; en; scale=3.00; 1290x2796; IABMV/1; 885644877) NW/3 Safari/604.1",info,production,main,,middleware,,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/cams-ramadan-scholarship',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:56:50,1771574210056,www.edudubai.org/cams-ramadan-scholarship,GET,utm_medium=paid&utm_source=ig&utm_id=120240668479220444&utm_content=120240668479210444&utm_term=120240668479200444&utm_campaign=120240668479220444&fbclid=PAZXh0bgNhZW0BMABhZGlkAasuQEfqbRxzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAaeL9skykMoxoMvl07BbApYhs96rAIxT_hIglYrvv8iKSFWg0XVhNPJbfOv7GQ_aem_jzvGcghR-kOd5s1JNlDAFg,,r9mzv-1771574210056-cc4632d6f3db,"Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/23C71 Instagram 417.1.0.39.73 (iPhone16,2; iOS 26_2_1; en_US; en; scale=3.00; 1290x2796; IABMV/1; 885644877) NW/3 Safari/604.1",,production,main,,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,39,sfo1,261,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX0TBGMHFGFEJ62PYK10864,wBn2vDP0hc3r,1
+2026-02-20 07:56:30,1771574190186,www.edudubai.org/meta.json,GET,,404,9lsxm-1771574190143-2cd5dc39b510,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:56:30,1771574190143,www.edudubai.org/meta.json,GET,,404,9lsxm-1771574190143-2cd5dc39b510,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,11,sfo1,259,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX0SR2RDNC4CW41PV2XWNDB,wBn2vDP0hc3r,1
+2026-02-20 07:56:30,1771574190143,www.edudubai.org/meta.json,GET,,404,9lsxm-1771574190143-2cd5dc39b510,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,56,pdx1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:56:26,1771574186607,www.edudubai.org/,GET,_rsc=zpj5q,200,zw6q7-1771574186532-068066d45b46,"Mozilla/5.0 (Linux; Android 14; SM-A042F Build/UP1A.231005.007; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/142.0.7444.171 Mobile Safari/537.36 Instagram 405.1.0.57.77 Android (34/14; 280dpi; 720x1471; samsung; SM-A042F; a04e; mt6765; en_US; 818801781; IABMV/1)",info,production,main,HIT,middleware,/index,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:56:26,1771574186532,www.edudubai.org/,GET,_rsc=zpj5q,200,zw6q7-1771574186532-068066d45b46,"Mozilla/5.0 (Linux; Android 14; SM-A042F Build/UP1A.231005.007; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/142.0.7444.171 Mobile Safari/537.36 Instagram 405.1.0.57.77 Android (34/14; 280dpi; 720x1471; samsung; SM-A042F; a04e; mt6765; en_US; 818801781; IABMV/1)",,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,13,fra1,262,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX0SMJS7K8TYT8FSQ94G9CN,etL83FfLvJ8r,1
+2026-02-20 07:56:26,1771574186532,www.edudubai.org/,GET,_rsc=zpj5q,200,zw6q7-1771574186532-068066d45b46,"Mozilla/5.0 (Linux; Android 14; SM-A042F Build/UP1A.231005.007; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/142.0.7444.171 Mobile Safari/537.36 Instagram 405.1.0.57.77 Android (34/14; 280dpi; 720x1471; samsung; SM-A042F; a04e; mt6765; en_US; 818801781; IABMV/1)",,production,main,HIT,static,/index,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,155,fra1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:56:24,1771574184054,www.edudubai.org/cams-ramadan-scholarship,GET,utm_medium=paid&utm_source=ig&utm_id=120240668479220444&utm_content=120240668479210444&utm_term=120240668479200444&utm_campaign=120240668479220444&fbclid=PAZXh0bgNhZW0BMABhZGlkAasuQEfqbRxzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAadN9SSwBekCXaln4fJRkWjduFoF3nB77Pgp1MRu6YXgABVTJXDhZmG48FheSw_aem_8iwLjPn9s3dQkFx4OIdOLg,200,5nr4r-1771574184006-194ab8d66782,"Mozilla/5.0 (Linux; Android 14; SM-A042F Build/UP1A.231005.007; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/142.0.7444.171 Mobile Safari/537.36 Instagram 405.1.0.57.77 Android (34/14; 280dpi; 720x1471; samsung; SM-A042F; a04e; mt6765; en_US; 818801781; IABMV/1)",info,production,main,HIT,middleware,/cams-ramadan-scholarship,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/cams-ramadan-scholarship',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:56:24,1771574184006,www.edudubai.org/cams-ramadan-scholarship,GET,utm_medium=paid&utm_source=ig&utm_id=120240668479220444&utm_content=120240668479210444&utm_term=120240668479200444&utm_campaign=120240668479220444&fbclid=PAZXh0bgNhZW0BMABhZGlkAasuQEfqbRxzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAadN9SSwBekCXaln4fJRkWjduFoF3nB77Pgp1MRu6YXgABVTJXDhZmG48FheSw_aem_8iwLjPn9s3dQkFx4OIdOLg,200,5nr4r-1771574184006-194ab8d66782,"Mozilla/5.0 (Linux; Android 14; SM-A042F Build/UP1A.231005.007; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/142.0.7444.171 Mobile Safari/537.36 Instagram 405.1.0.57.77 Android (34/14; 280dpi; 720x1471; samsung; SM-A042F; a04e; mt6765; en_US; 818801781; IABMV/1)",,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,20,fra1,262,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX0SJ2M3AVQXRYD3EW1Y88N,etL83FfLvJ8r,1
+2026-02-20 07:56:24,1771574184006,www.edudubai.org/cams-ramadan-scholarship,GET,utm_medium=paid&utm_source=ig&utm_id=120240668479220444&utm_content=120240668479210444&utm_term=120240668479200444&utm_campaign=120240668479220444&fbclid=PAZXh0bgNhZW0BMABhZGlkAasuQEfqbRxzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAadN9SSwBekCXaln4fJRkWjduFoF3nB77Pgp1MRu6YXgABVTJXDhZmG48FheSw_aem_8iwLjPn9s3dQkFx4OIdOLg,200,5nr4r-1771574184006-194ab8d66782,"Mozilla/5.0 (Linux; Android 14; SM-A042F Build/UP1A.231005.007; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/142.0.7444.171 Mobile Safari/537.36 Instagram 405.1.0.57.77 Android (34/14; 280dpi; 720x1471; samsung; SM-A042F; a04e; mt6765; en_US; 818801781; IABMV/1)",,production,main,HIT,static,/cams-ramadan-scholarship,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,55,fra1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:56:10,1771574170179,www.edudubai.org/meta.json,GET,,404,phtkj-1771574170127-2785d7ddbd50,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:56:10,1771574170127,www.edudubai.org/meta.json,GET,,404,phtkj-1771574170127-2785d7ddbd50,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,21,sfo1,258,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX0S4H3C9BP9FX8QN5GKZ5D,wBn2vDP0hc3r,1
+2026-02-20 07:56:10,1771574170127,www.edudubai.org/meta.json,GET,,404,phtkj-1771574170127-2785d7ddbd50,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,70,pdx1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:56:06,1771574166810,www.edudubai.org/meta.json,GET,,404,96hs9-1771574166065-8be21411e69e,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:56:06,1771574166065,www.edudubai.org/meta.json,GET,,404,96hs9-1771574166065-8be21411e69e,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,523,sfo1,257,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX0S0JSYS1AWYRAEGG41PWM,wBn2vDP0hc3r,1
+2026-02-20 07:56:06,1771574166065,www.edudubai.org/meta.json,GET,,404,96hs9-1771574166065-8be21411e69e,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,766,pdx1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:55:57,1771574157419,www.edudubai.org/meta.json,GET,,404,khktt-1771574157381-41a06efcb31e,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:55:57,1771574157381,www.edudubai.org/meta.json,GET,,404,khktt-1771574157381-41a06efcb31e,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,9,iad1,263,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX0RR2RNG1BRDJ7Z3038N34,M8ALBOufLjqm,1
+2026-02-20 07:55:57,1771574157381,www.edudubai.org/meta.json,GET,,404,khktt-1771574157381-41a06efcb31e,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,cle1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:55:10,1771574110725,www.edudubai.org/meta.json,GET,,404,8tdn2-1771574110694-7e489fa95909,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:55:10,1771574110694,www.edudubai.org/meta.json,GET,,404,8tdn2-1771574110694-7e489fa95909,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,14,iad1,263,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX0QAFF3EY2S3TBB23XWVEB,M8ALBOufLjqm,1
+2026-02-20 07:55:10,1771574110694,www.edudubai.org/meta.json,GET,,404,8tdn2-1771574110694-7e489fa95909,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,35,iad1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:54:25,1771574065139,www.edudubai.org/meta.json,GET,,404,5ctwn-1771574064406-32e7ffdcb410,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:54:24,1771574064406,www.edudubai.org/meta.json,GET,,404,5ctwn-1771574064406-32e7ffdcb410,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,574,fra1,258,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX0NX94V22BK622V26XK8MY,etL83FfLvJ8r,1
+2026-02-20 07:54:24,1771574064406,www.edudubai.org/meta.json,GET,,404,5ctwn-1771574064406-32e7ffdcb410,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,749,fra1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:53:33,1771574013397,www.edudubai.org/meta.json,GET,,404,rvn8r-1771574013362-8c5cde6b19a4,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:53:33,1771574013362,www.edudubai.org/meta.json,GET,,404,rvn8r-1771574013362-8c5cde6b19a4,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,7,iad1,263,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX0MBE3N2W2QS126K6QZB46,M8ALBOufLjqm,1
+2026-02-20 07:53:33,1771574013362,www.edudubai.org/meta.json,GET,,404,rvn8r-1771574013362-8c5cde6b19a4,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,cle1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:52:52,1771573972138,www.edudubai.org/meta.json,GET,,404,q7thm-1771573971396-58976e8a15bd,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:52:51,1771573971396,www.edudubai.org/meta.json,GET,,404,q7thm-1771573971396-58976e8a15bd,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,555,fra1,258,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX0K2FF5KDSN932J4WN19DA,dazfEdkoBMi3,1
+2026-02-20 07:52:51,1771573971396,www.edudubai.org/meta.json,GET,,404,q7thm-1771573971396-58976e8a15bd,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,753,fra1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:52:49,1771573969129,www.edudubai.org/meta.json,GET,,404,vz6vl-1771573969091-916b590bf8c5,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:52:49,1771573969091,www.edudubai.org/meta.json,GET,,404,vz6vl-1771573969091-916b590bf8c5,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,18,iad1,262,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX0K06ENFRTWQJM7631P0EF,M8ALBOufLjqm,1
+2026-02-20 07:52:49,1771573969091,www.edudubai.org/meta.json,GET,,404,vz6vl-1771573969091-916b590bf8c5,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,44,iad1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:51:36,1771573896688,www.edudubai.org/meta.json,GET,,404,74lbh-1771573896658-1f0e169e4f21,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:51:36,1771573896658,www.edudubai.org/meta.json,GET,,404,74lbh-1771573896658-1f0e169e4f21,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,7,iad1,262,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX0GSEZ7M049M3SWFFGE33V,M8ALBOufLjqm,1
+2026-02-20 07:51:36,1771573896658,www.edudubai.org/meta.json,GET,,404,74lbh-1771573896658-1f0e169e4f21,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,33,iad1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:51:31,1771573891119,www.edudubai.org/meta.json,GET,,404,cbkz5-1771573891083-a81c9de1aab9,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:51:31,1771573891083,www.edudubai.org/meta.json,GET,,404,cbkz5-1771573891083-a81c9de1aab9,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,8,iad1,262,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX0GM0NHKDDGPSPW0GM7CEW,M8ALBOufLjqm,1
+2026-02-20 07:51:31,1771573891083,www.edudubai.org/meta.json,GET,,404,cbkz5-1771573891083-a81c9de1aab9,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,40,iad1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:50:54,1771573854780,www.edudubai.org/meta.json,GET,,404,txgkn-1771573854736-cb0e19eb3d72,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:50:54,1771573854736,www.edudubai.org/meta.json,GET,,404,txgkn-1771573854736-cb0e19eb3d72,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,9,iad1,262,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX0FGH63T3ZJ1F2ET59HGDV,M8ALBOufLjqm,1
+2026-02-20 07:50:54,1771573854736,www.edudubai.org/meta.json,GET,,404,txgkn-1771573854736-cb0e19eb3d72,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,48,iad1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:50:15,1771573815060,www.edudubai.org/meta.json,GET,,404,qggpt-1771573815024-e4dd831475bb,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),info,production,main,HIT,middleware,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,,,,,"[Middleware] {
+  path: '/meta.json',
+  hasSession: false,
+  hasUser: false,
+  userId: null,
+  sessionError: null,
+  authError: 'Auth session missing!',
+  totalCookieCount: 0,
+  authCookieCount: 0,
+  authCookieInfo: []
+}",prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,
+2026-02-20 07:50:15,1771573815024,www.edudubai.org/meta.json,GET,,404,qggpt-1771573815024-e4dd831475bb,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,middleware,src/middleware,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,8,iad1,262,2048,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,01KHX0E9R1NZW1ZE60EZFPE8EV,M8ALBOufLjqm,1
+2026-02-20 07:50:15,1771573815024,www.edudubai.org/meta.json,GET,,404,qggpt-1771573815024-e4dd831475bb,facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php),,production,main,HIT,static,/404,www.edudubai.org,www.edudubai.org,dpl_9cjz2GQFtinyx8iAqBPqMqMPWeKN,40,iad1,,,,prj_dXYxEgAq3cJLekG5psv1LIlvKiQc,,,,,

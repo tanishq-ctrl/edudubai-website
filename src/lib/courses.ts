@@ -3,7 +3,7 @@ import { Course, Category, DeliveryMode } from "./types"
 export const courses: Course[] = [
   {
     id: "cams",
-    slug: "certified-anti-money-laundering-specialist",
+    slug: "cams",
     title: "Certified Anti-Money Laundering Specialist (CAMS)",
     shortDescription: "The CAMS designation is recognized worldwide by regulators, financial institutions, and law enforcement as the benchmark for AML/CFT competence.",
     longDescription: "The CAMS designation is recognized worldwide by regulators, financial institutions, and law enforcement as the benchmark for AML/CFT competence. This comprehensive preparation course equips you with the strategies to detect and prevent financial crime, covering everything from money laundering methods to the practical implementation of a compliance program. You will master the critical pillars of AML—Risk Assessment, Internal Controls, Independent Audit, and Training—ensuring you are fully prepared to pass the exam and protect your organization from regulatory risk.",

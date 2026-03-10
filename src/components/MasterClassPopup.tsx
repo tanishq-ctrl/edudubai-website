@@ -143,7 +143,7 @@ export function MasterClassPopup() {
                 <div className="p-6 pt-8">
                     <DialogHeader>
                         <DialogTitle className="text-xl md:text-2xl font-black text-brand-navy leading-tight">
-                            Join the Free Master Class
+                            Join Exam Prep Master Class
                         </DialogTitle>
                         <DialogDescription className="text-sm font-medium text-slate-500 mt-2">
                             Gain expert insights and start your professional journey today. Select your course below.
@@ -235,8 +235,8 @@ export function MasterClassPopup() {
                                 <Loader2 className="h-6 w-6 animate-spin" />
                             ) : (
                                 <>
-                                    <span className="text-lg font-black uppercase tracking-wide leading-none mb-1">Reserve My Free Seat</span>
-                                    <span className="text-base font-bold opacity-90 leading-none">(First Session Free)</span>
+                                    <span className="text-lg font-black uppercase tracking-wide leading-none mb-1">LIMITED SEATS</span>
+                                    <span className="text-base font-bold opacity-90 leading-none">(Reserve Your Spot Now)</span>
                                 </>
                             )}
                         </Button>
