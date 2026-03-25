@@ -653,7 +653,7 @@ export const courses: Course[] = [
       }
     ],
     level: "ADVANCED",
-    duration: 100,
+    duration: 60,
     priceUsd: 1599,
     currency: "USD",
     outcomes: [
@@ -696,7 +696,7 @@ export const courses: Course[] = [
       format: "Online Proctored Exam",
       requirements: [
         { title: "Eligibility", items: ["Compliance, risk, and governance professionals", "Senior and mid-management roles preferred"] },
-        { title: "Training Structure", items: ["Instructor-Led: 20 Days × 5 Hours = 100 Hours", "Guided Self-Study (GCI Standards)", "Scenario Reviews", "Mock Exams"] },
+        { title: "Training Structure", items: ["Instructor-Led: 60 Hours", "Guided Self-Study (GCI Standards)", "Scenario Reviews", "Mock Exams"] },
         { title: "Registration Process", items: ["Enroll with EduDubai", "Attend Instructor-Led Program", "Complete Guided Study", "Attempt Mock Exams", "Sit for Proctored Exam", "Receive Certification"] },
         { title: "Personalized Support", items: ["Individual performance assessment", "Free reinforcement sessions", "Weak-area strengthening", "Exam confidence building"] },
         {
