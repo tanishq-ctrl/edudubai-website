@@ -32,6 +32,7 @@ const navigation = [
   { name: "Corporate Training", href: "/corporate-training" },
   { name: "About Us", href: "/about" },
   { name: "Contact", href: "/contact" },
+  { name: "News", href: "/news" },
 ]
 
 
@@ -54,6 +55,7 @@ export function SiteHeader() {
     "/events",
     "/about",
     "/contact",
+    "/news",
     "/become-a-trainer",
   ]
   const isCoursePage = pathname.startsWith("/courses/")
