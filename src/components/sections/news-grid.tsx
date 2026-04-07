@@ -1,272 +1,238 @@
 import { Container } from "@/components/container"
-import { Badge } from "@/components/ui/badge"
-import { ArrowUpRight, Linkedin, BookOpen, CalendarDays, Building2 } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import {
+  CheckCircle2,
+  CalendarDays,
+  MapPin,
+  Globe2,
+  ShieldCheck,
+  Layers,
+  Cpu,
+  ArrowRight,
+} from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 
-interface NewsItem {
-  id: string
-  category: string
-  categoryIcon: JSX.Element
-  date: string
-  title: string
-  summary: string
-  source: string
-  sourceType: "article" | "linkedin"
-  href: string
-  featured?: boolean
-  quote?: {
-    text: string
-    author: string
-    role: string
-  }
-  highlights?: string[]
-}
-
-const newsItems: NewsItem[] = [
-  {
-    id: "twc-partnership",
-    category: "Partnership",
-    categoryIcon: <Building2 className="h-3.5 w-3.5" />,
-    date: "April 2, 2026",
-    title: "Trans World Compliance and Edu-Dubai Announce Strategic Partnership",
-    summary:
-      "Trans World Compliance (TWC) and Edu-Dubai have formed a strategic partnership to deliver integrated compliance solutions across the Middle East — combining Edu-Dubai's training and certification expertise with TWC's automated regulatory reporting technology to address the full compliance lifecycle for financial institutions.",
-    source: "Trans World Compliance Blog",
-    sourceType: "article",
-    href: "https://blog.transworldcompliance.com/en/trans-world-compliance-and-edu-dubai-announce-strategic-partnership",
-    featured: true,
-    quote: {
-      text: "Partnering with TWC gives our network of trained professionals a trusted path to putting that knowledge into practice.",
-      author: "Sonali Prabhu",
-      role: "CEO & Founder, Edu-Dubai",
-    },
-    highlights: [
-      "Targets FATCA, CRS, and CARF compliance in the Middle East",
-      "Unites certification training with regulatory reporting platforms",
-      "Both organisations hold ISO/IEC 27001 and EU GDPR certifications",
-    ],
-  },
-  {
-    id: "twc-linkedin",
-    category: "Announcement",
-    categoryIcon: <Linkedin className="h-3.5 w-3.5" />,
-    date: "November 2024",
-    title: "Strategic Alliance Announced on LinkedIn",
-    summary:
-      "Trans World Compliance shared the news of their strategic alliance with Edu-Dubai on LinkedIn, highlighting how the partnership bridges the gap between compliance education and real-world regulatory reporting technology across the Middle East region.",
-    source: "LinkedIn · Trans World Compliance",
-    sourceType: "linkedin",
-    href: "https://www.linkedin.com/posts/trans-world-compliance_compliance-regtech-middleeast-activity-7445402264246087681-ztcG/",
-    highlights: [
-      "#compliance · #regtech · #middleeast",
-      "Shared across Trans World Compliance's global professional network",
-    ],
-  },
+const highlights = [
+  { icon: Globe2, label: "GCC & Middle East Coverage" },
+  { icon: ShieldCheck, label: "ISO/IEC 27001 & EU GDPR" },
+  { icon: Layers, label: "End-to-End Compliance Lifecycle" },
+  { icon: Cpu, label: "Gen AI Training for Banks" },
 ]
 
-function SourceBadge({ type, label }: { type: "article" | "linkedin"; label: string }) {
-  if (type === "linkedin") {
-    return (
-      <span className="inline-flex items-center gap-1.5 text-xs font-medium text-[#0A66C2]">
-        <Linkedin className="h-3.5 w-3.5 fill-[#0A66C2] text-[#0A66C2]" />
-        {label}
-      </span>
-    )
-  }
-  return (
-    <span className="inline-flex items-center gap-1.5 text-xs font-medium text-neutral-text-muted">
-      <BookOpen className="h-3.5 w-3.5" />
-      {label}
-    </span>
-  )
-}
-
 export function NewsGrid() {
-  const featured = newsItems.find((n) => n.featured)
-  const secondary = newsItems.filter((n) => !n.featured)
-
   return (
-    <section className="py-16 md:py-20 bg-neutral-bg relative overflow-hidden">
-      {/* Subtle background decorations */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-navy/4 rounded-full blur-[120px] -translate-y-1/3 translate-x-1/3 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-gold/4 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/3 pointer-events-none" />
+    <section className="py-12 md:py-16 bg-gradient-to-br from-neutral-bg-subtle via-slate-50 to-neutral-bg relative overflow-hidden">
+      {/* Background decorations */}
+      <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/5 via-transparent to-brand-gold/5" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-navy/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-gold/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
 
       <Container className="relative z-10">
-        {/* Section Header */}
-        <div className="mb-12 md:mb-16">
-          <p className="text-brand-gold font-bold uppercase tracking-wider text-sm mb-3">
-            Latest Updates
-          </p>
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-            <h2 className="text-3xl md:text-4xl font-black text-brand-navy leading-tight">
-              News &amp; Press Releases
-            </h2>
-            <p className="text-neutral-text-muted max-w-md text-sm leading-relaxed sm:text-right">
-              Follow our journey as we expand globally and forge partnerships that advance compliance education.
+
+        {/* Press Release Card */}
+        <Card className="border-2 border-neutral-border/50 shadow-xl bg-white/80 backdrop-blur-sm max-w-5xl mx-auto overflow-hidden">
+          {/* Top accent */}
+          <div className="h-1.5 bg-gradient-to-r from-brand-navy via-brand-navy-light to-brand-gold" />
+
+          <CardContent className="p-8 md:p-12">
+
+            {/* Meta row */}
+            <div className="flex flex-wrap items-center gap-4 mb-6">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-brand-gold bg-brand-gold/10 px-3 py-1.5 rounded-full">
+                Strategic Partnership
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-xs text-neutral-text-muted">
+                <CalendarDays className="h-3.5 w-3.5" />
+                April 2, 2026
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-xs text-neutral-text-muted">
+                <MapPin className="h-3.5 w-3.5" />
+                Washington, D.C. &amp; Dubai
+              </span>
+            </div>
+
+            {/* Headline */}
+            <h3 className="text-3xl md:text-4xl lg:text-[44px] font-black text-brand-navy leading-tight mb-3">
+              Trans World Compliance and Edu-Dubai Announce Strategic Partnership
+            </h3>
+            <p className="text-brand-gold font-semibold text-base md:text-lg mb-8 leading-snug">
+              Delivering End-to-End Tax Regulatory Compliance Capability Across the Middle East and Beyond
             </p>
-          </div>
-          <div className="mt-6 h-px bg-gradient-to-r from-brand-gold/60 via-brand-navy/20 to-transparent" />
-        </div>
 
-        {/* News Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 lg:items-start">
+            {/* Partnership visual */}
+            <div className="relative w-full rounded-2xl overflow-hidden mb-10 border border-neutral-border/40 shadow-sm">
+              <Image
+                src="/images/twc-edudubai-partnership.png"
+                alt="Trans World Compliance and Edu-Dubai Connected Compliance Partnership"
+                width={1200}
+                height={500}
+                className="w-full h-auto object-cover"
+                priority
+              />
+            </div>
 
-          {/* Featured Article — spans 2 cols */}
-          {featured && (
-            <Link
-              href={featured.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="lg:col-span-2 group block"
-            >
-              <article className="h-full bg-white rounded-2xl border border-neutral-border/60 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
-                {/* Card top accent */}
-                <div className="h-1.5 w-full bg-gradient-to-r from-brand-navy via-brand-navy-light to-brand-gold" />
+            {/* Body */}
+            <div className="space-y-5 text-neutral-text leading-relaxed text-[15px] text-justify mb-10">
+              <p>
+                <strong className="text-brand-navy font-bold">Trans World Compliance (TWC)</strong>, headquartered in Washington, D.C., USA, a global provider of regulatory reporting software for financial institutions, tax authorities, and governments, and{" "}
+                <strong className="text-brand-navy font-bold">Edu-Dubai</strong>, a premier regulatory compliance training and consulting firm serving professionals across India, the Middle East, and global markets, today announced a strategic partnership to deliver integrated compliance capability to financial institutions across the region.
+              </p>
+              <p>
+                The partnership unites two deeply complementary organizations. Edu-Dubai equips compliance professionals with globally recognized certifications and bespoke corporate training and consulting spanning FATCA, CRS, Taxation, AML, sanctions, and regulatory governance, and role-based Generative AI (Gen AI) training tailored for banking professionals. TWC provides the technology that translates that expertise into accurate, automated regulatory reporting. Together, they address the full compliance lifecycle, covering everything from mastering regulatory expertise and rules to executing them with precision, into a single, connected compliance solution that provides policies, procedures, training, and regulatory reporting.
+              </p>
+            </div>
 
-                <div className="p-8 md:p-10 flex flex-col">
-                  {/* Meta row */}
-                  <div className="flex flex-wrap items-center gap-3 mb-6">
-                    <Badge className="bg-brand-navy/8 text-brand-navy border-0 font-semibold text-xs px-3 py-1 inline-flex items-center gap-1.5">
-                      {featured.categoryIcon}
-                      {featured.category}
-                    </Badge>
-                    <span className="inline-flex items-center gap-1.5 text-xs text-neutral-text-muted">
-                      <CalendarDays className="h-3.5 w-3.5" />
-                      {featured.date}
-                    </span>
-                    <SourceBadge type={featured.sourceType} label={featured.source} />
+            {/* Divider */}
+            <div className="h-px bg-neutral-border/60 mb-10" />
+
+            {/* Quotes */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+              {/* David Olenzak — TWC */}
+              <div className="relative rounded-2xl overflow-hidden border-2 border-neutral-border/40 bg-white">
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-navy rounded-l-2xl" />
+                <div className="p-7 pl-8">
+                  {/* Author row */}
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="h-10 w-10 rounded-full bg-brand-navy flex items-center justify-center flex-shrink-0">
+                      <span className="text-white font-black text-sm">DO</span>
+                    </div>
+                    <div>
+                      <p className="text-sm font-black text-brand-navy leading-tight">David Olenzak</p>
+                      <p className="text-[11px] text-neutral-text-muted leading-tight">President &amp; Founder, Trans World Compliance</p>
+                    </div>
                   </div>
-
-                  {/* Title */}
-                  <h3 className="text-xl md:text-2xl font-black text-brand-navy leading-tight mb-4 group-hover:text-brand-gold transition-colors duration-200">
-                    {featured.title}
-                  </h3>
-
-                  {/* Summary */}
-                  <p className="text-neutral-text-muted leading-relaxed mb-6">
-                    {featured.summary}
+                  {/* Decorative quote mark */}
+                  <div className="text-[80px] leading-none font-black text-brand-navy/8 select-none -mt-2 mb-1">&ldquo;</div>
+                  <p className="text-[14px] italic text-neutral-text leading-relaxed -mt-6">
+                    Financial institutions in the region face growing pressure to meet international tax transparency standards, and doing so requires both knowledgeable teams and reliable technology. Edu-Dubai has built an exceptional reputation for developing compliance professionals across the GCC and beyond. This partnership allows us to extend our reach in the Middle East while ensuring that the institutions we serve have access to both the human expertise and the reporting infrastructure they need.
                   </p>
-
-                  {/* Highlights */}
-                  {featured.highlights && (
-                    <ul className="space-y-2 mb-8">
-                      {featured.highlights.map((point, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-sm text-brand-navy/80 font-medium">
-                          <div className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-gold" />
-                          {point}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-
-                  {/* Quote */}
-                  {featured.quote && (
-                    <blockquote className="border-l-4 border-brand-gold pl-5 py-1 mb-8 bg-brand-gold/5 rounded-r-lg pr-4">
-                      <p className="text-sm md:text-base italic text-neutral-text leading-relaxed mb-2">
-                        &ldquo;{featured.quote.text}&rdquo;
-                      </p>
-                      <footer className="text-xs font-semibold text-brand-navy">
-                        — {featured.quote.author},{" "}
-                        <span className="font-normal text-neutral-text-muted">{featured.quote.role}</span>
-                      </footer>
-                    </blockquote>
-                  )}
-
-                  {/* CTA */}
-                  <div className="flex items-center gap-2 text-sm font-semibold text-brand-navy group-hover:text-brand-gold transition-colors duration-200 mt-auto">
-                    Read Full Article
-                    <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </div>
                 </div>
-              </article>
-            </Link>
-          )}
+              </div>
 
-          {/* Secondary cards — stack in the 3rd col */}
-          <div className="flex flex-col gap-6 md:gap-8">
-            {secondary.map((item) => (
-              <Link
-                key={item.id}
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block flex-1"
-              >
-                <article className="h-full bg-white rounded-2xl border border-neutral-border/60 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col">
-                  <div className={`h-1.5 w-full ${item.sourceType === "linkedin" ? "bg-[#0A66C2]" : "bg-brand-gold"}`} />
-
-                  <div className="p-6 md:p-8 flex flex-col flex-grow">
-                    {/* Meta row */}
-                    <div className="flex flex-wrap items-center gap-3 mb-5">
-                      <Badge className="bg-brand-navy/8 text-brand-navy border-0 font-semibold text-xs px-3 py-1 inline-flex items-center gap-1.5">
-                        {item.categoryIcon}
-                        {item.category}
-                      </Badge>
-                      <span className="inline-flex items-center gap-1.5 text-xs text-neutral-text-muted">
-                        <CalendarDays className="h-3.5 w-3.5" />
-                        {item.date}
-                      </span>
+              {/* Sonali Prabhu — Edu-Dubai */}
+              <div className="relative rounded-2xl overflow-hidden border-2 border-brand-gold/30 bg-white">
+                <div className="absolute left-0 top-0 bottom-0 w-1 bg-brand-gold rounded-l-2xl" />
+                <div className="p-7 pl-8">
+                  {/* Author row */}
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="h-10 w-10 rounded-full bg-brand-gold flex items-center justify-center flex-shrink-0">
+                      <span className="text-brand-navy font-black text-sm">SP</span>
                     </div>
-
-                    {/* Title */}
-                    <h3 className="text-lg font-black text-brand-navy leading-snug mb-3 group-hover:text-brand-gold transition-colors duration-200">
-                      {item.title}
-                    </h3>
-
-                    {/* Summary */}
-                    <p className="text-neutral-text-muted text-sm leading-relaxed mb-5 flex-grow">
-                      {item.summary}
-                    </p>
-
-                    {/* Highlights */}
-                    {item.highlights && (
-                      <ul className="space-y-2 mb-6">
-                        {item.highlights.map((point, i) => (
-                          <li key={i} className="flex items-start gap-2 text-xs text-brand-navy/70 font-medium">
-                            <div className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand-gold" />
-                            {point}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-
-                    {/* Source + CTA */}
-                    <div className="flex items-center justify-between mt-auto pt-4 border-t border-neutral-border/50">
-                      <SourceBadge type={item.sourceType} label={item.source} />
-                      <span className="inline-flex items-center gap-1 text-xs font-semibold text-brand-navy group-hover:text-brand-gold transition-colors duration-200">
-                        View Post
-                        <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                      </span>
+                    <div>
+                      <p className="text-sm font-black text-brand-navy leading-tight">Sonali Prabhu</p>
+                      <p className="text-[11px] text-neutral-text-muted leading-tight">CEO &amp; Founder, Edu-Dubai</p>
                     </div>
                   </div>
-                </article>
-              </Link>
-            ))}
-
-            {/* "Stay Connected" CTA card */}
-            <div className="bg-gradient-to-br from-brand-navy to-brand-navy-light rounded-2xl p-6 md:p-8 text-white relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-gold/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
-              <div className="relative z-10">
-                <div className="h-9 w-9 bg-brand-gold/20 rounded-lg flex items-center justify-center mb-4">
-                  <Linkedin className="h-5 w-5 text-brand-gold" />
+                  {/* Decorative quote mark */}
+                  <div className="text-[80px] leading-none font-black text-brand-gold/15 select-none -mt-2 mb-1">&ldquo;</div>
+                  <p className="text-[14px] italic text-neutral-text leading-relaxed -mt-6">
+                    Regulatory reporting is the operational reality that follows everything our clients learn. Partnering with TWC gives our network of trained professionals, and the institutions they represent, a trusted path to putting that knowledge into practice. This is a natural fit.
+                  </p>
                 </div>
-                <h4 className="font-black text-base mb-2">Follow Us on LinkedIn</h4>
-                <p className="text-white/70 text-sm leading-relaxed mb-5">
-                  Get real-time updates on partnerships, new courses, and compliance insights.
-                </p>
-                <Link
-                  href="https://www.linkedin.com/company/edudubai-india-mena/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-brand-gold text-brand-navy text-sm font-bold px-4 py-2.5 rounded-lg hover:bg-brand-gold-light transition-colors duration-200"
-                >
-                  Follow Edu-Dubai
-                  <ArrowUpRight className="h-4 w-4" />
-                </Link>
               </div>
             </div>
-          </div>
-        </div>
+
+            {/* Continuation */}
+            <p className="text-neutral-text leading-relaxed text-[15px] text-justify mb-10">
+              The Middle East has become an increasingly critical jurisdiction for international tax compliance. As CRS, FATCA, and emerging frameworks such as CARF continue to take hold across the region, financial institutions face intensifying scrutiny to demonstrate both competency and operational readiness. The TWC and Edu-Dubai partnership addresses that challenge directly, combining regulatory expertise, professional development, and proven reporting technology into a single, connected offering.
+            </p>
+
+            {/* Key highlights */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+              {highlights.map(({ icon: Icon, label }) => (
+                <div
+                  key={label}
+                  className="flex flex-col items-center text-center gap-3 p-4 rounded-2xl border-2 border-neutral-border/50 bg-white hover:border-brand-gold hover:shadow-md transition-all duration-300 group"
+                >
+                  <div className="p-3 bg-neutral-bg-subtle rounded-xl group-hover:scale-110 transition-transform duration-300">
+                    <Icon className="h-5 w-5 text-brand-navy" />
+                  </div>
+                  <span className="text-xs font-bold text-brand-navy/80 leading-snug">{label}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Compliance standards */}
+            <div className="rounded-2xl bg-brand-navy p-6 md:p-8 mb-10">
+              <h4 className="text-white font-black text-lg mb-2">
+                Compliance &amp; Data Security Standards
+              </h4>
+              <p className="text-white/60 text-sm mb-6 leading-relaxed">
+                TWC&apos;s regulatory reporting platform is built on globally recognized security and privacy frameworks, ensuring the highest standards of data protection and regulatory integrity.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {["ISO/IEC 27001 Compliant", "EU GDPR Compliant"].map((s) => (
+                  <div key={s} className="flex items-center gap-3 bg-white/10 rounded-xl px-5 py-4">
+                    <CheckCircle2 className="h-5 w-5 text-brand-gold flex-shrink-0" />
+                    <span className="text-white font-semibold text-sm">{s}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* About section */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+              <div className="rounded-2xl border-2 border-neutral-border/50 bg-white p-6 hover:border-brand-gold hover:shadow-lg transition-all duration-300">
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold mb-3">
+                  About Trans World Compliance
+                </p>
+                <p className="text-[13px] text-neutral-text leading-relaxed text-justify mb-4">
+                  Trans World Compliance is a specialist provider of regulatory reporting solutions for financial institutions, tax authorities, and governments worldwide. Its flagship products, CRS/FATCA One and TACS (Tax Authority Compliance Suite), support compliance with CRS, FATCA, and CARF. TWC works with clients across multiple jurisdictions to simplify complex reporting obligations and reduce compliance risk.
+                </p>
+                <a
+                  href="https://www.transworldcompliance.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-semibold text-brand-navy hover:text-brand-gold transition-colors underline underline-offset-2"
+                >
+                  www.transworldcompliance.com
+                </a>
+              </div>
+
+              <div className="rounded-2xl border-2 border-neutral-border/50 bg-white p-6 hover:border-brand-gold hover:shadow-lg transition-all duration-300">
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold mb-3">
+                  About Edu-Dubai
+                </p>
+                <p className="text-[13px] text-neutral-text leading-relaxed text-justify mb-4">
+                  Edu-Dubai is a premier compliance training and consulting organisation serving professionals and organisations across India, the Middle East, and global markets. As the authorised Training Partner for GCI and affiliated with HOCK International, Edu-Dubai delivers globally recognised certifications in CAMS, CMA, CIA, Enrolled Agent, AML, FATCA/CRS, CARF, sanctions, and regulatory governance.
+                </p>
+                <a
+                  href="https://www.edudubai.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-semibold text-brand-navy hover:text-brand-gold transition-colors underline underline-offset-2"
+                >
+                  www.edudubai.org
+                </a>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-neutral-border/50">
+              <div>
+                <p className="text-sm font-bold text-brand-navy mb-1">
+                  Ready to put knowledge into practice?
+                </p>
+                <p className="text-xs text-neutral-text-muted">
+                  Explore our compliance certifications and corporate training programmes.
+                </p>
+              </div>
+              <Button
+                asChild
+                className="bg-brand-navy hover:bg-brand-navy-light text-white font-semibold shrink-0 group"
+              >
+                <Link href="/courses">
+                  Explore Courses
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
+            </div>
+
+          </CardContent>
+        </Card>
+
       </Container>
     </section>
   )
