@@ -9,11 +9,13 @@ import { Textarea } from "@/components/ui/textarea"
 import { submitContactLead } from "@/server/actions/leads"
 import { trackContactFormSubmit } from "@/lib/analytics"
 import { CheckCircle2, AlertCircle } from "lucide-react"
+import { Turnstile } from "@marsidev/react-turnstile"
 
 export function ContactForm() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [turnstileToken, setTurnstileToken] = useState("")
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,7 +30,7 @@ export function ContactForm() {
     setError(null)
 
     try {
-      const result = await submitContactLead(formData)
+      const result = await submitContactLead(formData, turnstileToken)
       if (!result.success) {
         setError(result.error || "Validation failed. Please check your inputs.")
         return
@@ -148,7 +150,11 @@ export function ContactForm() {
               placeholder="Tell us how we can help you..."
             />
           </div>
-          <Button type="submit" className="w-full" disabled={loading} size="lg">
+          <Turnstile
+            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+            onSuccess={setTurnstileToken}
+          />
+          <Button type="submit" className="w-full" disabled={loading || !turnstileToken} size="lg">
             {loading ? "Sending..." : "Send Message"}
           </Button>
         </form>

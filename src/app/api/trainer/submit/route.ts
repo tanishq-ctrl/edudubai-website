@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { createClient } from "@supabase/supabase-js"
 import { z } from "zod"
 import { resend } from "@/lib/resend"
+import { verifyTurnstile } from "@/lib/turnstile"
 
 // Use service role key for server-side operations
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
@@ -30,6 +31,11 @@ export async function POST(request: Request) {
     }
 
     const formData = await request.formData()
+
+    const turnstileToken = formData.get("turnstileToken") as string | null
+    if (!await verifyTurnstile(turnstileToken ?? "")) {
+      return NextResponse.json({ error: "Security check failed. Please refresh and try again." }, { status: 400 })
+    }
 
     // Extract files
     const cvFile = formData.get("cv_file") as File | null

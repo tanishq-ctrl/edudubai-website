@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server"
 import { createClient } from "@supabase/supabase-js"
 import { sendScholarshipNotification } from "@/lib/email"
+import { verifyTurnstile } from "@/lib/turnstile"
 
 // Use service role key for server-side operations
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
@@ -127,6 +128,10 @@ async function syncScholarshipToSystemeIO(data: {
 export async function POST(req: Request) {
     try {
         const data = await req.json()
+
+        if (!await verifyTurnstile(data.turnstileToken ?? "")) {
+            return NextResponse.json({ error: "Security check failed. Please refresh and try again." }, { status: 400 })
+        }
 
         const {
             fullName,

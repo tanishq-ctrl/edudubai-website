@@ -5,7 +5,7 @@ import { PolicyPageClient } from "./page-client"
 
 const privacyContent = {
   title: "Privacy Policy",
-  lastUpdated: "Last updated: January 2025",
+  lastUpdated: "Last updated: May 2026",
   sections: [
     {
       title: "Introduction",
@@ -61,25 +61,35 @@ const privacyContent = {
       ],
     },
     {
-      title: "7. External Links",
+      title: "7. Bot Protection (Cloudflare Turnstile)",
+      content: [
+        "We use Cloudflare Turnstile on our forms to protect against automated spam and abuse. Turnstile verifies that form submissions come from real users without displaying a visible CAPTCHA challenge.",
+        "• <strong>Data processed:</strong> Turnstile may collect browser and device signals (e.g. user agent, screen size, interaction patterns) to determine whether a visitor is human.",
+        "• <strong>Data controller:</strong> Cloudflare, Inc. processes this data in accordance with their privacy policy.",
+        "• <strong>Privacy Addendum:</strong> Use of Turnstile is subject to the <a href=\"https://www.cloudflare.com/en-gb/turnstile-privacy-policy/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"underline\">Cloudflare Turnstile Privacy Addendum</a>.",
+        "• No CAPTCHA token or Turnstile session data is stored on our servers beyond the time needed to verify a form submission."
+      ],
+    },
+    {
+      title: "8. External Links and Third-Party Services",
       content: [
         "Our website may contain links to external sites. We are not responsible for the content or privacy practices of these websites. We encourage you to review their privacy policies."
       ],
     },
     {
-      title: "8. Social Media Platforms",
+      title: "9. Social Media Platforms",
       content: [
         "Engagement with our content on social media platforms is subject to the terms and privacy policies of those platforms. We advise caution when sharing personal information on social media."
       ],
     },
     {
-      title: "9. Children's Privacy",
+      title: "10. Children's Privacy",
       content: [
         "Our services are not intended for users under the age of 18 without parental consent. We do not knowingly collect personal information from minors."
       ],
     },
     {
-      title: "10. Changes to This Privacy Policy",
+      title: "11. Changes to This Privacy Policy",
       content: [
         "We may update this Privacy Policy periodically to reflect changes in our practices or legal requirements.",
         "• <strong>Notification of Changes:</strong> Updates will be posted on this page with the revised date.",
@@ -87,7 +97,7 @@ const privacyContent = {
       ],
     },
     {
-      title: "11. Your Rights",
+      title: "12. Your Rights",
       content: [
         "Under Indian law, you have the right to:",
         "• Access and review the personal information we hold about you.",
@@ -96,7 +106,7 @@ const privacyContent = {
       ],
     },
     {
-      title: "12. Contact Us",
+      title: "13. Contact Us",
       content: [
         "For questions or concerns about this Privacy Policy or your personal data, please contact us."
       ],

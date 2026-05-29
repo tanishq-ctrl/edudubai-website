@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { submitCourseApplication } from "@/server/actions/leads"
 import { useToast } from "@/hooks/use-toast"
+import { Turnstile } from "@marsidev/react-turnstile"
 
 interface ApplyNowDialogProps {
     courseSlug: string
@@ -36,6 +37,7 @@ export function ApplyNowDialog({
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState(false)
 
+    const [turnstileToken, setTurnstileToken] = useState("")
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -89,7 +91,7 @@ export function ApplyNowDialog({
                 ...formData,
                 courseTitle,
                 courseSlug,
-            })
+            }, turnstileToken)
 
             if (result.success) {
                 // Google Ads Conversion Tracking
@@ -268,9 +270,13 @@ export function ApplyNowDialog({
                             </label>
                         </div>
 
+                        <Turnstile
+                            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                            onSuccess={setTurnstileToken}
+                        />
                         <Button
                             type="submit"
-                            disabled={loading}
+                            disabled={loading || !turnstileToken}
                             className={`w-full ${ACCENT_COLOR_CLASS} ${ACCENT_HOVER_CLASS} text-white font-bold py-6 h-auto rounded-full flex flex-col shadow-lg shadow-red-500/20 mt-2`}
                         >
                             {loading ? (

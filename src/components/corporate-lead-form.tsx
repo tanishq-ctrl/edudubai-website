@@ -15,10 +15,12 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { submitCorporateLead } from "@/server/actions/leads"
 import { CheckCircle2 } from "lucide-react"
+import { Turnstile } from "@marsidev/react-turnstile"
 
 export function CorporateLeadForm() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [turnstileToken, setTurnstileToken] = useState("")
   const [formData, setFormData] = useState({
     company: "",
     name: "",
@@ -33,7 +35,7 @@ export function CorporateLeadForm() {
     setLoading(true)
 
     try {
-      const result = await submitCorporateLead(formData)
+      const result = await submitCorporateLead(formData, turnstileToken)
       if (!result.success) {
         alert(result.error || "Validation failed. Please check your inputs.")
         return
@@ -189,10 +191,14 @@ export function CorporateLeadForm() {
             </SelectContent>
           </Select>
         </div>
+        <Turnstile
+          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+          onSuccess={setTurnstileToken}
+        />
         <Button
           type="submit"
           className="w-full bg-brand-navy text-white hover:bg-brand-navy-dark font-black uppercase tracking-widest text-sm py-8 transition-all hover:scale-[1.01] active:scale-[0.99] shadow-xl"
-          disabled={loading}
+          disabled={loading || !turnstileToken}
         >
           {loading ? "Processing..." : "Submit Proposal Request"}
         </Button>

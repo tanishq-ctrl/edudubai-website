@@ -11,6 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Loader2, AlertCircle, CheckCircle2, Upload, FileText, Globe, User, Mail, Phone, Linkedin, Video } from "lucide-react"
 import { z } from "zod"
+import { Turnstile } from "@marsidev/react-turnstile"
 
 
 // Simplified validation schema
@@ -45,6 +46,7 @@ export function TrainerApplicationForm() {
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
   const [applicationId, setApplicationId] = useState<string | null>(null)
+  const [turnstileToken, setTurnstileToken] = useState("")
 
   const [formData, setFormData] = useState({
     full_name: "",
@@ -94,6 +96,7 @@ export function TrainerApplicationForm() {
 
       // Append default values for old required fields to satisfy API if needed
       // (Though we updated the API, it's safer to provide empty versions of keys it expects to parse)
+      submitData.append("turnstileToken", turnstileToken)
       submitData.append("specializations", JSON.stringify([]))
       submitData.append("delivery_modes", JSON.stringify([]))
       submitData.append("regions", JSON.stringify([]))
@@ -372,9 +375,13 @@ export function TrainerApplicationForm() {
               </Label>
             </div>
 
+            <Turnstile
+              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+              onSuccess={setTurnstileToken}
+            />
             <Button
               type="submit"
-              disabled={loading}
+              disabled={loading || !turnstileToken}
               className="w-full bg-brand-gold text-brand-navy hover:bg-brand-gold-light h-14 rounded-xl text-lg font-bold shadow-lg shadow-brand-gold/20 transition-all hover:scale-[1.01] active:scale-[0.99]"
             >
               {loading ? (

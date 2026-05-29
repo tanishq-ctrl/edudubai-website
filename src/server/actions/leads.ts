@@ -4,6 +4,7 @@ import { z } from "zod"
 import { sendLeadNotification, sendBrochureEmail } from "@/lib/email"
 import { getCourseBySlugNew } from "./courses"
 import { syncLeadToSystemeIO, syncApplicationToSystemeIO } from "@/lib/systeme-io"
+import { verifyTurnstile } from "@/lib/turnstile"
 
 // Validation schemas
 const contactLeadSchema = z.object({
@@ -32,8 +33,11 @@ const brochureLeadSchema = z.object({
   courseSlug: z.string().optional(),
 })
 
-export async function submitContactLead(data: unknown) {
+export async function submitContactLead(data: unknown, turnstileToken: string) {
   try {
+    if (!await verifyTurnstile(turnstileToken)) {
+      return { success: false, error: "Security check failed. Please refresh and try again." }
+    }
     const validated = contactLeadSchema.parse(data)
 
     // 1. Send notification to admin
@@ -79,8 +83,11 @@ export async function submitContactLead(data: unknown) {
   }
 }
 
-export async function submitCorporateLead(data: unknown) {
+export async function submitCorporateLead(data: unknown, turnstileToken: string) {
   try {
+    if (!await verifyTurnstile(turnstileToken)) {
+      return { success: false, error: "Security check failed. Please refresh and try again." }
+    }
     const validated = corporateLeadSchema.parse(data)
 
     // 1. Send notification to admin
@@ -196,8 +203,11 @@ const courseApplicationSchema = z.object({
   courseSlug: z.string().optional(),
 })
 
-export async function submitCourseApplication(data: unknown) {
+export async function submitCourseApplication(data: unknown, turnstileToken: string) {
   try {
+    if (!await verifyTurnstile(turnstileToken)) {
+      return { success: false, error: "Security check failed. Please refresh and try again." }
+    }
     const validated = courseApplicationSchema.parse(data)
 
     // 1. Send notification to admin (reuse existing structure or create new type)

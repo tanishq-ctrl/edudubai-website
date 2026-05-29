@@ -1,13 +1,18 @@
 import { NextResponse } from "next/server"
 import { syncLeadToSystemeIO } from "@/lib/systeme-io"
+import { verifyTurnstile } from "@/lib/turnstile"
 
 export async function POST(req: Request) {
     try {
         const data = await req.json()
-        const { email, name, company, phone, course } = data
+        const { email, name, company, phone, course, turnstileToken } = data
 
         if (!email || !name) {
             return NextResponse.json({ error: "Email and Name are required" }, { status: 400 })
+        }
+
+        if (!await verifyTurnstile(turnstileToken ?? "")) {
+            return NextResponse.json({ error: "Security check failed. Please refresh and try again." }, { status: 400 })
         }
 
         // 1. Sync to Systeme.io CRM

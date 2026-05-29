@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Loader2, CheckCircle2 } from "lucide-react"
+import { Turnstile } from "@marsidev/react-turnstile"
 
 interface LeadCaptureFormProps {
     courseTitle: string
@@ -18,6 +19,7 @@ export function LeadCaptureForm({ courseTitle, courseId, courseSlug }: LeadCaptu
     const [loading, setLoading] = useState(false)
     const [submitted, setSubmitted] = useState(false)
     const [error, setError] = useState<string | null>(null)
+    const [turnstileToken, setTurnstileToken] = useState("")
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -40,7 +42,8 @@ export function LeadCaptureForm({ courseTitle, courseId, courseSlug }: LeadCaptu
                     course: courseTitle,
                     courseId,
                     courseSlug,
-                    source: "course_page_free_session_form"
+                    source: "course_page_free_session_form",
+                    turnstileToken,
                 }),
             })
 
@@ -164,9 +167,13 @@ export function LeadCaptureForm({ courseTitle, courseId, courseSlug }: LeadCaptu
 
                     {error && <p className="text-xs text-red-500 font-medium">{error}</p>}
 
+                    <Turnstile
+                        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                        onSuccess={setTurnstileToken}
+                    />
                     <Button
                         type="submit"
-                        disabled={loading}
+                        disabled={loading || !turnstileToken}
                         className="w-full bg-[#FF2D55] hover:bg-[#E6294D] text-white font-bold py-4 h-auto rounded-full flex flex-col shadow-lg shadow-[#FF2D55]/20 group transition-all mt-3"
                     >
                         {loading ? (

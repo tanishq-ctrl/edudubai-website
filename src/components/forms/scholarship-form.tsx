@@ -8,11 +8,13 @@ import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Loader2, CheckCircle2 } from "lucide-react"
+import { Turnstile } from "@marsidev/react-turnstile"
 
 export function ScholarshipForm() {
     const [loading, setLoading] = useState(false)
     const [submitted, setSubmitted] = useState(false)
     const [error, setError] = useState<string | null>(null)
+    const [turnstileToken, setTurnstileToken] = useState("")
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -43,7 +45,7 @@ export function ScholarshipForm() {
             const response = await fetch("/api/scholarship", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(applicationData),
+                body: JSON.stringify({ ...applicationData, turnstileToken }),
             })
 
             if (!response.ok) {
@@ -389,10 +391,14 @@ export function ScholarshipForm() {
                         </div>
                     )}
 
+                    <Turnstile
+                        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                        onSuccess={setTurnstileToken}
+                    />
                     <div className="flex justify-end pt-4">
                         <Button
                             type="submit"
-                            disabled={loading}
+                            disabled={loading || !turnstileToken}
                             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 sm:px-12 py-2.5 rounded-md text-sm shadow-md w-full sm:w-auto"
                         >
                             {loading ? (
