@@ -238,6 +238,10 @@ export function CARFWebinarFeedback() {
 
   const validate = (): boolean => {
     const errs: Record<string, boolean> = {}
+    for (const key of RATING_QUESTIONS.map((r) => r.key)) {
+      if (!form.ratings[key]) errs[`rating_${key}`] = true
+    }
+    if (!form.recommend) errs.recommend = true
     if (!form.liked.trim()) errs.liked = true
     if (!form.fullname.trim()) errs.fullname = true
     if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errs.email = true
@@ -359,10 +363,11 @@ export function CARFWebinarFeedback() {
             <SectionCard accent="navy" num={1} title={<>Session Ratings <span className="text-[13px] text-[#5A6A82] font-sans not-italic">1 = Poor · 5 = Excellent</span></>}>
               <div className="space-y-5">
                 {RATING_QUESTIONS.map((rq) => (
-                  <div key={rq.key} className="pb-4 border-b border-[#DDE3EC] last:pb-0 last:border-b-0">
-                    <p className="text-sm font-semibold text-[#1A2637] mb-0.5">{rq.q}</p>
+                  <div key={rq.key} className={`pb-4 border-b border-[#DDE3EC] last:pb-0 last:border-b-0 ${errors[`rating_${rq.key}`] ? "field-error" : ""}`}>
+                    <p className="text-sm font-semibold text-[#1A2637] mb-0.5">{rq.q}<span className="text-[#8B1A1A] ml-0.5">*</span></p>
                     <p className="text-xs text-[#5A6A82] mb-3 leading-relaxed">{rq.hint}</p>
-                    <ScaleTrack value={form.ratings[rq.key]} onChange={(v) => setRating(rq.key, v)} />
+                    <ScaleTrack value={form.ratings[rq.key]} onChange={(v) => { setRating(rq.key, v); setErrors((er) => ({ ...er, [`rating_${rq.key}`]: false })) }} />
+                    {errors[`rating_${rq.key}`] && <span className="text-xs text-[#8B1A1A] mt-1 block">Please select a rating.</span>}
                   </div>
                 ))}
               </div>
@@ -408,7 +413,7 @@ export function CARFWebinarFeedback() {
             {/* Section 3 — Recommend */}
             <SectionCard accent="navy" num={3} title="Likelihood to Recommend">
               <p className="text-xs text-[#5A6A82] mb-3">
-                How likely are you to recommend this webinar to a colleague? <span className="text-[11px]">1 = Would not recommend · 5 = Would strongly recommend</span>
+                How likely are you to recommend this webinar to a colleague?<span className="text-[#8B1A1A] ml-0.5">*</span> <span className="text-[11px]">1 = Would not recommend · 5 = Would strongly recommend</span>
               </p>
               <div className="flex gap-2 flex-wrap mb-2">
                 {[1, 2, 3, 4, 5].map((v) => {
@@ -422,7 +427,7 @@ export function CARFWebinarFeedback() {
                     <button
                       key={v}
                       type="button"
-                      onClick={() => setForm((f) => ({ ...f, recommend: v }))}
+                      onClick={() => { setForm((f) => ({ ...f, recommend: v })); setErrors((er) => ({ ...er, recommend: false })) }}
                       className={`w-[44px] h-[44px] sm:w-[52px] sm:h-[52px] border-[1.5px] rounded text-[15px] sm:text-[17px] font-bold cursor-pointer transition-all flex items-center justify-center ${cls}`}
                     >
                       {v}
@@ -430,6 +435,7 @@ export function CARFWebinarFeedback() {
                   )
                 })}
               </div>
+              {errors.recommend && <span className="text-xs text-[#8B1A1A] mt-1 block field-error">Please select a recommendation score.</span>}
               {form.recommend > 0 && (
                 <p className="text-[13px] text-[#1A8F68] font-medium italic min-h-[18px] mt-2">{REC_MSG[form.recommend]}</p>
               )}
@@ -500,7 +506,7 @@ export function CARFWebinarFeedback() {
                     type="text" id="f-name" autoComplete="name"
                     value={form.fullname}
                     onChange={(e) => { setForm((f) => ({ ...f, fullname: e.target.value })); setErrors((er) => ({ ...er, fullname: false })) }}
-                    placeholder="e.g. Adv. Sanjay M. Prabhu"
+                    placeholder="e.g. John Smith"
                     className={`w-full p-3 border rounded text-sm bg-[#FAFAF8] text-[#1A2637] transition-colors focus:outline-none focus:border-[#0C447C] focus:bg-white focus:shadow-[0_0_0_3px_rgba(12,68,124,0.07)] ${errors.fullname ? "border-[#8B1A1A] bg-[#FDF2F2] field-error" : "border-[#DDE3EC]"}`}
                   />
                   {errors.fullname && <span className="text-xs text-[#8B1A1A]">Please enter your full name.</span>}
@@ -606,13 +612,13 @@ export function CARFWebinarFeedback() {
                 Download Certificate
               </button>
               <a
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent("https://edudubai.org/tools/carf-feedback")}&title=${encodeURIComponent("I just completed the CARF 2026 Webinar — The Hidden Operational Risks in CARF Reporting — hosted by Edu-Dubai × Trans World Compliance.")}`}
+                href={`https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=${encodeURIComponent("The Hidden Operational Risks in Crypto-Asset Reporting Framework (CARF) Reporting")}&organizationName=${encodeURIComponent("Edu-Dubai (INDIA & MENA)")}&issueYear=2026&issueMonth=6&certId=${encodeURIComponent(certNumberRef.current)}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-[#0A66C2] text-white text-sm font-semibold py-3 px-6 rounded transition-all hover:bg-[#004182]"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                Share on LinkedIn
+                Add to LinkedIn Profile
               </a>
             </div>
 
