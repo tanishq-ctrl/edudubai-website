@@ -133,12 +133,16 @@ async function downloadCertificatePDF(certId: string, name: string) {
   ctx.fillStyle = "#07101f"
   ctx.fillText(certId, 675, 762)
 
-  // --- Export to PDF ---
-  const { default: jsPDF } = await import("jspdf")
-  const imgData = canvas.toDataURL("image/jpeg", 0.95)
-  const pdf = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" })
-  pdf.addImage(imgData, "JPEG", 0, 0, pdf.internal.pageSize.getWidth(), pdf.internal.pageSize.getHeight())
-  pdf.save(`${certId}-${name}.pdf`.replace(/\s+/g, "_"))
+  // --- Export as PNG ---
+  canvas.toBlob((blob) => {
+    if (!blob) return
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement("a")
+    a.href = url
+    a.download = `CARF-Certificate-${name.replace(/\s+/g, "-")}.png`
+    a.click()
+    URL.revokeObjectURL(url)
+  }, "image/png")
 }
 
 function generateCertNumber(): string {
@@ -609,17 +613,35 @@ export function CARFWebinarFeedback() {
                 className="inline-flex items-center justify-center gap-2 bg-[#042C53] text-white text-sm font-semibold py-3 px-6 rounded transition-all hover:bg-[#0C447C]"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-                Download Certificate
+                Download Certificate (PNG)
               </button>
               <a
-                href={`https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=${encodeURIComponent("The Hidden Operational Risks in Crypto-Asset Reporting Framework (CARF) Reporting")}&organizationName=${encodeURIComponent("Edu-Dubai (INDIA & MENA)")}&issueYear=2026&issueMonth=6&certId=${encodeURIComponent(certNumberRef.current)}`}
+                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent("https://edudubai.org/tools/carf-feedback")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-[#0A66C2] text-white text-sm font-semibold py-3 px-6 rounded transition-all hover:bg-[#004182]"
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                Add to LinkedIn Profile
+                Share on LinkedIn
               </a>
+            </div>
+            <div className="bg-[#FAFAF8] border border-[#DDE3EC] rounded p-4 mb-6 text-left max-w-[480px] mx-auto">
+              <p className="text-xs font-semibold text-[#1A2637] mb-2">Copy this for your LinkedIn post:</p>
+              <p className="text-xs text-[#5A6A82] leading-relaxed italic">
+                &ldquo;Happy to share that I recently attended a webinar on <strong className="not-italic">The Hidden Operational Risks in Crypto-Asset Reporting Framework (CARF) Reporting</strong>, hosted by <strong className="not-italic">@Edu-Dubai (INDIA &amp; MENA)</strong> × <strong className="not-italic">@Trans World Compliance</strong>.<br /><br />
+                The session provided valuable insights into the key compliance challenges institutions face under CARF — including self-certification controls, due diligence requirements, transaction data accuracy, fair market value methodology, and governance frameworks.<br /><br />
+                As the 2027 reporting deadline approaches, staying ahead of these operational risks is critical. Grateful for the opportunity to learn from industry practitioners.<br /><br />
+                #CryptoAssetReportingFramework #CARF #Compliance #AML #RegulatoryCompliance #FinancialCrime #EduDubai #TransWorldCompliance #ProfessionalDevelopment&rdquo;
+              </p>
+              <p className="text-[10px] text-[#5A6A82] mt-1.5">When pasting on LinkedIn, type <strong>@Edu-Dubai</strong> and <strong>@Trans World Compliance</strong> to tag our pages.</p>
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText("Happy to share that I recently attended a webinar on The Hidden Operational Risks in Crypto-Asset Reporting Framework (CARF) Reporting, hosted by @Edu-Dubai (INDIA & MENA) × @Trans World Compliance.\n\nThe session provided valuable insights into the key compliance challenges institutions face under CARF — including self-certification controls, due diligence requirements, transaction data accuracy, fair market value methodology, and governance frameworks.\n\nAs the 2027 reporting deadline approaches, staying ahead of these operational risks is critical. Grateful for the opportunity to learn from industry practitioners.\n\n#CryptoAssetReportingFramework #CARF #Compliance #AML #RegulatoryCompliance #FinancialCrime #EduDubai #TransWorldCompliance #ProfessionalDevelopment")
+                }}
+                className="mt-3 text-xs font-semibold text-[#1A8F68] hover:text-[#042C53] transition-colors"
+              >
+                Copy to clipboard
+              </button>
             </div>
 
             {/* CARF Diagnostic CTA */}
