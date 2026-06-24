@@ -8,7 +8,8 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Loader2, CheckCircle2, X } from "lucide-react"
+import { Loader2, CheckCircle2 } from "lucide-react"
+import { Turnstile } from "@marsidev/react-turnstile"
 import { courses } from "@/lib/courses"
 
 export function MasterClassPopup() {
@@ -18,6 +19,7 @@ export function MasterClassPopup() {
     const [submitted, setSubmitted] = useState(false)
     const [error, setError] = useState<string | null>(null)
     const [selectedCourseId, setSelectedCourseId] = useState<string>("")
+    const [turnstileToken, setTurnstileToken] = useState("")
 
     // Auto-select course based on URL slug
     useEffect(() => {
@@ -28,16 +30,6 @@ export function MasterClassPopup() {
             }
         }
     }, [params?.slug])
-
-    // Open popup on mount if not submitted
-    useEffect(() => {
-        const hasSubmitted = localStorage.getItem("master_class_popup_submitted")
-        if (!hasSubmitted) {
-            // Disabled for now: Delay for better UX - show after 15 seconds
-            // const timer = setTimeout(() => setOpen(true), 15000)
-            // return () => clearTimeout(timer)
-        }
-    }, [])
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -69,7 +61,8 @@ export function MasterClassPopup() {
                     course: course.title,
                     courseId: course.id,
                     courseSlug: course.slug,
-                    source: "master_class_popup"
+                    source: "master_class_popup",
+                    turnstileToken,
                 }),
             })
 
@@ -85,7 +78,6 @@ export function MasterClassPopup() {
             }
 
             setSubmitted(true)
-            localStorage.setItem("master_class_popup_submitted", "true")
 
         } catch (err) {
             console.error("Submission error:", err)
@@ -226,9 +218,13 @@ export function MasterClassPopup() {
 
                         {error && <p className="text-xs text-red-500 font-bold">{error}</p>}
 
+                        <Turnstile
+                            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
+                            onSuccess={setTurnstileToken}
+                        />
                         <Button
                             type="submit"
-                            disabled={loading}
+                            disabled={loading || !turnstileToken}
                             className="w-full bg-[#FF2D55] hover:bg-[#E6294D] text-white font-bold py-6 h-auto rounded-full flex flex-col shadow-lg shadow-[#FF2D55]/20 mt-2"
                         >
                             {loading ? (

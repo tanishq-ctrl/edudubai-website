@@ -24,15 +24,29 @@ const navigation = [
     name: "Global Certifications",
     href: "/courses",
     subItems: [
+      { name: "All Courses", href: "/courses" },
       { name: "ACAMS", href: "/courses?body=ACAMS" },
       { name: "GCI", href: "/courses?body=GCI" },
-      { name: "CAMS Ramadan Scholarship", href: "/cams-ramadan-scholarship" },
     ]
   },
   { name: "Corporate Training", href: "/corporate-training" },
-  { name: "About Us", href: "/about" },
-  { name: "Contact", href: "/contact" },
-  { name: "News", href: "/news" },
+  {
+    name: "Company",
+    href: "/about",
+    subItems: [
+      { name: "About Us", href: "/about" },
+      { name: "News", href: "/news" },
+      { name: "Contact", href: "/contact" },
+      { name: "Become a Trainer", href: "/become-a-trainer" },
+    ]
+  },
+  {
+    name: "Tools",
+    href: "/tools",
+    subItems: [
+      { name: "CARF Diagnostic", href: "/tools/carf" },
+    ]
+  },
 ]
 
 
@@ -105,7 +119,7 @@ export function SiteHeader() {
 
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-5">
             {navigation.map((item) => {
               const isActive = pathname === item.href ||
                 (item.href !== "/" && pathname.startsWith(item.href))
@@ -179,19 +193,6 @@ export function SiteHeader() {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center space-x-4">
-            <Button
-              asChild
-              variant="ghost"
-              className={`
-                text-sm font-semibold
-                ${shouldHaveTransparentNav && !isScrolled
-                  ? "text-white hover:text-white hover:bg-white/10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
-                  : "text-neutral-text hover:text-brand-navy"
-                }
-              `}
-            >
-              <Link href="/become-a-trainer">Become a Trainer</Link>
-            </Button>
             {!authLoading && (
               user ? (
                 <UserMenu />
@@ -281,14 +282,6 @@ export function SiteHeader() {
                   )
                 })}
                 <div className="pt-6 border-t border-neutral-border space-y-4">
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="w-full border-neutral-border text-neutral-text hover:text-brand-navy hover:bg-neutral-bg-subtle"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <Link href="/become-a-trainer">Become a Trainer</Link>
-                  </Button>
                   {!authLoading && (
                     user ? (
                       <>

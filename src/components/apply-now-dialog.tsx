@@ -140,17 +140,6 @@ export function ApplyNowDialog({
     if (success) {
         return (
             <Dialog open={open} onOpenChange={setOpen}>
-                {/* Using MasterClassPopup trigger button logic is handled outside via the open state */}
-                {/* We render the button that triggers the dialog below */}
-                <Button
-                    onClick={() => setOpen(true)}
-                    className={className}
-                    size={size}
-                    variant={variant}
-                >
-                    Enroll Now
-                </Button>
-
                 <DialogContent className="sm:max-w-[500px] border-t-8 border-t-green-500 p-0 overflow-hidden bg-white [&>button]:hidden focus:outline-none">
                     <div className="p-8 pb-10 flex flex-col items-center text-center space-y-6">
                         <div className="h-24 w-24 bg-green-50 rounded-full flex items-center justify-center mb-2 animate-in zoom-in duration-300">
@@ -261,7 +250,7 @@ export function ApplyNowDialog({
                         </div>
 
                         <div className="flex items-start space-x-2 pt-2">
-                            <Checkbox id="consent" required className={`mt-1 data-[state=checked]:${ACCENT_COLOR_CLASS} data-[state=checked]:${ACCENT_BORDER_CLASS}`} />
+                            <Checkbox id="consent" required className="mt-1 data-[state=checked]:bg-[#FF2D55] data-[state=checked]:border-[#FF2D55]" />
                             <label
                                 htmlFor="consent"
                                 className="text-xs font-medium leading-tight text-slate-600 cursor-pointer"

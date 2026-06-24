@@ -4,13 +4,18 @@ export async function verifyTurnstile(token: string): Promise<boolean> {
     console.error("[Turnstile] TURNSTILE_SECRET_KEY is not set")
     return false
   }
+  if (!token) return false
 
-  const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({ secret, response: token }),
-  })
-
-  const data = await res.json()
-  return data.success === true
+  try {
+    const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ secret, response: token }),
+    })
+    const data = await res.json()
+    return data.success === true
+  } catch (err) {
+    console.error("[Turnstile] Verification request failed:", err)
+    return false
+  }
 }

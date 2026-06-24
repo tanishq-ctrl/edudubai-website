@@ -129,12 +129,18 @@ export async function submitCorporateLead(data: unknown, turnstileToken: string)
       }
     }
     console.error("Error submitting corporate lead:", error)
-    throw error
+    return {
+      success: false,
+      error: "Something went wrong. Please try again.",
+    }
   }
 }
 
-export async function submitBrochureLead(data: unknown) {
+export async function submitBrochureLead(data: unknown, turnstileToken: string) {
   try {
+    if (!await verifyTurnstile(turnstileToken)) {
+      return { success: false, error: "Security check failed. Please refresh and try again." }
+    }
     const validated = brochureLeadSchema.parse(data)
 
     let courseTitle = "Course Brochure"
@@ -190,7 +196,10 @@ export async function submitBrochureLead(data: unknown) {
       }
     }
     console.error("Error submitting brochure lead:", error)
-    throw error
+    return {
+      success: false,
+      error: "Something went wrong. Please try again.",
+    }
   }
 }
 

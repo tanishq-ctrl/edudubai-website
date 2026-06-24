@@ -66,7 +66,7 @@ export async function POST(request: Request) {
     // Upload files to Supabase Storage
     const bucketName = process.env.TRAINER_UPLOAD_BUCKET || "trainer-uploads"
     const timestamp = Date.now()
-    const cvFileName = `cv_${timestamp}_${cvFile.name.replace(/\s+/g, '_')}`
+    const cvFileName = `cv_${timestamp}_${cvFile.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`
 
     // Upload CV
     const cvArrayBuffer = await cvFile.arrayBuffer()
