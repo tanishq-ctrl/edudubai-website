@@ -45,6 +45,7 @@ const navigation = [
     href: "/tools",
     subItems: [
       { name: "CARF Diagnostic", href: "/tools/carf" },
+      { name: "CARF Webinar Feedback", href: "/tools/carf-feedback" },
     ]
   },
 ]

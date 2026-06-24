@@ -863,11 +863,14 @@ export function CARFDiagnostic() {
                 </p>
                 <div className="ct-results-section-title">Next steps</div>
                 <div className="ct-actions-grid">
-                  <div className="ct-action-card">
+                  <a href="/CARF-2026-Readiness-Checklist.xlsx" download className="ct-action-card" style={{ textDecoration: "none", color: "inherit", cursor: "pointer" }}>
                     <div className="ct-action-icon">📋</div>
                     <h4>Download Readiness Checklist</h4>
                     <p>25 action items across all 6 risk zones with Yes/No/In Progress tracking.</p>
-                  </div>
+                    <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", marginTop: "10px", padding: "8px 16px", background: "#042C53", color: "#fff", borderRadius: "6px", fontSize: "13px", fontWeight: 600 }}>
+                      ⬇ Download Excel
+                    </span>
+                  </a>
                   <div className="ct-action-card">
                     <div className="ct-action-icon">🎙</div>
                     <h4>Watch the Full Webinar</h4>
@@ -879,14 +882,14 @@ export function CARFDiagnostic() {
                   <p>
                     Your score is the starting point. Our CARF specialists will go deeper,reviewing your specific gaps, jurisdictions, and operating model,and recommend the right training programme for your team.
                     <br /><br />
-                    Speak to us at training@edudubai.org or call +971 50 3130 946.
+                    Speak to us at training@edudubai.org or call +91 96656 42862 / +971 50 3130 946.
                   </p>
                   <div className="ct-cta-buttons">
                     <button className="ct-cta-primary" onClick={() => window.location.href = "/contact"}>
                       Book Free Consultation →
                     </button>
                     <button className="ct-cta-secondary" onClick={() => window.location.href = "/courses"}>
-                      Explore CARF Courses
+                      Explore Courses
                     </button>
                   </div>
                 </div>
