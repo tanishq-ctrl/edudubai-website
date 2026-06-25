@@ -616,7 +616,7 @@ export function CARFWebinarFeedback() {
                 Download Certificate (PNG)
               </button>
               <a
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent("https://edudubai.org/tools/carf-feedback")}`}
+                href="https://www.linkedin.com/feed/?shareActive=true"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-[#0A66C2] text-white text-sm font-semibold py-3 px-6 rounded transition-all hover:bg-[#004182]"
