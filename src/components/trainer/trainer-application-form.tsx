@@ -12,6 +12,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Loader2, AlertCircle, CheckCircle2, Upload, FileText, Globe, User, Mail, Phone, Linkedin, Video } from "lucide-react"
 import { z } from "zod"
 import { Turnstile } from "@marsidev/react-turnstile"
+import Link from "next/link"
 
 
 // Simplified validation schema
@@ -165,7 +166,7 @@ export function TrainerApplicationForm() {
               asChild
               className="w-full bg-brand-navy text-white hover:bg-brand-navy/90 h-12 rounded-lg font-bold"
             >
-              <a href="/">Return to Homepage</a>
+              <Link href="/">Return to Homepage</Link>
             </Button>
           </CardContent>
         </Card>

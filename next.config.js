@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    // Required from Next.js 16 onward: any quality passed to next/image must
+    // be declared here. 75 is the default, 90 is used by the hero slides and
+    // 100 by the partner logos.
+    qualities: [75, 90, 100],
     remotePatterns: [
       {
         protocol: 'https',

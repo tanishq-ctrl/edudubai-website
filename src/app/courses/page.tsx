@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { Suspense } from "react"
 import { Container } from "@/components/container"
 import { CourseCard } from "@/components/course-card"
@@ -8,24 +9,33 @@ import { CoursesPageClient } from "./page-client"
 import { Category, DeliveryMode } from "@/lib/types"
 import { Search } from "lucide-react"
 
+export const metadata: Metadata = {
+  title: "Compliance & AML Courses",
+  description:
+    "Browse EduDubai's catalogue of AML, sanctions, financial crime and corporate governance courses. Filter by category, level and delivery mode.",
+  alternates: { canonical: "/courses" },
+}
+
 interface CoursesPageProps {
-  searchParams: {
+  // Next.js 15 delivers search params asynchronously.
+  searchParams: Promise<{
     q?: string
     category?: string
     mode?: string
     body?: string
-  }
+  }>
 }
 
 export default async function CoursesPage({ searchParams }: CoursesPageProps) {
+  const filters = await searchParams
   const allCourses = await getAllCoursesNew()
 
   // Filter courses based on search params
   let filteredCourses = allCourses
 
   // Search query filter
-  if (searchParams.q) {
-    const query = searchParams.q.toLowerCase()
+  if (filters.q) {
+    const query = filters.q.toLowerCase()
     filteredCourses = filteredCourses.filter(
       (course) =>
         course.title.toLowerCase().includes(query) ||
@@ -35,23 +45,23 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
   }
 
   // Category filter
-  if (searchParams.category) {
+  if (filters.category) {
     filteredCourses = filteredCourses.filter(
-      (course) => course.category === searchParams.category
+      (course) => course.category === filters.category
     )
   }
 
   // Delivery mode filter
-  if (searchParams.mode) {
+  if (filters.mode) {
     filteredCourses = filteredCourses.filter((course) =>
-      course.deliveryModes.includes(searchParams.mode as DeliveryMode)
+      course.deliveryModes.includes(filters.mode as DeliveryMode)
     )
   }
 
   // Issuing Body filter
-  if (searchParams.body) {
+  if (filters.body) {
     filteredCourses = filteredCourses.filter(
-      (course) => course.issuingBody === searchParams.body
+      (course) => course.issuingBody === filters.body
     )
   }
 
@@ -87,7 +97,7 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
               <p className="text-neutral-text-muted mb-6">
                 Try adjusting your search or filters to find what you&apos;re looking for
               </p>
-              {(searchParams.q || searchParams.category || searchParams.mode) && (
+              {(filters.q || filters.category || filters.mode) && (
                 <p className="text-sm text-neutral-text-muted">
                   There are {allCourses.length} total courses available
                 </p>

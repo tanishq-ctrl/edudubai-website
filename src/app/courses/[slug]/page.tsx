@@ -9,13 +9,15 @@ import { CGSSCustomContent } from "./cgss-custom"
 import { Metadata } from "next"
 
 interface CourseDetailPageProps {
-  params: {
+  // Next.js 15 delivers route params asynchronously.
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function generateMetadata({ params }: CourseDetailPageProps): Promise<Metadata> {
-  const course = await getCourseBySlugNew(params.slug)
+  const { slug } = await params
+  const course = await getCourseBySlugNew(slug)
 
   if (!course) {
     return {
@@ -24,7 +26,7 @@ export async function generateMetadata({ params }: CourseDetailPageProps): Promi
   }
 
   // Custom metadata for CGSS
-  if (params.slug === "certified-global-sanctions-specialist") {
+  if (slug === "certified-global-sanctions-specialist") {
     return {
       title: "CGSS Certification Training MENA | Certified Global Sanctions Specialist Course | Edu-Dubai",
       description: "Master global sanctions compliance with ACAMS CGSS certification training. 40-hour program covering OFAC, EU, UN sanctions. Flexible schedules. Expert instructors.",
@@ -52,7 +54,8 @@ export async function generateMetadata({ params }: CourseDetailPageProps): Promi
 }
 
 export default async function CourseDetailPage({ params }: CourseDetailPageProps) {
-  const course = await getCourseBySlugNew(params.slug)
+  const { slug } = await params
+  const course = await getCourseBySlugNew(slug)
 
   if (!course) {
     notFound()
