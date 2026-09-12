@@ -16,6 +16,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { submitCourseApplication } from "@/server/actions/leads"
 import { useToast } from "@/hooks/use-toast"
 import { Turnstile } from "@marsidev/react-turnstile"
+import { logger } from "@/lib/logger"
 
 interface ApplyNowDialogProps {
     courseSlug: string
@@ -100,7 +101,7 @@ export function ApplyNowDialog({
                         send_to: "AW-17858231822/Kt1dCLPxp_IbEI78u8NC",
                         value: 1.0,
                         currency: "INR",
-                        event_callback: () => console.log("Conversion tracked")
+                        event_callback: () => logger.debug("Conversion tracked")
                     });
                 }
 

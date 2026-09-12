@@ -10,6 +10,7 @@ import { Alert, AlertDescription } from "@/components/ui/alert"
 import { createClient } from "@/lib/supabase/client"
 import { Loader2, AlertCircle, Lock } from "lucide-react"
 import { z } from "zod"
+import { logger } from "@/lib/logger"
 
 const resetPasswordSchema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters"),
@@ -37,7 +38,7 @@ function ResetPasswordForm() {
       const code = searchParams.get("code")
 
       if (code) {
-        console.log("[ResetPassword] Verifying with code...")
+        logger.debug("[ResetPassword] Verifying with code...")
         const { error: verifyError } = await supabase.auth.exchangeCodeForSession(code)
         if (verifyError) {
           setError("This reset link has expired or was already used. Please request a new one.")

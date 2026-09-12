@@ -1,4 +1,5 @@
 import { resend } from "@/lib/resend"
+import { logger } from "@/lib/logger"
 
 interface LeadNotificationPayload {
   type: "contact" | "corporate" | "brochure" | "PAYMENT_SUCCESS"
@@ -116,7 +117,7 @@ export async function sendLeadNotification({
       throw new Error(`Failed to send email: ${result.error.message || "Unknown error"}`)
     }
 
-    console.log("Lead notification email sent successfully:", result.data?.id)
+    logger.debug("Lead notification email sent successfully:", result.data?.id)
   } catch (error) {
     console.error("Error sending lead notification email:", error)
     throw error
@@ -373,7 +374,7 @@ export async function sendScholarshipNotification(application: ScholarshipApplic
       throw new Error(`Failed to send scholarship notification: ${result.error.message || "Unknown error"}`)
     }
 
-    console.log("Scholarship notification email sent successfully:", result.data?.id)
+    logger.debug("Scholarship notification email sent successfully:", result.data?.id)
     return result
   } catch (error) {
     console.error("Error sending scholarship notification email:", error)

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
 import { syncLeadToSystemeIO } from "@/lib/systeme-io"
 import { verifyTurnstile } from "@/lib/turnstile"
+import { logger } from "@/lib/logger"
+import { enforceRateLimit } from "@/lib/rate-limit"
 
 function clampRating(val: unknown): string {
   const n = Number(val)
@@ -19,6 +21,8 @@ function sanitizeList(val: unknown): string {
 }
 
 export async function POST(req: NextRequest) {
+  const limited = enforceRateLimit(req, "carf-feedback", { limit: 5, windowMs: 60_000 })
+  if (limited) return limited
   let body: Record<string, unknown>
   try {
     body = await req.json()
@@ -106,7 +110,7 @@ export async function POST(req: NextRequest) {
     if (!res.ok) {
       console.error("[CARF-Feedback] Field update failed:", res.status)
     } else {
-      console.log("[CARF-Feedback] All fields saved")
+      logger.debug("[CARF-Feedback] All fields saved")
     }
   } catch (err) {
     console.error("[CARF-Feedback] Custom field update failed:", err)

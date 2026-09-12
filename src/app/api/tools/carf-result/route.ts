@@ -1,8 +1,13 @@
 import { NextRequest, NextResponse } from "next/server"
 import { syncLeadToSystemeIO } from "@/lib/systeme-io"
 import { verifyTurnstile } from "@/lib/turnstile"
+import { logger } from "@/lib/logger"
+import { enforceRateLimit } from "@/lib/rate-limit"
 
 export async function POST(req: NextRequest) {
+  const limited = enforceRateLimit(req, "carf-result", { limit: 5, windowMs: 60_000 })
+  if (limited) return limited
+
   const { name, email, company, score, riskLevel, turnstileToken } = await req.json()
 
   if (!name || !email || !company) {
@@ -71,7 +76,7 @@ export async function POST(req: NextRequest) {
         headers: { "Content-Type": "application/json", "X-API-Key": apiKey },
         body: JSON.stringify({ tagId: carfTag.id }),
       })
-      console.log("[CARF] CARF_Diagnostic tag applied")
+      logger.debug("[CARF] CARF_Diagnostic tag applied")
     } else {
       console.warn("[CARF] Tag 'CARF_Diagnostic' not found — create it in Systeme.io dashboard")
     }

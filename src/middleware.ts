@@ -1,5 +1,7 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
+import { logger } from '@/lib/logger'
+import { safeRedirectPath } from '@/lib/safe-redirect'
 
 export async function middleware(request: NextRequest) {
   let response = NextResponse.next({
@@ -47,12 +49,6 @@ export async function middleware(request: NextRequest) {
     error: authError,
   } = await supabase.auth.getUser()
 
-  // Also get session for logging purposes
-  const {
-    data: { session },
-    error: sessionError,
-  } = await supabase.auth.getSession()
-
   const pathname = request.nextUrl.pathname
 
   // If we have an invalid cookie error, clear it to prevent infinite loops
@@ -70,49 +66,38 @@ export async function middleware(request: NextRequest) {
         response.cookies.delete(cookie.name)
       })
       
-      console.log('[Middleware] Cleared invalid auth cookies:', invalidAuthCookies.map(c => c.name))
+      logger.debug('[Middleware] Cleared invalid auth cookies:', invalidAuthCookies.map(c => c.name))
     }
   }
 
-  // Debug logging - check cookies too
-  const allCookies = request.cookies.getAll()
-  const authCookies = allCookies.filter(c => 
-    c.name.includes('supabase') || 
-    c.name.includes('auth') || 
-    c.name.includes('sb-') ||
-    c.name.startsWith('sb_')
-  )
-  
-  // Log cookie value length (not the actual value for security)
-  const authCookieInfo = authCookies.map(c => ({
-    name: c.name,
-    valueLength: c.value?.length || 0,
-    hasValue: !!c.value,
-  }))
-  
-  console.log('[Middleware]', {
+  // Never log user identifiers or cookie inventories in production — this
+  // middleware runs on every request and its output ends up in log exports.
+  logger.debug('[Middleware]', {
     path: pathname,
-    hasSession: !!session,
     hasUser: !!user,
-    userId: user?.id || null,
-    sessionError: sessionError?.message || null,
     authError: authError?.message || null,
-    totalCookieCount: allCookies.length,
-    authCookieCount: authCookies.length,
-    authCookieInfo,
   })
+
+  // Unauthenticated users never reach /admin. The page itself still performs
+  // the ADMIN role check — this is only a cheap first gate.
+  if (pathname.startsWith('/admin') && !user) {
+    const url = request.nextUrl.clone()
+    url.pathname = '/auth/login'
+    url.searchParams.set('next', pathname)
+    return NextResponse.redirect(url)
+  }
 
   // If user is NOT authenticated AND trying to access /dashboard
   if (pathname.startsWith('/dashboard')) {
     if (!user) {
-      console.log('[Middleware] Redirecting unauthenticated user from /dashboard to /auth/login')
+      logger.debug('[Middleware] Redirecting unauthenticated user from /dashboard to /auth/login')
       const url = request.nextUrl.clone()
       url.pathname = '/auth/login'
       url.searchParams.set('next', pathname)
       return NextResponse.redirect(url)
     }
     // User is authenticated, allow access to dashboard
-    console.log('[Middleware] Allowing authenticated user to access dashboard')
+    logger.debug('[Middleware] Allowing authenticated user to access dashboard')
     return response
   }
 
@@ -124,8 +109,8 @@ export async function middleware(request: NextRequest) {
   // If user IS authenticated AND trying to access auth pages
   if (pathname.startsWith('/auth/login') || pathname.startsWith('/auth/register')) {
     if (user) {
-      console.log('[Middleware] Redirecting authenticated user away from auth page to /dashboard')
-      const next = request.nextUrl.searchParams.get('next') || '/dashboard'
+      logger.debug('[Middleware] Redirecting authenticated user away from auth page to /dashboard')
+      const next = safeRedirectPath(request.nextUrl.searchParams.get('next'))
       const redirectUrl = new URL(next, request.url)
       return NextResponse.redirect(redirectUrl)
     }

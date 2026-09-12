@@ -2,6 +2,14 @@ import { createClient } from "@/lib/supabase/server"
 import { redirect } from "next/navigation"
 import { DashboardSidebar } from "@/components/dashboard/sidebar"
 import { DashboardTopbar } from "@/components/dashboard/topbar"
+import { logger } from "@/lib/logger"
+import type { Metadata } from "next"
+
+// Signed-in areas must never be indexed.
+export const metadata: Metadata = {
+  title: "Dashboard",
+  robots: { index: false, follow: false },
+}
 
 // Mark as dynamic since it uses cookies
 export const dynamic = 'force-dynamic'
@@ -17,7 +25,7 @@ export default async function DashboardLayout({
     const supabase = await createClient()
     
     if (!supabase) {
-      console.log('[Dashboard Layout] Supabase not configured, redirecting to login')
+      logger.debug('[Dashboard Layout] Supabase not configured, redirecting to login')
       redirect("/auth/login?next=/dashboard")
     }
 
@@ -25,18 +33,18 @@ export default async function DashboardLayout({
     user = authUser
 
     // Debug logging
-    console.log('[Dashboard Layout]', {
+    logger.debug('[Dashboard Layout]', {
       hasUser: !!user,
       userId: user?.id || null,
       error: authError?.message || null,
     })
 
     if (!user) {
-      console.log('[Dashboard Layout] No user found, redirecting to login')
+      logger.debug('[Dashboard Layout] No user found, redirecting to login')
       redirect("/auth/login?next=/dashboard")
     }
 
-    console.log('[Dashboard Layout] User authenticated, rendering dashboard')
+    logger.debug('[Dashboard Layout] User authenticated, rendering dashboard')
   } catch (error) {
     console.error("[Dashboard Layout] Supabase error:", error)
     redirect("/auth/login?next=/dashboard")

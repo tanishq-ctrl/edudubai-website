@@ -3,6 +3,7 @@ import { createClient } from "@supabase/supabase-js"
 import { z } from "zod"
 import { resend } from "@/lib/resend"
 import { verifyTurnstile } from "@/lib/turnstile"
+import { enforceRateLimit } from "@/lib/rate-limit"
 
 // Use service role key for server-side operations
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
@@ -21,6 +22,9 @@ const applicationSchema = z.object({
 })
 
 export async function POST(request: Request) {
+  const limited = enforceRateLimit(request, "trainer-submit", { limit: 3, windowMs: 600_000 })
+  if (limited) return limited
+
   try {
     if (!supabaseUrl || !supabaseServiceKey) {
       console.error("Supabase configuration missing")

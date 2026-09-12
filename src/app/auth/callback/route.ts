@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { NextResponse, type NextRequest } from 'next/server'
+import { logger } from "@/lib/logger"
 
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url)
@@ -55,7 +56,7 @@ export async function GET(request: NextRequest) {
           })
           .catch((err: unknown) => {
             // Profile might be created by trigger, ignore error
-            console.log('Profile creation skipped (might exist):', err)
+            logger.debug('Profile creation skipped (might exist):', err)
           })
       }
     }

@@ -1,3 +1,4 @@
+import { logger } from "@/lib/logger"
 /**
  * Utility to sync enrollment data with Systeme.io using the Public API
  * This will create/update a contact and apply a course-specific tag to trigger automations.
@@ -41,7 +42,7 @@ export async function syncToSystemeIO(data: {
 
             // If contact already exists, we might want to fetch it instead
             if (errText.includes("already used")) {
-                console.log("[Systeme.io] Contact exists, fetching existing record...");
+                logger.debug("[Systeme.io] Contact exists, fetching existing record...");
                 const listResponse = await fetch(`https://api.systeme.io/api/contacts?email=${data.email}`, {
                     headers: { "X-API-Key": apiKey }
                 });
@@ -60,7 +61,7 @@ export async function syncToSystemeIO(data: {
         const contactId = contactData.id;
         const tagName = `Course_${data.courseSlug.replace(/-/g, "_")}`;
 
-        console.log(`[Systeme.io] Using Contact ID: ${contactId}, looking for Tag: "${tagName}"`);
+        logger.debug(`[Systeme.io] Using Contact ID: ${contactId}, looking for Tag: "${tagName}"`);
 
         // 2. Find the Tag ID in Systeme.io
         let tagResult = { assigned: false, error: null as string | null };
@@ -94,7 +95,7 @@ export async function syncToSystemeIO(data: {
                 });
 
                 if (targetTag) {
-                    console.log(`[Systeme.io] Found Tag ID: ${targetTag.id}. Assigning...`);
+                    logger.debug(`[Systeme.io] Found Tag ID: ${targetTag.id}. Assigning...`);
                     // 3. Assign Tag to Contact
                     const assignResponse = await fetch(`https://api.systeme.io/api/contacts/${contactId}/tags`, {
                         method: "POST",
@@ -108,7 +109,7 @@ export async function syncToSystemeIO(data: {
                     });
 
                     if (assignResponse.ok) {
-                        console.log(`[Systeme.io] Success: Tag "${tagName}" assigned.`);
+                        logger.debug(`[Systeme.io] Success: Tag "${tagName}" assigned.`);
                         tagResult.assigned = true;
                     } else {
                         const assignErr = await assignResponse.text();
@@ -148,7 +149,7 @@ export async function syncLeadToSystemeIO(data: {
     if (!apiKey) return;
 
     try {
-        console.log(`[Systeme.io] Syncing lead: ${data.email}`);
+        logger.debug(`[Systeme.io] Syncing lead: ${data.email}`);
 
         const syncAttempt = async (withCustomFields: boolean) => {
             const fields = [{ slug: "first_name", value: data.firstName }];
@@ -188,7 +189,7 @@ export async function syncLeadToSystemeIO(data: {
             contactData = listData.items?.find((item: any) => item.email.toLowerCase() === data.email.toLowerCase());
 
             if (contactData) {
-                console.log(`[Systeme.io] Contact FOUND (ID: ${contactData.id}). Attempting to update fields...`);
+                logger.debug(`[Systeme.io] Contact FOUND (ID: ${contactData.id}). Attempting to update fields...`);
                 updateNeeded = true;
             } else if (contactResponse.status === 422) {
                 // Only if contact really doesn't exist and we got 422, try minimal sync as last resort
@@ -203,7 +204,7 @@ export async function syncLeadToSystemeIO(data: {
             }
         } else {
             contactData = await contactResponse.json();
-            console.log(`[Systeme.io] Contact Synced (ID: ${contactData.id})`);
+            logger.debug(`[Systeme.io] Contact Synced (ID: ${contactData.id})`);
         }
 
         if (!contactData) {
@@ -229,7 +230,7 @@ export async function syncLeadToSystemeIO(data: {
             });
 
             if (updateResponse.ok) {
-                console.log(`[Systeme.io] Successfully updated fields for existing contact ${contactData.id}`);
+                logger.debug(`[Systeme.io] Successfully updated fields for existing contact ${contactData.id}`);
             } else {
                 // Fallback: Try POST if PUT fails (some APIs use POST for updates)
                 // Or it might be that Systeme.io doesn't allow field updates easily via public API on existing contacts without specific flow.
@@ -258,7 +259,7 @@ export async function syncLeadToSystemeIO(data: {
             });
 
             if (assignResponse.ok || assignResponse.status === 400) {
-                console.log(`[Systeme.io] SUCCESS: '${targetTagName}' tag applied.`);
+                logger.debug(`[Systeme.io] SUCCESS: '${targetTagName}' tag applied.`);
             } else {
                 console.error(`[Systeme.io] Tag assignment FAILED: ${await assignResponse.text()}`);
             }
@@ -283,7 +284,7 @@ export async function syncApplicationToSystemeIO(data: {
     if (!apiKey) return;
 
     try {
-        console.log(`[Systeme.io] Syncing application: ${data.email}`);
+        logger.debug(`[Systeme.io] Syncing application: ${data.email}`);
 
         // Helper to perform the sync
         const syncAttempt = async (withCustomFields: boolean) => {
@@ -376,7 +377,7 @@ export async function syncApplicationToSystemeIO(data: {
                 },
                 body: JSON.stringify({ tagId: conversionTag.id }),
             });
-            console.log(`[Systeme.io] SUCCESS: '${targetTagName}' tag applied.`);
+            logger.debug(`[Systeme.io] SUCCESS: '${targetTagName}' tag applied.`);
         } else {
             console.warn(`[Systeme.io] Tag '${targetTagName}' not found.`);
         }

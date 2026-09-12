@@ -1,3 +1,4 @@
+import { logger } from "@/lib/logger"
 // WhatsApp integration for "Talk to Advisor"
 
 export function openWhatsApp(message?: string) {
@@ -18,7 +19,7 @@ export function openWhatsApp(message?: string) {
   
   const url = `https://wa.me/${cleanNumber}?text=${text}`
   
-  console.log("Opening WhatsApp:", url)
+  logger.debug("Opening WhatsApp:", url)
   
   // Use window.location.href for more reliable opening
   // This works better than window.open which can be blocked

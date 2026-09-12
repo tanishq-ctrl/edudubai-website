@@ -10,6 +10,7 @@ import { AlertCircle, Chrome, Mail, Lock, User, ArrowRight, CheckCircle2, Loader
 import Link from "next/link"
 import { z } from "zod"
 import { createClient } from "@/lib/supabase/client"
+import { logger } from "@/lib/logger"
 
 const registerSchema = z.object({
   fullName: z.string().min(2, "Full name must be at least 2 characters"),
@@ -47,7 +48,7 @@ function RegisterForm() {
           router.replace(next)
         }
       } catch (err) {
-        console.log("Auth check skipped:", err)
+        logger.debug("Auth check skipped:", err)
       }
     }
     checkUser()
@@ -98,7 +99,7 @@ function RegisterForm() {
 
       if (otpError) {
         // Ignore error if user doesn't exist - that's expected for new registrations
-        console.log("OTP send info:", otpError.message)
+        logger.debug("OTP send info:", otpError.message)
       }
 
       setShowVerification(true)

@@ -11,6 +11,7 @@ import { clearAuthCookies, isInvalidCookieError } from "@/lib/auth-utils"
 import { Loader2, AlertCircle, Chrome, Mail, Lock, ArrowRight, CheckCircle2 } from "lucide-react"
 import Link from "next/link"
 import { z } from "zod"
+import { logger } from "@/lib/logger"
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -46,7 +47,7 @@ function LoginForm() {
           router.replace(next)
         }
       } catch (err) {
-        console.log("Auth check skipped:", err)
+        logger.debug("Auth check skipped:", err)
       }
     }
     checkUser()

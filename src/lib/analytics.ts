@@ -1,3 +1,4 @@
+import { logger } from "@/lib/logger"
 // Analytics hooks - placeholder for production analytics integration
 
 export type AnalyticsEvent = 
@@ -19,7 +20,7 @@ export function trackEvent(event: AnalyticsEvent, properties?: AnalyticsProperti
   if (typeof window !== "undefined") {
     // Only log in development (check for Next.js dev mode)
     if (process.env.NODE_ENV !== "production" || window.location.hostname === "localhost") {
-      console.log("[Analytics]", event, properties)
+      logger.debug("[Analytics]", event, properties)
     }
     
     // Example: Google Analytics 4

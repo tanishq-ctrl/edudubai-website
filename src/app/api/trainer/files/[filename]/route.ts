@@ -1,14 +1,28 @@
 import { NextRequest, NextResponse } from "next/server"
 import { createClient } from "@supabase/supabase-js"
+import { getCurrentAdmin } from "@/lib/auth-guards"
+import { enforceRateLimit } from "@/lib/rate-limit"
+
+export const dynamic = "force-dynamic"
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { filename: string } }
+  { params }: { params: Promise<{ filename: string }> }
 ) {
+  const limited = enforceRateLimit(request, "trainer-files", { limit: 30, windowMs: 60_000 })
+  if (limited) return limited
+
   try {
+    // This route mints a signed URL with the service-role key, which bypasses
+    // RLS. Trainer uploads are applicant CVs, so only admins may read them.
+    const admin = await getCurrentAdmin()
+    if (!admin) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 })
+    }
+
     if (!supabaseUrl || !supabaseServiceKey) {
       return NextResponse.json(
         { error: "Server configuration error" },
@@ -16,13 +30,18 @@ export async function GET(
       )
     }
 
-    const filename = params.filename
+    const { filename } = await params
 
     if (!filename) {
       return NextResponse.json(
         { error: "Filename is required" },
         { status: 400 }
       )
+    }
+
+    // Reject any attempt to escape the bucket prefix via path traversal.
+    if (filename.includes("..") || filename.startsWith("/")) {
+      return NextResponse.json({ error: "Invalid filename" }, { status: 400 })
     }
 
     // Create Supabase client with service role key

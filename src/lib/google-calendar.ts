@@ -1,3 +1,4 @@
+import { logger } from "@/lib/logger"
 export interface CalendarEvent {
     id: string;
     title: string;
@@ -35,7 +36,7 @@ export async function getUpcomingEvents(): Promise<CalendarEvent[]> {
         }
 
         if (!data.items) {
-            console.log("No upcoming events found on Google Calendar.");
+            logger.debug("No upcoming events found on Google Calendar.");
             return [];
         }
 

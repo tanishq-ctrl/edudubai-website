@@ -1,8 +1,12 @@
 import { NextResponse } from "next/server"
 import { syncLeadToSystemeIO } from "@/lib/systeme-io"
 import { verifyTurnstile } from "@/lib/turnstile"
+import { enforceRateLimit } from "@/lib/rate-limit"
 
 export async function POST(req: Request) {
+    const limited = enforceRateLimit(req, "leads", { limit: 5, windowMs: 60_000 })
+    if (limited) return limited
+
     try {
         const data = await req.json()
         const { email, name, company, phone, course, turnstileToken } = data
