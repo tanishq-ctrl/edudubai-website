@@ -8,12 +8,9 @@ const requiredEnvVars = {
   NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
   NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-  NEXT_PUBLIC_RAZORPAY_KEY_ID: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
   
   // Server-only (never exposed to client)
   SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
-  RAZORPAY_KEY_SECRET: process.env.RAZORPAY_KEY_SECRET,
-  RAZORPAY_WEBHOOK_SECRET: process.env.RAZORPAY_WEBHOOK_SECRET,
   RESEND_API_KEY: process.env.RESEND_API_KEY,
 } as const
 
@@ -42,10 +39,7 @@ export function validateEnv(): { valid: boolean; missing: string[] } {
   const required = {
     NEXT_PUBLIC_SUPABASE_URL: requiredEnvVars.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: requiredEnvVars.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-    NEXT_PUBLIC_RAZORPAY_KEY_ID: requiredEnvVars.NEXT_PUBLIC_RAZORPAY_KEY_ID,
     SUPABASE_SERVICE_ROLE_KEY: requiredEnvVars.SUPABASE_SERVICE_ROLE_KEY,
-    RAZORPAY_KEY_SECRET: requiredEnvVars.RAZORPAY_KEY_SECRET,
-    RAZORPAY_WEBHOOK_SECRET: requiredEnvVars.RAZORPAY_WEBHOOK_SECRET,
     RESEND_API_KEY: requiredEnvVars.RESEND_API_KEY,
   }
   
