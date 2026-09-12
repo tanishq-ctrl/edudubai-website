@@ -1,7 +1,15 @@
+import type { Metadata } from "next"
 import { Container } from "@/components/container"
 import { PolicyHero } from "@/components/sections/policy-hero"
 import { PolicyContent } from "@/components/sections/policy-content"
 import { PolicyPageClient } from "./page-client"
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description:
+    "How EduDubai collects, uses, stores and protects personal data submitted through our website and training programmes.",
+  alternates: { canonical: "/policies/privacy" },
+}
 
 const privacyContent = {
   title: "Privacy Policy",

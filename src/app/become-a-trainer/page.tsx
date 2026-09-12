@@ -1,7 +1,15 @@
+import type { Metadata } from "next"
 import { Container } from "@/components/container"
 import { TrainerApplicationForm } from "@/components/trainer/trainer-application-form"
 import { Card, CardContent } from "@/components/ui/card"
 import { CheckCircle2, FileText, Users, Award } from "lucide-react"
+
+export const metadata: Metadata = {
+  title: "Become a Trainer",
+  description:
+    "Join EduDubai's global faculty of compliance and financial crime practitioners. Apply to deliver certification and corporate training programmes.",
+  alternates: { canonical: "/become-a-trainer" },
+}
 
 const qualificationAreas = [
   "AML/CFT",

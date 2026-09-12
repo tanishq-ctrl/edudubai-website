@@ -1,7 +1,15 @@
+import type { Metadata } from "next"
 import { Container } from "@/components/container"
 import { PolicyHero } from "@/components/sections/policy-hero"
 import { PolicyContent } from "@/components/sections/policy-content"
 import { PolicyPageClient } from "./page-client"
+
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  description:
+    "The terms governing use of the EduDubai website, course enrolment and delivery of training services.",
+  alternates: { canonical: "/policies/terms" },
+}
 
 const termsContent = {
   title: "Terms and Conditions",

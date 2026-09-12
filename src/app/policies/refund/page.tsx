@@ -1,7 +1,15 @@
+import type { Metadata } from "next"
 import { Container } from "@/components/container"
 import { PolicyHero } from "@/components/sections/policy-hero"
 import { PolicyContent } from "@/components/sections/policy-content"
 import { PolicyPageClient } from "./page-client"
+
+export const metadata: Metadata = {
+  title: "Refund Policy",
+  description:
+    "EduDubai's refund and cancellation terms for course enrolments, including eligibility windows and how to request a refund.",
+  alternates: { canonical: "/policies/refund" },
+}
 
 const refundContent = {
   title: "Refund Policy",
