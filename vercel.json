@@ -2,5 +2,11 @@
   "buildCommand": "prisma generate && next build",
   "regions": [
     "fra1"
+  ],
+  "crons": [
+    {
+      "path": "/api/health/db",
+      "schedule": "0 6 * * *"
+    }
   ]
 }

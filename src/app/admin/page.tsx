@@ -1,17 +1,32 @@
-import { getAllCourses, getAllUsers } from "@/server/actions/admin"
+import type { Metadata } from "next"
+import { notFound, redirect } from "next/navigation"
+import { getCurrentUser } from "@/lib/auth-guards"
+import { getAllUsers } from "@/server/actions/admin"
+import { courses } from "@/lib/courses"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { AdminCoursesList } from "@/components/admin/courses-list"
 import { AdminUsersList } from "@/components/admin/users-list"
+
+export const metadata: Metadata = {
+  title: "Admin",
+  robots: { index: false, follow: false },
+}
 
 // Mark as dynamic to prevent build-time Prisma access
 export const dynamic = 'force-dynamic'
 
 export default async function AdminPage() {
-  // Phase 1: No authentication required
-  // Phase 2: Add authentication check here
+  const user = await getCurrentUser()
 
-  const courses = await getAllCourses()
+  if (!user) {
+    redirect("/auth/login?next=/admin")
+  }
+
+  // Signed in but not an admin: do not reveal that this page exists.
+  if (user.role !== "ADMIN") {
+    notFound()
+  }
+
   const users = await getAllUsers()
 
   return (
@@ -28,7 +43,16 @@ export default async function AdminPage() {
           <TabsTrigger value="analytics">Analytics</TabsTrigger>
         </TabsList>
         <TabsContent value="courses" className="space-y-4">
-          <AdminCoursesList courses={courses} />
+          <Card>
+            <CardHeader>
+              <CardTitle>Courses are not in the database yet</CardTitle>
+              <CardDescription>
+                Course content currently lives in <code>src/lib/courses.ts</code> and is
+                edited in code. Once the catalogue is migrated into Postgres, this tab
+                becomes a full add/edit/delete editor that updates the public site.
+              </CardDescription>
+            </CardHeader>
+          </Card>
         </TabsContent>
         <TabsContent value="users" className="space-y-4">
           <AdminUsersList users={users} />
@@ -57,7 +81,7 @@ export default async function AdminPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-3xl font-bold text-brand-navy">
-                  {courses.reduce((acc: number, course: typeof courses[0]) => acc + course._count.enrollments, 0)}
+                  {users.reduce((total, user) => total + user._count.enrollments, 0)}
                 </p>
               </CardContent>
             </Card>
