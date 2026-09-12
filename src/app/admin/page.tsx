@@ -2,7 +2,8 @@ import type { Metadata } from "next"
 import { notFound, redirect } from "next/navigation"
 import { getCurrentUser } from "@/lib/auth-guards"
 import { getAllUsers } from "@/server/actions/admin"
-import { courses } from "@/lib/courses"
+import { listCoursesForAdmin } from "@/server/actions/admin-courses"
+import { CoursesManager } from "@/components/admin/courses-manager"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { AdminUsersList } from "@/components/admin/users-list"
@@ -27,7 +28,10 @@ export default async function AdminPage() {
     notFound()
   }
 
-  const users = await getAllUsers()
+  const [users, courses] = await Promise.all([
+    getAllUsers(),
+    listCoursesForAdmin({ includeArchived: true }),
+  ])
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-7xl">
@@ -43,16 +47,7 @@ export default async function AdminPage() {
           <TabsTrigger value="analytics">Analytics</TabsTrigger>
         </TabsList>
         <TabsContent value="courses" className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Courses are not in the database yet</CardTitle>
-              <CardDescription>
-                Course content currently lives in <code>src/lib/courses.ts</code> and is
-                edited in code. Once the catalogue is migrated into Postgres, this tab
-                becomes a full add/edit/delete editor that updates the public site.
-              </CardDescription>
-            </CardHeader>
-          </Card>
+          <CoursesManager courses={courses} />
         </TabsContent>
         <TabsContent value="users" className="space-y-4">
           <AdminUsersList users={users} />
@@ -64,7 +59,9 @@ export default async function AdminPage() {
                 <CardTitle>Total Courses</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-3xl font-bold text-brand-navy">{courses.length}</p>
+                <p className="text-3xl font-bold text-brand-navy">
+                  {courses.filter((course) => !course.archivedAt).length}
+                </p>
               </CardContent>
             </Card>
             <Card>

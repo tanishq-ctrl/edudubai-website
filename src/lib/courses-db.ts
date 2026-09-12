@@ -106,6 +106,7 @@ export async function getAllCoursesFromDb(): Promise<Course[]> {
     .from("courses")
     .select(COURSE_COLUMNS)
     .eq("published", true)
+    .is("archived_at", null)
     .order("display_order", { ascending: true })
 
   if (error) {
@@ -125,6 +126,7 @@ export async function getCourseBySlugFromDb(slug: string): Promise<Course | unde
     .select(COURSE_COLUMNS)
     .eq("slug", slug)
     .eq("published", true)
+    .is("archived_at", null)
     .maybeSingle()
 
   if (error) {
@@ -144,6 +146,7 @@ export async function getFeaturedCoursesFromDb(): Promise<Course[]> {
     .select(COURSE_COLUMNS)
     .eq("published", true)
     .eq("featured", true)
+    .is("archived_at", null)
     .order("display_order", { ascending: true })
 
   if (error) {
