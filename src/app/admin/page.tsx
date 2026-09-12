@@ -4,6 +4,8 @@ import { getCurrentUser } from "@/lib/auth-guards"
 import { getAllUsers } from "@/server/actions/admin"
 import { listCoursesForAdmin } from "@/server/actions/admin-courses"
 import { CoursesManager } from "@/components/admin/courses-manager"
+import { listActivity, getActivityCounts } from "@/server/actions/admin-activity"
+import { ActivityFeed } from "@/components/admin/activity-feed"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { AdminUsersList } from "@/components/admin/users-list"
@@ -28,24 +30,41 @@ export default async function AdminPage() {
     notFound()
   }
 
-  const [users, courses] = await Promise.all([
+  const [users, courses, activity, activityCounts] = await Promise.all([
     getAllUsers(),
     listCoursesForAdmin({ includeArchived: true }),
+    listActivity(),
+    getActivityCounts(),
   ])
 
   return (
     <div className="container mx-auto px-4 py-12 max-w-7xl">
       <div className="mb-8">
         <h1 className="text-4xl font-bold text-brand-navy mb-2">Admin Dashboard</h1>
-        <p className="text-neutral-text-muted">Manage courses, users, and platform settings</p>
+        <p className="text-neutral-text-muted">
+          Manage courses, review inbound activity, and see who has signed up.
+        </p>
       </div>
 
-      <Tabs defaultValue="courses" className="space-y-4">
+      <Tabs defaultValue="activity" className="space-y-4">
         <TabsList>
+          <TabsTrigger value="activity">
+            Activity
+            {activityCounts.ALL ? (
+              <span className="ml-1.5 text-xs opacity-70">{activityCounts.ALL}</span>
+            ) : null}
+          </TabsTrigger>
           <TabsTrigger value="courses">Courses</TabsTrigger>
           <TabsTrigger value="users">Users</TabsTrigger>
           <TabsTrigger value="analytics">Analytics</TabsTrigger>
         </TabsList>
+        <TabsContent value="activity" className="space-y-4">
+          <ActivityFeed
+            initialItems={activity.items}
+            initialHasMore={activity.hasMore}
+            counts={activityCounts}
+          />
+        </TabsContent>
         <TabsContent value="courses" className="space-y-4">
           <CoursesManager courses={courses} />
         </TabsContent>
