@@ -5,6 +5,7 @@ import { sendLeadNotification, sendBrochureEmail } from "@/lib/email"
 import { getCourseBySlugNew } from "./courses"
 import { syncLeadToSystemeIO, syncApplicationToSystemeIO } from "@/lib/systeme-io"
 import { verifyTurnstile } from "@/lib/turnstile"
+import { recordLead, markLeadSynced } from "@/server/leads-repository"
 
 // Validation schemas
 const contactLeadSchema = z.object({
@@ -40,6 +41,17 @@ export async function submitContactLead(data: unknown, turnstileToken: string) {
     }
     const validated = contactLeadSchema.parse(data)
 
+    // 0. Persist before anything else can fail. This table is the system of
+    //    record; the CRM is a mirror.
+    const leadId = await recordLead({
+      source: "CONTACT",
+      name: validated.name,
+      email: validated.email,
+      phone: validated.phone,
+      company: validated.company,
+      message: validated.message,
+    })
+
     // 1. Send notification to admin
     await sendLeadNotification({
       type: "contact",
@@ -61,6 +73,7 @@ export async function submitContactLead(data: unknown, turnstileToken: string) {
       company: validated.company,
       courseInterest: "Contact Form / General Inquiry"
     })
+    await markLeadSynced(leadId)
 
     return { success: true }
   } catch (error) {
@@ -90,6 +103,16 @@ export async function submitCorporateLead(data: unknown, turnstileToken: string)
     }
     const validated = corporateLeadSchema.parse(data)
 
+    const leadId = await recordLead({
+      source: "CORPORATE",
+      name: validated.name,
+      email: validated.email,
+      phone: validated.phone,
+      company: validated.company,
+      message: validated.trainingNeed,
+      preferredDelivery: validated.preferredDelivery,
+    })
+
     // 1. Send notification to admin
     await sendLeadNotification({
       type: "corporate",
@@ -112,6 +135,7 @@ export async function submitCorporateLead(data: unknown, turnstileToken: string)
       company: validated.company,
       courseInterest: "Corporate Training Inquiry"
     })
+    await markLeadSynced(leadId)
 
     // 3. Send confirmation email to the lead
     await sendBrochureEmail({
@@ -151,6 +175,16 @@ export async function submitBrochureLead(data: unknown, turnstileToken: string) 
       }
     }
 
+    const leadId = await recordLead({
+      source: "BROCHURE",
+      name: validated.name,
+      email: validated.email,
+      phone: validated.phone,
+      company: validated.company,
+      courseSlug: validated.courseSlug,
+      courseTitle,
+    })
+
     // 1. Send notification to admin
     await sendLeadNotification({
       type: "brochure",
@@ -173,6 +207,7 @@ export async function submitBrochureLead(data: unknown, turnstileToken: string) 
       company: validated.company,
       courseInterest: `Brochure Request: ${courseTitle}`
     })
+    await markLeadSynced(leadId)
 
     // 3. Send brochure email to user
     const appUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://edudubai.org"
@@ -219,6 +254,15 @@ export async function submitCourseApplication(data: unknown, turnstileToken: str
     }
     const validated = courseApplicationSchema.parse(data)
 
+    const leadId = await recordLead({
+      source: "COURSE_APPLICATION",
+      name: validated.name,
+      email: validated.email,
+      phone: validated.phone,
+      courseSlug: validated.courseSlug,
+      courseTitle: validated.courseTitle,
+    })
+
     // 1. Send notification to admin (reuse existing structure or create new type)
     await sendLeadNotification({
       type: "brochure", // Reusing brochure type for now as it's similar (interested in a course)
@@ -240,6 +284,7 @@ export async function submitCourseApplication(data: unknown, turnstileToken: str
       phone: validated.phone,
       courseInterest: validated.courseTitle
     })
+    await markLeadSynced(leadId)
 
     // 3. Send confirmation email (Optional: Reusing brochure email or generic success)
     // For now, we will verify the user instruction just wanted systeme.io sync.

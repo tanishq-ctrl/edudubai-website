@@ -3,6 +3,7 @@ import { syncLeadToSystemeIO } from "@/lib/systeme-io"
 import { verifyTurnstile } from "@/lib/turnstile"
 import { logger } from "@/lib/logger"
 import { enforceRateLimit } from "@/lib/rate-limit"
+import { recordCarfSubmission, markCarfSynced } from "@/server/leads-repository"
 
 export async function POST(req: NextRequest) {
   const limited = enforceRateLimit(req, "carf-result", { limit: 5, windowMs: 60_000 })
@@ -20,6 +21,18 @@ export async function POST(req: NextRequest) {
   }
 
   const firstName = name.split(" ")[0]
+
+  // Persist before any CRM work. Both early returns below used to drop the
+  // submission entirely -- no API key, or a contact Systeme.io rejected -- so
+  // the diagnostic result was lost with no record of it anywhere.
+  const submissionId = await recordCarfSubmission({
+    name,
+    email,
+    company,
+    score: typeof score === "number" ? score : null,
+    riskLevel: riskLevel ?? null,
+  })
+
   const apiKey = process.env.SYSTEME_IO_API_KEY
 
   if (!apiKey) {
@@ -41,6 +54,7 @@ export async function POST(req: NextRequest) {
   }
 
   const contactId = contact.id
+  await markCarfSynced(submissionId, contactId)
 
   // 2. Write carf_score and carf_risk custom fields
   try {
