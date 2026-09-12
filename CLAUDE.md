@@ -46,13 +46,36 @@ There is no `users` table and no `courses` table. Users are `auth.users`
 Access everything through `supabase-js`, not Prisma. Prisma remains only in
 `src/lib/prisma.ts` and the `SELECT 1` keep-alive probe, which needs no tables.
 
-### Courses are files, not rows
+### Courses: two sources, one switch
 
-The public site reads its 8 courses from `src/lib/courses.ts`, a static
-TypeScript array with rich nested content (deliverySchedules, outcomes,
-whoItsFor, faq, examInfo, programOverview, audienceCategories). There is no
-courses table, so the admin panel cannot edit them; its Courses tab is a
-placeholder until that migration happens.
+The catalogue exists in both places and `COURSES_SOURCE` decides which one the
+public site reads:
+
+- `file` (default) - `src/lib/courses.ts`, the original static array
+- `db` - `public.courses`, which is what makes admin edits visible
+
+The switch lives in `src/server/actions/courses.ts`; every consumer goes
+through its `*New()` functions, so pages never know which source they got. The
+database path falls back to the file if a query returns nothing, so an outage
+degrades to the old catalogue rather than an empty course list.
+
+`src/lib/courses-db.ts` maps rows onto the same `Course` type. Note `Course.id`
+maps from `legacy_id`, not the uuid primary key: `course-hero.tsx` switches on
+`'cams'`, `'cgss'`, `'tbml'` and `'certified-compliance-manager'` to pick hero
+content, and two courses have an id that differs from their slug.
+
+Two checks guard the cutover, and both must pass before flipping to `db`:
+
+```bash
+npx vite-node -c vitest.config.ts scripts/verify-course-seed.ts <db.json>
+npx vite-node -c vitest.config.ts scripts/compare-course-sources.ts
+```
+
+Both canonicalise object keys, because `jsonb` does not preserve key order
+(it does preserve array order, which is meaningful here).
+
+Once the file is retired, delete `src/lib/courses.ts`, the fallback branches
+and this flag.
 
 ### Roles and admin access
 

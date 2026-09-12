@@ -8,8 +8,41 @@ import {
   getCoursesByCategory,
   getCoursesByDeliveryMode
 } from "@/lib/courses"
+import {
+  getAllCoursesFromDb,
+  getFeaturedCoursesFromDb,
+  getCourseBySlugFromDb,
+  getCategoriesFromDb,
+  getCoursesByCategoryFromDb,
+  getCoursesByDeliveryModeFromDb,
+} from "@/lib/courses-db"
 import { Category, DeliveryMode } from "@/lib/types"
 import { revalidatePath } from "next/cache"
+
+/**
+ * Which catalogue the public site reads from.
+ *
+ * "file" (the default) keeps serving src/lib/courses.ts exactly as before.
+ * "db" reads public.courses, which is what makes admin edits visible on the
+ * site. Set COURSES_SOURCE=db to switch.
+ *
+ * The default is deliberately the file: the database copy is verified against
+ * it by scripts/verify-course-seed.ts, but until someone has actually looked
+ * at the rendered pages, the known-good source stays in charge.
+ */
+function readFromDatabase(): boolean {
+  return process.env.COURSES_SOURCE === "db"
+}
+
+/**
+ * Falls back to the static file when the database returns nothing.
+ *
+ * A Supabase outage or a misapplied migration should degrade to the old
+ * catalogue rather than showing visitors an empty course list.
+ */
+function withFallback<T>(dbResult: T[], fileResult: T[]): T[] {
+  return dbResult.length > 0 ? dbResult : fileResult
+}
 
 // Legacy compatibility - map new Course type to old format for existing components
 function mapToLegacyFormat(course: any) {
@@ -73,25 +106,31 @@ export async function createEnrollment(userId: string, courseId: string) {
 
 // New functions using the new Course type
 export async function getAllCoursesNew() {
-  return getAllCourses()
+  if (!readFromDatabase()) return getAllCourses()
+  return withFallback(await getAllCoursesFromDb(), getAllCourses())
 }
 
 export async function getFeaturedCoursesNew() {
-  return getFeaturedCourses()
+  if (!readFromDatabase()) return getFeaturedCourses()
+  return withFallback(await getFeaturedCoursesFromDb(), getFeaturedCourses())
 }
 
 export async function getCourseBySlugNew(slug: string) {
-  return getCourseBySlugHelper(slug)
+  if (!readFromDatabase()) return getCourseBySlugHelper(slug)
+  return (await getCourseBySlugFromDb(slug)) ?? getCourseBySlugHelper(slug)
 }
 
 export async function getCategoriesNew() {
-  return getCategories()
+  if (!readFromDatabase()) return getCategories()
+  return withFallback(await getCategoriesFromDb(), getCategories())
 }
 
 export async function getCoursesByCategoryNew(category: Category) {
-  return getCoursesByCategory(category)
+  if (!readFromDatabase()) return getCoursesByCategory(category)
+  return withFallback(await getCoursesByCategoryFromDb(category), getCoursesByCategory(category))
 }
 
 export async function getCoursesByDeliveryModeNew(mode: DeliveryMode) {
-  return getCoursesByDeliveryMode(mode)
+  if (!readFromDatabase()) return getCoursesByDeliveryMode(mode)
+  return withFallback(await getCoursesByDeliveryModeFromDb(mode), getCoursesByDeliveryMode(mode))
 }
