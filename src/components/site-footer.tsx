@@ -68,9 +68,11 @@ export function SiteFooter() {
   const [logoError, setLogoError] = React.useState(false)
   const pathname = usePathname()
 
-  /* The dashboard is an app shell: a marketing footer under a signed-in
-     workspace is chrome the reader did not ask for. See SiteHeader. */
-  if (pathname.startsWith("/dashboard")) return null
+  /* The dashboard and the admin panel are tools, not marketing pages: a
+     "Speak to an advisor" banner and five columns of site links under the
+     activity feed are chrome nobody working in them asked for. The header
+     stays on /admin, which has no navigation of its own. See SiteHeader. */
+  if (pathname.startsWith("/dashboard") || pathname.startsWith("/admin")) return null
 
   return (
     <footer className="relative isolate overflow-hidden bg-ink-950 text-content-on-dark grain">

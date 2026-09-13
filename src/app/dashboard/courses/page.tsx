@@ -60,9 +60,9 @@ export default async function CoursesPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-content-strong mb-2">My Courses</h1>
+        <h1 className="mb-2 font-display text-3xl font-semibold tracking-tight text-content-strong">My Courses</h1>
         <p className="text-content-muted">
-          Manage and track your course enrollments
+          Manage and track your course enrolments
         </p>
       </div>
 
@@ -75,7 +75,7 @@ export default async function CoursesPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Button asChild className="bg-gold-400 text-content-strong hover:bg-gold-300">
+            <Button asChild variant="primary">
               <Link href="/courses">Browse Courses</Link>
             </Button>
           </CardContent>
@@ -83,7 +83,7 @@ export default async function CoursesPage() {
       ) : (
         <Card>
           <CardHeader>
-            <CardTitle>Enrolled Courses</CardTitle>
+            <CardTitle>Enrolled programmes</CardTitle>
             <CardDescription>
               {enrollments.length} {enrollments.length === 1 ? "course" : "courses"} enrolled
             </CardDescription>

@@ -100,13 +100,27 @@ const courseInputSchema = z.object({
   title: z.string().trim().min(1).max(300),
   shortDescription: z.string().trim().min(1).max(2000),
   longDescription: z.string().trim().min(1).max(20000),
-  category: z.string().trim().min(1).max(100),
+  /* The eight the public catalogue knows. A free string here created courses
+     that rendered but matched no filter facet on /courses and fell through
+     every CATEGORY_LABELS lookup. */
+  category: z.enum([
+    "AML_CFT",
+    "SANCTIONS",
+    "TBML",
+    "FATCA_CRS",
+    "TAX",
+    "GOVERNANCE",
+    "RISK",
+    "DATA_AI",
+  ]),
   issuingBody: z.enum(["ACAMS", "GCI", "HOCK_INTERNATIONAL"]),
   level: z.enum(["BEGINNER", "INTERMEDIATE", "ADVANCED"]),
   durationHours: z.coerce.number().int().positive(),
   priceUsd: z.coerce.number().nonnegative(),
   currency: z.string().trim().default("USD"),
-  deliveryModes: z.array(z.string()).default([]),
+  /* Only the two modes the site can render. The editor used to offer
+     SELF_PACED and HYBRID, which no badge and no filter understands. */
+  deliveryModes: z.array(z.enum(["LIVE_VIRTUAL", "IN_PERSON"])).default([]),
   featured: z.boolean().default(false),
   published: z.boolean().default(false),
   displayOrder: z.coerce.number().int().default(0),

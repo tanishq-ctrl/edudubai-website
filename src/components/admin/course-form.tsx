@@ -13,7 +13,21 @@ import { CourseImageField } from "./course-image-field"
 
 const LEVELS = ["BEGINNER", "INTERMEDIATE", "ADVANCED"] as const
 const BODIES = ["ACAMS", "GCI", "HOCK_INTERNATIONAL"] as const
-const MODES = ["LIVE_VIRTUAL", "IN_PERSON", "SELF_PACED", "HYBRID"] as const
+/* Matches DeliveryMode in src/lib/types.ts. SELF_PACED and HYBRID were
+   offered here and understood by nothing downstream. */
+const MODES = ["LIVE_VIRTUAL", "IN_PERSON"] as const
+
+/* Matches Category in src/lib/types.ts, which is what /courses filters on. */
+const CATEGORIES = [
+  "AML_CFT",
+  "SANCTIONS",
+  "TBML",
+  "FATCA_CRS",
+  "TAX",
+  "GOVERNANCE",
+  "RISK",
+  "DATA_AI",
+] as const
 
 /**
  * Course editor.
@@ -166,7 +180,26 @@ export function CourseForm({ course }: { course?: AdminCourse }) {
           </Field>
 
           <Field label="Category" required>
-            <Input value={category} onChange={(e) => setCategory(e.target.value)} required />
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              required
+              className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm"
+            >
+              <option value="" disabled>
+                Choose a category
+              </option>
+              {CATEGORIES.map((option) => (
+                <option key={option} value={option}>
+                  {option.replace(/_/g, " / ")}
+                </option>
+              ))}
+              {/* An existing row may predate this list; show its value rather
+                  than silently switching the course to another category. */}
+              {category && !CATEGORIES.includes(category as (typeof CATEGORIES)[number]) ? (
+                <option value={category}>{category} (existing)</option>
+              ) : null}
+            </select>
           </Field>
 
           <Field label="Issuing body">

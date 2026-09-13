@@ -125,11 +125,13 @@ export default async function AdminPage() {
              and is the CRM mirror keeping up.
           */}
           <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+            {/* Deliberately NOT the header rail's four figures again: this row
+                covers what the band above it does not. */}
             {[
-              { label: "Last 7 days", value: stats.last7, hint: "inbound records" },
-              { label: "Last 30 days", value: stats.last30, hint: "inbound records" },
-              { label: "Leads awaiting contact", value: stats.openLeads, hint: "status NEW" },
+              { label: "Total inbound", value: activityCounts.ALL ?? 0, hint: "all time" },
               { label: "Not synced to CRM", value: stats.unsynced, hint: "replayable" },
+              { label: "Trainer applications", value: activityCounts.TRAINER ?? 0, hint: "all time" },
+              { label: "Scholarship applications", value: activityCounts.SCHOLARSHIP ?? 0, hint: "all time" },
             ].map((figure) => (
               <Card key={figure.label}>
                 <CardContent className="py-5">

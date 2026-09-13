@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { getUserPayments } from "@/server/dashboard/queries"
-import { Download, CreditCard, Calendar } from "lucide-react"
+import { CreditCard, Calendar } from "lucide-react"
 import {
   Table,
   TableBody,
@@ -58,9 +58,10 @@ export default async function PaymentsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-content-strong mb-2">Payments & Invoices</h1>
+        <h1 className="mb-2 font-display text-3xl font-semibold tracking-tight text-content-strong">Payments</h1>
         <p className="text-content-muted">
-          View your payment history and download invoices
+          Your payment history. For an invoice document, contact the team and we
+          will issue one.
         </p>
       </div>
 
@@ -91,7 +92,7 @@ export default async function PaymentsPage() {
                     <TableHead>Amount</TableHead>
                     <TableHead>Status</TableHead>
                     <TableHead>Date</TableHead>
-                    <TableHead className="text-right">Actions</TableHead>
+                    
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -116,14 +117,10 @@ export default async function PaymentsPage() {
                       <TableCell>
                         {new Date(payment.created_at).toLocaleDateString()}
                       </TableCell>
-                      <TableCell className="text-right">
-                        {payment.status === "SUCCESS" && (
-                          <Button variant="outline" size="sm" disabled>
-                            <Download className="mr-2 h-3 w-3" />
-                            Invoice
-                          </Button>
-                        )}
-                      </TableCell>
+                      {/* No invoice column: the control here was `disabled`
+                          from the day it shipped because nothing generates an
+                          invoice document. A permanently dead button under a
+                          heading promising downloads is worse than no button. */}
                     </TableRow>
                   ))}
                 </TableBody>
@@ -161,12 +158,7 @@ export default async function PaymentsPage() {
                         {new Date(payment.created_at).toLocaleDateString()}
                       </div>
                     </div>
-                    {payment.status === "SUCCESS" && (
-                      <Button variant="outline" className="w-full" disabled>
-                        <Download className="mr-2 h-4 w-4" />
-                        Download Invoice
-                      </Button>
-                    )}
+
                   </CardContent>
                 </Card>
               ))}

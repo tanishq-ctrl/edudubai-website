@@ -129,7 +129,7 @@ export default function ProfilePage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-content-strong mb-2">Profile Settings</h1>
+        <h1 className="mb-2 font-display text-3xl font-semibold tracking-tight text-content-strong">Profile Settings</h1>
         <p className="text-content-muted">
           Manage your personal information and preferences
         </p>
@@ -212,7 +212,7 @@ export default function ProfilePage() {
 
             <Button
               type="submit"
-              className="bg-gold-400 text-content-strong hover:bg-gold-300 font-semibold"
+              variant="primary"
               disabled={saving}
             >
               {saving ? (

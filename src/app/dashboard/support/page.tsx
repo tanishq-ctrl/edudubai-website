@@ -135,7 +135,7 @@ export default function SupportPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-content-strong mb-2">Support</h1>
+        <h1 className="mb-2 font-display text-3xl font-semibold tracking-tight text-content-strong">Support</h1>
         <p className="text-content-muted">
           Get help with your courses or account
         </p>
@@ -196,7 +196,8 @@ export default function SupportPage() {
 
               <Button
                 type="submit"
-                className="w-full bg-gold-400 text-content-strong hover:bg-gold-300 font-semibold"
+                variant="primary"
+                className="w-full"
                 disabled={submitting}
               >
                 {submitting ? (

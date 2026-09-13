@@ -56,7 +56,7 @@ export function MobileSidebar() {
       <SheetContent side="left" className="w-64 p-0">
         <div className="flex h-full flex-col">
           <div className="flex h-16 items-center border-b border-neutral-border px-6">
-            <h2 className="text-lg font-bold text-brand-navy">Dashboard</h2>
+            <h2 className="text-2xs font-semibold uppercase tracking-[0.22em] text-content-subtle">Dashboard</h2>
           </div>
           <nav className="flex-1 space-y-1 px-3 py-4">
             {navigation.map((item) => {
@@ -67,14 +67,22 @@ export function MobileSidebar() {
                 <Link
                   key={item.name}
                   href={item.href}
+                  /* Matches the desktop sidebar: a crimson rule on a sunken
+                     ground, not a filled block. */
                   className={cn(
-                    "flex items-center gap-3 rounded-sm px-3 py-2 text-sm font-medium transition-colors",
+                    "relative flex items-center gap-3 rounded-sm py-2.5 pl-5 pr-3 text-sm transition-colors",
+                    "before:absolute before:inset-y-1 before:left-0 before:w-0.5 before:rounded-full",
                     isActive
-                      ? "bg-brand-navy text-white"
-                      : "text-neutral-text hover:bg-neutral-bg-subtle hover:text-brand-navy"
+                      ? "bg-surface-sunken font-semibold text-content-strong before:bg-crimson-600"
+                      : "font-medium text-content before:bg-transparent hover:bg-surface-sunken hover:text-content-strong"
                   )}
                 >
-                  <Icon className="h-5 w-5" />
+                  <Icon
+                    className={cn(
+                      "h-[18px] w-[18px]",
+                      isActive ? "text-crimson-600" : "text-content-subtle"
+                    )}
+                  />
                   {item.name}
                 </Link>
               )
