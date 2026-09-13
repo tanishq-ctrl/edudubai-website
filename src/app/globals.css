@@ -303,6 +303,30 @@
     scroll-padding-top: calc(var(--header-h) + 1rem);
   }
 
+  /*
+     The page scrollbar is hidden site-wide. Scrolling itself is untouched --
+     wheel, trackpad, touch, keyboard (space, PageDown, arrows) and
+     scroll-to-anchor all behave exactly as before; only the painted track is
+     gone, and with it the light strip down the right edge of every dark hero.
+
+     The position affordance it provided is carried by the crimson scroll
+     progress bar under the header (src/components/motion/parallax.tsx), so
+     this is not a straight removal. Scope is the document scroller only:
+     inner scrollers that a reader has to drive by hand -- the eligibility
+     panel on /become-a-trainer, the overflow-x tables -- keep their bars, so
+     do NOT lift this to a `*` selector.
+  */
+  html,
+  body {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
   body {
     background-color: rgb(var(--surface));
     color: rgb(var(--text));
