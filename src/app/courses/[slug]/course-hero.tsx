@@ -47,7 +47,7 @@ export function CourseHero({ course }: CourseHeroProps) {
   const heroImage = course.heroImageUrl || course.imageUrl
 
   return (
-    <section className="relative isolate overflow-hidden bg-ink-950 pb-section-sm pt-[calc(var(--header-h)+2.5rem)] text-white grain">
+    <section className="relative isolate overflow-hidden bg-ink-950 pb-8 pt-[calc(var(--header-h)+1rem)] text-white grain">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -right-32 -top-32 h-[34rem] w-[34rem] orb [--orb:rgb(var(--gold-400)/0.08)]" />
         <div className="absolute -bottom-40 -left-24 h-96 w-96 orb [--orb:rgb(var(--navy-700)/0.35)]" />
@@ -78,7 +78,7 @@ export function CourseHero({ course }: CourseHeroProps) {
           </nav>
         </Reveal>
 
-        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-10">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-7">
             <Reveal variant="fade">
               <div className="flex flex-wrap items-center gap-2.5">
@@ -91,36 +91,39 @@ export function CourseHero({ course }: CourseHeroProps) {
               </div>
             </Reveal>
 
-            <div className="mt-6 flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
+            <div className="mt-5 flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
               <div className="max-w-2xl">
-                {/* Capped one step below the marketing heroes: course names
-                    are long ("Certified Anti-Money Laundering Specialist
-                    (CAMS)") and ran to four lines at the larger size. */}
-                <h1 className="text-3xl text-white sm:text-4xl">
+                {/* Capped below the marketing heroes: course names are long
+                    ("Certified Anti-Money Laundering Specialist (CAMS)") and
+                    ran to four lines at the larger size. Capped again at lg,
+                    because at the fluid 4xl the longest title pushed the
+                    specification strip past the fold on a 845px laptop. A
+                    course title is a document title, not a campaign line. */}
+                <h1 className="text-3xl text-white sm:text-4xl lg:text-[3rem]">
                   <SplitText text={course.title} as="span" className="block" step={35} />
                 </h1>
                 <Reveal variant="up" delay={260}>
-                  <p className="mt-5 text-lg leading-relaxed text-white/70">
+                  <p className="mt-4 text-lg leading-relaxed text-white/70">
                     {course.shortDescription}
                   </p>
                 </Reveal>
               </div>
 
               {seal ? (
-                <Reveal variant="scale" delay={200}>
+                <Reveal variant="scale" delay={200} className="shrink-0">
                   <Image
                     src={seal.src}
                     alt={seal.alt}
                     width={280}
                     height={280}
-                    className="h-28 w-28 shrink-0 animate-float drop-shadow-2xl lg:h-44 lg:w-44"
+                    className="h-24 w-24 animate-float drop-shadow-2xl lg:h-32 lg:w-32"
                   />
                 </Reveal>
               ) : null}
             </div>
 
             <Reveal variant="up" delay={340}>
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 <ApplyNowDialog
                   courseSlug={course.slug}
                   courseTitle={course.title}
@@ -149,28 +152,30 @@ export function CourseHero({ course }: CourseHeroProps) {
             </Reveal>
 
             <Reveal variant="up" delay={420}>
-              <dl className="mt-10 grid max-w-2xl grid-cols-2 gap-6 rounded-lg border border-white/10 bg-white/[0.07] p-6 sm:grid-cols-3">
-                <div>
+              <dl className="mt-6 flex max-w-2xl flex-wrap items-center gap-x-8 gap-y-3 rounded-lg border border-white/10 bg-white/[0.07] px-5 py-4">
+                <div className="flex items-baseline gap-2.5">
                   <dt className="flex items-center gap-1.5 text-2xs font-semibold uppercase tracking-[0.18em] text-gold-300">
                     <Clock aria-hidden="true" className="h-3 w-3" />
                     Duration
                   </dt>
-                  <dd className="mt-2 font-display text-xl text-white">{course.duration} hours</dd>
+                  <dd className="font-display text-base font-semibold text-white">
+                    {course.duration} hours
+                  </dd>
                 </div>
-                <div>
+                <div className="flex items-baseline gap-2.5">
                   <dt className="flex items-center gap-1.5 text-2xs font-semibold uppercase tracking-[0.18em] text-gold-300">
                     <GraduationCap aria-hidden="true" className="h-3 w-3" />
                     Level
                   </dt>
-                  <dd className="mt-2 font-display text-xl capitalize text-white">
+                  <dd className="font-display text-base font-semibold capitalize text-white">
                     {course.level.toLowerCase()}
                   </dd>
                 </div>
-                <div>
+                <div className="flex items-baseline gap-2.5">
                   <dt className="text-2xs font-semibold uppercase tracking-[0.18em] text-gold-300">
                     Enrolment
                   </dt>
-                  <dd className="mt-2 flex items-center gap-2 font-display text-xl text-white">
+                  <dd className="flex items-center gap-2 font-display text-base font-semibold text-white">
                     Open
                     <span aria-hidden="true" className="relative flex h-2 w-2">
                       <span className="absolute inline-flex h-full w-full animate-pulse-ring rounded-full bg-success" />

@@ -83,7 +83,7 @@ export function CourseContent({ course }: Props) {
   return (
     <>
       {overview ? (
-        <Section id="overview" tone="paper" size="md">
+        <Section id="overview" tone="paper" size="sm">
           <SectionHead
             title="What this programme covers"
             lead="Leading professional certification training for regulated institutions."
@@ -108,7 +108,7 @@ export function CourseContent({ course }: Props) {
       ) : null}
 
       {course.outcomes?.length ? (
-        <Section id="outcomes" tone="sunken" size="md">
+        <Section id="outcomes" tone="sunken" size="sm">
           <SectionHead
             title="What you will be able to do"
             lead={`Capability built across ${
@@ -142,7 +142,7 @@ export function CourseContent({ course }: Props) {
         </Section>
       ) : null}
 
-      <Section id="audience" tone="paper" size="md">
+      <Section id="audience" tone="paper" size="sm">
         <SectionHead
           title="Who should attend"
           lead="Written for the roles that carry the obligation, not for a general audience."
@@ -169,7 +169,7 @@ export function CourseContent({ course }: Props) {
       </Section>
 
       {course.deliverySchedules?.length ? (
-        <Section id="schedule" tone="sunken" size="md">
+        <Section id="schedule" tone="sunken" size="sm">
           <SectionHead
             title="Delivery options"
             lead="Choose the format that fits around the role you already hold."
@@ -199,7 +199,7 @@ export function CourseContent({ course }: Props) {
       ) : null}
 
       {examInfo ? (
-        <Section id="exam" tone="paper" size="md">
+        <Section id="exam" tone="paper" size="sm">
           <SectionHead
             title="The examination"
             lead="What the issuing body sets, and what you have to meet to sit it."
@@ -229,7 +229,7 @@ export function CourseContent({ course }: Props) {
         </Section>
       ) : null}
 
-      <Section id="benefits" tone="sunken" size="md">
+      <Section id="benefits" tone="sunken" size="sm">
         <SectionHead title="Why study this with EduDubai" />
 
         <ul className="mt-12 grid gap-x-12 gap-y-5 lg:grid-cols-2">
@@ -254,7 +254,7 @@ export function CourseContent({ course }: Props) {
       </Section>
 
       {course.faq?.length ? (
-        <Section id="faq" tone="paper" size="md">
+        <Section id="faq" tone="paper" size="sm">
           <SectionHead title="Frequently asked questions" />
 
           {/*
