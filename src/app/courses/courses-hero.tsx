@@ -16,16 +16,17 @@ import { Container } from "@/components/container"
 export function CoursesHero({
   total,
   bodies,
-  live,
+  hours,
 }: {
   total: number
   bodies: number
-  live: number
+  /** Span of programme lengths, e.g. "16-100". */
+  hours: string
 }) {
   const facts = [
     { value: total, label: total === 1 ? "programme" : "programmes" },
     { value: bodies, label: "issuing bodies" },
-    { value: live, label: "delivered live" },
+    { value: hours, label: "hours" },
   ]
 
   return (
@@ -60,7 +61,7 @@ export function CoursesHero({
                   <span className="block text-3xl font-semibold tabular tracking-tight text-white">
                     {f.value}
                   </span>
-                  <span className="mt-1 block text-2xs text-white/45">{f.label}</span>
+                  <span className="mt-1 block text-2xs text-white/60">{f.label}</span>
                 </dd>
               </div>
             ))}

@@ -1,7 +1,7 @@
 import Link from "next/link"
-import { ArrowUpRight, Clock, GraduationCap } from "lucide-react"
+import { ArrowUpRight, Clock, GraduationCap, MapPin, Video } from "lucide-react"
 
-import { DeliveryFormatBadge } from "@/components/delivery-format-badge"
+import { Badge } from "@/components/ui/badge"
 import { CourseImage } from "@/components/course-image"
 import { cn } from "@/lib/utils"
 import { Course } from "@/lib/types"
@@ -22,6 +22,17 @@ interface CourseCardProps {
  * details" affordance is decorative and marked aria-hidden.
  */
 export function CourseCard({ course, priority = false, className }: CourseCardProps) {
+  const live = course.deliveryModes.includes("LIVE_VIRTUAL")
+  const inPerson = course.deliveryModes.includes("IN_PERSON")
+  const format =
+    live && inPerson
+      ? { label: "Live + in-person", live: true }
+      : live
+        ? { label: "Live virtual", live: true }
+        : inPerson
+          ? { label: "In-person", live: false }
+          : null
+
   return (
     <article
       className={cn(
@@ -50,28 +61,46 @@ export function CourseCard({ course, priority = false, className }: CourseCardPr
 
           <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-2xs font-bold uppercase tracking-[0.12em] text-navy-900 shadow-sm">
             <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-success" />
-            Official curriculum
+            {course.issuingBody
+              ? `${course.issuingBody.replace(/_/g, " ")} · Official curriculum`
+              : "Official curriculum"}
           </span>
         </div>
       ) : null}
 
       <div className="flex flex-1 flex-col p-6 sm:p-7">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full bg-navy-50 px-2.5 py-1 text-2xs font-semibold uppercase tracking-wider text-navy-700">
+        {/*
+           One line, always. Rendering a chip per delivery mode put three on a
+           row that only fits two, so every card carried a ragged second line of
+           metadata -- 61px of it -- before the title had even started. Most
+           programmes run both formats, so the pair is stated once.
+        */}
+        <div className="flex items-center gap-2">
+          <span className="truncate rounded-full bg-navy-50 px-2.5 py-1 text-2xs font-semibold uppercase tracking-wider text-navy-700">
             {course.category.replace(/_/g, " ")}
           </span>
-          {course.deliveryModes.map((mode) => (
-            <DeliveryFormatBadge key={mode} format={mode} />
-          ))}
+          {format ? (
+            <Badge
+              variant={format.live ? "success" : "secondary"}
+              className="shrink-0 whitespace-nowrap uppercase tracking-wider"
+            >
+              {format.live ? (
+                <Video aria-hidden="true" className="h-3 w-3" />
+              ) : (
+                <MapPin aria-hidden="true" className="h-3 w-3" />
+              )}
+              {format.label}
+            </Badge>
+          ) : null}
         </div>
 
         <h3 className="mt-5 text-lg leading-snug transition-colors duration-fast group-hover:text-navy-700">
           <Link href={`/courses/${course.slug}`} className="after:absolute after:inset-0">
-            <span className="line-clamp-2">{course.title}</span>
+            <span className="line-clamp-3">{course.title}</span>
           </Link>
         </h3>
 
-        <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-content-muted">
+        <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-content-muted">
           {course.shortDescription}
         </p>
 

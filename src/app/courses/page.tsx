@@ -10,7 +10,6 @@ import { Container } from "@/components/container"
 import { Button } from "@/components/ui/button"
 import { getAllCoursesNew } from "@/server/actions/courses"
 import { DeliveryMode } from "@/lib/types"
-import { CoursesHero } from "./courses-hero"
 import { PathwayTable } from "./pathway-table"
 import { CoursesPageClient } from "./page-client"
 
@@ -23,7 +22,13 @@ export const metadata: Metadata = {
 
 interface CoursesPageProps {
   // Next.js 15 delivers search params asynchronously.
-  searchParams: Promise<{ q?: string; category?: string; mode?: string; body?: string }>
+  searchParams: Promise<{
+    q?: string
+    category?: string
+    mode?: string
+    body?: string
+    level?: string
+  }>
 }
 
 /**
@@ -65,24 +70,51 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
     filteredCourses = filteredCourses.filter((course) => course.issuingBody === filters.body)
   }
 
+  if (filters.level) {
+    filteredCourses = filteredCourses.filter((course) => course.level === filters.level)
+  }
+
+  /*
+     Facets come from the catalogue rather than a hardcoded list, so a filter
+     option exists only when something can match it. The old filter bar offered
+     eight subjects against a catalogue that uses four.
+  */
+  const facets = {
+    categories: Array.from(new Set(allCourses.map((c) => c.category))),
+    bodies: Array.from(
+      new Set(allCourses.map((c) => c.issuingBody).filter(Boolean)),
+    ) as string[],
+    levels: Array.from(new Set(allCourses.map((c) => c.level))),
+  }
+
   const isFiltered = filteredCourses.length !== allCourses.length
-  const bodies = new Set(allCourses.map((c) => c.issuingBody).filter(Boolean)).size
-  const live = allCourses.filter((c) => c.deliveryModes.includes("LIVE_VIRTUAL")).length
 
   return (
     <>
       <CoursesPageClient />
 
-      <CoursesHero total={allCourses.length} bodies={bodies || 2} live={live} />
+      {/*
+         No hero band. On a browse page the catalogue is the hero: a full-height
+         navy head with a standfirst and a stat row only pushed the grid below
+         the fold and delayed the one thing the visitor came for. The page opens
+         on its title, hands straight to the controls, then to the programmes.
 
-      <section className="bg-surface pb-section-md">
+         The panel carries the page's only sunken fill. `--surface` and
+         `--surface-raised` are both pure white, so a white card on a white page
+         cannot define itself whatever ring it wears; the grey does that, and
+         the search field inside goes white against it.
+      */}
+      <section className="bg-surface pb-section-md pt-header">
         <Container>
-          {/* Filter bar straddles the navy/white boundary. */}
-          <div className="-mt-20 rounded-xl bg-surface p-5 shadow-[0_30px_70px_-35px_rgb(var(--navy-900)/0.5)] ring-1 ring-navy-900/8 sm:p-6">
+          <h1 className="mt-10 text-4xl tracking-tight sm:mt-12 sm:text-5xl">
+            Professional certifications
+          </h1>
+
+          <div className="mt-8 rounded-xl bg-surface-sunken p-5 ring-1 ring-line sm:p-6">
             <Suspense
-              fallback={<div className="h-28 animate-pulse rounded-sm bg-surface-sunken" />}
+              fallback={<div className="h-28 animate-pulse rounded-sm bg-surface" />}
             >
-              <CourseFilters />
+              <CourseFilters facets={facets} />
             </Suspense>
           </div>
 

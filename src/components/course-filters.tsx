@@ -10,81 +10,110 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { DeliveryMode, Category } from "@/lib/types"
+import { DeliveryMode, Category, Course } from "@/lib/types"
 import { Search, X } from "lucide-react"
 import { useState, useEffect } from "react"
 import { cn } from "@/lib/utils"
 
-const categories: { value: Category; label: string }[] = [
-  { value: "AML_CFT", label: "AML/CFT" },
-  { value: "SANCTIONS", label: "Sanctions" },
-  { value: "TBML", label: "Trade-Based ML" },
-  { value: "FATCA_CRS", label: "FATCA/CRS" },
-  { value: "TAX", label: "Tax" },
-  { value: "GOVERNANCE", label: "Governance" },
-  { value: "RISK", label: "Risk Management" },
-  { value: "DATA_AI", label: "Data & AI" },
-]
+/**
+ * Catalogue filters.
+ *
+ * The options are NOT a hardcoded list. This component used to declare eight
+ * categories while the catalogue only ever used four, so half the menu led
+ * straight to an empty state -- a filter that can only fail is worse than no
+ * filter. The server passes the facets it actually found, so an option exists
+ * only when something matches it.
+ *
+ * Issuing body used to be reachable only through the "Certifications" dropdown
+ * in the header (ACAMS / GCI). That put a filter in the navigation, where it
+ * replaced the visitor's other choices instead of combining with them. It is a
+ * filter, so it belongs here.
+ */
+
+const CATEGORY_LABELS: Partial<Record<Category, string>> = {
+  AML_CFT: "AML / CFT",
+  SANCTIONS: "Sanctions",
+  TBML: "Trade-based ML",
+  FATCA_CRS: "FATCA / CRS",
+  TAX: "Tax",
+  GOVERNANCE: "Governance",
+  RISK: "Risk management",
+  DATA_AI: "Data & AI",
+}
+
+const LEVEL_LABELS: Record<Course["level"], string> = {
+  BEGINNER: "Foundation",
+  INTERMEDIATE: "Intermediate",
+  ADVANCED: "Advanced",
+}
 
 const deliveryModes: { value: DeliveryMode; label: string }[] = [
-  { value: "IN_PERSON", label: "In-Person" },
-  { value: "LIVE_VIRTUAL", label: "Live Virtual" },
+  { value: "IN_PERSON", label: "In-person" },
+  { value: "LIVE_VIRTUAL", label: "Live virtual" },
 ]
 
-export function CourseFilters() {
+const titleCase = (v: string) =>
+  v
+    .split("_")
+    .map((w) => w.charAt(0) + w.slice(1).toLowerCase())
+    .join(" ")
+
+export type CourseFacets = {
+  categories: Category[]
+  bodies: string[]
+  levels: Course["level"][]
+}
+
+export function CourseFilters({ facets }: { facets: CourseFacets }) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "")
   const [selectedCategory, setSelectedCategory] = useState<Category | "all">(
-    (searchParams.get("category") as Category) || "all"
+    (searchParams.get("category") as Category) || "all",
   )
   const [selectedMode, setSelectedMode] = useState<DeliveryMode | "all">(
-    (searchParams.get("mode") as DeliveryMode) || "all"
+    (searchParams.get("mode") as DeliveryMode) || "all",
   )
-  const [selectedBody, setSelectedBody] = useState<string | "all">(
-    searchParams.get("body") || "all"
-  )
+  const [selectedBody, setSelectedBody] = useState<string>(searchParams.get("body") || "all")
+  const [selectedLevel, setSelectedLevel] = useState<string>(searchParams.get("level") || "all")
 
   useEffect(() => {
-    // Debounce search to avoid too many URL updates
-    const timer = setTimeout(() => {
-      const params = new URLSearchParams()
-      if (searchQuery) params.set("q", searchQuery)
-      if (selectedCategory !== "all") params.set("category", selectedCategory)
-      if (selectedMode !== "all") params.set("mode", selectedMode)
-      if (selectedBody !== "all") params.set("body", selectedBody)
+    // Debounce the text field; the selects and pills apply immediately.
+    const timer = setTimeout(
+      () => {
+        const params = new URLSearchParams()
+        if (searchQuery) params.set("q", searchQuery)
+        if (selectedCategory !== "all") params.set("category", selectedCategory)
+        if (selectedMode !== "all") params.set("mode", selectedMode)
+        if (selectedBody !== "all") params.set("body", selectedBody)
+        if (selectedLevel !== "all") params.set("level", selectedLevel)
 
-      const queryString = params.toString()
-      router.push(`/courses${queryString ? `?${queryString}` : ""}`, { scroll: false })
-    }, searchQuery ? 300 : 0) // Debounce search, immediate for filters
+        const queryString = params.toString()
+        router.push(`/courses${queryString ? `?${queryString}` : ""}`, { scroll: false })
+      },
+      searchQuery ? 300 : 0,
+    )
 
     return () => clearTimeout(timer)
-  }, [searchQuery, selectedCategory, selectedMode, selectedBody, router])
-
-  const handleSearchChange = (value: string) => {
-    setSearchQuery(value)
-  }
-
-  const handleCategoryChange = (value: string) => {
-    setSelectedCategory(value === "all" ? "all" : (value as Category))
-  }
-
-  const handleModeChange = (mode: DeliveryMode | "all") => {
-    setSelectedMode(mode)
-  }
+  }, [searchQuery, selectedCategory, selectedMode, selectedBody, selectedLevel, router])
 
   const clearFilters = () => {
     setSearchQuery("")
     setSelectedCategory("all")
     setSelectedMode("all")
     setSelectedBody("all")
+    setSelectedLevel("all")
   }
 
-  const hasActiveFilters = searchQuery || selectedCategory !== "all" || selectedMode !== "all" || selectedBody !== "all"
+  const hasActiveFilters =
+    Boolean(searchQuery) ||
+    selectedCategory !== "all" ||
+    selectedMode !== "all" ||
+    selectedBody !== "all" ||
+    selectedLevel !== "all"
 
   return (
     <div className="flex flex-col gap-5">
-      {/* Search */}
       <div className="relative">
         <label htmlFor="course-search" className="sr-only">
           Search courses
@@ -101,8 +130,8 @@ export function CourseFilters() {
           spellCheck={false}
           placeholder="Search by title, topic or keyword…"
           value={searchQuery}
-          onChange={(e) => handleSearchChange(e.target.value)}
-          className="h-13 pl-11 pr-11"
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="h-13 bg-surface pl-11 pr-11"
         />
         {searchQuery ? (
           <Button
@@ -110,40 +139,72 @@ export function CourseFilters() {
             size="icon-sm"
             aria-label="Clear search"
             className="absolute right-2 top-1/2 -translate-y-1/2"
-            onClick={() => handleSearchChange("")}
+            onClick={() => setSearchQuery("")}
           >
             <X className="h-4 w-4" />
           </Button>
         ) : null}
       </div>
 
-      {/* Filter row */}
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
-        <Select value={selectedCategory} onValueChange={handleCategoryChange}>
-          <SelectTrigger className="w-full lg:w-[16rem]" aria-label="Filter by category">
-            <SelectValue placeholder="All categories" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All categories</SelectItem>
-            {categories.map((cat) => (
-              <SelectItem key={cat.value} value={cat.value}>
-                {cat.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+      <div className="flex flex-wrap items-center gap-3">
+        {facets.bodies.length > 1 ? (
+          <Select value={selectedBody} onValueChange={setSelectedBody}>
+            <SelectTrigger className="w-[calc(50%-0.375rem)] bg-surface sm:w-[13rem]" aria-label="Filter by issuing body">
+              <SelectValue placeholder="Any issuer" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Any issuer</SelectItem>
+              {facets.bodies.map((body) => (
+                <SelectItem key={body} value={body}>
+                  {body === "HOCK_INTERNATIONAL" ? "HOCK International" : body}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        ) : null}
+
+        {facets.categories.length > 1 ? (
+          <Select
+            value={selectedCategory}
+            onValueChange={(v) => setSelectedCategory(v === "all" ? "all" : (v as Category))}
+          >
+            <SelectTrigger className="w-[calc(50%-0.375rem)] bg-surface sm:w-[13rem]" aria-label="Filter by subject">
+              <SelectValue placeholder="Any subject" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Any subject</SelectItem>
+              {facets.categories.map((cat) => (
+                <SelectItem key={cat} value={cat}>
+                  {CATEGORY_LABELS[cat] ?? titleCase(cat)}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        ) : null}
+
+        {facets.levels.length > 1 ? (
+          <Select value={selectedLevel} onValueChange={setSelectedLevel}>
+            <SelectTrigger className="w-[calc(50%-0.375rem)] bg-surface sm:w-[11rem]" aria-label="Filter by level">
+              <SelectValue placeholder="Any level" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Any level</SelectItem>
+              {facets.levels.map((lvl) => (
+                <SelectItem key={lvl} value={lvl}>
+                  {LEVEL_LABELS[lvl]}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        ) : null}
 
         {/*
-          Delivery mode is a single-choice filter, so it is exposed as a radio
-          group rather than a row of buttons -- a screen reader otherwise gets
-          three unrelated buttons with no indication of which one is active.
+          Delivery mode is single-choice, so it is a radio group rather than a
+          row of buttons -- a screen reader otherwise gets unrelated buttons
+          with no indication of which one is active.
         */}
-        <div
-          role="radiogroup"
-          aria-label="Delivery format"
-          className="flex flex-1 flex-wrap gap-2"
-        >
-          {[{ value: "all" as const, label: "All formats" }, ...deliveryModes].map((mode) => {
+        <div role="radiogroup" aria-label="Delivery format" className="flex flex-wrap gap-2">
+          {[{ value: "all" as const, label: "Any format" }, ...deliveryModes].map((mode) => {
             const active = selectedMode === mode.value
             return (
               <button
@@ -151,13 +212,13 @@ export function CourseFilters() {
                 type="button"
                 role="radio"
                 aria-checked={active}
-                onClick={() => handleModeChange(mode.value as DeliveryMode | "all")}
+                onClick={() => setSelectedMode(mode.value as DeliveryMode | "all")}
                 className={cn(
                   "rounded-full border px-4 py-2 text-xs font-medium transition-[background-color,border-color,color] duration-fast ease-out-expo",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2",
                   active
                     ? "border-navy-700 bg-navy-700 text-white shadow-sm"
-                    : "border-line-strong bg-surface-raised text-content hover:border-navy-400 hover:text-navy-700",
+                    : "border-line-strong bg-surface text-content hover:border-navy-400 hover:text-navy-700",
                 )}
               >
                 {mode.label}
@@ -171,7 +232,7 @@ export function CourseFilters() {
             variant="ghost"
             size="sm"
             onClick={clearFilters}
-            className="whitespace-nowrap text-content-muted hover:text-navy-700"
+            className="ml-auto whitespace-nowrap text-content-muted hover:text-navy-700"
           >
             <X className="h-3.5 w-3.5" />
             Clear all

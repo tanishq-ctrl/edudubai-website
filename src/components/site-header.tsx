@@ -22,15 +22,11 @@ type NavItem = {
 
 const navigation: NavItem[] = [
   { name: "Home", href: "/" },
-  {
-    name: "Certifications",
-    href: "/courses",
-    subItems: [
-      { name: "All Courses", href: "/courses", blurb: "The full catalogue" },
-      { name: "ACAMS", href: "/courses?body=ACAMS", blurb: "CAMS, CGSS, CAMS-Audit" },
-      { name: "GCI", href: "/courses?body=GCI", blurb: "Governance & compliance" },
-    ],
-  },
+  // No dropdown: its three entries were "all courses" plus two issuing-body
+  // filters, which is the catalogue's own job. The body filter now lives in the
+  // panel on /courses, where it composes with category, level and format
+  // instead of replacing whatever the visitor had already chosen.
+  { name: "Certifications", href: "/courses" },
   { name: "Corporate", href: "/corporate-training" },
   {
     name: "Company",
@@ -64,7 +60,9 @@ const navigation: NavItem[] = [
  */
 const OVERLAY_ROUTES = new Set([
   "/",
-  "/courses",
+  // NOT "/courses": the catalogue opens on its title on a light ground now, so
+  // the floating header would draw white nav on white. Course DETAIL pages keep
+  // their dark hero and are still covered by the startsWith check below.
   "/corporate-training",
   "/events",
   "/about",
