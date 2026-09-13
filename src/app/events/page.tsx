@@ -9,11 +9,16 @@ import { Calendar, Clock, MapPin, Users, ArrowRight, Video, ExternalLink, Bell, 
 import Image from "next/image"
 import Link from "next/link"
 import { getUpcomingEvents, CalendarEvent } from "@/lib/google-calendar"
+import { logger } from "@/lib/logger"
 
 export default function EventsPage() {
     const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
     const [events, setEvents] = useState<CalendarEvent[]>([])
     const [loading, setLoading] = useState(true)
+
+    const hasCountdown =
+        events.length > 0 &&
+        (timeLeft.days > 0 || timeLeft.hours > 0 || timeLeft.minutes > 0 || timeLeft.seconds > 0)
 
     useEffect(() => {
         async function loadEvents() {
@@ -21,7 +26,7 @@ export default function EventsPage() {
                 const fetchedEvents = await getUpcomingEvents()
                 setEvents(fetchedEvents)
             } catch (err) {
-                console.error("Failed to load events:", err)
+                logger.debug("Failed to load events:", err)
             } finally {
                 setLoading(false)
             }
@@ -30,8 +35,10 @@ export default function EventsPage() {
     }, [])
 
     useEffect(() => {
-        // Use the first event as the target for the countdown
-        const nextEvent = events.length > 0 ? new Date(events[0].startDateTime).getTime() : new Date("2026-02-15T10:00:00").getTime()
+        // Only count down to a real upcoming event. There used to be a hardcoded
+        // fallback date; once it passed, the page rendered a dead 00 00 00 00.
+        if (events.length === 0) return
+        const nextEvent = new Date(events[0].startDateTime).getTime()
 
         const interval = setInterval(() => {
             const now = new Date().getTime()
@@ -56,111 +63,100 @@ export default function EventsPage() {
 
     return (
         <div className="min-h-screen bg-surface">
-            {/* Hero Section with Countdown */}
-            <section className="relative overflow-hidden bg-navy-900 py-24 lg:py-32">
-                <div className="absolute inset-0 z-0">
-                    <div className="absolute inset-0 bg-gradient-to-r from-navy-900 via-navy-800/95 to-transparent z-10" />
-                    <Image
-                        src="https://images.unsplash.com/photo-1540317580384-e5d43616b9aa?auto=format&fit=crop&q=80&w=2000"
-                        alt="Background"
-                        fill
-                        className="object-cover opacity-30"
-                    />
+            {/*
+               Midnight band rather than a remote photograph. The backdrop was a
+               hardcoded images.unsplash.com URL, which is both an external
+               dependency on every page load and a red-cast image on a navy and
+               gold site.
+            */}
+            <section className="relative isolate overflow-hidden bg-gradient-to-b from-navy-900 to-ink-975 py-section-sm text-white grain">
+                <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+                    <div className="absolute -left-40 -top-48 h-[42rem] w-[42rem] bloom-gold" />
+                    <div className="absolute -right-32 top-56 h-[46rem] w-[46rem] bloom-navy" />
                 </div>
 
-                <Container className="relative z-20 text-white">
-                    <div className="max-w-3xl space-y-8">
-                        <div>
-                            <Badge className="mb-4 bg-gold-400 text-navy-700 hover:bg-gold-300 px-4 py-1 text-xs font-semibold uppercase tracking-widest">
-                                Global Signature Event
-                            </Badge>
-                            <h1 className="text-5xl lg:text-7xl font-semibold tracking-tight leading-tight uppercase">
-                                The Masterclass <br />
-                                <span className="text-gold-ink">Series 2026</span>
-                            </h1>
-                            <p className="mt-6 text-xl text-white/70 max-w-xl font-medium leading-relaxed">
-                                Join the world&apos;s leading compliance specialists for a series of exclusive, free webinars on financial crime, regulatory news, and tech innovation.
-                            </p>
-                        </div>
+                <Container className="relative z-20">
+                    <div className="max-w-measure-lg">
+                        <h1 className="text-4xl font-semibold leading-[1.06] tracking-tight sm:text-5xl lg:text-[3.25rem]">
+                            The masterclass series{" "}
+                            <span className="text-gold-400">2026</span>
+                        </h1>
+                        <p className="mt-6 max-w-measure text-lg leading-relaxed text-content-on-dark-muted">
+                            Free live sessions with practising compliance specialists on financial
+                            crime, regulatory change and supervisory expectations.
+                        </p>
 
-                        {/* Countdown Grid */}
-                        <div className="flex flex-wrap gap-4 pt-4">
-                            {[
-                                { label: "Days", value: timeLeft.days },
-                                { label: "Hours", value: timeLeft.hours },
-                                { label: "Mins", value: timeLeft.minutes },
-                                { label: "Secs", value: timeLeft.seconds },
-                            ].map((unit, i) => (
-                                <div key={i} className="bg-white/15 border border-white/20 rounded-lg p-6 min-w-[100px] text-center transition-all hover:bg-white/20">
-                                    <div className="text-4xl font-semibold text-gold-ink">{unit.value.toString().padStart(2, '0')}</div>
-                                    <div className="text-2xs uppercase font-bold tracking-widest text-white/50">{unit.label}</div>
-                                </div>
-                            ))}
-                        </div>
+                        {/*
+                           The countdown only renders while there is something to
+                           count down to. It used to fall back to a hardcoded date
+                           that has since passed, so the page shipped a dead timer
+                           reading 00 00 00 00.
+                        */}
+                        {hasCountdown ? (
+                            <dl className="mt-9 flex flex-wrap gap-3">
+                                {[
+                                    { label: "Days", value: timeLeft.days },
+                                    { label: "Hours", value: timeLeft.hours },
+                                    { label: "Minutes", value: timeLeft.minutes },
+                                    { label: "Seconds", value: timeLeft.seconds },
+                                ].map((unit) => (
+                                    <div
+                                        key={unit.label}
+                                        className="panel-dark min-w-[5.5rem] rounded-lg px-5 py-4 text-center"
+                                    >
+                                        <dd className="tabular font-display text-3xl font-semibold text-white">
+                                            {unit.value.toString().padStart(2, "0")}
+                                        </dd>
+                                        <dt className="mt-1 text-2xs uppercase tracking-[0.18em] text-white/60">
+                                            {unit.label}
+                                        </dt>
+                                    </div>
+                                ))}
+                            </dl>
+                        ) : null}
 
-                        <div className="flex flex-wrap gap-4 pt-4">
-                            <Button
-                                size="lg"
-                                className="h-16 px-10 bg-gold-400 text-navy-700 hover:bg-gold-300 font-semibold text-lg rounded-lg shadow-xl transition-all hover:scale-105 active:scale-95"
-                                asChild
-                            >
+                        <div className="mt-9 flex flex-wrap gap-3">
+                            <Button variant="gold" size="xl" asChild>
                                 <Link href={events.length > 0 ? events[0].registrationUrl : "#events-grid"}>
-                                    Join Next Masterclass <ArrowRight className="ml-2 h-5 w-5" />
+                                    {events.length > 0 ? "Register for the next session" : "See the schedule"}
+                                    <ArrowRight className="h-4 w-4" />
                                 </Link>
                             </Button>
                             <Button
-                                variant="outline"
-                                size="lg"
-                                onClick={() => document.getElementById('newsletter-section')?.scrollIntoView({ behavior: 'smooth' })}
-                                className="h-16 px-10 border-white/30 text-white hover:bg-white/10 font-semibold text-lg rounded-lg transition-all hover:border-white/60 active:scale-95"
+                                variant="outline-light"
+                                size="xl"
+                                onClick={() => document.getElementById("newsletter-section")?.scrollIntoView({ behavior: "smooth" })}
                             >
-                                Subscribe to Alerts <Bell className="ml-2 h-5 w-5" />
+                                <Bell className="h-4 w-4" />
+                                Get session alerts
                             </Button>
                         </div>
                     </div>
                 </Container>
             </section>
 
-            {/* LinkedIn Live Sync Badge */}
-            <div className="bg-navy-900/5 border-y border-line py-4">
-                <Container>
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                        <div className="flex items-center gap-4">
-                            <div className="h-10 w-10 rounded-xl bg-white flex items-center justify-center p-2 shadow-sm">
-                                <svg viewBox="0 0 24 24" className="h-6 w-6 text-[#0077b5] fill-current">
-                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                                </svg>
-                            </div>
-                            <p className="text-sm font-bold text-navy-700">
-                                <span className="text-gold-ink uppercase tracking-wider">Live Bridge Active</span> • Your specialist calendar is now synced with Google & LinkedIn.
-                            </p>
-                        </div>
-                        <Button variant="link" className="text-navy-700 font-semibold text-xs uppercase tracking-widest p-0 h-auto underline decoration-2 underline-offset-4" asChild>
-                            <Link href="https://linkedin.com/company/edudubai" target="_blank">Follow on LinkedIn</Link>
-                        </Button>
-                    </div>
-                </Container>
-            </div>
-
             {/* Events Grid */}
-            <section id="events-grid" className="py-24 lg:py-32">
+            <section id="events-grid" className="py-section-sm">
                 <Container>
                     <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
                         <div className="max-w-2xl space-y-4 text-left">
-                            <h2 className="text-4xl font-semibold text-navy-700 tracking-tight uppercase">Upcoming <span className="text-gold-ink">Engagements</span></h2>
-                            <p className="text-content-muted font-medium italic">Automatically updated from your specialist calendar.</p>
+                            <h2 className="text-3xl tracking-tight sm:text-4xl">Upcoming sessions</h2>
+                            <p className="text-[17px] leading-relaxed text-content-muted">Published from the EduDubai training calendar.</p>
                         </div>
                     </div>
 
                     {loading ? (
-                        <div className="flex flex-col items-center justify-center py-24 space-y-4">
+                        <div className="flex flex-col items-center justify-center gap-4 py-24">
                             <Loader2 className="h-12 w-12 animate-spin text-gold-mark" />
-                            <p className="text-navy-700 font-semibold uppercase tracking-widest text-sm">Syncing with Google Calendar...</p>
+                            <p className="text-[17px] text-content-muted">Loading the schedule…</p>
                         </div>
                     ) : events.length > 0 ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {events.map((event) => (
-                                <Card key={event.id} className="group border-0 bg-white shadow-[0_32px_64px_-16px_rgba(0,0,0,0.06)] rounded-[2.5rem] overflow-hidden transition-all hover:scale-[1.02] hover:shadow-[0_48px_80px_-24px_rgba(0,0,0,0.12)] border-b-4 border-b-transparent hover:border-b-brand-gold">
+                                <Card
+                                    key={event.id}
+                                    className="group h-full overflow-hidden rounded-lg border border-line bg-surface-raised shadow-sm transition-all duration-slow ease-out-expo hover:-translate-y-1.5 hover:border-gold-400/55 hover:shadow-lg"
+                                >
                                     <CardHeader className="p-0 relative h-64">
                                         <Image
                                             src={event.image}
@@ -175,7 +171,7 @@ export default function EventsPage() {
                                         </div>
                                     </CardHeader>
                                     <CardContent className="p-8 space-y-6">
-                                        <div className="flex items-center gap-4 text-content-muted text-xs font-bold uppercase tracking-widest">
+                                        <div className="flex items-center gap-4 text-content-muted text-xs font-medium">
                                             <div className="flex items-center gap-2 bg-surface-sunken px-3 py-1.5 rounded-lg border border-line">
                                                 <Calendar className="h-3.5 w-3.5 text-gold-mark" />
                                                 {event.date}
@@ -186,7 +182,7 @@ export default function EventsPage() {
                                             </div>
                                         </div>
 
-                                        <h3 className="text-2xl font-semibold text-navy-700 leading-tight tracking-tight min-h-[3.5rem] group-hover:text-gold-ink transition-colors line-clamp-3 uppercase">
+                                        <h3 className="text-xl leading-snug tracking-tight min-h-[3.5rem] group-hover:text-gold-ink transition-colors line-clamp-3">
                                             {event.title}
                                         </h3>
 
@@ -195,7 +191,7 @@ export default function EventsPage() {
                                                 <Users className="h-6 w-6 text-navy-700/40" />
                                             </div>
                                             <div>
-                                                <div className="text-xs font-semibold uppercase text-navy-700">{event.speaker}</div>
+                                                <div className="text-sm font-semibold text-navy-700">{event.speaker}</div>
                                                 <div className="text-2xs font-bold text-content-muted">{event.speakerRole}</div>
                                             </div>
                                         </div>
@@ -211,13 +207,18 @@ export default function EventsPage() {
                             ))}
                         </div>
                     ) : (
-                        <div className="text-center py-32 bg-surface-sunken rounded-[3rem] border-2 border-dashed border-line">
+                        <div className="rounded-xl border border-line bg-surface-sunken px-8 py-20 text-center">
                             <div className="max-w-md mx-auto space-y-4">
                                 <Calendar className="h-16 w-16 text-neutral-border mx-auto" />
-                                <h3 className="text-2xl font-semibold text-navy-700 uppercase tracking-tight">New Masterclasses Loading</h3>
-                                <p className="text-content-muted font-medium">We are currently curating the next set of specialist webinars. Subscribe below to be the first to know.</p>
-                                <Button className="bg-gold-400 text-navy-700 hover:bg-gold-300 font-semibold px-8 py-6 rounded-lg shadow-lg mt-4">
-                                    Notify Available Slots
+                                <h3 className="text-2xl tracking-tight">No sessions scheduled yet</h3>
+                                <p className="text-[17px] leading-relaxed text-content-muted">The next set of sessions is being scheduled. Subscribe below and we will send the dates as soon as they are published.</p>
+                                <Button
+                                    variant="gold"
+                                    size="lg"
+                                    className="mt-4"
+                                    onClick={() => document.getElementById("newsletter-section")?.scrollIntoView({ behavior: "smooth" })}
+                                >
+                                    Subscribe for dates
                                 </Button>
                             </div>
                         </div>
@@ -226,19 +227,18 @@ export default function EventsPage() {
             </section>
 
             {/* Newsletter/Alerts Section */}
-            <section id="newsletter-section" className="py-24 lg:py-32 bg-navy-900 relative overflow-hidden">
+            <section id="newsletter-section" className="relative isolate overflow-hidden bg-ink-950 py-section-sm grain">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] orb [--orb:rgb(var(--gold-400)/0.1)] -mr-64 -mt-64" />
                 <div className="absolute bottom-0 left-0 w-[400px] h-[400px] orb [--orb:rgb(var(--navy-600)/0.2)] -ml-32 -mb-32" />
 
                 <Container>
                     <div className="max-w-4xl mx-auto text-center space-y-12 relative z-10">
                         <div className="space-y-4">
-                            <h2 className="text-4xl lg:text-6xl font-semibold text-white tracking-tight leading-none uppercase">
-                                Never Miss a <br />
-                                <span className="text-gold-ink">Global Session</span>
+                            <h2 className="text-3xl tracking-tight text-white sm:text-4xl">
+                                Session alerts
                             </h2>
-                            <p className="text-white/60 text-xl font-medium max-w-2xl mx-auto leading-relaxed">
-                                Subscribe to our specialist alert system to receive calendar invites and background materials 24 hours before we go live.
+                            <p className="mx-auto max-w-measure text-lg leading-relaxed text-content-on-dark-muted">
+                                Receive the calendar invitation and background material the day before each session.
                             </p>
                         </div>
 

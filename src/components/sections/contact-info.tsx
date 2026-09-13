@@ -1,7 +1,6 @@
 import { Clock, Mail, MessageCircle, Phone } from "lucide-react"
 
 import { WhatsAppButton } from "@/components/whatsapp-button"
-import { Eyebrow } from "@/components/section"
 import { Reveal } from "@/components/motion"
 
 const phones = [
@@ -20,7 +19,7 @@ export function ContactInfo() {
     <div className="flex flex-col gap-5">
       <Reveal variant="up">
         <div className="rounded-lg border border-line bg-surface-raised p-7 shadow-sm">
-          <Eyebrow>Contact details</Eyebrow>
+          <h2 className="text-xl tracking-tight">Contact details</h2>
 
           <ul className="mt-7 flex flex-col gap-7">
             <li className="flex items-start gap-4">
@@ -94,10 +93,10 @@ export function ContactInfo() {
         <div className="relative overflow-hidden rounded-lg bg-ink-950 p-7 text-white grain">
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gold-400/12 blur-3xl"
+            className="orb [--orb:rgb(var(--gold-400)/0.18)] pointer-events-none absolute -right-16 -top-16 h-48 w-48"
           />
-          <Eyebrow>Quick connect</Eyebrow>
-          <p className="mt-4 text-sm leading-relaxed text-white/70">
+          <h2 className="text-xl tracking-tight text-white">Speak to an advisor now</h2>
+          <p className="mt-4 text-[15px] leading-relaxed text-white/70">
             Speak with an advisor directly for immediate assistance with programme selection.
           </p>
           <WhatsAppButton source="contact_page" variant="outline-light" className="mt-6 w-full">
@@ -108,7 +107,7 @@ export function ContactInfo() {
 
       <Reveal variant="up" delay={200}>
         <div className="rounded-lg border border-line bg-surface-raised p-7 shadow-sm">
-          <Eyebrow>Response time</Eyebrow>
+          <h2 className="text-xl tracking-tight">Response times</h2>
           <dl className="mt-6 flex flex-col gap-3.5">
             {responseTimes.map((item) => (
               <div

@@ -35,7 +35,7 @@ export default function NewsPage() {
     <>
       <NewsHero />
 
-      <Section tone="sunken" size="md">
+      <Section tone="sunken" size="sm">
         <h2 className="sr-only">Latest stories</h2>
 
         {articles.length === 0 ? (

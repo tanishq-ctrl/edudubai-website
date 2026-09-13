@@ -19,7 +19,7 @@ export async function getUpcomingEvents(): Promise<CalendarEvent[]> {
     const apiKey = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
     if (!calendarId || !apiKey) {
-        console.error("Missing Google Calendar configuration");
+        logger.debug("Google Calendar is not configured; events list will be empty.");
         return [];
     }
 
@@ -31,7 +31,7 @@ export async function getUpcomingEvents(): Promise<CalendarEvent[]> {
         const data = await response.json();
 
         if (data.error) {
-            console.error("Google Calendar API Error:", data.error.message);
+            logger.debug("Google Calendar API error:", data.error.message);
             return [];
         }
 
@@ -78,7 +78,7 @@ export async function getUpcomingEvents(): Promise<CalendarEvent[]> {
                 };
             });
     } catch (error) {
-        console.error("Error fetching Google Calendar events:", error);
+        logger.debug("Failed to fetch Google Calendar events:", error);
         return [];
     }
 }

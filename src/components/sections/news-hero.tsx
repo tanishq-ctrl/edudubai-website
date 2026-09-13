@@ -1,11 +1,8 @@
-import { PageHeroImage } from "@/components/sections/page-hero-image"
+import { PageHeader } from "@/components/sections/page-header"
 
 export function NewsHero() {
   return (
-    <PageHeroImage
-      image="/hero/corporate.jpg"
-      imageAlt="EduDubai news and announcements"
-      eyebrow="Newsroom"
+    <PageHeader
       title="News and announcements"
       description="Partnerships, accreditations and institutional updates from EduDubai."
     />

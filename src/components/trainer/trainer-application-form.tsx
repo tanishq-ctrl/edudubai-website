@@ -179,10 +179,10 @@ export function TrainerApplicationForm() {
     <Card className="border-0 shadow-2xl bg-white overflow-hidden">
       <div className="h-2 bg-gradient-to-r from-navy-900 via-brand-gold to-navy-900" />
       <CardHeader className="bg-surface/50 border-b p-8">
-        <CardTitle className="text-3xl font-bold text-navy-700">Join Our Expert Network</CardTitle>
+        <CardTitle className="text-3xl tracking-tight text-navy-700">Apply to teach</CardTitle>
         <CardDescription className="text-base text-content-muted mt-2">
-          Fill out the form below to start your journey as an EduDubai trainer.
-          The process takes less than 2 minutes.
+          Tell us about your role and your teaching experience. An advisor will respond
+          within one business day.
         </CardDescription>
       </CardHeader>
 
@@ -204,7 +204,7 @@ export function TrainerApplicationForm() {
             <div className="space-y-6">
               <h3 className="text-lg font-bold text-navy-700 flex items-center gap-2 border-b pb-2">
                 <User className="h-5 w-5 text-gold-mark" />
-                Personal Information
+                Your details
               </h3>
 
               <div className="space-y-2">
@@ -282,7 +282,7 @@ export function TrainerApplicationForm() {
             <div className="space-y-6">
               <h3 className="text-lg font-bold text-navy-700 flex items-center gap-2 border-b pb-2">
                 <Upload className="h-5 w-5 text-gold-mark" />
-                Experience & Media
+                Experience and media
               </h3>
 
               <div className="space-y-2">
@@ -380,15 +380,17 @@ export function TrainerApplicationForm() {
             <Button
               type="submit"
               disabled={loading || !turnstileToken}
-              className="w-full bg-gold-400 text-navy-700 hover:bg-gold-300 h-14 rounded-xl text-lg font-bold shadow-lg shadow-brand-gold/20 transition-all hover:scale-[1.01] active:scale-[0.99]"
+              variant="gold"
+              size="xl"
+              block
             >
               {loading ? (
                 <div className="flex items-center gap-2">
                   <Loader2 className="h-5 w-5 animate-spin" />
-                  Processing Application...
+                  Sending…
                 </div>
               ) : (
-                "Submit Application"
+                "Submit application"
               )}
             </Button>
           </div>

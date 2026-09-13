@@ -57,37 +57,44 @@ const whatWeLookFor = [
 export default function BecomeATrainerPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-neutral-bg to-white">
-      {/* Hero Section */}
-      <section
-        className="relative bg-navy-900 text-white pt-32 pb-16 md:pt-36 md:pb-24 bg-cover bg-center"
-        style={{
-          backgroundImage: 'url(/hero/trainer.jpg)',
-        }}
-      >
+      {/*
+         Midnight band, left aligned. This was centred copy over a full-bleed
+         bright photograph, which is the template /about was rebuilt away from,
+         and the text needed three separate drop-shadows to stay legible over
+         it. The subject chips carry the information the photograph did not.
+      */}
+      <section className="relative isolate overflow-hidden bg-gradient-to-b from-navy-900 to-ink-975 py-section-sm text-white grain">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute -left-40 -top-48 h-[42rem] w-[42rem] bloom-gold" />
+          <div className="absolute -right-32 top-56 h-[46rem] w-[46rem] bloom-navy" />
+        </div>
 
         <Container className="relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] mb-6">
-              Become a Trainer
+          <div className="max-w-measure-lg">
+            <h1 className="text-4xl font-semibold leading-[1.06] tracking-tight sm:text-5xl">
+              Join the faculty
             </h1>
-            <p className="text-lg md:text-xl lg:text-2xl text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)] mb-8 max-w-2xl mx-auto">
-              Join Edu Dubai today and leverage our global reach, attractive incentives, and the opportunity to make a significant impact in compliance training and consulting.
+            <p className="mt-6 max-w-measure text-lg leading-relaxed text-content-on-dark-muted">
+              EduDubai works with practising compliance professionals who teach from current
+              casework. If you hold a senior role in a regulated institution and have delivered
+              training before, we would like to hear from you.
             </p>
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
+
+            <ul className="mt-9 flex list-none flex-wrap gap-2">
               {qualificationAreas.map((area) => (
-                <span
+                <li
                   key={area}
-                  className="px-4 py-2 bg-white/15 rounded-full text-sm font-semibold border border-white/20"
+                  className="rounded-full border border-white/15 bg-white/[0.07] px-4 py-2 text-sm font-medium text-white/85"
                 >
                   {area}
-                </span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </Container>
       </section>
 
-      <Container className="py-12 md:py-20">
+      <Container className="py-section-sm">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Main Form Section */}
           <div className="lg:col-span-2 order-2 lg:order-1">
@@ -96,8 +103,8 @@ export default function BecomeATrainerPage() {
 
             {/* How It Works - Moved below form */}
             <section className="mt-20">
-              <h2 className="text-3xl font-bold text-navy-700 mb-8 text-center lg:text-left">
-                Our Evaluation Process
+              <h2 className="mb-8 text-3xl tracking-tight sm:text-4xl">
+                How applications are assessed
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {howItWorks.map((item, index) => (
@@ -106,7 +113,7 @@ export default function BecomeATrainerPage() {
                       <span className="text-lg font-bold text-gold-ink">{item.step}</span>
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-navy-700 mb-1">{item.title}</h3>
+                      <h3 className="mb-1 text-lg text-navy-700">{item.title}</h3>
                       <p className="text-sm text-content-muted">{item.description}</p>
                     </div>
                   </div>
@@ -124,7 +131,7 @@ export default function BecomeATrainerPage() {
                 <div className="bg-gradient-to-r from-navy-900 to-navy-900/90 p-5 text-white">
                   <div className="flex items-center gap-3">
                     <Award className="h-7 w-7 text-gold-mark" />
-                    <h3 className="text-2xl font-bold tracking-tight">Eligibility Criteria</h3>
+                    <h3 className="text-xl tracking-tight">Eligibility</h3>
                   </div>
                 </div>
                 <CardContent className="p-8 space-y-7">
