@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { ArrowUpRight } from "lucide-react"
 
 import { Section } from "@/components/section"
 import { Reveal } from "@/components/motion"
@@ -108,59 +109,64 @@ export function HomeObligations({ courses }: { courses: Course[] }) {
 
       <Reveal variant="fade" delay={160}>
         {/*
-           Two columns of four on desktop. Rows are independent, so the columns
-           do not need to align row-for-row -- but every row gets the same
-           internal register, which is what makes the index read as measured
-           rather than merely listed.
+           Same card material as the catalogue, adapted to a dark band: the
+           surface is `.panel-dark` rather than `bg-surface-raised`, and the
+           border lights to gold on hover exactly as `CourseCard` does. No
+           photograph, because this is an index rather than a second copy of
+           the catalogue grid.
+
+           The whole card is one link via a stretched overlay, not a nested
+           anchor plus a button. A card-inside-a-card link is invalid markup and
+           hands a screen reader two targets for one destination, so the arrow
+           is decorative and marked aria-hidden.
         */}
-        <ul className="mt-16 grid list-none gap-x-16 border-t border-white/12 lg:grid-cols-2">
+        <ul className="mt-14 grid list-none gap-4 lg:grid-cols-2">
           {rows.map((row, i) => (
-            <li key={row.courseId} className="border-b border-white/12">
-              <Link
-                href={`/courses/${row.course.slug}`}
-                className="group flex gap-6 py-7 outline-none transition-colors duration-slow ease-out-expo sm:gap-8"
+            <li key={row.courseId}>
+              <article
+                className={
+                  "panel-dark group relative flex h-full flex-col rounded-lg p-6 shadow-sm " +
+                  "transition-all duration-slow ease-out-expo hover:-translate-y-1.5 " +
+                  "hover:border-gold-400/55 hover:shadow-lg focus-within:border-gold-400 sm:p-7"
+                }
               >
-                <span
-                  aria-hidden="true"
-                  className="tabular pt-1 font-display text-sm font-semibold text-gold-400/85 transition-colors duration-slow ease-out-expo group-hover:text-gold-400"
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
+                <div className="flex items-start justify-between gap-4">
+                  <span
+                    aria-hidden="true"
+                    className="tabular font-display text-sm font-semibold text-gold-400/85 transition-colors duration-slow ease-out-expo group-hover:text-gold-400"
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
 
-                <span className="min-w-0 flex-1">
-                  <span className="block font-display text-xl font-semibold leading-snug tracking-tight text-white [text-wrap:balance]">
+                  <span
+                    aria-hidden="true"
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/15 text-white/60 transition-all duration-slow ease-out-expo group-hover:border-gold-400 group-hover:bg-gold-400 group-hover:text-navy-900"
+                  >
+                    <ArrowUpRight className="h-4 w-4" />
+                  </span>
+                </div>
+
+                <h3 className="mt-5 font-display text-xl font-semibold leading-snug tracking-tight text-white [text-wrap:balance]">
+                  <Link href={`/courses/${row.course.slug}`} className="after:absolute after:inset-0">
                     {row.obligation}
-                  </span>
+                  </Link>
+                </h3>
 
-                  <span className="mt-2 block text-[15px] leading-relaxed text-white/50">
-                    {row.detail}
-                  </span>
+                <p className="mt-3 text-[15px] leading-relaxed text-white/55">{row.detail}</p>
 
-                  {/*
-                     The signature moment: the register fills in. The rule grows
-                     from the ordinal toward full measure and the programme name
-                     lifts from muted to full contrast -- one gesture, not a
-                     colour swap on every element.
-                  */}
-                  <span className="mt-5 flex items-center gap-4">
-                    <span
-                      aria-hidden="true"
-                      className="h-px w-6 shrink-0 bg-gold-400/40 transition-all duration-slow ease-out-expo group-hover:w-12 group-hover:bg-gold-400"
-                    />
-                    <span className="text-sm font-medium text-white/65 transition-colors duration-slow ease-out-expo group-hover:text-white">
-                      {row.course.title}
-                    </span>
-                  </span>
-
-                  <span className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-white/60">
+                <div className="mt-auto border-t border-white/10 pt-5">
+                  <p className="text-sm font-medium text-white/70 transition-colors duration-slow ease-out-expo group-hover:text-white">
+                    {row.course.title}
+                  </p>
+                  <p className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-white/60">
                     <span>{row.course.issuingBody?.replace(/_/g, " ")}</span>
                     <span aria-hidden="true">·</span>
                     <span className="tabular">{row.course.duration} hrs</span>
                     <span aria-hidden="true">·</span>
                     <span>{levelLabel[row.course.level]}</span>
-                  </span>
-                </span>
-              </Link>
+                  </p>
+                </div>
+              </article>
             </li>
           ))}
         </ul>
