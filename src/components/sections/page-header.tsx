@@ -29,18 +29,38 @@ export function PageHeader({
   children?: React.ReactNode
 }) {
   return (
-    <section className="relative isolate overflow-hidden bg-ink-950 py-section-sm text-content-on-dark grain">
+    <section
+      className="relative isolate overflow-hidden bg-ink-950 text-content-on-dark grain"
+      /* Height-aware, not a fixed 96px block: on a short window the old
+         padding made a two-line page head fill the screen on its own, so the
+         newsroom opened on a title and nothing to read. */
+      style={{
+        /* `main` carries no offset and the site header is fixed, so the band
+           pays for the header itself. */
+        paddingTop: "calc(var(--header-h) + clamp(2rem, 0.9rem + 4svh, 4.5rem))",
+        paddingBottom: "clamp(2rem, 0.9rem + 4svh, 4.5rem)",
+      }}
+    >
       <Container className="relative z-10">
         <div className="max-w-measure">
           <Reveal variant="up">
-            <h1 className="text-4xl font-semibold leading-[1.06] tracking-tight sm:text-5xl">
+            <h1
+              className="font-semibold leading-[1.06] tracking-tight"
+              style={{ fontSize: "clamp(1.9rem, 1rem + 2.2vw + 1.2svh, 3.25rem)" }}
+            >
               {title}
             </h1>
           </Reveal>
 
           {description ? (
             <Reveal variant="up" delay={80}>
-              <p className="mt-6 max-w-measure text-lg leading-relaxed text-content-on-dark-muted">
+              <p
+              className="max-w-measure leading-relaxed text-content-on-dark-muted"
+              style={{
+                marginTop: "clamp(0.75rem, 0.35rem + 1.4svh, 1.5rem)",
+                fontSize: "clamp(1rem, 0.94rem + 0.25vw + 0.2svh, 1.125rem)",
+              }}
+            >
                 {description}
               </p>
             </Reveal>

@@ -33,8 +33,17 @@ export default function CorporateTrainingPage() {
     <>
       <CorporateTrainingPageClient />
 
-      <CorporateHero />
-      <CorporateProof />
+      {/*
+         The hero and the proof rail are one field, so they share one viewport:
+         the pair claims 100svh and the hero absorbs the slack, which stops the
+         page opening on a dark band with an empty tail and a sliver of the
+         next section showing under it. Below 700px tall the rail simply runs
+         on past the fold rather than compressing further.
+      */}
+      <div className="flex min-h-[100svh] flex-col">
+        <CorporateHero className="flex-1" />
+        <CorporateProof />
+      </div>
       <CorporatePillars />
       <CorporateIndustries />
       <CorporateProcess />

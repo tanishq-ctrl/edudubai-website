@@ -193,7 +193,10 @@ export function HeroCarousel() {
         aria-roledescription="carousel"
         aria-label="EduDubai highlights"
         onKeyDown={onKeyDown}
-        className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-ink-950 text-content-on-dark"
+        className="relative isolate flex flex-col overflow-hidden bg-ink-950 text-content-on-dark"
+        /* Capped, not a bare 100svh: past ~820px the extra height is spent on
+           photograph, and the trust rail below is what proves the claim. */
+        style={{ minHeight: "min(100svh, max(34rem, 78svh + 6rem))" }}
       >
         {/* ---------------- Backplate ---------------- */}
         <div className="absolute inset-0 -z-20">
@@ -249,8 +252,15 @@ export function HeroCarousel() {
           className="relative z-10 flex flex-1 flex-col pt-header"
           style={{ paddingBottom: BLOCK_PAD }}
         >
+          {/*
+             Centred, not bottom-anchored. `justify-end` put every pixel of
+             slack above the headline, so on a tall window the slide opened on
+             half a screen of empty photograph before the first word. Centring
+             splits the slack, and the indicator row below still holds the
+             floor of the band.
+          */}
           <div
-            className="flex flex-1 flex-col justify-end"
+            className="flex flex-1 flex-col justify-center"
             style={{ paddingTop: BLOCK_PAD }}
           >
             {/*

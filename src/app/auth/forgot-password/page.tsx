@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label"
 import { createClient } from "@/lib/supabase/client"
 import { Loader2, AlertCircle, CheckCircle2, Mail, ArrowLeft, Send, Lock, ShieldCheck } from "lucide-react"
 import Link from "next/link"
+import { AuthShell } from "@/components/auth/auth-shell"
 
 type ViewState = "request" | "verify" | "reset" | "success"
 
@@ -102,28 +103,31 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-start justify-center bg-surface px-4 pt-32 pb-24">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl mb-3">
-            {view === "success" ? "Password Reset" : "Forgot Password"}
-          </h1>
-          <p className="text-content">
-            {view === "request" && "Enter your email to receive a reset code"}
-            {view === "verify" && "Enter the verification code we sent you"}
-            {view === "reset" && "Create a new password for your account"}
-            {view === "success" && "Your password has been updated"}
-          </p>
-        </div>
-
-        <div className="rounded-lg border border-line bg-surface-raised shadow-sm p-8">
+    <AuthShell
+      title={view === "success" ? "Password reset" : "Forgot your password"}
+      subtitle={
+        view === "request"
+          ? "Enter your email address and we will send you a reset code."
+          : view === "verify"
+            ? "Enter the verification code we sent you."
+            : view === "reset"
+              ? "Choose a new password for your account."
+              : "Your password has been updated."
+      }
+      footer={
+        <p className="text-center text-2xs text-content-subtle">
+          Need help? <Link href="/contact" className="underline underline-offset-2 hover:text-content">Contact our team</Link>.
+        </p>
+      }
+    >
+      <div>
           {view === "success" ? (
             <div className="space-y-6 text-center py-6">
               <div className="h-16 w-16 bg-green-50 rounded-full flex items-center justify-center mx-auto">
                 <CheckCircle2 className="h-8 w-8 text-green-600" />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-navy-700 mb-2">
+                <h2 className="mb-2 text-xl font-semibold text-content-strong">
                   Password Updated Successfully
                 </h2>
                 <p className="text-sm text-content">
@@ -134,7 +138,7 @@ export default function ForgotPasswordPage() {
           ) : (
             <div className="space-y-6">
               {error && (
-                <div className="p-4 border border-red-200 bg-red-50 text-red-700 rounded-xl flex gap-3 text-sm">
+                <div className="p-4 border border-red-200 bg-red-50 text-red-700 rounded-sm flex gap-3 text-sm">
                   <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
                   <span>{error}</span>
                 </div>
@@ -143,7 +147,7 @@ export default function ForgotPasswordPage() {
               {view === "request" && (
                 <form onSubmit={handleRequestReset} className="flex flex-col gap-5">
                   <div className="flex flex-col gap-2">
-                    <Label htmlFor="email" className="text-sm font-semibold text-navy-700">
+                    <Label htmlFor="email" >
                       Email Address
                     </Label>
                     <Input
@@ -154,13 +158,15 @@ export default function ForgotPasswordPage() {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       disabled={loading}
-                      className="h-11 "
+                      
                     />
                   </div>
 
                   <Button
                     type="submit"
-                    className="w-full w-full"
+                    variant="primary"
+                    size="lg"
+                    className="w-full"
                     disabled={loading}
                   >
                     {loading ? (
@@ -181,7 +187,7 @@ export default function ForgotPasswordPage() {
               {view === "verify" && (
                 <form onSubmit={handleVerifyOtp} className="flex flex-col gap-5">
                   <div className="flex flex-col gap-2">
-                    <Label htmlFor="otp" className="text-sm font-semibold text-navy-700">
+                    <Label htmlFor="otp" >
                       Verification Code
                     </Label>
                     <p className="text-xs text-content mb-2">
@@ -202,7 +208,9 @@ export default function ForgotPasswordPage() {
 
                   <Button
                     type="submit"
-                    className="w-full w-full"
+                    variant="primary"
+                    size="lg"
+                    className="w-full"
                     disabled={loading || otp.length !== 6}
                   >
                     {loading ? (
@@ -221,7 +229,7 @@ export default function ForgotPasswordPage() {
                   <button
                     type="button"
                     onClick={() => setView("request")}
-                    className="w-full text-sm text-content hover:text-navy-700 font-medium"
+                    className="w-full text-sm text-content hover:text-crimson-600 font-medium"
                   >
                     ← Back to email
                   </button>
@@ -231,7 +239,7 @@ export default function ForgotPasswordPage() {
               {view === "reset" && (
                 <form onSubmit={handleResetPassword} className="flex flex-col gap-5">
                   <div className="flex flex-col gap-2">
-                    <Label htmlFor="newPassword" className="text-sm font-semibold text-navy-700">
+                    <Label htmlFor="newPassword" >
                       New Password
                     </Label>
                     <Input
@@ -242,7 +250,7 @@ export default function ForgotPasswordPage() {
                       onChange={(e) => setNewPassword(e.target.value)}
                       required
                       disabled={loading}
-                      className="h-11 "
+                      
                     />
                     <p className="text-xs text-content-muted">
                       Password must be at least 6 characters
@@ -251,7 +259,9 @@ export default function ForgotPasswordPage() {
 
                   <Button
                     type="submit"
-                    className="w-full w-full"
+                    variant="primary"
+                    size="lg"
+                    className="w-full"
                     disabled={loading}
                   >
                     {loading ? (
@@ -272,7 +282,7 @@ export default function ForgotPasswordPage() {
               <div className="text-center pt-4 border-t border-line">
                 <Link
                   href="/auth/login"
-                  className="inline-flex items-center gap-2 text-sm text-content hover:text-navy-700 font-medium"
+                  className="inline-flex items-center gap-2 text-sm text-content hover:text-crimson-600 font-medium"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   Back to login
@@ -280,12 +290,7 @@ export default function ForgotPasswordPage() {
               </div>
             </div>
           )}
-        </div>
-
-        <p className="mt-6 text-center text-xs text-content-muted">
-          Need help? Contact our support team
-        </p>
       </div>
-    </div>
+    </AuthShell>
   )
 }

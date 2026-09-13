@@ -11,6 +11,14 @@ import { Reveal } from "@/components/motion"
  * The brand panel is hidden below `lg` rather than stacked: on a phone the
  * only thing that matters is the form, and pushing it below a decorative
  * panel would put the primary action off-screen on load.
+ *
+ * Two things were wrong here and both are fixed below. The shell claimed
+ * `min-h-screen` from the top of the document while the site header is fixed
+ * over it, so the panel's own wordmark rendered underneath the header and was
+ * clipped. And the panel still carried the two `orb` washes and the navy grid
+ * that were removed everywhere else in the re-theme, which is the surface
+ * that read as generated. The ground is now a flat ink field with one crimson
+ * hairline, and every measure is offset by `--header-h`.
  */
 export function AuthShell({
   title,
@@ -24,16 +32,19 @@ export function AuthShell({
   footer?: React.ReactNode
 }) {
   return (
-    <div className="grid min-h-screen lg:grid-cols-2">
+    <div
+      className="grid lg:grid-cols-2"
+      style={{ minHeight: "calc(100svh - var(--header-h))", marginTop: "var(--header-h)" }}
+    >
       {/* Brand panel */}
       <aside className="relative hidden overflow-hidden bg-ink-950 text-white grain lg:block">
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          <div className="absolute -right-24 -top-24 h-[30rem] w-[30rem] orb [--orb:rgb(var(--navy-700)/0.35)]" />
-          <div className="absolute -bottom-32 -left-24 h-96 w-96 orb [--orb:rgb(var(--gold-400)/0.1)]" />
-          <div className="absolute inset-0 bg-grid-navy bg-grid opacity-30" />
-        </div>
+        {/* The band ends on a rule, not a glow. */}
+        <div aria-hidden="true" className="absolute inset-y-0 right-0 w-px bg-crimson-600" />
 
-        <div className="relative z-10 flex h-full flex-col justify-between p-12 xl:p-16">
+        <div
+          className="relative z-10 flex h-full flex-col justify-between"
+          style={{ padding: "clamp(2rem, 0.5rem + 5svh, 4rem)" }}
+        >
           <Link href="/" aria-label="EduDubai home" className="inline-block">
             <div className="relative h-10 w-36">
               <Image
@@ -47,18 +58,21 @@ export function AuthShell({
           </Link>
 
           <div className="max-w-md">
-            <Quote aria-hidden="true" className="h-8 w-8 text-gold-400" />
-            <p className="mt-6 font-display text-2xl leading-snug text-white">
+            <Quote aria-hidden="true" className="h-7 w-7 text-crimson-300" />
+            <p
+              className="mt-5 font-display leading-snug text-white"
+              style={{ fontSize: "clamp(1.125rem, 0.9rem + 0.6vw + 0.4svh, 1.5rem)" }}
+            >
               Completing the CCM certification through EduDubai was a turning point. The
               instructors are clearly practitioners, not just lecturers, which makes the GCI
               curriculum much easier to grasp.
             </p>
-            <p className="mt-6 text-sm text-white/50">
+            <p className="mt-5 text-sm text-white/70">
               Priya Sharma · Risk &amp; Governance Manager
             </p>
           </div>
 
-          <dl className="flex gap-10">
+          <dl className="flex flex-wrap gap-x-10 gap-y-4">
             {[
               { v: "2,500+", l: "Professionals trained" },
               { v: "12+", l: "Jurisdictions" },
@@ -66,7 +80,7 @@ export function AuthShell({
             ].map((s) => (
               <div key={s.l}>
                 <dd className="font-display text-2xl text-white">{s.v}</dd>
-                <dt className="mt-1 text-2xs text-white/45">{s.l}</dt>
+                <dt className="mt-1 text-2xs text-white/70">{s.l}</dt>
               </div>
             ))}
           </dl>
@@ -74,7 +88,10 @@ export function AuthShell({
       </aside>
 
       {/* Form panel */}
-      <main className="flex items-center justify-center bg-surface px-gutter py-16 lg:py-20">
+      <main
+        className="flex items-center justify-center bg-surface px-gutter"
+        style={{ paddingBlock: "clamp(2rem, 0.5rem + 5svh, 4.5rem)" }}
+      >
         <Reveal variant="up" className="w-full max-w-[26rem]">
           <Link href="/" aria-label="EduDubai home" className="mb-10 inline-block lg:hidden">
             <div className="relative h-9 w-32">
@@ -90,7 +107,7 @@ export function AuthShell({
           </Link>
 
           <header className="mb-8">
-            <h1 className="text-3xl ">{title}</h1>
+            <h1 className="text-3xl tracking-tight">{title}</h1>
             {subtitle ? <p className="mt-3 text-content-muted">{subtitle}</p> : null}
           </header>
 

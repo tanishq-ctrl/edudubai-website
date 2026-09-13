@@ -159,7 +159,7 @@ function LoginForm() {
                 </Label>
                 <Link
                   href="/auth/forgot-password"
-                  className="text-xs font-medium text-navy-700 underline-offset-4 hover:underline"
+                  className="text-xs font-medium text-crimson-600 underline-offset-4 hover:underline"
                 >
                   Forgot password?
                 </Link>
@@ -177,7 +177,7 @@ function LoginForm() {
 
             <Button
               type="submit"
-              variant="gold"
+              variant="primary"
               size="lg"
               className="w-full"
               disabled={loading}
@@ -225,7 +225,7 @@ function LoginForm() {
             Don&apos;t have an account?{" "}
             <Link
               href={`/auth/register${searchParams.get("next") ? `?next=${encodeURIComponent(searchParams.get("next")!)}` : ""}`}
-              className="font-semibold text-navy-700 underline-offset-4 hover:underline"
+              className="font-semibold text-crimson-600 underline-offset-4 hover:underline"
             >
               Register now
             </Link>
@@ -239,7 +239,7 @@ export default function LoginPage() {
   return (
     <Suspense fallback={
       <div className="flex min-h-screen items-center justify-center bg-ink-950">
-        <Loader2 className="h-8 w-8 animate-spin text-gold-400" />
+        <Loader2 className="h-8 w-8 animate-spin text-crimson-300" />
       </div>
     }>
       <LoginForm />

@@ -81,8 +81,14 @@ export interface HeroShellProps {
   aside?: React.ReactNode
   tone?: HeroTone
   /**
-   * Fill the viewport below the fixed header. Uses svh, so "fill" never means
-   * "overflow". Set false for a compact page head.
+   * Claim the whole viewport below the fixed header.
+   *
+   * Off by default, and it should stay off for anything but a photographic
+   * hero. A band that claims 100svh while holding a title, a lead and two
+   * buttons spends the rest of that viewport on nothing -- /events was 748px
+   * tall with 439px of empty ground under the copy -- and it pushes the
+   * page's actual content off the screen, which is the opposite of what the
+   * height work was for.
    */
   fill?: boolean
   as?: React.ElementType
@@ -99,7 +105,7 @@ export function HeroShell({
   actions,
   aside,
   tone = "ink",
-  fill = true,
+  fill = false,
   as: Heading = "h1",
   id,
   className,
@@ -115,7 +121,12 @@ export function HeroShell({
         className,
       )}
       style={{
-        paddingBlock: PAD_BLOCK,
+        /* The site header is fixed, so the band has to carry its height as
+           padding or the first line of the hero renders underneath it. When
+           the band claimed 100svh this was masked by the slack; without it,
+           the eyebrow collided with the nav. */
+        paddingTop: `calc(var(--header-h) + ${PAD_BLOCK})`,
+        paddingBottom: PAD_BLOCK,
         /* Never a fixed min-height: at 620px tall this resolves to 620px
            minus the header, and the clamps above keep the content inside it. */
         minHeight: fill ? "calc(100svh - var(--header-h))" : undefined,

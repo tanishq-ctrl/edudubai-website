@@ -2,7 +2,8 @@
 
 import { useState, useEffect, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
-import { AuthCard } from "@/components/auth/auth-card"
+import Link from "next/link"
+import { AuthShell } from "@/components/auth/auth-shell"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -113,105 +114,72 @@ function ResetPasswordForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-surface-sunken relative overflow-hidden px-6 pt-20">
-      {/* Cinematic Elements */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] orb [--orb:rgb(var(--navy-700)/0.08)] -mr-32 -mt-32" />
-
-      <div className="w-full max-w-[600px] relative z-20">
-        <div className="overflow-hidden rounded-xl border-t-4 border-t-gold-400 bg-surface-raised shadow-xl">
-          <div className="flex flex-col md:flex-row h-full">
-            {/* Info Panel */}
-            <div className="hidden md:flex md:w-1/3 bg-brand-navy p-8 text-white flex-col justify-between relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-surface-raised/5 rounded-full blur-3xl -mr-16 -mt-16" />
-              <div className="space-y-6 relative z-10">
-                <h3 className="text-xl font-bold leading-tight">
-                  Security Credentials Update
-                </h3>
-                <ul className="space-y-4 text-xs text-white/60 font-medium">
-                  <li className="flex gap-2">✓ Multi-Factor Verification</li>
-                  <li className="flex gap-2">✓ Encrypted Key Rotation</li>
-                  <li className="flex gap-2">✓ Authorized Access Only</li>
-                </ul>
-              </div>
-              <div className="relative z-10 pt-12">
-                <div className="h-10 w-10 rounded-xl bg-surface-raised/5 border border-white/10 flex items-center justify-center">
-                  <Lock className="h-5 w-5 text-brand-gold" />
-                </div>
-              </div>
-            </div>
-
-            <div className="flex-1 p-8 md:p-12">
-              <div className="space-y-8">
-                <div>
-                  <span className="text-2xs font-black uppercase tracking-[0.2em] text-brand-gold block mb-2">
-                    Authorization Protocol
-                  </span>
-                  <h1 className="text-3xl font-black text-navy-700 tracking-tight leading-none uppercase">
-                    Update Password
-                  </h1>
-                </div>
-
-                {error && (
-                  <div className="p-4 border border-red-500/10 bg-red-50 text-red-700 rounded-xl flex gap-3 text-xs font-bold shadow-sm">
-                    <AlertCircle className="h-4 w-4 mt-0.5" />
-                    {error}
-                  </div>
-                )}
-
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="space-y-1">
-                    <Label className="text-2xs font-bold uppercase text-content-muted">New Password</Label>
-                    <Input
-                      id="password"
-                      type="password"
-                      placeholder="••••••••"
-                      autoComplete="new-password"
-                      value={formData.password}
-                      onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                      required
-                      disabled={loading}
-                      className="h-11 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold font-bold tracking-widest"
-                    />
-                    <p className="text-2xs text-content-muted/60 font-medium px-1">Must be at least 6 characters</p>
-                  </div>
-
-                  <div className="space-y-1">
-                    <Label className="text-2xs font-bold uppercase text-content-muted">Confirm Password</Label>
-                    <Input
-                      id="confirmPassword"
-                      type="password"
-                      placeholder="••••••••"
-                      autoComplete="new-password"
-                      value={formData.confirmPassword}
-                      onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                      required
-                      disabled={loading}
-                      className="h-11 bg-neutral-bg-subtle border-0 rounded-xl focus:ring-2 focus:ring-brand-gold font-bold tracking-widest"
-                    />
-                  </div>
-
-                  <Button
-                    type="submit"
-                    className="w-full bg-brand-navy hover:bg-brand-navy-dark text-white font-black py-7 text-base rounded-2xl shadow-xl transition-all hover:scale-[1.02] mt-4"
-                    disabled={loading}
-                  >
-                    {loading ? (
-                      <Loader2 className="h-5 w-5 animate-spin" />
-                    ) : (
-                      "Update Access Key"
-                    )}
-                  </Button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <p className="mt-8 text-center text-content-muted/30 text-2xs font-black uppercase tracking-[0.5em] italic">
-          Authorized Password Update Portal • EduDubai
+    <AuthShell
+      title="Choose a new password"
+      subtitle="Set a new password for your account. You will be signed in with it straight away."
+      footer={
+        <p className="text-center text-2xs text-content-subtle">
+          Remembered it?{" "}
+          <Link href="/auth/login" className="underline underline-offset-2 hover:text-content">
+            Back to sign in
+          </Link>
+          .
         </p>
+      }
+    >
+      <div>
+        {error && (
+          <Alert variant="destructive" className="mb-6">
+            <AlertCircle className="h-4 w-4" />
+            <AlertDescription className="text-sm">{error}</AlertDescription>
+          </Alert>
+        )}
+
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="password">New password</Label>
+            <Input
+              id="password"
+              type="password"
+              placeholder="At least six characters"
+              autoComplete="new-password"
+              value={formData.password}
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              required
+              disabled={loading}
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="confirmPassword">Confirm password</Label>
+            <Input
+              id="confirmPassword"
+              type="password"
+              placeholder="Re-enter your new password"
+              autoComplete="new-password"
+              value={formData.confirmPassword}
+              onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+              required
+              disabled={loading}
+            />
+          </div>
+
+          <Button type="submit" variant="primary" size="lg" className="w-full" disabled={loading}>
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Updating password...
+              </>
+            ) : (
+              <>
+                Update password
+                <Lock className="ml-2 h-4 w-4" />
+              </>
+            )}
+          </Button>
+        </form>
       </div>
-    </div>
+    </AuthShell>
   )
 }
 
@@ -219,7 +187,7 @@ export default function ResetPasswordPage() {
   return (
     <Suspense fallback={
       <div className="flex min-h-screen items-center justify-center bg-ink-950">
-        <Loader2 className="h-8 w-8 animate-spin text-gold-400" />
+        <Loader2 className="h-8 w-8 animate-spin text-crimson-300" />
       </div>
     }>
       <ResetPasswordForm />

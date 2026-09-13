@@ -11,6 +11,7 @@ import Link from "next/link"
 import { z } from "zod"
 import { createClient } from "@/lib/supabase/client"
 import { logger } from "@/lib/logger"
+import { AuthShell } from "@/components/auth/auth-shell"
 
 const registerSchema = z.object({
   fullName: z.string().min(2, "Full name must be at least 2 characters"),
@@ -177,220 +178,182 @@ function RegisterForm() {
   }
 
   return (
-    <div className="flex min-h-screen items-start justify-center bg-surface px-4 pt-32 pb-24">
-      <div className="w-full max-w-5xl">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl mb-3">
-            Create Account
-          </h1>
-          <p className="text-content">
-            Join Edu Dubai and start your learning journey
+    <AuthShell
+      title={showVerification ? "Verify your email" : "Create your account"}
+      subtitle={
+        showVerification
+          ? `We sent a six-digit code to ${formData.email}.`
+          : "Register to track your enrolments, course materials and certificates."
+      }
+      footer={
+        <p className="text-center text-2xs text-content-subtle">
+          By creating an account you agree to our{" "}
+          <Link href="/policies/terms" className="underline underline-offset-2 hover:text-content">
+            Terms of Service
+          </Link>{" "}
+          and{" "}
+          <Link href="/policies/privacy" className="underline underline-offset-2 hover:text-content">
+            Privacy Policy
+          </Link>
+          .
+        </p>
+      }
+    >
+      {error && (
+        <Alert variant="destructive" className="mb-6">
+          <AlertCircle className="h-4 w-4" />
+          <AlertDescription className="text-sm">{error}</AlertDescription>
+        </Alert>
+      )}
+
+      {showVerification ? (
+        <form onSubmit={handleVerify} className="flex flex-col gap-5">
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="code">Verification code</Label>
+            <Input
+              id="code"
+              type="text"
+              inputMode="numeric"
+              autoComplete="one-time-code"
+              placeholder="000000"
+              maxLength={6}
+              className="h-14 text-center text-2xl font-semibold tracking-[0.4em]"
+              value={verificationCode}
+              onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, ""))}
+              required
+              disabled={verifying}
+            />
+          </div>
+
+          <Button type="submit" variant="primary" size="lg" className="w-full" disabled={verifying || verificationCode.length !== 6}>
+            {verifying ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Verifying...
+              </>
+            ) : (
+              "Complete registration"
+            )}
+          </Button>
+
+          <button
+            type="button"
+            className="text-sm font-medium text-content-muted underline-offset-4 hover:text-content hover:underline"
+            onClick={() => setShowVerification(false)}
+          >
+            Back to registration
+          </button>
+        </form>
+      ) : (
+        <div>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="fullName">Full name</Label>
+              <Input
+                id="fullName"
+                placeholder="Your full name"
+                autoComplete="name"
+                value={formData.fullName}
+                onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                required
+                disabled={loading}
+              />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="email">Email address</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="you@company.com"
+                autoComplete="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                required
+                disabled={loading}
+              />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="password">Password</Label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="At least six characters"
+                autoComplete="new-password"
+                value={formData.password}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                required
+                disabled={loading}
+              />
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="confirmPassword">Confirm password</Label>
+              <Input
+                id="confirmPassword"
+                type="password"
+                placeholder="Re-enter your password"
+                autoComplete="new-password"
+                value={formData.confirmPassword}
+                onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                required
+                disabled={loading}
+              />
+            </div>
+
+            <Button type="submit" variant="primary" size="lg" className="w-full" disabled={loading}>
+              {loading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Creating account...
+                </>
+              ) : (
+                <>
+                  Create account
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </>
+              )}
+            </Button>
+          </form>
+
+          <div className="relative my-6">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-line" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="bg-surface px-4 text-content-muted">Or continue with</span>
+            </div>
+          </div>
+
+          <Button
+            type="button"
+            variant="outline"
+            onClick={handleGoogleSignUp}
+            disabled={loading || googleLoading}
+            size="lg"
+            className="w-full"
+          >
+            {googleLoading ? (
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            ) : (
+              <Chrome className="mr-2 h-4 w-4" />
+            )}
+            Continue with Google
+          </Button>
+
+          <p className="mt-8 text-center text-sm text-content-muted">
+            Already have an account?{" "}
+            <Link
+              href={`/auth/login${searchParams.get("next") ? `?next=${encodeURIComponent(searchParams.get("next")!)}` : ""}`}
+              className="font-semibold text-crimson-600 underline-offset-4 hover:underline"
+            >
+              Sign in
+            </Link>
           </p>
         </div>
-
-        <div className="rounded-lg border border-line bg-surface-raised shadow-sm p-8 md:p-12">
-          {showVerification ? (
-            <div className="max-w-md mx-auto space-y-6 text-center">
-              <div>
-                <h2 className="text-2xl font-bold text-navy-700 mb-2">
-                  Verify Your Email
-                </h2>
-                <p className="text-sm text-content">
-                  We&apos;ve sent a verification code to <br />
-                  <span className="font-semibold">{formData.email}</span>
-                </p>
-              </div>
-
-              {error && (
-                <Alert className="border-red-200 bg-red-50">
-                  <AlertCircle className="h-4 w-4" />
-                  <AlertDescription className="text-sm">
-                    {error}
-                  </AlertDescription>
-                </Alert>
-              )}
-
-              <form onSubmit={handleVerify} className="flex flex-col gap-5">
-                <Input
-                  id="code"
-                  type="text"
-                  placeholder="Enter 6-digit code"
-                  maxLength={6}
-                  className="h-14 text-center text-2xl tracking-widest font-semibold"
-                  value={verificationCode}
-                  onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, ""))}
-                  required
-                  disabled={verifying}
-                />
-
-                <Button
-                  type="submit"
-                  className="w-full w-full"
-                  disabled={verifying || verificationCode.length !== 6}
-                >
-                  {verifying ? (
-                    <>
-                      <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                      Verifying...
-                    </>
-                  ) : (
-                    "Complete Registration"
-                  )}
-                </Button>
-
-                <button
-                  type="button"
-                  className="w-full text-sm text-content hover:text-navy-700 font-medium"
-                  onClick={() => setShowVerification(false)}
-                >
-                  ← Back to registration
-                </button>
-              </form>
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-2 gap-12">
-              {/* Left Column - Form Fields */}
-              <div>
-                {error && (
-                  <Alert variant="destructive" className="mb-6">
-                    <AlertCircle className="h-4 w-4" />
-                    <AlertDescription className="text-sm">
-                      {error}
-                    </AlertDescription>
-                  </Alert>
-                )}
-
-                <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                  <div className="flex flex-col gap-2">
-                    <Label htmlFor="fullName" className="text-sm font-semibold text-navy-700">
-                      Full Name
-                    </Label>
-                    <Input
-                      id="fullName"
-                      placeholder="John Doe"
-                      value={formData.fullName}
-                      onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      required
-                      disabled={loading}
-                      className="h-11 "
-                    />
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    <Label htmlFor="email" className="text-sm font-semibold text-navy-700">
-                      Email Address
-                    </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="you@company.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      required
-                      disabled={loading}
-                      className="h-11 "
-                    />
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    <Label htmlFor="password" className="text-sm font-semibold text-navy-700">
-                      Password
-                    </Label>
-                    <Input
-                      id="password"
-                      type="password"
-                      placeholder="Create a strong password"
-                      value={formData.password}
-                      onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                      required
-                      disabled={loading}
-                      className="h-11 "
-                    />
-                  </div>
-
-                  <div className="flex flex-col gap-2">
-                    <Label htmlFor="confirmPassword" className="text-sm font-semibold text-navy-700">
-                      Confirm Password
-                    </Label>
-                    <Input
-                      id="confirmPassword"
-                      type="password"
-                      placeholder="Re-enter your password"
-                      value={formData.confirmPassword}
-                      onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                      required
-                      disabled={loading}
-                      className="h-11 "
-                    />
-                  </div>
-
-                  <Button
-                    type="submit"
-                    className="w-full w-full"
-                    disabled={loading}
-                  >
-                    {loading ? (
-                      <>
-                        <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                        Creating account...
-                      </>
-                    ) : (
-                      <>
-                        Create Account
-                        <ArrowRight className="h-4 w-4 ml-2" />
-                      </>
-                    )}
-                  </Button>
-                </form>
-              </div>
-
-              {/* Right Column - Google Sign In & Account Link */}
-              <div className="flex flex-col justify-center space-y-6">
-                <div className="text-center md:text-left">
-                  <h3 className="text-lg font-semibold text-navy-700 mb-2">
-                    Quick Registration
-                  </h3>
-                  <p className="text-sm text-content mb-6">
-                    Sign up instantly with your Google account
-                  </p>
-
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={handleGoogleSignUp}
-                    disabled={loading || googleLoading}
-                    className="w-full h-12 border-line hover:bg-neutral-bg text-base"
-                  >
-                    {googleLoading ? (
-                      <Loader2 className="h-5 w-5 animate-spin mr-2" />
-                    ) : (
-                      <Chrome className="h-5 w-5 mr-2 text-red-500" />
-                    )}
-                    Continue with Google
-                  </Button>
-                </div>
-
-                <div className="border-t border-line pt-6">
-                  <p className="text-sm text-content text-center md:text-left">
-                    Already have an account?{" "}
-                    <Link
-                      href={`/auth/login${searchParams.get("next") ? `?next=${encodeURIComponent(searchParams.get("next")!)}` : ""}`}
-                      className="text-navy-700 font-semibold hover:text-navy-700/80"
-                    >
-                      Sign in here
-                    </Link>
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-
-        <p className="mt-6 text-center text-xs text-content-muted">
-          By creating an account, you agree to our Terms of Service and Privacy Policy
-        </p>
-      </div>
-    </div>
+      )}
+    </AuthShell>
   )
 }
 
@@ -398,7 +361,7 @@ export default function RegisterPage() {
   return (
     <Suspense fallback={
       <div className="flex min-h-screen items-center justify-center bg-ink-950">
-        <Loader2 className="h-8 w-8 animate-spin text-gold-400" />
+        <Loader2 className="h-8 w-8 animate-spin text-crimson-300" />
       </div>
     }>
       <RegisterForm />

@@ -44,10 +44,10 @@ const COL_GAP = "clamp(1.75rem, 0.6rem + 3.5svh, 3.5rem)"
 const STACK_GAP = "clamp(0.9rem, 0.4rem + 1.7svh, 1.9rem)"
 const TITLE_SIZE = "clamp(2rem, 1rem + 2.4vw + 1.2svh, 3.5rem)"
 
-export function CorporateHero() {
+export function CorporateHero({ className }: { className?: string }) {
   return (
     <section
-      className="relative isolate overflow-hidden bg-ink-950 text-content-on-dark grain"
+      className={`relative isolate flex flex-col justify-center overflow-hidden bg-ink-950 text-content-on-dark grain ${className ?? ""}`}
       style={{
         paddingTop: PAD_TOP,
         paddingBottom: PAD_BOTTOM,
