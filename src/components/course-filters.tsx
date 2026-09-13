@@ -95,7 +95,10 @@ export function CourseFilters() {
         />
         <Input
           id="course-search"
+          name="q"
           type="search"
+          autoComplete="off"
+          spellCheck={false}
           placeholder="Search by title, topic or keyword…"
           value={searchQuery}
           onChange={(e) => handleSearchChange(e.target.value)}
@@ -150,7 +153,7 @@ export function CourseFilters() {
                 aria-checked={active}
                 onClick={() => handleModeChange(mode.value as DeliveryMode | "all")}
                 className={cn(
-                  "rounded-full border px-4 py-2 text-xs font-medium transition-all duration-fast ease-out-expo",
+                  "rounded-full border px-4 py-2 text-xs font-medium transition-[background-color,border-color,color] duration-fast ease-out-expo",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2",
                   active
                     ? "border-navy-700 bg-navy-700 text-white shadow-sm"
