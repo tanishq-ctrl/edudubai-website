@@ -6,7 +6,7 @@ export default function DashboardLoading() {
     return (
         <div className="space-y-8 animate-in fade-in duration-500">
             {/* Welcome Card Skeleton */}
-            <Card className="border-2 border-brand-gold/10 bg-gradient-to-br from-white to-slate-50">
+            <Card className="border-2 border-gold-400/10 bg-gradient-to-br from-white to-slate-50">
                 <CardHeader>
                     <Skeleton className="h-10 w-1/3 mb-2" />
                     <Skeleton className="h-5 w-1/4" />

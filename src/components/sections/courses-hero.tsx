@@ -4,10 +4,10 @@ export function CoursesHero() {
   return (
     <PageHeroImage
       image="/hero/courses.jpg"
-      imageAlt="Course Catalog - Professional development courses"
-      title="Global Certifications"
-      titleClassName="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[80px]"
+      imageAlt="Professional compliance certification courses"
+      eyebrow="Course catalogue"
+      title="Professional certifications"
+      description="Accredited ACAMS and GCI programmes, delivered live by practising compliance professionals in line with each issuing body's official examination blueprint."
     />
   )
 }
-

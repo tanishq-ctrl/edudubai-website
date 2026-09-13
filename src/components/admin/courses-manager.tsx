@@ -81,7 +81,7 @@ export function CoursesManager({ courses }: { courses: AdminCourse[] }) {
           </Button>
         </div>
 
-        <Button asChild className="bg-brand-navy hover:bg-brand-navy-dark">
+        <Button asChild className="bg-navy-900 hover:bg-navy-900">
           <Link href="/admin/courses/new">
             <Plus className="h-4 w-4 mr-2" />
             New Course
@@ -92,7 +92,7 @@ export function CoursesManager({ courses }: { courses: AdminCourse[] }) {
       {error && (
         <div
           role="alert"
-          className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+          className="rounded-md border border-danger/30 bg-danger/8 px-4 py-3 text-sm text-danger"
         >
           {error}
         </div>
@@ -100,7 +100,7 @@ export function CoursesManager({ courses }: { courses: AdminCourse[] }) {
 
       {visible.length === 0 && (
         <Card>
-          <CardContent className="py-10 text-center text-neutral-text-muted">
+          <CardContent className="py-10 text-center text-content-muted">
             {showArchived ? "Nothing archived." : "No courses yet."}
           </CardContent>
         </Card>
@@ -117,7 +117,7 @@ export function CoursesManager({ courses }: { courses: AdminCourse[] }) {
                     aria-label={`Move ${course.title} up`}
                     disabled={index === 0 || isPending}
                     onClick={() => move(index, -1)}
-                    className="p-1 text-neutral-text-muted hover:text-brand-navy disabled:opacity-30"
+                    className="p-1 text-content-muted hover:text-navy-700 disabled:opacity-30"
                   >
                     <ArrowUp className="h-4 w-4" />
                   </button>
@@ -126,7 +126,7 @@ export function CoursesManager({ courses }: { courses: AdminCourse[] }) {
                     aria-label={`Move ${course.title} down`}
                     disabled={index === active.length - 1 || isPending}
                     onClick={() => move(index, 1)}
-                    className="p-1 text-neutral-text-muted hover:text-brand-navy disabled:opacity-30"
+                    className="p-1 text-content-muted hover:text-navy-700 disabled:opacity-30"
                   >
                     <ArrowDown className="h-4 w-4" />
                   </button>
@@ -135,7 +135,7 @@ export function CoursesManager({ courses }: { courses: AdminCourse[] }) {
 
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="font-semibold text-brand-navy">{course.title}</span>
+                  <span className="font-semibold text-navy-700">{course.title}</span>
                   {course.published ? (
                     <Badge className="bg-green-600 hover:bg-green-700">Live</Badge>
                   ) : (
@@ -144,7 +144,7 @@ export function CoursesManager({ courses }: { courses: AdminCourse[] }) {
                   {course.featured && <Badge variant="secondary">Featured</Badge>}
                   <Badge variant="outline">{course.issuingBody}</Badge>
                 </div>
-                <p className="mt-1 truncate text-sm text-neutral-text-muted">
+                <p className="mt-1 truncate text-sm text-content-muted">
                   /{course.slug} &middot; {course.level} &middot; ${course.priceUsd} &middot;{" "}
                   {course.duration}h
                 </p>
@@ -220,7 +220,7 @@ export function CoursesManager({ courses }: { courses: AdminCourse[] }) {
         ))}
       </div>
 
-      <p className="text-xs text-neutral-text-muted">
+      <p className="text-xs text-content-muted">
         Courses are archived, never deleted, so their content stays recoverable. Restored
         courses come back as drafts.
       </p>

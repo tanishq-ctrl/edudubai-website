@@ -102,13 +102,13 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-start justify-center bg-gradient-to-b from-neutral-bg to-white px-4 pt-32 pb-24">
+    <div className="flex min-h-screen items-start justify-center bg-surface px-4 pt-32 pb-24">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-brand-navy mb-2">
+          <h1 className="text-3xl mb-3">
             {view === "success" ? "Password Reset" : "Forgot Password"}
           </h1>
-          <p className="text-neutral-text">
+          <p className="text-content">
             {view === "request" && "Enter your email to receive a reset code"}
             {view === "verify" && "Enter the verification code we sent you"}
             {view === "reset" && "Create a new password for your account"}
@@ -116,17 +116,17 @@ export default function ForgotPasswordPage() {
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-lg border border-neutral-border p-8">
+        <div className="rounded-lg border border-line bg-surface-raised shadow-sm p-8">
           {view === "success" ? (
             <div className="space-y-6 text-center py-6">
               <div className="h-16 w-16 bg-green-50 rounded-full flex items-center justify-center mx-auto">
                 <CheckCircle2 className="h-8 w-8 text-green-600" />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-brand-navy mb-2">
+                <h2 className="text-xl font-bold text-navy-700 mb-2">
                   Password Updated Successfully
                 </h2>
-                <p className="text-sm text-neutral-text">
+                <p className="text-sm text-content">
                   Redirecting you to login...
                 </p>
               </div>
@@ -141,9 +141,9 @@ export default function ForgotPasswordPage() {
               )}
 
               {view === "request" && (
-                <form onSubmit={handleRequestReset} className="space-y-5">
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="text-sm font-semibold text-brand-navy">
+                <form onSubmit={handleRequestReset} className="flex flex-col gap-5">
+                  <div className="flex flex-col gap-2">
+                    <Label htmlFor="email" className="text-sm font-semibold text-navy-700">
                       Email Address
                     </Label>
                     <Input
@@ -154,13 +154,13 @@ export default function ForgotPasswordPage() {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       disabled={loading}
-                      className="h-11 border-neutral-border focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+                      className="h-11 "
                     />
                   </div>
 
                   <Button
                     type="submit"
-                    className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white font-semibold h-11"
+                    className="w-full w-full"
                     disabled={loading}
                   >
                     {loading ? (
@@ -179,12 +179,12 @@ export default function ForgotPasswordPage() {
               )}
 
               {view === "verify" && (
-                <form onSubmit={handleVerifyOtp} className="space-y-5">
-                  <div className="space-y-2">
-                    <Label htmlFor="otp" className="text-sm font-semibold text-brand-navy">
+                <form onSubmit={handleVerifyOtp} className="flex flex-col gap-5">
+                  <div className="flex flex-col gap-2">
+                    <Label htmlFor="otp" className="text-sm font-semibold text-navy-700">
                       Verification Code
                     </Label>
-                    <p className="text-xs text-neutral-text mb-2">
+                    <p className="text-xs text-content mb-2">
                       Code sent to {email}
                     </p>
                     <Input
@@ -196,13 +196,13 @@ export default function ForgotPasswordPage() {
                       maxLength={6}
                       required
                       disabled={loading}
-                      className="h-14 text-center text-2xl tracking-widest font-semibold border-neutral-border focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+                      className="h-14 text-center text-2xl tracking-widest font-semibold "
                     />
                   </div>
 
                   <Button
                     type="submit"
-                    className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white font-semibold h-11"
+                    className="w-full w-full"
                     disabled={loading || otp.length !== 6}
                   >
                     {loading ? (
@@ -221,7 +221,7 @@ export default function ForgotPasswordPage() {
                   <button
                     type="button"
                     onClick={() => setView("request")}
-                    className="w-full text-sm text-neutral-text hover:text-brand-navy font-medium"
+                    className="w-full text-sm text-content hover:text-navy-700 font-medium"
                   >
                     ← Back to email
                   </button>
@@ -229,9 +229,9 @@ export default function ForgotPasswordPage() {
               )}
 
               {view === "reset" && (
-                <form onSubmit={handleResetPassword} className="space-y-5">
-                  <div className="space-y-2">
-                    <Label htmlFor="newPassword" className="text-sm font-semibold text-brand-navy">
+                <form onSubmit={handleResetPassword} className="flex flex-col gap-5">
+                  <div className="flex flex-col gap-2">
+                    <Label htmlFor="newPassword" className="text-sm font-semibold text-navy-700">
                       New Password
                     </Label>
                     <Input
@@ -242,16 +242,16 @@ export default function ForgotPasswordPage() {
                       onChange={(e) => setNewPassword(e.target.value)}
                       required
                       disabled={loading}
-                      className="h-11 border-neutral-border focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+                      className="h-11 "
                     />
-                    <p className="text-xs text-neutral-text-muted">
+                    <p className="text-xs text-content-muted">
                       Password must be at least 6 characters
                     </p>
                   </div>
 
                   <Button
                     type="submit"
-                    className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white font-semibold h-11"
+                    className="w-full w-full"
                     disabled={loading}
                   >
                     {loading ? (
@@ -269,10 +269,10 @@ export default function ForgotPasswordPage() {
                 </form>
               )}
 
-              <div className="text-center pt-4 border-t border-neutral-border">
+              <div className="text-center pt-4 border-t border-line">
                 <Link
                   href="/auth/login"
-                  className="inline-flex items-center gap-2 text-sm text-neutral-text hover:text-brand-navy font-medium"
+                  className="inline-flex items-center gap-2 text-sm text-content hover:text-navy-700 font-medium"
                 >
                   <ArrowLeft className="h-4 w-4" />
                   Back to login
@@ -282,7 +282,7 @@ export default function ForgotPasswordPage() {
           )}
         </div>
 
-        <p className="mt-6 text-center text-xs text-neutral-text-muted">
+        <p className="mt-6 text-center text-xs text-content-muted">
           Need help? Contact our support team
         </p>
       </div>

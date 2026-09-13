@@ -27,10 +27,10 @@ export function AboutTrainers() {
   return (
     <section className="mb-16 md:mb-24">
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-brand-navy mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-navy-700 mb-4">
           Our Team
         </h2>
-        <p className="text-lg text-neutral-text-muted max-w-2xl mx-auto">
+        <p className="text-lg text-content-muted max-w-2xl mx-auto">
           Meet the experienced professionals leading EduDubai&apos;s mission
         </p>
       </div>
@@ -47,11 +47,11 @@ function TeamMemberCard({ member }: { member: typeof teamMembers[0] }) {
   const [imageError, setImageError] = useState(false)
 
   return (
-    <Card className="border-2 border-neutral-border hover:border-brand-gold transition-all hover:shadow-xl overflow-hidden h-full">
+    <Card className="border-2 border-line hover:border-gold-400 transition-all hover:shadow-xl overflow-hidden h-full">
       <div className="flex flex-col md:flex-row h-full">
         {/* Image Section - Fixed size */}
-        <div className="relative w-full md:w-48 md:min-w-[12rem] h-64 md:h-full bg-gradient-to-br from-brand-navy/10 to-brand-gold/10 flex items-center justify-center p-6">
-          <div className="relative w-40 h-40 rounded-full overflow-hidden border-4 border-white shadow-lg bg-gradient-to-br from-brand-navy to-brand-navy/80 flex items-center justify-center">
+        <div className="relative w-full md:w-48 md:min-w-[12rem] h-64 md:h-full bg-gradient-to-br from-navy-900/10 to-gold-300/10 flex items-center justify-center p-6">
+          <div className="relative w-40 h-40 rounded-full overflow-hidden border-4 border-white shadow-lg bg-gradient-to-br from-navy-900 to-navy-900/80 flex items-center justify-center">
             {/* Beautiful placeholder with initials - shown when image fails to load */}
             {imageError && (
               <div className="absolute inset-0 flex flex-col items-center justify-center">
@@ -77,20 +77,20 @@ function TeamMemberCard({ member }: { member: typeof teamMembers[0] }) {
         {/* Content Section - Consistent padding */}
         <div className="flex-1 flex flex-col p-6">
           <CardHeader className="p-0 mb-4">
-            <CardTitle className="text-2xl font-bold text-brand-navy mb-3">
+            <CardTitle className="text-2xl font-bold text-navy-700 mb-3">
               {member.name}
             </CardTitle>
-            <Badge className="bg-brand-gold text-brand-navy hover:bg-brand-gold-light w-fit">
+            <Badge className="bg-gold-400 text-navy-700 hover:bg-gold-300 w-fit">
               {member.role}
             </Badge>
           </CardHeader>
           <CardContent className="p-0 flex-1 flex flex-col space-y-4">
-            <p className="text-neutral-text leading-relaxed text-base text-justify">
+            <p className="text-content leading-relaxed text-base text-justify">
               {member.description}
             </p>
             <div className="flex items-start gap-2 mt-auto">
-              <Award className="h-5 w-5 text-brand-gold mt-0.5 flex-shrink-0" />
-              <p className="text-neutral-text-muted text-sm leading-relaxed text-justify">
+              <Award className="h-5 w-5 text-gold-mark mt-0.5 flex-shrink-0" />
+              <p className="text-content-muted text-sm leading-relaxed text-justify">
                 {member.expertise}
               </p>
             </div>

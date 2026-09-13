@@ -15,7 +15,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { submitCorporateLead } from "@/server/actions/leads"
 import { CheckCircle2 } from "lucide-react"
-import { Turnstile } from "@marsidev/react-turnstile"
+import { TurnstileWidget } from "@/components/turnstile-widget"
 
 export function CorporateLeadForm() {
   const [loading, setLoading] = useState(false)
@@ -60,24 +60,24 @@ export function CorporateLeadForm() {
 
   if (success) {
     return (
-      <Card className="max-w-2xl mx-auto border-2 border-brand-gold">
-        <CardContent className="p-12 text-center">
+      <Card className="max-w-2xl mx-auto border-gold-400/40">
+        <CardContent className="p-10 text-center sm:p-12">
           <div className="flex justify-center mb-6">
-            <div className="p-4 bg-brand-gold/20 rounded-full">
-              <CheckCircle2 className="h-12 w-12 text-brand-gold" />
+            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gold-400/15">
+              <CheckCircle2 className="h-9 w-9 text-gold-mark" />
             </div>
           </div>
-          <h3 className="text-2xl font-bold text-brand-navy mb-4">
+          <h3 className="mt-6 text-2xl ">
             Thank You for Your Interest!
           </h3>
-          <p className="text-lg text-neutral-text-muted mb-6">
+          <p className="mt-4 text-content-muted">
             We&apos;ve received your corporate training inquiry. Our team will contact you
             within 24 hours to discuss your training needs.
           </p>
           <Button
             onClick={() => setSuccess(false)}
             variant="outline"
-            className="border-brand-gold text-brand-navy hover:bg-brand-gold"
+            className="mt-8"
           >
             Submit Another Request
           </Button>
@@ -88,10 +88,10 @@ export function CorporateLeadForm() {
 
   return (
     <div className="w-full">
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-2">
-            <Label htmlFor="company" className="text-brand-navy font-bold uppercase tracking-wider text-[10px]">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="company" className="text-2xs font-semibold uppercase tracking-wider text-content-muted">
               Company Name *
             </Label>
             <Input
@@ -102,11 +102,10 @@ export function CorporateLeadForm() {
               }
               required
               placeholder="e.g. Global Finance Ltd"
-              className="bg-neutral-bg border-neutral-border focus:ring-brand-gold"
             />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="name" className="text-brand-navy font-bold uppercase tracking-wider text-[10px]">
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="name" className="text-2xs font-semibold uppercase tracking-wider text-content-muted">
               Your Name *
             </Label>
             <Input
@@ -117,13 +116,12 @@ export function CorporateLeadForm() {
               }
               required
               placeholder="Full Name"
-              className="bg-neutral-bg border-neutral-border focus:ring-brand-gold"
             />
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="space-y-2">
-            <Label htmlFor="email" className="text-brand-navy font-bold uppercase tracking-wider text-[10px]">
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="email" className="text-2xs font-semibold uppercase tracking-wider text-content-muted">
               Corporate Email *
             </Label>
             <Input
@@ -135,11 +133,10 @@ export function CorporateLeadForm() {
               }
               required
               placeholder="email@company.com"
-              className="bg-neutral-bg border-neutral-border focus:ring-brand-gold"
             />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="phone" className="text-brand-navy font-bold uppercase tracking-wider text-[10px]">
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="phone" className="text-2xs font-semibold uppercase tracking-wider text-content-muted">
               Phone Number *
             </Label>
             <Input
@@ -151,12 +148,11 @@ export function CorporateLeadForm() {
               }
               required
               placeholder="+971 -- --- ----"
-              className="bg-neutral-bg border-neutral-border focus:ring-brand-gold"
             />
           </div>
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="trainingNeed" className="text-brand-navy font-bold uppercase tracking-wider text-[10px]">
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="trainingNeed" className="text-2xs font-semibold uppercase tracking-wider text-content-muted">
             Training Requirements *
           </Label>
           <Textarea
@@ -170,8 +166,8 @@ export function CorporateLeadForm() {
             className="bg-neutral-bg border-neutral-border min-h-[100px] focus:ring-brand-gold"
           />
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="preferredDelivery" className="text-brand-navy font-bold uppercase tracking-wider text-[10px]">
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="preferredDelivery" className="text-2xs font-semibold uppercase tracking-wider text-content-muted">
             Delivery Format *
           </Label>
           <Select
@@ -191,10 +187,7 @@ export function CorporateLeadForm() {
             </SelectContent>
           </Select>
         </div>
-        <Turnstile
-          siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-          onSuccess={setTurnstileToken}
-        />
+        <TurnstileWidget onToken={setTurnstileToken} />
         <Button
           type="submit"
           className="w-full bg-brand-navy text-white hover:bg-brand-navy-dark font-black uppercase tracking-widest text-sm py-8 transition-all hover:scale-[1.01] active:scale-[0.99] shadow-xl"

@@ -1,102 +1,79 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Users, Building2, Shield, FileText, Briefcase } from "lucide-react"
+import { Briefcase, Building2, FileText, Shield, Users } from "lucide-react"
+
+import { Section, SectionHeading, Eyebrow } from "@/components/section"
+import { Reveal, Stagger } from "@/components/motion"
 
 const targetAudiences = [
-  {
-    icon: Users,
-    title: "Front Line Officers & Branch Managers",
-    subtitle: "First Line of Defense",
-  },
-  {
-    icon: Building2,
-    title: "Head Office Compliance & Risk Teams",
-    subtitle: "Second Line of Defense",
-  },
-  {
-    icon: Shield,
-    title: "Internal Auditors",
-    subtitle: "Third Line of Defense",
-  },
-  {
-    icon: FileText,
-    title: "Accounts & Finance Professionals",
-  },
-  {
-    icon: Briefcase,
-    title: "MLRO Professionals",
-  },
+  { icon: Users, title: "Front-line officers & branch managers", subtitle: "First line of defence" },
+  { icon: Building2, title: "Head-office compliance & risk teams", subtitle: "Second line of defence" },
+  { icon: Shield, title: "Internal auditors", subtitle: "Third line of defence" },
+  { icon: FileText, title: "Accounts & finance professionals" },
+  { icon: Briefcase, title: "MLRO professionals" },
 ]
 
 const industries = [
-  "Banking, Insurance, Custodial, and Investment Entities",
+  "Banking, insurance, custodial and investment entities",
   "Virtual Asset Service Providers (VASPs)",
-  "Exchange & Remittance Houses",
-  "DNFBPs - Real Estate, Corporate Service Providers (CSPs), Law Firms, Chartered Accountants",
-  "DPMS - Dealers in Precious Metals and Stones (Gold, Diamond and Jewellery)",
+  "Exchange and remittance houses",
+  "DNFBPs — real estate, corporate service providers, law firms, chartered accountants",
+  "DPMS — dealers in precious metals and stones",
 ]
 
 export function AboutWhoWeServe() {
   return (
-    <section className="mb-16 md:mb-24">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-brand-navy mb-4">
-          Who We Serve
-        </h2>
-        <p className="text-lg text-neutral-text-muted max-w-3xl mx-auto text-justify">
-          Our programs cater to a wide range of professionals and sectors:
-        </p>
-      </div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-        {targetAudiences.map((audience, index) => {
+    <Section tone="sunken" size="md">
+      <SectionHeading
+        eyebrow="Who we serve"
+        title="Across all three lines of defence"
+        lead="Our programmes are written for professionals who carry regulatory responsibility at every level of the organisation."
+      />
+
+      <Stagger className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" step={90} variant="up">
+        {targetAudiences.map((audience) => {
           const Icon = audience.icon
           return (
-            <Card
-              key={index}
-              className="border-2 border-neutral-border hover:border-brand-gold transition-all hover:shadow-lg"
+            <div
+              key={audience.title}
+              className="group flex h-full items-start gap-4 rounded-lg border border-line bg-surface-raised p-6 shadow-sm transition-all duration-slow ease-out-expo hover:-translate-y-1 hover:border-gold-400/55 hover:shadow-lg"
             >
-              <CardHeader>
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-brand-navy/10 rounded-lg">
-                    <Icon className="h-6 w-6 text-brand-navy" />
-                  </div>
-                  <div className="flex-1">
-                    <CardTitle className="text-lg">{audience.title}</CardTitle>
-                    {audience.subtitle && (
-                      <p className="text-sm text-neutral-text-muted mt-1">
-                        {audience.subtitle}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              </CardHeader>
-            </Card>
+              <span
+                aria-hidden="true"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy-900 text-gold-300"
+              >
+                <Icon className="h-5 w-5" />
+              </span>
+              <span className="flex flex-col">
+                <span className="font-display text-base leading-snug text-content-strong">
+                  {audience.title}
+                </span>
+                {audience.subtitle ? (
+                  <span className="mt-1 text-2xs font-semibold uppercase tracking-wider text-gold-ink">
+                    {audience.subtitle}
+                  </span>
+                ) : null}
+              </span>
+            </div>
           )
         })}
-      </div>
+      </Stagger>
 
-      <Card className="border-2 border-brand-gold/20 bg-gradient-to-br from-white to-brand-gold/5">
-        <CardHeader>
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 bg-brand-gold/10 rounded-lg">
-              <Building2 className="h-6 w-6 text-brand-gold" />
-            </div>
-            <CardTitle className="text-2xl">MLRO Professionals in Industries</CardTitle>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3">
-            {industries.map((industry, index) => (
-              <div key={index} className="flex items-start gap-3">
-                <div className="w-2 h-2 rounded-full bg-brand-gold mt-2 flex-shrink-0" />
-                <p className="text-neutral-text leading-relaxed text-justify">{industry}</p>
-              </div>
+      <Reveal variant="up" delay={120} className="mt-6">
+        <div className="rounded-lg border border-gold-400/30 bg-gradient-to-br from-surface-raised to-gold-50 p-8 sm:p-10">
+          <Eyebrow>Sectors served</Eyebrow>
+          <h3 className="mt-4 text-2xl ">MLRO professionals across industries</h3>
+          <ul className="mt-7 grid gap-x-8 gap-y-4 sm:grid-cols-2">
+            {industries.map((industry) => (
+              <li key={industry} className="flex items-start gap-3">
+                <span
+                  aria-hidden="true"
+                  className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-400"
+                />
+                <span className="text-sm leading-relaxed text-content">{industry}</span>
+              </li>
             ))}
-          </div>
-        </CardContent>
-      </Card>
-    </section>
+          </ul>
+        </div>
+      </Reveal>
+    </Section>
   )
 }
-

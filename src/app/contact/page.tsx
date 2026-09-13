@@ -1,8 +1,10 @@
 import type { Metadata } from "next"
-import { Container } from "@/components/container"
+
 import { ContactHero } from "@/components/sections/contact-hero"
 import { ContactForm } from "@/components/contact-form"
 import { ContactInfo } from "@/components/sections/contact-info"
+import { Section } from "@/components/section"
+import { Reveal } from "@/components/motion"
 import { ContactPageClient } from "./page-client"
 
 export const metadata: Metadata = {
@@ -17,16 +19,20 @@ export default function ContactPage() {
     <>
       <ContactPageClient />
       <ContactHero />
-      <Container className="py-12 md:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+      <Section tone="sunken" size="md">
+        <div className="grid gap-8 lg:grid-cols-5 lg:gap-10">
+          <Reveal variant="up" className="lg:col-span-3">
+            <div className="rounded-lg border border-line bg-surface-raised p-7 shadow-sm sm:p-9">
+              <ContactForm />
+            </div>
+          </Reveal>
+
           <div className="lg:col-span-2">
-            <ContactForm />
-          </div>
-          <div className="lg:col-span-1">
             <ContactInfo />
           </div>
         </div>
-      </Container>
+      </Section>
     </>
   )
 }

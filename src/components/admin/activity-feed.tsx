@@ -112,7 +112,7 @@ export function ActivityFeed({
             size="sm"
             onClick={() => selectKind(option.value)}
             disabled={isPending}
-            className={kind === option.value ? "bg-brand-navy hover:bg-brand-navy-dark" : ""}
+            className={kind === option.value ? "bg-navy-900 hover:bg-navy-900" : ""}
           >
             {option.label}
             {counts[option.value] !== undefined && (
@@ -124,7 +124,7 @@ export function ActivityFeed({
 
       {items.length === 0 && !isPending && (
         <Card>
-          <CardContent className="py-10 text-center text-neutral-text-muted">
+          <CardContent className="py-10 text-center text-content-muted">
             Nothing here yet. New leads, diagnostics and applications will appear as they
             come in.
           </CardContent>
@@ -147,19 +147,19 @@ export function ActivityFeed({
 
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-medium text-brand-navy">
+                    <span className="font-medium text-navy-700">
                       {item.personName || item.personEmail || "Unknown"}
                     </span>
-                    <Badge variant="outline" className="text-[10px]">
+                    <Badge variant="outline" className="text-2xs">
                       {item.kind}
                     </Badge>
                     {item.status && item.status !== "NEW" && (
-                      <Badge variant="secondary" className="text-[10px]">
+                      <Badge variant="secondary" className="text-2xs">
                         {item.status}
                       </Badge>
                     )}
                   </div>
-                  <p className="truncate text-sm text-neutral-text-muted">
+                  <p className="truncate text-sm text-content-muted">
                     {item.summary || "—"}
                     {item.personEmail && item.personName ? ` · ${item.personEmail}` : ""}
                   </p>
@@ -168,7 +168,7 @@ export function ActivityFeed({
                 <time
                   dateTime={item.occurredAt}
                   title={new Date(item.occurredAt).toLocaleString()}
-                  className="shrink-0 text-xs text-neutral-text-muted"
+                  className="shrink-0 text-xs text-content-muted"
                 >
                   {relativeTime(item.occurredAt)}
                 </time>
@@ -180,7 +180,7 @@ export function ActivityFeed({
 
       {isPending && (
         <div className="flex justify-center py-4">
-          <Loader2 className="h-5 w-5 animate-spin text-neutral-text-muted" />
+          <Loader2 className="h-5 w-5 animate-spin text-content-muted" />
         </div>
       )}
 

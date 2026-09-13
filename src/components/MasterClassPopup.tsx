@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Loader2, CheckCircle2 } from "lucide-react"
-import { Turnstile } from "@marsidev/react-turnstile"
+import { TurnstileWidget } from "@/components/turnstile-widget"
 import { courses } from "@/lib/courses"
 
 export function MasterClassPopup() {
@@ -93,19 +93,19 @@ export function MasterClassPopup() {
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogContent className="sm:max-w-[500px] border-t-8 border-t-green-500 p-0 overflow-hidden bg-white [&>button]:hidden focus:outline-none">
                     <div className="p-8 pb-10 flex flex-col items-center text-center space-y-6">
-                        <div className="h-24 w-24 bg-green-50 rounded-full flex items-center justify-center mb-2 animate-in zoom-in duration-300">
-                            <CheckCircle2 className="h-12 w-12 text-green-500" />
+                        <div className="h-24 w-24 bg-success/10 rounded-full flex items-center justify-center mb-2 animate-in zoom-in duration-300">
+                            <CheckCircle2 className="h-12 w-12 text-success" />
                         </div>
 
                         <div className="space-y-2">
-                            <h3 className="text-3xl font-black text-brand-navy">Seat Reserved!</h3>
-                            <p className="text-base font-medium text-slate-500 leading-relaxed">
+                            <h3 className="text-3xl font-semibold text-navy-700">Seat Reserved!</h3>
+                            <p className="text-base font-medium text-content-muted leading-relaxed">
                                 Thank you for registering for the <br />
-                                <span className="text-brand-navy font-bold">Master Class</span>.
+                                <span className="text-navy-700 font-bold">Master Class</span>.
                             </p>
                         </div>
 
-                        <p className="text-sm text-slate-400 max-w-xs mx-auto leading-relaxed">
+                        <p className="text-sm text-content-subtle max-w-xs mx-auto leading-relaxed">
                             We&apos;ve sent the session details and joining link to your email address.
                             Please check your inbox (promotions and spam folder).
                         </p>
@@ -116,7 +116,7 @@ export function MasterClassPopup() {
                                     setOpen(false)
                                     window.location.href = '/courses'
                                 }}
-                                className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white font-bold py-6 rounded-full shadow-lg"
+                                className="w-full bg-navy-900 hover:bg-navy-900/90 text-white font-bold py-6 rounded-full shadow-lg"
                             >
                                 Explore More Courses
                             </Button>
@@ -134,17 +134,17 @@ export function MasterClassPopup() {
             >
                 <div className="p-6 pt-8">
                     <DialogHeader>
-                        <DialogTitle className="text-xl md:text-2xl font-black text-brand-navy leading-tight">
+                        <DialogTitle className="text-xl md:text-2xl font-semibold text-navy-700 leading-tight">
                             Join Exam Prep Master Class
                         </DialogTitle>
-                        <DialogDescription className="text-sm font-medium text-slate-500 mt-2">
+                        <DialogDescription className="text-sm font-medium text-content-muted mt-2">
                             Gain expert insights and start your professional journey today. Select your course below.
                         </DialogDescription>
                     </DialogHeader>
 
                     <form onSubmit={handleSubmit} className="space-y-4 mt-6">
                         <div className="space-y-1">
-                            <Label htmlFor="name" className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                            <Label htmlFor="name" className="text-2xs font-bold uppercase tracking-wider text-content-muted">
                                 Full Name*
                             </Label>
                             <Input
@@ -152,12 +152,12 @@ export function MasterClassPopup() {
                                 name="name"
                                 placeholder="First and Last Name"
                                 required
-                                className="h-11 border-slate-200 focus:ring-[#FF2D55] focus:border-[#FF2D55]"
+                                className="h-11 border-line focus:ring-[#FF2D55] focus:border-[#FF2D55]"
                             />
                         </div>
 
                         <div className="space-y-1">
-                            <Label htmlFor="email" className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                            <Label htmlFor="email" className="text-2xs font-bold uppercase tracking-wider text-content-muted">
                                 Email Address*
                             </Label>
                             <Input
@@ -166,12 +166,12 @@ export function MasterClassPopup() {
                                 type="email"
                                 placeholder="name@company.com"
                                 required
-                                className="h-11 border-slate-200 focus:ring-[#FF2D55] focus:border-[#FF2D55]"
+                                className="h-11 border-line focus:ring-[#FF2D55] focus:border-[#FF2D55]"
                             />
                         </div>
 
                         <div className="space-y-1">
-                            <Label htmlFor="course" className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                            <Label htmlFor="course" className="text-2xs font-bold uppercase tracking-wider text-content-muted">
                                 Select Course*
                             </Label>
                             <Select
@@ -179,7 +179,7 @@ export function MasterClassPopup() {
                                 onValueChange={setSelectedCourseId}
                                 required
                             >
-                                <SelectTrigger className="h-11 border-slate-200 focus:ring-[#FF2D55] focus:border-[#FF2D55]">
+                                <SelectTrigger className="h-11 border-line focus:ring-[#FF2D55] focus:border-[#FF2D55]">
                                     <SelectValue placeholder="Select a course..." />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -193,7 +193,7 @@ export function MasterClassPopup() {
                         </div>
 
                         <div className="space-y-1">
-                            <Label htmlFor="phone" className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                            <Label htmlFor="phone" className="text-2xs font-bold uppercase tracking-wider text-content-muted">
                                 WhatsApp Number (Optional)
                             </Label>
                             <Input
@@ -201,7 +201,7 @@ export function MasterClassPopup() {
                                 name="phone"
                                 type="tel"
                                 placeholder="+1 (555) 000-0000"
-                                className="h-11 border-slate-200 focus:ring-[#FF2D55] focus:border-[#FF2D55]"
+                                className="h-11 border-line focus:ring-[#FF2D55] focus:border-[#FF2D55]"
                             />
                         </div>
 
@@ -209,19 +209,16 @@ export function MasterClassPopup() {
                             <Checkbox id="consent" required className="mt-1 data-[state=checked]:bg-[#FF2D55] data-[state=checked]:border-[#FF2D55]" />
                             <label
                                 htmlFor="consent"
-                                className="text-xs font-medium leading-tight text-slate-600 cursor-pointer"
+                                className="text-xs font-medium leading-tight text-content-muted cursor-pointer"
                             >
                                 I agree to receive the course outline, program updates, and
                                 regulatory insights from EduDubai.
                             </label>
                         </div>
 
-                        {error && <p className="text-xs text-red-500 font-bold">{error}</p>}
+                        {error && <p className="text-xs text-danger font-bold">{error}</p>}
 
-                        <Turnstile
-                            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-                            onSuccess={setTurnstileToken}
-                        />
+                        <TurnstileWidget onToken={setTurnstileToken} />
                         <Button
                             type="submit"
                             disabled={loading || !turnstileToken}
@@ -231,7 +228,7 @@ export function MasterClassPopup() {
                                 <Loader2 className="h-6 w-6 animate-spin" />
                             ) : (
                                 <>
-                                    <span className="text-lg font-black uppercase tracking-wide leading-none mb-1">LIMITED SEATS</span>
+                                    <span className="text-lg font-semibold uppercase tracking-wide leading-none mb-1">LIMITED SEATS</span>
                                     <span className="text-base font-bold opacity-90 leading-none">(Reserve Your Spot Now)</span>
                                 </>
                             )}

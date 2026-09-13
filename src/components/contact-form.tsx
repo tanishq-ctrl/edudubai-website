@@ -9,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { submitContactLead } from "@/server/actions/leads"
 import { trackContactFormSubmit } from "@/lib/analytics"
 import { CheckCircle2, AlertCircle } from "lucide-react"
-import { Turnstile } from "@marsidev/react-turnstile"
+import { TurnstileWidget } from "@/components/turnstile-widget"
 
 export function ContactForm() {
   const [loading, setLoading] = useState(false)
@@ -55,23 +55,23 @@ export function ContactForm() {
 
   if (success) {
     return (
-      <Card className="border-2 border-brand-gold">
-        <CardContent className="p-12 text-center">
+      <Card className="border-gold-400/40">
+        <CardContent className="p-10 text-center sm:p-12">
           <div className="flex justify-center mb-6">
-            <div className="p-4 bg-brand-gold/20 rounded-full">
-              <CheckCircle2 className="h-12 w-12 text-brand-gold" />
+            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gold-400/15">
+              <CheckCircle2 className="h-9 w-9 text-gold-mark" />
             </div>
           </div>
-          <h3 className="text-2xl font-bold text-brand-navy mb-4">
+          <h3 className="mt-6 text-2xl ">
             Thank You for Your Message!
           </h3>
-          <p className="text-lg text-neutral-text-muted mb-6">
+          <p className="mt-4 text-content-muted">
             We&apos;ve received your inquiry and will get back to you within 24 hours.
           </p>
           <Button
             onClick={() => setSuccess(false)}
             variant="outline"
-            className="border-brand-gold text-brand-navy hover:bg-brand-gold"
+            className="mt-8"
           >
             Send Another Message
           </Button>
@@ -81,26 +81,26 @@ export function ContactForm() {
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-2xl">Send us a Message</CardTitle>
-        <CardDescription className="text-base">
-          Fill out the form below and we&apos;ll respond within 24 hours. All fields marked with * are required.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
+    <div>
+      <header className="mb-8">
+        <h2 className="text-2xl ">Send us a message</h2>
+        <p className="mt-2.5 text-content-muted">
+          We respond within one business day. Fields marked * are required.
+        </p>
+      </header>
+      <div>
         {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
-            <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
+          <div role="alert" className="mb-6 flex items-start gap-3 rounded-sm border border-danger/30 bg-danger/8 p-4">
+            <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-danger" />
             <div className="flex-1">
-              <p className="text-sm font-medium text-red-800">Error</p>
-              <p className="text-sm text-red-700 mt-1">{error}</p>
+              <p className="text-sm font-semibold text-danger">Error</p>
+              <p className="mt-1 text-sm text-danger/90">{error}</p>
             </div>
           </div>
         )}
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-2">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div className="flex flex-col gap-2">
               <Label htmlFor="name">Full Name *</Label>
               <Input
                 id="name"
@@ -109,7 +109,7 @@ export function ContactForm() {
                 required
               />
             </div>
-            <div className="space-y-2">
+            <div className="flex flex-col gap-2">
               <Label htmlFor="email">Email *</Label>
               <Input
                 id="email"
@@ -120,8 +120,8 @@ export function ContactForm() {
               />
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-2">
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div className="flex flex-col gap-2">
               <Label htmlFor="phone">Phone</Label>
               <Input
                 id="phone"
@@ -130,7 +130,7 @@ export function ContactForm() {
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               />
             </div>
-            <div className="space-y-2">
+            <div className="flex flex-col gap-2">
               <Label htmlFor="company">Company</Label>
               <Input
                 id="company"
@@ -139,7 +139,7 @@ export function ContactForm() {
               />
             </div>
           </div>
-          <div className="space-y-2">
+          <div className="flex flex-col gap-2">
             <Label htmlFor="message">Message *</Label>
             <Textarea
               id="message"
@@ -150,16 +150,12 @@ export function ContactForm() {
               placeholder="Tell us how we can help you..."
             />
           </div>
-          <Turnstile
-            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-            onSuccess={setTurnstileToken}
-          />
-          <Button type="submit" className="w-full" disabled={loading || !turnstileToken} size="lg">
+          <TurnstileWidget onToken={setTurnstileToken} />
+          <Button type="submit" variant="gold" className="w-full" disabled={loading || !turnstileToken} size="lg">
             {loading ? "Sending..." : "Send Message"}
           </Button>
         </form>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   )
 }
-

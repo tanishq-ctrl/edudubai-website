@@ -1,95 +1,111 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Shield, FileText, Globe, Building2, Scale, Users, ShoppingCart, Briefcase } from "lucide-react"
+import {
+  Briefcase,
+  Building2,
+  FileText,
+  Globe,
+  Scale,
+  Shield,
+  ShoppingCart,
+  Users,
+} from "lucide-react"
+
+import { Section, SectionHeading } from "@/components/section"
+import { Stagger } from "@/components/motion"
 
 const expertiseAreas = [
   {
     icon: Shield,
-    title: "KYC/CDD/EDD",
-    description: "We specialize in training and guiding businesses to implement robust KYC, CDD, and EDD frameworks, ensuring effective customer identification, risk mitigation, and compliance with regulatory standards.",
+    title: "KYC / CDD / EDD",
+    description:
+      "Customer identification frameworks covering onboarding, risk mitigation and compliance with applicable regulatory standards.",
   },
   {
     icon: FileText,
-    title: "AML/CFT",
-    description: "Equipping professionals with comprehensive knowledge on Anti-Money Laundering (AML) and Countering the Financing of Terrorism (CFT) practices, covering customer due diligence, transaction monitoring, risk assessments, and regulatory requirements.",
+    title: "AML / CFT",
+    description:
+      "Customer due diligence, transaction monitoring and enterprise risk assessment, together with the regulatory obligations governing each.",
   },
   {
     icon: Globe,
     title: "Sanctions",
-    description: "Offering expert training on global sanctions regulations, screening processes, and compliance strategies to help businesses manage and mitigate sanctions-related risks effectively.",
+    description:
+      "Global sanctions regimes, screening processes and the controls required to manage sanctions exposure.",
   },
   {
     icon: Building2,
     title: "Regulatory Compliance",
-    description: "Our expertise lies in developing comprehensive compliance programs, including compliance testing, internal controls, risk assessments, and audit strategies, to help organizations navigate regulatory challenges and adhere to global GRC standards.",
+    description:
+      "Compliance testing, internal controls, risk assessment and audit strategy against global GRC standards.",
   },
   {
     icon: Scale,
     title: "FATCA & CRS",
-    description: "Providing detailed guidance on compliance with the Foreign Account Tax Compliance Act (FATCA) and Common Reporting Standard (CRS) requirements, including implementation strategies, reporting obligations, and best practices to avoid penalties.",
+    description:
+      "Implementation strategy, reporting obligations and the controls required to avoid reporting penalties.",
   },
   {
     icon: Briefcase,
     title: "Corporate Taxation",
-    description: "Providing in-depth knowledge on corporate tax regulations, compliance strategies, and best practices for efficient tax management.",
+    description:
+      "Corporate tax regulation, compliance strategy and established practice in tax governance.",
   },
   {
     icon: FileText,
-    title: "Value Added Tax (VAT)",
-    description: "Comprehensive training on VAT implementation, compliance, and reporting across various jurisdictions.",
+    title: "Value Added Tax",
+    description: "VAT implementation, compliance and reporting across multiple jurisdictions.",
   },
   {
     icon: Building2,
     title: "Corporate Governance",
-    description: "Enhancing corporate structures through training on effective governance, board responsibilities, and regulatory compliance.",
+    description:
+      "Governance structures, board responsibilities and the regulatory framework underpinning both.",
   },
   {
     icon: Users,
-    title: "Labor Laws",
-    description: "Offering insights into labor compliance, employee rights, and regulatory obligations for businesses.",
+    title: "Labour Laws",
+    description: "Labour compliance, employee rights and the statutory obligations placed on employers.",
   },
   {
     icon: ShoppingCart,
-    title: "Consumer Protection Standards",
-    description: "Ensuring alignment with consumer rights, transparency, and ethical practices to maintain compliance and build customer trust.",
+    title: "Consumer Protection",
+    description:
+      "Consumer rights, transparency and ethical conduct standards, and the compliance obligations attaching to them.",
   },
 ]
 
 export function AboutExpertise() {
   return (
-    <section className="mb-16 md:mb-24">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-brand-navy mb-4">
-          Our Expertise
-        </h2>
-        <p className="text-lg text-neutral-text-muted max-w-3xl mx-auto text-center">
-          At EduDubai, we believe that training should be tailored, practical, and relevant to specific business needs and we offer in-depth training and consulting services on:
-        </p>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {expertiseAreas.map((area, index) => {
+    <Section tone="paper" size="md">
+      <SectionHeading
+        eyebrow="Our expertise"
+        title="Areas of practice"
+        lead="We deliver training and advisory services across the regulatory domains that carry institutional risk."
+      />
+
+      <Stagger
+        className="mt-16 grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3"
+        step={70}
+        variant="up"
+      >
+        {expertiseAreas.map((area) => {
           const Icon = area.icon
           return (
-            <Card
-              key={index}
-              className="border-2 border-neutral-border hover:border-brand-gold transition-all hover:shadow-lg"
+            <div
+              key={area.title}
+              className="group flex h-full flex-col rounded-lg border border-line bg-surface-raised p-7 shadow-sm transition-all duration-slow ease-out-expo hover:-translate-y-1 hover:border-gold-400/55 hover:shadow-lg"
             >
-              <CardHeader>
-                <div className="flex items-center gap-3 mb-2">
-                  <div className="p-2 bg-brand-gold/10 rounded-lg">
-                    <Icon className="h-6 w-6 text-brand-gold" />
-                  </div>
-                  <CardTitle className="text-xl">{area.title}</CardTitle>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-neutral-text leading-relaxed text-sm text-justify">
-                  {area.description}
-                </p>
-              </CardContent>
-            </Card>
+              <span
+                aria-hidden="true"
+                className="flex h-11 w-11 items-center justify-center rounded-full bg-gold-400/12 text-gold-mark transition-transform duration-slow ease-out-expo group-hover:-translate-y-1"
+              >
+                <Icon className="h-5 w-5" />
+              </span>
+              <h3 className="mt-5 text-lg ">{area.title}</h3>
+              <p className="mt-2.5 text-sm leading-relaxed text-content-muted">{area.description}</p>
+            </div>
           )
         })}
-      </div>
-    </section>
+      </Stagger>
+    </Section>
   )
 }

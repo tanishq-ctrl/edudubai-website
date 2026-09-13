@@ -13,15 +13,15 @@ export default function NotFound() {
   return (
     <Container className="py-24 text-center">
       <div className="max-w-md mx-auto">
-        <div className="bg-neutral-bg-subtle rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
-          <Compass className="h-12 w-12 text-neutral-text-muted" />
+        <div className="bg-surface-sunken rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
+          <Compass className="h-12 w-12 text-content-muted" />
         </div>
-        <h1 className="text-3xl font-bold text-brand-navy mb-4">Page Not Found</h1>
-        <p className="text-neutral-text-muted mb-8">
+        <h1 className="text-3xl font-bold text-navy-700 mb-4">Page Not Found</h1>
+        <p className="text-content-muted mb-8">
           The page you&apos;re looking for doesn&apos;t exist or has moved.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild variant="default" className="bg-brand-navy hover:bg-brand-navy-dark">
+          <Button asChild variant="default" className="bg-navy-900 hover:bg-navy-900">
             <Link href="/">Go to Home</Link>
           </Button>
           <Button asChild variant="outline">

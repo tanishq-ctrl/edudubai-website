@@ -1,122 +1,107 @@
-"use client"
-
 import Image from "next/image"
-import { Container } from "@/components/container"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, CheckCircle2 } from "lucide-react"
 import Link from "next/link"
+import { ArrowRight, BadgeCheck } from "lucide-react"
+
+import { Section, SectionHeading } from "@/components/section"
+import { Button } from "@/components/ui/button"
+import { Reveal, TiltCard } from "@/components/motion"
+
+type Partner = {
+  name: string
+  logo: string
+  title: string
+  blurb: string
+  points: string[]
+  cta: { text: string; href: string }
+}
+
+const partners: Partner[] = [
+  {
+    name: "GCI Global Compliance Institute",
+    logo: "/images/partners/gci-australia.png",
+    title: "Global Compliance Institute",
+    blurb:
+      "As the authorised MENA partner for the Global Compliance Institute, EduDubai delivers its full suite of specialised compliance certifications, covering AML, sanctions and KYC with an operational focus appropriate to supervised institutions.",
+    points: ["Authorised training centre", "Official examination preparation", "Certified instructors"],
+    cta: { text: "Explore GCI courses", href: "/courses?body=GCI" },
+  },
+  {
+    name: "HOCK International",
+    logo: "/images/partners/hock-international.png",
+    title: "HOCK International",
+    blurb:
+      "EduDubai partners with HOCK International to deliver CMA preparation, combining HOCK study materials, video library and examination software with live classroom instruction.",
+    points: ["CMA exam specialists", "Comprehensive study suite", "PassMap™ technology"],
+    // The original markup rendered this button with no link at all -- a dead
+    // control. Routed to the enquiry page, which is where CMA details live.
+    cta: { text: "View CMA details", href: "/contact" },
+  },
+]
 
 export function PartnershipsSection() {
-    return (
-        <section className="py-12 md:py-14 bg-neutral-bg-subtle/50 relative overflow-hidden">
-            {/* Background Decor */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-brand-navy/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-gold/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2" />
+  return (
+    <Section tone="paper" size="md" className="overflow-hidden">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute -right-40 top-0 h-[28rem] w-[28rem] orb [--orb:rgb(var(--navy-700)/0.05)]" />
+        <div className="absolute -left-40 bottom-0 h-[28rem] w-[28rem] orb [--orb:rgb(var(--gold-400)/0.05)]" />
+      </div>
 
-            <Container className="relative z-10">
-                <div className="text-center max-w-3xl mx-auto mb-10">
-                    <h2 className="text-brand-gold font-bold uppercase tracking-wider text-sm mb-3">
-                        Authorized Alliances
-                    </h2>
-                    <h3 className="text-3xl md:text-4xl font-black text-brand-navy mb-6">
-                        Global Strategic Partnerships
-                    </h3>
-                    <p className="text-neutral-text-muted text-lg leading-relaxed">
-                        EduDubai is the exclusive authorized training partner for leading international certification bodies, ensuring you receive the official curriculum and highest standard of preparation.
-                    </p>
-                </div>
+      <SectionHeading
+        eyebrow="Accreditations"
+        title="Authorised training partnerships"
+        lead="EduDubai is an authorised training partner to international certification bodies. Candidates study the official curriculum on which the examination is based."
+      />
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-                    {/* GCI Card */}
-                    <Card className="border-0 shadow-lg bg-white overflow-hidden group hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
-                        <CardContent className="p-0 flex-grow flex flex-col">
-                            <div className="p-8 md:p-10 flex flex-col h-full flex-grow">
-                                <div className="flex items-center justify-between mb-8">
-                                    <div className="relative h-16 w-48 transition-all duration-300">
-                                        <Image
-                                            src="/images/partners/gci-australia.png"
-                                            alt="GCI Global Compliance Institute"
-                                            fill
-                                            className="object-contain object-left"
-                                        />
-                                    </div>
-                                    <div className="h-10 w-10 bg-brand-gold/10 rounded-full flex items-center justify-center">
-                                        <CheckCircle2 className="h-6 w-6 text-brand-gold" />
-                                    </div>
-                                </div>
+      <div className="mt-16 grid gap-6 lg:grid-cols-2">
+        {partners.map((partner, i) => (
+          <Reveal key={partner.name} variant="up" delay={i * 130}>
+            <TiltCard className="h-full rounded-lg">
+              <article className="group flex h-full flex-col rounded-lg border border-line bg-surface-raised p-8 shadow-sm transition-all duration-slow ease-out-expo hover:border-gold-400/50 hover:shadow-lg sm:p-10">
+                <header className="flex items-start justify-between gap-6">
+                  <div className="relative h-14 w-44">
+                    <Image
+                      src={partner.logo}
+                      alt={partner.name}
+                      fill
+                      sizes="176px"
+                      className="object-contain object-left"
+                    />
+                  </div>
+                  <span
+                    aria-hidden="true"
+                    className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-400/12 text-gold-mark"
+                  >
+                    <BadgeCheck className="h-5 w-5" />
+                  </span>
+                </header>
 
-                                <h4 className="text-2xl font-bold text-brand-navy mb-4">
-                                    Global Compliance Institute (GCI)
-                                </h4>
+                <h3 className="mt-8 text-2xl ">{partner.title}</h3>
 
-                                <p className="text-neutral-text-muted mb-8 leading-relaxed flex-grow">
-                                    As the authorized MENA partner for GCI, we deliver their complete suite of specialized compliance certifications. GCI is renowned for its practical, operational approach to AML, Sanctions, and KYC education, moving beyond theory to job-ready vigilance.
-                                </p>
+                <p className="mt-4 flex-grow leading-relaxed text-content-muted">{partner.blurb}</p>
 
-                                <div className="space-y-3 mb-8">
-                                    {["Authorized Training Center", "Official Exam Preparation", "Certified Instructors"].map((item, i) => (
-                                        <div key={i} className="flex items-center gap-2 text-sm font-medium text-brand-navy/80">
-                                            <div className="h-1.5 w-1.5 rounded-full bg-brand-gold" />
-                                            {item}
-                                        </div>
-                                    ))}
-                                </div>
+                <ul className="mt-8 flex flex-col gap-3 border-t border-line pt-6">
+                  {partner.points.map((point) => (
+                    <li key={point} className="flex items-center gap-2.5 text-sm text-content">
+                      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold-400" />
+                      {point}
+                    </li>
+                  ))}
+                </ul>
 
-                                <Link href="/courses?body=GCI" className="w-full">
-                                    <Button className="w-full bg-brand-navy hover:bg-brand-navy-light text-white group-hover:bg-brand-gold group-hover:text-brand-navy transition-colors">
-                                        Explore GCI Courses
-                                        <ArrowRight className="ml-2 h-4 w-4" />
-                                    </Button>
-                                </Link>
-                            </div>
-                        </CardContent>
-                    </Card>
-
-                    {/* HOCK Card */}
-                    <Card className="border-0 shadow-lg bg-white overflow-hidden group hover:shadow-2xl transition-all duration-300 h-full flex flex-col">
-                        <CardContent className="p-0 flex-grow flex flex-col">
-                            <div className="p-8 md:p-10 flex flex-col h-full flex-grow">
-                                <div className="flex items-center justify-between mb-8">
-                                    <div className="relative h-16 w-48 transition-all duration-300">
-                                        <Image
-                                            src="/images/partners/hock-international.png"
-                                            alt="HOCK International"
-                                            fill
-                                            className="object-contain object-left"
-                                        />
-                                    </div>
-                                    <div className="h-10 w-10 bg-brand-gold/10 rounded-full flex items-center justify-center">
-                                        <CheckCircle2 className="h-6 w-6 text-brand-gold" />
-                                    </div>
-                                </div>
-
-                                <h4 className="text-2xl font-bold text-brand-navy mb-4">
-                                    HOCK International
-                                </h4>
-
-                                <p className="text-neutral-text-muted mb-8 leading-relaxed flex-grow">
-                                    We partner with HOCK International to deliver the world&apos;s most effective CMA (Certified Management Accountant) preparation. By combining HOCK&apos;s comprehensive textbooks, videos, and exam software with our expert classroom instruction, we ensure high pass rates.
-                                </p>
-
-                                <div className="space-y-3 mb-8">
-                                    {["CMA Exam Specialists", "Comprehensive Study Suite", "PassMap™ Technology"].map((item, i) => (
-                                        <div key={i} className="flex items-center gap-2 text-sm font-medium text-brand-navy/80">
-                                            <div className="h-1.5 w-1.5 rounded-full bg-brand-gold" />
-                                            {item}
-                                        </div>
-                                    ))}
-                                </div>
-
-                                <Button className="w-full bg-brand-navy hover:bg-brand-navy-light text-white group-hover:bg-brand-gold group-hover:text-brand-navy transition-colors">
-                                    View CMA Details
-                                    <ArrowRight className="ml-2 h-4 w-4" />
-                                </Button>
-                            </div>
-                        </CardContent>
-                    </Card>
-                </div>
-            </Container>
-        </section>
-    )
+                <Button asChild variant="default" size="lg" className="mt-8 w-full">
+                  <Link href={partner.cta.href}>
+                    {partner.cta.text}
+                    <ArrowRight
+                      aria-hidden="true"
+                      className="h-4 w-4 transition-transform duration-slow ease-out-expo group-hover:translate-x-1"
+                    />
+                  </Link>
+                </Button>
+              </article>
+            </TiltCard>
+          </Reveal>
+        ))}
+      </div>
+    </Section>
+  )
 }

@@ -39,9 +39,9 @@ export default async function CoursesPage() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "ACTIVE":
-        return <Badge className="bg-green-500 hover:bg-green-600">Active</Badge>
+        return <Badge className="bg-success/100 hover:bg-green-600">Active</Badge>
       case "COMPLETED":
-        return <Badge className="bg-brand-gold hover:bg-brand-gold-light">Completed</Badge>
+        return <Badge className="bg-gold-400 hover:bg-gold-300">Completed</Badge>
       case "CANCELLED":
         return <Badge variant="destructive">Cancelled</Badge>
       default:
@@ -51,7 +51,7 @@ export default async function CoursesPage() {
 
   const getDeliveryModeBadge = (mode: string) => {
     return (
-      <Badge variant="secondary" className="bg-brand-navy/10 text-brand-navy border-brand-navy/20">
+      <Badge variant="secondary" className="bg-navy-900/10 text-navy-700 border-navy-700/20">
         {mode.replace(/_/g, " ")}
       </Badge>
     )
@@ -60,8 +60,8 @@ export default async function CoursesPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-brand-navy mb-2">My Courses</h1>
-        <p className="text-neutral-text-muted">
+        <h1 className="text-3xl font-bold text-navy-700 mb-2">My Courses</h1>
+        <p className="text-content-muted">
           Manage and track your course enrollments
         </p>
       </div>
@@ -75,7 +75,7 @@ export default async function CoursesPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Button asChild className="bg-brand-gold text-brand-navy hover:bg-brand-gold-light">
+            <Button asChild className="bg-gold-400 text-navy-700 hover:bg-gold-300">
               <Link href="/courses">Browse Courses</Link>
             </Button>
           </CardContent>
@@ -104,7 +104,7 @@ export default async function CoursesPage() {
                   {enrollments.map((enrollment) => (
                     <TableRow key={enrollment.id}>
                       <TableCell>
-                        <div className="font-medium text-brand-navy">
+                        <div className="font-medium text-navy-700">
                           {enrollment.course_title}
                         </div>
                       </TableCell>
@@ -145,7 +145,7 @@ export default async function CoursesPage() {
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-center gap-2 text-sm text-neutral-text-muted mb-4">
+                    <div className="flex items-center gap-2 text-sm text-content-muted mb-4">
                       <Calendar className="h-4 w-4" />
                       {enrollment.start_date
                         ? new Date(enrollment.start_date).toLocaleDateString()

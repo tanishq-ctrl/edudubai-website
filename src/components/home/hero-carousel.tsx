@@ -1,88 +1,81 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import * as React from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion"
+import { ArrowRight, Pause, Play } from "lucide-react"
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/container"
-import { PartnerLogo } from "@/components/partner-logo"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Autoplay, Navigation, Pagination, A11y } from "swiper/modules"
-import type { Swiper as SwiperType } from "swiper"
+import { Marquee } from "@/components/motion"
 
-// Import Swiper styles
-import "swiper/css"
-import "swiper/css/navigation"
-import "swiper/css/pagination"
-
-interface SlideData {
+type Slide = {
   eyebrow?: string
   headline: string
+  /** Rendered in gold, on its own line, as the emphasis half of the headline. */
+  accent?: string
   subheadline: string
-  primaryCTA: {
-    text: string
-    href: string
-  }
-  secondaryCTA?: {
-    text: string
-    href: string
-  }
+  primaryCTA: { text: string; href: string }
+  secondaryCTA?: { text: string; href: string }
   image: string
   imageAlt: string
-  certifications?: {
-    name: string
-    imagePath: string
-  }[]
-  whiteLogos?: boolean
+  certifications?: { name: string; imagePath: string }[]
+  /**
+   * How the credential artwork is built, which decides how it is framed.
+   *
+   * "mark" — ACAMS: a flat olive laurel on a TRANSPARENT background. Too dark
+   *   to sit directly on the navy hero, so it needs a light surface.
+   * "tile" — GCI: a complete navy card with a gold medallion, white caption
+   *   and a notched corner, already carrying its own background. Putting one
+   *   of these on a white chip produced a navy square letterboxed inside a
+   *   white pill, which is what made slides 2 and 3 look unprofessional.
+   */
+  certificationStyle?: "mark" | "tile"
 }
 
-const slides: SlideData[] = [
+const slides: Slide[] = [
   {
-    eyebrow: "EduDubai • Training & Consulting",
-    headline: "Compliance Leadership\nStarts Here.",
-    subheadline: "Think the way regulators expect, No Shortcuts",
-    primaryCTA: {
-      text: "Explore Courses",
-      href: "/courses",
-    },
+    eyebrow: "Training & Consulting",
+    headline: "Professional compliance",
+    accent: "certification.",
+    subheadline:
+      "Accredited training for compliance, risk and audit functions in regulated institutions worldwide.",
+    primaryCTA: { text: "View programmes", href: "/courses" },
+    secondaryCTA: { text: "Speak to an advisor", href: "/contact" },
     image: "/hero/slide-1.jpg",
-    imageAlt: "Professional compliance training and consulting",
+    imageAlt: "Compliance professionals in a training session",
   },
   {
-    headline: "ACAMS Exam Prep",
-    subheadline: "Live cohorts, case-led learning, readiness diagnostics.",
-    primaryCTA: {
-      text: "Join ACAMS Prep",
-      href: "/courses?body=ACAMS",
-    },
-    secondaryCTA: {
-      text: "Download Brochure",
-      href: "/contact",
-    },
+    eyebrow: "ACAMS Exam Preparation",
+    headline: "ACAMS certification",
+    accent: "preparation.",
+    subheadline:
+      "Live instructor-led cohorts aligned to the ACAMS Candidate Handbook and examination blueprint.",
+    primaryCTA: { text: "ACAMS programmes", href: "/courses?body=ACAMS" },
+    secondaryCTA: { text: "Request a brochure", href: "/contact" },
     image: "/hero/slide-2.jpg",
-    imageAlt: "ACAMS exam preparation and training",
+    imageAlt: "ACAMS exam preparation cohort",
+    certificationStyle: "mark",
     certifications: [
       { name: "CAMS", imagePath: "/images/certifications/camss.png" },
       { name: "CGSS", imagePath: "/images/certifications/cgss.png" },
       { name: "CCAS", imagePath: "/images/certifications/ccas.png" },
       { name: "CAFS", imagePath: "/images/certifications/cafs.png" },
     ],
-    whiteLogos: true,
   },
   {
-    headline: "GCI Exam Prep",
-    subheadline: "Global Compliance Institute certified training with expert guidance.",
-    primaryCTA: {
-      text: "Join GCI Prep",
-      href: "/courses?body=GCI",
-    },
-    secondaryCTA: {
-      text: "Download Brochure",
-      href: "/contact",
-    },
+    eyebrow: "GCI Exam Preparation",
+    headline: "Global Compliance",
+    accent: "Institute tracks.",
+    subheadline:
+      "Authorised GCI programmes covering AML, sanctions, FATCA/CRS and regulatory governance.",
+    primaryCTA: { text: "GCI programmes", href: "/courses?body=GCI" },
+    secondaryCTA: { text: "Request a brochure", href: "/contact" },
     image: "/hero/slide-3.jpg",
-    imageAlt: "GCI exam preparation and training",
+    imageAlt: "GCI certification training",
+    certificationStyle: "tile",
     certifications: [
       { name: "CCM", imagePath: "/images/certifications/ccm.png" },
       { name: "FCS", imagePath: "/images/certifications/fcs.png" },
@@ -92,23 +85,18 @@ const slides: SlideData[] = [
     ],
   },
   {
-    eyebrow: "For Organizations",
-    headline: "Corporate Training\nThat Moves Metrics.",
-    subheadline: "Customized programs across GCC, India, and global teams.",
-    primaryCTA: {
-      text: "Corporate Training",
-      href: "/corporate-training",
-    },
-    secondaryCTA: {
-      text: "Become a Trainer",
-      href: "/become-a-trainer", // Links to trainer registration
-    },
+    eyebrow: "For Organisations",
+    headline: "Corporate programmes",
+    accent: "programmes.",
+    subheadline:
+      "Institution-wide compliance training scoped to your risk assessment and delivered across jurisdictions.",
+    primaryCTA: { text: "Corporate programmes", href: "/corporate-training" },
+    secondaryCTA: { text: "Join our faculty", href: "/become-a-trainer" },
     image: "/hero/slide-4.jpg",
-    imageAlt: "Corporate training and organizational development",
+    imageAlt: "Corporate compliance team workshop",
   },
 ]
 
-// Partner logos for trust bar
 const partners = [
   { name: "Deutsche Bank", imagePath: "/images/partners/deutsche-bank.png" },
   { name: "BNP Paribas", imagePath: "/images/partners/bnp-paribas.png" },
@@ -120,310 +108,341 @@ const partners = [
   { name: "Standard Chartered", imagePath: "/images/partners/standard-chartered.png" },
 ]
 
+const SLIDE_MS = 7000
+
+/**
+ * Homepage hero.
+ *
+ * Hand-rolled rather than Swiper: the hero needs a crossfade, a per-element
+ * copy reveal and a progress bar on the indicators, none of which Swiper gives
+ * for free -- and dropping it takes its CSS and module weight off the most
+ * important page on the site.
+ *
+ * PERF NOTES (these are load-bearing, do not "tidy" them away):
+ *  - Only the active image and its two neighbours are mounted. Rendering all
+ *    four meant the browser downloaded every hero photo on first paint (~1.1MB)
+ *    even at opacity 0 -- they are inside the viewport, so lazy loading never
+ *    kicked in.
+ *  - No `backdrop-filter` and no large `blur-[Npx]`: both are re-rasterised by
+ *    the compositor every frame. Ambient glow uses the cheap `.orb` radial
+ *    gradient instead.
+ *  - No `will-change`: it promotes layers permanently and costs more than the
+ *    transition it is meant to smooth.
+ *  - Autoplay stops while the tab is hidden.
+ */
 export function HeroCarousel() {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
-  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null)
+  const [active, setActive] = React.useState(0)
+  const [userPaused, setUserPaused] = React.useState(false)
+  const [hidden, setHidden] = React.useState(false)
+  const reduced = useReducedMotion() ?? false
 
-  useEffect(() => {
-    // Check for reduced motion preference
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
-    setPrefersReducedMotion(mediaQuery.matches)
+  // Reduced-motion users get a static slide plus the manual controls; nothing
+  // rotates underneath them.
+  const playing = !userPaused && !hidden && !reduced
 
-    const handleChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches)
-      if (swiperInstance) {
-        if (e.matches) {
-          swiperInstance.autoplay?.stop()
-        } else {
-          swiperInstance.autoplay?.start()
-        }
-      }
+  const go = React.useCallback((i: number) => {
+    setActive(((i % slides.length) + slides.length) % slides.length)
+  }, [])
+
+  React.useEffect(() => {
+    if (!playing) return
+    const id = window.setInterval(() => setActive((i) => (i + 1) % slides.length), SLIDE_MS)
+    return () => window.clearInterval(id)
+  }, [playing])
+
+  React.useEffect(() => {
+    const onVis = () => setHidden(document.hidden)
+    onVis()
+    document.addEventListener("visibilitychange", onVis)
+    return () => document.removeEventListener("visibilitychange", onVis)
+  }, [])
+
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowRight") {
+      e.preventDefault()
+      go(active + 1)
     }
+    if (e.key === "ArrowLeft") {
+      e.preventDefault()
+      go(active - 1)
+    }
+  }
 
-    mediaQuery.addEventListener("change", handleChange)
-    return () => mediaQuery.removeEventListener("change", handleChange)
-  }, [swiperInstance])
+  const slide = slides[active]
+
+  // One shared entrance: each copy element inherits its own delay from the
+  // index passed in, so the block reveals top-down without a stagger parent.
+  const rise = (delay: number) =>
+    reduced
+      ? { initial: false as const, animate: { opacity: 1 } }
+      : {
+          initial: { opacity: 0, y: 18 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.55, delay, ease: [0.16, 1, 0.3, 1] as const },
+        }
 
   return (
-    <section className="relative w-full h-screen min-h-[700px] max-h-[900px]">
-      <Swiper
-        modules={[Autoplay, Navigation, Pagination, A11y]}
-        spaceBetween={0}
-        slidesPerView={1}
-        loop={true}
-        autoplay={
-          prefersReducedMotion
-            ? false
-            : {
-              delay: 6500,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            }
-        }
-        navigation={{
-          nextEl: ".swiper-button-next-custom",
-          prevEl: ".swiper-button-prev-custom",
-        }}
-        pagination={{
-          clickable: true,
-          el: ".swiper-pagination-custom",
-          bulletClass: "swiper-pagination-bullet-custom",
-          bulletActiveClass: "swiper-pagination-bullet-active-custom",
-        }}
-        keyboard={{
-          enabled: true,
-        }}
-        onSwiper={setSwiperInstance}
-        className="h-full w-full"
-      >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index} className="relative h-full w-full">
-            {/* Background Image - Full screen */}
-            <div className="absolute inset-0">
+    <section
+      aria-roledescription="carousel"
+      aria-label="EduDubai highlights"
+      onKeyDown={onKeyDown}
+      className="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden bg-ink-950 text-white"
+    >
+      {/* ---------------- Backplate ---------------- */}
+      <div className="absolute inset-0 -z-20">
+        {slides.map((s, i) => {
+          const dist = Math.min(Math.abs(i - active), slides.length - Math.abs(i - active))
+          if (dist > 1) return null
+
+          return (
+            <motion.div
+              key={s.image}
+              aria-hidden={i !== active}
+              initial={false}
+              animate={{ opacity: i === active ? 1 : 0 }}
+              transition={{ duration: reduced ? 0 : 1.1, ease: "easeOut" }}
+              className="absolute inset-0"
+            >
               <Image
-                src={slide.image}
-                alt={slide.imageAlt}
+                src={s.image}
+                alt={i === active ? s.imageAlt : ""}
                 fill
-                priority={index === 0}
-                quality={90}
-                className="object-cover brightness-110"
-                style={{ objectPosition: '75% center' }}
+                priority={i === 0}
+                loading={i === 0 ? undefined : "lazy"}
+                quality={75}
                 sizes="100vw"
-                onError={(e) => {
-                  // Fallback to gradient if image fails to load
-                  const target = e.target as HTMLImageElement
-                  target.style.display = "none"
-                  const parent = target.parentElement
-                  if (parent) {
-                    parent.style.background =
-                      "linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 50%, #1e3a5f 100%)"
-                  }
-                }}
+                className="object-cover object-center"
               />
-            </div>
+            </motion.div>
+          )
+        })}
+      </div>
 
+      {/*
+        Three stacked scrims in brand navy. The vertical one guarantees legible
+        text at the bottom of the frame regardless of the photo; the
+        left-weighted one keeps the headline column readable on wide desktop
+        crops; the grid adds a little corporate texture.
+      */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-950 via-ink-950/82 to-ink-950/40"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-gradient-to-r from-ink-950/92 via-ink-800/45 to-transparent"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 bg-grid-navy bg-grid opacity-[0.35]"
+      />
+      {/* Cheap radial glow -- see `.orb` in globals.css, not a blur filter. */}
+      <div
+        aria-hidden="true"
+        style={{ "--orb": "rgb(var(--gold-400) / 0.15)" } as React.CSSProperties}
+        className="orb pointer-events-none absolute -left-24 bottom-0 -z-10 h-[28rem] w-[28rem] max-w-full"
+      />
 
-            {/* Gradient Overlay - Stronger on left to protect text area */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/20" />
+      {/* ---------------- Copy ---------------- */}
+      <Container className="relative z-10 pb-10 pt-header sm:pb-16">
+        <div className="flex min-h-[58svh] flex-col justify-end">
+          {/*
+            Only the active slide is in the DOM, so inactive CTAs can never
+            become invisible tab stops. AnimatePresence with mode="wait" keeps
+            the outgoing copy from overlapping the incoming copy.
+          */}
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={active}
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`${active + 1} of ${slides.length}`}
+              initial={reduced ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={reduced ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ duration: reduced ? 0 : 0.28 }}
+              className="max-w-3xl"
+            >
+              {slide.eyebrow ? (
+                <motion.p
+                  {...rise(0)}
+                  className="mb-5 inline-flex items-center gap-3 text-2xs font-bold uppercase tracking-[0.24em] text-gold-300"
+                >
+                  <span aria-hidden="true" className="h-px w-10 bg-gold-400" />
+                  {slide.eyebrow}
+                </motion.p>
+              ) : null}
 
-            {/* Content - Left Aligned */}
-            <Container className={cn(
-              "relative z-10 h-full flex flex-col items-start",
-              // Center all slides on mobile; keep Slides 1 & 4 centered on desktop
-              (index === 0 || index === 3) ? "justify-center" : "justify-center md:justify-start md:pt-32 lg:pt-36",
-              !slide.certifications && "pb-16 md:pb-24"
-            )}>
-              {/* Certification Logos - Stays above text on all screens to prevent overlap */}
-              {slide.certifications && (
-                <div className={cn(
-                  "relative z-20 pointer-events-none md:px-0",
-                  "mb-6 md:mb-10 justify-start w-full", // Consistent flow for all screens
-                )}>
-                  <div className={cn(
-                    "flex justify-start items-center pointer-events-auto",
-                    "flex-nowrap gap-3 sm:gap-4 md:gap-8 lg:gap-12 max-w-full overflow-x-auto scrollbar-hide md:overflow-visible"
-                  )}>
-                    {slide.certifications.map((cert, certIndex) => (
-                      <div
-                        key={certIndex}
-                        className="transition-transform duration-300 hover:scale-110 flex-shrink-0"
-                      >
-                        <Image
-                          src={cert.imagePath}
-                          alt={cert.name}
-                          width={140}
-                          height={140}
-                          className={cn(
-                            index === 1
-                              ? "w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain"
-                              : index === 2
-                                ? "w-14 h-14 sm:w-16 sm:h-16 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain"
-                                : "w-14 h-14 sm:w-14 sm:h-14 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain",
-                            slide.whiteLogos
-                              ? "brightness-0 invert drop-shadow-2xl opacity-90"
-                              : "mix-blend-multiply contrast-[1.1] brightness-[1.05]"
-                          )}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+              <motion.h1
+                {...rise(0.06)}
+                className="text-[2rem] font-extrabold leading-[1.06] tracking-tight text-white sm:text-5xl lg:text-6xl"
+              >
+                <span className="block">{slide.headline}</span>
+                {slide.accent ? (
+                  <span className="relative mt-1 inline-block text-gold-400">
+                    {slide.accent}
+                    <motion.span
+                      aria-hidden="true"
+                      initial={reduced ? false : { scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.35, ease: [0.16, 1, 0.3, 1] }}
+                      style={{ originX: 0 }}
+                      className="absolute -bottom-1 left-0 block h-[3px] w-full rounded-full bg-gold-400/70"
+                    />
+                  </span>
+                ) : null}
+              </motion.h1>
 
+              <motion.p
+                {...rise(0.14)}
+                className="mt-6 max-w-measure-sm text-base text-content-on-dark-muted sm:text-lg"
+              >
+                {slide.subheadline}
+              </motion.p>
 
+              <motion.div
+                {...rise(0.2)}
+                className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
+              >
+                <Button asChild size="xl" variant="gold" block>
+                  <Link href={slide.primaryCTA.href}>
+                    {slide.primaryCTA.text}
+                    <ArrowRight
+                      aria-hidden="true"
+                      className="h-4 w-4 transition-transform duration-slow ease-out-expo group-hover:translate-x-1"
+                    />
+                  </Link>
+                </Button>
 
-              <div className="md:max-w-2xl text-left space-y-6 lg:space-y-8 animate-fade-up w-full">
-                {/* Badge */}
-
-                {slide.eyebrow && (
-                  <div className="inline-flex">
-                    <span className="px-4 py-2 bg-brand-gold text-brand-navy text-xs sm:text-sm font-bold uppercase tracking-wider rounded-md shadow-lg">
-                      {slide.eyebrow}
-                    </span>
-                  </div>
-                )}
-
-                {/* Headline */}
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-white drop-shadow-2xl">
-                  {slide.headline.split('\n').map((line, i) => (
-                    <span key={i} className="block">
-                      {line}
-                    </span>
-                  ))}
-                </h1>
-
-                {/* Subheadline */}
-                <p className="text-lg sm:text-xl text-white/90 leading-relaxed drop-shadow-lg">
-                  {slide.subheadline}
-                </p>
-
-                {/* CTAs */}
-                <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                  <Button
-                    asChild
-                    size="xl"
-                    variant="gold"
-                    className="min-w-[220px]"
-                  >
-                    <Link href={slide.primaryCTA.href}>
-                      {slide.primaryCTA.text}
-                    </Link>
+                {slide.secondaryCTA ? (
+                  <Button asChild size="xl" variant="outline-light" block>
+                    <Link href={slide.secondaryCTA.href}>{slide.secondaryCTA.text}</Link>
                   </Button>
-                  {slide.secondaryCTA && (
-                    <Button
-                      asChild
-                      size="xl"
-                      variant="outline"
-                      className="bg-white/10 backdrop-blur-md border-2 border-white/60 text-white hover:bg-white/15 hover:border-white min-w-[220px]"
-                    >
-                      <Link href={slide.secondaryCTA.href}>
-                        {slide.secondaryCTA.text}
-                      </Link>
-                    </Button>
+                ) : null}
+              </motion.div>
+
+              {slide.certifications ? (
+                <motion.div {...rise(0.26)} className="mt-9">
+                  <p className="text-2xs font-semibold uppercase tracking-[0.22em] text-white/45">
+                    Certifications covered
+                  </p>
+
+                  {/*
+                    Every badge is rendered SQUARE (the source art is 1080x1080)
+                    at one uniform size, so the row has a consistent rhythm.
+                    Previously they were forced into a 72x48 landscape chip,
+                    which letterboxed square artwork and shrank the captions to
+                    an illegible size.
+                  */}
+                  <ul className="mt-4 flex flex-wrap items-center gap-3">
+                    {slide.certifications.map((c) => (
+                      <li key={c.name} className="group/badge relative">
+                        <div
+                          className={cn(
+                            "relative h-16 w-16 overflow-hidden rounded-lg transition-transform duration-slow ease-out-expo group-hover/badge:-translate-y-1 sm:h-[4.5rem] sm:w-[4.5rem]",
+                            slide.certificationStyle === "tile"
+                              ? // Already a navy tile: let it sit on the hero
+                                // directly, with only a hairline to seat it.
+                                "ring-1 ring-white/15"
+                              : // Transparent olive mark: needs a light surface
+                                // to be legible on navy.
+                                "bg-white p-2.5 shadow-sm ring-1 ring-gold-400/30",
+                          )}
+                        >
+                          <Image
+                            src={c.imagePath}
+                            alt={`${c.name} certification`}
+                            fill
+                            quality={90}
+                            sizes="72px"
+                            className="object-contain"
+                          />
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ) : null}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* ---------------- Controls ---------------- */}
+        <div className="mt-9 flex items-center gap-4 sm:gap-5">
+          <div className="flex items-center gap-2.5" role="tablist" aria-label="Choose slide">
+            {slides.map((s, i) => (
+              <button
+                key={s.image}
+                type="button"
+                role="tab"
+                aria-selected={i === active}
+                aria-label={`Slide ${i + 1}: ${s.headline}`}
+                onClick={() => go(i)}
+                className="group/dot relative h-8 px-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+              >
+                <span
+                  className={cn(
+                    "block h-[3px] overflow-hidden rounded-full bg-white/25 transition-all duration-slow ease-out-expo",
+                    i === active ? "w-12 sm:w-14" : "w-6 group-hover/dot:bg-white/50",
                   )}
-                </div>
-              </div>
-            </Container>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-
-      {/* Custom Navigation Arrows */}
-      <button
-        className="swiper-button-prev-custom absolute left-3 sm:left-6 md:left-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-md border border-white/30 hover:border-white/50 hidden sm:flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50 active:scale-95"
-        aria-label="Previous slide"
-      >
-        <svg
-          className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2.5}
-            d="M15 19l-7-7 7-7"
-          />
-        </svg>
-      </button>
-      <button
-        className="swiper-button-next-custom absolute right-3 sm:right-6 md:right-8 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-full bg-black/30 hover:bg-black/50 backdrop-blur-md border border-white/30 hover:border-white/50 hidden sm:flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-white/50 active:scale-95"
-        aria-label="Next slide"
-      >
-        <svg
-          className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2.5}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
-      </button>
-
-      {/* Custom Pagination */}
-      <div className="swiper-pagination-custom absolute bottom-2 sm:bottom-3 md:bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2" />
-
-      {/* Custom Styles */}
-      <style jsx global>{`
-        .swiper-pagination-bullet-custom {
-          width: 10px;
-          height: 10px;
-          background: rgba(255, 255, 255, 0.5);
-          opacity: 1;
-          transition: all 0.3s ease;
-          cursor: pointer;
-        }
-        @media (min-width: 640px) {
-          .swiper-pagination-bullet-custom {
-            width: 12px;
-            height: 12px;
-          }
-        }
-        .swiper-pagination-bullet-active-custom {
-          background: #d4af37;
-          width: 24px;
-          border-radius: 6px;
-        }
-        @media (min-width: 640px) {
-          .swiper-pagination-bullet-active-custom {
-            width: 32px;
-          }
-        }
-      `}</style>
-
-      {/* Trust Bar - Scrolling logos at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-t border-neutral-border/30 pt-5 pb-6 md:pt-6 md:pb-8">
-        {/* Heading */}
-        <div className="text-center mb-5 md:mb-6">
-          <p className="text-xs md:text-sm font-bold text-brand-navy uppercase tracking-wider">
-            Trusted by AML & Compliance Professionals Worldwide
-          </p>
-        </div>
-
-        {/* Scrolling Logos */}
-        <div className="relative w-full overflow-hidden">
-          <div className="flex animate-scroll">
-            {/* First set of logos */}
-            <div className="flex items-center gap-16 md:gap-20 flex-shrink-0 px-8">
-              {partners.map((partner, index) => (
-                <div
-                  key={`first-${index}`}
-                  className="opacity-80 hover:opacity-100 transition-opacity duration-300"
                 >
-                  <PartnerLogo
-                    src={partner.imagePath}
-                    alt={partner.name}
-                    className="h-10 md:h-12"
-                  />
-                </div>
-              ))}
-            </div>
-            {/* Second set of logos for seamless loop */}
-            <div className="flex items-center gap-16 md:gap-20 flex-shrink-0 px-8">
-              {partners.map((partner, index) => (
-                <div
-                  key={`second-${index}`}
-                  className="opacity-80 hover:opacity-100 transition-opacity duration-300"
-                >
-                  <PartnerLogo
-                    src={partner.imagePath}
-                    alt={partner.name}
-                    className="h-10 md:h-12"
-                  />
-                </div>
-              ))}
-            </div>
+                  {i === active ? (
+                    <motion.span
+                      key={`fill-${active}-${playing}`}
+                      initial={{ scaleX: playing ? 0 : 1 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: playing ? SLIDE_MS / 1000 : 0, ease: "linear" }}
+                      style={{ originX: 0 }}
+                      className="block h-full w-full rounded-full bg-gold-400"
+                    />
+                  ) : null}
+                </span>
+              </button>
+            ))}
           </div>
+
+          {!reduced ? (
+            <button
+              type="button"
+              onClick={() => setUserPaused((p) => !p)}
+              aria-label={userPaused ? "Resume slideshow" : "Pause slideshow"}
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gold-400/40 text-gold-300 transition-colors hover:border-gold-400 hover:bg-gold-400 hover:text-navy-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+            >
+              {userPaused ? <Play className="h-3.5 w-3.5" /> : <Pause className="h-3.5 w-3.5" />}
+            </button>
+          ) : null}
+
+          <span className="ml-auto hidden text-2xs font-semibold tabular tracking-widest text-white/50 sm:block">
+            <span className="text-gold-300">{String(active + 1).padStart(2, "0")}</span> /{" "}
+            {String(slides.length).padStart(2, "0")}
+          </span>
         </div>
+      </Container>
+
+      {/* ---------------- Trust rail ---------------- */}
+      <div className="relative z-10 border-t border-white/10 glass-dark">
+        <Container>
+          <div className="flex flex-col gap-4 py-6 lg:flex-row lg:items-center lg:gap-10">
+            <p className="shrink-0 text-2xs font-bold uppercase tracking-[0.22em] text-gold-300">
+              Trusted by teams at
+            </p>
+            <Marquee durationSec={52} itemClassName="gap-12 pr-12">
+              {partners.map((p) => (
+                <span key={p.name} className="relative h-8 w-28 shrink-0">
+                  <Image
+                    src={p.imagePath}
+                    alt={p.name}
+                    fill
+                    quality={90}
+                    sizes="112px"
+                    className="object-contain brightness-0 invert opacity-60 transition-opacity duration-slow hover:opacity-100"
+                  />
+                </span>
+              ))}
+            </Marquee>
+          </div>
+        </Container>
       </div>
     </section>
   )
 }
-

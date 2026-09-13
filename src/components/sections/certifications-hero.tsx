@@ -4,9 +4,10 @@ export function CertificationsHero() {
   return (
     <PageHeroImage
       image="/hero/certifications.jpg"
-      imageAlt="Global Certifications & Exam Preparation"
-      title="Global Certifications & Exam Preparation"
-      description="Prepare for industry-recognized certifications with expert-led training, comprehensive study materials, and proven exam strategies."
+      imageAlt="Global certifications and exam preparation"
+      eyebrow="Accreditations"
+      title="Certifications & exam preparation"
+      description="Industry-recognised credentials backed by expert-led training, official study materials and proven exam strategy."
     />
   )
 }

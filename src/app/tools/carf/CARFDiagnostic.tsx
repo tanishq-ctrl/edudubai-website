@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Turnstile } from "@marsidev/react-turnstile"
+import { TurnstileWidget } from "@/components/turnstile-widget"
 
 const ZONES = [
   { id: 1, name: "Self-Certification & Due Diligence", color: "#A32D2D", bg: "#FCEBEB", dot: "#A32D2D" },
@@ -277,7 +277,7 @@ const CSS = `
 .ct-header-badge {
   background: rgba(212,175,55,0.2); color: var(--gold);
   font-size: 11px; font-weight: 600; padding: 4px 10px;
-  border-radius: 20px; border: 1px solid rgba(212,175,55,0.4);
+  border-radius: var(--radius-xl); border: 1px solid rgba(212,175,55,0.4);
   white-space: nowrap;
 }
 .ct-progress-wrap { background: var(--navy-mid); padding: 12px 24px; position: sticky; top: 80px; z-index: 10; }
@@ -325,7 +325,7 @@ const CSS = `
   pointer-events: none;
 }
 .ct-intro-hero h1 {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
   font-size: clamp(22px, 4vw, 32px);
   color: #fff; line-height: 1.25; margin-bottom: 12px;
   position: relative; z-index: 1;
@@ -340,7 +340,7 @@ const CSS = `
 .ct-zone-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 24px; }
 .ct-zone-chip {
   display: flex; align-items: center; gap: 8px;
-  padding: 9px 12px; border-radius: 8px;
+  padding: 9px 12px; border-radius: var(--radius-sm);
   font-size: 12.5px; font-weight: 500;
 }
 .ct-zone-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
@@ -348,7 +348,7 @@ const CSS = `
   display: block; width: 100%;
   background: var(--gold); color: var(--navy);
   font-size: 15px; font-weight: 800;
-  padding: 15px 24px; border-radius: 10px; border: none;
+  padding: 15px 24px; border-radius: var(--radius); border: none;
   cursor: pointer; letter-spacing: 0.01em;
   transition: background 0.2s, transform 0.1s;
   font-family: inherit;
@@ -361,14 +361,14 @@ const CSS = `
   max-width: 480px; margin: 40px auto; padding: 36px 32px;
 }
 .ct-lead-card h2 {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
   font-size: 22px; color: var(--navy); margin-bottom: 6px;
 }
 .ct-lead-card p { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
 .ct-field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 16px; }
 .ct-field label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
 .ct-field input {
-  height: 42px; border: 1.5px solid var(--border); border-radius: 8px;
+  height: 42px; border: 1.5px solid var(--border); border-radius: var(--radius-sm);
   padding: 0 12px; font-size: 14px; font-family: inherit; color: var(--text);
   outline: none; transition: border-color 0.18s;
 }
@@ -379,7 +379,7 @@ const CSS = `
   display: block; width: 100%; margin-top: 8px;
   background: var(--navy); color: #fff;
   font-size: 15px; font-weight: 700; padding: 14px 24px;
-  border-radius: 10px; border: 1.5px solid transparent;
+  border-radius: var(--radius); border: 1.5px solid transparent;
   cursor: pointer; font-family: inherit;
   transition: background 0.2s, border-color 0.2s;
 }
@@ -399,7 +399,7 @@ const CSS = `
 }
 .ct-q-zone {
   display: inline-flex; align-items: center; gap: 6px;
-  padding: 4px 10px; border-radius: 20px;
+  padding: 4px 10px; border-radius: var(--radius-xl);
   font-size: 11px; font-weight: 600;
   margin-bottom: 16px;
 }
@@ -408,14 +408,14 @@ const CSS = `
 .ct-q-context {
   font-size: 13px; color: var(--muted); line-height: 1.55;
   margin-bottom: 22px; padding: 10px 12px;
-  background: var(--bg); border-radius: 8px;
+  background: var(--bg); border-radius: var(--radius-sm);
   border-left: 3px solid var(--border);
 }
 .ct-options { display: flex; flex-direction: column; gap: 10px; }
 .ct-option-btn {
   display: flex; align-items: flex-start; gap: 12px;
   background: var(--bg); border: 1.5px solid var(--border);
-  border-radius: 10px; padding: 14px 16px;
+  border-radius: var(--radius); padding: 14px 16px;
   cursor: pointer; text-align: left;
   transition: all 0.18s;
   font-family: inherit; width: 100%;
@@ -446,7 +446,7 @@ const CSS = `
 .ct-next-btn {
   background: var(--navy); color: #fff;
   font-size: 14px; font-weight: 700;
-  padding: 11px 24px; border-radius: 8px; border: 1.5px solid transparent;
+  padding: 11px 24px; border-radius: var(--radius-sm); border: 1.5px solid transparent;
   cursor: pointer; font-family: inherit;
   transition: background 0.2s, border-color 0.2s;
   display: flex; align-items: center; gap: 6px;
@@ -460,13 +460,13 @@ const CSS = `
   animation: ctFadeUp 0.4s ease;
 }
 .ct-results-hero { background: var(--navy); padding: 32px; text-align: center; }
-.ct-results-hero h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 22px; color: #fff; margin-bottom: 6px; }
+.ct-results-hero h2 { font-family: var(--font-sans), system-ui, sans-serif; font-size: 22px; color: #fff; margin-bottom: 6px; }
 .ct-results-hero p { font-size: 14px; color: var(--ice); }
 .ct-gauge-wrap { position: relative; width: 220px; height: 120px; margin: 24px auto 8px; }
 .ct-gauge-svg { width: 220px; height: 120px; }
 .ct-risk-badge {
   display: inline-block;
-  padding: 6px 18px; border-radius: 20px;
+  padding: 6px 18px; border-radius: var(--radius-xl);
   font-size: 13px; font-weight: 700;
   margin: 8px auto 0; letter-spacing: 0.04em;
 }
@@ -479,7 +479,7 @@ const CSS = `
 .ct-zone-results { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
 .ct-zone-result-row {
   display: flex; align-items: center; gap: 12px;
-  padding: 12px 14px; border-radius: 8px;
+  padding: 12px 14px; border-radius: var(--radius-sm);
   background: var(--bg);
 }
 .ct-zrr-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
@@ -487,30 +487,30 @@ const CSS = `
 .ct-zrr-name { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
 .ct-zrr-bar-wrap { height: 5px; background: var(--border); border-radius: 99px; overflow: hidden; }
 .ct-zrr-bar { height: 100%; border-radius: 99px; transition: width 1s ease 0.3s; }
-.ct-zrr-status { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 20px; white-space: nowrap; }
+.ct-zrr-status { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: var(--radius-xl); white-space: nowrap; }
 .ct-status-critical { background: #FCEBEB; color: #A32D2D; }
 .ct-status-review { background: #FFF2CC; color: #BA7517; }
 .ct-status-good { background: #E2EFDA; color: #0F6E56; }
 .ct-actions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; }
-.ct-action-card { border-radius: 10px; padding: 16px; border: 1.5px solid var(--border); }
+.ct-action-card { border-radius: var(--radius); padding: 16px; border: 1.5px solid var(--border); }
 .ct-action-card h4 { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
 .ct-action-card p { font-size: 12px; color: var(--muted); line-height: 1.5; }
 .ct-action-icon { font-size: 20px; margin-bottom: 8px; }
-.ct-cta-block { background: var(--navy); border-radius: 12px; padding: 24px; text-align: center; }
-.ct-cta-block h3 { font-family: Georgia, 'Times New Roman', serif; font-size: 20px; color: #fff; margin-bottom: 8px; }
+.ct-cta-block { background: var(--navy); border-radius: var(--radius-lg); padding: 24px; text-align: center; }
+.ct-cta-block h3 { font-family: var(--font-sans), system-ui, sans-serif; font-size: 20px; color: #fff; margin-bottom: 8px; }
 .ct-cta-block p { font-size: 13px; color: var(--ice); margin-bottom: 20px; line-height: 1.6; }
 .ct-cta-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 .ct-cta-primary {
   background: var(--gold); color: var(--navy);
   font-size: 14px; font-weight: 800;
-  padding: 12px 22px; border-radius: 8px; border: none;
+  padding: 12px 22px; border-radius: var(--radius-sm); border: none;
   cursor: pointer; font-family: inherit; transition: background 0.2s;
 }
 .ct-cta-primary:hover { background: #e5c158; }
 .ct-cta-secondary {
   background: transparent; color: var(--ice);
   font-size: 14px; font-weight: 600;
-  padding: 12px 22px; border-radius: 8px;
+  padding: 12px 22px; border-radius: var(--radius-sm);
   border: 1.5px solid rgba(255,255,255,0.25);
   cursor: pointer; font-family: inherit; transition: border-color 0.2s;
 }
@@ -523,7 +523,7 @@ const CSS = `
 }
 .ct-priority-text {
   font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 24px;
-  padding: 14px; background: #F0F4FA; border-radius: 8px;
+  padding: 14px; background: #F0F4FA; border-radius: var(--radius-sm);
 }
 .ct-footer { background: var(--navy); padding: 14px 24px; text-align: center; margin-top: auto; }
 .ct-footer p { font-size: 11px; color: #85B7EB; }
@@ -756,11 +756,7 @@ export function CARFDiagnostic() {
                   />
                   {leadErrors.company && <span className="ct-field-error">{leadErrors.company}</span>}
                 </div>
-                <Turnstile
-                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-                  onSuccess={setTurnstileToken}
-                  options={{ theme: "light" }}
-                />
+                <TurnstileWidget onToken={setTurnstileToken} />
                 <button type="submit" className="ct-lead-submit" disabled={!turnstileToken}>
                   Start Diagnostic →
                 </button>
@@ -825,7 +821,7 @@ export function CARFDiagnostic() {
                       d="M 30 110 A 80 80 0 0 1 190 110"
                       style={{ transition: "stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1)" }}
                     />
-                    <text x="110" y="72" textAnchor="middle" fontFamily="Georgia,serif" fontSize="38" fontWeight="700" fill="white">
+                    <text x="110" y="72" textAnchor="middle" fontFamily="var(--font-sans), system-ui, sans-serif" fontSize="38" fontWeight="700" fill="white">
                       {gaugeNum}
                     </text>
                     <text x="110" y="92" textAnchor="middle" fontFamily="system-ui,sans-serif" fontSize="10" fill="#85B7EB" letterSpacing="1">

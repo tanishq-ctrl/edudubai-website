@@ -11,7 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Loader2, AlertCircle, CheckCircle2, Upload, FileText, Globe, User, Mail, Phone, Linkedin, Video } from "lucide-react"
 import { z } from "zod"
-import { Turnstile } from "@marsidev/react-turnstile"
+import { TurnstileWidget } from "@/components/turnstile-widget"
 import Link from "next/link"
 
 
@@ -126,37 +126,37 @@ export function TrainerApplicationForm() {
   if (success) {
     return (
       <div className="animate-in fade-in zoom-in duration-500">
-        <Card className="border-2 border-brand-gold/20 shadow-xl overflow-hidden">
+        <Card className="border-2 border-gold-400/20 shadow-xl overflow-hidden">
 
-          <div className="h-2 bg-brand-gold" />
+          <div className="h-2 bg-gold-400" />
           <CardHeader className="text-center pt-10">
             <div className="mx-auto w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mb-6 shadow-inner">
-              <CheckCircle2 className="h-10 w-10 text-green-600" />
+              <CheckCircle2 className="h-10 w-10 text-success" />
             </div>
-            <CardTitle className="text-3xl font-bold text-brand-navy">Application Received!</CardTitle>
+            <CardTitle className="text-3xl font-bold text-navy-700">Application Received!</CardTitle>
             <CardDescription className="text-lg mt-2 px-6">
               Thank you for applying to join EduDubai. We&apos;re excited to review your profile.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-8 p-8">
-            <div className="bg-neutral-bg p-6 rounded-xl border border-neutral-border text-center">
-              <p className="text-xs uppercase tracking-widest font-semibold text-neutral-text-muted mb-2">Reference ID</p>
-              <p className="text-2xl font-mono font-bold text-brand-navy">{applicationId}</p>
+            <div className="bg-surface p-6 rounded-xl border border-line text-center">
+              <p className="text-xs uppercase tracking-widest font-semibold text-content-muted mb-2">Reference ID</p>
+              <p className="text-2xl font-mono font-bold text-navy-700">{applicationId}</p>
             </div>
 
             <div className="space-y-4">
-              <h3 className="font-semibold text-brand-navy border-b pb-2">Next Steps</h3>
-              <div className="grid gap-4 text-sm text-neutral-text">
+              <h3 className="font-semibold text-navy-700 border-b pb-2">Next Steps</h3>
+              <div className="grid gap-4 text-sm text-content">
                 <div className="flex gap-4 items-start">
-                  <div className="w-6 h-6 rounded-full bg-brand-gold/20 flex items-center justify-center flex-shrink-0 text-brand-gold font-bold">1</div>
+                  <div className="w-6 h-6 rounded-full bg-gold-400/20 flex items-center justify-center flex-shrink-0 text-gold-mark font-bold">1</div>
                   <p>Our academic board will review your credentials and video explanation.</p>
                 </div>
                 <div className="flex gap-4 items-start">
-                  <div className="w-6 h-6 rounded-full bg-brand-gold/20 flex items-center justify-center flex-shrink-0 text-brand-gold font-bold">2</div>
+                  <div className="w-6 h-6 rounded-full bg-gold-400/20 flex items-center justify-center flex-shrink-0 text-gold-mark font-bold">2</div>
                   <p>You will receive an email confirmation with further instructions within 5-7 business days.</p>
                 </div>
                 <div className="flex gap-4 items-start">
-                  <div className="w-6 h-6 rounded-full bg-brand-gold/20 flex items-center justify-center flex-shrink-0 text-brand-gold font-bold">3</div>
+                  <div className="w-6 h-6 rounded-full bg-gold-400/20 flex items-center justify-center flex-shrink-0 text-gold-mark font-bold">3</div>
                   <p>Shortlisted candidates will be invited for a virtual interview session.</p>
                 </div>
               </div>
@@ -164,7 +164,7 @@ export function TrainerApplicationForm() {
 
             <Button
               asChild
-              className="w-full bg-brand-navy text-white hover:bg-brand-navy/90 h-12 rounded-lg font-bold"
+              className="w-full bg-navy-900 text-white hover:bg-navy-900/90 h-12 rounded-lg font-bold"
             >
               <Link href="/">Return to Homepage</Link>
             </Button>
@@ -177,10 +177,10 @@ export function TrainerApplicationForm() {
 
   return (
     <Card className="border-0 shadow-2xl bg-white overflow-hidden">
-      <div className="h-2 bg-gradient-to-r from-brand-navy via-brand-gold to-brand-navy" />
-      <CardHeader className="bg-neutral-bg/50 border-b p-8">
-        <CardTitle className="text-3xl font-bold text-brand-navy">Join Our Expert Network</CardTitle>
-        <CardDescription className="text-base text-neutral-text-muted mt-2">
+      <div className="h-2 bg-gradient-to-r from-navy-900 via-brand-gold to-navy-900" />
+      <CardHeader className="bg-surface/50 border-b p-8">
+        <CardTitle className="text-3xl font-bold text-navy-700">Join Our Expert Network</CardTitle>
+        <CardDescription className="text-base text-content-muted mt-2">
           Fill out the form below to start your journey as an EduDubai trainer.
           The process takes less than 2 minutes.
         </CardDescription>
@@ -202,18 +202,18 @@ export function TrainerApplicationForm() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Personal Info Group */}
             <div className="space-y-6">
-              <h3 className="text-lg font-bold text-brand-navy flex items-center gap-2 border-b pb-2">
-                <User className="h-5 w-5 text-brand-gold" />
+              <h3 className="text-lg font-bold text-navy-700 flex items-center gap-2 border-b pb-2">
+                <User className="h-5 w-5 text-gold-mark" />
                 Personal Information
               </h3>
 
               <div className="space-y-2">
-                <Label htmlFor="full_name">Full Name <span className="text-red-500">*</span></Label>
+                <Label htmlFor="full_name">Full Name <span className="text-danger">*</span></Label>
                 <div className="relative">
-                  <User className="absolute left-3 top-2.5 h-5 w-5 text-neutral-text-muted" />
+                  <User className="absolute left-3 top-2.5 h-5 w-5 text-content-muted" />
                   <Input
                     id="full_name"
-                    className="pl-10 h-12 focus-visible:ring-brand-gold"
+                    className="pl-10 h-12 focus-visible:ring-gold-400"
                     value={formData.full_name}
                     onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
                     placeholder="Enter your full name"
@@ -223,13 +223,13 @@ export function TrainerApplicationForm() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email Address <span className="text-red-500">*</span></Label>
+                <Label htmlFor="email">Email Address <span className="text-danger">*</span></Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-2.5 h-5 w-5 text-neutral-text-muted" />
+                  <Mail className="absolute left-3 top-2.5 h-5 w-5 text-content-muted" />
                   <Input
                     id="email"
                     type="email"
-                    className="pl-10 h-12 focus-visible:ring-brand-gold"
+                    className="pl-10 h-12 focus-visible:ring-gold-400"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="yourname@example.com"
@@ -239,13 +239,13 @@ export function TrainerApplicationForm() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="phone">Phone Number <span className="text-red-500">*</span></Label>
+                <Label htmlFor="phone">Phone Number <span className="text-danger">*</span></Label>
                 <div className="relative">
-                  <Phone className="absolute left-3 top-2.5 h-5 w-5 text-neutral-text-muted" />
+                  <Phone className="absolute left-3 top-2.5 h-5 w-5 text-content-muted" />
                   <Input
                     id="phone"
                     type="tel"
-                    className="pl-10 h-12 focus-visible:ring-brand-gold"
+                    className="pl-10 h-12 focus-visible:ring-gold-400"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+971 00 000 0000"
@@ -255,15 +255,15 @@ export function TrainerApplicationForm() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="country">Country of Residence <span className="text-red-500">*</span></Label>
+                <Label htmlFor="country">Country of Residence <span className="text-danger">*</span></Label>
                 <div className="relative">
-                  <Globe className="absolute left-3 top-2.5 h-5 w-5 text-neutral-text-muted z-10" />
+                  <Globe className="absolute left-3 top-2.5 h-5 w-5 text-content-muted z-10" />
                   <Select
                     value={formData.country}
                     onValueChange={(value) => setFormData({ ...formData, country: value })}
                     disabled={loading}
                   >
-                    <SelectTrigger id="country" className="pl-10 h-12 focus:ring-brand-gold">
+                    <SelectTrigger id="country" className="pl-10 h-12 focus:ring-gold-400">
                       <SelectValue placeholder="Select your country" />
                     </SelectTrigger>
                     <SelectContent>
@@ -280,19 +280,19 @@ export function TrainerApplicationForm() {
 
             {/* Professional Links & Uploads */}
             <div className="space-y-6">
-              <h3 className="text-lg font-bold text-brand-navy flex items-center gap-2 border-b pb-2">
-                <Upload className="h-5 w-5 text-brand-gold" />
+              <h3 className="text-lg font-bold text-navy-700 flex items-center gap-2 border-b pb-2">
+                <Upload className="h-5 w-5 text-gold-mark" />
                 Experience & Media
               </h3>
 
               <div className="space-y-2">
-                <Label htmlFor="linkedin_url">LinkedIn Profile URL <span className="text-red-500">*</span></Label>
+                <Label htmlFor="linkedin_url">LinkedIn Profile URL <span className="text-danger">*</span></Label>
                 <div className="relative">
-                  <Linkedin className="absolute left-3 top-2.5 h-5 w-5 text-neutral-text-muted" />
+                  <Linkedin className="absolute left-3 top-2.5 h-5 w-5 text-content-muted" />
                   <Input
                     id="linkedin_url"
                     type="url"
-                    className="pl-10 h-12 focus-visible:ring-brand-gold"
+                    className="pl-10 h-12 focus-visible:ring-gold-400"
                     value={formData.linkedin_url}
                     onChange={(e) => setFormData({ ...formData, linkedin_url: e.target.value })}
                     placeholder="https://linkedin.com/in/username"
@@ -304,28 +304,28 @@ export function TrainerApplicationForm() {
               <div className="space-y-2">
                 <Label htmlFor="video_url">Video Explanation Link</Label>
                 <div className="relative">
-                  <Video className="absolute left-3 top-2.5 h-5 w-5 text-neutral-text-muted" />
+                  <Video className="absolute left-3 top-2.5 h-5 w-5 text-content-muted" />
                   <Input
                     id="video_url"
                     type="url"
-                    className="pl-10 h-12 focus-visible:ring-brand-gold"
+                    className="pl-10 h-12 focus-visible:ring-gold-400"
                     value={formData.video_url}
                     onChange={(e) => setFormData({ ...formData, video_url: e.target.value })}
                     placeholder="Google Drive, YouTube, or Loom link"
                     disabled={loading}
                   />
                 </div>
-                <p className="text-[11px] text-neutral-text-muted mt-1 leading-tight">
+                <p className="text-2xs text-content-muted mt-1 leading-tight">
                   Share a brief video explaining any topic of your interest to help us evaluate your teaching style.
                 </p>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="cv_file">Upload CV/Resume (PDF) <span className="text-red-500">*</span></Label>
+                <Label htmlFor="cv_file">Upload CV/Resume (PDF) <span className="text-danger">*</span></Label>
                 <div
                   className={`mt-1 border-2 border-dashed rounded-lg p-6 text-center transition-colors cursor-pointer group ${formData.cv_file
-                    ? "border-green-500 bg-green-50/30"
-                    : "border-neutral-border hover:border-brand-gold bg-neutral-bg/30"
+                    ? "border-green-500 bg-success/10/30"
+                    : "border-line hover:border-gold-400 bg-surface/30"
                     }`}
                   onClick={() => document.getElementById("cv_file")?.click()}
                 >
@@ -343,18 +343,18 @@ export function TrainerApplicationForm() {
                   {formData.cv_file ? (
                     <div className="flex flex-col items-center">
                       <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mb-2">
-                        <CheckCircle2 className="h-6 w-6 text-green-600" />
+                        <CheckCircle2 className="h-6 w-6 text-success" />
                       </div>
                       <p className="text-sm font-semibold text-green-700">{formData.cv_file.name}</p>
-                      <p className="text-xs text-green-600">Click to change file</p>
+                      <p className="text-xs text-success">Click to change file</p>
                     </div>
                   ) : (
                     <div className="flex flex-col items-center">
-                      <div className="w-12 h-12 rounded-full bg-brand-gold/10 group-hover:bg-brand-gold/20 flex items-center justify-center mb-2 transition-colors">
-                        <Upload className="h-6 w-6 text-brand-gold" />
+                      <div className="w-12 h-12 rounded-full bg-gold-400/10 group-hover:bg-gold-400/20 flex items-center justify-center mb-2 transition-colors">
+                        <Upload className="h-6 w-6 text-gold-mark" />
                       </div>
-                      <p className="text-sm font-semibold text-brand-navy">Click to upload or drag & drop</p>
-                      <p className="text-xs text-neutral-text-muted">PDF up to 10MB</p>
+                      <p className="text-sm font-semibold text-navy-700">Click to upload or drag & drop</p>
+                      <p className="text-xs text-content-muted">PDF up to 10MB</p>
                     </div>
                   )}
                 </div>
@@ -368,22 +368,19 @@ export function TrainerApplicationForm() {
                 id="consent"
                 checked={formData.consent}
                 onCheckedChange={(checked) => setFormData({ ...formData, consent: checked === true })}
-                className="mt-1 data-[state=checked]:bg-brand-gold data-[state=checked]:border-brand-gold"
+                className="mt-1 data-[state=checked]:bg-gold-400 data-[state=checked]:border-gold-400"
                 disabled={loading}
               />
-              <Label htmlFor="consent" className="text-sm leading-relaxed text-neutral-text-muted cursor-pointer font-normal">
-                I agree to the <a href="/terms" className="text-brand-gold hover:underline font-semibold">Terms & Conditions</a> and consent to EduDubai processing my professional data for trainer evaluation purposes.
+              <Label htmlFor="consent" className="text-sm leading-relaxed text-content-muted cursor-pointer font-normal">
+                I agree to the <a href="/terms" className="text-gold-ink hover:underline font-semibold">Terms & Conditions</a> and consent to EduDubai processing my professional data for trainer evaluation purposes.
               </Label>
             </div>
 
-            <Turnstile
-              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-              onSuccess={setTurnstileToken}
-            />
+            <TurnstileWidget onToken={setTurnstileToken} />
             <Button
               type="submit"
               disabled={loading || !turnstileToken}
-              className="w-full bg-brand-gold text-brand-navy hover:bg-brand-gold-light h-14 rounded-xl text-lg font-bold shadow-lg shadow-brand-gold/20 transition-all hover:scale-[1.01] active:scale-[0.99]"
+              className="w-full bg-gold-400 text-navy-700 hover:bg-gold-300 h-14 rounded-xl text-lg font-bold shadow-lg shadow-brand-gold/20 transition-all hover:scale-[1.01] active:scale-[0.99]"
             >
               {loading ? (
                 <div className="flex items-center gap-2">

@@ -1,7 +1,8 @@
-"use client"
-
 import Image from "next/image"
+import * as React from "react"
+
 import { Container } from "@/components/container"
+import { Reveal, SplitText, Parallax } from "@/components/motion"
 import { cn } from "@/lib/utils"
 
 interface PageHeroImageProps {
@@ -10,10 +11,20 @@ interface PageHeroImageProps {
   title: string
   description?: string | React.ReactNode
   eyebrow?: string
+  /** Escape hatch for a title that needs a non-default size. */
   titleClassName?: string
   align?: "center" | "left"
+  children?: React.ReactNode
 }
 
+/**
+ * Shared interior-page hero.
+ *
+ * Six marketing pages render through this, so it is the single place that
+ * decides how an interior page opens. Sized in `svh` rather than `vh`: on iOS
+ * Safari `vh` is measured against the *expanded* viewport, so a `70vh` hero
+ * sat taller than the screen until the address bar collapsed.
+ */
 export function PageHeroImage({
   image,
   imageAlt,
@@ -22,75 +33,87 @@ export function PageHeroImage({
   eyebrow,
   titleClassName,
   align = "center",
+  children,
 }: PageHeroImageProps) {
   const isLeft = align === "left"
 
   return (
-    <section className="relative w-full h-[55vh] md:h-[70vh] min-h-[420px] overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 brightness-125">
-        <Image
-          src={image}
-          alt={imageAlt}
-          fill
-          priority
-          quality={90}
-          className="object-cover object-center"
-          sizes="100vw"
-          onError={(e) => {
-            // Fallback to gradient if image fails to load
-            const target = e.target as HTMLImageElement
-            target.style.display = "none"
-            const parent = target.parentElement
-            if (parent) {
-              parent.style.background =
-                "linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 50%, #1e3a5f 100%)"
-            }
-          }}
-        />
+    <section className="relative isolate flex min-h-[26rem] w-full items-end overflow-hidden bg-ink-950 pb-14 pt-header text-white sm:min-h-[32rem] md:min-h-[64svh] md:pb-20">
+      <div className="absolute inset-0 -z-20">
+        <Parallax speed={0.1} className="h-full w-full">
+          <Image
+            src={image}
+            alt={imageAlt}
+            fill
+            priority
+            quality={90}
+            sizes="100vw"
+            className="scale-[1.06] object-cover object-center"
+          />
+        </Parallax>
       </div>
 
-      {/* Dark Overlay Gradient - Lighter for brighter images */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/20 to-black/35" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_40%,_rgba(0,0,0,0.1)_100%)]" />
+      {/* Vertical scrim carries the text; the horizontal one keeps a
+          left-aligned column readable on wide crops. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-950 via-ink-950/78 to-ink-950/40"
+      />
+      {isLeft ? (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 bg-gradient-to-r from-ink-950/88 via-ink-950/40 to-transparent"
+        />
+      ) : null}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 bg-grid-navy bg-grid opacity-30"
+      />
 
-      {/* Content */}
-      <Container className="relative z-10 h-full flex items-center px-4 sm:px-6">
-        <div className={cn(
-          "max-w-6xl w-full space-y-4 sm:space-y-6 md:space-y-8 animate-fade-up py-8 sm:py-12 md:py-0",
-          isLeft ? "text-left" : "mx-auto text-center"
-        )}>
-          {/* Eyebrow */}
-          {eyebrow && (
-            <div className={cn(
-              "text-base sm:text-base md:text-lg font-extrabold uppercase tracking-widest text-[#f4d03f] drop-shadow-[0_4px_8px_rgba(0,0,0,1)] [text-shadow:_-1px_-1px_0_rgba(0,0,0,0.8),1px_1px_0_rgba(0,0,0,0.8),0_0_10px_rgba(244,208,63,0.5)] px-2",
-              isLeft ? "text-left pl-0" : "text-center"
-            )}>
-              {eyebrow}
-            </div>
-          )}
+      <Container className="relative z-10">
+        <div className={cn("flex flex-col", isLeft ? "items-start text-left" : "items-center text-center")}>
+          {eyebrow ? (
+            <Reveal variant="fade">
+              <p className="mb-5 inline-flex items-center gap-3 text-2xs font-semibold uppercase tracking-[0.24em] text-gold-300">
+                <span aria-hidden="true" className="h-px w-10 bg-gold-400/70" />
+                {eyebrow}
+              </p>
+            </Reveal>
+          ) : null}
 
-          {/* Headline */}
-          <h1 className={cn(
-            "text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[64px] font-bold leading-[1.1] sm:leading-tight tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] px-2 break-words",
-            isLeft ? "text-left pl-0" : "text-center",
-            titleClassName
-          )}>
-            {title}
+          <h1
+            className={cn(
+              "text-4xl text-white sm:text-5xl lg:text-6xl",
+              isLeft ? "max-w-4xl" : "max-w-4xl",
+              titleClassName,
+            )}
+          >
+            <SplitText text={title} as="span" className="block" />
           </h1>
 
-          {/* Description */}
-          {description && (
-            <p className={cn(
-              "text-base sm:text-lg md:text-xl lg:text-2xl text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.7)] hover:drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] transition-all duration-300 max-w-3xl px-2",
-              isLeft ? "text-left ml-0 pl-0" : "mx-auto text-center"
-            )}>
-              {description}
-            </p>
-          )}
+          {description ? (
+            <Reveal variant="up" delay={260}>
+              <div
+                className={cn(
+                  "mt-6 text-lg leading-relaxed text-white/80",
+                  isLeft ? "max-w-measure" : "mx-auto max-w-measure",
+                )}
+              >
+                {description}
+              </div>
+            </Reveal>
+          ) : null}
+
+          {children ? (
+            <Reveal variant="up" delay={360} className="mt-9">
+              {children}
+            </Reveal>
+          ) : null}
         </div>
       </Container>
+
+      {/* Hairline that ties the hero into the first section below it. */}
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px bg-gold-line opacity-50" />
     </section>
   )
 }
-

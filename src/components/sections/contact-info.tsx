@@ -1,117 +1,130 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Clock, Mail, MessageCircle, Phone } from "lucide-react"
+
 import { WhatsAppButton } from "@/components/whatsapp-button"
-import { Mail, Phone, MapPin, Clock } from "lucide-react"
+import { Eyebrow } from "@/components/section"
+import { Reveal } from "@/components/motion"
+
+const phones = [
+  { region: "India", display: "+91 96656 42862", href: "tel:+919665642862" },
+  { region: "MENA", display: "+971 50 3130 946", href: "tel:+971503130946" },
+]
+
+const responseTimes = [
+  { channel: "Email", time: "Within 24 hours" },
+  { channel: "WhatsApp", time: "Same business day" },
+  { channel: "Phone", time: "During office hours" },
+]
 
 export function ContactInfo() {
   return (
-    <div className="space-y-6">
-      <Card>
-        <CardHeader>
-          <CardTitle>Contact Information</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="flex items-start gap-3">
-            <div className="p-2 bg-brand-gold/10 rounded-lg">
-              <Mail className="h-5 w-5 text-brand-gold" />
-            </div>
-            <div>
-              <div className="font-semibold text-brand-navy mb-1">Email</div>
-              <a
-                href="mailto:training@edudubai.org"
-                className="text-neutral-text-muted hover:text-brand-navy transition-colors"
+    <div className="flex flex-col gap-5">
+      <Reveal variant="up">
+        <div className="rounded-lg border border-line bg-surface-raised p-7 shadow-sm">
+          <Eyebrow>Contact details</Eyebrow>
+
+          <ul className="mt-7 flex flex-col gap-7">
+            <li className="flex items-start gap-4">
+              <span
+                aria-hidden="true"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-400/12 text-gold-mark"
               >
-                training@edudubai.org
-              </a>
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <div className="p-2 bg-brand-gold/10 rounded-lg">
-              <Phone className="h-5 w-5 text-brand-gold" />
-            </div>
-            <div className="space-y-2">
-              <div className="font-semibold text-brand-navy mb-1 text-sm uppercase tracking-wider">Contact Us</div>
-              <div className="flex flex-col gap-1">
+                <Mail className="h-4 w-4" />
+              </span>
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-content-strong">Email</p>
                 <a
-                  href="tel:+919665642862"
-                  className="text-neutral-text-muted hover:text-brand-navy transition-colors text-sm"
+                  href="mailto:training@edudubai.org"
+                  className="mt-1 block break-all text-sm text-content-muted transition-colors hover:text-navy-700"
                 >
-                  <span className="font-bold text-brand-navy/70">India:</span> +91 96656 42862
-                </a>
-                <a
-                  href="tel:+971503130946"
-                  className="text-neutral-text-muted hover:text-brand-navy transition-colors text-sm"
-                >
-                  <span className="font-bold text-brand-navy/70">MENA:</span> +971 50 3130 946
+                  training@edudubai.org
                 </a>
               </div>
-            </div>
-          </div>
-          {/* <div className="flex items-start gap-3">
-  <div className="p-2 bg-brand-gold/10 rounded-lg">
-    <MapPin className="h-5 w-5 text-brand-gold" />
-  </div>
-  <div>
-    <div className="font-semibold text-brand-navy mb-1">Address</div>
-    <div className="text-neutral-text-muted">
-      Global Online Operations<br />
-      Headquarters / India
-    </div>
-  </div>
-</div> */}
-          <div className="flex items-start gap-3">
-            <div className="p-2 bg-brand-gold/10 rounded-lg">
-              <Clock className="h-5 w-5 text-brand-gold" />
-            </div>
-            <div>
-              <div className="font-semibold text-brand-navy mb-1">Office Hours</div>
-              <div className="text-neutral-text-muted text-sm">
-                Monday - Friday<br />
-                9:00 AM - 6:00 PM GST<br />
-                <span className="text-xs text-neutral-text-muted/80">Saturday & Sunday: Closed</span>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+            </li>
 
-      <Card className="bg-gradient-to-br from-brand-navy to-brand-navy-dark text-white border-0">
-        <CardHeader>
-          <CardTitle className="text-white">Quick Connect</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-white/80 mb-4">
-            Prefer to chat? Connect with our advisors on WhatsApp for Immediate Course Assistance.
-          </p>
-          <WhatsAppButton
-            source="contact_page"
-            variant="default"
-            className="w-full bg-brand-gold text-brand-navy hover:bg-brand-gold-light font-semibold"
+            <li className="flex items-start gap-4">
+              <span
+                aria-hidden="true"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-400/12 text-gold-mark"
+              >
+                <Phone className="h-4 w-4" />
+              </span>
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-content-strong">Phone</p>
+                <ul className="mt-2 flex flex-col gap-2">
+                  {phones.map((p) => (
+                    <li key={p.region}>
+                      <a
+                        href={p.href}
+                        className="flex items-center gap-2.5 text-sm text-content-muted transition-colors hover:text-navy-700"
+                      >
+                        <span className="rounded border border-line px-1.5 py-0.5 text-2xs font-semibold uppercase tracking-wider text-content-subtle">
+                          {p.region}
+                        </span>
+                        {p.display}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+
+            <li className="flex items-start gap-4">
+              <span
+                aria-hidden="true"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-400/12 text-gold-mark"
+              >
+                <Clock className="h-4 w-4" />
+              </span>
+              <div>
+                <p className="text-sm font-semibold text-content-strong">Office hours</p>
+                <p className="mt-1 text-sm leading-relaxed text-content-muted">
+                  Monday – Friday
+                  <br />
+                  9:00 AM – 6:00 PM GST
+                  <br />
+                  <span className="text-content-subtle">Saturday &amp; Sunday closed</span>
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </Reveal>
+
+      <Reveal variant="up" delay={110}>
+        <div className="relative overflow-hidden rounded-lg bg-ink-950 p-7 text-white grain">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gold-400/12 blur-3xl"
           />
-        </CardContent>
-      </Card>
+          <Eyebrow onDark>Quick connect</Eyebrow>
+          <p className="mt-4 text-sm leading-relaxed text-white/70">
+            Speak with an advisor directly for immediate assistance with programme selection.
+          </p>
+          <WhatsAppButton source="contact_page" variant="outline-light" className="mt-6 w-full">
+            Message an advisor
+          </WhatsAppButton>
+        </div>
+      </Reveal>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Response Time</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-3 text-sm">
-            <div className="flex justify-between items-center">
-              <span className="text-neutral-text-muted">Email</span>
-              <span className="font-medium text-brand-navy">Within 24 hours</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-neutral-text-muted">Course Guidance</span>
-              <span className="font-medium text-brand-navy">Immediate Course Assistance</span>
-            </div>
-            <div className="flex justify-between items-center">
-              <span className="text-neutral-text-muted">Phone</span>
-              <span className="font-medium text-brand-navy">During office hours</span>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      <Reveal variant="up" delay={200}>
+        <div className="rounded-lg border border-line bg-surface-raised p-7 shadow-sm">
+          <Eyebrow>Response time</Eyebrow>
+          <dl className="mt-6 flex flex-col gap-3.5">
+            {responseTimes.map((item) => (
+              <div
+                key={item.channel}
+                className="flex items-center justify-between gap-4 border-b border-line pb-3.5 last:border-0 last:pb-0"
+              >
+                <dt className="flex items-center gap-2 text-sm text-content-muted">
+                  <MessageCircle aria-hidden="true" className="h-3.5 w-3.5 text-gold-mark" />
+                  {item.channel}
+                </dt>
+                <dd className="text-sm font-medium text-content-strong">{item.time}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </Reveal>
     </div>
   )
 }
-

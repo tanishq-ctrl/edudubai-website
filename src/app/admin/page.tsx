@@ -40,8 +40,8 @@ export default async function AdminPage() {
   return (
     <div className="container mx-auto px-4 py-12 max-w-7xl">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-brand-navy mb-2">Admin Dashboard</h1>
-        <p className="text-neutral-text-muted">
+        <h1 className="text-4xl font-bold text-navy-700 mb-2">Admin Dashboard</h1>
+        <p className="text-content-muted">
           Manage courses, review inbound activity, and see who has signed up.
         </p>
       </div>
@@ -78,7 +78,7 @@ export default async function AdminPage() {
                 <CardTitle>Total Courses</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-3xl font-bold text-brand-navy">
+                <p className="text-3xl font-bold text-navy-700">
                   {courses.filter((course) => !course.archivedAt).length}
                 </p>
               </CardContent>
@@ -88,7 +88,7 @@ export default async function AdminPage() {
                 <CardTitle>Total Users</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-3xl font-bold text-brand-navy">{users.length}</p>
+                <p className="text-3xl font-bold text-navy-700">{users.length}</p>
               </CardContent>
             </Card>
             <Card>
@@ -96,7 +96,7 @@ export default async function AdminPage() {
                 <CardTitle>Total Enrollments</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-3xl font-bold text-brand-navy">
+                <p className="text-3xl font-bold text-navy-700">
                   {users.reduce((total, user) => total + user._count.enrollments, 0)}
                 </p>
               </CardContent>

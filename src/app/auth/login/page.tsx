@@ -10,6 +10,7 @@ import { createClient } from "@/lib/supabase/client"
 import { clearAuthCookies, isInvalidCookieError } from "@/lib/auth-utils"
 import { Loader2, AlertCircle, Chrome, Mail, Lock, ArrowRight, CheckCircle2 } from "lucide-react"
 import Link from "next/link"
+import { AuthShell } from "@/components/auth/auth-shell"
 import { z } from "zod"
 import { logger } from "@/lib/logger"
 
@@ -108,30 +109,36 @@ function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-start justify-center bg-gradient-to-b from-neutral-bg to-white px-4 pt-32 pb-16">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-brand-navy mb-2">
-            Welcome Back
-          </h1>
-          <p className="text-neutral-text">
-            Sign in to access your dashboard
-          </p>
-        </div>
-
-        <div className="bg-white rounded-2xl shadow-lg border border-neutral-border p-8">
+    <AuthShell
+      title="Welcome back"
+      subtitle="Sign in to reach your dashboard, course materials and certificates."
+      footer={
+        <p className="text-center text-2xs text-content-subtle">
+          By signing in you agree to our{" "}
+          <Link href="/policies/terms" className="underline underline-offset-2 hover:text-content">
+            Terms of Service
+          </Link>{" "}
+          and{" "}
+          <Link href="/policies/privacy" className="underline underline-offset-2 hover:text-content">
+            Privacy Policy
+          </Link>
+          .
+        </p>
+      }
+    >
+      <div>
           {error && (
-            <Alert className="mb-6 border-red-200 bg-red-50">
-              <AlertCircle className="h-4 w-4 text-red-600" />
-              <AlertDescription className="text-red-800 text-sm">
+            <Alert variant="destructive" className="mb-6">
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription className="text-sm">
                 {error}
               </AlertDescription>
             </Alert>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="space-y-2">
-              <Label htmlFor="email" className="text-sm font-semibold text-brand-navy">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="email" >
                 Email Address
               </Label>
               <Input
@@ -142,18 +149,17 @@ function LoginForm() {
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
                 disabled={loading}
-                className="h-11 border-neutral-border focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
               />
             </div>
 
-            <div className="space-y-2">
+            <div className="flex flex-col gap-2">
               <div className="flex justify-between items-center">
-                <Label htmlFor="password" className="text-sm font-semibold text-brand-navy">
+                <Label htmlFor="password" >
                   Password
                 </Label>
                 <Link
                   href="/auth/forgot-password"
-                  className="text-sm text-brand-gold hover:text-brand-gold-light font-medium"
+                  className="text-xs font-medium text-navy-700 underline-offset-4 hover:underline"
                 >
                   Forgot password?
                 </Link>
@@ -166,13 +172,14 @@ function LoginForm() {
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 required
                 disabled={loading}
-                className="h-11 border-neutral-border focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
               />
             </div>
 
             <Button
               type="submit"
-              className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white font-semibold h-11"
+              variant="gold"
+              size="lg"
+              className="w-full"
               disabled={loading}
             >
               {loading ? (
@@ -191,10 +198,10 @@ function LoginForm() {
 
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-neutral-border" />
+              <div className="w-full border-t border-line" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-4 bg-white text-neutral-text-muted">Or continue with</span>
+              <span className="bg-surface px-4 text-content-muted">Or continue with</span>
             </div>
           </div>
 
@@ -203,42 +210,36 @@ function LoginForm() {
             variant="outline"
             onClick={handleGoogleSignIn}
             disabled={loading || googleLoading}
-            className="w-full h-11 border-neutral-border hover:bg-neutral-bg"
+            size="lg"
+            className="w-full"
           >
             {googleLoading ? (
               <Loader2 className="h-4 w-4 animate-spin mr-2" />
             ) : (
-              <Chrome className="h-4 w-4 mr-2 text-red-500" />
+              <Chrome className="mr-2 h-4 w-4" />
             )}
             Continue with Google
           </Button>
 
-          <div className="mt-6 text-center">
-            <p className="text-sm text-neutral-text">
-              Don&apos;t have an account?{" "}
-              <Link
-                href={`/auth/register${searchParams.get("next") ? `?next=${encodeURIComponent(searchParams.get("next")!)}` : ""}`}
-                className="text-brand-navy font-semibold hover:text-brand-navy/80"
-              >
-                Register now
-              </Link>
-            </p>
-          </div>
-        </div>
-
-        <p className="mt-6 text-center text-xs text-neutral-text-muted">
-          By signing in, you agree to our Terms of Service and Privacy Policy
-        </p>
+          <p className="mt-8 text-center text-sm text-content-muted">
+            Don&apos;t have an account?{" "}
+            <Link
+              href={`/auth/register${searchParams.get("next") ? `?next=${encodeURIComponent(searchParams.get("next")!)}` : ""}`}
+              className="font-semibold text-navy-700 underline-offset-4 hover:underline"
+            >
+              Register now
+            </Link>
+          </p>
       </div>
-    </div>
+    </AuthShell>
   )
 }
 
 export default function LoginPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-brand-navy">
-        <Loader2 className="h-10 w-10 animate-spin text-brand-gold" />
+      <div className="flex min-h-screen items-center justify-center bg-ink-950">
+        <Loader2 className="h-8 w-8 animate-spin text-gold-400" />
       </div>
     }>
       <LoginForm />

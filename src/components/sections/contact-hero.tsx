@@ -4,15 +4,10 @@ export function ContactHero() {
   return (
     <PageHeroImage
       image="/hero/contact.jpg"
-      imageAlt="Get in Touch - Contact EduDubai"
-      title="Contact Us"
-      description={
-        <>
-          Have questions? We&apos;re here to help. <br className="hidden sm:block" />
-          Reach out to our team and <br className="hidden sm:block" />
-          we&apos;ll respond within 24 hours.
-        </>
-      }
+      imageAlt="Contact the EduDubai team"
+      eyebrow="Contact"
+      title="Speak to an advisor"
+      description="Our advisors will help you identify the certification pathway appropriate to your role and jurisdiction. We respond within one business day."
       align="left"
     />
   )

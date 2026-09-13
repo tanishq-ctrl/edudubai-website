@@ -75,7 +75,7 @@ export function UserMenu() {
         <DropdownMenuLabel className="px-3 py-3 rounded-lg bg-neutral-bg-subtle/50 mb-1">
           <div className="flex flex-col space-y-1.5">
             <p className="text-sm font-bold text-brand-navy leading-none">{userName}</p>
-            <p className="text-[10px] font-medium leading-none text-neutral-text-muted truncate">
+            <p className="text-2xs font-medium leading-none text-neutral-text-muted truncate">
               {user.email}
             </p>
           </div>

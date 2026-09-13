@@ -27,16 +27,16 @@ export default function Error({
   return (
     <Container className="py-24 text-center">
       <div className="max-w-md mx-auto">
-        <div className="bg-neutral-bg-subtle rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
-          <AlertTriangle className="h-12 w-12 text-neutral-text-muted" />
+        <div className="bg-surface-sunken rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
+          <AlertTriangle className="h-12 w-12 text-content-muted" />
         </div>
-        <h1 className="text-3xl font-bold text-brand-navy mb-4">Something Went Wrong</h1>
-        <p className="text-neutral-text-muted mb-8">
+        <h1 className="text-3xl font-bold text-navy-700 mb-4">Something Went Wrong</h1>
+        <p className="text-content-muted mb-8">
           We hit an unexpected problem loading this page. Please try again, or
           contact us if it keeps happening.
         </p>
         {error.digest && (
-          <p className="text-xs text-neutral-text-muted mb-8">
+          <p className="text-xs text-content-muted mb-8">
             Reference: <code>{error.digest}</code>
           </p>
         )}
@@ -44,7 +44,7 @@ export default function Error({
           <Button
             onClick={reset}
             variant="default"
-            className="bg-brand-navy hover:bg-brand-navy-dark"
+            className="bg-navy-900 hover:bg-navy-900"
           >
             Try Again
           </Button>

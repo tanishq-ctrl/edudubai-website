@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Loader2, CheckCircle2 } from "lucide-react"
-import { Turnstile } from "@marsidev/react-turnstile"
+import { TurnstileWidget } from "@/components/turnstile-widget"
 
 interface LeadCaptureFormProps {
     courseTitle: string
@@ -74,25 +74,25 @@ export function LeadCaptureForm({ courseTitle, courseId, courseSlug }: LeadCaptu
         return (
             <Card className="border-t-8 border-t-green-500 shadow-2xl overflow-hidden bg-white border-2 border-slate-100 animate-fade-in sm:min-h-[500px] flex flex-col justify-center">
                 <CardContent className="py-12 px-8 flex flex-col items-center text-center space-y-6">
-                    <div className="h-20 w-20 bg-green-50 rounded-full flex items-center justify-center mb-2">
-                        <CheckCircle2 className="h-12 w-12 text-green-500" />
+                    <div className="h-20 w-20 bg-success/10 rounded-full flex items-center justify-center mb-2">
+                        <CheckCircle2 className="h-12 w-12 text-success" />
                     </div>
                     <div className="space-y-2">
-                        <h3 className="text-3xl font-black text-brand-navy">Seat Reserved!</h3>
-                        <p className="text-base font-medium text-slate-500 leading-relaxed">
+                        <h3 className="text-3xl font-semibold text-navy-700">Seat Reserved!</h3>
+                        <p className="text-base font-medium text-content-muted leading-relaxed">
                             Thank you for registering for the <br />
-                            <span className="text-brand-navy font-bold">{courseTitle}</span> <br />
+                            <span className="text-navy-700 font-bold">{courseTitle}</span> <br />
                             Master Class.
                         </p>
                     </div>
-                    <p className="text-sm text-slate-400">
+                    <p className="text-sm text-content-subtle">
                         We&apos;ve sent the session details and joining link to your email address.
                         Please check your inbox (promotions and spam folder).
                     </p>
                     <div className="pt-4 w-full">
                         <Button
                             onClick={() => window.location.href = '/courses'}
-                            className="w-full bg-brand-navy hover:bg-brand-navy-dark text-white font-bold py-6 rounded-full shadow-lg"
+                            className="w-full bg-navy-900 hover:bg-navy-900 text-white font-bold py-6 rounded-full shadow-lg"
                         >
                             Explore More Courses
                         </Button>
@@ -105,17 +105,17 @@ export function LeadCaptureForm({ courseTitle, courseId, courseSlug }: LeadCaptu
     return (
         <Card className="border-t-8 border-t-[#FF2D55] shadow-2xl overflow-hidden bg-white border-2 border-slate-100">
             <CardHeader className="pb-2 pt-5 px-5 sm:px-6">
-                <CardTitle className="text-lg md:text-xl font-black text-brand-navy leading-tight tracking-tight">
+                <CardTitle className="text-lg md:text-xl font-semibold text-navy-700 leading-tight tracking-tight">
                     Join the Free {courseTitle} Master Class
                 </CardTitle>
-                <CardDescription className="text-xs font-medium text-slate-500 mt-1.5 leading-relaxed">
+                <CardDescription className="text-xs font-medium text-content-muted mt-1.5 leading-relaxed">
                     Gain expert insights and start your professional journey today.
                 </CardDescription>
             </CardHeader>
             <CardContent className="px-5 sm:px-6 pb-6">
                 <form onSubmit={handleSubmit} className="space-y-3">
                     <div className="space-y-1">
-                        <Label htmlFor="name" className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                        <Label htmlFor="name" className="text-2xs font-bold uppercase tracking-wider text-content-muted">
                             Full Name*
                         </Label>
                         <Input
@@ -123,12 +123,12 @@ export function LeadCaptureForm({ courseTitle, courseId, courseSlug }: LeadCaptu
                             name="name"
                             placeholder="First and Last Name"
                             required
-                            className="h-10 border-slate-200 focus:ring-[#FF2D55] focus:border-[#FF2D55] text-sm"
+                            className="h-10 border-line focus:ring-[#FF2D55] focus:border-[#FF2D55] text-sm"
                         />
                     </div>
 
                     <div className="space-y-1">
-                        <Label htmlFor="email" className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                        <Label htmlFor="email" className="text-2xs font-bold uppercase tracking-wider text-content-muted">
                             Email Address*
                         </Label>
                         <Input
@@ -137,12 +137,12 @@ export function LeadCaptureForm({ courseTitle, courseId, courseSlug }: LeadCaptu
                             type="email"
                             placeholder="name@company.com"
                             required
-                            className="h-10 border-slate-200 focus:ring-[#FF2D55] focus:border-[#FF2D55] text-sm"
+                            className="h-10 border-line focus:ring-[#FF2D55] focus:border-[#FF2D55] text-sm"
                         />
                     </div>
 
                     <div className="space-y-1">
-                        <Label htmlFor="phone" className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                        <Label htmlFor="phone" className="text-2xs font-bold uppercase tracking-wider text-content-muted">
                             WhatsApp Number (Optional)
                         </Label>
                         <Input
@@ -150,7 +150,7 @@ export function LeadCaptureForm({ courseTitle, courseId, courseSlug }: LeadCaptu
                             name="phone"
                             type="tel"
                             placeholder="+1 (555) 000-0000"
-                            className="h-10 border-slate-200 focus:ring-[#FF2D55] focus:border-[#FF2D55] text-sm"
+                            className="h-10 border-line focus:ring-[#FF2D55] focus:border-[#FF2D55] text-sm"
                         />
                     </div>
 
@@ -158,19 +158,16 @@ export function LeadCaptureForm({ courseTitle, courseId, courseSlug }: LeadCaptu
                         <Checkbox id="consent" required className="mt-0.5 h-3.5 w-3.5" />
                         <label
                             htmlFor="consent"
-                            className="text-[11px] font-semibold leading-tight text-slate-700 cursor-pointer"
+                            className="text-2xs font-semibold leading-tight text-content cursor-pointer"
                         >
                             I agree to receive the {courseTitle} course outline, program updates, and
                             regulatory insights from EduDubai.
                         </label>
                     </div>
 
-                    {error && <p className="text-xs text-red-500 font-medium">{error}</p>}
+                    {error && <p className="text-xs text-danger font-medium">{error}</p>}
 
-                    <Turnstile
-                        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-                        onSuccess={setTurnstileToken}
-                    />
+                    <TurnstileWidget onToken={setTurnstileToken} />
                     <Button
                         type="submit"
                         disabled={loading || !turnstileToken}
@@ -180,7 +177,7 @@ export function LeadCaptureForm({ courseTitle, courseId, courseSlug }: LeadCaptu
                             <Loader2 className="h-6 w-6 animate-spin" />
                         ) : (
                             <>
-                                <span className="text-lg md:text-xl font-black uppercase tracking-wide leading-none mb-1">LIMITED SEATS</span>
+                                <span className="text-lg md:text-xl font-semibold uppercase tracking-wide leading-none mb-1">LIMITED SEATS</span>
                                 <span className="text-xs md:text-sm font-bold opacity-90 leading-none">(Reserve Your Spot Now)</span>
                             </>
                         )}

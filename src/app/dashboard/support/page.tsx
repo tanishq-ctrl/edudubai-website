@@ -124,7 +124,7 @@ export default function SupportPage() {
       case "IN_PROGRESS":
         return <Badge className="bg-yellow-500 hover:bg-yellow-600">In Progress</Badge>
       case "RESOLVED":
-        return <Badge className="bg-green-500 hover:bg-green-600">Resolved</Badge>
+        return <Badge className="bg-success/100 hover:bg-green-600">Resolved</Badge>
       case "CLOSED":
         return <Badge variant="outline">Closed</Badge>
       default:
@@ -135,8 +135,8 @@ export default function SupportPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-brand-navy mb-2">Support</h1>
-        <p className="text-neutral-text-muted">
+        <h1 className="text-3xl font-bold text-navy-700 mb-2">Support</h1>
+        <p className="text-content-muted">
           Get help with your courses or account
         </p>
       </div>
@@ -159,8 +159,8 @@ export default function SupportPage() {
             )}
 
             {success && (
-              <Alert className="mb-6 border-green-200 bg-green-50">
-                <CheckCircle2 className="h-4 w-4 text-green-600" />
+              <Alert className="mb-6 border-green-200 bg-success/10">
+                <CheckCircle2 className="h-4 w-4 text-success" />
                 <AlertDescription className="text-green-800">
                   Support request submitted successfully!
                 </AlertDescription>
@@ -196,7 +196,7 @@ export default function SupportPage() {
 
               <Button
                 type="submit"
-                className="w-full bg-brand-gold text-brand-navy hover:bg-brand-gold-light font-semibold"
+                className="w-full bg-gold-400 text-navy-700 hover:bg-gold-300 font-semibold"
                 disabled={submitting}
               >
                 {submitting ? (
@@ -231,23 +231,23 @@ export default function SupportPage() {
               </div>
             ) : supportRequests.length === 0 ? (
               <div className="text-center py-8">
-                <MessageSquare className="h-12 w-12 text-neutral-text-muted mx-auto mb-4" />
-                <p className="text-neutral-text-muted">
+                <MessageSquare className="h-12 w-12 text-content-muted mx-auto mb-4" />
+                <p className="text-content-muted">
                   No support requests yet
                 </p>
               </div>
             ) : (
               <div className="space-y-4 max-h-[500px] overflow-y-auto">
                 {supportRequests.map((request) => (
-                  <div key={request.id} className="border-b border-neutral-border pb-4 last:border-0 last:pb-0">
+                  <div key={request.id} className="border-b border-line pb-4 last:border-0 last:pb-0">
                     <div className="flex items-start justify-between mb-2">
-                      <h3 className="font-semibold text-brand-navy">{request.subject}</h3>
+                      <h3 className="font-semibold text-navy-700">{request.subject}</h3>
                       {getStatusBadge(request.status)}
                     </div>
-                    <p className="text-sm text-neutral-text-muted mb-3 line-clamp-2">
+                    <p className="text-sm text-content-muted mb-3 line-clamp-2">
                       {request.message}
                     </p>
-                    <div className="flex items-center gap-2 text-xs text-neutral-text-muted">
+                    <div className="flex items-center gap-2 text-xs text-content-muted">
                       <Calendar className="h-3 w-3" />
                       {new Date(request.created_at).toLocaleDateString()}
                     </div>

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import { Button, type ButtonProps } from "@/components/ui/button"
 import { Loader2, CheckCircle2 } from "lucide-react"
 import {
     Dialog,
@@ -15,15 +15,15 @@ import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { submitCourseApplication } from "@/server/actions/leads"
 import { useToast } from "@/hooks/use-toast"
-import { Turnstile } from "@marsidev/react-turnstile"
+import { TurnstileWidget } from "@/components/turnstile-widget"
 import { logger } from "@/lib/logger"
 
 interface ApplyNowDialogProps {
     courseSlug: string
     courseTitle: string
     className?: string
-    size?: "default" | "sm" | "lg" | "icon"
-    variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link"
+    size?: ButtonProps["size"]
+    variant?: ButtonProps["variant"]
 }
 
 export function ApplyNowDialog({
@@ -31,7 +31,7 @@ export function ApplyNowDialog({
     courseTitle,
     className,
     size = "lg",
-    variant = "default",
+    variant = "gold",
 }: ApplyNowDialogProps) {
     const { toast } = useToast()
     const [open, setOpen] = useState(false)
@@ -51,11 +51,6 @@ export function ApplyNowDialog({
         phone: "",
     })
 
-    // Specific design colors from MasterClassPopup (Red accent)
-    const ACCENT_COLOR_CLASS = "bg-[#FF2D55]"
-    const ACCENT_HOVER_CLASS = "hover:bg-[#E6294D]"
-    const ACCENT_BORDER_CLASS = "border-[#FF2D55]"
-    const FOCUS_RING_CLASS = "focus:ring-[#FF2D55] focus:border-[#FF2D55]"
 
     const validateForm = () => {
         let isValid = true
@@ -141,28 +136,29 @@ export function ApplyNowDialog({
     if (success) {
         return (
             <Dialog open={open} onOpenChange={setOpen}>
-                <DialogContent className="sm:max-w-[500px] border-t-8 border-t-green-500 p-0 overflow-hidden bg-white [&>button]:hidden focus:outline-none">
+                <DialogContent className="overflow-hidden border-t-4 border-t-success p-0 focus:outline-none sm:max-w-[31rem] [&>button]:hidden">
                     <div className="p-8 pb-10 flex flex-col items-center text-center space-y-6">
-                        <div className="h-24 w-24 bg-green-50 rounded-full flex items-center justify-center mb-2 animate-in zoom-in duration-300">
-                            <CheckCircle2 className="h-12 w-12 text-green-500" />
+                        <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-success/10 animate-in zoom-in duration-300">
+                            <CheckCircle2 className="h-9 w-9 text-success" />
                         </div>
 
                         <div className="space-y-2">
-                            <h3 className="text-3xl font-black text-brand-navy">Application Received!</h3>
-                            <p className="text-base font-medium text-slate-500 leading-relaxed">
-                                Thank you for your interest in <br />
-                                <span className="text-brand-navy font-bold">{courseTitle}</span>.
+                            <h3 className="text-2xl ">Enrolment request received</h3>
+                            <p className="leading-relaxed text-content-muted">
+                                We have received your request for <br />
+                                <span className="font-semibold text-content-strong">{courseTitle}</span>.
                             </p>
                         </div>
 
-                        <p className="text-sm text-slate-400 max-w-xs mx-auto leading-relaxed">
-                            Our team will review your application and contact you shortly with the next steps.
+                        <p className="mx-auto max-w-xs text-sm leading-relaxed text-content-subtle">
+                            An advisor will contact you to confirm scheduling, fees and enrolment details.
                         </p>
 
                         <div className="pt-2 w-full">
                             <Button
                                 onClick={handleClose}
-                                className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white font-bold py-6 rounded-full shadow-lg"
+                                size="lg"
+                                className="w-full"
                             >
                                 Close
                             </Button>
@@ -182,23 +178,23 @@ export function ApplyNowDialog({
                 size={size}
                 variant={variant}
             >
-                Enroll Now
+                Enrol
             </Button>
 
-            <DialogContent className={`sm:max-w-[520px] p-0 border-t-8 ${ACCENT_BORDER_CLASS} gap-0 focus:outline-none`}>
+            <DialogContent className="gap-0 border-t-4 border-t-gold-400 p-0 focus:outline-none sm:max-w-[32rem]">
                 <div className="p-6 pt-8">
                     <DialogHeader>
-                        <DialogTitle className="text-lg sm:text-xl md:text-[22px] font-black text-brand-navy leading-tight tracking-tight whitespace-nowrap md:whitespace-normal">
-                            Enroll Now for Exam Prep Master Class
+                        <DialogTitle className="text-xl leading-tight text-content-strong">
+                            Programme enrolment
                         </DialogTitle>
-                        <DialogDescription className="text-sm font-medium text-slate-500 mt-2">
-                            Start your professional journey with <strong>{courseTitle}</strong>. Fill in your details below.
+                        <DialogDescription className="mt-2 text-sm text-content-muted">
+                            Provide your details and an advisor will confirm scheduling, fees and next steps for <strong>{courseTitle}</strong>.
                         </DialogDescription>
                     </DialogHeader>
 
                     <form onSubmit={handleSubmit} className="space-y-4 mt-6">
                         <div className="space-y-1">
-                            <Label htmlFor="name" className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                            <Label htmlFor="name" className="text-2xs font-semibold uppercase tracking-wider text-content-muted">
                                 Full Name*
                             </Label>
                             <Input
@@ -209,13 +205,14 @@ export function ApplyNowDialog({
                                     if (errors.name) setErrors({ ...errors, name: "" })
                                 }}
                                 placeholder="First and Last Name"
-                                className={`h-11 border-slate-200 ${FOCUS_RING_CLASS} ${errors.name ? "border-red-500" : ""}`}
+                                aria-invalid={Boolean(errors.name)}
+                                aria-describedby={errors.name ? "apply-name-error" : undefined}
                             />
-                            {errors.name && <p className="text-xs text-red-500 font-bold">{errors.name}</p>}
+                            {errors.name ? <p id="apply-name-error" className="text-xs font-medium text-danger">{errors.name}</p> : null}
                         </div>
 
                         <div className="space-y-1">
-                            <Label htmlFor="email" className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                            <Label htmlFor="email" className="text-2xs font-semibold uppercase tracking-wider text-content-muted">
                                 Email Address*
                             </Label>
                             <Input
@@ -227,13 +224,14 @@ export function ApplyNowDialog({
                                     if (errors.email) setErrors({ ...errors, email: "" })
                                 }}
                                 placeholder="name@company.com"
-                                className={`h-11 border-slate-200 ${FOCUS_RING_CLASS} ${errors.email ? "border-red-500" : ""}`}
+                                aria-invalid={Boolean(errors.email)}
+                                aria-describedby={errors.email ? "apply-email-error" : undefined}
                             />
-                            {errors.email && <p className="text-xs text-red-500 font-bold">{errors.email}</p>}
+                            {errors.email ? <p id="apply-email-error" className="text-xs font-medium text-danger">{errors.email}</p> : null}
                         </div>
 
                         <div className="space-y-1">
-                            <Label htmlFor="phone" className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                            <Label htmlFor="phone" className="text-2xs font-semibold uppercase tracking-wider text-content-muted">
                                 Contact Number*
                             </Label>
                             <Input
@@ -245,36 +243,36 @@ export function ApplyNowDialog({
                                     if (errors.phone) setErrors({ ...errors, phone: "" })
                                 }}
                                 placeholder="+971 50 123 4567"
-                                className={`h-11 border-slate-200 ${FOCUS_RING_CLASS} ${errors.phone ? "border-red-500" : ""}`}
+                                aria-invalid={Boolean(errors.phone)}
+                                aria-describedby={errors.phone ? "apply-phone-error" : undefined}
                             />
-                            {errors.phone && <p className="text-xs text-red-500 font-bold">{errors.phone}</p>}
+                            {errors.phone ? <p id="apply-phone-error" className="text-xs font-medium text-danger">{errors.phone}</p> : null}
                         </div>
 
                         <div className="flex items-start space-x-2 pt-2">
-                            <Checkbox id="consent" required className="mt-1 data-[state=checked]:bg-[#FF2D55] data-[state=checked]:border-[#FF2D55]" />
+                            <Checkbox id="consent" required className="mt-0.5 data-[state=checked]:border-gold-400 data-[state=checked]:bg-gold-400 data-[state=checked]:text-navy-900" />
                             <label
                                 htmlFor="consent"
-                                className="text-xs font-medium leading-tight text-slate-600 cursor-pointer"
+                                className="cursor-pointer text-xs leading-snug text-content-muted"
                             >
-                                I agree to be contacted by EduDubai regarding this course enrollment.
+                                I consent to being contacted by EduDubai regarding this enrolment.
                             </label>
                         </div>
 
-                        <Turnstile
-                            siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-                            onSuccess={setTurnstileToken}
-                        />
+                        <TurnstileWidget onToken={setTurnstileToken} />
                         <Button
                             type="submit"
                             disabled={loading || !turnstileToken}
-                            className={`w-full ${ACCENT_COLOR_CLASS} ${ACCENT_HOVER_CLASS} text-white font-bold py-6 h-auto rounded-full flex flex-col shadow-lg shadow-red-500/20 mt-2`}
+                            variant="gold"
+                            size="lg"
+                            className="mt-2 h-auto w-full flex-col py-4"
                         >
                             {loading ? (
                                 <Loader2 className="h-6 w-6 animate-spin" />
                             ) : (
                                 <>
-                                    <span className="text-lg font-black uppercase tracking-wide leading-none mb-1">LIMITED SEATS</span>
-                                    <span className="text-base font-bold opacity-90 leading-none">(Reserve Your Spot Now)</span>
+                                    <span className="text-base font-semibold leading-none">Submit enrolment request</span>
+                                    <span className="mt-1 text-2xs font-medium uppercase tracking-wider opacity-70">Places confirmed by an advisor</span>
                                 </>
                             )}
                         </Button>

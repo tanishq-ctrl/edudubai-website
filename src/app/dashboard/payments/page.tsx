@@ -38,7 +38,7 @@ export default async function PaymentsPage() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "SUCCESS":
-        return <Badge className="bg-green-500 hover:bg-green-600">Success</Badge>
+        return <Badge className="bg-success/100 hover:bg-green-600">Success</Badge>
       case "FAILED":
         return <Badge variant="destructive">Failed</Badge>
       case "PENDING":
@@ -58,8 +58,8 @@ export default async function PaymentsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-brand-navy mb-2">Payments & Invoices</h1>
-        <p className="text-neutral-text-muted">
+        <h1 className="text-3xl font-bold text-navy-700 mb-2">Payments & Invoices</h1>
+        <p className="text-content-muted">
           View your payment history and download invoices
         </p>
       </div>
@@ -98,12 +98,12 @@ export default async function PaymentsPage() {
                   {payments.map((payment) => (
                     <TableRow key={payment.id}>
                       <TableCell>
-                        <div className="font-medium text-brand-navy">
+                        <div className="font-medium text-navy-700">
                           {payment.course_slug.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())}
                         </div>
                       </TableCell>
                       <TableCell>
-                        <code className="text-xs bg-neutral-bg-subtle px-2 py-1 rounded">
+                        <code className="text-xs bg-surface-sunken px-2 py-1 rounded">
                           {payment.order_id.slice(0, 12)}...
                         </code>
                       </TableCell>
@@ -145,18 +145,18 @@ export default async function PaymentsPage() {
                   <CardContent>
                     <div className="space-y-3 mb-4">
                       <div className="flex justify-between text-sm">
-                        <span className="text-neutral-text-muted">Amount:</span>
-                        <span className="font-semibold text-brand-navy">
+                        <span className="text-content-muted">Amount:</span>
+                        <span className="font-semibold text-navy-700">
                           {formatAmount(payment.amount_usd, payment.currency)}
                         </span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-neutral-text-muted">Order ID:</span>
-                        <code className="text-xs bg-neutral-bg-subtle px-2 py-1 rounded">
+                        <span className="text-content-muted">Order ID:</span>
+                        <code className="text-xs bg-surface-sunken px-2 py-1 rounded">
                           {payment.order_id.slice(0, 12)}...
                         </code>
                       </div>
-                      <div className="flex items-center gap-2 text-sm text-neutral-text-muted">
+                      <div className="flex items-center gap-2 text-sm text-content-muted">
                         <Calendar className="h-4 w-4" />
                         {new Date(payment.created_at).toLocaleDateString()}
                       </div>

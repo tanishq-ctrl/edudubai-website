@@ -177,25 +177,25 @@ function RegisterForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-start justify-center bg-gradient-to-b from-neutral-bg to-white px-4 pt-32 pb-24">
+    <div className="flex min-h-screen items-start justify-center bg-surface px-4 pt-32 pb-24">
       <div className="w-full max-w-5xl">
         <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-brand-navy mb-2">
+          <h1 className="text-3xl mb-3">
             Create Account
           </h1>
-          <p className="text-neutral-text">
+          <p className="text-content">
             Join Edu Dubai and start your learning journey
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-lg border border-neutral-border p-8 md:p-12">
+        <div className="rounded-lg border border-line bg-surface-raised shadow-sm p-8 md:p-12">
           {showVerification ? (
             <div className="max-w-md mx-auto space-y-6 text-center">
               <div>
-                <h2 className="text-2xl font-bold text-brand-navy mb-2">
+                <h2 className="text-2xl font-bold text-navy-700 mb-2">
                   Verify Your Email
                 </h2>
-                <p className="text-sm text-neutral-text">
+                <p className="text-sm text-content">
                   We&apos;ve sent a verification code to <br />
                   <span className="font-semibold">{formData.email}</span>
                 </p>
@@ -203,14 +203,14 @@ function RegisterForm() {
 
               {error && (
                 <Alert className="border-red-200 bg-red-50">
-                  <AlertCircle className="h-4 w-4 text-red-600" />
-                  <AlertDescription className="text-red-800 text-sm">
+                  <AlertCircle className="h-4 w-4" />
+                  <AlertDescription className="text-sm">
                     {error}
                   </AlertDescription>
                 </Alert>
               )}
 
-              <form onSubmit={handleVerify} className="space-y-5">
+              <form onSubmit={handleVerify} className="flex flex-col gap-5">
                 <Input
                   id="code"
                   type="text"
@@ -225,7 +225,7 @@ function RegisterForm() {
 
                 <Button
                   type="submit"
-                  className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white font-semibold h-11"
+                  className="w-full w-full"
                   disabled={verifying || verificationCode.length !== 6}
                 >
                   {verifying ? (
@@ -240,7 +240,7 @@ function RegisterForm() {
 
                 <button
                   type="button"
-                  className="w-full text-sm text-neutral-text hover:text-brand-navy font-medium"
+                  className="w-full text-sm text-content hover:text-navy-700 font-medium"
                   onClick={() => setShowVerification(false)}
                 >
                   ← Back to registration
@@ -252,17 +252,17 @@ function RegisterForm() {
               {/* Left Column - Form Fields */}
               <div>
                 {error && (
-                  <Alert className="mb-6 border-red-200 bg-red-50">
-                    <AlertCircle className="h-4 w-4 text-red-600" />
-                    <AlertDescription className="text-red-800 text-sm">
+                  <Alert variant="destructive" className="mb-6">
+                    <AlertCircle className="h-4 w-4" />
+                    <AlertDescription className="text-sm">
                       {error}
                     </AlertDescription>
                   </Alert>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="space-y-2">
-                    <Label htmlFor="fullName" className="text-sm font-semibold text-brand-navy">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                  <div className="flex flex-col gap-2">
+                    <Label htmlFor="fullName" className="text-sm font-semibold text-navy-700">
                       Full Name
                     </Label>
                     <Input
@@ -272,12 +272,12 @@ function RegisterForm() {
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                       required
                       disabled={loading}
-                      className="h-11 border-neutral-border focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+                      className="h-11 "
                     />
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="text-sm font-semibold text-brand-navy">
+                  <div className="flex flex-col gap-2">
+                    <Label htmlFor="email" className="text-sm font-semibold text-navy-700">
                       Email Address
                     </Label>
                     <Input
@@ -288,12 +288,12 @@ function RegisterForm() {
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       required
                       disabled={loading}
-                      className="h-11 border-neutral-border focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+                      className="h-11 "
                     />
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="password" className="text-sm font-semibold text-brand-navy">
+                  <div className="flex flex-col gap-2">
+                    <Label htmlFor="password" className="text-sm font-semibold text-navy-700">
                       Password
                     </Label>
                     <Input
@@ -304,12 +304,12 @@ function RegisterForm() {
                       onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                       required
                       disabled={loading}
-                      className="h-11 border-neutral-border focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+                      className="h-11 "
                     />
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="confirmPassword" className="text-sm font-semibold text-brand-navy">
+                  <div className="flex flex-col gap-2">
+                    <Label htmlFor="confirmPassword" className="text-sm font-semibold text-navy-700">
                       Confirm Password
                     </Label>
                     <Input
@@ -320,13 +320,13 @@ function RegisterForm() {
                       onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                       required
                       disabled={loading}
-                      className="h-11 border-neutral-border focus:ring-2 focus:ring-brand-gold focus:border-brand-gold"
+                      className="h-11 "
                     />
                   </div>
 
                   <Button
                     type="submit"
-                    className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white font-semibold h-11"
+                    className="w-full w-full"
                     disabled={loading}
                   >
                     {loading ? (
@@ -347,10 +347,10 @@ function RegisterForm() {
               {/* Right Column - Google Sign In & Account Link */}
               <div className="flex flex-col justify-center space-y-6">
                 <div className="text-center md:text-left">
-                  <h3 className="text-lg font-semibold text-brand-navy mb-2">
+                  <h3 className="text-lg font-semibold text-navy-700 mb-2">
                     Quick Registration
                   </h3>
-                  <p className="text-sm text-neutral-text mb-6">
+                  <p className="text-sm text-content mb-6">
                     Sign up instantly with your Google account
                   </p>
 
@@ -359,7 +359,7 @@ function RegisterForm() {
                     variant="outline"
                     onClick={handleGoogleSignUp}
                     disabled={loading || googleLoading}
-                    className="w-full h-12 border-neutral-border hover:bg-neutral-bg text-base"
+                    className="w-full h-12 border-line hover:bg-neutral-bg text-base"
                   >
                     {googleLoading ? (
                       <Loader2 className="h-5 w-5 animate-spin mr-2" />
@@ -370,12 +370,12 @@ function RegisterForm() {
                   </Button>
                 </div>
 
-                <div className="border-t border-neutral-border pt-6">
-                  <p className="text-sm text-neutral-text text-center md:text-left">
+                <div className="border-t border-line pt-6">
+                  <p className="text-sm text-content text-center md:text-left">
                     Already have an account?{" "}
                     <Link
                       href={`/auth/login${searchParams.get("next") ? `?next=${encodeURIComponent(searchParams.get("next")!)}` : ""}`}
-                      className="text-brand-navy font-semibold hover:text-brand-navy/80"
+                      className="text-navy-700 font-semibold hover:text-navy-700/80"
                     >
                       Sign in here
                     </Link>
@@ -386,7 +386,7 @@ function RegisterForm() {
           )}
         </div>
 
-        <p className="mt-6 text-center text-xs text-neutral-text-muted">
+        <p className="mt-6 text-center text-xs text-content-muted">
           By creating an account, you agree to our Terms of Service and Privacy Policy
         </p>
       </div>
@@ -397,8 +397,8 @@ function RegisterForm() {
 export default function RegisterPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-brand-navy">
-        <Loader2 className="h-10 w-10 animate-spin text-brand-gold" />
+      <div className="flex min-h-screen items-center justify-center bg-ink-950">
+        <Loader2 className="h-8 w-8 animate-spin text-gold-400" />
       </div>
     }>
       <RegisterForm />

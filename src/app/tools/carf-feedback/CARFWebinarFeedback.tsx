@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, useCallback } from "react"
-import { Turnstile } from "@marsidev/react-turnstile"
+import { TurnstileWidget } from "@/components/turnstile-widget"
 
 // ---------------------------------------------------------------------------
 // Types
@@ -164,12 +164,12 @@ function ScaleTrack({ value, onChange }: { value: number; onChange: (v: number) 
           onClick={() => onChange(v)}
           className={`flex-1 flex flex-col items-center gap-0.5 sm:gap-1 py-3 sm:py-2.5 px-0.5 sm:px-1 border border-r-0 last:border-r transition-colors ${
             value === v
-              ? "bg-[#042C53] border-[#042C53] z-[1]"
-              : "bg-[#FAFAF8] border-[#DDE3EC] hover:bg-[#EDF1F7]"
+              ? "bg-navy-900 border-navy-900 z-[1]"
+              : "bg-surface border-line hover:bg-surface-sunken"
           }`}
         >
-          <span className={`text-sm sm:text-base font-bold leading-none ${value === v ? "text-white" : "text-[#5A6A82]"}`}>{v}</span>
-          <span className={`text-[8px] sm:text-[9px] uppercase tracking-wide text-center leading-tight ${value === v ? "text-white/70" : "text-[#5A6A82]"}`}>
+          <span className={`text-sm sm:text-base font-bold leading-none ${value === v ? "text-white" : "text-content-muted"}`}>{v}</span>
+          <span className={`text-[8px] sm:text-2xs uppercase tracking-wide text-center leading-tight ${value === v ? "text-white/70" : "text-content-muted"}`}>
             {SCALE_LABELS[v - 1]}
           </span>
         </button>
@@ -196,19 +196,19 @@ function CheckItem({
   return (
     <label
       className={`flex items-start gap-3 p-3.5 border-[1.5px] rounded cursor-pointer select-none transition-all ${
-        checked ? "border-[#1A8F68] bg-[#EAF5F0]" : "border-[#DDE3EC] bg-[#FAFAF8] hover:border-[#0C447C] hover:bg-white"
+        checked ? "border-success bg-success/10" : "border-line bg-surface hover:border-navy-700 hover:bg-white"
       }`}
     >
       <input type="checkbox" className="hidden" checked={checked} onChange={(e) => onChange(e.target.checked)} />
       <div className={`w-5 h-5 border-2 rounded-sm flex-shrink-0 mt-0.5 flex items-center justify-center text-xs transition-all ${
-        checked ? "bg-[#1A8F68] border-[#1A8F68] text-white" : "border-[#DDE3EC] bg-white text-transparent"
+        checked ? "bg-success border-success text-white" : "border-line bg-white text-transparent"
       }`}>
         {checked && "✓"}
       </div>
       <div className="flex-1">
-        <p className="text-sm font-semibold text-[#1A2637] mb-0.5 leading-snug">{title}</p>
-        <p className="text-xs text-[#5A6A82] leading-relaxed">{desc}</p>
-        <span className="text-[10px] font-semibold text-[#1A8F68] uppercase tracking-wide mt-1 block">{badge}</span>
+        <p className="text-sm font-semibold text-content-strong mb-0.5 leading-snug">{title}</p>
+        <p className="text-xs text-content-muted leading-relaxed">{desc}</p>
+        <span className="text-2xs font-semibold text-success uppercase tracking-wide mt-1 block">{badge}</span>
         {children}
       </div>
     </label>
@@ -315,29 +315,29 @@ export function CARFWebinarFeedback() {
   // Render
   // -------------------------------------------------------------------
   return (
-    <div className="min-h-screen bg-[#EDF1F7] flex flex-col">
+    <div className="min-h-screen bg-surface-sunken flex flex-col">
       {/* Masthead */}
-      <header className="bg-[#021E3A] border-b-[3px] border-[#1A8F68] px-4 sm:px-8 flex items-stretch justify-between gap-2 sm:gap-4 min-h-[48px] sm:min-h-[56px]">
+      <header className="bg-[#021E3A] border-b-[3px] border-success px-4 sm:px-8 flex items-stretch justify-between gap-2 sm:gap-4 min-h-[48px] sm:min-h-[56px]">
         <div className="flex items-center gap-2 sm:gap-3.5 py-2 sm:py-3">
-          <span className="font-serif text-[11px] sm:text-[13px] font-bold text-white tracking-wide border border-white/25 px-1.5 sm:px-2 py-0.5 sm:py-1">EDU</span>
+          <span className="font-serif text-2xs sm:text-[13px] font-bold text-white tracking-wide border border-white/25 px-1.5 sm:px-2 py-0.5 sm:py-1">EDU</span>
           <div className="w-px h-4 sm:h-5 bg-white/20" />
-          <span className="text-[10px] sm:text-xs text-white/65 tracking-wide">Edu-Dubai × Trans World Compliance</span>
+          <span className="text-2xs sm:text-xs text-white/65 tracking-wide">Edu-Dubai × Trans World Compliance</span>
         </div>
         <div className="hidden sm:flex items-center">
-          <span className="text-[11px] text-[#1A8F68] tracking-widest uppercase font-semibold">Certificate Issued on Completion</span>
+          <span className="text-2xs text-success tracking-widest uppercase font-semibold">Certificate Issued on Completion</span>
         </div>
       </header>
 
       <div className="flex-1 max-w-[700px] w-full mx-auto px-3 sm:px-4 py-5 sm:py-9 pb-10 sm:pb-14">
         {/* Hero + Banner — hidden after submit */}
         {!submitted && (<>
-        <div className="bg-[#042C53] p-5 sm:p-9 pb-6 sm:pb-8 relative overflow-hidden mb-1">
-          <div className="absolute top-0 left-0 bottom-0 w-1 bg-[#1A8F68]" />
-          <p className="text-[11px] font-semibold text-[#1A8F68] tracking-[0.1em] uppercase mb-3.5">Post-Webinar Feedback — Confidential</p>
+        <div className="bg-navy-900 p-5 sm:p-9 pb-6 sm:pb-8 relative overflow-hidden mb-1">
+          <div className="absolute top-0 left-0 bottom-0 w-1 bg-success" />
+          <p className="text-2xs font-semibold text-success tracking-[0.1em] uppercase mb-3.5">Post-Webinar Feedback — Confidential</p>
           <h1 className="font-serif text-white text-[clamp(20px,3.5vw,28px)] leading-tight mb-2.5 font-normal">
             The Hidden Operational Risks<br />in CARF Reporting
           </h1>
-          <p className="text-sm text-[#B5D4F4]/85 leading-relaxed max-w-[540px] mb-5">
+          <p className="text-sm text-navy-200/85 leading-relaxed max-w-[540px] mb-5">
             Your feedback enables us to improve future sessions and ensures your certificate of participation is issued promptly. All responses are treated with complete confidentiality.
           </p>
           <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-3 sm:gap-5 pt-4 border-t border-white/10">
@@ -348,7 +348,7 @@ export function CARFWebinarFeedback() {
               ["Time required", "Approx. 3 minutes"],
             ].map(([label, value]) => (
               <div key={label} className="flex flex-col gap-0.5">
-                <span className="text-[10px] text-white/40 tracking-wider uppercase">{label}</span>
+                <span className="text-2xs text-white/40 tracking-wider uppercase">{label}</span>
                 <span className="text-[13px] text-white font-medium">{value}</span>
               </div>
             ))}
@@ -356,22 +356,22 @@ export function CARFWebinarFeedback() {
         </div>
 
         {/* Instruction Banner */}
-        <div className="bg-[#FAFAF8] border border-[#DDE3EC] border-l-4 border-l-[#C9952A] px-4 py-3 mb-7 text-[13px] text-[#5A6A82] leading-relaxed">
-          <strong className="text-[#1A2637]">How to complete this form:</strong> Rate each item by selecting a score from 1 to 5. Provide written responses in the open-text fields. Complete Section 6 to receive your certificate of participation and any resources you select in Section 4.
+        <div className="bg-surface border border-line border-l-4 border-l-[#C9952A] px-4 py-3 mb-7 text-[13px] text-content-muted leading-relaxed">
+          <strong className="text-content-strong">How to complete this form:</strong> Rate each item by selecting a score from 1 to 5. Provide written responses in the open-text fields. Complete Section 6 to receive your certificate of participation and any resources you select in Section 4.
         </div>
         </>)}
 
         {!submitted ? (
           <form onSubmit={handleSubmit} noValidate>
             {/* Section 1 — Ratings */}
-            <SectionCard accent="navy" num={1} title={<>Session Ratings <span className="text-[13px] text-[#5A6A82] font-sans not-italic">1 = Poor · 5 = Excellent</span></>}>
+            <SectionCard accent="navy" num={1} title={<>Session Ratings <span className="text-[13px] text-content-muted font-sans not-italic">1 = Poor · 5 = Excellent</span></>}>
               <div className="space-y-5">
                 {RATING_QUESTIONS.map((rq) => (
-                  <div key={rq.key} className={`pb-4 border-b border-[#DDE3EC] last:pb-0 last:border-b-0 ${errors[`rating_${rq.key}`] ? "field-error" : ""}`}>
-                    <p className="text-sm font-semibold text-[#1A2637] mb-0.5">{rq.q}<span className="text-[#8B1A1A] ml-0.5">*</span></p>
-                    <p className="text-xs text-[#5A6A82] mb-3 leading-relaxed">{rq.hint}</p>
+                  <div key={rq.key} className={`pb-4 border-b border-line last:pb-0 last:border-b-0 ${errors[`rating_${rq.key}`] ? "field-error" : ""}`}>
+                    <p className="text-sm font-semibold text-content-strong mb-0.5">{rq.q}<span className="text-danger ml-0.5">*</span></p>
+                    <p className="text-xs text-content-muted mb-3 leading-relaxed">{rq.hint}</p>
                     <ScaleTrack value={form.ratings[rq.key]} onChange={(v) => { setRating(rq.key, v); setErrors((er) => ({ ...er, [`rating_${rq.key}`]: false })) }} />
-                    {errors[`rating_${rq.key}`] && <span className="text-xs text-[#8B1A1A] mt-1 block">Please select a rating.</span>}
+                    {errors[`rating_${rq.key}`] && <span className="text-xs text-danger mt-1 block">Please select a rating.</span>}
                   </div>
                 ))}
               </div>
@@ -381,52 +381,52 @@ export function CARFWebinarFeedback() {
             <SectionCard accent="teal" num={2} title="Your Assessment">
               <div className="space-y-5">
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm font-semibold text-[#1A2637]" htmlFor="q-liked">
-                    What did you find most valuable about this session?<span className="text-[#8B1A1A] ml-0.5">*</span>
+                  <label className="text-sm font-semibold text-content-strong" htmlFor="q-liked">
+                    What did you find most valuable about this session?<span className="text-danger ml-0.5">*</span>
                   </label>
-                  <p className="text-xs text-[#5A6A82] leading-relaxed mb-1">Please be specific — a particular risk zone, worked example, regulatory comparison, or demonstration segment.</p>
+                  <p className="text-xs text-content-muted leading-relaxed mb-1">Please be specific — a particular risk zone, worked example, regulatory comparison, or demonstration segment.</p>
                   <textarea
                     id="q-liked"
                     maxLength={700}
                     value={form.liked}
                     onChange={(e) => { setForm((f) => ({ ...f, liked: e.target.value })); setErrors((er) => ({ ...er, liked: false })) }}
                     placeholder="For example: The worked example on crypto-to-crypto FMV calculation was highly instructive..."
-                    className={`w-full p-3 border rounded text-sm bg-[#FAFAF8] text-[#1A2637] leading-relaxed min-h-[110px] resize-y transition-colors focus:outline-none focus:border-[#0C447C] focus:bg-white focus:shadow-[0_0_0_3px_rgba(12,68,124,0.07)] ${errors.liked ? "border-[#8B1A1A] bg-[#FDF2F2] field-error" : "border-[#DDE3EC]"}`}
+                    className={`w-full p-3 border rounded text-sm bg-surface text-content-strong leading-relaxed min-h-[110px] resize-y transition-colors focus:outline-none focus:border-navy-700 focus:bg-white focus:shadow-[0_0_0_3px_rgba(12,68,124,0.07)] ${errors.liked ? "border-danger bg-danger/8 field-error" : "border-line"}`}
                   />
-                  <span className="text-[11px] text-[#5A6A82] text-right">{form.liked.length} / 700</span>
-                  {errors.liked && <span className="text-xs text-[#8B1A1A]">Please share what you found most valuable.</span>}
+                  <span className="text-2xs text-content-muted text-right">{form.liked.length} / 700</span>
+                  {errors.liked && <span className="text-xs text-danger">Please share what you found most valuable.</span>}
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm font-semibold text-[#1A2637]" htmlFor="q-more">
+                  <label className="text-sm font-semibold text-content-strong" htmlFor="q-more">
                     What additional topics or jurisdictions would you like covered in future sessions?
                   </label>
-                  <p className="text-xs text-[#5A6A82] leading-relaxed mb-1">Areas of CARF, CRS 2.0, or related regulatory frameworks you would like explored in greater depth.</p>
+                  <p className="text-xs text-content-muted leading-relaxed mb-1">Areas of CARF, CRS 2.0, or related regulatory frameworks you would like explored in greater depth.</p>
                   <textarea
                     id="q-more"
                     maxLength={700}
                     value={form.more}
                     onChange={(e) => setForm((f) => ({ ...f, more: e.target.value }))}
                     placeholder="For example: A dedicated session on MAS Singapore's Wave 2 implementation..."
-                    className="w-full p-3 border border-[#DDE3EC] rounded text-sm bg-[#FAFAF8] text-[#1A2637] leading-relaxed min-h-[110px] resize-y transition-colors focus:outline-none focus:border-[#0C447C] focus:bg-white focus:shadow-[0_0_0_3px_rgba(12,68,124,0.07)]"
+                    className="w-full p-3 border border-line rounded text-sm bg-surface text-content-strong leading-relaxed min-h-[110px] resize-y transition-colors focus:outline-none focus:border-navy-700 focus:bg-white focus:shadow-[0_0_0_3px_rgba(12,68,124,0.07)]"
                   />
-                  <span className="text-[11px] text-[#5A6A82] text-right">{form.more.length} / 700</span>
+                  <span className="text-2xs text-content-muted text-right">{form.more.length} / 700</span>
                 </div>
               </div>
             </SectionCard>
 
             {/* Section 3 — Recommend */}
             <SectionCard accent="navy" num={3} title="Likelihood to Recommend">
-              <p className="text-xs text-[#5A6A82] mb-3">
-                How likely are you to recommend this webinar to a colleague?<span className="text-[#8B1A1A] ml-0.5">*</span> <span className="text-[11px]">1 = Would not recommend · 5 = Would strongly recommend</span>
+              <p className="text-xs text-content-muted mb-3">
+                How likely are you to recommend this webinar to a colleague?<span className="text-danger ml-0.5">*</span> <span className="text-2xs">1 = Would not recommend · 5 = Would strongly recommend</span>
               </p>
               <div className="flex gap-2 flex-wrap mb-2">
                 {[1, 2, 3, 4, 5].map((v) => {
                   const cls =
                     form.recommend === v
-                      ? v <= 2 ? "bg-[#FDF2F2] border-[#8B1A1A] text-[#8B1A1A]"
-                        : v === 3 ? "bg-[#FEF9ED] border-[#C9952A] text-[#C9952A]"
-                        : "bg-[#EAF5F0] border-[#1A8F68] text-[#1A8F68]"
-                      : "bg-[#FAFAF8] border-[#DDE3EC] text-[#5A6A82] hover:border-[#042C53] hover:text-[#042C53]"
+                      ? v <= 2 ? "bg-danger/8 border-danger text-danger"
+                        : v === 3 ? "bg-[#FEF9ED] border-gold-500 text-gold-ink"
+                        : "bg-success/10 border-success text-success"
+                      : "bg-surface border-line text-content-muted hover:border-navy-900 hover:text-navy-900"
                   return (
                     <button
                       key={v}
@@ -439,15 +439,15 @@ export function CARFWebinarFeedback() {
                   )
                 })}
               </div>
-              {errors.recommend && <span className="text-xs text-[#8B1A1A] mt-1 block field-error">Please select a recommendation score.</span>}
+              {errors.recommend && <span className="text-xs text-danger mt-1 block field-error">Please select a recommendation score.</span>}
               {form.recommend > 0 && (
-                <p className="text-[13px] text-[#1A8F68] font-medium italic min-h-[18px] mt-2">{REC_MSG[form.recommend]}</p>
+                <p className="text-[13px] text-success font-medium italic min-h-[18px] mt-2">{REC_MSG[form.recommend]}</p>
               )}
             </SectionCard>
 
             {/* Section 4 — Resources */}
             <SectionCard accent="gold" num={4} title="Resources — I Wish to Receive">
-              <p className="text-xs text-[#5A6A82] mb-3 leading-relaxed">Please select the resources you would like sent to your registered email address. Both are complimentary and will be delivered within 24 hours.</p>
+              <p className="text-xs text-content-muted mb-3 leading-relaxed">Please select the resources you would like sent to your registered email address. Both are complimentary and will be delivered within 24 hours.</p>
               <div className="space-y-2.5">
                 {RESOURCE_OPTIONS.map((r) => (
                   <CheckItem
@@ -464,7 +464,7 @@ export function CARFWebinarFeedback() {
 
             {/* Section 5 — Services */}
             <SectionCard accent="purple" num={5} title="Services — I Wish to Receive">
-              <p className="text-xs text-[#5A6A82] mb-3 leading-relaxed">Please indicate if you would like to be contacted regarding any of the following services. Selecting an option does not constitute a commitment.</p>
+              <p className="text-xs text-content-muted mb-3 leading-relaxed">Please indicate if you would like to be contacted regarding any of the following services. Selecting an option does not constitute a commitment.</p>
               <div className="space-y-2.5">
                 {SERVICE_OPTIONS.map((s) => (
                   <CheckItem
@@ -490,7 +490,7 @@ export function CARFWebinarFeedback() {
                       onChange={(e) => { e.stopPropagation(); setForm((f) => ({ ...f, otherService: e.target.value })) }}
                       onClick={(e) => e.stopPropagation()}
                       placeholder="Please describe your requirement..."
-                      className="w-full mt-2 p-2.5 border border-[#DDE3EC] rounded text-[13px] bg-[#FAFAF8] focus:outline-none focus:border-[#0C447C] focus:bg-white"
+                      className="w-full mt-2 p-2.5 border border-line rounded text-[13px] bg-surface focus:outline-none focus:border-navy-700 focus:bg-white"
                     />
                   )}
                 </CheckItem>
@@ -499,118 +499,115 @@ export function CARFWebinarFeedback() {
 
             {/* Section 6 — Certificate */}
             <SectionCard accent="teal" num={6} title="Certificate of Participation">
-              <p className="text-xs text-[#5A6A82] mb-4 leading-relaxed">
+              <p className="text-xs text-content-muted mb-4 leading-relaxed">
                 Complete the fields below to receive your certificate. Fields marked <strong>*</strong> are required. Your certificate will be auto-downloaded upon submission.
               </p>
               <div className="space-y-4">
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm font-semibold text-[#1A2637]" htmlFor="f-name">Full name — as it should appear on your certificate<span className="text-[#8B1A1A] ml-0.5">*</span></label>
-                  <p className="text-xs text-[#5A6A82] mb-1">Please enter your name exactly as you would like it to appear on the certificate.</p>
+                  <label className="text-sm font-semibold text-content-strong" htmlFor="f-name">Full name — as it should appear on your certificate<span className="text-danger ml-0.5">*</span></label>
+                  <p className="text-xs text-content-muted mb-1">Please enter your name exactly as you would like it to appear on the certificate.</p>
                   <input
                     type="text" id="f-name" autoComplete="name"
                     value={form.fullname}
                     onChange={(e) => { setForm((f) => ({ ...f, fullname: e.target.value })); setErrors((er) => ({ ...er, fullname: false })) }}
                     placeholder="e.g. John Smith"
-                    className={`w-full p-3 border rounded text-sm bg-[#FAFAF8] text-[#1A2637] transition-colors focus:outline-none focus:border-[#0C447C] focus:bg-white focus:shadow-[0_0_0_3px_rgba(12,68,124,0.07)] ${errors.fullname ? "border-[#8B1A1A] bg-[#FDF2F2] field-error" : "border-[#DDE3EC]"}`}
+                    className={`w-full p-3 border rounded text-sm bg-surface text-content-strong transition-colors focus:outline-none focus:border-navy-700 focus:bg-white focus:shadow-[0_0_0_3px_rgba(12,68,124,0.07)] ${errors.fullname ? "border-danger bg-danger/8 field-error" : "border-line"}`}
                   />
-                  {errors.fullname && <span className="text-xs text-[#8B1A1A]">Please enter your full name.</span>}
+                  {errors.fullname && <span className="text-xs text-danger">Please enter your full name.</span>}
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm font-semibold text-[#1A2637]" htmlFor="f-email">Email address<span className="text-[#8B1A1A] ml-0.5">*</span></label>
-                  <p className="text-xs text-[#5A6A82] mb-1">Your certificate and selected resources will be sent to this address.</p>
+                  <label className="text-sm font-semibold text-content-strong" htmlFor="f-email">Email address<span className="text-danger ml-0.5">*</span></label>
+                  <p className="text-xs text-content-muted mb-1">Your certificate and selected resources will be sent to this address.</p>
                   <input
                     type="email" id="f-email" autoComplete="email"
                     value={form.email}
                     onChange={(e) => { setForm((f) => ({ ...f, email: e.target.value })); setErrors((er) => ({ ...er, email: false })) }}
                     placeholder="name@institution.com"
-                    className={`w-full p-3 border rounded text-sm bg-[#FAFAF8] text-[#1A2637] transition-colors focus:outline-none focus:border-[#0C447C] focus:bg-white focus:shadow-[0_0_0_3px_rgba(12,68,124,0.07)] ${errors.email ? "border-[#8B1A1A] bg-[#FDF2F2] field-error" : "border-[#DDE3EC]"}`}
+                    className={`w-full p-3 border rounded text-sm bg-surface text-content-strong transition-colors focus:outline-none focus:border-navy-700 focus:bg-white focus:shadow-[0_0_0_3px_rgba(12,68,124,0.07)] ${errors.email ? "border-danger bg-danger/8 field-error" : "border-line"}`}
                   />
-                  {errors.email && <span className="text-xs text-[#8B1A1A]">Please enter a valid email address.</span>}
+                  {errors.email && <span className="text-xs text-danger">Please enter a valid email address.</span>}
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   <div className="flex flex-col gap-1">
-                    <label className="text-sm font-semibold text-[#1A2637]" htmlFor="f-org">Organisation</label>
+                    <label className="text-sm font-semibold text-content-strong" htmlFor="f-org">Organisation</label>
                     <input
                       type="text" id="f-org" autoComplete="organization"
                       value={form.org}
                       onChange={(e) => setForm((f) => ({ ...f, org: e.target.value }))}
                       placeholder="e.g. Emirates NBD, ADGM Academy..."
-                      className="w-full p-3 border border-[#DDE3EC] rounded text-sm bg-[#FAFAF8] text-[#1A2637] focus:outline-none focus:border-[#0C447C] focus:bg-white focus:shadow-[0_0_0_3px_rgba(12,68,124,0.07)]"
+                      className="w-full p-3 border border-line rounded text-sm bg-surface text-content-strong focus:outline-none focus:border-navy-700 focus:bg-white focus:shadow-[0_0_0_3px_rgba(12,68,124,0.07)]"
                     />
                   </div>
                   <div className="flex flex-col gap-1">
-                    <label className="text-sm font-semibold text-[#1A2637]" htmlFor="f-title">Job title</label>
+                    <label className="text-sm font-semibold text-content-strong" htmlFor="f-title">Job title</label>
                     <input
                       type="text" id="f-title"
                       value={form.jobtitle}
                       onChange={(e) => setForm((f) => ({ ...f, jobtitle: e.target.value }))}
                       placeholder="e.g. Head of Compliance"
-                      className="w-full p-3 border border-[#DDE3EC] rounded text-sm bg-[#FAFAF8] text-[#1A2637] focus:outline-none focus:border-[#0C447C] focus:bg-white focus:shadow-[0_0_0_3px_rgba(12,68,124,0.07)]"
+                      className="w-full p-3 border border-line rounded text-sm bg-surface text-content-strong focus:outline-none focus:border-navy-700 focus:bg-white focus:shadow-[0_0_0_3px_rgba(12,68,124,0.07)]"
                     />
                   </div>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="text-sm font-semibold text-[#1A2637]" htmlFor="f-country">Country / Jurisdiction</label>
+                  <label className="text-sm font-semibold text-content-strong" htmlFor="f-country">Country / Jurisdiction</label>
                   <input
                     type="text" id="f-country"
                     value={form.country}
                     onChange={(e) => setForm((f) => ({ ...f, country: e.target.value }))}
                     placeholder="e.g. UAE, Saudi Arabia, Singapore..."
-                    className="w-full p-3 border border-[#DDE3EC] rounded text-sm bg-[#FAFAF8] text-[#1A2637] focus:outline-none focus:border-[#0C447C] focus:bg-white focus:shadow-[0_0_0_3px_rgba(12,68,124,0.07)]"
+                    className="w-full p-3 border border-line rounded text-sm bg-surface text-content-strong focus:outline-none focus:border-navy-700 focus:bg-white focus:shadow-[0_0_0_3px_rgba(12,68,124,0.07)]"
                   />
                 </div>
               </div>
             </SectionCard>
 
             {/* Turnstile + Submit */}
-            <div className="bg-white border border-[#DDE3EC] p-4 sm:p-7 text-center">
-              <p className="text-[13px] text-[#5A6A82] leading-relaxed mb-5 max-w-[480px] mx-auto">
+            <div className="bg-white border border-line p-4 sm:p-7 text-center">
+              <p className="text-[13px] text-content-muted leading-relaxed mb-5 max-w-[480px] mx-auto">
                 By submitting this form, you confirm your attendance at the webinar hosted by Edu-Dubai × Trans World Compliance on 25 June 2026. Your responses are treated with complete confidentiality.
               </p>
-              <div className="flex justify-center mb-4">
-                <Turnstile
-                  siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-                  onSuccess={(token) => { turnstileRef.current = token }}
-                />
+              <div className="mx-auto mb-4 w-full max-w-[420px]">
+                <TurnstileWidget onToken={(token) => { turnstileRef.current = token }} />
               </div>
               <button
                 type="submit"
                 disabled={submitting}
-                className="bg-gradient-to-r from-[#D4A32A] via-[#F0C040] to-[#D4A32A] text-[#042C53] text-[16px] font-extrabold py-4 px-10 rounded-lg w-full max-w-[420px] transition-all hover:from-[#E0B030] hover:via-[#FFD04A] hover:to-[#E0B030] hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(212,163,42,0.45)] active:translate-y-0 disabled:opacity-60 disabled:cursor-not-allowed shadow-[0_4px_15px_rgba(212,163,42,0.3)]"
+                className="bg-gradient-to-r from-gold-400 via-gold-300 to-gold-400 text-navy-900 text-[16px] font-semibold py-4 px-10 rounded-lg w-full max-w-[420px] transition-all hover:from-gold-300 hover:via-gold-200 hover:to-gold-300 hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(212,163,42,0.45)] active:translate-y-0 disabled:opacity-60 disabled:cursor-not-allowed shadow-[0_4px_15px_rgba(212,163,42,0.3)]"
               >
                 {submitting ? "Submitting..." : "Submit Feedback & Download Certificate"}
               </button>
-              <p className="mt-4 text-xs text-[#5A6A82]">
-                Queries: <a href="mailto:training@edudubai.org" className="text-[#1A8F68] no-underline">training@edudubai.org</a>
+              <p className="mt-4 text-xs text-content-muted">
+                Queries: <a href="mailto:training@edudubai.org" className="text-success no-underline">training@edudubai.org</a>
               </p>
             </div>
           </form>
         ) : (
           /* Thank You */
-          <div ref={thankYouRef} className="bg-white border border-[#DDE3EC] border-t-4 border-t-[#1A8F68] px-5 sm:px-9 py-8 sm:py-12 text-center animate-in fade-in slide-in-from-bottom-3 duration-400">
-            <div className="w-14 h-14 rounded-full bg-[#EAF5F0] border-2 border-[#1A8F68] flex items-center justify-center mx-auto mb-5 text-[22px] text-[#1A8F68] font-bold">✓</div>
-            <h2 className="font-serif text-2xl text-[#042C53] mb-2 font-normal">Thank you for your feedback.</h2>
+          <div ref={thankYouRef} className="bg-white border border-line border-t-4 border-t-[#1A8F68] px-5 sm:px-9 py-8 sm:py-12 text-center animate-in fade-in slide-in-from-bottom-3 duration-400">
+            <div className="w-14 h-14 rounded-full bg-success/10 border-2 border-success flex items-center justify-center mx-auto mb-5 text-[22px] text-success font-bold">✓</div>
+            <h2 className="font-serif text-2xl text-navy-900 mb-2 font-normal">Thank you for your feedback.</h2>
             {submitError && (
-              <p className="text-xs text-[#8B1A1A] bg-[#FDF2F2] border border-[#8B1A1A]/20 rounded px-3 py-2 mb-3 max-w-[440px] mx-auto">{submitError}</p>
+              <p className="text-xs text-danger bg-danger/8 border border-danger/20 rounded px-3 py-2 mb-3 max-w-[440px] mx-auto">{submitError}</p>
             )}
-            <p className="text-[15px] text-[#1A8F68] font-semibold mb-3.5">{form.fullname}</p>
-            <p className="text-sm text-[#5A6A82] leading-relaxed mb-7 max-w-[440px] mx-auto">
+            <p className="text-[15px] text-success font-semibold mb-3.5">{form.fullname}</p>
+            <p className="text-sm text-content-muted leading-relaxed mb-7 max-w-[440px] mx-auto">
               Your responses have been recorded. Your certificate of participation {generatingPDF ? "is being generated..." : "has been downloaded."} Selected resources will be sent to <strong>{form.email}</strong> within 24 hours.
             </p>
 
-            <div className="bg-[#042C53] rounded p-4 sm:p-5 mb-5 text-left">
-              <p className="text-[10px] text-white/50 tracking-wider uppercase mb-2">Certificate of Participation</p>
+            <div className="bg-navy-900 rounded p-4 sm:p-5 mb-5 text-left">
+              <p className="text-2xs text-white/50 tracking-wider uppercase mb-2">Certificate of Participation</p>
               <p className="font-serif text-[15px] text-white leading-relaxed mb-1.5">
                 The Hidden Operational Risks in CARF Reporting: What Can Go Wrong — and How to Stop It Before 2027
               </p>
-              <p className="text-xs text-[#B5D4F4]/70">Edu-Dubai × Trans World Compliance · 25 June 2026 · 75 Minutes</p>
+              <p className="text-xs text-navy-200/70">Edu-Dubai × Trans World Compliance · 25 June 2026 · 75 Minutes</p>
             </div>
 
             {/* Action buttons */}
             <div className="flex flex-col sm:flex-row gap-3 justify-center mb-6">
               <button
                 onClick={() => downloadCertificatePDF(certNumberRef.current, form.fullname)}
-                className="inline-flex items-center justify-center gap-2 bg-[#042C53] text-white text-sm font-semibold py-3 px-6 rounded transition-all hover:bg-[#0C447C]"
+                className="inline-flex items-center justify-center gap-2 bg-navy-900 text-white text-sm font-semibold py-3 px-6 rounded transition-all hover:bg-navy-700"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                 Download Certificate (PNG)
@@ -625,32 +622,32 @@ export function CARFWebinarFeedback() {
                 Share on LinkedIn
               </a>
             </div>
-            <div className="bg-[#FAFAF8] border border-[#DDE3EC] rounded p-4 mb-6 text-left max-w-[480px] mx-auto">
-              <p className="text-xs font-semibold text-[#1A2637] mb-2">Copy this for your LinkedIn post:</p>
-              <p className="text-xs text-[#5A6A82] leading-relaxed italic">
+            <div className="bg-surface border border-line rounded p-4 mb-6 text-left max-w-[480px] mx-auto">
+              <p className="text-xs font-semibold text-content-strong mb-2">Copy this for your LinkedIn post:</p>
+              <p className="text-xs text-content-muted leading-relaxed italic">
                 &ldquo;Happy to share that I recently attended a webinar on <strong className="not-italic">The Hidden Operational Risks in Crypto-Asset Reporting Framework (CARF) Reporting</strong>, hosted by <strong className="not-italic">@Edu-Dubai (INDIA &amp; MENA)</strong> × <strong className="not-italic">@Trans World Compliance</strong>.<br /><br />
                 The session provided valuable insights into the key compliance challenges institutions face under CARF — including self-certification controls, due diligence requirements, transaction data accuracy, fair market value methodology, and governance frameworks.<br /><br />
                 As the 2027 reporting deadline approaches, staying ahead of these operational risks is critical. Grateful for the opportunity to learn from industry practitioners.<br /><br />
                 #CryptoAssetReportingFramework #CARF #Compliance #AML #RegulatoryCompliance #FinancialCrime #EduDubai #TransWorldCompliance #ProfessionalDevelopment&rdquo;
               </p>
-              <p className="text-[10px] text-[#5A6A82] mt-1.5">When pasting on LinkedIn, type <strong>@Edu-Dubai</strong> and <strong>@Trans World Compliance</strong> to tag our pages.</p>
+              <p className="text-2xs text-content-muted mt-1.5">When pasting on LinkedIn, type <strong>@Edu-Dubai</strong> and <strong>@Trans World Compliance</strong> to tag our pages.</p>
               <button
                 onClick={() => {
                   navigator.clipboard.writeText("Happy to share that I recently attended a webinar on The Hidden Operational Risks in Crypto-Asset Reporting Framework (CARF) Reporting, hosted by @Edu-Dubai (INDIA & MENA) × @Trans World Compliance.\n\nThe session provided valuable insights into the key compliance challenges institutions face under CARF — including self-certification controls, due diligence requirements, transaction data accuracy, fair market value methodology, and governance frameworks.\n\nAs the 2027 reporting deadline approaches, staying ahead of these operational risks is critical. Grateful for the opportunity to learn from industry practitioners.\n\n#CryptoAssetReportingFramework #CARF #Compliance #AML #RegulatoryCompliance #FinancialCrime #EduDubai #TransWorldCompliance #ProfessionalDevelopment")
                 }}
-                className="mt-3 text-xs font-semibold text-[#1A8F68] hover:text-[#042C53] transition-colors"
+                className="mt-3 text-xs font-semibold text-success hover:text-navy-900 transition-colors"
               >
                 Copy to clipboard
               </button>
             </div>
 
             {/* CARF Diagnostic CTA */}
-            <div className="bg-[#FAFAF8] border border-[#DDE3EC] rounded p-5 mb-6 text-center">
-              <p className="text-sm text-[#1A2637] font-semibold mb-1">Assess your CARF readiness</p>
-              <p className="text-xs text-[#5A6A82] mb-3">Take our free 5-minute diagnostic across all 6 risk zones discussed in the webinar.</p>
+            <div className="bg-surface border border-line rounded p-5 mb-6 text-center">
+              <p className="text-sm text-content-strong font-semibold mb-1">Assess your CARF readiness</p>
+              <p className="text-xs text-content-muted mb-3">Take our free 5-minute diagnostic across all 6 risk zones discussed in the webinar.</p>
               <a
                 href="/tools/carf"
-                className="inline-flex items-center justify-center gap-2 bg-[#1A8F68] text-white text-sm font-semibold py-2.5 px-6 rounded transition-all hover:bg-[#157555]"
+                className="inline-flex items-center justify-center gap-2 bg-success text-white text-sm font-semibold py-2.5 px-6 rounded transition-all hover:bg-[#157555]"
               >
                 Take the CARF Diagnostic
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
@@ -658,20 +655,20 @@ export function CARFWebinarFeedback() {
             </div>
 
             {allThankItems.length > 0 && (
-              <div className="bg-[#EAF5F0] rounded p-4 text-left mb-5">
-                <p className="text-[11px] font-bold text-[#1A8F68] tracking-wider uppercase mb-2">Resources & services — next steps</p>
+              <div className="bg-success/10 rounded p-4 text-left mb-5">
+                <p className="text-2xs font-bold text-success tracking-wider uppercase mb-2">Resources & services — next steps</p>
                 {allThankItems.map((item, i) => (
-                  <div key={i} className="text-[13px] text-[#1A2637] py-1 border-b border-[#1A8F68]/15 last:border-b-0 flex items-center gap-2">
-                    <span className="text-[#1A8F68] font-bold">✓</span>
+                  <div key={i} className="text-[13px] text-content-strong py-1 border-b border-success/15 last:border-b-0 flex items-center gap-2">
+                    <span className="text-success font-bold">✓</span>
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
             )}
 
-            <p className="text-[13px] text-[#5A6A82]">
+            <p className="text-[13px] text-content-muted">
               Questions? Contact us at{" "}
-              <a href="mailto:training@edudubai.org" className="text-[#1A8F68] no-underline">training@edudubai.org</a>
+              <a href="mailto:training@edudubai.org" className="text-success no-underline">training@edudubai.org</a>
             </p>
           </div>
         )}
@@ -693,10 +690,10 @@ const ACCENT_COLORS: Record<string, string> = {
 
 function SectionCard({ accent, num, title, children }: { accent: string; num: number; title: React.ReactNode; children: React.ReactNode }) {
   return (
-    <div className={`bg-white border border-[#DDE3EC] border-l-4 ${ACCENT_COLORS[accent] || ""} mb-5`}>
-      <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-[#DDE3EC] flex items-baseline gap-2 sm:gap-3">
-        <span className="text-[9px] sm:text-[10px] font-bold text-[#5A6A82] tracking-[0.1em] uppercase whitespace-nowrap">Section {num}</span>
-        <span className="font-serif text-[15px] sm:text-[17px] text-[#042C53] font-normal leading-snug">{title}</span>
+    <div className={`bg-white border border-line border-l-4 ${ACCENT_COLORS[accent] || ""} mb-5`}>
+      <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-line flex items-baseline gap-2 sm:gap-3">
+        <span className="text-2xs sm:text-2xs font-bold text-content-muted tracking-[0.1em] uppercase whitespace-nowrap">Section {num}</span>
+        <span className="font-serif text-[15px] sm:text-[17px] text-navy-900 font-normal leading-snug">{title}</span>
       </div>
       <div className="px-4 sm:px-6 py-4 sm:py-5">{children}</div>
     </div>

@@ -129,8 +129,8 @@ export default function ProfilePage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-brand-navy mb-2">Profile Settings</h1>
-        <p className="text-neutral-text-muted">
+        <h1 className="text-3xl font-bold text-navy-700 mb-2">Profile Settings</h1>
+        <p className="text-content-muted">
           Manage your personal information and preferences
         </p>
       </div>
@@ -151,8 +151,8 @@ export default function ProfilePage() {
           )}
 
           {success && (
-            <Alert className="mb-6 border-green-200 bg-green-50">
-              <CheckCircle2 className="h-4 w-4 text-green-600" />
+            <Alert className="mb-6 border-green-200 bg-success/10">
+              <CheckCircle2 className="h-4 w-4 text-success" />
               <AlertDescription className="text-green-800">
                 Profile updated successfully!
               </AlertDescription>
@@ -179,9 +179,9 @@ export default function ProfilePage() {
                 type="email"
                 value={formData.email}
                 disabled
-                className="bg-neutral-bg-subtle"
+                className="bg-surface-sunken"
               />
-              <p className="text-xs text-neutral-text-muted">
+              <p className="text-xs text-content-muted">
                 Email cannot be changed. Contact support if you need to update your email.
               </p>
             </div>
@@ -212,7 +212,7 @@ export default function ProfilePage() {
 
             <Button
               type="submit"
-              className="bg-brand-gold text-brand-navy hover:bg-brand-gold-light font-semibold"
+              className="bg-gold-400 text-navy-700 hover:bg-gold-300 font-semibold"
               disabled={saving}
             >
               {saving ? (
