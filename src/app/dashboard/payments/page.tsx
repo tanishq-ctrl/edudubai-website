@@ -38,7 +38,7 @@ export default async function PaymentsPage() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "SUCCESS":
-        return <Badge className="bg-success/100 hover:bg-green-600">Success</Badge>
+        return <Badge className="bg-success/100 hover:bg-success">Success</Badge>
       case "FAILED":
         return <Badge variant="destructive">Failed</Badge>
       case "PENDING":

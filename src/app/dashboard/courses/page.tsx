@@ -39,7 +39,7 @@ export default async function CoursesPage() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "ACTIVE":
-        return <Badge className="bg-success/100 hover:bg-green-600">Active</Badge>
+        return <Badge className="bg-success/100 hover:bg-success">Active</Badge>
       case "COMPLETED":
         return <Badge className="bg-gold-400 hover:bg-gold-300">Completed</Badge>
       case "CANCELLED":

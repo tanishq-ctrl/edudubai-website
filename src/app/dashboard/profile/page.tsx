@@ -153,7 +153,7 @@ export default function ProfilePage() {
           {success && (
             <Alert className="mb-6 border-green-200 bg-success/10">
               <CheckCircle2 className="h-4 w-4 text-success" />
-              <AlertDescription className="text-green-800">
+              <AlertDescription className="text-success">
                 Profile updated successfully!
               </AlertDescription>
             </Alert>

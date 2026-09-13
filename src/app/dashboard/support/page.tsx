@@ -120,11 +120,11 @@ export default function SupportPage() {
   const getStatusBadge = (status: string) => {
     switch (status.toUpperCase()) {
       case "OPEN":
-        return <Badge className="bg-blue-500 hover:bg-blue-600">Open</Badge>
+        return <Badge className="bg-ink-900 hover:bg-ink-950 text-content-on-dark">Open</Badge>
       case "IN_PROGRESS":
         return <Badge className="bg-yellow-500 hover:bg-yellow-600">In Progress</Badge>
       case "RESOLVED":
-        return <Badge className="bg-success/100 hover:bg-green-600">Resolved</Badge>
+        return <Badge className="bg-success/100 hover:bg-success">Resolved</Badge>
       case "CLOSED":
         return <Badge variant="outline">Closed</Badge>
       default:
@@ -161,7 +161,7 @@ export default function SupportPage() {
             {success && (
               <Alert className="mb-6 border-green-200 bg-success/10">
                 <CheckCircle2 className="h-4 w-4 text-success" />
-                <AlertDescription className="text-green-800">
+                <AlertDescription className="text-success">
                   Support request submitted successfully!
                 </AlertDescription>
               </Alert>

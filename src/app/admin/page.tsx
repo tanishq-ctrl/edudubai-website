@@ -4,7 +4,7 @@ import { getCurrentUser } from "@/lib/auth-guards"
 import { getAllUsers } from "@/server/actions/admin"
 import { listCoursesForAdmin } from "@/server/actions/admin-courses"
 import { CoursesManager } from "@/components/admin/courses-manager"
-import { listActivity, getActivityCounts } from "@/server/actions/admin-activity"
+import { listActivity, getActivityCounts, getActivityStats } from "@/server/actions/admin-activity"
 import { ActivityFeed } from "@/components/admin/activity-feed"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -30,11 +30,12 @@ export default async function AdminPage() {
     notFound()
   }
 
-  const [users, courses, activity, activityCounts] = await Promise.all([
+  const [users, courses, activity, activityCounts, stats] = await Promise.all([
     getAllUsers(),
     listCoursesForAdmin({ includeArchived: true }),
     listActivity(),
     getActivityCounts(),
+    getActivityStats(),
   ])
 
   return (
@@ -71,34 +72,90 @@ export default async function AdminPage() {
         <TabsContent value="users" className="space-y-4">
           <AdminUsersList users={users} />
         </TabsContent>
-        <TabsContent value="analytics" className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <TabsContent value="analytics" className="space-y-6">
+          {/*
+             Counted from our own tables, not derived from what the page
+             already had in props. These four answer the questions the panel
+             exists for: how much is coming in, is any of it waiting on me,
+             and is the CRM mirror keeping up.
+          */}
+          <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+            {[
+              { label: "Last 7 days", value: stats.last7, hint: "inbound records" },
+              { label: "Last 30 days", value: stats.last30, hint: "inbound records" },
+              { label: "Leads awaiting contact", value: stats.openLeads, hint: "status NEW" },
+              { label: "Not synced to CRM", value: stats.unsynced, hint: "replayable" },
+            ].map((figure) => (
+              <Card key={figure.label}>
+                <CardContent className="py-5">
+                  <p className="text-2xs font-semibold uppercase tracking-[0.18em] text-content-subtle">
+                    {figure.label}
+                  </p>
+                  <p className="mt-2 font-display text-3xl font-semibold tabular text-content-strong">
+                    {figure.value}
+                  </p>
+                  <p className="mt-1 text-xs text-content-muted">{figure.hint}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-2">
             <Card>
               <CardHeader>
-                <CardTitle>Total Courses</CardTitle>
+                <CardTitle>Leads by source</CardTitle>
+                <CardDescription>Which form the enquiry arrived through.</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-3xl font-bold text-content-strong">
-                  {courses.filter((course) => !course.archivedAt).length}
-                </p>
+                {stats.bySource.length === 0 ? (
+                  <p className="text-sm text-content-muted">
+                    No leads recorded yet.
+                  </p>
+                ) : (
+                  <dl className="border-t border-line">
+                    {stats.bySource.map((row) => (
+                      <div
+                        key={row.source}
+                        className="flex items-center justify-between border-b border-line py-2.5 text-sm"
+                      >
+                        <dt className="text-content">
+                          {row.source.replace(/_/g, " ").toLowerCase()}
+                        </dt>
+                        <dd className="tabular font-medium text-content-strong">{row.count}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
               </CardContent>
             </Card>
+
             <Card>
               <CardHeader>
-                <CardTitle>Total Users</CardTitle>
+                <CardTitle>Catalogue and accounts</CardTitle>
+                <CardDescription>Everything currently published and registered.</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-3xl font-bold text-content-strong">{users.length}</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Total Enrollments</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-3xl font-bold text-content-strong">
-                  {users.reduce((total, user) => total + user._count.enrollments, 0)}
-                </p>
+                <dl className="border-t border-line">
+                  {[
+                    {
+                      term: "Live courses",
+                      value: courses.filter((course) => !course.archivedAt).length,
+                    },
+                    { term: "Registered users", value: users.length },
+                    {
+                      term: "Enrolments",
+                      value: users.reduce((total, user) => total + user._count.enrollments, 0),
+                    },
+                  ].map((row) => (
+                    <div
+                      key={row.term}
+                      className="flex items-center justify-between border-b border-line py-2.5 text-sm"
+                    >
+                      <dt className="text-content">{row.term}</dt>
+                      <dd className="tabular font-medium text-content-strong">{row.value}</dd>
+                    </div>
+                  ))}
+                </dl>
               </CardContent>
             </Card>
           </div>

@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { getDashboardStats, getUserPayments } from "@/server/dashboard/queries"
-import { BookOpen, CheckCircle2, CreditCard, ArrowRight, GraduationCap, Clock, Bell, Settings } from "lucide-react"
+import { BookOpen, CheckCircle2, CreditCard, ArrowRight, GraduationCap, Clock, Settings } from "lucide-react"
 
 // Mark as dynamic since it uses cookies
 export const dynamic = 'force-dynamic'
@@ -57,14 +57,16 @@ export default async function DashboardPage() {
             Your enrolments, materials and payment history.
           </p>
         </div>
+        {/*
+           The bell that used to sit here had no handler and carried a red dot
+           that was always lit: a control that does nothing, promising unread
+           news that does not exist. There is no notification feature to wire
+           it to, so it is gone rather than faked.
+        */}
         <div className="flex items-center gap-3">
-          <Button variant="outline" size="icon" className="rounded-sm relative">
-            <Bell className="h-5 w-5 text-content" />
-            <span className="absolute top-2 right-2 h-2 w-2 bg-danger/80 rounded-full border-2 border-white" />
-          </Button>
           <Button asChild variant="outline" size="icon" className="rounded-sm">
-            <Link href="/dashboard/profile">
-              <Settings className="h-5 w-5 text-content" />
+            <Link href="/dashboard/profile" aria-label="Profile and settings">
+              <Settings aria-hidden="true" className="h-5 w-5 text-content" />
             </Link>
           </Button>
         </div>
@@ -73,10 +75,10 @@ export default async function DashboardPage() {
       {/* Quick Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: "Courses Subscribed", value: stats.activeCourses + stats.completedCourses, icon: BookOpen, color: "text-blue-600", bg: "bg-blue-50" },
-          { label: "In Progress", value: stats.activeCourses, icon: Clock, color: "text-amber-600", bg: "bg-amber-50" },
-          { label: "Completed", value: stats.completedCourses, icon: CheckCircle2, color: "text-success", bg: "bg-emerald-50" },
-          { label: "Total Payments", value: stats.paymentsCount, icon: CreditCard, color: "text-purple-600", bg: "bg-purple-50" },
+          { label: "Courses Subscribed", value: stats.activeCourses + stats.completedCourses, icon: BookOpen, color: "text-crimson-600", bg: "bg-crimson-50" },
+          { label: "In Progress", value: stats.activeCourses, icon: Clock, color: "text-gold-ink", bg: "bg-gold-100" },
+          { label: "Completed", value: stats.completedCourses, icon: CheckCircle2, color: "text-success", bg: "bg-surface-sunken" },
+          { label: "Total Payments", value: stats.paymentsCount, icon: CreditCard, color: "text-content-strong", bg: "bg-surface-sunken" },
         ].map((item, idx) => (
           <Card key={idx} className="border-none shadow-sm hover:shadow-md transition-all duration-300">
             <CardContent className="p-6">
