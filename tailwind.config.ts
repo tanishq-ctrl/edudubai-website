@@ -25,6 +25,7 @@ const config = {
     extend: {
       colors: {
         ink: {
+          975: channel("--ink-975"),
           950: channel("--ink-950"),
           900: channel("--ink-900"),
           800: channel("--ink-800"),
@@ -140,10 +141,10 @@ const config = {
 
       fontFamily: {
         sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "sans-serif"],
-        // `font-display` is retained as an alias so existing markup keeps
-        // working, but it now resolves to the body face -- the site uses one
-        // typeface (Inter) at varying weights, as it did originally.
-        display: ["var(--font-sans)", "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "sans-serif"],
+        // `font-display` is Sora. It used to alias Inter, which left headings
+        // with no more voice than body copy; that sameness was the main reason
+        // the pages read flat. Falls back to the body stack if Sora fails.
+        display: ["var(--font-display)", "var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
         mono: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
 

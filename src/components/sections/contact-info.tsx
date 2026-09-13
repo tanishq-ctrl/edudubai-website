@@ -96,7 +96,7 @@ export function ContactInfo() {
             aria-hidden="true"
             className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-gold-400/12 blur-3xl"
           />
-          <Eyebrow onDark>Quick connect</Eyebrow>
+          <Eyebrow>Quick connect</Eyebrow>
           <p className="mt-4 text-sm leading-relaxed text-white/70">
             Speak with an advisor directly for immediate assistance with programme selection.
           </p>

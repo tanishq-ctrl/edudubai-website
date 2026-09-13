@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Sora } from "next/font/google"
 import Script from "next/script"
 import "./globals.css"
 import { GoogleAnalytics } from "@next/third-parties/google"
@@ -14,6 +14,21 @@ const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-sans",
+})
+
+/*
+   Display face. The site ran on Inter alone at varying weights, which is why
+   headings never carried more voice than body copy. Sora is geometric enough
+   to hold at 80px+ and sober enough for a compliance audience.
+
+   Only the weights actually used are requested -- the variable-font payload is
+   the cost here, and headings never run at 300 or 800.
+*/
+const sora = Sora({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["500", "600", "700"],
+  variable: "--font-display",
 })
 
 const siteUrl = getSiteUrl()
@@ -65,7 +80,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} no-js`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${sora.variable} no-js`} suppressHydrationWarning>
       <head>
         {/*
           Drops the `no-js` class as early as possible. Everything with

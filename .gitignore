@@ -45,3 +45,6 @@ next-env.d.ts
 
 # claude code local settings (machine-specific permissions)
 .claude/settings.local.json
+
+# impeccable decision-page state (transient, per-session)
+.impeccable/questions/

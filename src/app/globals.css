@@ -25,6 +25,10 @@
        BRAND NAVY ramp rather than a near-black. Every dark band on the site
        reads as navy #1e3a5f / #0f1f35, exactly as it did before.
        ------------------------------------------------------------------- */
+    /* One stop below the brand navy. Not a second brand colour -- it exists so
+       adjacent dark bands can differ in value instead of running together as
+       one undifferentiated block. */
+    --ink-975: 8 16 30;
     --ink-950: 15 31 53;
     --ink-900: 21 42 70;
     --ink-800: 30 58 95;
@@ -280,7 +284,11 @@
   */
   h1, h2, h3, h4 {
     color: var(--heading-color, rgb(var(--navy-700)));
-    font-weight: 700;
+    /* Sora, via the Tailwind `display` family. Headings carrying a different
+       face from body copy is what gives the type scale a voice; before this
+       everything was Inter and the hierarchy came from size alone. */
+    font-family: theme("fontFamily.display");
+    font-weight: 600;
     line-height: 1.12;
     letter-spacing: -0.02em;
     text-wrap: balance;
@@ -487,6 +495,40 @@
 
   .glass-dark {
     background-color: rgb(var(--ink-900) / 0.9);
+  }
+
+  /*
+     Raised panel on a dark band -- the "glass card" look.
+
+     Deliberately NOT backdrop-filter. See the note above: blur is reserved for
+     the site header. A translucent white fill over a dark ground reads as the
+     same material once there is a hairline border catching the light, and it
+     composites once instead of per frame.
+  */
+  .panel-dark {
+    background-color: rgb(255 255 255 / 0.05);
+    border: 1px solid rgb(255 255 255 / 0.1);
+  }
+
+  /* Same panel, pressed rather than raised -- for rows inside a panel. */
+  .panel-dark-sunken {
+    background-color: rgb(var(--ink-975) / 0.5);
+    border: 1px solid rgb(255 255 255 / 0.07);
+  }
+
+  /*
+     Gold bloom behind a dark band. `.orb` with the gold already bound, since
+     every dark section wants the same value and hand-rolling `[--orb:…]` at
+     each call site is how the old markup drifted.
+  */
+  .bloom-gold {
+    border-radius: 9999px;
+    background-image: radial-gradient(closest-side, rgb(var(--gold-400) / 0.18) 0%, transparent 100%);
+  }
+
+  .bloom-navy {
+    border-radius: 9999px;
+    background-image: radial-gradient(closest-side, rgb(var(--navy-600) / 0.5) 0%, transparent 100%);
   }
 
   /*

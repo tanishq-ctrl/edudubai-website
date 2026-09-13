@@ -11,7 +11,7 @@ import { Reveal } from "@/components/motion"
  * `tone` likewise replaces ad-hoc `bg-white` / `bg-slate-50` / `bg-indigo-100`.
  */
 
-type Tone = "paper" | "sunken" | "ink" | "navy" | "transparent"
+type Tone = "paper" | "sunken" | "ink" | "navy" | "midnight" | "deep" | "transparent"
 
 const toneClass: Record<Tone, string> = {
   paper: "bg-surface text-content",
@@ -22,6 +22,11 @@ const toneClass: Record<Tone, string> = {
      used before. Keeps `ink` and `navy` visually distinct rather than
      resolving to the same flat colour. */
   navy: "bg-gradient-to-br from-navy-700 via-navy-800 to-navy-900 text-content-on-dark grain",
+  /* Navy falling into near-black. The anchor tone for dark pages. */
+  midnight: "bg-gradient-to-b from-navy-900 to-ink-975 text-content-on-dark grain",
+  /* Flat near-black. Pairs with `midnight` so two adjacent dark bands differ
+     in value instead of reading as one continuous block. */
+  deep: "bg-ink-975 text-content-on-dark grain",
   transparent: "",
 }
 
@@ -59,26 +64,41 @@ export function Section({
   )
 }
 
-/** Small tracked label above a heading. The gold rule is the accent, not the text. */
+/**
+ * Small label above a heading. The gold marker is the accent, not the text.
+ *
+ * `marker="rule"` is the original tracked-uppercase treatment, kept as the
+ * default so the pages still using it are untouched. `marker="dot"` is the
+ * sentence-case form -- uppercase tracking on 63 eyebrows was a large part of
+ * why every section looked the same, so new work should prefer it.
+ */
 export function Eyebrow({
   children,
   className,
-  onDark = false,
+  marker = "rule",
 }: {
   children: React.ReactNode
   className?: string
-  onDark?: boolean
+  marker?: "rule" | "dot"
 }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-3 text-2xs font-semibold uppercase tracking-[0.22em]",
-        // Colour adapts to the surface via --gold-ink; see globals.css.
-        "text-gold-ink",
+        "inline-flex items-center text-gold-ink",
+        marker === "rule"
+          ? "gap-3 text-2xs font-semibold uppercase tracking-[0.22em]"
+          : "gap-2.5 text-sm font-medium",
         className,
       )}
     >
-      <span aria-hidden="true" className="h-px w-8 bg-current opacity-60" />
+      <span
+        aria-hidden="true"
+        className={
+          marker === "rule"
+            ? "h-px w-8 bg-current opacity-60"
+            : "h-[7px] w-[7px] shrink-0 rounded-full bg-gold-400"
+        }
+      />
       {children}
     </span>
   )
@@ -90,6 +110,7 @@ export function Eyebrow({
  */
 export function SectionHeading({
   eyebrow,
+  eyebrowMarker = "rule",
   title,
   lead,
   align = "center",
@@ -99,6 +120,7 @@ export function SectionHeading({
   as: Tag = "h2",
 }: {
   eyebrow?: React.ReactNode
+  eyebrowMarker?: "rule" | "dot"
   title: React.ReactNode
   lead?: React.ReactNode
   align?: "center" | "start"
@@ -117,7 +139,7 @@ export function SectionHeading({
     >
       {eyebrow ? (
         <Reveal variant="fade">
-          <Eyebrow onDark={onDark}>{eyebrow}</Eyebrow>
+          <Eyebrow marker={eyebrowMarker}>{eyebrow}</Eyebrow>
         </Reveal>
       ) : null}
 
