@@ -24,7 +24,7 @@ export function AboutHero() {
         <div className="absolute -right-24 top-40 h-[52rem] w-[52rem] bloom-navy" />
       </div>
 
-      <Container className="grid items-center gap-14 py-section-md lg:grid-cols-[minmax(0,1fr)_470px] lg:gap-20">
+      <Container className="grid items-center gap-12 py-section-sm lg:grid-cols-[minmax(0,1fr)_470px] lg:gap-20">
         <div className="max-w-measure-sm">
           <Reveal variant="fade">
             <span className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/[0.07] px-4 py-2 text-sm font-medium text-white/85">
@@ -34,14 +34,14 @@ export function AboutHero() {
           </Reveal>
 
           <Reveal variant="up" delay={80}>
-            <h1 className="mt-8 text-display font-semibold leading-[1.02] tracking-tighter">
+            <h1 className="mt-7 text-[clamp(2.25rem,1.4rem+3.4vw,3.75rem)] font-semibold leading-[1.04] tracking-tighter">
               We train the people who{" "}
               <span className="text-gold-400">carry the risk.</span>
             </h1>
           </Reveal>
 
           <Reveal variant="up" delay={160}>
-            <p className="mt-7 max-w-measure text-lg leading-relaxed text-content-on-dark-muted">
+            <p className="mt-6 max-w-measure text-lg leading-relaxed text-content-on-dark-muted">
               Certification and advisory programmes for compliance, risk and audit professionals
               inside regulated institutions across India, the Gulf and international markets.
             </p>
@@ -65,7 +65,7 @@ export function AboutHero() {
           </Reveal>
 
           <Reveal variant="up" delay={300}>
-            <dl className="mt-14 flex flex-wrap gap-x-14 gap-y-6">
+            <dl className="mt-10 flex flex-wrap gap-x-12 gap-y-5">
               {[
                 { value: "2017", label: "Founded" },
                 { value: "12", label: "Jurisdictions" },
@@ -86,7 +86,7 @@ export function AboutHero() {
         </div>
 
         <Reveal variant="scale" delay={140} className="relative mx-auto w-full max-w-[470px]">
-          <div className="relative aspect-[47/62] overflow-hidden rounded-[2rem] border border-white/10">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10">
             <Image
               src="/hero/about.jpg"
               alt="The EduDubai training team"
