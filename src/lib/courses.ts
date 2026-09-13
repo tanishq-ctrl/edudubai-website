@@ -51,15 +51,15 @@ export const courses: Course[] = [
     },
     audienceCategories: [
       {
-        title: "🏦 Financial Institutions",
+        title: "Financial Institutions",
         roles: ["Compliance Officers", "AML Investigators", "Risk Managers", "Internal Auditors", "Bankers"]
       },
       {
-        title: "⚖️ Law & Regulation",
+        title: "Law & Regulation",
         roles: ["Regulators", "FIU Staff", "Law Enforcement", "Legal Counsel", "Governance Officers"]
       },
       {
-        title: "🏢 Industry & DNFBPs",
+        title: "Industry & DNFBPs",
         roles: ["Exchange Houses", "MSBs", "Real Estate", "TCSPs", "Auditors", "Consultants"]
       }
     ],
@@ -156,11 +156,11 @@ export const courses: Course[] = [
     },
     audienceCategories: [
       {
-        title: "🏦 Financial Sector",
+        title: "Financial Sector",
         roles: ["Sanctions Compliance Officers", "AML Investigators", "KYC/CDD Teams", "Correspondent Banking Staff", "Trade Finance Operations"]
       },
       {
-        title: "🚢 Global Trade & Logistics",
+        title: "Global Trade & Logistics",
         roles: ["Export/Import Compliance", "Shipping Officers", "Freight Forwarders", "Legal & Risk Governance"]
       }
     ],
@@ -262,11 +262,11 @@ export const courses: Course[] = [
     },
     audienceCategories: [
       {
-        title: "🏦 Financial Support",
+        title: "Financial Support",
         roles: ["Compliance Assistants", "Transaction Monitors", "Branch Managers", "Customer Service Representatives"]
       },
       {
-        title: "💍 Non-Financial Sector (DNFBPs)",
+        title: "Non-Financial Sector (DNFBPs)",
         roles: ["Real Estate Brokers", "Dealers in Precious Metals", "Lawyers", "Accountants", "Art Dealers"]
       }
     ],
@@ -367,15 +367,15 @@ export const courses: Course[] = [
     },
     audienceCategories: [
       {
-        title: "� Financial Institutions",
+        title: "Financial Institutions",
         roles: ["FATCA/CRS Officers", "Banking & Insurance Professionals", "Brokerage & Investment Teams", "Compliance Managers"]
       },
       {
-        title: "🏛️ Regulators & Authorities",
+        title: "Regulators & Authorities",
         roles: ["Central Bank Staff", "Tax Authority Officials", "Financial Regulators", "Policy Officers"]
       },
       {
-        title: "⚖️ Advisors & Providers",
+        title: "Advisors & Providers",
         roles: ["Tax Consultants", "Legal Advisors", "Reporting System Providers", "RegTech Vendors"]
       }
     ],
@@ -472,15 +472,15 @@ export const courses: Course[] = [
     },
     audienceCategories: [
       {
-        title: "� Financial Institutions",
+        title: "Financial Institutions",
         roles: ["Sanctions Officers", "Compliance Managers", "Trade Finance Teams", "Remittance Professionals", "Risk Officers"]
       },
       {
-        title: "⚖️ Regulators & Authorities",
+        title: "Regulators & Authorities",
         roles: ["Central Bank Staff", "FIU Personnel", "Supervisory Officers", "Policy Analysts"]
       },
       {
-        title: "🖥️ Technology & Systems",
+        title: "Technology & Systems",
         roles: ["Screening System Providers", "Compliance Software Teams", "Risk Analytics Professionals"]
       }
     ],
@@ -575,15 +575,15 @@ export const courses: Course[] = [
     },
     audienceCategories: [
       {
-        title: "🏦 Financial Institutions",
+        title: "Financial Institutions",
         roles: ["Compliance Officers", "Risk Managers", "Governance Professionals", "Internal Auditors", "Operations Managers"]
       },
       {
-        title: "🏛️ Regulators & Authorities",
+        title: "Regulators & Authorities",
         roles: ["Supervisory Staff", "Policy Officers", "Regulatory Analysts"]
       },
       {
-        title: "⚖️ Advisory & Consulting",
+        title: "Advisory & Consulting",
         roles: ["Compliance Consultants", "Legal Advisors", "Governance Specialists"]
       }
     ],
@@ -677,15 +677,15 @@ export const courses: Course[] = [
     },
     audienceCategories: [
       {
-        title: "🏦 Financial Institutions",
+        title: "Financial Institutions",
         roles: ["Compliance Officers & Managers", "MLROs & Deputies", "AML Investigators", "Risk & Governance Heads"]
       },
       {
-        title: "🏛️ Regulators & Authorities",
+        title: "Regulators & Authorities",
         roles: ["Supervisory Officers", "FIU Staff", "Policy Analysts"]
       },
       {
-        title: "🏢 Industry & DNFBPs",
+        title: "Industry & DNFBPs",
         roles: ["Exchange Houses & MSBs", "Real Estate & TCSPs", "Lawyers & Auditors", "Consultants"]
       }
     ],
@@ -781,7 +781,7 @@ export const courses: Course[] = [
     },
     audienceCategories: [
       {
-        title: "🏦 Financial Sector Professionals",
+        title: "Financial Sector Professionals",
         roles: [
           "Trade Finance Operations & Processing Teams",
           "AML, CDD, EDD & Transaction Monitoring Analysts",
@@ -793,7 +793,7 @@ export const courses: Course[] = [
         ]
       },
       {
-        title: "🏢 Non-Financial Sector Professionals",
+        title: "Non-Financial Sector Professionals",
         roles: [
           "Import / Export & Trade Compliance Officers",
           "Shipping, Logistics & Freight Forwarding Professionals",
@@ -900,7 +900,7 @@ export const courses: Course[] = [
       },
       audienceCategories: [
         {
-          title: "📈 Finance & Strategy",
+          title: "Finance & Strategy",
           roles: ["Financial Controllers", "CFOs", "Strategy Analysts", "FP&A Professionals"]
         }
       ],
@@ -980,7 +980,7 @@ export const courses: Course[] = [
       },
       audienceCategories: [
         {
-          title: "🛡️ Audit & Risk",
+          title: "Audit & Risk",
           roles: ["Chief Audit Executives", "Audit Managers", "IT Auditors", "GRC Specialists"]
         }
       ],

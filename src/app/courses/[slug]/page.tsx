@@ -3,8 +3,7 @@ import { Container } from "@/components/container"
 import { getCourseBySlugNew } from "@/server/actions/courses"
 import { CourseDetailClient } from "./page-client"
 import { CourseHero } from "./course-hero"
-import { CourseCustomContent } from "./course-custom-content"
-import { CGSSCustomContent } from "./cgss-custom"
+import { CourseContent } from "./course-content"
 
 import { Metadata } from "next"
 
@@ -123,11 +122,7 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
       />
       <CourseDetailClient courseId={course.id} courseTitle={course.title} />
       <CourseHero course={course} />
-      {course.slug === "certified-global-sanctions-specialist" ? (
-        <CGSSCustomContent course={course} />
-      ) : (
-        <CourseCustomContent course={course} />
-      )}
+      <CourseContent course={course} />
     </>
   )
 }
