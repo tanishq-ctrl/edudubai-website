@@ -68,7 +68,7 @@ export function MobileSidebar() {
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    "flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
+                    "flex items-center gap-3 rounded-sm px-3 py-2 text-sm font-medium transition-colors",
                     isActive
                       ? "bg-brand-navy text-white"
                       : "text-neutral-text hover:bg-neutral-bg-subtle hover:text-brand-navy"

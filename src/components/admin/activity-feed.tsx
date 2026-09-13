@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useRef, useState, useTransition } from "react"
-import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import {
@@ -162,89 +161,98 @@ export function ActivityFeed({
 
       <div className="flex flex-wrap gap-2">
         {KINDS.map((option) => (
-          <Button
+          <button
             key={option.value}
-            variant={kind === option.value ? "default" : "outline"}
-            size="sm"
+            type="button"
             onClick={() => selectKind(option.value)}
             disabled={isPending}
-            className={kind === option.value ? "bg-crimson-600 hover:bg-crimson-700 text-content-on-dark" : ""}
+            aria-pressed={kind === option.value}
+            className={`rounded-sm border px-3 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson-ink disabled:opacity-60 ${
+              kind === option.value
+                ? "border-ink-950 bg-ink-950 text-content-on-dark"
+                : "border-line bg-surface-raised text-content hover:border-content-subtle"
+            }`}
           >
             {option.label}
             {counts[option.value] !== undefined && (
-              <span className="ml-1.5 text-xs opacity-70">{counts[option.value]}</span>
+              <span className="ml-2 tabular text-xs opacity-70">{counts[option.value]}</span>
             )}
-          </Button>
+          </button>
         ))}
       </div>
 
       {items.length === 0 && !isPending && (
-        <Card>
-          <CardContent className="py-10 text-center text-content-muted">
+        <div className="rounded-sm border border-line bg-surface-raised">
+          <p className="px-5 py-12 text-center text-sm text-content-muted">
             {search
               ? `Nothing matches "${search}".`
               : "Nothing here yet. New leads, diagnostics and applications will appear as they come in."}
-          </CardContent>
-        </Card>
+          </p>
+        </div>
       )}
 
-      <div className="space-y-2">
-        {items.map((item) => {
+      {/*
+         A ruled index, not a stack of cards. Twenty-five bordered boxes with
+         gaps between them is a lot of furniture for what is really one list;
+         hairlines carry the same separation and let the eye run down the
+         names and dates.
+      */}
+      <div className="overflow-hidden rounded-sm border border-line bg-surface-raised">
+        {items.map((item, index) => {
           const Icon = ICONS[item.kind] ?? Mail
           return (
-            <Card
+            <div
               key={`${item.kind}-${item.id}`}
-              className="transition-colors hover:border-crimson-300"
+              role="button"
+              tabIndex={0}
+              onClick={() => setSelected(item)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault()
+                  setSelected(item)
+                }
+              }}
+              className={`group flex cursor-pointer flex-wrap items-center gap-4 px-5 py-3.5 transition-colors hover:bg-surface-sunken focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-crimson-ink ${
+                index > 0 ? "border-t border-line" : ""
+              }`}
             >
-              <CardContent
-                role="button"
-                tabIndex={0}
-                onClick={() => setSelected(item)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault()
-                    setSelected(item)
-                  }
-                }}
-                className="flex cursor-pointer flex-wrap items-center gap-3 py-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson-ink"
+              <span
+                aria-hidden="true"
+                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-sm ${
+                  KIND_STYLES[item.kind] ?? "bg-surface-sunken text-content-strong"
+                }`}
               >
-                <span
-                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full ${
-                    KIND_STYLES[item.kind] ?? "bg-neutral-100 text-neutral-700"
-                  }`}
-                >
-                  <Icon className="h-4 w-4" />
-                </span>
+                <Icon className="h-3.5 w-3.5" />
+              </span>
 
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-medium text-content-strong">
-                      {item.personName || item.personEmail || "Unknown"}
-                    </span>
-                    <Badge variant="outline" className="text-2xs">
-                      {item.kind}
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+                  <span className="font-medium text-content-strong group-hover:text-crimson-600">
+                    {item.personName || item.personEmail || "Unknown"}
+                  </span>
+                  <span className="text-2xs font-semibold uppercase tracking-[0.16em] text-content-subtle">
+                    {item.kind}
+                  </span>
+                  {item.status && item.status !== "NEW" && (
+                    <Badge variant="secondary" className="text-2xs">
+                      {item.status}
                     </Badge>
-                    {item.status && item.status !== "NEW" && (
-                      <Badge variant="secondary" className="text-2xs">
-                        {item.status}
-                      </Badge>
-                    )}
-                  </div>
-                  <p className="truncate text-sm text-content-muted">
-                    {item.summary || "—"}
-                    {item.personEmail && item.personName ? ` · ${item.personEmail}` : ""}
-                  </p>
+                  )}
                 </div>
+                <p className="truncate text-sm text-content-muted">
+                  {item.summary || "\u2014"}
+                  {item.personEmail && item.personName ? ` \u00b7 ${item.personEmail}` : ""}
+                </p>
+              </div>
 
-                <time
-                  dateTime={item.occurredAt}
-                  title={new Date(item.occurredAt).toLocaleString()}
-                  className="shrink-0 text-xs text-content-muted"
-                >
-                  {relativeTime(item.occurredAt)}
-                </time>
-              </CardContent>
-            </Card>
+              <time
+                dateTime={item.occurredAt}
+                title={new Date(item.occurredAt).toLocaleString()}
+                className="shrink-0 tabular text-xs text-content-subtle"
+              >
+                {relativeTime(item.occurredAt)}
+              </time>
+            </div>
           )
         })}
       </div>

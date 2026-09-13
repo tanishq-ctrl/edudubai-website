@@ -72,31 +72,30 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      {/* Quick Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/*
+         One ruled strip, not four floating cards. The figures are the point,
+         so they are set in the display face at a readable size with the label
+         under them -- the same figure/label pairing the about hero uses --
+         and the icon tiles are gone: they decorated four numbers that already
+         had names.
+      */}
+      <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-line bg-line lg:grid-cols-4">
         {[
-          { label: "Courses Subscribed", value: stats.activeCourses + stats.completedCourses, icon: BookOpen, color: "text-crimson-600", bg: "bg-crimson-50" },
-          { label: "In Progress", value: stats.activeCourses, icon: Clock, color: "text-gold-ink", bg: "bg-gold-100" },
-          { label: "Completed", value: stats.completedCourses, icon: CheckCircle2, color: "text-success", bg: "bg-surface-sunken" },
-          { label: "Total Payments", value: stats.paymentsCount, icon: CreditCard, color: "text-content-strong", bg: "bg-surface-sunken" },
-        ].map((item, idx) => (
-          <Card key={idx} className="border-none shadow-sm hover:shadow-md transition-all duration-300">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs font-bold text-content-muted uppercase tracking-wider mb-1">
-                    {item.label}
-                  </p>
-                  <div className="text-3xl font-semibold text-content-strong">{item.value}</div>
-                </div>
-                <div className={`${item.bg} ${item.color} p-3 rounded-lg`}>
-                  <item.icon className="h-6 w-6" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          { label: "Courses", value: stats.activeCourses + stats.completedCourses },
+          { label: "In progress", value: stats.activeCourses },
+          { label: "Completed", value: stats.completedCourses },
+          { label: "Payments", value: stats.paymentsCount },
+        ].map((item) => (
+          <div key={item.label} className="bg-surface-raised px-6 py-5">
+            <dd className="font-display text-3xl font-semibold leading-none tracking-tight tabular text-content-strong">
+              {item.value}
+            </dd>
+            <dt className="mt-2 text-2xs font-semibold uppercase tracking-[0.18em] text-content-subtle">
+              {item.label}
+            </dt>
+          </div>
         ))}
-      </div>
+      </dl>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main learning section */}
@@ -104,20 +103,19 @@ export default async function DashboardPage() {
           {/* Continue Learning Card */}
           <section>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold text-content-strong flex items-center gap-2">
-                <GraduationCap className="h-5 w-5 text-gold-mark" />
-                Continue Learning
+              <h2 className="font-display text-xl font-semibold tracking-tight text-content-strong">
+                Continue where you left off
               </h2>
             </div>
 
             {stats.continueLearning ? (
-              <Card className="overflow-hidden border border-line hover:border-line transition-colors shadow-sm">
+              <Card className="overflow-hidden rounded-sm border border-line border-t-2 border-t-crimson-600 shadow-none">
                 <CardContent className="p-0">
                   <div className="p-6 md:p-8 flex flex-col md:flex-row gap-6 md:items-center">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-3">
-                        <Badge className="bg-gold-400 text-content-strong hover:bg-gold-400 font-bold">
-                          Next Session
+                        <Badge className="bg-gold-400 font-semibold text-ink-950 hover:bg-gold-400">
+                          Next session
                         </Badge>
                         <Badge variant="outline" className="border-line text-content-strong">
                           {stats.continueLearning.delivery_mode.replace(/_/g, " ")}
@@ -132,13 +130,17 @@ export default async function DashboardPage() {
 
                       <div className="flex flex-wrap items-center gap-6">
                         <div className="flex items-center gap-2">
-                          <Clock className="h-4 w-4 text-gold-mark" />
-                          <span className="text-xs font-bold text-content-strong">Enrollment ID: #{stats.continueLearning.id.slice(0, 8)}</span>
+                          <Clock aria-hidden="true" className="h-4 w-4 text-content-subtle" />
+                          <span className="tabular text-xs text-content-muted">
+                            Enrolment {stats.continueLearning.id.slice(0, 8)}
+                          </span>
                         </div>
                         {stats.continueLearning.start_date && (
                           <div className="flex items-center gap-2">
-                            <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                            <span className="text-xs font-bold text-content-strong">Active since {new Date(stats.continueLearning.start_date).toLocaleDateString()}</span>
+                            <CheckCircle2 aria-hidden="true" className="h-4 w-4 text-success" />
+                            <span className="tabular text-xs text-content-muted">
+                              Active since {new Date(stats.continueLearning.start_date).toLocaleDateString()}
+                            </span>
                           </div>
                         )}
                       </div>
@@ -153,17 +155,16 @@ export default async function DashboardPage() {
                 </CardContent>
               </Card>
             ) : (
-              <Card className="border-dashed border-2 bg-surface-sunken/50">
+              <Card className="rounded-sm border border-line shadow-none">
                 <CardContent className="p-10 text-center">
-                  <div className="bg-white p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 border shadow-sm">
-                    <BookOpen className="h-8 w-8 text-content-muted" />
-                  </div>
-                  <h3 className="text-lg font-bold text-content-strong mb-2">No active enrollments</h3>
-                  <p className="text-content-muted text-sm mb-6 max-w-xs mx-auto">
-                    Start your journey today by browsing our globally recognized compliance certifications.
+                  <h3 className="font-display text-lg font-semibold text-content-strong">
+                    No active enrolments
+                  </h3>
+                  <p className="mx-auto mt-2 max-w-xs text-sm text-content-muted">
+                    Programmes you enrol on will appear here, with your session details.
                   </p>
-                  <Button asChild className="bg-gold-400 text-content-strong hover:bg-gold-300 rounded-sm">
-                    <Link href="/courses">Browse Official Courses</Link>
+                  <Button asChild variant="primary" className="mt-6 rounded-sm">
+                    <Link href="/courses">Browse programmes</Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -171,29 +172,31 @@ export default async function DashboardPage() {
           </section>
 
           {/* Featured/Upcoming? */}
-          <section className="relative overflow-hidden rounded-sm bg-ink-950 p-8 text-content-on-dark shadow-sm">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-gold-400/10 rounded-full blur-3xl -mr-32 -mt-32" />
-            <div className="relative z-10">
-              <h3 className="text-2xl font-bold mb-2">Upgrade your skills</h3>
-              <p className="text-white/70 text-sm mb-6 max-w-md">
-                Get certified in Regulatory Compliance or AML with our industry practitioners. New batches starting soon.
-              </p>
-              <Button asChild variant="gold" className="rounded-sm">
-                <Link href="/courses">View Course Catalog</Link>
-              </Button>
-            </div>
+          {/* A flat ink field with a crimson rule. The blurred gold orb that
+              used to sit in this corner was the last piece of the treatment the
+              re-theme removed from every other page. */}
+          <section className="rounded-sm border-t-2 border-t-crimson-600 bg-ink-950 p-8 text-content-on-dark">
+            <h3 className="font-display text-2xl font-semibold tracking-tight">
+              Add a second certification
+            </h3>
+            <p className="mt-2 max-w-md text-sm leading-relaxed text-content-on-dark-muted">
+              Programmes in AML/CFT, sanctions, trade-based money laundering and
+              regulatory compliance, taught by practitioners who still do the job.
+            </p>
+            <Button asChild variant="primary" className="mt-6 rounded-sm">
+              <Link href="/courses">View the catalogue</Link>
+            </Button>
           </section>
         </div>
 
         {/* Sidebar widgets */}
         <div className="space-y-8">
-          <Card className="border-none shadow-sm h-full">
+          <Card className="h-full rounded-sm border border-line shadow-none">
             <CardHeader className="pb-4">
-              <CardTitle className="text-lg font-bold text-content-strong flex items-center gap-2">
-                <CreditCard className="h-4 w-4 text-gold-mark" />
-                Recent Payments
+              <CardTitle className="font-display text-lg font-semibold tracking-tight text-content-strong">
+                Recent payments
               </CardTitle>
-              <CardDescription>Your latest transactions</CardDescription>
+              <CardDescription>Your latest transactions.</CardDescription>
             </CardHeader>
             <CardContent className="px-0">
               <div className="space-y-0">
@@ -201,13 +204,15 @@ export default async function DashboardPage() {
                   recentPayments.slice(0, 5).map((payment) => (
                     <div key={payment.id} className="flex items-center gap-4 px-6 py-4 hover:bg-surface-sunken transition-colors border-b last:border-0">
                       <div className={cn(
-                        "h-10 w-10 rounded-sm flex items-center justify-center flex-shrink-0",
-                        payment.status === "SUCCESS" ? "bg-emerald-50 text-success" : "bg-danger/8 text-danger"
+                        "flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm",
+                        payment.status === "SUCCESS"
+                          ? "bg-surface-sunken text-success"
+                          : "bg-danger/8 text-danger"
                       )}>
-                        <CreditCard className="h-5 w-5" />
+                        <CreditCard aria-hidden="true" className="h-4 w-4" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-bold text-content-strong truncate">
+                        <p className="truncate text-sm font-medium capitalize text-content-strong">
                           {payment.course_slug.replace(/-/g, " ")}
                         </p>
                         <p className="text-2xs font-medium text-content-muted tracking-wide">

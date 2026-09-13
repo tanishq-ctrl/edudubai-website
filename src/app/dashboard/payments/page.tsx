@@ -133,7 +133,7 @@ export default async function PaymentsPage() {
             {/* Mobile View */}
             <div className="md:hidden space-y-4">
               {payments.map((payment) => (
-                <Card key={payment.id} className="border-2">
+                <Card key={payment.id} className="rounded-sm border border-line shadow-none">
                   <CardHeader>
                     <CardTitle className="text-lg">
                       {payment.course_slug.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())}

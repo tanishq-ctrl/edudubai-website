@@ -54,7 +54,7 @@ export function DashboardSidebar() {
   return (
     <div className="flex h-full w-72 flex-col border-r border-line bg-surface-raised">
       <div className="flex h-18 items-center border-b border-line px-7">
-        <h2 className="text-2xs font-semibold uppercase tracking-[0.22em] text-gold-ink">
+        <h2 className="text-2xs font-semibold uppercase tracking-[0.22em] text-content-subtle">
           Dashboard
         </h2>
       </div>
@@ -73,16 +73,23 @@ export function DashboardSidebar() {
                 <Link
                   key={item.name}
                   href={item.href}
+                  /*
+                     The active item is marked by a crimson rule and a sunken
+                     ground, not a filled black block: the block read as a
+                     button in a column of links, and it was the only pure-black
+                     surface in the shell.
+                  */
                   className={cn(
-                    "group relative flex items-center gap-3 rounded-sm px-4 py-2.5 text-sm font-medium transition-all duration-fast ease-out-expo",
+                    "group relative flex items-center gap-3 rounded-sm py-2.5 pl-5 pr-4 text-sm transition-colors duration-fast ease-out-expo",
+                    "before:absolute before:inset-y-1 before:left-0 before:w-0.5 before:rounded-full before:transition-colors",
                     isActive
-                      ? "bg-navy-900 text-white shadow-sm"
-                      : "text-content hover:bg-surface-sunken hover:text-navy-700"
+                      ? "bg-surface-sunken font-semibold text-content-strong before:bg-crimson-600"
+                      : "font-medium text-content before:bg-transparent hover:bg-surface-sunken hover:text-content-strong"
                   )}
                 >
                   <Icon className={cn(
-                    "h-5 w-5 transition-colors",
-                    isActive ? "text-gold-300" : "text-content-subtle group-hover:text-navy-700"
+                    "h-[18px] w-[18px] transition-colors",
+                    isActive ? "text-crimson-600" : "text-content-subtle group-hover:text-content"
                   )} />
                   <div className="flex flex-col">
                     <span>{item.name}</span>
@@ -99,8 +106,8 @@ export function DashboardSidebar() {
           href="/dashboard/profile"
           className="group flex items-center gap-3 rounded-sm p-3 transition-colors hover:bg-surface-sunken"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-gold-400/25 bg-gold-400/10">
-            <User className="h-4 w-4 text-gold-mark" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-surface-sunken">
+            <User className="h-4 w-4 text-content-muted" />
           </div>
           <div className="flex-1 min-w-0">
             <p className="truncate text-sm font-semibold text-content-strong">My Account</p>

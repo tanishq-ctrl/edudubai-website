@@ -136,7 +136,7 @@ export default async function CoursesPage() {
             {/* Mobile View */}
             <div className="md:hidden space-y-4">
               {enrollments.map((enrollment) => (
-                <Card key={enrollment.id} className="border-2">
+                <Card key={enrollment.id} className="rounded-sm border border-line shadow-none">
                   <CardHeader>
                     <CardTitle className="text-lg">{enrollment.course_title}</CardTitle>
                     <div className="flex flex-wrap gap-2 mt-2">
