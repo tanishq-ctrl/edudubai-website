@@ -1,80 +1,99 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Search, Settings, Play, CheckCircle2, FileText } from "lucide-react"
+import { Container } from "@/components/container"
 
-const processSteps = [
+/**
+ * Engagement process — a numbered sequence.
+ *
+ * Numbered markers are a generic device when applied to content that is not
+ * ordered. Here the five stages genuinely are a sequence, each depending on the
+ * one before, so the numbering carries real information and a left rule shows
+ * the progression.
+ */
+
+const stages: { title: string; detail: string }[] = [
   {
-    icon: Search,
-    title: "Discover",
-    description: "We analyze your training needs, risk profile, and compliance requirements",
+    title: "Scoping",
+    detail:
+      "We review your risk assessment, supervisory correspondence and existing training record to establish what the programme must cover.",
   },
   {
-    icon: Settings,
-    title: "Customize",
-    description: "Our experts design a tailored program aligned with your objectives",
+    title: "Design",
+    detail:
+      "A specialist drafts the curriculum, case studies and assessment against that scope, for your review before scheduling.",
   },
   {
-    icon: Play,
-    title: "Deliver",
-    description: "Flexible delivery through in-person, live virtual, or self-paced formats",
+    title: "Delivery",
+    detail:
+      "Sessions run in-person, live virtual or blended, scheduled around operational cover across your jurisdictions.",
   },
   {
-    icon: CheckCircle2,
-    title: "Assess",
-    description: "Comprehensive evaluation to measure competency and knowledge retention",
+    title: "Assessment",
+    detail:
+      "Pre- and post-assessment evidences competency movement, with remediation for participants who do not meet the threshold.",
   },
   {
-    icon: FileText,
-    title: "Report",
-    description: "Detailed analytics and certification documentation for audit readiness",
+    title: "Reporting",
+    detail:
+      "You receive attendance, completion and competency documentation in a form suitable for supervisory inspection.",
   },
 ]
 
 export function CorporateProcess() {
   return (
-    <section className="mb-16 md:mb-24">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-brand-navy mb-4">
-          Our Process
-        </h2>
-        <p className="text-lg text-neutral-text-muted max-w-2xl mx-auto">
-          A proven methodology for delivering exceptional corporate training
-        </p>
-      </div>
-      <div className="relative">
-        {/* Timeline line - hidden on mobile, visible on desktop */}
-        <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-brand-gold transform -translate-y-1/2" />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 relative">
-          {processSteps.map((step, index) => {
-            const Icon = step.icon
-            return (
-              <div key={index} className="relative">
-                <Card className="hover:shadow-lg transition-all border-2 border-neutral-border hover:border-brand-gold h-full">
-                  <CardContent className="p-6 text-center">
-                    <div className="flex justify-center mb-4">
-                      <div className="relative">
-                        <div className="p-4 bg-brand-gold/10 rounded-full">
-                          <Icon className="h-6 w-6 text-brand-gold" />
-                        </div>
-                        {/* Step number badge */}
-                        <div className="absolute -top-2 -right-2 bg-brand-navy text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold">
-                          {index + 1}
-                        </div>
-                      </div>
-                    </div>
-                    <h3 className="font-semibold text-brand-navy mb-2 text-lg">
-                      {step.title}
-                    </h3>
-                    <p className="text-sm text-neutral-text-muted">
-                      {step.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            )
-          })}
+    <section className="relative isolate overflow-hidden border-b border-line bg-ink-950 py-section-md text-white">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-20 bg-[radial-gradient(110%_90%_at_100%_0%,rgb(var(--navy-700)/0.85),transparent_62%),radial-gradient(90%_80%_at_0%_100%,rgb(var(--navy-800)/0.7),transparent_60%)]"
+      />
+      <div
+        aria-hidden="true"
+        className="orb [--orb:rgb(var(--gold-400)/0.12)] pointer-events-none absolute -left-32 bottom-0 -z-10 h-96 w-96"
+      />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 grain" />
+      <Container>
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4 lg:sticky lg:top-28 lg:self-start">
+            <h2 className="text-[clamp(1.75rem,1.2rem+1.6vw,2.5rem)] font-bold leading-tight tracking-[-0.03em] text-white">Engagement process</h2>
+            <p className="mt-4 text-white/70">
+              Five stages, applied to every engagement from first scoping call through to the
+              audit file.
+            </p>
+          </div>
+
+          <ol className="lg:col-span-8">
+            {stages.map((stage, i) => (
+              <li
+                key={stage.title}
+                className="group relative grid gap-3 py-7 pl-10 sm:grid-cols-12 sm:gap-8"
+              >
+                {/* Connector: fades out on the final stage so the sequence ends. */}
+                <span
+                  aria-hidden="true"
+                  className={`absolute left-[3px] top-0 w-px ${
+                    i === stages.length - 1
+                      ? "h-10 bg-gradient-to-b from-white/20 to-transparent"
+                      : "h-full bg-white/12"
+                  }`}
+                />
+                <span
+                  aria-hidden="true"
+                  className="absolute left-0 top-9 h-[7px] w-[7px] rounded-full bg-gold-400 ring-4 ring-gold-400/15 transition-transform duration-slow ease-out-expo group-hover:scale-125"
+                />
+                <div className="sm:col-span-4">
+                  <span className="text-xs font-semibold tabular text-gold-300">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-1.5 text-lg font-semibold tracking-tight text-white">
+                    {stage.title}
+                  </h3>
+                </div>
+                <p className="leading-relaxed text-white/70 sm:col-span-8">
+                  {stage.detail}
+                </p>
+              </li>
+            ))}
+          </ol>
         </div>
-      </div>
+      </Container>
     </section>
   )
 }
-
