@@ -45,8 +45,10 @@ const COL_GAP = "clamp(1.5rem, 0.6rem + 3svh, 2.75rem)"
    Anti-Money Laundering Specialist (CAMS)") and a document title should not be
    set like a campaign line. */
 const TITLE_SIZE = "clamp(1.6rem, 0.9rem + 1.9vw + 1svh, 2.85rem)"
-/* The photograph shrinks first, so the strip below it keeps its place. */
-const MEDIA_HEIGHT = "clamp(9rem, 38svh, 26rem)"
+/* The photograph shrinks first, so the strip below it keeps its place. The
+   upper bound is generous because this band owns the whole first viewport:
+   the course card is the thing that should spend that height. */
+const MEDIA_HEIGHT = "clamp(9rem, 46svh, 32rem)"
 
 /**
  * Per-course extras keyed by `Course.id`.
@@ -79,10 +81,20 @@ export function CourseHero({ course }: CourseHeroProps) {
 
   return (
     <section
-      className="relative isolate overflow-hidden bg-ink-950 text-content-on-dark grain"
-      style={{ paddingTop: PAD_TOP, paddingBottom: PAD_BOTTOM }}
+      className="relative isolate flex flex-col justify-center overflow-hidden bg-ink-950 text-content-on-dark grain"
+      style={{
+        paddingTop: PAD_TOP,
+        paddingBottom: PAD_BOTTOM,
+        /* The programme page opens on this band and it holds the whole
+           decision -- title, lead, both actions, the seal, the course card
+           and the duration/level/enrolment strip -- so it owns the first
+           viewport rather than letting the next section peek under it.
+           `100svh` and not `100svh - header` because PAD_TOP already carries
+           the fixed header's height. */
+        minHeight: "100svh",
+      }}
     >
-      <Container className="relative z-10">
+      <Container className="relative z-10 flex w-full flex-1 flex-col">
         {/* Breadcrumb -- mirrors the BreadcrumbList JSON-LD on the page. */}
         <Reveal variant="fade">
           <nav aria-label="Breadcrumb" style={{ marginBottom: CRUMB_GAP }}>
@@ -106,11 +118,20 @@ export function CourseHero({ course }: CourseHeroProps) {
           </nav>
         </Reveal>
 
+        {/*
+           `items-stretch`, not `items-center`: the band owns a viewport, so
+           the card should reach top and bottom of the row the way it did
+           before, rather than floating at its intrinsic height inside an
+           otherwise empty field.
+        */}
         <div
-          className="grid items-center lg:grid-cols-12"
+          className="grid flex-1 items-stretch lg:grid-cols-12"
           style={{ gap: COL_GAP }}
         >
-          <div className="flex min-w-0 flex-col lg:col-span-7" style={{ gap: STACK_GAP }}>
+          <div
+            className="flex min-w-0 flex-col justify-center lg:col-span-7"
+            style={{ gap: STACK_GAP }}
+          >
             <Reveal variant="fade">
               <div className="flex flex-wrap items-center gap-2.5">
                 {/* A subject label, not a credential: it stays a neutral chip
@@ -222,10 +243,16 @@ export function CourseHero({ course }: CourseHeroProps) {
           </div>
 
           {heroImage ? (
-            <Reveal variant="fade" delay={200} className="min-w-0 lg:col-span-5">
+            <Reveal variant="fade" delay={200} className="flex min-w-0 lg:col-span-5">
+              {/*
+                 Height-driven with the artwork's own 3:4 ratio: the card
+                 fills the row's height and takes whatever width that implies.
+                 Stretching it to the column width instead cropped the
+                 lettering off the top of the poster.
+              */}
               <div
-                className="relative mx-auto aspect-[3/4] w-auto overflow-hidden rounded-sm border border-white/10"
-                style={{ height: MEDIA_HEIGHT }}
+                className="relative mx-auto aspect-[3/4] h-full w-auto overflow-hidden rounded-sm border border-white/10"
+                style={{ minHeight: MEDIA_HEIGHT }}
               >
                 <Image
                   src={heroImage}

@@ -67,6 +67,10 @@ const LEAD_SIZE = "clamp(1rem, 0.94rem + 0.25vw + 0.2svh, 1.1875rem)"
 /* A photograph is the first thing that should give up space on a short
    screen, never the actions. */
 const ASIDE_MAX_H = "clamp(8rem, 36svh, 26rem)"
+/* When the band owns a whole viewport there is height to spend, and the aside
+   is what should spend it -- otherwise a filled hero is a small picture in a
+   large empty field. Exported so a page composing its own aside matches. */
+export const ASIDE_MAX_H_FILL = "min(72svh, 40rem)"
 
 export interface HeroShellProps {
   /** Sentence case. Rendered as the page h1 unless `as` says otherwise. */
@@ -116,6 +120,9 @@ export function HeroShell({
       id={id}
       className={cn(
         "relative isolate overflow-hidden",
+        /* A filled band distributes its own slack: without this the extra
+           height simply dangles below the copy. */
+        fill && "flex flex-col justify-center",
         toneClass[tone],
         id && "anchor-offset",
         className,
@@ -127,20 +134,34 @@ export function HeroShell({
            the eyebrow collided with the nav. */
         paddingTop: `calc(var(--header-h) + ${PAD_BLOCK})`,
         paddingBottom: PAD_BLOCK,
-        /* Never a fixed min-height: at 620px tall this resolves to 620px
-           minus the header, and the clamps above keep the content inside it. */
-        minHeight: fill ? "calc(100svh - var(--header-h))" : undefined,
+        /* `100svh`, not `100svh - header`: the header is already paid for in
+           paddingTop above, so subtracting it again made a filled hero taller
+           than the viewport by exactly the header. Never a fixed height --
+           at 620px tall this resolves to 620px and the clamps keep the
+           content inside it. */
+        minHeight: fill ? "100svh" : undefined,
       }}
     >
-      <Container className="relative z-10 flex h-full w-full flex-col justify-center">
+      <Container
+        className={cn(
+          "relative z-10 flex w-full flex-col justify-center",
+          fill && "flex-1",
+        )}
+      >
         <div
           className={cn(
-            "grid w-full items-center",
+            "grid w-full",
+            /* Stretched when the band is filled, so the aside grows into the
+               height instead of floating at its intrinsic size. */
+            fill && aside ? "flex-1 items-stretch" : "items-center",
             aside ? "lg:grid-cols-[minmax(0,1fr)_minmax(0,0.82fr)]" : "",
           )}
           style={{ gap: COL_GAP }}
         >
-          <div className="flex min-w-0 flex-col" style={{ gap: STACK_GAP }}>
+          <div
+            className="flex min-w-0 flex-col justify-center"
+            style={{ gap: STACK_GAP }}
+          >
             {eyebrow ? (
               <Reveal variant="fade">
                 <span className="inline-flex items-center gap-3 text-2xs font-semibold uppercase tracking-[0.22em] text-crimson-ink">
@@ -183,10 +204,17 @@ export function HeroShell({
             /* min-h-0 lets the cap actually bite inside a grid track, and
                overflow-hidden crops a photograph rather than letting it set
                the row height. Images inside should be object-cover. */
-            <Reveal variant="fade" delay={180} className="min-w-0">
+            <Reveal variant="fade" delay={180} className={cn("min-w-0", fill && "flex")}>
               <div
-                className="relative min-h-0 w-full overflow-hidden rounded-sm [&_img]:h-full [&_img]:w-full [&_img]:object-cover"
-                style={{ maxHeight: ASIDE_MAX_H }}
+                className={cn(
+                  "relative min-h-0 w-full overflow-hidden rounded-sm [&_img]:h-full [&_img]:w-full [&_img]:object-cover",
+                  fill && "h-full",
+                )}
+                style={
+                  fill
+                    ? { minHeight: ASIDE_MAX_H, maxHeight: ASIDE_MAX_H_FILL }
+                    : { maxHeight: ASIDE_MAX_H }
+                }
               >
                 {aside}
               </div>

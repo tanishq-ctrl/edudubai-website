@@ -28,6 +28,10 @@ export function AboutHero() {
   return (
     <HeroShell
       tone="ink"
+      /* This page opens on the hero, so the hero owns the first viewport: it
+         carries a photograph, a figure overlay and the three-fact rail, which
+         is a full band's worth of content rather than a bare page head. */
+      fill
       eyebrow="Accredited with ACAMS and GCI"
       title={
         <>
@@ -51,8 +55,8 @@ export function AboutHero() {
            photograph shrinks on a short screen instead of being cropped and
            taking the figure overlay with it. */
         <div
-          className="relative w-full border border-white/10"
-          style={{ height: "clamp(8rem, 36svh, 26rem)" }}
+          className="relative h-full w-full border border-white/10"
+          style={{ minHeight: "clamp(8rem, 36svh, 26rem)" }}
         >
           <Image
             src="/hero/about-session.jpg"
