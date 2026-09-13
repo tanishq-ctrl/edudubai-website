@@ -66,7 +66,7 @@ const expertiseAreas = [
 
 export function AboutExpertise() {
   return (
-    <Section tone="midnight" size="md">
+    <Section tone="midnight" size="sm">
       <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between lg:gap-20">
         <div>
           <Reveal variant="fade">
@@ -109,7 +109,7 @@ export function AboutExpertise() {
               </span>
               <div className="min-w-0">
                 <h3 className="text-xl text-white">{area.title}</h3>
-                <p className="mt-2.5 text-sm leading-relaxed text-white/50">{area.description}</p>
+                <p className="mt-2.5 text-[17px] leading-relaxed text-white/55">{area.description}</p>
               </div>
             </div>
           </div>

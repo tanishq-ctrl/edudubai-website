@@ -25,7 +25,7 @@ const faculty = [
   },
   {
     name: "Sanjay Prabhu",
-    role: "Director — GRC consulting & training",
+    role: "Director, GRC consulting and training",
     image: "/team/sanjay-prabhu.jpg",
     bio: "Eighteen years in trade finance and banking operations, and nine dedicated to compliance training across international banks, exchange houses and DNFBPs. Certified Compliance Manager (GCI), CFCS and CTP; 2,500+ sessions delivered.",
   },
@@ -33,7 +33,7 @@ const faculty = [
 
 export function AboutFaculty() {
   return (
-    <Section tone="deep" size="md">
+    <Section tone="deep" size="sm">
       <Reveal variant="fade">
         <Eyebrow marker="dot">The faculty</Eyebrow>
       </Reveal>
@@ -63,7 +63,7 @@ export function AboutFaculty() {
 
             <h3 className="mt-7 text-2xl text-white">{person.name}</h3>
             <p className="mt-2 text-sm font-medium text-gold-ink">{person.role}</p>
-            <p className="mt-4 text-[15px] leading-relaxed text-white/55">{person.bio}</p>
+            <p className="mt-4 text-[17px] leading-relaxed text-white/55">{person.bio}</p>
           </article>
         ))}
       </Stagger>

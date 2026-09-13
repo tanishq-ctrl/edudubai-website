@@ -18,7 +18,7 @@ export function AboutCta() {
   return (
     <Section
       tone="transparent"
-      size="md"
+      size="sm"
       className="bg-gradient-to-b from-gold-400 to-gold-200 text-navy-900"
     >
       <div className="flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between lg:gap-20">

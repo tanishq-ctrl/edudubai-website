@@ -25,7 +25,7 @@ const supporting = [
  */
 export function AboutPosition() {
   return (
-    <Section tone="deep" size="md">
+    <Section tone="deep" size="sm">
       <div className="grid gap-12 lg:grid-cols-[11rem_1fr] lg:gap-20">
         <Reveal variant="fade">
           <Eyebrow marker="dot">Our position</Eyebrow>
@@ -42,7 +42,7 @@ export function AboutPosition() {
           <Reveal variant="up" delay={110}>
             <p className="mt-7 max-w-measure text-lg leading-relaxed text-content-on-dark-muted">
               Every EduDubai programme starts from the decision a professional actually has to
-              make &mdash; then works backwards to the regulation behind it.
+              make, then works backwards to the regulation behind it.
             </p>
           </Reveal>
 
@@ -50,7 +50,7 @@ export function AboutPosition() {
             {supporting.map((item) => (
               <div key={item.title} className="panel-dark rounded-2xl p-7">
                 <h3 className="text-lg text-white">{item.title}</h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-white/55">{item.body}</p>
+                <p className="mt-3 text-[17px] leading-relaxed text-white/55">{item.body}</p>
               </div>
             ))}
           </Stagger>

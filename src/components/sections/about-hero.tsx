@@ -43,7 +43,7 @@ export function AboutHero() {
           <Reveal variant="up" delay={160}>
             <p className="mt-7 max-w-measure text-lg leading-relaxed text-content-on-dark-muted">
               Certification and advisory programmes for compliance, risk and audit professionals
-              inside regulated institutions &mdash; India, the Gulf and international markets.
+              inside regulated institutions across India, the Gulf and international markets.
             </p>
           </Reveal>
 

@@ -25,7 +25,7 @@ export function AboutCredentials() {
           <div className="max-w-measure-sm">
             <h2 className="text-3xl tracking-tight text-white">Recognised credentials</h2>
             <p className="mt-4 leading-relaxed text-content-on-dark-muted">
-              Programmes map to ACAMS, GCI and partner-body certifications &mdash; the credentials
+              Programmes map to ACAMS, GCI and partner-body certifications, the credentials
               regulators already recognise.
             </p>
           </div>

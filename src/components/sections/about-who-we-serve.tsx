@@ -28,7 +28,7 @@ const linesOfDefence = [
     number: "03",
     kicker: "Third line",
     title: "Internal auditors",
-    description: "Independent assurance — testing whether the first two lines actually work.",
+    description: "Independent assurance, testing whether the first two lines actually work.",
   },
 ]
 
@@ -36,13 +36,13 @@ const industries = [
   "Banking, insurance, custodial and investment entities",
   "Virtual Asset Service Providers (VASPs)",
   "Exchange and remittance houses",
-  "DPMS — dealers in precious metals and stones",
-  "DNFBPs — real estate, corporate service providers, law firms, chartered accountants",
+  "DPMS (dealers in precious metals and stones)",
+  "DNFBPs (real estate, corporate service providers, law firms, chartered accountants)",
 ]
 
 export function AboutWhoWeServe() {
   return (
-    <Section tone="deep" size="md">
+    <Section tone="deep" size="sm">
       <Reveal variant="fade">
         <Eyebrow marker="dot">Who we serve</Eyebrow>
       </Reveal>
@@ -74,7 +74,7 @@ export function AboutWhoWeServe() {
       </Stagger>
 
       <Reveal variant="fade" delay={120}>
-        <p className="mt-10 max-w-measure text-[15px] leading-relaxed text-white/50">
+        <p className="mt-10 max-w-measure text-[17px] leading-relaxed text-white/50">
           Also serving accounts and finance professionals, and MLROs appointed under local
           regulation.
         </p>
@@ -91,7 +91,7 @@ export function AboutWhoWeServe() {
                     aria-hidden="true"
                     className="mt-[9px] h-[7px] w-[7px] shrink-0 rounded-full bg-gold-400"
                   />
-                  <span className="text-[15px] leading-relaxed text-white/75">{industry}</span>
+                  <span className="text-[17px] leading-relaxed text-white/75">{industry}</span>
                 </li>
               ))}
             </ul>

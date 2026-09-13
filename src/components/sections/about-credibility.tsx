@@ -32,7 +32,7 @@ const supportingStats = [
 
 export function AboutCredibility() {
   return (
-    <Section tone="midnight" size="md" className="overflow-hidden">
+    <Section tone="midnight" size="sm" className="overflow-hidden">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -left-40 top-16 h-[38rem] w-[38rem] bloom-gold" />
       </div>
@@ -49,7 +49,7 @@ export function AboutCredibility() {
             </p>
             <p className="mt-6 text-2xl text-gold-300">specialists certified</p>
             <p className="mt-5 max-w-measure leading-relaxed text-content-on-dark-muted">
-              Eight years of delivery to regulated institutions &mdash; from front-line officers to
+              Eight years of delivery to regulated institutions, from front-line officers to
               appointed MLROs, across twelve jurisdictions.
             </p>
           </div>
@@ -66,7 +66,7 @@ export function AboutCredibility() {
               </p>
               <div className="min-w-0">
                 <h3 className="text-lg text-white">{stat.label}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/50">{stat.description}</p>
+                <p className="mt-2 text-[15px] leading-relaxed text-white/55">{stat.description}</p>
               </div>
             </div>
           ))}
