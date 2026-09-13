@@ -49,7 +49,7 @@ export function AboutCredibility() {
             </p>
             <p className="mt-6 text-2xl text-gold-300">specialists certified</p>
             <p className="mt-5 max-w-measure leading-relaxed text-content-on-dark-muted">
-              Eight years of delivery to regulated institutions, from front-line officers to
+              Three years of delivery to regulated institutions, from front-line officers to
               appointed MLROs, across twelve jurisdictions.
             </p>
           </div>

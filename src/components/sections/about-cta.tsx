@@ -33,7 +33,7 @@ export function AboutCta() {
 
           <Reveal variant="up" delay={70}>
             <h2 className="mt-6 max-w-measure-sm text-4xl tracking-tight text-navy-900 sm:text-5xl">
-              Train a team, not a person.
+              Cohort training for institutions
             </h2>
           </Reveal>
 

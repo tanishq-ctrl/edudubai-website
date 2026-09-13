@@ -92,11 +92,11 @@ Delivery modes are live virtual and in person. Programmes are sized in hours
 
 Real, and safe to use:
 
-- 2,500+ specialists certified since 2017.
+- 2,500+ specialists certified since 2023.
 - 850+ professional sessions delivered.
 - 12 jurisdictions.
 - 8+ certifications offered.
-- Founded 2017.
+- Founded 2023.
 - Faculty portraits and bios: Sonali Prabhu (Founder & CEO; banking operations,
   policy and regulatory compliance at HDFC Bank) and Sanjay Prabhu (Director,
   GRC consulting & training; eighteen years in trade finance and banking

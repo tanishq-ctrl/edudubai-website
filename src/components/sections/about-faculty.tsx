@@ -27,7 +27,7 @@ const faculty = [
     name: "Sanjay Prabhu",
     role: "Director, GRC consulting and training",
     image: "/team/sanjay-prabhu.jpg",
-    bio: "Eighteen years in trade finance and banking operations, and nine dedicated to compliance training across international banks, exchange houses and DNFBPs. Certified Compliance Manager (GCI), CFCS and CTP; 2,500+ sessions delivered.",
+    bio: "Eighteen years in trade finance and banking operations, and nine dedicated to compliance training across international banks, exchange houses and DNFBPs. Certified Compliance Manager (GCI), CFCS and CTP.",
   },
 ]
 
@@ -40,7 +40,7 @@ export function AboutFaculty() {
 
       <Reveal variant="up" delay={70}>
         <h2 className="mt-5 max-w-measure-sm text-4xl tracking-tight text-white sm:text-5xl">
-          Taught by people who still do the job
+          Taught by practising compliance professionals
         </h2>
       </Reveal>
 

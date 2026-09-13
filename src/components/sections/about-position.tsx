@@ -34,8 +34,8 @@ export function AboutPosition() {
         <div>
           <Reveal variant="up">
             <p className="max-w-measure-lg font-display text-2xl font-semibold leading-snug tracking-tight text-white sm:text-3xl">
-              Compliance training fails when it is written for auditors instead of for the people
-              who have to act.
+              Programmes are designed around the decisions a compliance professional
+              has to make.
             </p>
           </Reveal>
 

@@ -102,7 +102,7 @@ export function HomeObligations({ courses }: { courses: Course[] }) {
       <Reveal variant="up" delay={90}>
         <p className="mt-7 max-w-measure text-lg leading-relaxed text-content-on-dark-muted">
           Certification and advisory programmes for compliance, risk and audit professionals in
-          regulated institutions. Over 2,500 specialists certified since 2017, across twelve
+          regulated institutions. Over 2,500 specialists certified since 2023, across twelve
           jurisdictions. Select the obligation relevant to your role.
         </p>
       </Reveal>

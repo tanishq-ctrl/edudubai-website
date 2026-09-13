@@ -33,7 +33,7 @@ export function StatsSection() {
         <Reveal variant="up" className="max-w-measure-sm">
           <Eyebrow>Track record</Eyebrow>
           <p className="mt-4 text-xl text-white/85">
-            Eight years of delivery to regulated institutions, measured by professionals certified.
+            Three years of delivery to regulated institutions, measured by professionals certified.
           </p>
         </Reveal>
 

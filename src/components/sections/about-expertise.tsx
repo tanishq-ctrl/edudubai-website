@@ -74,7 +74,7 @@ export function AboutExpertise() {
           </Reveal>
           <Reveal variant="up" delay={70}>
             <h2 className="mt-5 max-w-measure-sm text-4xl tracking-tight text-white sm:text-5xl">
-              Ten domains where the exposure is real
+              Ten areas of regulatory practice
             </h2>
           </Reveal>
         </div>

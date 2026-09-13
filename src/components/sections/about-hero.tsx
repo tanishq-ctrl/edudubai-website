@@ -35,8 +35,8 @@ export function AboutHero() {
 
           <Reveal variant="up" delay={80}>
             <h1 className="mt-7 text-[clamp(2.25rem,1.4rem+3.4vw,3.75rem)] font-semibold leading-[1.04] tracking-tighter">
-              We train the people who{" "}
-              <span className="text-gold-400">carry the risk.</span>
+              Specialists in regulatory{" "}
+              <span className="text-gold-400">compliance training.</span>
             </h1>
           </Reveal>
 
@@ -67,7 +67,7 @@ export function AboutHero() {
           <Reveal variant="up" delay={300}>
             <dl className="mt-10 flex flex-wrap gap-x-12 gap-y-5">
               {[
-                { value: "2017", label: "Founded" },
+                { value: "2023", label: "Founded" },
                 { value: "12", label: "Jurisdictions" },
                 { value: "850+", label: "Sessions delivered" },
               ].map((fact) => (
@@ -111,7 +111,7 @@ export function AboutHero() {
             <p className="font-display text-4xl font-semibold leading-none tracking-tight text-white">
               2,500+
             </p>
-            <p className="mt-2 text-sm text-white/60">specialists certified since 2017</p>
+            <p className="mt-2 text-sm text-white/60">specialists certified since 2023</p>
           </div>
         </Reveal>
       </Container>
