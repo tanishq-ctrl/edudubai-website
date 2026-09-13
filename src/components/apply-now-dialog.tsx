@@ -178,7 +178,7 @@ export function ApplyNowDialog({
                 size={size}
                 variant={variant}
             >
-                Enrol
+                Apply now
             </Button>
 
             <DialogContent className="gap-0 border-t-4 border-t-gold-400 p-0 focus:outline-none sm:max-w-[32rem]">

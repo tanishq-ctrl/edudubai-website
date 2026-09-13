@@ -141,7 +141,7 @@ export function CourseHero({ course }: CourseHeroProps) {
                 </WhatsAppButton>
 
                 {handbook ? (
-                  <Button asChild variant="ghost-light" size="xl" className="w-full sm:w-auto">
+                  <Button asChild variant="ghost-light" size="lg" className="w-full sm:w-auto sm:px-4">
                     <a href={handbook.href} download={handbook.filename}>
                       <Download aria-hidden="true" className="h-4 w-4" />
                       {handbook.label}

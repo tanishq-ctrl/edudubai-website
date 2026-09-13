@@ -83,7 +83,7 @@ export function CourseContent({ course }: Props) {
   return (
     <>
       {overview ? (
-        <Section id="overview" tone="paper" size="sm">
+        <Section id="overview" tone="paper" size="xs">
           <SectionHead
             title="What this programme covers"
             lead="Leading professional certification training for regulated institutions."
@@ -100,7 +100,7 @@ export function CourseContent({ course }: Props) {
                 className="flex h-full flex-col rounded-lg border border-line bg-surface-raised p-7 shadow-sm"
               >
                 <h3 className="text-lg">{block.h}</h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-content-muted">{block.body}</p>
+                <p className="mt-3 text-[17px] leading-relaxed text-content-muted">{block.body}</p>
               </article>
             ))}
           </div>
@@ -108,7 +108,7 @@ export function CourseContent({ course }: Props) {
       ) : null}
 
       {course.outcomes?.length ? (
-        <Section id="outcomes" tone="sunken" size="sm">
+        <Section id="outcomes" tone="sunken" size="xs">
           <SectionHead
             title="What you will be able to do"
             lead={`Capability built across ${
@@ -131,7 +131,7 @@ export function CourseContent({ course }: Props) {
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <p className="text-[15px] leading-relaxed text-content">
+                  <p className="text-[17px] leading-relaxed text-content">
                     {lead ? <span className="font-semibold text-content-strong">{lead}. </span> : null}
                     {rest}
                   </p>
@@ -142,7 +142,7 @@ export function CourseContent({ course }: Props) {
         </Section>
       ) : null}
 
-      <Section id="audience" tone="paper" size="sm">
+      <Section id="audience" tone="paper" size="xs">
         <SectionHead
           title="Who should attend"
           lead="Written for the roles that carry the obligation, not for a general audience."
@@ -157,7 +157,7 @@ export function CourseContent({ course }: Props) {
               <h3 className="text-lg">{cat.title}</h3>
               <ul className="mt-5 flex flex-col gap-3">
                 {cat.roles.map((role) => (
-                  <li key={role} className="flex gap-3 text-[15px] leading-relaxed text-content-muted">
+                  <li key={role} className="flex gap-3 text-[17px] leading-relaxed text-content-muted">
                     <span aria-hidden="true" className="mt-[9px] h-1 w-4 shrink-0 bg-gold-400/70" />
                     {role}
                   </li>
@@ -169,7 +169,7 @@ export function CourseContent({ course }: Props) {
       </Section>
 
       {course.deliverySchedules?.length ? (
-        <Section id="schedule" tone="sunken" size="sm">
+        <Section id="schedule" tone="sunken" size="xs">
           <SectionHead
             title="Delivery options"
             lead="Choose the format that fits around the role you already hold."
@@ -182,7 +182,7 @@ export function CourseContent({ course }: Props) {
                 className="flex h-full flex-col rounded-lg border border-line bg-surface-raised p-7 shadow-sm"
               >
                 <h3 className="text-lg">{s.name}</h3>
-                <dl className="mt-5 flex flex-col gap-3 text-[15px]">
+                <dl className="mt-5 flex flex-col gap-3 text-[17px]">
                   <div>
                     <dt className="text-xs uppercase tracking-wider text-content-subtle">Days</dt>
                     <dd className="mt-1 text-content">{s.schedule}</dd>
@@ -199,7 +199,7 @@ export function CourseContent({ course }: Props) {
       ) : null}
 
       {examInfo ? (
-        <Section id="exam" tone="paper" size="sm">
+        <Section id="exam" tone="paper" size="xs">
           <SectionHead
             title="The examination"
             lead="What the issuing body sets, and what you have to meet to sit it."
@@ -229,7 +229,7 @@ export function CourseContent({ course }: Props) {
         </Section>
       ) : null}
 
-      <Section id="benefits" tone="sunken" size="sm">
+      <Section id="benefits" tone="sunken" size="xs">
         <SectionHead title="Why study this with EduDubai" />
 
         <ul className="mt-12 grid gap-x-12 gap-y-5 lg:grid-cols-2">
@@ -243,7 +243,7 @@ export function CourseContent({ course }: Props) {
                 >
                   <Check className="h-3.5 w-3.5" />
                 </span>
-                <p className="text-[15px] leading-relaxed text-content">
+                <p className="text-[17px] leading-relaxed text-content">
                   {lead ? <span className="font-semibold text-content-strong">{lead}. </span> : null}
                   {rest}
                 </p>
@@ -254,7 +254,7 @@ export function CourseContent({ course }: Props) {
       </Section>
 
       {course.faq?.length ? (
-        <Section id="faq" tone="paper" size="sm">
+        <Section id="faq" tone="paper" size="xs">
           <SectionHead title="Frequently asked questions" />
 
           {/*
@@ -273,7 +273,7 @@ export function CourseContent({ course }: Props) {
                     className="mt-1 h-4 w-4 shrink-0 text-content-subtle transition-transform duration-slow ease-out-expo group-open:rotate-180"
                   />
                 </summary>
-                <p className="pb-6 pr-10 text-[15px] leading-relaxed text-content-muted">
+                <p className="pb-6 pr-10 text-[17px] leading-relaxed text-content-muted">
                   {item.answer}
                 </p>
               </details>
@@ -300,7 +300,7 @@ function ExamRequirements({
     return (
       <ul className="flex flex-col gap-3">
         {(requirements as string[]).map((req) => (
-          <li key={req} className="flex gap-3 text-[15px] leading-relaxed text-content-muted">
+          <li key={req} className="flex gap-3 text-[17px] leading-relaxed text-content-muted">
             <span aria-hidden="true" className="mt-[9px] h-1 w-4 shrink-0 bg-gold-400/70" />
             {req}
           </li>
@@ -318,7 +318,7 @@ function ExamRequirements({
           return (
             <p
               key={group.title}
-              className="border-t border-line pt-5 text-[13px] leading-relaxed text-content-subtle"
+              className="border-t border-line pt-5 text-sm leading-relaxed text-content-subtle"
             >
               <span className="font-semibold">Disclaimer: </span>
               {group.items[0]}
@@ -335,7 +335,7 @@ function ExamRequirements({
                 const lead = i === -1 ? null : item.slice(0, i)
                 const rest = i === -1 ? item : item.slice(i + 1).trim()
                 return (
-                  <li key={item} className="flex gap-3 text-[15px] leading-relaxed text-content-muted">
+                  <li key={item} className="flex gap-3 text-[17px] leading-relaxed text-content-muted">
                     <span aria-hidden="true" className="mt-[9px] h-1 w-4 shrink-0 bg-gold-400/70" />
                     <span>
                       {lead ? <span className="font-semibold text-content-strong">{lead}: </span> : null}
