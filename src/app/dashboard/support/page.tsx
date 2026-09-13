@@ -135,7 +135,7 @@ export default function SupportPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-navy-700 mb-2">Support</h1>
+        <h1 className="text-3xl font-bold text-content-strong mb-2">Support</h1>
         <p className="text-content-muted">
           Get help with your courses or account
         </p>
@@ -196,7 +196,7 @@ export default function SupportPage() {
 
               <Button
                 type="submit"
-                className="w-full bg-gold-400 text-navy-700 hover:bg-gold-300 font-semibold"
+                className="w-full bg-gold-400 text-content-strong hover:bg-gold-300 font-semibold"
                 disabled={submitting}
               >
                 {submitting ? (
@@ -241,7 +241,7 @@ export default function SupportPage() {
                 {supportRequests.map((request) => (
                   <div key={request.id} className="border-b border-line pb-4 last:border-0 last:pb-0">
                     <div className="flex items-start justify-between mb-2">
-                      <h3 className="font-semibold text-navy-700">{request.subject}</h3>
+                      <h3 className="font-semibold text-content-strong">{request.subject}</h3>
                       {getStatusBadge(request.status)}
                     </div>
                     <p className="text-sm text-content-muted mb-3 line-clamp-2">

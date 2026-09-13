@@ -45,7 +45,7 @@ export async function GET(request: Request) {
     )
   } catch (error) {
     // Surfaced so a failing cron is visible in Vercel's logs rather than silent.
-    console.error("[health/db] keep-alive query failed:", error)
+    logger.error("[health/db] keep-alive query failed:", error)
 
     return NextResponse.json(
       { ok: false, error: "Database unreachable" },

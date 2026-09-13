@@ -31,12 +31,12 @@ export default async function EditCoursePage({
     <Container className="py-10 max-w-4xl">
       <Link
         href="/admin"
-        className="mb-6 inline-flex items-center text-sm text-neutral-text-muted hover:text-brand-navy"
+        className="mb-6 inline-flex items-center text-sm text-content-muted hover:text-crimson-600"
       >
         <ArrowLeft className="mr-1 h-4 w-4" />
         Back to admin
       </Link>
-      <h1 className="mb-1 text-3xl font-bold text-brand-navy">{course.title}</h1>
+      <h1 className="mb-1 text-3xl font-semibold tracking-tight text-content-strong">{course.title}</h1>
       <p className="mb-6 text-sm text-neutral-text-muted">/{course.slug}</p>
       <CourseForm course={course} />
     </Container>

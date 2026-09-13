@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { createClient } from "@supabase/supabase-js"
 import { getCurrentAdmin } from "@/lib/auth-guards"
 import { enforceRateLimit } from "@/lib/rate-limit"
+import { logger } from "@/lib/logger"
 
 export const dynamic = "force-dynamic"
 
@@ -60,7 +61,7 @@ export async function GET(
       .createSignedUrl(filename, 3600) // 1 hour expiration
 
     if (error) {
-      console.error("Error generating signed URL:", error)
+      logger.error("Error generating signed URL:", error)
       return NextResponse.json(
         { error: "File not found or access denied" },
         { status: 404 }
@@ -77,7 +78,7 @@ export async function GET(
     // Redirect to the signed URL
     return NextResponse.redirect(data.signedUrl)
   } catch (error) {
-    console.error("Error in file download route:", error)
+    logger.error("Error in file download route:", error)
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

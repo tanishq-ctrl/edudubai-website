@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
     .upload(objectName, file, { contentType: file.type, upsert: false })
 
   if (error) {
-    console.error("[course-image] upload failed:", error.message)
+    logger.error("[course-image] upload failed:", error.message)
     return NextResponse.json({ error: "Upload failed" }, { status: 500 })
   }
 

@@ -390,7 +390,7 @@ export function CourseForm({ course }: { course?: AdminCourse }) {
         <Button
           type="submit"
           disabled={isPending}
-          className="bg-brand-navy hover:bg-brand-navy-dark"
+          className="bg-crimson-600 hover:bg-crimson-700 text-content-on-dark"
         >
           {isPending && <Loader2 className="h-4 w-4 mr-2 animate-spin" />}
           {course ? "Save changes" : "Create course"}

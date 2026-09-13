@@ -3,6 +3,7 @@ import { syncLeadToSystemeIO } from "@/lib/systeme-io"
 import { verifyTurnstile } from "@/lib/turnstile"
 import { logger } from "@/lib/logger"
 import { enforceRateLimit } from "@/lib/rate-limit"
+import { recordLead, markLeadSynced } from "@/server/leads-repository"
 
 function clampRating(val: unknown): string {
   const n = Number(val)
@@ -60,11 +61,49 @@ export async function POST(req: NextRequest) {
   }
 
   const firstName = safeName.split(" ")[0]
+
+  /*
+     Persist before any CRM work, the same rule the other five inbound forms
+     follow. This route used to be CRM-only: the answers went to Systeme.io
+     and nowhere we own, so webinar feedback never appeared in the admin
+     activity feed, and with no API key configured the route returned
+     `{ ok: true }` while dropping the submission outright.
+
+     The ratings and free text ride in `metadata`, which is jsonb, so the whole
+     response is recoverable from our own database whatever the CRM does.
+  */
+  const leadId = await recordLead({
+    source: "GENERAL",
+    name: safeName,
+    email: safeEmail,
+    company: sanitizeText(org, 200),
+    courseTitle: "CARF Webinar Feedback",
+    message: safeLiked,
+    metadata: {
+      form: "carf_webinar_feedback",
+      ratings: {
+        overall: clampRating(overall),
+        relevance: clampRating(relevance),
+        clarity: clampRating(clarity),
+        practical: clampRating(practical),
+        expertise: clampRating(expertise),
+        recommend: clampRating(recommend),
+      },
+      liked: safeLiked,
+      wantsMoreOn: sanitizeText(more),
+      resources: sanitizeList(resources),
+      services: sanitizeList(services),
+      otherService: sanitizeText(otherService, 500),
+      jobTitle: sanitizeText(jobtitle, 200),
+      country: sanitizeText(country, 200),
+    },
+  })
+
   const apiKey = process.env.SYSTEME_IO_API_KEY
 
   if (!apiKey) {
-    console.warn("[CARF-Feedback] SYSTEME_IO_API_KEY not set - skipping sync")
-    return NextResponse.json({ ok: true, saved: false })
+    logger.warn("[CARF-Feedback] SYSTEME_IO_API_KEY not set, skipping sync")
+    return NextResponse.json({ ok: true, saved: true, synced: false })
   }
 
   const contact = await syncLeadToSystemeIO({
@@ -75,8 +114,11 @@ export async function POST(req: NextRequest) {
   })
 
   if (!contact?.id) {
-    console.warn("[CARF-Feedback] Contact sync failed")
-    return NextResponse.json({ ok: false, error: "Contact sync failed" }, { status: 502 })
+    /* The feedback is already stored, so this is a sync failure, not a lost
+       submission: report success to the visitor and leave the row unsynced
+       for a later replay. */
+    logger.warn("[CARF-Feedback] contact sync failed; feedback stored unsynced")
+    return NextResponse.json({ ok: true, saved: true, synced: false })
   }
 
   const contactId = contact.id
@@ -108,12 +150,12 @@ export async function POST(req: NextRequest) {
       }),
     })
     if (!res.ok) {
-      console.error("[CARF-Feedback] Field update failed:", res.status)
+      logger.error("[CARF-Feedback] field update failed:", res.status)
     } else {
       logger.debug("[CARF-Feedback] All fields saved")
     }
   } catch (err) {
-    console.error("[CARF-Feedback] Custom field update failed:", err)
+    logger.error("[CARF-Feedback] custom field update failed:", err)
   }
 
   // Apply tag — hardcode ID after first lookup for performance
@@ -133,8 +175,10 @@ export async function POST(req: NextRequest) {
       })
     }
   } catch (err) {
-    console.error("[CARF-Feedback] Tag assignment failed:", err)
+    logger.error("[CARF-Feedback] tag assignment failed:", err)
   }
 
-  return NextResponse.json({ ok: true, saved: true })
+  await markLeadSynced(leadId, contactId)
+
+  return NextResponse.json({ ok: true, saved: true, synced: true })
 }

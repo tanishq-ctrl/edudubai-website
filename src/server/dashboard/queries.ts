@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server"
 import type { SupabaseClient } from "@supabase/supabase-js"
+import { logger } from "@/lib/logger"
 
 export interface Enrollment {
   id: string
@@ -44,13 +45,13 @@ export async function getUserEnrollments(userId: string): Promise<Enrollment[]> 
       .order("created_at", { ascending: false })
 
     if (error) {
-      console.error("Error fetching enrollments:", error)
+      logger.error("Error fetching enrollments:", error)
       return []
     }
 
     return data || []
   } catch (error) {
-    console.error("Error in getUserEnrollments:", error)
+    logger.error("Error in getUserEnrollments:", error)
     return []
   }
 }
@@ -65,13 +66,13 @@ export async function getUserPayments(userId: string): Promise<Payment[]> {
       .order("created_at", { ascending: false })
 
     if (error) {
-      console.error("Error fetching payments:", error)
+      logger.error("Error fetching payments:", error)
       return []
     }
 
     return data || []
   } catch (error) {
-    console.error("Error in getUserPayments:", error)
+    logger.error("Error in getUserPayments:", error)
     return []
   }
 }
@@ -86,13 +87,13 @@ export async function getUserSupportRequests(userId: string): Promise<SupportReq
       .order("created_at", { ascending: false })
 
     if (error) {
-      console.error("Error fetching support requests:", error)
+      logger.error("Error fetching support requests:", error)
       return []
     }
 
     return data || []
   } catch (error) {
-    console.error("Error in getUserSupportRequests:", error)
+    logger.error("Error in getUserSupportRequests:", error)
     return []
   }
 }
@@ -136,7 +137,7 @@ export async function getDashboardStats(userId: string) {
       continueLearning: activeEnrollment as Enrollment | null,
     }
   } catch (error) {
-    console.error("Error in getDashboardStats:", error)
+    logger.error("Error in getDashboardStats:", error)
     return {
       activeCourses: 0,
       completedCourses: 0,
@@ -168,13 +169,13 @@ export async function createEnrollment(
       .single()
 
     if (error) {
-      console.error("Error creating enrollment:", error)
+      logger.error("Error creating enrollment:", error)
       return null
     }
 
     return data
   } catch (error) {
-    console.error("Error in createEnrollment:", error)
+    logger.error("Error in createEnrollment:", error)
     return null
   }
 }
@@ -207,13 +208,13 @@ export async function createPayment(
       .single()
 
     if (error) {
-      console.error("Error creating payment:", error)
+      logger.error("Error creating payment:", error)
       return null
     }
 
     return data
   } catch (error) {
-    console.error("Error in createPayment:", error)
+    logger.error("Error in createPayment:", error)
     return null
   }
 }
@@ -237,13 +238,13 @@ export async function createSupportRequest(
       .single()
 
     if (error) {
-      console.error("Error creating support request:", error)
+      logger.error("Error creating support request:", error)
       return null
     }
 
     return data
   } catch (error) {
-    console.error("Error in createSupportRequest:", error)
+    logger.error("Error in createSupportRequest:", error)
     return null
   }
 }

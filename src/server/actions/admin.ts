@@ -2,6 +2,7 @@
 
 import { getCurrentAdmin } from "@/lib/auth-guards"
 import { createAdminClient } from "@/lib/supabase/admin"
+import { logger } from "@/lib/logger"
 
 /**
  * Server actions are individually addressable endpoints — Next.js assigns each
@@ -79,7 +80,7 @@ export async function getAllUsers(): Promise<AdminUser[]> {
       },
     }))
   } catch (error) {
-    console.error("Error fetching users:", error)
+    logger.error("Error fetching users:", error)
     return []
   }
 }

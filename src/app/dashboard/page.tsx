@@ -50,7 +50,7 @@ export default async function DashboardPage() {
       {/* Welcome Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl md:text-4xl font-semibold text-navy-700 tracking-tight">
+          <h1 className="text-3xl md:text-4xl font-semibold text-content-strong tracking-tight">
             Hello, {userName}! 👋
           </h1>
           <p className="text-content-muted mt-1 font-medium">
@@ -58,11 +58,11 @@ export default async function DashboardPage() {
           </p>
         </div>
         <div className="flex items-center gap-3">
-          <Button variant="outline" size="icon" className="rounded-xl relative">
+          <Button variant="outline" size="icon" className="rounded-sm relative">
             <Bell className="h-5 w-5 text-content" />
             <span className="absolute top-2 right-2 h-2 w-2 bg-danger/80 rounded-full border-2 border-white" />
           </Button>
-          <Button asChild variant="outline" size="icon" className="rounded-xl">
+          <Button asChild variant="outline" size="icon" className="rounded-sm">
             <Link href="/dashboard/profile">
               <Settings className="h-5 w-5 text-content" />
             </Link>
@@ -85,7 +85,7 @@ export default async function DashboardPage() {
                   <p className="text-xs font-bold text-content-muted uppercase tracking-wider mb-1">
                     {item.label}
                   </p>
-                  <div className="text-3xl font-semibold text-navy-700">{item.value}</div>
+                  <div className="text-3xl font-semibold text-content-strong">{item.value}</div>
                 </div>
                 <div className={`${item.bg} ${item.color} p-3 rounded-lg`}>
                   <item.icon className="h-6 w-6" />
@@ -102,26 +102,26 @@ export default async function DashboardPage() {
           {/* Continue Learning Card */}
           <section>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-xl font-bold text-navy-700 flex items-center gap-2">
+              <h2 className="text-xl font-bold text-content-strong flex items-center gap-2">
                 <GraduationCap className="h-5 w-5 text-gold-mark" />
                 Continue Learning
               </h2>
             </div>
 
             {stats.continueLearning ? (
-              <Card className="overflow-hidden border-2 border-navy-700/5 hover:border-navy-700/10 transition-colors shadow-sm">
+              <Card className="overflow-hidden border border-line hover:border-line transition-colors shadow-sm">
                 <CardContent className="p-0">
                   <div className="p-6 md:p-8 flex flex-col md:flex-row gap-6 md:items-center">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-3">
-                        <Badge className="bg-gold-400 text-navy-700 hover:bg-gold-400 font-bold">
+                        <Badge className="bg-gold-400 text-content-strong hover:bg-gold-400 font-bold">
                           Next Session
                         </Badge>
-                        <Badge variant="outline" className="border-navy-700/20 text-navy-700">
+                        <Badge variant="outline" className="border-line text-content-strong">
                           {stats.continueLearning.delivery_mode.replace(/_/g, " ")}
                         </Badge>
                       </div>
-                      <h3 className="text-2xl font-semibold text-navy-700 mb-2 tracking-tight">
+                      <h3 className="text-2xl font-semibold text-content-strong mb-2 tracking-tight">
                         {stats.continueLearning.course_title}
                       </h3>
                       <p className="text-content-muted text-sm line-clamp-2 mb-6">
@@ -131,17 +131,17 @@ export default async function DashboardPage() {
                       <div className="flex flex-wrap items-center gap-6">
                         <div className="flex items-center gap-2">
                           <Clock className="h-4 w-4 text-gold-mark" />
-                          <span className="text-xs font-bold text-navy-700">Enrollment ID: #{stats.continueLearning.id.slice(0, 8)}</span>
+                          <span className="text-xs font-bold text-content-strong">Enrollment ID: #{stats.continueLearning.id.slice(0, 8)}</span>
                         </div>
                         {stats.continueLearning.start_date && (
                           <div className="flex items-center gap-2">
                             <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                            <span className="text-xs font-bold text-navy-700">Active since {new Date(stats.continueLearning.start_date).toLocaleDateString()}</span>
+                            <span className="text-xs font-bold text-content-strong">Active since {new Date(stats.continueLearning.start_date).toLocaleDateString()}</span>
                           </div>
                         )}
                       </div>
                     </div>
-                    <Button asChild size="lg" className="bg-navy-900 text-white hover:bg-navy-900/90 rounded-xl px-8 shadow-xl shadow-brand-navy/20">
+                    <Button asChild size="lg" variant="primary" className="rounded-sm px-8">
                       <Link href={`/courses/${stats.continueLearning.course_slug}`}>
                         Resume Course
                         <ArrowRight className="ml-2 h-4 w-4" />
@@ -156,11 +156,11 @@ export default async function DashboardPage() {
                   <div className="bg-white p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 border shadow-sm">
                     <BookOpen className="h-8 w-8 text-content-muted" />
                   </div>
-                  <h3 className="text-lg font-bold text-navy-700 mb-2">No active enrollments</h3>
+                  <h3 className="text-lg font-bold text-content-strong mb-2">No active enrollments</h3>
                   <p className="text-content-muted text-sm mb-6 max-w-xs mx-auto">
                     Start your journey today by browsing our globally recognized compliance certifications.
                   </p>
-                  <Button asChild className="bg-gold-400 text-navy-700 hover:bg-gold-300 rounded-xl">
+                  <Button asChild className="bg-gold-400 text-content-strong hover:bg-gold-300 rounded-sm">
                     <Link href="/courses">Browse Official Courses</Link>
                   </Button>
                 </CardContent>
@@ -169,14 +169,14 @@ export default async function DashboardPage() {
           </section>
 
           {/* Featured/Upcoming? */}
-          <section className="bg-gradient-to-br from-navy-900 to-navy-900/90 rounded-xl p-8 text-white relative overflow-hidden shadow-2xl">
+          <section className="relative overflow-hidden rounded-sm bg-ink-950 p-8 text-content-on-dark shadow-sm">
             <div className="absolute top-0 right-0 w-64 h-64 bg-gold-400/10 rounded-full blur-3xl -mr-32 -mt-32" />
             <div className="relative z-10">
               <h3 className="text-2xl font-bold mb-2">Upgrade your skills</h3>
               <p className="text-white/70 text-sm mb-6 max-w-md">
                 Get certified in Regulatory Compliance or AML with our industry practitioners. New batches starting soon.
               </p>
-              <Button asChild variant="gold" className="rounded-xl">
+              <Button asChild variant="gold" className="rounded-sm">
                 <Link href="/courses">View Course Catalog</Link>
               </Button>
             </div>
@@ -187,7 +187,7 @@ export default async function DashboardPage() {
         <div className="space-y-8">
           <Card className="border-none shadow-sm h-full">
             <CardHeader className="pb-4">
-              <CardTitle className="text-lg font-bold text-navy-700 flex items-center gap-2">
+              <CardTitle className="text-lg font-bold text-content-strong flex items-center gap-2">
                 <CreditCard className="h-4 w-4 text-gold-mark" />
                 Recent Payments
               </CardTitle>
@@ -199,13 +199,13 @@ export default async function DashboardPage() {
                   recentPayments.slice(0, 5).map((payment) => (
                     <div key={payment.id} className="flex items-center gap-4 px-6 py-4 hover:bg-surface-sunken transition-colors border-b last:border-0">
                       <div className={cn(
-                        "h-10 w-10 rounded-xl flex items-center justify-center flex-shrink-0",
+                        "h-10 w-10 rounded-sm flex items-center justify-center flex-shrink-0",
                         payment.status === "SUCCESS" ? "bg-emerald-50 text-success" : "bg-danger/8 text-danger"
                       )}>
                         <CreditCard className="h-5 w-5" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-bold text-navy-700 truncate">
+                        <p className="text-sm font-bold text-content-strong truncate">
                           {payment.course_slug.replace(/-/g, " ")}
                         </p>
                         <p className="text-2xs font-medium text-content-muted tracking-wide">
@@ -213,7 +213,7 @@ export default async function DashboardPage() {
                         </p>
                       </div>
                       <div className="text-right">
-                        <p className="text-sm font-semibold text-navy-700">
+                        <p className="text-sm font-semibold text-content-strong">
                           {payment.amount_usd} {payment.currency}
                         </p>
                         <Badge variant="outline" className={cn(
@@ -233,7 +233,7 @@ export default async function DashboardPage() {
               </div>
               {recentPayments.length > 5 && (
                 <div className="p-4 text-center">
-                  <Button asChild variant="link" className="text-xs font-bold text-navy-700">
+                  <Button asChild variant="link" className="text-xs font-bold text-content-strong">
                     <Link href="/dashboard/payments">View all payments</Link>
                   </Button>
                 </div>

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
 import { createClient } from "@/lib/supabase/server"
 import { enforceRateLimit } from "@/lib/rate-limit"
+import { logger } from "@/lib/logger"
 
 // Mark route as dynamic to prevent build-time analysis
 export const dynamic = 'force-dynamic'
@@ -75,7 +76,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(user)
   } catch (error: any) {
-    console.error("Error creating user:", error)
+    logger.error("Error creating user:", error)
     return NextResponse.json(
       { error: "Failed to create user" },
       { status: 500 }

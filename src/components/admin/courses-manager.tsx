@@ -81,7 +81,7 @@ export function CoursesManager({ courses }: { courses: AdminCourse[] }) {
           </Button>
         </div>
 
-        <Button asChild className="bg-navy-900 hover:bg-navy-900">
+        <Button asChild className="bg-crimson-600 hover:bg-crimson-700 text-content-on-dark">
           <Link href="/admin/courses/new">
             <Plus className="h-4 w-4 mr-2" />
             New Course
@@ -117,7 +117,7 @@ export function CoursesManager({ courses }: { courses: AdminCourse[] }) {
                     aria-label={`Move ${course.title} up`}
                     disabled={index === 0 || isPending}
                     onClick={() => move(index, -1)}
-                    className="p-1 text-content-muted hover:text-navy-700 disabled:opacity-30"
+                    className="p-1 text-content-muted hover:text-content-strong disabled:opacity-30"
                   >
                     <ArrowUp className="h-4 w-4" />
                   </button>
@@ -126,7 +126,7 @@ export function CoursesManager({ courses }: { courses: AdminCourse[] }) {
                     aria-label={`Move ${course.title} down`}
                     disabled={index === active.length - 1 || isPending}
                     onClick={() => move(index, 1)}
-                    className="p-1 text-content-muted hover:text-navy-700 disabled:opacity-30"
+                    className="p-1 text-content-muted hover:text-content-strong disabled:opacity-30"
                   >
                     <ArrowDown className="h-4 w-4" />
                   </button>
@@ -135,7 +135,7 @@ export function CoursesManager({ courses }: { courses: AdminCourse[] }) {
 
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="font-semibold text-navy-700">{course.title}</span>
+                  <span className="font-semibold text-content-strong">{course.title}</span>
                   {course.published ? (
                     <Badge className="bg-green-600 hover:bg-green-700">Live</Badge>
                   ) : (

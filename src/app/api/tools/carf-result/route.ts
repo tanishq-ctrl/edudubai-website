@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
   const apiKey = process.env.SYSTEME_IO_API_KEY
 
   if (!apiKey) {
-    console.warn("[CARF] SYSTEME_IO_API_KEY not set — skipping sync")
+    logger.warn("[CARF] SYSTEME_IO_API_KEY not set — skipping sync")
     return NextResponse.json({ ok: true })
   }
 
@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
   })
 
   if (!contact?.id) {
-    console.warn("[CARF] Contact sync failed — Systeme.io rejected the email or an error occurred")
+    logger.warn("[CARF] Contact sync failed — Systeme.io rejected the email or an error occurred")
     return NextResponse.json({ ok: true })
   }
 
@@ -72,7 +72,7 @@ export async function POST(req: NextRequest) {
       }),
     })
   } catch (err) {
-    console.error("[CARF] Custom field update failed:", err)
+    logger.error("[CARF] Custom field update failed:", err)
   }
 
   // 3. Apply CARF_Diagnostic tag
@@ -92,10 +92,10 @@ export async function POST(req: NextRequest) {
       })
       logger.debug("[CARF] CARF_Diagnostic tag applied")
     } else {
-      console.warn("[CARF] Tag 'CARF_Diagnostic' not found — create it in Systeme.io dashboard")
+      logger.warn("[CARF] Tag 'CARF_Diagnostic' not found — create it in Systeme.io dashboard")
     }
   } catch (err) {
-    console.error("[CARF] Tag assignment failed:", err)
+    logger.error("[CARF] Tag assignment failed:", err)
   }
 
   return NextResponse.json({ ok: true })

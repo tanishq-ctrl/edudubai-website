@@ -51,7 +51,7 @@ export default async function CoursesPage() {
 
   const getDeliveryModeBadge = (mode: string) => {
     return (
-      <Badge variant="secondary" className="bg-navy-900/10 text-navy-700 border-navy-700/20">
+      <Badge variant="secondary" className="border-line bg-surface-sunken text-content-strong">
         {mode.replace(/_/g, " ")}
       </Badge>
     )
@@ -60,7 +60,7 @@ export default async function CoursesPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-navy-700 mb-2">My Courses</h1>
+        <h1 className="text-3xl font-bold text-content-strong mb-2">My Courses</h1>
         <p className="text-content-muted">
           Manage and track your course enrollments
         </p>
@@ -75,7 +75,7 @@ export default async function CoursesPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Button asChild className="bg-gold-400 text-navy-700 hover:bg-gold-300">
+            <Button asChild className="bg-gold-400 text-content-strong hover:bg-gold-300">
               <Link href="/courses">Browse Courses</Link>
             </Button>
           </CardContent>
@@ -104,7 +104,7 @@ export default async function CoursesPage() {
                   {enrollments.map((enrollment) => (
                     <TableRow key={enrollment.id}>
                       <TableCell>
-                        <div className="font-medium text-navy-700">
+                        <div className="font-medium text-content-strong">
                           {enrollment.course_title}
                         </div>
                       </TableCell>

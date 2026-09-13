@@ -2,6 +2,7 @@
 
 import { getCurrentAdmin } from "@/lib/auth-guards"
 import { createAdminClient } from "@/lib/supabase/admin"
+import { logger } from "@/lib/logger"
 
 /**
  * Reads the admin_activity view, which unions every inbound activity:
@@ -76,7 +77,7 @@ export async function listActivity(options: {
   const { data, error } = await query
 
   if (error) {
-    console.error("[admin-activity] list failed:", error.message)
+    logger.error("[admin-activity] list failed:", error.message)
     return { items: [], hasMore: false }
   }
 

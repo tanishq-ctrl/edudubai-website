@@ -22,12 +22,12 @@ export default async function NewCoursePage() {
     <Container className="py-10 max-w-4xl">
       <Link
         href="/admin"
-        className="mb-6 inline-flex items-center text-sm text-neutral-text-muted hover:text-brand-navy"
+        className="mb-6 inline-flex items-center text-sm text-content-muted hover:text-crimson-600"
       >
         <ArrowLeft className="mr-1 h-4 w-4" />
         Back to admin
       </Link>
-      <h1 className="mb-6 text-3xl font-bold text-brand-navy">New Course</h1>
+      <h1 className="mb-6 text-3xl font-semibold tracking-tight text-content-strong">New Course</h1>
       <CourseForm />
     </Container>
   )

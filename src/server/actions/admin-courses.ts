@@ -6,6 +6,7 @@ import { getCurrentAdmin } from "@/lib/auth-guards"
 import { createAdminClient } from "@/lib/supabase/admin"
 import { rowToCourse } from "@/lib/courses-db"
 import type { Course } from "@/lib/types"
+import { logger } from "@/lib/logger"
 
 /**
  * Course administration.
@@ -201,7 +202,7 @@ export async function listCoursesForAdmin(
   const { data, error } = await query.order("display_order", { ascending: true })
 
   if (error) {
-    console.error("[admin-courses] list failed:", error.message)
+    logger.error("[admin-courses] list failed:", error.message)
     return []
   }
 
@@ -261,7 +262,7 @@ export async function createCourse(input: unknown): Promise<ActionResult> {
       const issue = error.errors[0]
       return { success: false, error: `${issue.path.join(".")}: ${issue.message}` }
     }
-    console.error("[admin-courses] create failed:", error)
+    logger.error("[admin-courses] create failed:", error)
     return { success: false, error: "Failed to create course." }
   }
 }
@@ -307,7 +308,7 @@ export async function updateCourse(rowId: string, input: unknown): Promise<Actio
       const issue = error.errors[0]
       return { success: false, error: `${issue.path.join(".")}: ${issue.message}` }
     }
-    console.error("[admin-courses] update failed:", error)
+    logger.error("[admin-courses] update failed:", error)
     return { success: false, error: "Failed to update course." }
   }
 }
@@ -336,7 +337,7 @@ export async function archiveCourse(rowId: string): Promise<ActionResult> {
     revalidateCourseSurfaces(data.slug)
     return { success: true, slug: data.slug }
   } catch (error) {
-    console.error("[admin-courses] archive failed:", error)
+    logger.error("[admin-courses] archive failed:", error)
     return { success: false, error: "Failed to archive course." }
   }
 }
@@ -361,7 +362,7 @@ export async function restoreCourse(rowId: string): Promise<ActionResult> {
     revalidateCourseSurfaces(data.slug)
     return { success: true, slug: data.slug }
   } catch (error) {
-    console.error("[admin-courses] restore failed:", error)
+    logger.error("[admin-courses] restore failed:", error)
     return { success: false, error: "Failed to restore course." }
   }
 }
@@ -389,7 +390,7 @@ export async function setCoursePublished(
     revalidateCourseSurfaces(data.slug)
     return { success: true, slug: data.slug }
   } catch (error) {
-    console.error("[admin-courses] publish toggle failed:", error)
+    logger.error("[admin-courses] publish toggle failed:", error)
     return { success: false, error: "Failed to update course." }
   }
 }
@@ -417,7 +418,7 @@ export async function reorderCourses(orderedRowIds: string[]): Promise<ActionRes
     revalidateCourseSurfaces()
     return { success: true }
   } catch (error) {
-    console.error("[admin-courses] reorder failed:", error)
+    logger.error("[admin-courses] reorder failed:", error)
     return { success: false, error: "Failed to reorder courses." }
   }
 }

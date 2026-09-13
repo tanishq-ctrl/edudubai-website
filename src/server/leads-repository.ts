@@ -56,7 +56,7 @@ export async function recordLead(input: LeadInput): Promise<string | null> {
   const supabase = createAdminClient()
 
   if (!supabase) {
-    console.error("[leads] cannot record lead: Supabase service role not configured")
+    logger.error("[leads] cannot record lead: Supabase service role not configured")
     return null
   }
 
@@ -78,7 +78,7 @@ export async function recordLead(input: LeadInput): Promise<string | null> {
     .single()
 
   if (error) {
-    console.error("[leads] failed to record lead:", error.message)
+    logger.error("[leads] failed to record lead:", error.message)
     return null
   }
 
@@ -113,7 +113,7 @@ export async function recordCarfSubmission(
   const supabase = createAdminClient()
 
   if (!supabase) {
-    console.error("[carf] cannot record submission: Supabase service role not configured")
+    logger.error("[carf] cannot record submission: Supabase service role not configured")
     return null
   }
 
@@ -131,7 +131,7 @@ export async function recordCarfSubmission(
     .single()
 
   if (error) {
-    console.error("[carf] failed to record submission:", error.message)
+    logger.error("[carf] failed to record submission:", error.message)
     return null
   }
 

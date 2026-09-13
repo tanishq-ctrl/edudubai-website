@@ -18,7 +18,7 @@ interface User {
 export function AdminUsersList({ users }: { users: User[] }) {
   return (
     <div>
-      <h2 className="text-2xl font-semibold text-navy-700 mb-6">All Users</h2>
+      <h2 className="text-2xl font-semibold text-content-strong mb-6">All Users</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {users.map((user) => (
           <Card key={user.id}>

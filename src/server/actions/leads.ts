@@ -6,6 +6,7 @@ import { getCourseBySlugNew } from "./courses"
 import { syncLeadToSystemeIO, syncApplicationToSystemeIO } from "@/lib/systeme-io"
 import { verifyTurnstile } from "@/lib/turnstile"
 import { recordLead, markLeadSynced } from "@/server/leads-repository"
+import { logger } from "@/lib/logger"
 
 // Validation schemas
 const contactLeadSchema = z.object({
@@ -83,7 +84,7 @@ export async function submitContactLead(data: unknown, turnstileToken: string) {
         error: error.errors[0]?.message || "Validation failed",
       }
     }
-    console.error("Error submitting contact lead:", error)
+    logger.error("Error submitting contact lead:", error)
 
     const errorMessage = error instanceof Error
       ? error.message
@@ -152,7 +153,7 @@ export async function submitCorporateLead(data: unknown, turnstileToken: string)
         error: error.errors[0]?.message || "Validation failed",
       }
     }
-    console.error("Error submitting corporate lead:", error)
+    logger.error("Error submitting corporate lead:", error)
     return {
       success: false,
       error: "Something went wrong. Please try again.",
@@ -230,7 +231,7 @@ export async function submitBrochureLead(data: unknown, turnstileToken: string) 
         error: error.errors[0]?.message || "Validation failed",
       }
     }
-    console.error("Error submitting brochure lead:", error)
+    logger.error("Error submitting brochure lead:", error)
     return {
       success: false,
       error: "Something went wrong. Please try again.",
@@ -298,7 +299,7 @@ export async function submitCourseApplication(data: unknown, turnstileToken: str
         error: error.errors[0]?.message || "Validation failed",
       }
     }
-    console.error("Error submitting course application:", error)
+    logger.error("Error submitting course application:", error)
     return {
       success: false,
       error: "Something went wrong. Please try again.",

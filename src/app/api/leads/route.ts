@@ -3,6 +3,7 @@ import { syncLeadToSystemeIO } from "@/lib/systeme-io"
 import { verifyTurnstile } from "@/lib/turnstile"
 import { recordLead, markLeadSynced } from "@/server/leads-repository"
 import { enforceRateLimit } from "@/lib/rate-limit"
+import { logger } from "@/lib/logger"
 
 export async function POST(req: Request) {
     const limited = enforceRateLimit(req, "leads", { limit: 5, windowMs: 60_000 })
@@ -46,7 +47,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ success: true })
     } catch (error) {
-        console.error("Lead API Error:", error)
+        logger.error("Lead API Error:", error)
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
     }
 }

@@ -4,6 +4,7 @@ import { z } from "zod"
 import { resend } from "@/lib/resend"
 import { verifyTurnstile } from "@/lib/turnstile"
 import { enforceRateLimit } from "@/lib/rate-limit"
+import { logger } from "@/lib/logger"
 
 // Use service role key for server-side operations
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
@@ -27,7 +28,7 @@ export async function POST(request: Request) {
 
   try {
     if (!supabaseUrl || !supabaseServiceKey) {
-      console.error("Supabase configuration missing")
+      logger.error("Supabase configuration missing")
       return NextResponse.json(
         { error: "Server configuration error. Please contact support." },
         { status: 500 }
@@ -82,7 +83,7 @@ export async function POST(request: Request) {
       })
 
     if (cvUploadError) {
-      console.error("CV upload error:", cvUploadError)
+      logger.error("CV upload error:", cvUploadError)
       return NextResponse.json(
         { error: "Failed to upload CV file" },
         { status: 500 }
@@ -115,7 +116,7 @@ export async function POST(request: Request) {
       .single()
 
     if (dbError) {
-      console.error("Database error:", dbError)
+      logger.error("Database error:", dbError)
       return NextResponse.json(
         { error: "Failed to save application to database" },
         { status: 500 }
@@ -151,7 +152,7 @@ export async function POST(request: Request) {
         `,
       })
     } catch (emailError) {
-      console.error("Failed to send admin email:", emailError)
+      logger.error("Failed to send admin email:", emailError)
     }
 
     // Send applicant confirmation email
@@ -187,7 +188,7 @@ export async function POST(request: Request) {
         `,
       })
     } catch (emailError) {
-      console.error("Failed to send confirmation email:", emailError)
+      logger.error("Failed to send confirmation email:", emailError)
     }
 
     return NextResponse.json({
@@ -195,7 +196,7 @@ export async function POST(request: Request) {
       applicationId,
     })
   } catch (error) {
-    console.error("Trainer application error:", error)
+    logger.error("Trainer application error:", error)
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         { error: error.errors[0].message },

@@ -112,7 +112,7 @@ export function ActivityFeed({
             size="sm"
             onClick={() => selectKind(option.value)}
             disabled={isPending}
-            className={kind === option.value ? "bg-navy-900 hover:bg-navy-900" : ""}
+            className={kind === option.value ? "bg-crimson-600 hover:bg-crimson-700 text-content-on-dark" : ""}
           >
             {option.label}
             {counts[option.value] !== undefined && (
@@ -147,7 +147,7 @@ export function ActivityFeed({
 
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-medium text-navy-700">
+                    <span className="font-medium text-content-strong">
                       {item.personName || item.personEmail || "Unknown"}
                     </span>
                     <Badge variant="outline" className="text-2xs">

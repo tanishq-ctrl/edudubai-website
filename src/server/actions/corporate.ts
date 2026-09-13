@@ -1,6 +1,7 @@
 "use server"
 
 import { resend } from "@/lib/resend"
+import { logger } from "@/lib/logger"
 
 export async function sendCorporateTrainingLead(data: {
   company: string
@@ -66,7 +67,7 @@ export async function sendCorporateTrainingLead(data: {
 
     return { success: true }
   } catch (error) {
-    console.error("Error sending corporate training lead email:", error)
+    logger.error("Error sending corporate training lead email:", error)
     throw error
   }
 }

@@ -58,7 +58,7 @@ export default async function PaymentsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-navy-700 mb-2">Payments & Invoices</h1>
+        <h1 className="text-3xl font-bold text-content-strong mb-2">Payments & Invoices</h1>
         <p className="text-content-muted">
           View your payment history and download invoices
         </p>
@@ -98,7 +98,7 @@ export default async function PaymentsPage() {
                   {payments.map((payment) => (
                     <TableRow key={payment.id}>
                       <TableCell>
-                        <div className="font-medium text-navy-700">
+                        <div className="font-medium text-content-strong">
                           {payment.course_slug.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())}
                         </div>
                       </TableCell>
@@ -146,7 +146,7 @@ export default async function PaymentsPage() {
                     <div className="space-y-3 mb-4">
                       <div className="flex justify-between text-sm">
                         <span className="text-content-muted">Amount:</span>
-                        <span className="font-semibold text-navy-700">
+                        <span className="font-semibold text-content-strong">
                           {formatAmount(payment.amount_usd, payment.currency)}
                         </span>
                       </div>
