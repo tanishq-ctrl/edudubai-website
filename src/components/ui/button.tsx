@@ -5,9 +5,17 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 /**
- * `gold` is the single primary CTA style for the whole site. Anything else on
- * a page competing with it should be `outline`, `ghost` or `link` -- two gold
- * buttons in one viewport means neither one is the call to action.
+ * One primary CTA style for the whole site: solid crimson-600 under paper
+ * text. Anything competing with it on the same page is `outline`, `ghost` or
+ * `link` -- two primaries in one viewport means neither is the call to action.
+ *
+ * `gold` is an ALIAS of that primary, not a second style. Roughly thirty call
+ * sites still say variant="gold"; they inherit the crimson primary rather
+ * than being migrated one by one. Do not give it a separate look.
+ *
+ * Buttons are rounded-sm, never pills, and they do not lift, scale or glow on
+ * hover: the hover state is a darker crimson and nothing else. Motion on a
+ * button is the cheapest kind of decoration and it reads as generated.
  *
  * The `group` class is on the base so variants can animate an inner icon via
  * `group-hover:`.
@@ -16,43 +24,47 @@ const buttonVariants = cva(
   [
     "group relative inline-flex items-center justify-center gap-2 whitespace-nowrap",
     "font-medium tracking-tight",
-    "rounded-full",
-    "transition-[transform,box-shadow,background-color,border-color,color] duration-fast ease-out-expo",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
+    "rounded-sm",
+    "transition-[background-color,border-color,color] duration-fast ease-out-expo",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson-ink focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
     "disabled:pointer-events-none disabled:opacity-50",
     // Keeps a tap from firing twice / selecting text on iOS.
     "touch-manipulation select-none",
-    "active:scale-[0.985]",
   ].join(" "),
   {
     variants: {
       variant: {
+        /* The primary. */
         gold: [
-          "bg-gold-400 text-navy-900 font-semibold",
-          "shadow-[0_10px_30px_-10px_rgb(var(--gold-400)/0.65)]",
-          "hover:bg-gold-300 hover:shadow-gold hover:-translate-y-0.5",
+          "bg-crimson-600 text-content-on-dark font-semibold",
+          "shadow-sm hover:bg-crimson-700",
+        ].join(" "),
+        /* Alias of the primary, under its own name, for new work. */
+        primary: [
+          "bg-crimson-600 text-content-on-dark font-semibold",
+          "shadow-sm hover:bg-crimson-700",
         ].join(" "),
         default: [
-          "bg-navy-700 text-white",
-          "shadow-sm hover:bg-navy-600 hover:shadow-lg hover:-translate-y-0.5",
+          "bg-ink-950 text-content-on-dark",
+          "hover:bg-ink-900",
         ].join(" "),
         ink: [
           "bg-ink-900 text-content-on-dark",
-          "hover:bg-ink-800 hover:-translate-y-0.5 hover:shadow-lg",
+          "hover:bg-ink-800",
         ].join(" "),
         outline: [
           "border border-line-strong bg-transparent text-content-strong",
-          "hover:border-navy-700 hover:bg-navy-50 hover:text-navy-700",
+          "hover:border-crimson-600 hover:text-crimson-600",
         ].join(" "),
         "outline-light": [
-          "border border-white/35 bg-white/10 text-white",
-          "hover:border-white/70 hover:bg-white/12",
+          "border border-white/35 bg-transparent text-white",
+          "hover:border-white/70 hover:bg-white/10",
         ].join(" "),
         secondary: "bg-surface-sunken text-content-strong hover:bg-navy-100",
         ghost: "text-content-strong hover:bg-surface-sunken",
         "ghost-light": "text-white/85 hover:bg-white/10 hover:text-white",
-        destructive: "bg-danger text-white shadow-sm hover:brightness-110",
-        link: "h-auto rounded-none p-0 text-navy-700 underline-offset-4 hover:underline",
+        destructive: "bg-danger text-white hover:brightness-110",
+        link: "h-auto rounded-none p-0 text-crimson-600 underline-offset-4 hover:underline",
       },
       size: {
         sm: "h-9 px-4 text-xs",

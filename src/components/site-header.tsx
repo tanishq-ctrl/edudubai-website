@@ -233,7 +233,7 @@ export function SiteHeader() {
                         : "invisible -translate-y-2 opacity-0",
                     )}
                   >
-                    <div className="overflow-hidden rounded-lg border border-line bg-surface-raised p-2 shadow-xl">
+                    <div className="overflow-hidden rounded-sm border border-line bg-surface-raised p-2 shadow-sm">
                       {item.subItems.map((sub) => (
                         <Link
                           key={sub.name}

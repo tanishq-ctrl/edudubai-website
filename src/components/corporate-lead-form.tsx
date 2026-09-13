@@ -16,6 +16,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { submitCorporateLead } from "@/server/actions/leads"
 import { CheckCircle2 } from "lucide-react"
 import { TurnstileWidget } from "@/components/turnstile-widget"
+import { logger } from "@/lib/logger"
 
 export function CorporateLeadForm() {
   const [loading, setLoading] = useState(false)
@@ -51,7 +52,7 @@ export function CorporateLeadForm() {
         preferredDelivery: "",
       })
     } catch (error) {
-      console.error("Error submitting form:", error)
+      logger.debug("Corporate lead submission failed", error)
       alert("Something went wrong. Please try again.")
     } finally {
       setLoading(false)
@@ -60,17 +61,15 @@ export function CorporateLeadForm() {
 
   if (success) {
     return (
-      <Card className="max-w-2xl mx-auto border-gold-400/40">
+      <Card className="mx-auto max-w-2xl rounded-sm border-line">
         <CardContent className="p-10 text-center sm:p-12">
           <div className="flex justify-center mb-6">
-            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gold-400/15">
-              <CheckCircle2 className="h-9 w-9 text-gold-mark" />
+            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-crimson-50">
+              <CheckCircle2 className="h-9 w-9 text-crimson-600" />
             </div>
           </div>
-          <h3 className="mt-6 text-2xl ">
-            Thank You for Your Interest!
-          </h3>
-          <p className="mt-4 text-content-muted">
+          <h3 className="mt-6 text-2xl">Thank you for your interest</h3>
+          <p className="mt-4 text-[17px] leading-relaxed text-content-muted">
             We&apos;ve received your corporate training inquiry. Our team will contact you
             within 24 hours to discuss your training needs.
           </p>
@@ -79,7 +78,7 @@ export function CorporateLeadForm() {
             variant="outline"
             className="mt-8"
           >
-            Submit Another Request
+            Submit another request
           </Button>
         </CardContent>
       </Card>
@@ -92,7 +91,7 @@ export function CorporateLeadForm() {
         <div className="grid gap-5 sm:grid-cols-2">
           <div className="flex flex-col gap-2">
             <Label htmlFor="company" className="text-2xs font-semibold uppercase tracking-wider text-content-muted">
-              Company Name *
+              Company name *
             </Label>
             <Input
               id="company"
@@ -106,7 +105,7 @@ export function CorporateLeadForm() {
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="name" className="text-2xs font-semibold uppercase tracking-wider text-content-muted">
-              Your Name *
+              Your name *
             </Label>
             <Input
               id="name"
@@ -115,14 +114,14 @@ export function CorporateLeadForm() {
                 setFormData({ ...formData, name: e.target.value })
               }
               required
-              placeholder="Full Name"
+              placeholder="Full name"
             />
           </div>
         </div>
         <div className="grid gap-5 sm:grid-cols-2">
           <div className="flex flex-col gap-2">
             <Label htmlFor="email" className="text-2xs font-semibold uppercase tracking-wider text-content-muted">
-              Corporate Email *
+              Corporate email *
             </Label>
             <Input
               id="email"
@@ -137,7 +136,7 @@ export function CorporateLeadForm() {
           </div>
           <div className="flex flex-col gap-2">
             <Label htmlFor="phone" className="text-2xs font-semibold uppercase tracking-wider text-content-muted">
-              Phone Number *
+              Phone number *
             </Label>
             <Input
               id="phone"
@@ -153,7 +152,7 @@ export function CorporateLeadForm() {
         </div>
         <div className="flex flex-col gap-2">
           <Label htmlFor="trainingNeed" className="text-2xs font-semibold uppercase tracking-wider text-content-muted">
-            Training Requirements *
+            Training requirements *
           </Label>
           <Textarea
             id="trainingNeed"
@@ -163,12 +162,12 @@ export function CorporateLeadForm() {
             }
             required
             placeholder="Briefly describe your team's training goals..."
-            className="bg-neutral-bg border-neutral-border min-h-[100px] focus:ring-brand-gold"
+            className="min-h-[100px]"
           />
         </div>
         <div className="flex flex-col gap-2">
           <Label htmlFor="preferredDelivery" className="text-2xs font-semibold uppercase tracking-wider text-content-muted">
-            Delivery Format *
+            Delivery format *
           </Label>
           <Select
             value={formData.preferredDelivery}
@@ -177,13 +176,13 @@ export function CorporateLeadForm() {
             }
             required
           >
-            <SelectTrigger className="bg-neutral-bg border-neutral-border">
+            <SelectTrigger>
               <SelectValue placeholder="Select delivery format" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="IN_PERSON">In-Person (Institutional)</SelectItem>
-              <SelectItem value="LIVE_VIRTUAL">Live Virtual (Interactive)</SelectItem>
-              <SelectItem value="HYBRID">Hybrid Model</SelectItem>
+              <SelectItem value="IN_PERSON">In-person (institutional)</SelectItem>
+              <SelectItem value="LIVE_VIRTUAL">Live virtual (interactive)</SelectItem>
+              <SelectItem value="HYBRID">Hybrid model</SelectItem>
             </SelectContent>
           </Select>
         </div>
@@ -191,7 +190,7 @@ export function CorporateLeadForm() {
         <Button
           type="submit"
           variant="gold"
-          size="xl"
+          size="lg"
           block
           disabled={loading || !turnstileToken}
         >

@@ -48,9 +48,9 @@ export function AboutPosition() {
 
           <Stagger className="mt-14 grid gap-6 sm:grid-cols-2" step={110} variant="up">
             {supporting.map((item) => (
-              <div key={item.title} className="panel-dark rounded-2xl p-7">
-                <h3 className="text-lg text-white">{item.title}</h3>
-                <p className="mt-3 text-[17px] leading-relaxed text-white/55">{item.body}</p>
+              <div key={item.title} className="panel-dark rounded-sm p-7">
+                <h3 className="text-lg text-content-on-dark">{item.title}</h3>
+                <p className="mt-3 text-[17px] leading-relaxed text-content-on-dark-muted">{item.body}</p>
               </div>
             ))}
           </Stagger>

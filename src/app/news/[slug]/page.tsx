@@ -62,7 +62,7 @@ export default async function NewsArticlePage({ params }: NewsArticlePageProps) 
         <Container>
           <Link
             href="/news"
-            className="group inline-flex items-center gap-2 text-sm font-medium text-content-muted transition-colors hover:text-navy-700"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-content-muted transition-colors hover:text-crimson-600"
           >
             <ArrowLeft
               aria-hidden="true"
@@ -70,7 +70,7 @@ export default async function NewsArticlePage({ params }: NewsArticlePageProps) 
             />
             Back to newsroom
           </Link>
-          <p className="mt-4 text-xs text-content-subtle">
+          <p className="mt-4 text-[15px] text-content-subtle">
             <time dateTime={article.date}>{formatNewsDate(article.date)}</time>
             {article.location ? ` · ${article.location}` : null}
           </p>

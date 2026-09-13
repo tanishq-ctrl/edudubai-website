@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -10,6 +10,7 @@ import { submitContactLead } from "@/server/actions/leads"
 import { trackContactFormSubmit } from "@/lib/analytics"
 import { CheckCircle2, AlertCircle } from "lucide-react"
 import { TurnstileWidget } from "@/components/turnstile-widget"
+import { logger } from "@/lib/logger"
 
 export function ContactForm() {
   const [loading, setLoading] = useState(false)
@@ -45,7 +46,7 @@ export function ContactForm() {
         message: "",
       })
     } catch (error: any) {
-      console.error("Error submitting form:", error)
+      logger.debug("Error submitting contact form:", error)
       const errorMessage = error?.message || "Something went wrong. Please try again."
       setError(errorMessage)
     } finally {
@@ -55,25 +56,23 @@ export function ContactForm() {
 
   if (success) {
     return (
-      <Card className="border-gold-400/40">
+      <Card className="rounded-sm border-line">
         <CardContent className="p-10 text-center sm:p-12">
-          <div className="flex justify-center mb-6">
-            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gold-400/15">
-              <CheckCircle2 className="h-9 w-9 text-gold-mark" />
+          <div className="mb-6 flex justify-center">
+            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-success/10">
+              <CheckCircle2 className="h-9 w-9 text-success" />
             </div>
           </div>
-          <h3 className="mt-6 text-2xl ">
-            Thank You for Your Message!
-          </h3>
-          <p className="mt-4 text-content-muted">
-            We&apos;ve received your inquiry and will get back to you within 24 hours.
+          <h3 className="mt-6 text-2xl">Thank you for your message</h3>
+          <p className="mt-4 text-[17px] leading-relaxed text-content-muted">
+            We have received your enquiry and will reply within one business day.
           </p>
           <Button
             onClick={() => setSuccess(false)}
             variant="outline"
             className="mt-8"
           >
-            Send Another Message
+            Send another message
           </Button>
         </CardContent>
       </Card>
@@ -83,8 +82,8 @@ export function ContactForm() {
   return (
     <div>
       <header className="mb-8">
-        <h2 className="text-2xl ">Send us a message</h2>
-        <p className="mt-2.5 text-content-muted">
+        <h2 className="text-2xl">Send us a message</h2>
+        <p className="mt-2.5 text-[17px] leading-relaxed text-content-muted">
           We respond within one business day. Fields marked * are required.
         </p>
       </header>
@@ -93,7 +92,7 @@ export function ContactForm() {
           <div role="alert" className="mb-6 flex items-start gap-3 rounded-sm border border-danger/30 bg-danger/8 p-4">
             <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-danger" />
             <div className="flex-1">
-              <p className="text-sm font-semibold text-danger">Error</p>
+              <p className="text-sm font-semibold text-danger">Something went wrong</p>
               <p className="mt-1 text-sm text-danger/90">{error}</p>
             </div>
           </div>
@@ -101,7 +100,7 @@ export function ContactForm() {
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <div className="grid gap-5 sm:grid-cols-2">
             <div className="flex flex-col gap-2">
-              <Label htmlFor="name">Full Name *</Label>
+              <Label htmlFor="name">Full name *</Label>
               <Input
                 id="name"
                 value={formData.name}
@@ -147,12 +146,12 @@ export function ContactForm() {
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               required
               rows={6}
-              placeholder="Tell us how we can help you..."
+              placeholder="Tell us how we can help"
             />
           </div>
           <TurnstileWidget onToken={setTurnstileToken} />
           <Button type="submit" variant="gold" className="w-full" disabled={loading || !turnstileToken} size="lg">
-            {loading ? "Sending..." : "Send Message"}
+            {loading ? "Sending…" : "Send message"}
           </Button>
         </form>
       </div>

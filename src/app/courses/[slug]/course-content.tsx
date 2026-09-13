@@ -60,9 +60,11 @@ function splitLead(value: string) {
 function SectionHead({ title, lead }: { title: string; lead?: string }) {
   return (
     <Reveal variant="up">
-      <div className="max-w-measure-lg">
+      <div className="max-w-measure">
         <h2 className="text-3xl tracking-tight sm:text-4xl">{title}</h2>
-        {lead ? <p className="mt-4 max-w-measure text-lg leading-relaxed text-content-muted">{lead}</p> : null}
+        {lead ? (
+          <p className="mt-4 max-w-measure text-[17px] leading-relaxed text-content-muted">{lead}</p>
+        ) : null}
       </div>
     </Reveal>
   )
@@ -97,7 +99,7 @@ export function CourseContent({ course }: Props) {
             ].map((block) => (
               <article
                 key={block.h}
-                className="flex h-full flex-col rounded-lg border border-line bg-surface-raised p-7 shadow-sm"
+                className="flex h-full flex-col rounded-sm border border-line bg-surface-raised p-7"
               >
                 <h3 className="text-lg">{block.h}</h3>
                 <p className="mt-3 text-[17px] leading-relaxed text-content-muted">{block.body}</p>
@@ -127,7 +129,7 @@ export function CourseContent({ course }: Props) {
                 <li key={outcome} className="flex gap-5 border-b border-line py-6">
                   <span
                     aria-hidden="true"
-                    className="tabular pt-0.5 font-display text-sm font-semibold text-gold-mark"
+                    className="tabular pt-0.5 font-display text-sm font-semibold text-crimson-ink"
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -152,13 +154,13 @@ export function CourseContent({ course }: Props) {
           {audience.map((cat) => (
             <article
               key={cat.title}
-              className="flex h-full flex-col rounded-lg border border-line bg-surface-raised p-7 shadow-sm"
+              className="flex h-full flex-col rounded-sm border border-line bg-surface-raised p-7"
             >
               <h3 className="text-lg">{cat.title}</h3>
               <ul className="mt-5 flex flex-col gap-3">
                 {cat.roles.map((role) => (
                   <li key={role} className="flex gap-3 text-[17px] leading-relaxed text-content-muted">
-                    <span aria-hidden="true" className="mt-[9px] h-1 w-4 shrink-0 bg-gold-400/70" />
+                    <span aria-hidden="true" className="mt-[9px] h-1 w-4 shrink-0 bg-crimson-600" />
                     {role}
                   </li>
                 ))}
@@ -179,7 +181,7 @@ export function CourseContent({ course }: Props) {
             {course.deliverySchedules.map((s) => (
               <article
                 key={s.name}
-                className="flex h-full flex-col rounded-lg border border-line bg-surface-raised p-7 shadow-sm"
+                className="flex h-full flex-col rounded-sm border border-line bg-surface-raised p-7"
               >
                 <h3 className="text-lg">{s.name}</h3>
                 <dl className="mt-5 flex flex-col gap-3 text-[17px]">
@@ -205,7 +207,7 @@ export function CourseContent({ course }: Props) {
             lead="What the issuing body sets, and what you have to meet to sit it."
           />
 
-          <dl className="mt-12 grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          <dl className="mt-12 grid gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
             {[
               { k: "Questions", v: examInfo.questions },
               { k: "Duration", v: examInfo.duration },
@@ -222,7 +224,7 @@ export function CourseContent({ course }: Props) {
           </dl>
 
           {examInfo.requirements?.length ? (
-            <div className="mt-10 max-w-measure-lg">
+            <div className="mt-10 max-w-measure">
               <ExamRequirements requirements={examInfo.requirements} />
             </div>
           ) : null}
@@ -239,7 +241,7 @@ export function CourseContent({ course }: Props) {
               <li key={point} className="flex gap-4">
                 <span
                   aria-hidden="true"
-                  className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold-400/15 text-gold-mark"
+                  className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-crimson-50 text-crimson-600"
                 >
                   <Check className="h-3.5 w-3.5" />
                 </span>
@@ -263,10 +265,10 @@ export function CourseContent({ course }: Props) {
              none of it. `<details>` gives progressive disclosure with no
              client JavaScript.
           */}
-          <div className="mt-10 max-w-measure-lg border-t border-line">
+          <div className="mt-10 max-w-measure border-t border-line">
             {course.faq.map((item) => (
               <details key={item.question} className="group border-b border-line">
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-[17px] font-medium text-content-strong marker:hidden hover:text-navy-700">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-[17px] font-medium text-content-strong marker:hidden hover:text-crimson-600">
                   {item.question}
                   <ChevronDown
                     aria-hidden="true"
@@ -301,7 +303,7 @@ function ExamRequirements({
       <ul className="flex flex-col gap-3">
         {(requirements as string[]).map((req) => (
           <li key={req} className="flex gap-3 text-[17px] leading-relaxed text-content-muted">
-            <span aria-hidden="true" className="mt-[9px] h-1 w-4 shrink-0 bg-gold-400/70" />
+            <span aria-hidden="true" className="mt-[9px] h-1 w-4 shrink-0 bg-crimson-600" />
             {req}
           </li>
         ))}
@@ -336,7 +338,7 @@ function ExamRequirements({
                 const rest = i === -1 ? item : item.slice(i + 1).trim()
                 return (
                   <li key={item} className="flex gap-3 text-[17px] leading-relaxed text-content-muted">
-                    <span aria-hidden="true" className="mt-[9px] h-1 w-4 shrink-0 bg-gold-400/70" />
+                    <span aria-hidden="true" className="mt-[9px] h-1 w-4 shrink-0 bg-crimson-600" />
                     <span>
                       {lead ? <span className="font-semibold text-content-strong">{lead}: </span> : null}
                       {rest}

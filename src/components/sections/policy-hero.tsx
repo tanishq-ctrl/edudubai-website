@@ -10,10 +10,6 @@ interface PolicyHeroProps {
 export function PolicyHero({ title, lastUpdated }: PolicyHeroProps) {
   return (
     <section className="relative isolate overflow-hidden bg-ink-950 pb-section-sm pt-[calc(var(--header-h)+3rem)] text-white">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-0 h-80 w-[42rem] -translate-x-1/2 orb [--orb:rgb(var(--navy-700)/0.3)]" />
-        <div className="absolute inset-0 bg-grid-navy bg-grid opacity-30" />
-      </div>
 
       <Container>
         <div className="mx-auto max-w-3xl text-center">
@@ -37,6 +33,9 @@ export function PolicyHero({ title, lastUpdated }: PolicyHeroProps) {
       </Container>
 
       <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px bg-gold-line opacity-50" />
+    
+      {/* The band ends on a rule, not a fade. */}
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px bg-crimson-600" />
     </section>
   )
 }

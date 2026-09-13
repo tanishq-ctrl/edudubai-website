@@ -1,7 +1,7 @@
 import { Container } from "@/components/container"
 
 /**
- * What we deliver — rendered as a definition list, not a card grid.
+ * What we deliver, rendered as a definition list rather than a card grid.
  *
  * Four identical rounded cards with the same radius, shadow and hover-lift is
  * the default treatment and it appeared on every section of every page. The
@@ -35,18 +35,17 @@ const pillars: { term: string; definition: string }[] = [
 export function CorporatePillars() {
   return (
     <section className="relative border-b border-line bg-surface-sunken py-section-sm">
-      {/* Hairline that ties the band to the dark field above it. */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold-400/40 to-transparent"
-      />
+      {/* Flat hairline that ties the band to the dark field above it. The
+          gradient version of this rule had no edge, which is exactly what the
+          rest of the page is built to avoid. */}
+      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-crimson-600" />
       <Container>
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4 lg:sticky lg:top-28 lg:self-start">
-            <h2 className="text-[clamp(1.75rem,1.2rem+1.6vw,2.5rem)] font-bold leading-tight tracking-[-0.03em] text-navy-900">
+            <h2 className="text-[clamp(1.75rem,1.2rem+1.6vw,2.5rem)] font-bold leading-tight tracking-[-0.03em] text-content-strong">
               What we deliver
             </h2>
-            <p className="mt-5 text-content-muted">
+            <p className="mt-5 text-[17px] leading-relaxed text-content-muted">
               Four commitments that hold on every engagement, regardless of sector or cohort
               size.
             </p>
@@ -56,20 +55,20 @@ export function CorporatePillars() {
             {pillars.map((pillar, i) => (
               <div
                 key={pillar.term}
-                className="group grid gap-3 border-t border-line py-8 transition-colors duration-slow ease-out-expo hover:border-gold-400/50 sm:grid-cols-12 sm:gap-8"
+                className="group grid gap-3 border-t border-line py-8 transition-colors duration-slow ease-out-expo hover:border-crimson-600 sm:grid-cols-12 sm:gap-8"
               >
                 <dt className="sm:col-span-5">
                   <span
                     aria-hidden="true"
-                    className="block text-xs font-semibold tabular text-gold-ink"
+                    className="block text-xs font-semibold tabular text-crimson-ink"
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="mt-2 block text-lg font-semibold tracking-tight text-navy-900">
+                  <span className="mt-2 block text-lg font-semibold tracking-tight text-content-strong">
                     {pillar.term}
                   </span>
                 </dt>
-                <dd className="leading-relaxed text-content-muted sm:col-span-7">
+                <dd className="text-[17px] leading-relaxed text-content-muted sm:col-span-7">
                   {pillar.definition}
                 </dd>
               </div>

@@ -70,8 +70,6 @@ export function SiteFooter() {
     <footer className="relative isolate overflow-hidden bg-ink-950 text-content-on-dark grain">
       {/* Ambient wash: keeps a very large flat dark area from reading as dead. */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-40 left-1/4 h-[34rem] w-[34rem] orb [--orb:rgb(var(--navy-700)/0.25)]" />
-        <div className="absolute -bottom-52 right-0 h-[30rem] w-[30rem] orb [--orb:rgb(var(--gold-400)/0.1)]" />
       </div>
 
       <Container>
@@ -188,7 +186,7 @@ export function SiteFooter() {
                   >
                     <Phone className="mt-0.5 h-4 w-4 shrink-0 text-gold-400" aria-hidden="true" />
                     <span className="flex flex-col">
-                      <span className="text-2xs font-semibold uppercase tracking-widest text-white/40">
+                      <span className="text-2xs font-semibold uppercase tracking-widest text-white/60">
                         {p.region}
                       </span>
                       {p.display}
@@ -203,7 +201,7 @@ export function SiteFooter() {
         {/* ---------------- Baseline ---------------- */}
         <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 py-8 text-xs text-white/45 sm:flex-row">
           <p>&copy; {new Date().getFullYear()} EduDubai. All rights reserved.</p>
-          <p className="text-white/35">Accredited compliance education for regulated institutions.</p>
+          <p className="text-white/60">Accredited compliance education for regulated institutions.</p>
         </div>
       </Container>
     </footer>

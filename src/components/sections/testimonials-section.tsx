@@ -74,25 +74,27 @@ function TestimonialCard({ t }: { t: Testimonial }) {
   return (
     <figure
       className={cn(
-        "flex w-[19rem] shrink-0 flex-col justify-between gap-6 rounded-lg border border-line bg-surface-raised p-7 sm:w-[23rem]",
-        "shadow-sm transition-all duration-slow ease-out-expo hover:-translate-y-1 hover:border-gold-400/50 hover:shadow-lg",
+        "flex w-[19rem] shrink-0 flex-col justify-between gap-6 rounded-sm border border-line bg-surface-raised p-7 sm:w-[23rem]",
+        // Structure from the hairline, not from a shadow, and the hover state
+        // is a crimson border rather than a lift.
+        "transition-colors duration-slow ease-out-expo hover:border-crimson-600",
       )}
     >
       <div>
-        <Quote aria-hidden="true" className="h-6 w-6 text-gold-400" />
-        <blockquote className="mt-4 text-sm leading-relaxed text-content">{t.content}</blockquote>
+        <Quote aria-hidden="true" className="h-6 w-6 text-crimson-600" />
+        <blockquote className="mt-4 text-[17px] leading-relaxed text-content">{t.content}</blockquote>
       </div>
 
       <figcaption className="flex items-center gap-3 border-t border-line pt-5">
         <span
           aria-hidden="true"
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy-900 text-2xs font-semibold tracking-wider text-gold-300"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ink-950 text-2xs font-semibold tracking-wider text-content-on-dark"
         >
           {initials(t.name)}
         </span>
         <span className="flex flex-col">
           <span className="text-sm font-semibold text-content-strong">{t.name}</span>
-          <span className="text-2xs text-content-muted">{t.role}</span>
+          <span className="text-sm text-content-muted">{t.role}</span>
         </span>
       </figcaption>
     </figure>
@@ -111,7 +113,7 @@ export function TestimonialsSection() {
   const bottomRow = testimonials.slice(4)
 
   return (
-    <Section tone="sunken" size="md" bleed className="overflow-hidden">
+    <Section tone="sunken" size="sm" bleed className="overflow-hidden">
       <div className="mx-auto w-full max-w-7xl px-gutter">
         <SectionHeading
           eyebrow="Client feedback"
@@ -120,7 +122,7 @@ export function TestimonialsSection() {
         />
       </div>
 
-      <Reveal variant="fade" className="mt-14 flex flex-col gap-5">
+      <Reveal variant="fade" className="mt-12 flex flex-col gap-5">
         <Marquee durationSec={64} itemClassName="gap-5 pr-5">
           {topRow.map((t) => (
             <TestimonialCard key={t.name} t={t} />

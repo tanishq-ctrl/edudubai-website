@@ -66,21 +66,21 @@ const expertiseAreas = [
 
 export function AboutExpertise() {
   return (
-    <Section tone="midnight" size="sm">
+    <Section tone="ink" size="sm">
       <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between lg:gap-20">
         <div>
           <Reveal variant="fade">
             <Eyebrow marker="dot">Areas of practice</Eyebrow>
           </Reveal>
           <Reveal variant="up" delay={70}>
-            <h2 className="mt-5 max-w-measure-sm text-4xl tracking-tight text-white sm:text-5xl">
+            <h2 className="mt-5 max-w-measure-sm text-4xl tracking-tight text-content-on-dark sm:text-5xl">
               Ten areas of regulatory practice
             </h2>
           </Reveal>
         </div>
 
         <Reveal variant="up" delay={140}>
-          <p className="max-w-[22rem] leading-relaxed text-content-on-dark-muted">
+          <p className="max-w-[22rem] text-[17px] leading-relaxed text-content-on-dark-muted">
             Training and advisory across the regulatory domains that carry institutional risk.
           </p>
         </Reveal>
@@ -97,19 +97,19 @@ export function AboutExpertise() {
             className={
               // The first row of each column gets the heavier rule, so both
               // columns are capped rather than only the very first item.
-              "border-t py-7 " + (i === 0 || i === 5 ? "border-white/40" : "border-white/10")
+              "border-t py-7 " + (i === 0 || i === 5 ? "border-white/30" : "border-white/10")
             }
           >
             <div className="flex gap-6">
               <span
                 aria-hidden="true"
-                className="w-7 shrink-0 pt-1 font-display text-sm font-semibold text-gold-400"
+                className="w-7 shrink-0 pt-1 font-display text-sm font-semibold text-crimson-ink"
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div className="min-w-0">
-                <h3 className="text-xl text-white">{area.title}</h3>
-                <p className="mt-2.5 text-[17px] leading-relaxed text-white/55">{area.description}</p>
+                <h3 className="text-xl text-content-on-dark">{area.title}</h3>
+                <p className="mt-2.5 text-[17px] leading-relaxed text-content-on-dark-muted">{area.description}</p>
               </div>
             </div>
           </div>

@@ -215,10 +215,10 @@ export function CourseFilters({ facets }: { facets: CourseFacets }) {
                 onClick={() => setSelectedMode(mode.value as DeliveryMode | "all")}
                 className={cn(
                   "rounded-full border px-4 py-2 text-xs font-medium transition-[background-color,border-color,color] duration-fast ease-out-expo",
-                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson-ink focus-visible:ring-offset-2",
                   active
-                    ? "border-navy-700 bg-navy-700 text-white shadow-sm"
-                    : "border-line-strong bg-surface text-content hover:border-navy-400 hover:text-navy-700",
+                    ? "border-crimson-600 bg-crimson-600 text-content-on-dark"
+                    : "border-line-strong bg-surface text-content hover:border-crimson-600 hover:text-crimson-600",
                 )}
               >
                 {mode.label}
@@ -232,7 +232,7 @@ export function CourseFilters({ facets }: { facets: CourseFacets }) {
             variant="ghost"
             size="sm"
             onClick={clearFilters}
-            className="ml-auto whitespace-nowrap text-content-muted hover:text-navy-700"
+            className="ml-auto whitespace-nowrap text-content-muted hover:text-crimson-600"
           >
             <X className="h-3.5 w-3.5" />
             Clear all

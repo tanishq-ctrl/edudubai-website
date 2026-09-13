@@ -102,7 +102,7 @@ export function ScrollProgress({ className }: { className?: string }) {
       */}
       <motion.div
         style={{ scaleX: scrollYProgress }}
-        className="h-full origin-left scale-x-0 bg-gradient-to-r from-gold-500 via-gold-300 to-gold-400"
+        className="h-full origin-left scale-x-0 bg-crimson-600"
       />
     </div>
   )

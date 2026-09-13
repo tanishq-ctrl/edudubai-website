@@ -16,12 +16,43 @@ interface CourseHeroProps {
   course: Course
 }
 
+/* ===========================================================================
+   Course detail hero.
+   ---------------------------------------------------------------------------
+   This hero was hand-tuned against a single 845px-tall viewport: fixed rem
+   padding, fixed `mt-*` gaps, a `vw`-only type ramp and a photograph whose
+   height was set by its aspect ratio alone. All of those are width-aware and
+   height-blind, so below about 845px the specification strip and the buttons
+   fell under the fold.
+
+   Every vertical measure below is therefore a clamp with an `svh` term, in the
+   same contract HeroShell documents: the whole hero fits from 620px to 1000px
+   of viewport height at 1440px wide. The photograph is the thing that gives up
+   space on a short screen; the actions never move. If you add a block here,
+   give it an svh-aware clamp -- a fixed `mt-6` or a `vw`-only clamp puts the
+   bug straight back.
+
+   The ground is a flat ink field. The two radial orbs and the grid overlay it
+   used to carry are gone and must not return.
+   ========================================================================= */
+
+const PAD_TOP = "calc(var(--header-h) + clamp(0.85rem, 0.2rem + 2.2svh, 2.25rem))"
+const PAD_BOTTOM = "clamp(1.5rem, 0.5rem + 3.5svh, 3.25rem)"
+const CRUMB_GAP = "clamp(0.75rem, 0.3rem + 1.6svh, 1.75rem)"
+const STACK_GAP = "clamp(0.85rem, 0.35rem + 1.7svh, 1.6rem)"
+const COL_GAP = "clamp(1.5rem, 0.6rem + 3svh, 2.75rem)"
+/* Capped below the marketing heroes: course names are long ("Certified
+   Anti-Money Laundering Specialist (CAMS)") and a document title should not be
+   set like a campaign line. */
+const TITLE_SIZE = "clamp(1.6rem, 0.9rem + 1.9vw + 1svh, 2.85rem)"
+/* The photograph shrinks first, so the strip below it keeps its place. */
+const MEDIA_HEIGHT = "clamp(9rem, 38svh, 26rem)"
+
 /**
  * Per-course extras keyed by `Course.id`.
  *
  * NOTE: `id` maps from `legacy_id`, not the uuid primary key, and two courses
  * have an id that differs from their slug -- so these must stay keyed on id.
- * Previously each entry was a copy-pasted JSX block per course.
  */
 const COURSE_SEALS: Record<string, { src: string; alt: string }> = {
   cgss: { src: "/images/badges/cgss-seal.png", alt: "CGSS exam preparation seal" },
@@ -47,42 +78,44 @@ export function CourseHero({ course }: CourseHeroProps) {
   const heroImage = course.heroImageUrl || course.imageUrl
 
   return (
-    <section className="relative isolate overflow-hidden bg-ink-950 pb-8 pt-[calc(var(--header-h)+1rem)] text-white grain">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -right-32 -top-32 h-[34rem] w-[34rem] orb [--orb:rgb(var(--gold-400)/0.08)]" />
-        <div className="absolute -bottom-40 -left-24 h-96 w-96 orb [--orb:rgb(var(--navy-700)/0.35)]" />
-        <div className="absolute inset-0 bg-grid-navy bg-grid opacity-30" />
-      </div>
-
+    <section
+      className="relative isolate overflow-hidden bg-ink-950 text-content-on-dark grain"
+      style={{ paddingTop: PAD_TOP, paddingBottom: PAD_BOTTOM }}
+    >
       <Container className="relative z-10">
         {/* Breadcrumb -- mirrors the BreadcrumbList JSON-LD on the page. */}
         <Reveal variant="fade">
-          <nav aria-label="Breadcrumb" className="mb-8">
-            <ol className="flex flex-wrap items-center gap-1.5 text-2xs text-white/45">
+          <nav aria-label="Breadcrumb" style={{ marginBottom: CRUMB_GAP }}>
+            <ol className="flex flex-wrap items-center gap-1.5 text-2xs text-content-on-dark-muted">
               <li>
-                <Link href="/" className="transition-colors hover:text-gold-300">
+                <Link href="/" className="transition-colors hover:text-crimson-ink">
                   Home
                 </Link>
               </li>
               <ChevronRight aria-hidden="true" className="h-3 w-3" />
               <li>
-                <Link href="/courses" className="transition-colors hover:text-gold-300">
+                <Link href="/courses" className="transition-colors hover:text-crimson-ink">
                   Courses
                 </Link>
               </li>
               <ChevronRight aria-hidden="true" className="h-3 w-3" />
-              <li aria-current="page" className="truncate text-white/70">
+              <li aria-current="page" className="truncate text-content-on-dark">
                 {course.title}
               </li>
             </ol>
           </nav>
         </Reveal>
 
-        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-10">
-          <div className="lg:col-span-7">
+        <div
+          className="grid items-center lg:grid-cols-12"
+          style={{ gap: COL_GAP }}
+        >
+          <div className="flex min-w-0 flex-col lg:col-span-7" style={{ gap: STACK_GAP }}>
             <Reveal variant="fade">
               <div className="flex flex-wrap items-center gap-2.5">
-                <span className="rounded-full bg-gold-400 px-3.5 py-1.5 text-2xs font-bold uppercase tracking-wider text-navy-900">
+                {/* A subject label, not a credential: it stays a neutral chip
+                    so the gold seal remains the only credential mark here. */}
+                <span className="rounded-full border border-white/20 px-3.5 py-1.5 text-2xs font-semibold uppercase tracking-wider text-content-on-dark">
                   {course.category.replace(/_/g, " ")}
                 </span>
                 {course.deliveryModes.map((mode) => (
@@ -91,50 +124,50 @@ export function CourseHero({ course }: CourseHeroProps) {
               </div>
             </Reveal>
 
-            <div className="mt-5 flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
-              <div className="max-w-2xl">
-                {/* Capped below the marketing heroes: course names are long
-                    ("Certified Anti-Money Laundering Specialist (CAMS)") and
-                    ran to four lines at the larger size. Capped again at lg,
-                    because at the fluid 4xl the longest title pushed the
-                    specification strip past the fold on a 845px laptop. A
-                    course title is a document title, not a campaign line. */}
-                <h1 className="text-3xl text-white sm:text-4xl lg:text-[3rem]">
+            <div
+              className="flex flex-col sm:flex-row sm:items-start sm:justify-between"
+              style={{ gap: STACK_GAP }}
+            >
+              <div className="flex min-w-0 max-w-2xl flex-col" style={{ gap: STACK_GAP }}>
+                <h1
+                  className="font-semibold tracking-tight text-content-on-dark"
+                  style={{ fontSize: TITLE_SIZE, lineHeight: 1.08 }}
+                >
                   <SplitText text={course.title} as="span" className="block" step={35} />
                 </h1>
                 <Reveal variant="up" delay={260}>
-                  <p className="mt-4 text-lg leading-relaxed text-white/70">
+                  <p className="max-w-measure text-[17px] leading-relaxed text-content-on-dark-muted">
                     {course.shortDescription}
                   </p>
                 </Reveal>
               </div>
 
               {seal ? (
-                <Reveal variant="scale" delay={200} className="shrink-0">
+                <Reveal variant="fade" delay={200} className="shrink-0">
                   <Image
                     src={seal.src}
                     alt={seal.alt}
                     width={280}
                     height={280}
-                    className="h-24 w-24 animate-float drop-shadow-2xl lg:h-32 lg:w-32"
+                    className="h-20 w-20 lg:h-28 lg:w-28"
                   />
                 </Reveal>
               ) : null}
             </div>
 
             <Reveal variant="up" delay={340}>
-              <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 <ApplyNowDialog
                   courseSlug={course.slug}
                   courseTitle={course.title}
-                  size="xl"
+                  size="lg"
                   className="w-full sm:w-auto"
                 />
                 <WhatsAppButton
                   message={whatsappMessage}
                   source={`course_${course.slug}_hero`}
                   variant="outline-light"
-                  size="xl"
+                  size="lg"
                   className="w-full sm:w-auto"
                 >
                   Ask a question
@@ -152,35 +185,36 @@ export function CourseHero({ course }: CourseHeroProps) {
             </Reveal>
 
             <Reveal variant="up" delay={420}>
-              <dl className="mt-6 flex max-w-2xl flex-wrap items-center gap-x-8 gap-y-3 rounded-lg border border-white/10 bg-white/[0.07] px-5 py-4">
+              {/* A solid panel, not a translucent one: `bg-white/[0.07]` glass
+                  read as a smudge over the flat ground. */}
+              <dl className="flex max-w-2xl flex-wrap items-center gap-x-8 gap-y-3 rounded-sm border border-white/10 bg-ink-900 px-5 py-4">
                 <div className="flex items-baseline gap-2.5">
-                  <dt className="flex items-center gap-1.5 text-2xs font-semibold uppercase tracking-[0.18em] text-gold-300">
+                  <dt className="flex items-center gap-1.5 text-2xs font-semibold uppercase tracking-[0.18em] text-crimson-ink">
                     <Clock aria-hidden="true" className="h-3 w-3" />
                     Duration
                   </dt>
-                  <dd className="font-display text-base font-semibold text-white">
+                  <dd className="font-display text-base font-semibold text-content-on-dark">
                     {course.duration} hours
                   </dd>
                 </div>
                 <div className="flex items-baseline gap-2.5">
-                  <dt className="flex items-center gap-1.5 text-2xs font-semibold uppercase tracking-[0.18em] text-gold-300">
+                  <dt className="flex items-center gap-1.5 text-2xs font-semibold uppercase tracking-[0.18em] text-crimson-ink">
                     <GraduationCap aria-hidden="true" className="h-3 w-3" />
                     Level
                   </dt>
-                  <dd className="font-display text-base font-semibold capitalize text-white">
+                  <dd className="font-display text-base font-semibold capitalize text-content-on-dark">
                     {course.level.toLowerCase()}
                   </dd>
                 </div>
                 <div className="flex items-baseline gap-2.5">
-                  <dt className="text-2xs font-semibold uppercase tracking-[0.18em] text-gold-300">
+                  <dt className="text-2xs font-semibold uppercase tracking-[0.18em] text-crimson-ink">
                     Enrolment
                   </dt>
-                  <dd className="flex items-center gap-2 font-display text-base font-semibold text-white">
+                  {/* Open enrolment is a live signal, which is the one thing
+                      amber is for. A flat dot, no pulse ring. */}
+                  <dd className="flex items-center gap-2 font-display text-base font-semibold text-content-on-dark">
                     Open
-                    <span aria-hidden="true" className="relative flex h-2 w-2">
-                      <span className="absolute inline-flex h-full w-full animate-pulse-ring rounded-full bg-success" />
-                      <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
-                    </span>
+                    <span aria-hidden="true" className="h-2 w-2 rounded-full bg-amber-400" />
                   </dd>
                 </div>
               </dl>
@@ -188,8 +222,11 @@ export function CourseHero({ course }: CourseHeroProps) {
           </div>
 
           {heroImage ? (
-            <Reveal variant="scale" delay={200} className="lg:col-span-5">
-              <div className="relative mx-auto aspect-[3/4] w-full max-w-[24rem] overflow-hidden rounded-xl shadow-xl ring-1 ring-white/12">
+            <Reveal variant="fade" delay={200} className="min-w-0 lg:col-span-5">
+              <div
+                className="relative mx-auto aspect-[3/4] w-auto overflow-hidden rounded-sm border border-white/10"
+                style={{ height: MEDIA_HEIGHT }}
+              >
                 <Image
                   src={heroImage}
                   alt=""
@@ -205,7 +242,8 @@ export function CourseHero({ course }: CourseHeroProps) {
         </div>
       </Container>
 
-      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px bg-gold-line opacity-50" />
+      {/* The band ends on a rule, not a fade. */}
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px bg-crimson-600" />
     </section>
   )
 }

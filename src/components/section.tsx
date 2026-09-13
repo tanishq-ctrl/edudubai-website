@@ -11,23 +11,50 @@ import { Reveal } from "@/components/motion"
  * `tone` likewise replaces ad-hoc `bg-white` / `bg-slate-50` / `bg-indigo-100`.
  */
 
-type Tone = "paper" | "sunken" | "ink" | "navy" | "midnight" | "deep" | "transparent"
+type Tone =
+  | "paper"
+  | "sunken"
+  | "raised"
+  | "ink"
+  | "deep"
+  | "crimson"
+  | "transparent"
+  /** Legacy names. Both now resolve to a flat dark field; see below. */
+  | "navy"
+  | "midnight"
 
+/**
+ * Section grounds are FLAT FIELDS. No gradients.
+ *
+ * A band that fades from one colour to another has no edge, and a page built
+ * from edgeless bands reads as generated. Contrast between sections comes from
+ * value (paper -> sunken -> ink -> deep) and from the 1px rule where two
+ * light bands meet, never from a ramp.
+ *
+ * Gradients are permitted in exactly one place on this site: the scrim over a
+ * photograph, where they exist to keep text legible over the image.
+ */
 const toneClass: Record<Tone, string> = {
   paper: "bg-surface text-content",
   sunken: "bg-surface-sunken text-content",
-  /* Deepest brand navy (#0f1f35) -- for the heaviest bands. */
+  /* Pure white, raised off the warm paper ground. */
+  raised: "bg-surface-raised text-content",
+  /* Primary dark band. */
   ink: "bg-ink-950 text-content-on-dark grain",
-  /* The brand's signature navy gradient (#1e3a5f -> #0f1f35), as the site
-     used before. Keeps `ink` and `navy` visually distinct rather than
-     resolving to the same flat colour. */
-  navy: "bg-gradient-to-br from-navy-700 via-navy-800 to-navy-900 text-content-on-dark grain",
-  /* Navy falling into near-black. The anchor tone for dark pages. */
-  midnight: "bg-gradient-to-b from-navy-900 to-ink-975 text-content-on-dark grain",
-  /* Flat near-black. Pairs with `midnight` so two adjacent dark bands differ
-     in value instead of reading as one continuous block. */
+  /* Deepest band. Pairs with `ink` so two adjacent dark sections differ in
+     value instead of reading as one block. */
   deep: "bg-ink-975 text-content-on-dark grain",
+  /* The brand ground: crimson-600 under paper-coloured text, 8.4:1. Use it
+     once per page at most, for the band that carries the decision. */
+  crimson: "bg-crimson-600 text-content-on-dark",
   transparent: "",
+
+  /* --- Legacy aliases ---------------------------------------------------
+     `navy` and `midnight` were gradient bands. There is no navy in this
+     palette and there are no gradient bands, so both map to the flat dark
+     fields. Kept only so existing callers compile; prefer ink / deep. */
+  navy: "bg-ink-950 text-content-on-dark grain",
+  midnight: "bg-ink-975 text-content-on-dark grain",
 }
 
 const sizeClass = {
@@ -65,7 +92,7 @@ export function Section({
 }
 
 /**
- * Small label above a heading. The gold marker is the accent, not the text.
+ * Small label above a heading. The crimson marker is the accent, not the text.
  *
  * `marker="rule"` is the original tracked-uppercase treatment, kept as the
  * default so the pages still using it are untouched. `marker="dot"` is the
@@ -84,7 +111,7 @@ export function Eyebrow({
   return (
     <span
       className={cn(
-        "inline-flex items-center text-gold-ink",
+        "inline-flex items-center text-crimson-ink",
         marker === "rule"
           ? "gap-3 text-2xs font-semibold uppercase tracking-[0.22em]"
           : "gap-2.5 text-sm font-medium",
@@ -96,7 +123,7 @@ export function Eyebrow({
         className={
           marker === "rule"
             ? "h-px w-8 bg-current opacity-60"
-            : "h-[7px] w-[7px] shrink-0 rounded-full bg-gold-400"
+            : "h-[7px] w-[7px] shrink-0 rounded-full bg-crimson-ink"
         }
       />
       {children}
@@ -147,7 +174,7 @@ export function SectionHeading({
         <Tag
           className={cn(
             "text-3xl font-bold sm:text-4xl",
-            // On light surfaces the heading inherits brand navy from the base
+            // On light surfaces the heading inherits warm ink from the base
             // stylesheet; only the dark variant needs an explicit colour.
             onDark && "text-content-on-dark",
             align === "center" ? "mx-auto max-w-measure-sm" : "max-w-measure-sm",

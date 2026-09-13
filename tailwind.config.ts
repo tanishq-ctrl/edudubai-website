@@ -32,6 +32,35 @@ const config = {
           700: channel("--ink-700"),
           DEFAULT: channel("--ink-900"),
         },
+        /* The brand anchor. crimson-600 is the primary: buttons, rules,
+           accent text. Reads on paper (8.4:1) and as a ground under paper. */
+        crimson: {
+          /* Contextual: crimson on paper, gold on a dark ground. */
+          ink: channel("--accent-ink"),
+          900: channel("--crimson-900"),
+          800: channel("--crimson-800"),
+          700: channel("--crimson-700"),
+          600: channel("--crimson-600"),
+          500: channel("--crimson-500"),
+          400: channel("--crimson-400"),
+          300: channel("--crimson-300"),
+          200: channel("--crimson-200"),
+          100: channel("--crimson-100"),
+          50: channel("--crimson-50"),
+          DEFAULT: channel("--crimson-600"),
+        },
+        /* SIGNAL ONLY: live, open, new. Never decorative, never a band. */
+        amber: {
+          600: channel("--amber-600"),
+          500: channel("--amber-500"),
+          400: channel("--amber-400"),
+          300: channel("--amber-300"),
+          200: channel("--amber-200"),
+          100: channel("--amber-100"),
+          DEFAULT: channel("--amber-500"),
+        },
+        /* LEGACY NAME, warm neutral values. There is no navy in this palette;
+           see globals.css. Prefer ink-* / crimson-* in new work. */
         navy: {
           900: channel("--navy-900"),
           800: channel("--navy-800"),
@@ -195,6 +224,9 @@ const config = {
         lg: "var(--radius-lg)",
         xl: "var(--radius-xl)",
         "2xl": "var(--radius-2xl)",
+        /* Tailwind's own 3xl (1.5rem) is overridden too: leftover
+           `rounded-3xl` markup must not reintroduce the pill-card look. */
+        "3xl": "var(--radius-2xl)",
       },
 
       boxShadow: {
@@ -235,10 +267,13 @@ const config = {
       },
 
       backgroundImage: {
-        "ink-fade": "linear-gradient(180deg, rgb(var(--ink-950)), rgb(var(--ink-900)) 55%, rgb(var(--navy-900)))",
+        /* No section-ground gradients. `ink-fade` was removed: dark bands are
+           a flat field (bg-ink-950 / bg-ink-975), which is what keeps the
+           page reading as printed matter rather than as a render. */
         "gold-line": "linear-gradient(90deg, rgb(var(--gold-400) / 0), rgb(var(--gold-400)), rgb(var(--gold-400) / 0))",
+        /* A ruled grid, not a glow. Warm hairlines over a dark field. */
         "grid-navy":
-          "linear-gradient(rgb(var(--navy-400) / 0.07) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--navy-400) / 0.07) 1px, transparent 1px)",
+          "linear-gradient(rgb(var(--navy-300) / 0.06) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--navy-300) / 0.06) 1px, transparent 1px)",
       },
 
       backgroundSize: {

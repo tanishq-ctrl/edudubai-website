@@ -30,8 +30,16 @@ export const metadata: Metadata = {
  * index does not, and the index routes to all eight programmes in a third of
  * the height the grid needed.
  *
- * Tones from there alternate paper / deep / ink / sunken / navy so no two
- * adjacent bands share a value.
+ * Tones from there alternate so no two adjacent bands share a value, and every
+ * one of them is a FLAT field rather than a gradient:
+ *
+ *   carousel (ink, photographic) -> trust rail (paper) -> obligations (ink)
+ *   -> partnerships (paper) -> faculty (deep) -> stats (ink)
+ *   -> testimonials (sunken) -> corporate CTA (crimson)
+ *
+ * The crimson band appears exactly once, at the foot of the page, on the block
+ * that carries the decision. Do not add a second one: two crimson fields on a
+ * page and neither reads as the brand.
  */
 export default async function HomePage() {
   const courses = await getAllCoursesNew()

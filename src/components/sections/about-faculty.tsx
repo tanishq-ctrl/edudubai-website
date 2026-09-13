@@ -11,10 +11,9 @@ import { Reveal, Stagger } from "@/components/motion"
  * The biographies here are that component's copy, trimmed to the length this
  * layout can carry; the long-form version still lives there.
  *
- * On the photographs: the two headshots were taken on different backgrounds
- * (one warm, one grey studio) and read as unrelated images side by side. The
- * navy `mix-blend-color` wash unifies them. It is one small element per card,
- * not a full-section blend -- see the perf note on `.grain` in globals.css.
+ * On the photographs: they are shown as taken. The `mix-blend-color` wash
+ * that used to tint both headshots has gone with the rest of the decorative
+ * layer; a 1px frame does the unifying work instead.
  */
 const faculty = [
   {
@@ -39,15 +38,15 @@ export function AboutFaculty() {
       </Reveal>
 
       <Reveal variant="up" delay={70}>
-        <h2 className="mt-5 max-w-measure-sm text-4xl tracking-tight text-white sm:text-5xl">
+        <h2 className="mt-5 max-w-measure-sm text-4xl tracking-tight text-content-on-dark sm:text-5xl">
           Taught by practising compliance professionals
         </h2>
       </Reveal>
 
       <Stagger className="mt-14 grid gap-8 md:grid-cols-2" step={130} variant="up">
         {faculty.map((person) => (
-          <article key={person.name} className="panel-dark rounded-3xl p-6">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
+          <article key={person.name} className="panel-dark rounded-sm p-6">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-sm">
               <Image
                 src={person.image}
                 alt={person.name}
@@ -55,15 +54,11 @@ export function AboutFaculty() {
                 sizes="(min-width: 768px) 40vw, 100vw"
                 className="object-cover object-top"
               />
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 bg-navy-700/60 mix-blend-color"
-              />
             </div>
 
-            <h3 className="mt-7 text-2xl text-white">{person.name}</h3>
-            <p className="mt-2 text-sm font-medium text-gold-ink">{person.role}</p>
-            <p className="mt-4 text-[17px] leading-relaxed text-white/55">{person.bio}</p>
+            <h3 className="mt-7 text-2xl text-content-on-dark">{person.name}</h3>
+            <p className="mt-2 text-[15px] font-medium text-crimson-ink">{person.role}</p>
+            <p className="mt-4 text-[17px] leading-relaxed text-content-on-dark-muted">{person.bio}</p>
           </article>
         ))}
       </Stagger>

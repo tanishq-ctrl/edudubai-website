@@ -36,31 +36,35 @@ export function CourseCard({ course, priority = false, className }: CourseCardPr
   return (
     <article
       className={cn(
-        "group relative flex h-full flex-col overflow-hidden rounded-lg border border-line bg-surface-raised shadow-sm",
-        "transition-all duration-slow ease-out-expo hover:-translate-y-1.5 hover:border-gold-400/55 hover:shadow-lg",
-        "focus-within:border-gold-400 focus-within:shadow-lg",
+        "group relative flex h-full flex-col overflow-hidden rounded-sm border border-line bg-surface-raised",
+        // Structure comes from the rule, not from a lift and a shadow: the
+        // hover state darkens the border to crimson and nothing else.
+        "transition-colors duration-fast ease-out-expo hover:border-crimson-600",
+        "focus-within:border-crimson-600",
         className,
       )}
     >
       {course.imageUrl ? (
-        <div className="relative aspect-[16/10] w-full overflow-hidden bg-navy-900">
+        <div className="relative aspect-[16/10] w-full overflow-hidden bg-ink-950">
           <CourseImage
             src={course.imageUrl}
             alt=""
             fill
             priority={priority}
-            className="object-cover object-[center_15%] transition-transform [transition-duration:1200ms] ease-out-expo group-hover:scale-[1.06]"
+            className="object-cover object-[center_15%]"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
 
-          {/* Scrim so the badge stays legible over any photo. */}
+          {/* The one permitted gradient: a scrim inside a photograph, there so
+              the badge stays legible over any image. */}
           <div
             aria-hidden="true"
             className="absolute inset-0 bg-gradient-to-t from-ink-950/55 via-transparent to-ink-950/25"
           />
 
-          <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-2xs font-bold uppercase tracking-[0.12em] text-navy-900 shadow-sm">
-            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-success" />
+          {/* A credential mark, so the dot is gold rather than a status green. */}
+          <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-surface px-2.5 py-1 text-2xs font-semibold uppercase tracking-[0.12em] text-content-strong">
+            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-gold-mark" />
             {course.issuingBody
               ? `${course.issuingBody.replace(/_/g, " ")} · Official curriculum`
               : "Official curriculum"}
@@ -76,7 +80,7 @@ export function CourseCard({ course, priority = false, className }: CourseCardPr
            programmes run both formats, so the pair is stated once.
         */}
         <div className="flex items-center gap-2">
-          <span className="truncate rounded-full bg-navy-50 px-2.5 py-1 text-2xs font-semibold uppercase tracking-wider text-navy-700">
+          <span className="truncate rounded-full bg-crimson-50 px-2.5 py-1 text-2xs font-semibold uppercase tracking-wider text-crimson-700">
             {course.category.replace(/_/g, " ")}
           </span>
           {format ? (
@@ -94,25 +98,25 @@ export function CourseCard({ course, priority = false, className }: CourseCardPr
           ) : null}
         </div>
 
-        <h3 className="mt-5 text-lg leading-snug transition-colors duration-fast group-hover:text-navy-700">
+        <h3 className="mt-5 text-lg leading-snug transition-colors duration-fast group-hover:text-crimson-600">
           <Link href={`/courses/${course.slug}`} className="after:absolute after:inset-0">
             <span className="line-clamp-3">{course.title}</span>
           </Link>
         </h3>
 
-        <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-content-muted">
+        <p className="mt-3 line-clamp-2 text-[17px] leading-relaxed text-content-muted">
           {course.shortDescription}
         </p>
 
         <div className="mt-auto flex items-center justify-between gap-4 border-t border-line pt-5">
           <dl className="flex items-center gap-5 text-xs font-medium text-content-muted">
             <div className="flex items-center gap-1.5">
-              <Clock aria-hidden="true" className="h-3.5 w-3.5 text-gold-mark" />
+              <Clock aria-hidden="true" className="h-3.5 w-3.5 text-content-subtle" />
               <dt className="sr-only">Duration</dt>
               <dd>{course.duration} hrs</dd>
             </div>
             <div className="flex items-center gap-1.5">
-              <GraduationCap aria-hidden="true" className="h-3.5 w-3.5 text-gold-mark" />
+              <GraduationCap aria-hidden="true" className="h-3.5 w-3.5 text-content-subtle" />
               <dt className="sr-only">Level</dt>
               <dd className="capitalize">{course.level.toLowerCase()}</dd>
             </div>
@@ -120,7 +124,7 @@ export function CourseCard({ course, priority = false, className }: CourseCardPr
 
           <span
             aria-hidden="true"
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-content-muted transition-all duration-slow ease-out-expo group-hover:border-gold-400 group-hover:bg-gold-400 group-hover:text-navy-900"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-content-muted transition-colors duration-fast ease-out-expo group-hover:border-crimson-600 group-hover:bg-crimson-600 group-hover:text-content-on-dark"
           >
             <ArrowUpRight className="h-4 w-4" />
           </span>

@@ -36,7 +36,7 @@ interface CoursesPageProps {
  *
  * On a browse page the catalogue IS the hero, so this does not use the shared
  * PageHeroImage: a full-height photograph would push the grid below the fold.
- * A compact navy head hands over to the filter bar, which straddles the
+ * A compact head on the paper ground hands over to the filter bar, which straddles the
  * boundary between the head and the grid so the control the visitor needs
  * first is the most prominent object on the page.
  */
@@ -95,22 +95,39 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
 
       {/*
          No hero band. On a browse page the catalogue is the hero: a full-height
-         navy head with a standfirst and a stat row only pushed the grid below
+         dark head with a standfirst and a stat row only pushed the grid below
          the fold and delayed the one thing the visitor came for. The page opens
          on its title, hands straight to the controls, then to the programmes.
 
-         The panel carries the page's only sunken fill. `--surface` and
-         `--surface-raised` are both pure white, so a white card on a white page
-         cannot define itself whatever ring it wears; the grey does that, and
-         the search field inside goes white against it.
+         The panel carries the page's only sunken fill: it sits a step below
+         the warm paper ground inside a 1px rule, and the search field inside
+         it goes back up to paper so the control reads as the raised object.
       */}
-      <section className="bg-surface pb-section-md pt-header">
+      <section
+        className="bg-surface"
+        style={{
+          /* Height-aware, like every other opening band on the site: the head
+             and the filter panel have to clear the fold between a 620px and a
+             1000px viewport, so both the padding and the title carry an svh
+             term rather than a fixed rem value. */
+          paddingTop: "calc(var(--header-h) + clamp(1.25rem, 0.3rem + 3.5svh, 3rem))",
+          paddingBottom: "clamp(2.5rem, 1rem + 5svh, 5rem)",
+        }}
+      >
         <Container>
-          <h1 className="mt-10 text-4xl tracking-tight sm:mt-12 sm:text-5xl">
+          <h1
+            className="max-w-measure-sm font-semibold tracking-tight"
+            style={{ fontSize: "clamp(1.9rem, 1rem + 2.2vw + 1.2svh, 3.25rem)", lineHeight: 1.08 }}
+          >
             Professional certifications
           </h1>
 
-          <div className="mt-8 rounded-xl bg-surface-sunken p-5 ring-1 ring-line sm:p-6">
+          {/* The panel keeps its recessed relationship to the page, flattened:
+              a sunken fill inside a 1px rule, no ring-glow and no soft corner. */}
+          <div
+            className="rounded-sm border border-line bg-surface-sunken p-5 sm:p-6"
+            style={{ marginTop: "clamp(1.25rem, 0.5rem + 2.5svh, 2.25rem)" }}
+          >
             <Suspense
               fallback={<div className="h-28 animate-pulse rounded-sm bg-surface" />}
             >
@@ -134,7 +151,7 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
             {isFiltered ? (
               <Link
                 href="/courses"
-                className="text-sm font-medium text-navy-700 underline-offset-4 hover:underline"
+                className="text-sm font-medium text-crimson-600 underline-offset-4 hover:underline"
               >
                 Clear filters
               </Link>
@@ -143,17 +160,17 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
 
           {filteredCourses.length === 0 ? (
             /* Never a bare "0 results": name what was searched and offer a way on. */
-            <div className="mx-auto max-w-lg rounded-xl bg-surface-sunken px-8 py-16 text-center ring-1 ring-line">
+            <div className="mx-auto max-w-lg rounded-sm border border-line bg-surface-sunken px-8 py-16 text-center">
               <span
                 aria-hidden="true"
-                className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-surface text-content-subtle shadow-sm"
+                className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-line bg-surface text-content-subtle"
               >
                 <Search className="h-6 w-6" />
               </span>
-              <h3 className="mt-6 text-xl text-navy-900">
+              <h3 className="mt-6 text-xl text-content-strong">
                 No programmes match{filters.q ? ` “${filters.q}”` : " those filters"}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-content-muted">
+              <p className="mt-3 text-[17px] leading-relaxed text-content-muted">
                 Try a broader term, or browse the full catalogue of {allCourses.length}{" "}
                 programmes.
               </p>
@@ -162,7 +179,7 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
                   <Link
                     key={term}
                     href={`/courses?q=${encodeURIComponent(term)}`}
-                    className="rounded-full border border-line-strong px-4 py-2 text-xs font-medium text-content transition-colors duration-fast hover:border-navy-400 hover:text-navy-700"
+                    className="rounded-full border border-line-strong px-4 py-2 text-xs font-medium text-content transition-colors duration-fast hover:border-crimson-600 hover:text-crimson-600"
                   >
                     {term}
                   </Link>

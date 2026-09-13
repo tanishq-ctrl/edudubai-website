@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation"
-import { Container } from "@/components/container"
 import { getCourseBySlugNew } from "@/server/actions/courses"
 import { CourseDetailClient } from "./page-client"
 import { CourseHero } from "./course-hero"
@@ -20,7 +19,7 @@ export async function generateMetadata({ params }: CourseDetailPageProps): Promi
 
   if (!course) {
     return {
-      title: "Course Not Found",
+      title: "Course not found",
     }
   }
 
@@ -35,7 +34,7 @@ export async function generateMetadata({ params }: CourseDetailPageProps): Promi
 
   return {
     title: `${course.title} | International Professional Certification`,
-    description: `${course.shortDescription} Master the ${course.title} with EduDubai's global professional training track. Worldwide recognized certification training.`,
+    description: `${course.shortDescription} Master the ${course.title} with EduDubai's global professional training track. Worldwide recognised certification training.`,
     keywords: [
       course.title,
       `${course.title} Certification`,
@@ -45,7 +44,7 @@ export async function generateMetadata({ params }: CourseDetailPageProps): Promi
       "Online Professional Courses"
     ],
     openGraph: {
-      title: `${course.title} — Global Professional Training`,
+      title: `${course.title}: global professional training`,
       description: course.shortDescription,
       images: [course.imageUrl || "/edudubai-logo.png"],
     },

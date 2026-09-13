@@ -11,7 +11,7 @@ import { getNewsArticles, formatNewsDate } from "@/lib/news"
 export const metadata: Metadata = {
   title: "News & Press",
   description:
-    "Latest news, press releases, and announcements from EduDubai — including strategic partnerships and milestones in global compliance education.",
+    "Latest news, press releases and announcements from EduDubai, including strategic partnerships and milestones in global compliance education.",
   keywords: [
     "EduDubai News",
     "Compliance Training Partnership",
@@ -39,7 +39,7 @@ export default function NewsPage() {
         <h2 className="sr-only">Latest stories</h2>
 
         {articles.length === 0 ? (
-          <p className="py-16 text-center text-content-muted">
+          <p className="py-16 text-center text-[17px] text-content-muted">
             No announcements at this time.
           </p>
         ) : (
@@ -47,7 +47,7 @@ export default function NewsPage() {
             {articles.map((a) => (
               <article
                 key={a.slug}
-                className="group relative flex flex-col overflow-hidden rounded-xl border border-line bg-surface-raised shadow-sm transition-all duration-slow ease-out-expo hover:-translate-y-1 hover:border-gold-400/50 hover:shadow-lg"
+                className="group relative flex flex-col overflow-hidden rounded-sm border border-line bg-surface-raised shadow-sm transition-colors duration-slow ease-out-expo hover:border-crimson-600"
               >
                 {a.image ? (
                   /*
@@ -56,20 +56,20 @@ export default function NewsPage() {
                     most of the image away, so it is full width at close to its
                     native ratio instead.
                   */
-                  <div className="relative aspect-[21/9] w-full overflow-hidden bg-navy-900">
+                  <div className="relative aspect-[21/9] w-full overflow-hidden bg-ink-950">
                     <Image
                       src={a.image}
                       alt=""
                       fill
                       sizes="(max-width: 1024px) 100vw, 64rem"
-                      className="object-cover transition-transform [transition-duration:1200ms] ease-out-expo group-hover:scale-[1.03]"
+                      className="object-cover"
                     />
                   </div>
                 ) : null}
 
                 <div className="flex flex-col p-7 sm:p-8">
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="rounded-full border border-gold-400/35 bg-gold-400/10 px-3 py-1 text-2xs font-semibold uppercase tracking-[0.18em] text-gold-ink">
+                    <span className="rounded-full border border-crimson-600/30 bg-crimson-50 px-3 py-1 text-2xs font-semibold uppercase tracking-[0.18em] text-crimson-ink">
                       {a.category}
                     </span>
                     <time
@@ -87,7 +87,7 @@ export default function NewsPage() {
                     </Link>
                   </h3>
 
-                  <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-content-muted">
+                  <p className="mt-3 line-clamp-3 text-[17px] leading-relaxed text-content-muted">
                     {a.excerpt}
                   </p>
 
@@ -102,7 +102,7 @@ export default function NewsPage() {
                     )}
                     <span
                       aria-hidden="true"
-                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-content-muted transition-all duration-slow ease-out-expo group-hover:border-gold-400 group-hover:bg-gold-400 group-hover:text-navy-900"
+                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-content-muted transition-colors duration-slow ease-out-expo group-hover:border-crimson-600 group-hover:bg-crimson-600 group-hover:text-content-on-dark"
                     >
                       <ArrowUpRight className="h-4 w-4" />
                     </span>

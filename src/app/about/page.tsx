@@ -29,9 +29,9 @@ export const metadata: Metadata = {
  * longer wraps them in a Container with its own padding -- that wrapper was
  * what prevented full-bleed dark bands from reaching the viewport edges.
  *
- * Tone alternates midnight / deep down the page so no two adjacent bands share
- * a value, and the gold CTA is the only light band -- held back to the end so
- * it reads as the payoff.
+ * Tone alternates ink / deep down the page so no two adjacent bands share a
+ * value, and the crimson CTA is the only branded band, held back to the end so
+ * it reads as the payoff rather than as decoration.
  */
 export default function AboutPage() {
   return (

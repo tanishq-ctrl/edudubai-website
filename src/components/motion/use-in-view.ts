@@ -131,7 +131,25 @@ export function useInView<T extends HTMLElement = HTMLDivElement>(options: InVie
   return { ref, inView }
 }
 
-/** Reads the OS-level reduced-motion preference and tracks changes to it. */
+/**
+ * Reads the OS-level reduced-motion preference and tracks changes to it.
+ *
+ * The preference is a media query, so framer's hook reports false during SSR
+ * and true on the client for anyone with the OS setting on. Every component
+ * that branches its markup on it therefore rendered a different first client
+ * tree than the server sent, and React threw a hydration mismatch -- visible
+ * on the homepage carousel, latent everywhere else.
+ *
+ * Holding the preference back until after mount makes render #1 identical to
+ * the server HTML; the state update then flips the whole tree to the static
+ * treatment before the user sees a frame of movement, because the effect runs
+ * as a layout effect on the client.
+ */
 export function usePrefersReducedMotion() {
-  return useReducedMotion() ?? false
+  const preference = useReducedMotion() ?? false
+  const [mounted, setMounted] = React.useState(false)
+
+  useIsomorphicLayoutEffect(() => setMounted(true), [])
+
+  return mounted && preference
 }

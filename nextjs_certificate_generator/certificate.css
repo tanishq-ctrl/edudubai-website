@@ -1,0 +1,405 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Great+Vibes&display=swap');
+
+.certificate-tool {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  background: #f3f4f6;
+  padding: 24px;
+}
+
+.certificate-canvas {
+  width: 1492px;
+  height: 1054px;
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  font-family: Inter, Arial, sans-serif;
+  color: #030b18;
+  box-sizing: border-box;
+  transform-origin: top left;
+}
+
+.left-panel {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 1035px;
+  height: 100%;
+  padding: 58px 0 0 70px;
+  box-sizing: border-box;
+  z-index: 2;
+  background: linear-gradient(120deg, #ffffff 0%, #ffffff 76%, transparent 76.2%);
+}
+
+.gold-line {
+  background: #f5b400;
+  height: 8px;
+  width: 95px;
+}
+
+.top-line {
+  margin-bottom: 26px;
+}
+
+.certificate-title {
+  margin: 0;
+  font-size: 96px;
+  line-height: 0.93;
+  letter-spacing: 5px;
+  font-weight: 900;
+  color: #020b1a;
+}
+
+.certificate-subtitle {
+  margin-top: 14px;
+  font-size: 33px;
+  letter-spacing: 19px;
+  font-weight: 500;
+  color: #121722;
+}
+
+.small-line {
+  margin-top: 25px;
+  margin-bottom: 31px;
+  width: 72px;
+}
+
+.certify-text {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+  color: #17202c;
+}
+
+.participant-name {
+  margin: 24px 0 8px 0;
+  font-size: 74px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -2px;
+  color: #020b1a;
+  max-width: 790px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.participant-underline {
+  width: 785px;
+  height: 2px;
+  background: #f5b400;
+}
+
+.webinar-text {
+  margin: 25px 0 35px 0;
+  font-size: 22px;
+  color: #111827;
+}
+
+.program-title {
+  font-size: 32px;
+  line-height: 1.18;
+  font-weight: 900;
+  letter-spacing: -0.7px;
+  color: #07101f;
+}
+
+.program-title span {
+  color: #f5b400;
+}
+
+.title-line {
+  width: 87px;
+  height: 4px;
+  margin-top: 12px;
+  margin-bottom: 17px;
+}
+
+.description-text {
+  margin: 0;
+  font-size: 17.5px;
+  line-height: 1.55;
+  color: #17202c;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  margin-top: 35px;
+  height: 72px;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.date-item { width: 230px; }
+.time-item { width: 245px; }
+.cert-item { width: 280px; }
+
+.divider {
+  width: 1px;
+  height: 66px;
+  background: #b8bcc4;
+  margin: 0 30px;
+}
+
+.icon {
+  width: 42px;
+  height: 42px;
+  position: relative;
+  flex: 0 0 auto;
+  color: #f5b400;
+  border: 4px solid #f5b400;
+  box-sizing: border-box;
+}
+
+.calendar-icon {
+  border-radius: 3px;
+}
+
+.calendar-icon::before,
+.calendar-icon::after {
+  content: '';
+  position: absolute;
+  top: -9px;
+  width: 5px;
+  height: 13px;
+  background: #f5b400;
+}
+
+.calendar-icon::before { left: 8px; }
+.calendar-icon::after { right: 8px; }
+
+.calendar-icon span,
+.calendar-icon span::before,
+.calendar-icon span::after {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #f5b400;
+  top: 15px;
+  left: 7px;
+  box-shadow: 10px 0 0 #f5b400, 20px 0 0 #f5b400, 0 10px 0 #f5b400, 10px 10px 0 #f5b400, 20px 10px 0 #f5b400;
+}
+
+.clock-icon {
+  border-radius: 50%;
+}
+
+.clock-icon::before {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 15px;
+  background: #f5b400;
+  left: 17px;
+  top: 8px;
+  transform-origin: bottom center;
+}
+
+.clock-icon::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 4px;
+  background: #f5b400;
+  left: 18px;
+  top: 21px;
+  transform-origin: left center;
+}
+
+.certificate-icon {
+  border-radius: 3px;
+}
+
+.certificate-icon::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 10px;
+  width: 19px;
+  height: 4px;
+  background: #f5b400;
+  box-shadow: 0 9px 0 #f5b400;
+}
+
+.certificate-icon::after {
+  content: '';
+  position: absolute;
+  right: -9px;
+  bottom: -8px;
+  width: 18px;
+  height: 18px;
+  border: 4px solid #f5b400;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.info-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e2530;
+  margin-bottom: 9px;
+}
+
+.info-value {
+  font-size: 17px;
+  font-weight: 800;
+  color: #07101f;
+  white-space: nowrap;
+}
+
+.signature-row {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 46px;
+}
+
+.signature-block {
+  width: 245px;
+}
+
+.second-signature {
+  margin-left: 64px;
+}
+
+.signature-divider {
+  width: 1px;
+  height: 114px;
+  background: #b8bcc4;
+  margin-left: 26px;
+}
+
+.signature {
+  height: 50px;
+  font-family: 'Great Vibes', cursive;
+  font-size: 42px;
+  line-height: 1;
+  color: #000;
+}
+
+.signature-two {
+  font-size: 45px;
+}
+
+.signature-line {
+  width: 215px;
+  height: 2px;
+  background: #f5b400;
+  margin-bottom: 14px;
+}
+
+.sign-name {
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.sign-title,
+.sign-org {
+  font-size: 13px;
+  line-height: 1.35;
+  color: #121722;
+}
+
+.right-panel {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 500px;
+  height: 100%;
+  background:
+    linear-gradient(rgba(3, 13, 27, 0.72), rgba(3, 13, 27, 0.95)),
+    url('/cert-assets/building-bg.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  z-index: 1;
+}
+
+.diagonal-gold {
+  position: absolute;
+  left: -106px;
+  top: -20px;
+  width: 26px;
+  height: 1130px;
+  background: #f5b400;
+  transform: skewX(-18deg);
+  z-index: 4;
+}
+
+.building-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 58% 24%, rgba(23, 71, 124, 0.4), transparent 34%);
+}
+
+.logo-area {
+  position: absolute;
+  top: 90px;
+  right: 82px;
+  width: 270px;
+  text-align: center;
+  z-index: 6;
+}
+
+.edudubai-logo {
+  width: 255px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.18));
+}
+
+.right-gold-line {
+  width: 210px;
+  height: 2px;
+  background: #bf8f18;
+  margin: 24px auto 31px;
+}
+
+.transworld-logo {
+  width: 215px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.25));
+}
+
+.bottom-gold-border {
+  position: absolute;
+  left: 0;
+  bottom: 7px;
+  width: 100%;
+  height: 8px;
+  background: #f5b400;
+  z-index: 10;
+}
+
+.download-btn {
+  border: 0;
+  background: #07101f;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media print {
+  .certificate-tool {
+    padding: 0;
+    background: #ffffff;
+  }
+
+  .download-btn {
+    display: none;
+  }
+}

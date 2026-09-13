@@ -6,12 +6,12 @@ import { Reveal } from "@/components/motion"
 import type { Course } from "@/lib/types"
 
 /**
- * The homepage's first viewport: an index of obligations, not a hero.
+ * The index of obligations, directly under the hero carousel.
  *
- * The page this category always ships is a rotating photograph, a client logo
- * wall, three feature cards and a testimonial row -- an arrangement that makes
- * every training provider look like every other one. This opens instead on the
- * exposure the visitor already carries and lets them enter through it.
+ * The visitor enters through the exposure they already carry rather than
+ * through a feature trio, so the rows are obligations first and programmes
+ * second. It renders an h2, not an h1: the carousel above it owns the page
+ * heading, and two h1s on one document is one too many.
  *
  * The ordinals are not decoration. Rows run in the order the obligations bite
  * across a customer's life -- onboard, screen, run the programme, monitor,
@@ -86,21 +86,18 @@ export function HomeObligations({ courses }: { courses: Course[] }) {
     .filter((r): r is typeof r & { course: Course } => Boolean(r.course))
 
   return (
-    <Section tone="midnight" size="md" className="overflow-hidden">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -left-40 -top-52 h-[44rem] w-[44rem] bloom-gold" />
-        <div className="absolute -right-32 top-72 h-[50rem] w-[50rem] bloom-navy" />
-      </div>
-
+    /* Flat ink field. The two radial blooms that used to float behind this
+       band are gone: a section ground on this site is one colour. */
+    <Section tone="ink" size="sm" className="overflow-hidden">
       <Reveal variant="up">
-        <h1 className="max-w-measure-lg text-display font-semibold leading-[1.04] tracking-tighter text-white">
+        <h2 className="max-w-measure text-display font-semibold leading-[1.04] tracking-tighter text-content-on-dark">
           Certification for the{" "}
-          <span className="text-gold-400">obligations you hold.</span>
-        </h1>
+          <span className="text-crimson-300">obligations you hold.</span>
+        </h2>
       </Reveal>
 
       <Reveal variant="up" delay={90}>
-        <p className="mt-7 max-w-measure text-lg leading-relaxed text-content-on-dark-muted">
+        <p className="mt-7 max-w-measure text-[17px] leading-relaxed text-content-on-dark-muted">
           Certification and advisory programmes for compliance, risk and audit professionals in
           regulated institutions. Over 2,500 specialists certified since 2023, across twelve
           jurisdictions. Select the obligation relevant to your role.
@@ -110,55 +107,55 @@ export function HomeObligations({ courses }: { courses: Course[] }) {
       <Reveal variant="fade" delay={160}>
         {/*
            Same card material as the catalogue, adapted to a dark band: the
-           surface is `.panel-dark` rather than `bg-surface-raised`, and the
-           border lights to gold on hover exactly as `CourseCard` does. No
-           photograph, because this is an index rather than a second copy of
-           the catalogue grid.
+           surface is `.panel-dark`, which is a SOLID ink-900 field with a
+           hairline, not a translucent glass tile. Near-square corners, a 1px
+           border for structure and no shadow or hover lift: the hover state is
+           a crimson border and nothing that moves.
 
            The whole card is one link via a stretched overlay, not a nested
            anchor plus a button. A card-inside-a-card link is invalid markup and
            hands a screen reader two targets for one destination, so the arrow
            is decorative and marked aria-hidden.
         */}
-        <ul className="mt-14 grid list-none gap-4 lg:grid-cols-2">
+        <ul className="mt-12 grid list-none gap-4 lg:grid-cols-2">
           {rows.map((row, i) => (
             <li key={row.courseId}>
               <article
                 className={
-                  "panel-dark group relative flex h-full flex-col rounded-lg p-6 shadow-sm " +
-                  "transition-all duration-slow ease-out-expo hover:-translate-y-1.5 " +
-                  "hover:border-gold-400/55 hover:shadow-lg focus-within:border-gold-400 sm:p-7"
+                  "panel-dark group relative flex h-full flex-col rounded-sm p-6 " +
+                  "transition-colors duration-slow ease-out-expo " +
+                  "hover:border-crimson-500 focus-within:border-crimson-500 sm:p-7"
                 }
               >
                 <div className="flex items-start justify-between gap-4">
                   <span
                     aria-hidden="true"
-                    className="tabular font-display text-sm font-semibold text-gold-400/85 transition-colors duration-slow ease-out-expo group-hover:text-gold-400"
+                    className="tabular font-display text-sm font-semibold text-crimson-300 transition-colors duration-slow ease-out-expo group-hover:text-crimson-200"
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
 
                   <span
                     aria-hidden="true"
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/15 text-white/60 transition-all duration-slow ease-out-expo group-hover:border-gold-400 group-hover:bg-gold-400 group-hover:text-navy-900"
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/15 text-content-on-dark-muted transition-colors duration-slow ease-out-expo group-hover:border-crimson-600 group-hover:bg-crimson-600 group-hover:text-content-on-dark"
                   >
                     <ArrowUpRight className="h-4 w-4" />
                   </span>
                 </div>
 
-                <h3 className="mt-5 font-display text-xl font-semibold leading-snug tracking-tight text-white [text-wrap:balance]">
+                <h3 className="mt-5 font-display text-xl font-semibold leading-snug tracking-tight text-content-on-dark [text-wrap:balance]">
                   <Link href={`/courses/${row.course.slug}`} className="after:absolute after:inset-0">
                     {row.obligation}
                   </Link>
                 </h3>
 
-                <p className="mt-3 text-[15px] leading-relaxed text-white/55">{row.detail}</p>
+                <p className="mt-3 text-[17px] leading-relaxed text-content-on-dark-muted">{row.detail}</p>
 
                 <div className="mt-auto border-t border-white/10 pt-5">
-                  <p className="text-sm font-medium text-white/70 transition-colors duration-slow ease-out-expo group-hover:text-white">
+                  <p className="text-sm font-medium text-content-on-dark-muted transition-colors duration-slow ease-out-expo group-hover:text-content-on-dark">
                     {row.course.title}
                   </p>
-                  <p className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-white/60">
+                  <p className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-content-on-dark-muted">
                     <span>{row.course.issuingBody?.replace(/_/g, " ")}</span>
                     <span aria-hidden="true">·</span>
                     <span className="tabular">{row.course.duration} hrs</span>
@@ -173,10 +170,10 @@ export function HomeObligations({ courses }: { courses: Course[] }) {
       </Reveal>
 
       <Reveal variant="fade" delay={220}>
-        <p className="mt-12 text-[15px] text-white/60">
+        <p className="mt-12 text-[17px] text-content-on-dark-muted">
           <Link
             href="/courses"
-            className="font-medium text-white underline decoration-gold-400/40 underline-offset-[6px] transition-colors duration-slow ease-out-expo hover:decoration-gold-400"
+            className="font-medium text-content-on-dark underline decoration-crimson-500 underline-offset-[6px] transition-colors duration-slow ease-out-expo hover:decoration-crimson-300"
           >
             Browse the full catalogue
           </Link>{" "}

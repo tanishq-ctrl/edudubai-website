@@ -1,7 +1,7 @@
 import { Container } from "@/components/container"
 
 /**
- * Accreditation rail — the closing band of the hero field, not a separate
+ * Accreditation rail: the closing band of the hero field, not a separate
  * white strip.
  *
  * Proof belongs where credibility is being established. As its own pale band
@@ -23,26 +23,29 @@ const figures = [
 
 export function CorporateProof() {
   return (
-    <section className="relative isolate overflow-hidden bg-ink-950 pb-14 text-white">
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[radial-gradient(100%_120%_at_0%_0%,rgb(var(--navy-800)/0.9),rgb(var(--ink-950)))]"
-      />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 grain" />
-
+    <section
+      className="relative isolate overflow-hidden bg-ink-950 text-content-on-dark grain"
+      style={{ paddingBottom: "clamp(1.25rem, 0.4rem + 2.6svh, 3.5rem)" }}
+    >
       <Container>
-        <div
-          aria-hidden="true"
-          className="h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent"
-        />
+        <div aria-hidden="true" className="h-px w-full bg-white/12" />
 
-        <div className="grid gap-8 pt-12 lg:grid-cols-12 lg:gap-12">
-          <ul className="flex flex-col gap-3.5 lg:col-span-7">
+        <div
+          className="grid lg:grid-cols-12 lg:gap-12"
+          style={{
+            paddingTop: "clamp(1.25rem, 0.4rem + 2.6svh, 3rem)",
+            gap: "clamp(1rem, 0.4rem + 1.8svh, 2rem)",
+          }}
+        >
+          <ul
+            className="flex flex-col lg:col-span-7"
+            style={{ gap: "clamp(0.5rem, 0.2rem + 0.9svh, 0.875rem)" }}
+          >
             {accreditations.map((item) => (
-              <li key={item} className="flex items-baseline gap-3 text-sm text-white/80">
+              <li key={item} className="flex items-baseline gap-3 text-[17px] text-content-on-dark">
                 <span
                   aria-hidden="true"
-                  className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-gold-400 ring-4 ring-gold-400/15"
+                  className="mt-2 h-[7px] w-[7px] shrink-0 rounded-full bg-crimson-ink"
                 />
                 {item}
               </li>
@@ -54,10 +57,12 @@ export function CorporateProof() {
               <div key={f.label}>
                 <dt className="sr-only">{f.label}</dt>
                 <dd>
-                  <span className="block text-2xl font-semibold tabular tracking-tight text-white">
+                  <span className="block text-2xl font-semibold tabular tracking-tight text-content-on-dark">
                     {f.value}
                   </span>
-                  <span className="mt-1 block text-2xs text-white/45">{f.label}</span>
+                  <span className="mt-1 block text-2xs uppercase tracking-[0.14em] text-content-on-dark-muted">
+                    {f.label}
+                  </span>
                 </dd>
               </div>
             ))}

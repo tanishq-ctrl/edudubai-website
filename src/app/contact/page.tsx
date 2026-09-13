@@ -23,7 +23,7 @@ export default function ContactPage() {
       <Section tone="sunken" size="sm">
         <div className="grid gap-8 lg:grid-cols-5 lg:gap-10">
           <Reveal variant="up" className="lg:col-span-3">
-            <div className="rounded-lg border border-line bg-surface-raised p-7 shadow-sm sm:p-9">
+            <div className="rounded-sm border border-line bg-surface-raised p-7 shadow-sm sm:p-9">
               <ContactForm />
             </div>
           </Reveal>

@@ -10,9 +10,14 @@ import { Reveal } from "@/components/motion"
  * photographs it carried were also doing no work: an empty boardroom on the
  * newsroom, a smiling headset operator on contact.
  *
- * This is the same Midnight band the rest of the site now opens on, without a
+ * This is the same flat ink band the rest of the site now opens on, without a
  * photograph to fight the copy for contrast. Pages that genuinely have a
- * picture worth showing still compose their own hero.
+ * picture worth showing still compose their own hero, over HeroShell.
+ *
+ * The band is a FLAT field with a crimson rule under it. It used to be a navy
+ * gradient carrying two radial "bloom" glows; that combination -- light with
+ * no source over a colour with no edge -- was the strongest generated-looking
+ * thing on the site. Do not put either back.
  */
 export function PageHeader({
   title,
@@ -24,14 +29,9 @@ export function PageHeader({
   children?: React.ReactNode
 }) {
   return (
-    <section className="relative isolate overflow-hidden bg-gradient-to-b from-navy-900 to-ink-975 py-section-sm text-white grain">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -left-40 -top-48 h-[42rem] w-[42rem] bloom-gold" />
-        <div className="absolute -right-32 top-56 h-[46rem] w-[46rem] bloom-navy" />
-      </div>
-
+    <section className="relative isolate overflow-hidden bg-ink-950 py-section-sm text-content-on-dark grain">
       <Container className="relative z-10">
-        <div className="max-w-measure-lg">
+        <div className="max-w-measure">
           <Reveal variant="up">
             <h1 className="text-4xl font-semibold leading-[1.06] tracking-tight sm:text-5xl">
               {title}
@@ -53,6 +53,9 @@ export function PageHeader({
           ) : null}
         </div>
       </Container>
+
+      {/* The band ends on a rule, not a fade. */}
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px bg-crimson-600" />
     </section>
   )
 }

@@ -16,19 +16,19 @@ export default function PoliciesPage() {
   const policies = [
     {
       title: "Privacy Policy",
-      description: "Learn how we collect, use, and protect your personal data.",
+      description: "How we collect, use and protect your personal data.",
       href: "/policies/privacy",
       icon: Shield,
     },
     {
       title: "Terms of Service",
-      description: "Read the rules and regulations for using our services.",
+      description: "The rules for using our services.",
       href: "/policies/terms",
       icon: FileText,
     },
     {
       title: "Refund Policy",
-      description: "Understand our cancellation and refund procedures.",
+      description: "Our cancellation and refund procedures.",
       href: "/policies/refund",
       icon: RefreshCw,
     },
@@ -41,28 +41,28 @@ export default function PoliciesPage() {
         lastUpdated="Our terms of service, privacy practices and refund procedures."
       />
 
-      <Section tone="sunken" size="md" innerClassName="max-w-4xl">
+      <Section tone="sunken" size="sm" innerClassName="max-w-4xl">
       {/* Card titles render as h3; without this the outline jumped h1 -> h3. */}
       <h2 className="sr-only">Our policies</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
         {policies.map((policy) => (
           <Link key={policy.href} href={policy.href} className="group block h-full">
-            <Card className="h-full border-2 border-transparent hover:border-gold-400/30 hover:shadow-xl hover:shadow-brand-navy/5 transition-all duration-300 bg-white group-hover:-translate-y-1">
+            <Card className="h-full rounded-sm border-line bg-surface-raised shadow-sm transition-colors duration-slow ease-out-expo group-hover:border-crimson-600">
               <CardHeader className="space-y-4">
-                <div className="w-12 h-12 rounded-full bg-navy-900/5 flex items-center justify-center group-hover:bg-gold-400/20 transition-colors">
-                  <policy.icon className="h-6 w-6 text-navy-700 group-hover:text-navy-900" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-sm bg-crimson-50">
+                  <policy.icon aria-hidden="true" className="h-6 w-6 text-crimson-ink" />
                 </div>
-                <CardTitle className="text-xl font-bold text-navy-700 group-hover:text-gold-ink transition-colors">
+                <CardTitle className="text-xl font-semibold text-content-strong">
                   {policy.title}
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-base text-content-muted mb-6">
+                <CardDescription className="mb-6 text-[17px] leading-relaxed text-content-muted">
                   {policy.description}
                 </CardDescription>
-                <div className="flex items-center text-sm font-bold text-navy-700 group-hover:text-gold-ink transition-colors">
-                  Read Policy <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                <div className="flex items-center text-[15px] font-semibold text-crimson-ink">
+                  Read policy <ArrowRight aria-hidden="true" className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </div>
               </CardContent>
             </Card>

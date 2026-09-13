@@ -20,72 +20,108 @@
 
 @layer base {
   :root {
-    /* --- Ink ------------------------------------------------------------
-       Kept as a name so existing markup keeps working, but these are now the
-       BRAND NAVY ramp rather than a near-black. Every dark band on the site
-       reads as navy #1e3a5f / #0f1f35, exactly as it did before.
+    /* --- Ink: warm near-black ------------------------------------------
+       Crimson Institute. The ink ramp is a warm neutral (a red-leaning grey),
+       not a blue-black and not a pure black. Every dark band on the site sits
+       on one of these.
        ------------------------------------------------------------------- */
-    /* One stop below the brand navy. Not a second brand colour -- it exists so
-       adjacent dark bands can differ in value instead of running together as
-       one undifferentiated block. */
-    --ink-975: 8 16 30;
-    --ink-950: 15 31 53;
-    --ink-900: 21 42 70;
-    --ink-800: 30 58 95;
-    --ink-700: 38 71 114;
+    --ink-975: 8 7 6;
+    --ink-950: 18 16 15;
+    --ink-900: 30 26 24;
+    --ink-800: 45 39 36;
+    --ink-700: 62 54 49;
 
-    /* --- Navy: the brand anchor ---------------------------------------- */
-    --navy-900: 15 31 53;
-    --navy-800: 22 44 74;
-    --navy-700: 30 58 95;
-    --navy-600: 45 79 124;
-    --navy-500: 62 98 145;
-    --navy-400: 90 125 168;
-    --navy-300: 133 162 195;
-    --navy-200: 183 202 223;
-    --navy-100: 219 229 240;
-    --navy-50: 240 245 250;
-
-    /* --- Gold: accent only --------------------------------------------- */
-    --gold-700: 138 108 18;
-    --gold-600: 168 132 25;
-    --gold-500: 184 148 31;
-    --gold-400: 212 175 55;
-    --gold-300: 229 193 88;
-    --gold-200: 240 217 138;
-    --gold-100: 247 234 190;
-    --gold-50: 252 246 228;
-
-    /* --- Surfaces: the original white / gray-50 pairing ------------------
-       Deliberately pure #fff, not a warm off-white. The warm paper tint read
-       as "greyed out" against the brand navy and was a large part of why the
-       refresh stopped looking like the same site.
+    /* --- Navy: LEGACY NAME, warm neutral VALUES --------------------------
+       There is no navy in this palette. The token names survive only so the
+       hundreds of existing `bg-navy-900` / `text-navy-700` utilities keep
+       compiling; every value below is the warm ink/stone ramp. Do not read
+       "navy" as a colour instruction. New work should use ink-* or crimson-*.
        ------------------------------------------------------------------- */
-    --paper: 255 255 255;
+    --navy-900: 18 16 15;
+    --navy-800: 30 26 24;
+    --navy-700: 45 39 36;
+    --navy-600: 62 54 49;
+    --navy-500: 84 75 68;
+    --navy-400: 122 112 103;
+    --navy-300: 163 153 142;
+    --navy-200: 199 191 180;
+    --navy-100: 224 217 208;
+    --navy-50: 243 239 233;
+
+    /* --- Crimson: the brand anchor --------------------------------------
+       crimson-600 #8E1B23 carries the brand: primary buttons, rules, accent
+       text. 8.4:1 on paper, so it is safe for text as well as for fills.
+       ------------------------------------------------------------------- */
+    --crimson-900: 62 12 17;
+    --crimson-800: 87 18 25;
+    --crimson-700: 107 18 25;
+    --crimson-600: 142 27 35;
+    --crimson-500: 168 45 53;
+    --crimson-400: 185 82 89;
+    --crimson-300: 201 120 126;
+    --crimson-200: 227 180 184;
+    --crimson-100: 241 214 216;
+    --crimson-50: 248 236 236;
+
+    /* --- Gold: credential / seal accent only ----------------------------
+       Never a section ground, never body copy. gold-400 #C6A15B is 7.8:1 on
+       ink-950 and fails badly on paper, which is what --gold-ink /
+       --gold-mark below exist to resolve.
+       ------------------------------------------------------------------- */
+    --gold-700: 120 96 50;
+    --gold-600: 150 120 62;
+    --gold-500: 176 142 74;
+    --gold-400: 198 161 91;
+    --gold-300: 214 183 124;
+    --gold-200: 226 205 165;
+    --gold-100: 238 226 202;
+    --gold-50: 247 241 229;
+
+    /* --- Amber: SIGNAL ONLY ---------------------------------------------
+       live, open, now, new. Never decorative, never a background band.
+       ------------------------------------------------------------------- */
+    --amber-600: 198 136 16;
+    --amber-500: 232 163 25;
+    --amber-400: 240 181 58;
+    --amber-300: 244 199 96;
+    --amber-200: 249 222 160;
+    --amber-100: 253 238 205;
+
+    /* --- Surfaces: warm paper, not white --------------------------------
+       The default ground is #FAF7F2. Pure white is reserved for a card
+       RAISED on that ground, which is what makes cards read as objects
+       without needing a drop shadow.
+       ------------------------------------------------------------------- */
+    --paper: 250 247 242;
     --paper-raised: 255 255 255;
-    --paper-sunken: 249 250 251;
+    --paper-sunken: 244 240 233;
 
     /* --- Semantic surface + text --------------------------------------- */
     --surface: var(--paper);
     --surface-raised: var(--paper-raised);
     --surface-sunken: var(--paper-sunken);
-    --surface-inverse: var(--ink-900);
+    --surface-inverse: var(--ink-950);
 
-    --text-strong: 17 24 39;
-    --text: 55 65 81;
-    --text-muted: 107 114 128;
-    --text-subtle: 156 163 175;
-    --text-on-dark: 248 250 252;
-    --text-on-dark-muted: 176 190 210;
+    --text-strong: 18 16 15;
+    --text: 30 26 24;
+    --text-muted: 107 98 89;
+    --text-subtle: 115 107 98;
+    --text-on-dark: 250 247 242;
+    --text-on-dark-muted: 190 182 172;
 
-    --line: 229 231 235;
-    --line-strong: 209 213 219;
+    --line: 226 220 210;
+    --line-strong: 205 196 183;
     --line-on-dark: 255 255 255;
 
-    /* --- Status -------------------------------------------------------- */
+    /* --- Status ---------------------------------------------------------
+       An error must never be mistaken for the brand. --danger is therefore
+       pulled off the crimson hue entirely, to a vermillion that reads as
+       "something went wrong" next to, and clearly apart from, the deep
+       brand crimson. 5.0:1 on paper.
+       ------------------------------------------------------------------ */
     --success: 22 128 88;
     --warning: 191 129 20;
-    --danger: 200 48 48;
+    --danger: 190 62 38;
     --info: 36 104 178;
 
     /* --- Fluid type scale ----------------------------------------------
@@ -118,13 +154,17 @@
     --gutter: clamp(1.25rem, 0.9rem + 1.75vw, 2.5rem);
     --measure: 68ch;
 
-    /* --- Radii ---------------------------------------------------------- */
-    --radius-xs: 0.25rem;
-    --radius-sm: 0.5rem;
-    --radius: 0.75rem;
-    --radius-lg: 1.25rem;
-    --radius-xl: 1.75rem;
-    --radius-2xl: 2.5rem;
+    /* --- Radii -----------------------------------------------------------
+       Corners are sharp. This is an institute, not a consumer app: the soft
+       1.25rem / 2.5rem corners read as a template. Every step is pulled in so
+       that even markup still saying `rounded-xl` lands near-square.
+       -------------------------------------------------------------------- */
+    --radius-xs: 0.125rem;
+    --radius-sm: 0.25rem;
+    --radius: 0.25rem;
+    --radius-lg: 0.375rem;
+    --radius-xl: 0.5rem;
+    --radius-2xl: 0.5rem;
 
     /* --- Elevation: navy-tinted, never neutral grey --------------------- */
     --shadow-xs: 0 1px 2px rgb(var(--navy-900) / 0.05);
@@ -156,11 +196,11 @@
     --font-inter: var(--font-sans);
 
     /* --- Contextual gold ------------------------------------------------
-       Brand gold is gorgeous on navy and fails WCAG on white:
+       Brand gold is gorgeous on ink and fails WCAG on paper:
 
-         gold-400 #d4af37  2.10:1 on white   5.47:1 on navy
-         gold-500 #b8941f  2.88:1 on white   4.00:1 on navy
-         gold-700 #8a6c12  4.96:1 on white   2.32:1 on navy
+         gold-400 #c6a15b  2.19:1 on paper  7.80:1 on ink-950
+         gold-500 #b08e4a  2.86:1 on paper  5.98:1 on ink-950
+         gold-700 #786032  5.61:1 on paper  3.05:1 on ink-950
 
        So there is no single gold that works on both. These two tokens carry
        the *intent* instead, and any dark wrapper re-points them (see the
@@ -173,6 +213,16 @@
     --gold-ink: var(--gold-700);
     --gold-mark: var(--gold-600);
 
+    /* Accent text that must stay legible on whatever ground it lands on:
+       crimson on paper (8.4:1), gold on a dark or crimson band. Eyebrows and
+       small accent labels read this rather than picking a step by hand. */
+    --accent-ink: var(--crimson-600);
+
+    /* Focus ring. Crimson-600 is 8.4:1 on paper; gold-400 is not, so the ring
+       is a token and every dark wrapper re-points it (see the block below).
+       A focus indicator that cannot be seen is a WCAG failure, not a style. */
+    --focus-ring: var(--crimson-600);
+
     /* --- shadcn/ui bridge ------------------------------------------------
        Existing primitives read these names. Mapped onto the new tokens so
        untouched components inherit the new palette instead of the old one.
@@ -183,19 +233,19 @@
     --card-foreground: var(--text-strong);
     --popover: var(--surface-raised);
     --popover-foreground: var(--text-strong);
-    --primary: var(--navy-700);
-    --primary-foreground: 255 255 255;
+    --primary: var(--crimson-600);
+    --primary-foreground: var(--paper);
     --secondary: var(--surface-sunken);
     --secondary-foreground: var(--text-strong);
     --muted: var(--surface-sunken);
     --muted-foreground: var(--text-muted);
-    --accent: var(--gold-400);
-    --accent-foreground: var(--navy-900);
+    --accent: var(--crimson-600);
+    --accent-foreground: var(--paper);
     --destructive: var(--danger);
     --destructive-foreground: 255 255 255;
     --border: var(--line);
     --input: var(--line);
-    --ring: var(--navy-700);
+    --ring: var(--crimson-600);
     --radius-shadcn: var(--radius);
 
     /* Legacy aliases -- old class names keep working during the migration. */
@@ -219,16 +269,16 @@
   .dark {
     --surface: var(--ink-950);
     --surface-raised: var(--ink-900);
-    --surface-sunken: 11 23 40;
+    --surface-sunken: 8 7 6;
     --surface-inverse: var(--paper);
 
-    --text-strong: 248 250 252;
-    --text: 219 226 236;
-    --text-muted: 154 169 190;
-    --text-subtle: 116 131 152;
+    --text-strong: 250 247 242;
+    --text: 226 220 210;
+    --text-muted: 168 159 148;
+    --text-subtle: 130 122 113;
 
-    --line: 30 46 70;
-    --line-strong: 44 64 92;
+    --line: 45 39 36;
+    --line-strong: 62 54 49;
 
     --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.4);
     --shadow-sm: 0 2px 8px -2px rgb(0 0 0 / 0.5);
@@ -236,8 +286,9 @@
     --shadow-lg: 0 20px 48px -16px rgb(0 0 0 / 0.7);
     --shadow-xl: 0 36px 80px -24px rgb(0 0 0 / 0.8);
 
-    --primary: var(--navy-500);
-    --accent-foreground: var(--ink-950);
+    --primary: var(--crimson-500);
+    --accent-foreground: var(--paper);
+    --focus-ring: var(--gold-400);
   }
 }
 
@@ -283,7 +334,7 @@
      currentColor, so headings inside it inherit white automatically.
   */
   h1, h2, h3, h4 {
-    color: var(--heading-color, rgb(var(--navy-700)));
+    color: var(--heading-color, rgb(var(--ink-950)));
     /* Sora, via the Tailwind `display` family. Headings carrying a different
        face from body copy is what gives the type scale a voice; before this
        everything was Inter and the hierarchy came from size alone. */
@@ -299,11 +350,16 @@
   [class*="bg-ink-"],
   [class*="bg-navy-7"],
   [class*="bg-navy-8"],
-  [class*="bg-navy-9"] {
+  [class*="bg-navy-9"],
+  [class*="bg-crimson-6"],
+  [class*="bg-crimson-7"],
+  [class*="bg-crimson-8"] {
     --heading-color: currentColor;
-    /* On navy the bright end of the ramp is the legible one. */
+    /* On a dark ground the bright end of the ramp is the legible one. */
     --gold-ink: var(--gold-300);
     --gold-mark: var(--gold-400);
+    --accent-ink: var(--gold-300);
+    --focus-ring: var(--gold-400);
   }
 
   h5, h6 {
@@ -319,13 +375,13 @@
   /* One visible focus ring for the whole site, on the accent so it reads on
      both the paper and the ink surfaces. */
   :focus-visible {
-    outline: 2px solid rgb(var(--gold-400));
+    outline: 2px solid rgb(var(--focus-ring));
     outline-offset: 3px;
     border-radius: var(--radius-xs);
   }
 
   ::selection {
-    background-color: rgb(var(--gold-400) / 0.32);
+    background-color: rgb(var(--crimson-600) / 0.18);
     color: rgb(var(--text-strong));
   }
 
@@ -452,10 +508,11 @@
      the computed `background-image` in a real browser first.
   */
 
-  /* Hairline gold rule used as a section marker. */
+  /* Hairline rule used as a section marker. Flat, not a fade: structure on
+     this site comes from rules, and a rule that dissolves is decoration. */
   .rule-gold {
     height: 1px;
-    background-image: linear-gradient(90deg, rgb(var(--gold-400)), rgb(var(--gold-400) / 0));
+    background-color: rgb(var(--gold-400));
   }
 
   .grain {
@@ -494,55 +551,39 @@
   }
 
   .glass-dark {
-    background-color: rgb(var(--ink-900) / 0.9);
+    background-color: rgb(var(--ink-900));
   }
 
   /*
-     Raised panel on a dark band -- the "glass card" look.
+     Raised panel on a dark band. A SOLID surface, not glass.
 
-     Deliberately NOT backdrop-filter. See the note above: blur is reserved for
-     the site header. A translucent white fill over a dark ground reads as the
-     same material once there is a hairline border catching the light, and it
-     composites once instead of per frame.
+     The translucent white/5 fill this used to carry was the "AI-generated
+     glass card" look: it had no material of its own, it just tinted whatever
+     was behind it. A solid ink-900 field with a 1px hairline reads as a real
+     panel and composites once. Do not reintroduce the translucent fill.
   */
   .panel-dark {
-    background-color: rgb(255 255 255 / 0.05);
+    background-color: rgb(var(--ink-900));
     border: 1px solid rgb(255 255 255 / 0.1);
   }
 
   /* Same panel, pressed rather than raised -- for rows inside a panel. */
   .panel-dark-sunken {
-    background-color: rgb(var(--ink-975) / 0.5);
+    background-color: rgb(var(--ink-975));
     border: 1px solid rgb(255 255 255 / 0.07);
   }
 
   /*
-     Gold bloom behind a dark band. `.orb` with the gold already bound, since
-     every dark section wants the same value and hand-rolling `[--orb:…]` at
-     each call site is how the old markup drifted.
+     REMOVED: .bloom-gold, .bloom-navy and .orb.
+
+     They were radial-gradient glows floated behind dark bands, and they were
+     the single strongest "generated" tell on this site: light with no source,
+     on a page whose structure is otherwise ruled and flat. Sections get a
+     FLAT colour field. Gradients survive only inside a photograph's scrim.
+
+     The classes are gone rather than emptied so that any leftover decorative
+     div renders as nothing at all.
   */
-  .bloom-gold {
-    border-radius: 9999px;
-    background-image: radial-gradient(closest-side, rgb(var(--gold-400) / 0.18) 0%, transparent 100%);
-  }
-
-  .bloom-navy {
-    border-radius: 9999px;
-    background-image: radial-gradient(closest-side, rgb(var(--navy-600) / 0.5) 0%, transparent 100%);
-  }
-
-  /*
-     Decorative ambient glow.
-
-     Replaces `rounded-full bg-… blur-[120px]`. A 120px Gaussian blur on a
-     500px element is re-rasterised by the GPU whenever the layer is touched;
-     a radial gradient is painted once and is effectively free. The visual
-     result is nearly identical.
-  */
-  .orb {
-    border-radius: 9999px;
-    background-image: radial-gradient(closest-side, var(--orb) 0%, transparent 100%);
-  }
 
   .scrollbar-hide {
     -ms-overflow-style: none;
