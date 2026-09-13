@@ -60,33 +60,33 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
       <style dangerouslySetInnerHTML={{
         __html: `
         .course-custom-wrapper {
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+          font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
           line-height: 1.6;
-          color: #333;
-          background: #fff;
+          color: rgb(var(--text));
+          background: rgb(var(--surface-raised));
         }
 
         /* Section Styles */
         .course-section {
-          padding: 80px 20px;
+          padding: var(--section-sm) var(--gutter);
         }
 
         .course-container {
-          max-width: 1200px;
+          max-width: 80rem;
           margin: 0 auto;
         }
 
         .course-section-title {
-          font-size: 36px;
-          color: #0f2557;
+          font-size: var(--step-4);
+          color: rgb(var(--navy-900));
           margin-bottom: 15px;
           text-align: center;
           font-weight: 700;
         }
 
         .course-section-subtitle {
-          font-size: 18px;
-          color: #666;
+          font-size: var(--step-1);
+          color: rgb(var(--text-muted));
           text-align: center;
           margin-bottom: 40px;
           max-width: 800px;
@@ -103,10 +103,10 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
         }
 
         .course-overview-card {
-          background: #f8f9fa;
+          background: rgb(var(--surface-sunken));
           padding: 30px;
-          border-radius: 12px;
-          border-left: 4px solid #d4af37;
+          border-radius: var(--radius-lg);
+          border-left: 4px solid rgb(var(--gold-400));
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
           transition: transform 0.3s;
         }
@@ -116,14 +116,14 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
         }
 
         .course-overview-card h3 {
-          color: #0f2557;
-          font-size: 22px;
+          color: rgb(var(--navy-900));
+          font-size: var(--step-2);
           margin-bottom: 15px;
           font-weight: 700;
         }
 
         .course-overview-card p {
-          color: #555;
+          color: rgb(var(--text));
           line-height: 1.8;
         }
 
@@ -140,12 +140,12 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
           gap: 15px;
           padding: 20px;
           background: white;
-          border-radius: 8px;
+          border-radius: var(--radius-sm);
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         }
 
         .course-outcome-icon {
-          background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+          background: linear-gradient(135deg, rgb(var(--gold-400)) 0%, rgb(var(--gold-300)) 100%);
           color: white;
           width: 40px;
           height: 40px;
@@ -154,18 +154,18 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
           align-items: center;
           justify-content: center;
           font-weight: bold;
-          font-size: 18px;
+          font-size: var(--step-1);
           flex-shrink: 0;
         }
 
         .course-outcome-text {
-          color: #444;
+          color: rgb(var(--text));
           line-height: 1.6;
         }
 
         /* Schedule Section */
         .course-schedule-section {
-          background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+          background: linear-gradient(to bottom, rgb(var(--surface-sunken)) 0%, rgb(var(--surface-raised)) 100%);
         }
 
         .course-schedule-grid {
@@ -177,9 +177,9 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
         .course-schedule-card {
           background: white;
           padding: 30px;
-          border-radius: 12px;
+          border-radius: var(--radius-lg);
           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-          border-top: 4px solid #d4af37;
+          border-top: 4px solid rgb(var(--gold-400));
           transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -189,32 +189,32 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
         }
 
         .course-schedule-card h3 {
-          color: #0f2557;
-          font-size: 24px;
+          color: rgb(var(--navy-900));
+          font-size: var(--step-2);
           margin-bottom: 15px;
           font-weight: 700;
         }
 
         .course-schedule-details {
-          color: #555;
+          color: rgb(var(--text));
           margin-bottom: 15px;
           line-height: 1.8;
         }
 
         .course-schedule-badge {
           display: inline-block;
-          background: #e8f4f8;
-          color: #0f2557;
+          background: rgb(var(--navy-50));
+          color: rgb(var(--navy-900));
           padding: 6px 12px;
-          border-radius: 15px;
-          font-size: 13px;
+          border-radius: var(--radius-lg);
+          font-size: var(--step--1);
           font-weight: 600;
           margin-top: 10px;
         }
 
         /* Who Should Attend */
         .course-audience-section {
-          background: #e8f4f8;
+          background: rgb(var(--navy-50));
         }
 
         .course-audience-grid {
@@ -226,16 +226,16 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
         .course-audience-category {
           background: white;
           padding: 35px;
-          border-radius: 12px;
+          border-radius: var(--radius-lg);
           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .course-audience-category h3 {
-          color: #0f2557;
-          font-size: 26px;
+          color: rgb(var(--navy-900));
+          font-size: var(--step-3);
           margin-bottom: 20px;
           padding-bottom: 15px;
-          border-bottom: 3px solid #d4af37;
+          border-bottom: 3px solid rgb(var(--gold-400));
           font-weight: 700;
         }
 
@@ -245,19 +245,19 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
 
         .course-role-list li {
           padding: 12px 0 12px 30px;
-          color: #444;
+          color: rgb(var(--text));
           position: relative;
           line-height: 1.6;
-          border-bottom: 1px solid #f0f0f0;
+          border-bottom: 1px solid rgb(var(--line));
         }
 
         .course-role-list li::before {
           content: '▸';
           position: absolute;
           left: 0;
-          color: #d4af37;
+          color: rgb(var(--gold-400));
           font-weight: bold;
-          font-size: 18px;
+          font-size: var(--step-1);
         }
 
         /* Benefits Section */
@@ -268,16 +268,16 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
         }
 
         .course-benefit-card {
-          background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+          background: linear-gradient(135deg, rgb(var(--surface-sunken)) 0%, rgb(var(--surface-raised)) 100%);
           padding: 25px;
-          border-radius: 10px;
-          border-left: 4px solid #2a5298;
+          border-radius: var(--radius);
+          border-left: 4px solid rgb(var(--navy-600));
           box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
         }
 
-        .course-benefit-card h4 {
-          color: #0f2557;
-          font-size: 18px;
+        .course-benefit-card h3 {
+          color: rgb(var(--navy-900));
+          font-size: var(--step-1);
           margin-bottom: 10px;
           display: flex;
           align-items: center;
@@ -286,7 +286,7 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
         }
 
         .course-benefit-icon {
-          background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+          background: linear-gradient(135deg, rgb(var(--navy-600)) 0%, rgb(var(--navy-700)) 100%);
           color: white;
           width: 30px;
           height: 30px;
@@ -294,17 +294,17 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 14px;
+          font-size: var(--step--1);
         }
 
         .course-benefit-card p {
-          color: #555;
+          color: rgb(var(--text));
           line-height: 1.6;
         }
 
         /* Exam Info */
         .course-exam-section {
-          background: #fff8e7;
+          background: rgb(var(--gold-50));
         }
 
         .course-exam-grid {
@@ -317,34 +317,34 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
         .course-exam-stat {
           background: white;
           padding: 25px;
-          border-radius: 10px;
+          border-radius: var(--radius);
           text-align: center;
           box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-          border-top: 3px solid #d4af37;
+          border-top: 3px solid rgb(var(--gold-400));
         }
 
         .course-exam-stat-number {
-          font-size: 36px;
+          font-size: var(--step-4);
           font-weight: bold;
-          color: #0f2557;
+          color: rgb(var(--navy-900));
           margin-bottom: 10px;
         }
 
         .course-exam-stat-label {
-          color: #666;
-          font-size: 14px;
+          color: rgb(var(--text-muted));
+          font-size: var(--step--1);
         }
 
         .course-exam-requirements {
           background: white;
           padding: 30px;
-          border-radius: 12px;
+          border-radius: var(--radius-lg);
           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .course-exam-requirements h3 {
-          color: #0f2557;
-          font-size: 24px;
+          color: rgb(var(--navy-900));
+          font-size: var(--step-2);
           margin-bottom: 20px;
           font-weight: 700;
         }
@@ -355,7 +355,7 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
 
         .course-exam-requirements li {
           padding: 12px 0 12px 35px;
-          color: #444;
+          color: rgb(var(--text));
           position: relative;
           line-height: 1.6;
         }
@@ -364,38 +364,38 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
           content: '◆';
           position: absolute;
           left: 0;
-          color: #d4af37;
-          font-size: 16px;
+          color: rgb(var(--gold-400));
+          font-size: var(--step-0);
         }
 
         /* FAQ Section */
         .course-faq-section {
-          background: #f8f9fa;
+          background: rgb(var(--surface-sunken));
         }
 
         .course-faq-item {
           background: white;
           padding: 25px;
           margin-bottom: 15px;
-          border-radius: 8px;
+          border-radius: var(--radius-sm);
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         }
 
         .course-faq-question {
-          color: #0f2557;
-          font-size: 18px;
+          color: rgb(var(--navy-900));
+          font-size: var(--step-1);
           font-weight: bold;
           margin-bottom: 10px;
         }
 
         .course-faq-answer {
-          color: #555;
+          color: rgb(var(--text));
           line-height: 1.7;
         }
 
         @media (max-width: 768px) {
           .course-section-title {
-            font-size: 28px;
+            font-size: var(--step-3);
           }
 
           .course-audience-grid {
@@ -507,7 +507,7 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
 
               return (
                 <article className="course-benefit-card" key={idx}>
-                  <h4><span className="course-benefit-icon">✓</span> {title}</h4>
+                  <h3><span className="course-benefit-icon">✓</span> {title}</h3>
                   <p>{text}</p>
                 </article>
               )
@@ -551,7 +551,7 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
                 {(examInfo.requirements as Array<{ title: string; items: string[] }>).map((section, idx) => {
                   if (section.title === "Disclaimer") {
                     return (
-                      <p key={idx} style={{ marginTop: '15px', borderTop: '1px solid #ddd', paddingTop: '10px', fontSize: '0.85em', color: '#666', lineHeight: '1.4' }}>
+                      <p key={idx} style={{ marginTop: '15px', borderTop: '1px solid rgb(var(--line))', paddingTop: '10px', fontSize: '0.85em', color: 'rgb(var(--text-muted))', lineHeight: '1.4' }}>
                         <strong>Disclaimer:</strong> {section.items[0]}
                       </p>
                     )
@@ -560,7 +560,7 @@ export function CourseCustomContent({ course }: CourseCustomContentProps) {
                   return (
                     <div key={idx} className={idx > 0 ? "mt-6" : ""}>
                       {section.title !== "Exam Eligibility & Requirements" && (
-                        <h4 className="text-lg font-bold text-brand-navy mb-2 border-b border-brand-gold/20 pb-1">{section.title}</h4>
+                        <h3 className="text-lg font-bold text-navy-700 mb-2 border-b border-gold-400/20 pb-1">{section.title}</h3>
                       )}
                       <ul>
                         {section.items.map((item, i) => {

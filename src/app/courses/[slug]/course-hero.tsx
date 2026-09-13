@@ -1,201 +1,206 @@
 "use client"
 
+import Image from "next/image"
+import Link from "next/link"
+import { ChevronRight, Clock, Download, GraduationCap } from "lucide-react"
+
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/container"
-import { Badge } from "@/components/ui/badge"
 import { DeliveryFormatBadge } from "@/components/delivery-format-badge"
 import { WhatsAppButton } from "@/components/whatsapp-button"
-import { Download } from "lucide-react"
 import { ApplyNowDialog } from "@/components/apply-now-dialog"
+import { Reveal, SplitText } from "@/components/motion"
 import { Course } from "@/lib/types"
-import Image from "next/image"
 
 interface CourseHeroProps {
   course: Course
 }
 
+/**
+ * Per-course extras keyed by `Course.id`.
+ *
+ * NOTE: `id` maps from `legacy_id`, not the uuid primary key, and two courses
+ * have an id that differs from their slug -- so these must stay keyed on id.
+ * Previously each entry was a copy-pasted JSX block per course.
+ */
+const COURSE_SEALS: Record<string, { src: string; alt: string }> = {
+  cgss: { src: "/images/badges/cgss-seal.png", alt: "CGSS exam preparation seal" },
+  cams: { src: "/images/badges/cams-seal.png", alt: "CAMS exam preparation seal" },
+  tbml: { src: "/images/badges/tbml-seal.png", alt: "TBML exam preparation seal" },
+}
+
+const COURSE_HANDBOOKS: Record<string, { href: string; filename: string; label: string }> = {
+  cgss: { href: "/handbooks/cgss-handbook.pdf", filename: "CGSS-Handbook.pdf", label: "CGSS handbook" },
+  cams: { href: "/handbooks/cams-handbook.pdf", filename: "CAMS-Handbook.pdf", label: "CAMS handbook" },
+  tbml: { href: "/handbooks/tbml-handbook.pdf", filename: "TBML-Handbook.pdf", label: "TBML handbook" },
+  "certified-compliance-manager": {
+    href: "/handbooks/ccm-handbook.pdf",
+    filename: "CCM-Handbook.pdf",
+    label: "CCM handbook",
+  },
+}
+
 export function CourseHero({ course }: CourseHeroProps) {
   const whatsappMessage = `Hi, I'm interested in learning more about: ${course.title}`
+  const seal = COURSE_SEALS[course.id]
+  const handbook = COURSE_HANDBOOKS[course.id]
+  const heroImage = course.heroImageUrl || course.imageUrl
 
   return (
-    <section className="relative w-full pt-28 pb-12 md:pt-32 md:pb-20 flex flex-col bg-brand-navy overflow-hidden min-h-[500px] lg:min-h-[550px]">
-      {/* Premium Background */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[#0A192F]" />
-        <div className="absolute top-[-10%] right-[-10%] w-[60%] h-[80%] bg-brand-gold/5 blur-[120px] rounded-full animate-pulse" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[60%] bg-blue-500/10 blur-[100px] rounded-full" />
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+    <section className="relative isolate overflow-hidden bg-ink-950 pb-section-sm pt-[calc(var(--header-h)+2.5rem)] text-white grain">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute -right-32 -top-32 h-[34rem] w-[34rem] orb [--orb:rgb(var(--gold-400)/0.08)]" />
+        <div className="absolute -bottom-40 -left-24 h-96 w-96 orb [--orb:rgb(var(--navy-700)/0.35)]" />
+        <div className="absolute inset-0 bg-grid-navy bg-grid opacity-30" />
       </div>
 
       <Container className="relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        {/* Breadcrumb -- mirrors the BreadcrumbList JSON-LD on the page. */}
+        <Reveal variant="fade">
+          <nav aria-label="Breadcrumb" className="mb-8">
+            <ol className="flex flex-wrap items-center gap-1.5 text-2xs text-white/45">
+              <li>
+                <Link href="/" className="transition-colors hover:text-gold-300">
+                  Home
+                </Link>
+              </li>
+              <ChevronRight aria-hidden="true" className="h-3 w-3" />
+              <li>
+                <Link href="/courses" className="transition-colors hover:text-gold-300">
+                  Courses
+                </Link>
+              </li>
+              <ChevronRight aria-hidden="true" className="h-3 w-3" />
+              <li aria-current="page" className="truncate text-white/70">
+                {course.title}
+              </li>
+            </ol>
+          </nav>
+        </Reveal>
 
-          {/* Left Content */}
-          <div className="lg:col-span-7 space-y-5 animate-fade-up">
-            <div className="flex flex-wrap items-center gap-3 mt-2 sm:mt-0">
-              <Badge className="bg-brand-gold text-brand-navy hover:bg-brand-gold/90 border-0 px-4 py-2 font-extrabold shadow-lg shadow-brand-gold/30 tracking-wider uppercase text-xs">
-                {course.category.replace(/_/g, " ")}
-              </Badge>
-              {course.deliveryModes.map((mode) => (
-                <DeliveryFormatBadge key={mode} format={mode} className="py-2 px-4 backdrop-blur-md bg-white/95 border-0 text-xs font-extrabold shadow-md" />
-              ))}
-            </div>
-
-            <div className="flex flex-col lg:flex-row gap-6 items-start justify-between">
-              <div className="space-y-4 max-w-2xl">
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight tracking-tight">
-                  {course.title}
-                </h1>
-                <p className="text-base md:text-lg text-white/70 leading-relaxed font-medium">
-                  {course.shortDescription}
-                </p>
+        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-10">
+          <div className="lg:col-span-7">
+            <Reveal variant="fade">
+              <div className="flex flex-wrap items-center gap-2.5">
+                <span className="rounded-full bg-gold-400 px-3.5 py-1.5 text-2xs font-bold uppercase tracking-wider text-navy-900">
+                  {course.category.replace(/_/g, " ")}
+                </span>
+                {course.deliveryModes.map((mode) => (
+                  <DeliveryFormatBadge key={mode} format={mode} />
+                ))}
               </div>
-              {course.id === 'cgss' && (
-                <div className="flex-shrink-0 animate-fade-in animate-float">
+            </Reveal>
+
+            <div className="mt-6 flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
+              <div className="max-w-2xl">
+                {/* Capped one step below the marketing heroes: course names
+                    are long ("Certified Anti-Money Laundering Specialist
+                    (CAMS)") and ran to four lines at the larger size. */}
+                <h1 className="text-3xl text-white sm:text-4xl">
+                  <SplitText text={course.title} as="span" className="block" step={35} />
+                </h1>
+                <Reveal variant="up" delay={260}>
+                  <p className="mt-5 text-lg leading-relaxed text-white/70">
+                    {course.shortDescription}
+                  </p>
+                </Reveal>
+              </div>
+
+              {seal ? (
+                <Reveal variant="scale" delay={200}>
                   <Image
-                    src="/images/badges/cgss-seal.png"
-                    alt="CGSS Exam Prep - 40 Credit Hours"
+                    src={seal.src}
+                    alt={seal.alt}
                     width={280}
                     height={280}
-                    className="drop-shadow-2xl w-32 h-32 lg:w-60 lg:h-60"
+                    className="h-28 w-28 shrink-0 animate-float drop-shadow-2xl lg:h-44 lg:w-44"
                   />
-                </div>
-              )}
-              {course.id === 'cams' && (
-                <div className="flex-shrink-0 animate-fade-in animate-float">
-                  <Image
-                    src="/images/badges/cams-seal.png"
-                    alt="CAMS Exam Prep"
-                    width={280}
-                    height={280}
-                    className="drop-shadow-2xl w-32 h-32 lg:w-60 lg:h-60"
-                  />
-                </div>
-              )}
-              {course.id === 'tbml' && (
-                <div className="flex-shrink-0 animate-fade-in animate-float">
-                  <Image
-                    src="/images/badges/tbml-seal.png"
-                    alt="TBML Exam Prep"
-                    width={280}
-                    height={280}
-                    className="drop-shadow-2xl w-32 h-32 lg:w-60 lg:h-60"
-                  />
-                </div>
-              )}
+                </Reveal>
+              ) : null}
             </div>
 
-            {/* Combined Info Grid and CTAs */}
-            <div className="space-y-4">
-              <div className="flex flex-col sm:flex-row items-center gap-4">
+            <Reveal variant="up" delay={340}>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                 <ApplyNowDialog
                   courseSlug={course.slug}
                   courseTitle={course.title}
-                  size="lg"
-                  className="w-full sm:w-auto bg-brand-gold text-brand-navy hover:bg-brand-gold-light font-black px-10 py-6 text-lg rounded-full shadow-2xl shadow-brand-gold/20"
+                  size="xl"
+                  className="w-full sm:w-auto"
                 />
                 <WhatsAppButton
                   message={whatsappMessage}
                   source={`course_${course.slug}_hero`}
-                  variant="outline"
-                  size="lg"
-                  className="w-full sm:w-auto bg-white/5 backdrop-blur-md border border-white/20 text-white hover:bg-white/10 hover:text-white px-8 py-6 text-lg font-bold rounded-full transition-colors"
-                />
-                {course.id === 'cgss' && (
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="lg"
-                    className="w-full sm:w-auto flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/20 text-white hover:bg-white/10 hover:text-white px-8 py-6 text-lg font-bold rounded-full transition-colors"
-                  >
-                    <a href="/handbooks/cgss-handbook.pdf" download="CGSS-Handbook.pdf">
-                      <Download className="w-4 h-4" />
-                      CGSS Handbook
-                    </a>
-                  </Button>
-                )}
-                {course.id === 'cams' && (
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="lg"
-                    className="w-full sm:w-auto flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/20 text-white hover:bg-white/10 hover:text-white px-8 py-6 text-lg font-bold rounded-full transition-colors"
-                  >
-                    <a href="/handbooks/cams-handbook.pdf" download="CAMS-Handbook.pdf">
-                      <Download className="w-4 h-4" />
-                      CAMS Handbook
-                    </a>
-                  </Button>
-                )}
-                {course.id === 'tbml' && (
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="lg"
-                    className="w-full sm:w-auto flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/20 text-white hover:bg-white/10 hover:text-white px-8 py-6 text-lg font-bold rounded-full transition-colors"
-                  >
-                    <a href="/handbooks/tbml-handbook.pdf" download="TBML-Handbook.pdf">
-                      <Download className="w-4 h-4" />
-                      TBML Handbook
-                    </a>
-                  </Button>
-                )}
-                {course.id === 'certified-compliance-manager' && (
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="lg"
-                    className="w-full sm:w-auto flex items-center gap-2 bg-white/5 backdrop-blur-md border border-white/20 text-white hover:bg-white/10 hover:text-white px-8 py-6 text-lg font-bold rounded-full transition-colors"
-                  >
-                    <a href="/handbooks/ccm-handbook.pdf" download="CCM-Handbook.pdf">
-                      <Download className="w-4 h-4" />
-                      CCM Handbook
-                    </a>
-                  </Button>
-                )}
-              </div>
+                  variant="outline-light"
+                  size="xl"
+                  className="w-full sm:w-auto"
+                >
+                  Ask a question
+                </WhatsAppButton>
 
-              {/* Enhanced Stats Grid */}
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 p-4 sm:p-6 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 shadow-2xl max-w-3xl">
-                <div className="space-y-0.5">
-                  <span className="text-brand-gold text-[10px] font-black uppercase tracking-[0.2em]">Duration</span>
-                  <p className="text-white font-bold text-lg">{course.duration} Hours</p>
-                </div>
-                <div className="space-y-0.5">
-                  <span className="text-brand-gold text-[10px] font-black uppercase tracking-[0.2em]">Level</span>
-                  <p className="text-white font-bold text-lg uppercase tracking-tighter">{course.level}</p>
-                </div>
-                <div className="space-y-0.5">
-                  <span className="text-green-400 text-[10px] font-black uppercase tracking-[0.2em]">Enrollment</span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-white font-bold text-lg uppercase tracking-tighter">Open</span>
-                    <div className="h-2 w-2 bg-green-500 rounded-full animate-ping" />
-                  </div>
-                </div>
+                {handbook ? (
+                  <Button asChild variant="ghost-light" size="xl" className="w-full sm:w-auto">
+                    <a href={handbook.href} download={handbook.filename}>
+                      <Download aria-hidden="true" className="h-4 w-4" />
+                      {handbook.label}
+                    </a>
+                  </Button>
+                ) : null}
               </div>
-            </div>
+            </Reveal>
+
+            <Reveal variant="up" delay={420}>
+              <dl className="mt-10 grid max-w-2xl grid-cols-2 gap-6 rounded-lg border border-white/10 bg-white/[0.07] p-6 sm:grid-cols-3">
+                <div>
+                  <dt className="flex items-center gap-1.5 text-2xs font-semibold uppercase tracking-[0.18em] text-gold-300">
+                    <Clock aria-hidden="true" className="h-3 w-3" />
+                    Duration
+                  </dt>
+                  <dd className="mt-2 font-display text-xl text-white">{course.duration} hours</dd>
+                </div>
+                <div>
+                  <dt className="flex items-center gap-1.5 text-2xs font-semibold uppercase tracking-[0.18em] text-gold-300">
+                    <GraduationCap aria-hidden="true" className="h-3 w-3" />
+                    Level
+                  </dt>
+                  <dd className="mt-2 font-display text-xl capitalize text-white">
+                    {course.level.toLowerCase()}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-2xs font-semibold uppercase tracking-[0.18em] text-gold-300">
+                    Enrolment
+                  </dt>
+                  <dd className="mt-2 flex items-center gap-2 font-display text-xl text-white">
+                    Open
+                    <span aria-hidden="true" className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-pulse-ring rounded-full bg-success" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
+                    </span>
+                  </dd>
+                </div>
+              </dl>
+            </Reveal>
           </div>
 
-          {/* Right Content - Course Image */}
-          <div className="lg:col-span-5 animate-fade-in lg:mt-0 mt-12 flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[400px] aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl ring-2 ring-white/10">
-              {/* Removed gradient overlay for clearer image */}
-              {(course.heroImageUrl || course.imageUrl) && (
+          {heroImage ? (
+            <Reveal variant="scale" delay={200} className="lg:col-span-5">
+              <div className="relative mx-auto aspect-[3/4] w-full max-w-[24rem] overflow-hidden rounded-xl shadow-xl ring-1 ring-white/12">
                 <Image
-                  src={course.heroImageUrl || course.imageUrl || ""}
-                  alt={course.title}
+                  src={heroImage}
+                  alt=""
                   fill
-                  className="object-cover"
                   priority
-                  quality={100}
-                  unoptimized
+                  quality={90}
+                  sizes="(max-width: 1024px) 100vw, 384px"
+                  className="object-cover"
                 />
-              )}
-            </div>
-          </div>
-
+              </div>
+            </Reveal>
+          ) : null}
         </div>
       </Container>
+
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-px bg-gold-line opacity-50" />
     </section>
   )
 }

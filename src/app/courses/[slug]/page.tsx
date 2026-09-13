@@ -21,14 +21,14 @@ export async function generateMetadata({ params }: CourseDetailPageProps): Promi
 
   if (!course) {
     return {
-      title: "Course Not Found | EduDubai",
+      title: "Course Not Found",
     }
   }
 
   // Custom metadata for CGSS
   if (slug === "certified-global-sanctions-specialist") {
     return {
-      title: "CGSS Certification Training MENA | Certified Global Sanctions Specialist Course | Edu-Dubai",
+      title: "CGSS Certification Training MENA | Certified Global Sanctions Specialist Course",
       description: "Master global sanctions compliance with ACAMS CGSS certification training. 40-hour program covering OFAC, EU, UN sanctions. Flexible schedules. Expert instructors.",
       keywords: ["CGSS certification", "sanctions compliance training MENA", "ACAMS CGSS course", "global sanctions specialist", "OFAC training", "EU sanctions", "sanctions screening", "AML sanctions", "MENA compliance training", "financial crime certification"],
     }
@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: CourseDetailPageProps): Promi
       "Online Professional Courses"
     ],
     openGraph: {
-      title: `${course.title} - Global Professional Training | EduDubai`,
+      title: `${course.title} — Global Professional Training`,
       description: course.shortDescription,
       images: [course.imageUrl || "/edudubai-logo.png"],
     },

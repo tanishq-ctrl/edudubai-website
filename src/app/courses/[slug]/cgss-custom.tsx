@@ -14,33 +14,33 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
       <style dangerouslySetInnerHTML={{
         __html: `
         .cgss-custom-wrapper {
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+          font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
           line-height: 1.6;
-          color: #333;
-          background: #fff;
+          color: rgb(var(--text));
+          background: rgb(var(--surface-raised));
         }
 
         /* Section Styles */
         .cgss-section {
-          padding: 80px 20px;
+          padding: var(--section-sm) var(--gutter);
         }
 
         .cgss-container {
-          max-width: 1200px;
+          max-width: 80rem;
           margin: 0 auto;
         }
 
         .cgss-section-title {
-          font-size: 36px;
-          color: #0f2557;
+          font-size: var(--step-4);
+          color: rgb(var(--navy-900));
           margin-bottom: 15px;
           text-align: center;
           font-weight: 700;
         }
 
         .cgss-section-subtitle {
-          font-size: 18px;
-          color: #666;
+          font-size: var(--step-1);
+          color: rgb(var(--text-muted));
           text-align: center;
           margin-bottom: 40px;
           max-width: 800px;
@@ -57,10 +57,10 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
         }
 
         .cgss-overview-card {
-          background: #f8f9fa;
+          background: rgb(var(--surface-sunken));
           padding: 30px;
-          border-radius: 12px;
-          border-left: 4px solid #d4af37;
+          border-radius: var(--radius-lg);
+          border-left: 4px solid rgb(var(--gold-400));
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
           transition: transform 0.3s;
         }
@@ -70,14 +70,14 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
         }
 
         .cgss-overview-card h3 {
-          color: #0f2557;
-          font-size: 22px;
+          color: rgb(var(--navy-900));
+          font-size: var(--step-2);
           margin-bottom: 15px;
           font-weight: 700;
         }
 
         .cgss-overview-card p {
-          color: #555;
+          color: rgb(var(--text));
           line-height: 1.8;
         }
 
@@ -94,12 +94,12 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
           gap: 15px;
           padding: 20px;
           background: white;
-          border-radius: 8px;
+          border-radius: var(--radius-sm);
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         }
 
         .cgss-outcome-icon {
-          background: linear-gradient(135deg, #d4af37 0%, #f4d03f 100%);
+          background: linear-gradient(135deg, rgb(var(--gold-400)) 0%, rgb(var(--gold-300)) 100%);
           color: white;
           width: 40px;
           height: 40px;
@@ -108,18 +108,18 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
           align-items: center;
           justify-content: center;
           font-weight: bold;
-          font-size: 18px;
+          font-size: var(--step-1);
           flex-shrink: 0;
         }
 
         .cgss-outcome-text {
-          color: #444;
+          color: rgb(var(--text));
           line-height: 1.6;
         }
 
         /* Schedule Section */
         .cgss-schedule-section {
-          background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+          background: linear-gradient(to bottom, rgb(var(--surface-sunken)) 0%, rgb(var(--surface-raised)) 100%);
         }
 
         .cgss-schedule-grid {
@@ -131,9 +131,9 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
         .cgss-schedule-card {
           background: white;
           padding: 30px;
-          border-radius: 12px;
+          border-radius: var(--radius-lg);
           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-          border-top: 4px solid #d4af37;
+          border-top: 4px solid rgb(var(--gold-400));
           transition: transform 0.3s, box-shadow 0.3s;
         }
 
@@ -143,32 +143,32 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
         }
 
         .cgss-schedule-card h3 {
-          color: #0f2557;
-          font-size: 24px;
+          color: rgb(var(--navy-900));
+          font-size: var(--step-2);
           margin-bottom: 15px;
           font-weight: 700;
         }
 
         .cgss-schedule-details {
-          color: #555;
+          color: rgb(var(--text));
           margin-bottom: 15px;
           line-height: 1.8;
         }
 
         .cgss-schedule-badge {
           display: inline-block;
-          background: #e8f4f8;
-          color: #0f2557;
+          background: rgb(var(--navy-50));
+          color: rgb(var(--navy-900));
           padding: 6px 12px;
-          border-radius: 15px;
-          font-size: 13px;
+          border-radius: var(--radius-lg);
+          font-size: var(--step--1);
           font-weight: 600;
           margin-top: 10px;
         }
 
         /* Who Should Attend */
         .cgss-audience-section {
-          background: #e8f4f8;
+          background: rgb(var(--navy-50));
         }
 
         .cgss-audience-grid {
@@ -180,16 +180,16 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
         .cgss-audience-category {
           background: white;
           padding: 35px;
-          border-radius: 12px;
+          border-radius: var(--radius-lg);
           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .cgss-audience-category h3 {
-          color: #0f2557;
-          font-size: 26px;
+          color: rgb(var(--navy-900));
+          font-size: var(--step-3);
           margin-bottom: 20px;
           padding-bottom: 15px;
-          border-bottom: 3px solid #d4af37;
+          border-bottom: 3px solid rgb(var(--gold-400));
           font-weight: 700;
         }
 
@@ -199,19 +199,19 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
 
         .cgss-role-list li {
           padding: 12px 0 12px 30px;
-          color: #444;
+          color: rgb(var(--text));
           position: relative;
           line-height: 1.6;
-          border-bottom: 1px solid #f0f0f0;
+          border-bottom: 1px solid rgb(var(--line));
         }
 
         .cgss-role-list li::before {
           content: '▸';
           position: absolute;
           left: 0;
-          color: #d4af37;
+          color: rgb(var(--gold-400));
           font-weight: bold;
-          font-size: 18px;
+          font-size: var(--step-1);
         }
 
         /* Benefits Section */
@@ -222,16 +222,16 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
         }
 
         .cgss-benefit-card {
-          background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+          background: linear-gradient(135deg, rgb(var(--surface-sunken)) 0%, rgb(var(--surface-raised)) 100%);
           padding: 25px;
-          border-radius: 10px;
-          border-left: 4px solid #2a5298;
+          border-radius: var(--radius);
+          border-left: 4px solid rgb(var(--navy-600));
           box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
         }
 
-        .cgss-benefit-card h4 {
-          color: #0f2557;
-          font-size: 18px;
+        .cgss-benefit-card h3 {
+          color: rgb(var(--navy-900));
+          font-size: var(--step-1);
           margin-bottom: 10px;
           display: flex;
           align-items: center;
@@ -240,7 +240,7 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
         }
 
         .cgss-benefit-icon {
-          background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+          background: linear-gradient(135deg, rgb(var(--navy-600)) 0%, rgb(var(--navy-700)) 100%);
           color: white;
           width: 30px;
           height: 30px;
@@ -248,17 +248,17 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 14px;
+          font-size: var(--step--1);
         }
 
         .cgss-benefit-card p {
-          color: #555;
+          color: rgb(var(--text));
           line-height: 1.6;
         }
 
         /* Exam Info */
         .cgss-exam-section {
-          background: #fff8e7;
+          background: rgb(var(--gold-50));
         }
 
         .cgss-exam-grid {
@@ -271,34 +271,34 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
         .cgss-exam-stat {
           background: white;
           padding: 25px;
-          border-radius: 10px;
+          border-radius: var(--radius);
           text-align: center;
           box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-          border-top: 3px solid #d4af37;
+          border-top: 3px solid rgb(var(--gold-400));
         }
 
         .cgss-exam-stat-number {
-          font-size: 36px;
+          font-size: var(--step-4);
           font-weight: bold;
-          color: #0f2557;
+          color: rgb(var(--navy-900));
           margin-bottom: 10px;
         }
 
         .cgss-exam-stat-label {
-          color: #666;
-          font-size: 14px;
+          color: rgb(var(--text-muted));
+          font-size: var(--step--1);
         }
 
         .cgss-exam-requirements {
           background: white;
           padding: 30px;
-          border-radius: 12px;
+          border-radius: var(--radius-lg);
           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .cgss-exam-requirements h3 {
-          color: #0f2557;
-          font-size: 24px;
+          color: rgb(var(--navy-900));
+          font-size: var(--step-2);
           margin-bottom: 20px;
           font-weight: 700;
         }
@@ -309,7 +309,7 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
 
         .cgss-exam-requirements li {
           padding: 12px 0 12px 35px;
-          color: #444;
+          color: rgb(var(--text));
           position: relative;
           line-height: 1.6;
         }
@@ -318,38 +318,38 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
           content: '◆';
           position: absolute;
           left: 0;
-          color: #d4af37;
-          font-size: 16px;
+          color: rgb(var(--gold-400));
+          font-size: var(--step-0);
         }
 
         /* FAQ Section */
         .cgss-faq-section {
-          background: #f8f9fa;
+          background: rgb(var(--surface-sunken));
         }
 
         .cgss-faq-item {
           background: white;
           padding: 25px;
           margin-bottom: 15px;
-          border-radius: 8px;
+          border-radius: var(--radius-sm);
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         }
 
         .cgss-faq-question {
-          color: #0f2557;
-          font-size: 18px;
+          color: rgb(var(--navy-900));
+          font-size: var(--step-1);
           font-weight: bold;
           margin-bottom: 10px;
         }
 
         .cgss-faq-answer {
-          color: #555;
+          color: rgb(var(--text));
           line-height: 1.7;
         }
 
         @media (max-width: 768px) {
           .cgss-section-title {
-            font-size: 28px;
+            font-size: var(--step-3);
           }
 
           .cgss-audience-grid {
@@ -514,42 +514,42 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
 
           <div className="cgss-benefits-grid">
             <article className="cgss-benefit-card">
-              <h4><span className="cgss-benefit-icon">✓</span> Expert Instructors</h4>
+              <h3><span className="cgss-benefit-icon">✓</span> Expert Instructors</h3>
               <p>Our trainers aren&apos;t just teachers; they are senior compliance executives with direct experience in sanctions screening and investigations at major international banks.</p>
             </article>
 
             <article className="cgss-benefit-card">
-              <h4><span className="cgss-benefit-icon">✓</span> Complete Materials</h4>
+              <h3><span className="cgss-benefit-icon">✓</span> Complete Materials</h3>
               <p>Receive ACAMS CGSS Study Guide, scenario-based practice quizzes, 100-question practice exam, and comprehensive reference materials</p>
             </article>
 
             <article className="cgss-benefit-card">
-              <h4><span className="cgss-benefit-icon">✓</span> Real Case Studies</h4>
+              <h3><span className="cgss-benefit-icon">✓</span> Real Case Studies</h3>
               <p>Learn from actual enforcement actions including HSBC, BNP Paribas, Standard Chartered cases with detailed analysis of compliance failures and lessons learned</p>
             </article>
 
             <article className="cgss-benefit-card">
-              <h4><span className="cgss-benefit-icon">✓</span> Small Class Sizes</h4>
+              <h3><span className="cgss-benefit-icon">✓</span> Small Class Sizes</h3>
               <p>Limited to 15 participants per batch ensuring personalized attention, interactive discussions, and direct instructor engagement throughout the program</p>
             </article>
 
             <article className="cgss-benefit-card">
-              <h4><span className="cgss-benefit-icon">✓</span> Flexible Delivery</h4>
+              <h3><span className="cgss-benefit-icon">✓</span> Flexible Delivery</h3>
               <p>Choose from weekday evening, weekend, virtual online, or customized in-house corporate training formats to match your schedule and learning preferences</p>
             </article>
 
             <article className="cgss-benefit-card">
-              <h4><span className="cgss-benefit-icon">✓</span> Post-Training Support</h4>
+              <h3><span className="cgss-benefit-icon">✓</span> Post-Training Support</h3>
               <p>Access 90-day post-training support including exam preparation guidance, study tips, and instructor consultation to ensure your certification success</p>
             </article>
 
             <article className="cgss-benefit-card">
-              <h4><span className="cgss-benefit-icon">✓</span> Proven Track Record</h4>
+              <h3><span className="cgss-benefit-icon">✓</span> Proven Track Record</h3>
               <p>Join 500+ certified professionals trained by Edu-Dubai with 92% first-attempt pass rate and strong career advancement outcomes</p>
             </article>
 
             <article className="cgss-benefit-card">
-              <h4><span className="cgss-benefit-icon">✓</span> Networking Opportunities</h4>
+              <h3><span className="cgss-benefit-icon">✓</span> Networking Opportunities</h3>
               <p>Connect with compliance professionals from leading banks, financial institutions, and multinational corporations across the globe</p>
             </article>
           </div>
@@ -591,11 +591,11 @@ export function CGSSCustomContent({ course }: CGSSCustomContentProps) {
               <li><strong>Study Materials:</strong> Official ACAMS CGSS Study Guide provided through the ACAMS LMS upon registration.</li>
               <li><strong>Exam Registration:</strong> Candidates must apply and register directly through the ACAMS website.</li>
               <li><strong>Exam Fee:</strong> Private Sector: $1,995 | Public Sector (Government): $1,495<br />
-                <span style={{ fontSize: '0.9em', color: '#666' }}>Fees are determined by ACAMS and are separate from third-party training provider fees.</span></li>
+                <span style={{ fontSize: '0.9em', color: 'rgb(var(--text-muted))' }}>Fees are determined by ACAMS and are separate from third-party training provider fees.</span></li>
               <li><strong>Recertification:</strong> Earn 30 recertification credits every three years</li>
               <li><strong>Language:</strong> English, Arabic, French, Japanese, and Chinese</li>
             </ul>
-            <p style={{ marginTop: '15px', borderTop: '1px solid #ddd', paddingTop: '10px', fontSize: '0.85em', color: '#666', lineHeight: '1.4' }}>
+            <p style={{ marginTop: '15px', borderTop: '1px solid rgb(var(--line))', paddingTop: '10px', fontSize: '0.85em', color: 'rgb(var(--text-muted))', lineHeight: '1.4' }}>
               <strong>Disclaimer:</strong> CGSS® is a certification program administered by ACAMS. Exam structure, eligibility, fees, language availability, and policies are subject to change by ACAMS. Candidates should always refer to the official ACAMS Candidate Handbook for the most current information.
             </p>
           </div>
