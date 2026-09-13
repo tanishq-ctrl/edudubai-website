@@ -88,8 +88,8 @@ export function AboutHero() {
         <Reveal variant="scale" delay={140} className="relative mx-auto w-full max-w-[470px]">
           <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/10">
             <Image
-              src="/hero/about.jpg"
-              alt="The EduDubai training team"
+              src="/hero/about-session.jpg"
+              alt="Compliance trainers reviewing case material during a session"
               fill
               priority
               sizes="(min-width: 1024px) 470px, 100vw"
