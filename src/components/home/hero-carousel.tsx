@@ -21,18 +21,6 @@ type Slide = {
   secondaryCTA?: { text: string; href: string }
   image: string
   imageAlt: string
-  certifications?: { name: string; imagePath: string }[]
-  /**
-   * How the credential artwork is built, which decides how it is framed.
-   *
-   * "mark" — ACAMS: a flat olive laurel on a TRANSPARENT background. Too dark
-   *   to sit directly on the navy hero, so it needs a light surface.
-   * "tile" — GCI: a complete navy card with a gold medallion, white caption
-   *   and a notched corner, already carrying its own background. Putting one
-   *   of these on a white chip produced a navy square letterboxed inside a
-   *   white pill, which is what made slides 2 and 3 look unprofessional.
-   */
-  certificationStyle?: "mark" | "tile"
 }
 
 const slides: Slide[] = [
@@ -57,13 +45,6 @@ const slides: Slide[] = [
     secondaryCTA: { text: "Request a brochure", href: "/contact" },
     image: "/hero/slide-2.jpg",
     imageAlt: "ACAMS exam preparation cohort",
-    certificationStyle: "mark",
-    certifications: [
-      { name: "CAMS", imagePath: "/images/certifications/camss.png" },
-      { name: "CGSS", imagePath: "/images/certifications/cgss.png" },
-      { name: "CCAS", imagePath: "/images/certifications/ccas.png" },
-      { name: "CAFS", imagePath: "/images/certifications/cafs.png" },
-    ],
   },
   {
     eyebrow: "GCI Exam Preparation",
@@ -75,18 +56,10 @@ const slides: Slide[] = [
     secondaryCTA: { text: "Request a brochure", href: "/contact" },
     image: "/hero/slide-3.jpg",
     imageAlt: "GCI certification training",
-    certificationStyle: "tile",
-    certifications: [
-      { name: "CCM", imagePath: "/images/certifications/ccm.png" },
-      { name: "FCS", imagePath: "/images/certifications/fcs.png" },
-      { name: "AMLS", imagePath: "/images/certifications/amls.png" },
-      { name: "RCS", imagePath: "/images/certifications/rcs.png" },
-      { name: "SCS", imagePath: "/images/certifications/scs.png" },
-    ],
   },
   {
     eyebrow: "For Organisations",
-    headline: "Corporate programmes",
+    headline: "Corporate compliance",
     accent: "programmes.",
     subheadline:
       "Institution-wide compliance training scoped to your risk assessment and delivered across jurisdictions.",
@@ -186,7 +159,7 @@ export function HeroCarousel() {
       aria-roledescription="carousel"
       aria-label="EduDubai highlights"
       onKeyDown={onKeyDown}
-      className="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden bg-ink-950 text-white"
+      className="relative isolate flex min-h-[100svh] flex-col overflow-hidden bg-ink-950 text-white"
     >
       {/* ---------------- Backplate ---------------- */}
       <div className="absolute inset-0 -z-20">
@@ -211,7 +184,7 @@ export function HeroCarousel() {
                 loading={i === 0 ? undefined : "lazy"}
                 quality={75}
                 sizes="100vw"
-                className="object-cover object-center"
+                className="object-cover object-center [filter:saturate(1.08)_contrast(1.05)]"
               />
             </motion.div>
           )
@@ -226,15 +199,15 @@ export function HeroCarousel() {
       */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-950 via-ink-950/82 to-ink-950/40"
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-ink-950 via-ink-950/80 to-ink-950/60 sm:via-transparent sm:via-30% sm:to-ink-950/18"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-gradient-to-r from-ink-950/92 via-ink-800/45 to-transparent"
+        className="absolute inset-0 -z-10 bg-gradient-to-r from-ink-950 via-ink-950/80 via-44% to-transparent to-58%"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-grid-navy bg-grid opacity-[0.35]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-grid-navy bg-grid opacity-[0.10]"
       />
       {/* Cheap radial glow -- see `.orb` in globals.css, not a blur filter. */}
       <div
@@ -244,8 +217,8 @@ export function HeroCarousel() {
       />
 
       {/* ---------------- Copy ---------------- */}
-      <Container className="relative z-10 pb-10 pt-header sm:pb-16">
-        <div className="flex min-h-[58svh] flex-col justify-end">
+      <Container className="relative z-10 flex flex-1 flex-col pb-6 pt-header sm:pb-8">
+        <div className="flex flex-1 flex-col justify-end pt-6 sm:pt-8">
           {/*
             Only the active slide is in the DOM, so inactive CTAs can never
             become invisible tab stops. AnimatePresence with mode="wait" keeps
@@ -275,7 +248,7 @@ export function HeroCarousel() {
 
               <motion.h1
                 {...rise(0.06)}
-                className="text-[2rem] font-extrabold leading-[1.06] tracking-tight text-white sm:text-5xl lg:text-6xl"
+                className="text-[2rem] font-bold leading-[1.06] tracking-tight text-white sm:text-5xl lg:text-6xl"
               >
                 <span className="block">{slide.headline}</span>
                 {slide.accent ? (
@@ -287,7 +260,7 @@ export function HeroCarousel() {
                       animate={{ scaleX: 1 }}
                       transition={{ duration: reduced ? 0 : 0.6, delay: reduced ? 0 : 0.35, ease: [0.16, 1, 0.3, 1] }}
                       style={{ originX: 0 }}
-                      className="absolute -bottom-1 left-0 block h-[3px] w-full rounded-full bg-gold-400/70"
+                      className="absolute -bottom-2 left-0 block h-[3px] w-full rounded-full bg-gold-400/70"
                     />
                   </span>
                 ) : null}
@@ -295,14 +268,14 @@ export function HeroCarousel() {
 
               <motion.p
                 {...rise(0.14)}
-                className="mt-6 max-w-measure-sm text-base text-content-on-dark-muted sm:text-lg"
+                className="mt-4 max-w-[30rem] text-base text-content-on-dark-muted sm:text-lg"
               >
                 {slide.subheadline}
               </motion.p>
 
               <motion.div
                 {...rise(0.2)}
-                className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
+                className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center"
               >
                 <Button asChild size="xl" variant="gold" block>
                   <Link href={slide.primaryCTA.href}>
@@ -320,49 +293,6 @@ export function HeroCarousel() {
                   </Button>
                 ) : null}
               </motion.div>
-
-              {slide.certifications ? (
-                <motion.div {...rise(0.26)} className="mt-9">
-                  <p className="text-2xs font-semibold uppercase tracking-[0.22em] text-white/45">
-                    Certifications covered
-                  </p>
-
-                  {/*
-                    Every badge is rendered SQUARE (the source art is 1080x1080)
-                    at one uniform size, so the row has a consistent rhythm.
-                    Previously they were forced into a 72x48 landscape chip,
-                    which letterboxed square artwork and shrank the captions to
-                    an illegible size.
-                  */}
-                  <ul className="mt-4 flex flex-wrap items-center gap-3">
-                    {slide.certifications.map((c) => (
-                      <li key={c.name} className="group/badge relative">
-                        <div
-                          className={cn(
-                            "relative h-16 w-16 overflow-hidden rounded-lg transition-transform duration-slow ease-out-expo group-hover/badge:-translate-y-1 sm:h-[4.5rem] sm:w-[4.5rem]",
-                            slide.certificationStyle === "tile"
-                              ? // Already a navy tile: let it sit on the hero
-                                // directly, with only a hairline to seat it.
-                                "ring-1 ring-white/15"
-                              : // Transparent olive mark: needs a light surface
-                                // to be legible on navy.
-                                "bg-white p-2.5 shadow-sm ring-1 ring-gold-400/30",
-                          )}
-                        >
-                          <Image
-                            src={c.imagePath}
-                            alt={`${c.name} certification`}
-                            fill
-                            quality={90}
-                            sizes="72px"
-                            className="object-contain"
-                          />
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              ) : null}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -420,22 +350,38 @@ export function HeroCarousel() {
       </Container>
 
       {/* ---------------- Trust rail ---------------- */}
-      <div className="relative z-10 border-t border-white/10 glass-dark">
+      {/*
+         A light band, and the logos in their own colours.
+
+         This used to silhouette every mark white (`brightness-0 invert`) on a
+         dark rail. That treatment can only render a logo that is a shape on
+         transparency, and one of these eight is not: Emirates NBD ships as a
+         solid brand slab with its wordmark knocked out of it, so the filter
+         turned slab and wordmark the same white and the mark collapsed into a
+         blank lozenge. Stripping the slab is not a fix either -- the wordmark
+         is anti-aliased into it and removing the blue leaves 2% of the artwork
+         standing.
+
+         A light ground needs no filter at all, so all eight render as their
+         owners drew them, and the rail reads as a seal at the foot of the hero
+         rather than a row of ghosts.
+      */}
+      <div className="relative z-10 border-t border-navy-900/10 bg-surface">
         <Container>
-          <div className="flex flex-col gap-4 py-6 lg:flex-row lg:items-center lg:gap-10">
-            <p className="shrink-0 text-2xs font-bold uppercase tracking-[0.22em] text-gold-300">
+          <div className="flex flex-col gap-3 py-5 lg:flex-row lg:items-center lg:gap-10">
+            <p className="shrink-0 text-2xs font-bold uppercase tracking-[0.22em] text-content-subtle">
               Trusted by teams at
             </p>
-            <Marquee durationSec={52} itemClassName="gap-12 pr-12">
+            <Marquee durationSec={52} itemClassName="gap-14 pr-14">
               {partners.map((p) => (
-                <span key={p.name} className="relative h-8 w-28 shrink-0">
+                <span key={p.name} className="relative h-10 w-36 shrink-0">
                   <Image
                     src={p.imagePath}
                     alt={p.name}
                     fill
                     quality={90}
-                    sizes="112px"
-                    className="object-contain brightness-0 invert opacity-60 transition-opacity duration-slow hover:opacity-100"
+                    sizes="144px"
+                    className="object-contain opacity-90 transition-opacity duration-slow hover:opacity-100"
                   />
                 </span>
               ))}

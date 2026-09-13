@@ -31,7 +31,7 @@ export function StatsSection() {
           at this display size, so the widest number was being clipped. */}
       <div className="flex flex-col gap-14">
         <Reveal variant="up" className="max-w-measure-sm">
-          <Eyebrow onDark>Track record</Eyebrow>
+          <Eyebrow>Track record</Eyebrow>
           <p className="mt-4 text-xl text-white/85">
             Eight years of delivery to regulated institutions, measured by professionals certified.
           </p>
@@ -42,7 +42,7 @@ export function StatsSection() {
             <Reveal key={stat.label} variant="up" delay={i * 110} className="group min-w-0">
               <div className="flex flex-col">
                 <span aria-hidden="true" className="rule-gold mb-5 w-full" />
-                <dd className="font-display text-3xl leading-none text-white sm:text-4xl">
+                <dd className="font-display text-3xl font-semibold leading-none text-white sm:text-4xl">
                   <Counter value={stat.value} suffix={stat.suffix} durationMs={2100} />
                 </dd>
                 <dt className="mt-3 text-sm text-white/55">{stat.label}</dt>

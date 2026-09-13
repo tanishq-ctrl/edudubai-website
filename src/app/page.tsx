@@ -1,12 +1,13 @@
 import type { Metadata } from "next"
 
 import { HeroCarousel } from "@/components/home/hero-carousel"
+import { HomeObligations } from "@/components/sections/home-obligations"
 import { PartnershipsSection } from "@/components/sections/partnerships-section"
-import { WhyEduDubai } from "@/components/sections/why-edudubai"
+import { HomeFaculty } from "@/components/sections/home-faculty"
 import { StatsSection } from "@/components/sections/stats-section"
-import { FeaturedCoursesSection } from "@/components/sections/featured-courses-section"
 import { TestimonialsSection } from "@/components/sections/testimonials-section"
 import { CorporateCTASection } from "@/components/sections/corporate-cta-section"
+import { getAllCoursesNew } from "@/server/actions/courses"
 import { HomePageClient } from "./home-client"
 
 export const metadata: Metadata = {
@@ -17,20 +18,32 @@ export const metadata: Metadata = {
 }
 
 /**
- * Section order is a deliberate narrative:
- * hero (what) -> why us -> proof in numbers -> the catalogue -> peer proof ->
- * corporate ask. Tones alternate paper/sunken/ink so no two adjacent bands
- * share a background.
+ * The hero carousel and its trust rail open the page, as before -- the rail is
+ * part of the hero's own band rather than a separate strip, which is what makes
+ * the top of the page read as one object.
+ *
+ * What changed underneath it: the hero used to hand over to a light band, then
+ * a feature trio, then a separate featured-courses grid. The obligation index
+ * now follows the hero directly on the same dark ground, so the visitor crosses
+ * no seam between "what this is" and "which programme is mine", and it replaces
+ * both `WhyEduDubai` and `FeaturedCoursesSection` -- the trio said nothing the
+ * index does not, and the index routes to all eight programmes in a third of
+ * the height the grid needed.
+ *
+ * Tones from there alternate paper / deep / ink / sunken / navy so no two
+ * adjacent bands share a value.
  */
-export default function HomePage() {
+export default async function HomePage() {
+  const courses = await getAllCoursesNew()
+
   return (
     <>
       <HomePageClient />
       <HeroCarousel />
+      <HomeObligations courses={courses} />
       <PartnershipsSection />
-      <WhyEduDubai />
+      <HomeFaculty />
       <StatsSection />
-      <FeaturedCoursesSection />
       <TestimonialsSection />
       <CorporateCTASection />
     </>
