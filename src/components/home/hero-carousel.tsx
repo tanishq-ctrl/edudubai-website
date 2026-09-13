@@ -194,9 +194,12 @@ export function HeroCarousel() {
         aria-label="EduDubai highlights"
         onKeyDown={onKeyDown}
         className="relative isolate flex flex-col overflow-hidden bg-ink-950 text-content-on-dark"
-        /* Capped, not a bare 100svh: past ~820px the extra height is spent on
-           photograph, and the trust rail below is what proves the claim. */
-        style={{ minHeight: "min(100svh, max(34rem, 78svh + 6rem))" }}
+        /* The slide AND the trust rail are one band, and together they own
+           exactly the first viewport: the rail is the floor of the hero, so
+           the visitor never lands on a strip of the next section under it.
+           The copy block takes the slack (it is `flex-1` below), the rail
+           keeps its natural height. */
+        style={{ minHeight: "100svh" }}
       >
         {/* ---------------- Backplate ---------------- */}
         <div className="absolute inset-0 -z-20">
@@ -430,7 +433,7 @@ export function HeroCarousel() {
          owners drew them, and the rail reads as a seal at the foot of the hero
          rather than a row of ghosts.
       */}
-        <div className="relative z-10 border-t border-line bg-surface">
+        <div className="relative z-10 shrink-0 border-t border-line bg-surface">
           <Container>
             <div className="flex flex-col gap-3 py-5 lg:flex-row lg:items-center lg:gap-10">
               <p className="shrink-0 text-2xs font-semibold uppercase tracking-[0.22em] text-content-subtle">
