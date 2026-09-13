@@ -1,87 +1,102 @@
 import Link from "next/link"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { ArrowUpRight, Clock, GraduationCap } from "lucide-react"
+
 import { DeliveryFormatBadge } from "@/components/delivery-format-badge"
 import { CourseImage } from "@/components/course-image"
-import { Clock, Award } from "lucide-react"
+import { cn } from "@/lib/utils"
 import { Course } from "@/lib/types"
 
 interface CourseCardProps {
   course: Course
+  /** Priority-load the image for cards above the fold. */
+  priority?: boolean
+  className?: string
 }
 
-export function CourseCard({ course }: CourseCardProps) {
+/**
+ * Course tile.
+ *
+ * The whole card is one link via a stretched overlay rather than a nested
+ * anchor plus a button: a card-inside-a-card link is invalid markup and gives
+ * screen readers two targets for the same destination. The visible "View
+ * details" affordance is decorative and marked aria-hidden.
+ */
+export function CourseCard({ course, priority = false, className }: CourseCardProps) {
   return (
-    <Card className="group relative h-full flex flex-col bg-white border-0 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 rounded-lg">
-      {/* Course Image Header Section */}
-      {course.imageUrl && (
-        <div className="relative w-full aspect-[16/9] overflow-hidden">
-          {/* Image fills entire space - shifted down to avoid badge overlap */}
+    <article
+      className={cn(
+        "group relative flex h-full flex-col overflow-hidden rounded-lg border border-line bg-surface-raised shadow-sm",
+        "transition-all duration-slow ease-out-expo hover:-translate-y-1.5 hover:border-gold-400/55 hover:shadow-lg",
+        "focus-within:border-gold-400 focus-within:shadow-lg",
+        className,
+      )}
+    >
+      {course.imageUrl ? (
+        <div className="relative aspect-[16/10] w-full overflow-hidden bg-navy-900">
           <CourseImage
             src={course.imageUrl}
-            alt={course.title}
+            alt=""
             fill
-            className="object-cover object-[center_10%]"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority={priority}
+            className="object-cover object-[center_15%] transition-transform [transition-duration:1200ms] ease-out-expo group-hover:scale-[1.06]"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
 
-          {/* Premium "Curriculum" Badge - More prominent */}
-          <div className="absolute top-3 left-3 z-20">
-            <span className="flex items-center gap-1.5 bg-white/95 backdrop-blur-sm text-slate-700 text-[9px] font-extrabold uppercase tracking-wider px-2.5 py-1.5 rounded shadow-lg">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-              Official Curriculum
-            </span>
-          </div>
-        </div>
-      )}
+          {/* Scrim so the badge stays legible over any photo. */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-t from-ink-950/55 via-transparent to-ink-950/25"
+          />
 
-      {/* Course Details Section */}
-      <div className="flex-1 p-6 flex flex-col bg-white">
-        {/* Category & Delivery Tags - Consistent styling */}
-        <div className="flex flex-wrap items-center gap-2 mb-5">
-          <Badge className="bg-slate-100 text-slate-700 border-0 text-[10px] font-bold uppercase tracking-tight px-2.5 py-1 hover:bg-slate-200 transition-colors">
+          <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white px-2.5 py-1 text-2xs font-bold uppercase tracking-[0.12em] text-navy-900 shadow-sm">
+            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-success" />
+            Official curriculum
+          </span>
+        </div>
+      ) : null}
+
+      <div className="flex flex-1 flex-col p-6 sm:p-7">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="rounded-full bg-navy-50 px-2.5 py-1 text-2xs font-semibold uppercase tracking-wider text-navy-700">
             {course.category.replace(/_/g, " ")}
-          </Badge>
+          </span>
           {course.deliveryModes.map((mode) => (
             <DeliveryFormatBadge key={mode} format={mode} />
           ))}
         </div>
 
-        {/* Title - Better spacing */}
-        <h3 className="text-xl font-bold text-brand-navy mb-4 line-clamp-2 min-h-[3.5rem] leading-snug group-hover:text-brand-navy/80 transition-colors">
-          {course.title}
+        <h3 className="mt-5 text-lg leading-snug transition-colors duration-fast group-hover:text-navy-700">
+          <Link href={`/courses/${course.slug}`} className="after:absolute after:inset-0">
+            <span className="line-clamp-2">{course.title}</span>
+          </Link>
         </h3>
 
-        {/* Description - Better contrast */}
-        <p className="text-sm text-slate-600 leading-relaxed line-clamp-3 mb-6">
+        <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-content-muted">
           {course.shortDescription}
         </p>
 
-        {/* Stats & Metadata Row - Cleaner */}
-        <div className="mt-auto flex items-center gap-6 text-xs font-semibold text-slate-500 mb-6 pb-5 border-b border-slate-100">
-          <div className="flex items-center gap-2">
-            <Clock className="h-3.5 w-3.5 text-brand-gold" />
-            <span>{course.duration} hours</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Award className="h-3.5 w-3.5 text-brand-gold" />
-            <span className="capitalize">{course.level.toLowerCase()}</span>
-          </div>
-        </div>
+        <div className="mt-auto flex items-center justify-between gap-4 border-t border-line pt-5">
+          <dl className="flex items-center gap-5 text-xs font-medium text-content-muted">
+            <div className="flex items-center gap-1.5">
+              <Clock aria-hidden="true" className="h-3.5 w-3.5 text-gold-mark" />
+              <dt className="sr-only">Duration</dt>
+              <dd>{course.duration} hrs</dd>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <GraduationCap aria-hidden="true" className="h-3.5 w-3.5 text-gold-mark" />
+              <dt className="sr-only">Level</dt>
+              <dd className="capitalize">{course.level.toLowerCase()}</dd>
+            </div>
+          </dl>
 
-        {/* Footer Area: Price & CTA - Better alignment */}
-        <div className="flex items-end justify-between gap-4 mt-auto">
-          <Button
-            asChild
-            size="lg"
-            className="w-full bg-brand-navy hover:bg-brand-navy/90 text-white font-semibold px-6 h-11 rounded-md shadow-sm hover:shadow-md transition-all duration-300"
+          <span
+            aria-hidden="true"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line text-content-muted transition-all duration-slow ease-out-expo group-hover:border-gold-400 group-hover:bg-gold-400 group-hover:text-navy-900"
           >
-            <Link href={`/courses/${course.slug}`}>View Details</Link>
-          </Button>
+            <ArrowUpRight className="h-4 w-4" />
+          </span>
         </div>
       </div>
-    </Card>
+    </article>
   )
 }
-

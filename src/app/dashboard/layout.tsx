@@ -1,9 +1,10 @@
-import { createClient } from "@/lib/supabase/server"
 import { redirect } from "next/navigation"
+import type { Metadata } from "next"
+
+import { createClient } from "@/lib/supabase/server"
 import { DashboardSidebar } from "@/components/dashboard/sidebar"
 import { DashboardTopbar } from "@/components/dashboard/topbar"
 import { logger } from "@/lib/logger"
-import type { Metadata } from "next"
 
 // Signed-in areas must never be indexed.
 export const metadata: Metadata = {
@@ -11,59 +12,69 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 }
 
-// Mark as dynamic since it uses cookies
-export const dynamic = 'force-dynamic'
+// Reads cookies, so it can never be statically rendered.
+export const dynamic = "force-dynamic"
 
-export default async function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  let user
+/**
+ * `redirect()` signals by throwing an error carrying a `NEXT_REDIRECT` digest.
+ * Detected via the digest rather than importing Next's internal
+ * `isRedirectError`, which lives under `next/dist/**` and is not a stable
+ * public entry point.
+ */
+function isRedirectError(error: unknown): boolean {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "digest" in error &&
+    typeof (error as { digest?: unknown }).digest === "string" &&
+    (error as { digest: string }).digest.startsWith("NEXT_REDIRECT")
+  )
+}
 
+export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   try {
     const supabase = await createClient()
-    
+
     if (!supabase) {
-      logger.debug('[Dashboard Layout] Supabase not configured, redirecting to login')
+      logger.debug("[Dashboard Layout] Supabase not configured")
       redirect("/auth/login?next=/dashboard")
     }
 
-    const { data: { user: authUser }, error: authError } = await supabase.auth.getUser()
-    user = authUser
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser()
 
-    // Debug logging
-    logger.debug('[Dashboard Layout]', {
-      hasUser: !!user,
-      userId: user?.id || null,
-      error: authError?.message || null,
+    logger.debug("[Dashboard Layout]", {
+      hasUser: Boolean(user),
+      error: authError?.message ?? null,
     })
 
     if (!user) {
-      logger.debug('[Dashboard Layout] No user found, redirecting to login')
       redirect("/auth/login?next=/dashboard")
     }
-
-    logger.debug('[Dashboard Layout] User authenticated, rendering dashboard')
   } catch (error) {
-    console.error("[Dashboard Layout] Supabase error:", error)
+    // Without this re-throw the catch swallowed every successful redirect,
+    // logged it as a failure, and issued the same redirect again -- so the
+    // normal signed-out path emitted an error on each request.
+    if (isRedirectError(error)) throw error
+
+    // Diagnostics go through the logger, never console -- see src/lib/logger.ts.
+    logger.error("[Dashboard Layout] Supabase error", error)
     redirect("/auth/login?next=/dashboard")
   }
 
   return (
-    <div className="flex h-screen flex-col bg-neutral-bg-subtle">
+    <div className="flex min-h-screen flex-col bg-surface-sunken">
       <DashboardTopbar />
       <div className="flex flex-1 overflow-hidden">
         <aside className="hidden lg:block">
           <DashboardSidebar />
         </aside>
         <main className="flex-1 overflow-y-auto">
-          <div className="container mx-auto px-4 py-8 max-w-7xl">
-            {children}
-          </div>
+          <div className="mx-auto w-full max-w-7xl px-gutter py-section-xs">{children}</div>
         </main>
       </div>
     </div>
   )
 }
-

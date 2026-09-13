@@ -4,56 +4,92 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
+/**
+ * `gold` is the single primary CTA style for the whole site. Anything else on
+ * a page competing with it should be `outline`, `ghost` or `link` -- two gold
+ * buttons in one viewport means neither one is the call to action.
+ *
+ * The `group` class is on the base so variants can animate an inner icon via
+ * `group-hover:`.
+ */
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all duration-300 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed",
+  [
+    "group relative inline-flex items-center justify-center gap-2 whitespace-nowrap",
+    "font-medium tracking-tight",
+    "rounded-full",
+    "transition-[transform,box-shadow,background-color,border-color,color] duration-fast ease-out-expo",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface",
+    "disabled:pointer-events-none disabled:opacity-50",
+    // Keeps a tap from firing twice / selecting text on iOS.
+    "touch-manipulation select-none",
+    "active:scale-[0.985]",
+  ].join(" "),
   {
     variants: {
       variant: {
-        default: "bg-brand-navy text-white hover:bg-brand-navy-light shadow-md hover:shadow-lg active:scale-[0.98]",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-md hover:shadow-lg",
-        outline:
-          "border-2 border-neutral-border bg-neutral-bg text-neutral-text hover:bg-neutral-bg-subtle hover:border-brand-navy hover:text-brand-navy shadow-sm hover:shadow-md",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80 shadow-sm hover:shadow-md",
-        ghost: "hover:bg-accent/10 hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        gold: "bg-gradient-to-r from-brand-gold to-brand-gold-light text-brand-navy hover:from-brand-gold-light hover:to-brand-gold font-semibold shadow-lg shadow-brand-gold/20 hover:shadow-xl hover:shadow-brand-gold/30 active:scale-[0.98]",
+        gold: [
+          "bg-gold-400 text-navy-900 font-semibold",
+          "shadow-[0_10px_30px_-10px_rgb(var(--gold-400)/0.65)]",
+          "hover:bg-gold-300 hover:shadow-gold hover:-translate-y-0.5",
+        ].join(" "),
+        default: [
+          "bg-navy-700 text-white",
+          "shadow-sm hover:bg-navy-600 hover:shadow-lg hover:-translate-y-0.5",
+        ].join(" "),
+        ink: [
+          "bg-ink-900 text-content-on-dark",
+          "hover:bg-ink-800 hover:-translate-y-0.5 hover:shadow-lg",
+        ].join(" "),
+        outline: [
+          "border border-line-strong bg-transparent text-content-strong",
+          "hover:border-navy-700 hover:bg-navy-50 hover:text-navy-700",
+        ].join(" "),
+        "outline-light": [
+          "border border-white/35 bg-white/10 text-white",
+          "hover:border-white/70 hover:bg-white/12",
+        ].join(" "),
+        secondary: "bg-surface-sunken text-content-strong hover:bg-navy-100",
+        ghost: "text-content-strong hover:bg-surface-sunken",
+        "ghost-light": "text-white/85 hover:bg-white/10 hover:text-white",
+        destructive: "bg-danger text-white shadow-sm hover:brightness-110",
+        link: "h-auto rounded-none p-0 text-navy-700 underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3 text-xs",
-        lg: "h-12 rounded-md px-8 text-base",
-        xl: "h-14 rounded-md px-10 text-lg",
-        icon: "h-10 w-10",
+        sm: "h-9 px-4 text-xs",
+        default: "h-11 px-6 text-sm",
+        lg: "h-13 px-8 text-base",
+        xl: "h-15 px-10 text-base sm:text-lg",
+        icon: "h-11 w-11 p-0",
+        "icon-sm": "h-9 w-9 p-0",
+      },
+      /** Full width on phones, auto from `sm` up -- the common CTA pattern. */
+      block: {
+        true: "w-full sm:w-auto",
+        false: "",
       },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
+      block: false,
     },
-  }
+  },
 )
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-  VariantProps<typeof buttonVariants> {
+    VariantProps<typeof buttonVariants> {
   asChild?: boolean
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, block, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
     return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
+      <Comp className={cn(buttonVariants({ variant, size, block, className }))} ref={ref} {...props} />
     )
-  }
+  },
 )
 Button.displayName = "Button"
 
 export { Button, buttonVariants }
-

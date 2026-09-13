@@ -52,19 +52,19 @@ export function DashboardSidebar() {
   const pathname = usePathname()
 
   return (
-    <div className="flex h-full w-72 flex-col border-r border-neutral-border/50 bg-white/80 backdrop-blur-md">
-      <div className="flex h-20 items-center border-b border-neutral-border/30 px-8">
-        <h2 className="text-lg font-bold text-brand-navy uppercase tracking-widest text-[10px]">
-          User Dashboard
+    <div className="flex h-full w-72 flex-col border-r border-line bg-surface-raised">
+      <div className="flex h-18 items-center border-b border-line px-7">
+        <h2 className="text-2xs font-semibold uppercase tracking-[0.22em] text-gold-ink">
+          Dashboard
         </h2>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-4 py-6 space-y-8">
+      <div className="flex-1 overflow-y-auto px-4 py-6">
         <div>
-          <p className="px-4 text-[10px] font-black uppercase tracking-widest text-neutral-text-muted mb-4">
+          <p className="mb-3 px-4 text-2xs font-semibold uppercase tracking-[0.18em] text-content-subtle">
             Main Menu
           </p>
-          <nav className="space-y-1.5">
+          <nav className="flex flex-col gap-1">
             {navigation.map((item) => {
               const isActive = pathname === item.href ||
                 (item.href !== "/dashboard" && pathname.startsWith(item.href))
@@ -74,15 +74,15 @@ export function DashboardSidebar() {
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-bold transition-all duration-300 group",
+                    "group relative flex items-center gap-3 rounded-sm px-4 py-2.5 text-sm font-medium transition-all duration-fast ease-out-expo",
                     isActive
-                      ? "bg-brand-navy text-white shadow-lg shadow-brand-navy/10 translate-x-1"
-                      : "text-neutral-text hover:bg-neutral-bg-subtle hover:text-brand-navy"
+                      ? "bg-navy-900 text-white shadow-sm"
+                      : "text-content hover:bg-surface-sunken hover:text-navy-700"
                   )}
                 >
                   <Icon className={cn(
                     "h-5 w-5 transition-colors",
-                    isActive ? "text-brand-gold" : "text-neutral-text-muted group-hover:text-brand-navy"
+                    isActive ? "text-gold-300" : "text-content-subtle group-hover:text-navy-700"
                   )} />
                   <div className="flex flex-col">
                     <span>{item.name}</span>
@@ -94,22 +94,22 @@ export function DashboardSidebar() {
         </div>
       </div>
 
-      <div className="p-4 border-t border-neutral-border/30 space-y-2">
+      <div className="flex flex-col gap-2 border-t border-line p-4">
         <Link
           href="/dashboard/profile"
-          className="flex items-center gap-3 p-3 rounded-xl hover:bg-neutral-bg-subtle transition-colors group"
+          className="group flex items-center gap-3 rounded-sm p-3 transition-colors hover:bg-surface-sunken"
         >
-          <div className="h-10 w-10 rounded-full bg-brand-gold/10 flex items-center justify-center border border-brand-gold/20">
-            <User className="h-5 w-5 text-brand-gold" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-gold-400/25 bg-gold-400/10">
+            <User className="h-4 w-4 text-gold-mark" />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-bold text-brand-navy truncate">My Account</p>
-            <p className="text-[10px] text-neutral-text-muted font-medium">Manage Settings</p>
+            <p className="truncate text-sm font-semibold text-content-strong">My Account</p>
+            <p className="text-2xs text-content-muted">Manage Settings</p>
           </div>
-          <Settings className="h-4 w-4 text-neutral-text-muted group-hover:rotate-45 transition-transform" />
+          <Settings className="h-4 w-4 text-content-subtle transition-transform duration-slow ease-out-expo group-hover:rotate-45" />
         </Link>
 
-        <LogoutButton className="w-full justify-start text-red-600 hover:bg-red-50 hover:text-red-700 px-4 py-2.5 font-bold rounded-xl" />
+        <LogoutButton className="w-full justify-start rounded-sm px-4 text-danger hover:bg-danger/8 hover:text-danger" />
       </div>
     </div>
   )

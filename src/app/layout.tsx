@@ -8,11 +8,12 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { getSiteUrl } from "@/lib/env"
 import { AuthHandler } from "@/components/auth/auth-handler"
+import { ScrollProgress } from "@/components/motion"
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-inter",
+  variable: "--font-sans",
 })
 
 const siteUrl = getSiteUrl()
@@ -64,8 +65,41 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className={inter.className}>
+    <html lang="en" className={`${inter.variable} no-js`} suppressHydrationWarning>
+      <head>
+        {/*
+          Drops the `no-js` class as early as possible. Everything with
+          `[data-reveal]` is forced visible while `no-js` is present, so if
+          scripting is disabled or the bundle fails the page still reads --
+          it simply arrives without the entrance animations.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: [
+              "var d=document.documentElement;",
+              "d.classList.remove('no-js');",
+              // Hard ceiling: content is never hidden for longer than this,
+              // whatever happens to hydration or the observers.
+              "setTimeout(function(){d.classList.add('reveal-all')},2200);",
+              // Observers do not fire in a background tab, so a page opened in
+              // one would otherwise render blank when the user switches to it.
+              "document.addEventListener('visibilitychange',function(){",
+              "if(document.visibilityState==='visible')",
+              "setTimeout(function(){d.classList.add('reveal-all')},600);",
+              "});",
+              "if(document.visibilityState!=='visible')d.classList.add('reveal-all');",
+            ].join(''),
+          }}
+        />
+      </head>
+      <body className="font-sans">
+        <ScrollProgress />
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-navy-900 focus:px-5 focus:py-3 focus:text-sm focus:text-white"
+        >
+          Skip to content
+        </a>
         <GoogleAnalytics gaId="G-GKHHHPDR1V" />
         <Script id="google-ads" strategy="afterInteractive">
           {`
@@ -78,7 +112,9 @@ export default function RootLayout({
           `}
         </Script>
         <SiteHeader />
-        <main className="min-h-screen">{children}</main>
+        <main id="main" className="min-h-screen">
+          {children}
+        </main>
         <SiteFooter />
         <Toaster />
         <AuthHandler />

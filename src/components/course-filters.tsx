@@ -11,8 +11,9 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { DeliveryMode, Category } from "@/lib/types"
-import { X } from "lucide-react"
+import { Search, X } from "lucide-react"
 import { useState, useEffect } from "react"
+import { cn } from "@/lib/utils"
 
 const categories: { value: Category; label: string }[] = [
   { value: "AML_CFT", label: "AML/CFT" },
@@ -82,90 +83,98 @@ export function CourseFilters() {
   const hasActiveFilters = searchQuery || selectedCategory !== "all" || selectedMode !== "all" || selectedBody !== "all"
 
   return (
-    <div className="space-y-6">
-      {/* Search Input */}
+    <div className="flex flex-col gap-5">
+      {/* Search */}
       <div className="relative">
+        <label htmlFor="course-search" className="sr-only">
+          Search courses
+        </label>
+        <Search
+          aria-hidden="true"
+          className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-content-subtle"
+        />
         <Input
-          placeholder="Search courses by title, description, or keywords..."
+          id="course-search"
+          type="search"
+          placeholder="Search by title, topic or keyword…"
           value={searchQuery}
           onChange={(e) => handleSearchChange(e.target.value)}
-          className="w-full h-12 text-base"
+          className="h-13 pl-11 pr-11"
         />
-        {searchQuery && (
+        {searchQuery ? (
           <Button
             variant="ghost"
-            size="icon"
-            className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8"
+            size="icon-sm"
+            aria-label="Clear search"
+            className="absolute right-2 top-1/2 -translate-y-1/2"
             onClick={() => handleSearchChange("")}
           >
             <X className="h-4 w-4" />
           </Button>
-        )}
+        ) : null}
       </div>
 
-      {/* Filters Row */}
-      <div className="flex flex-col lg:flex-row gap-4 items-start lg:items-center">
-        {/* Category Select */}
-        <div className="w-full lg:w-auto">
-          <Select value={selectedCategory} onValueChange={handleCategoryChange}>
-            <SelectTrigger className="w-full lg:w-[220px] h-11">
-              <SelectValue placeholder="All Categories" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Categories</SelectItem>
-              {categories.map((cat) => (
-                <SelectItem key={cat.value} value={cat.value}>
-                  {cat.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+      {/* Filter row */}
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
+        <Select value={selectedCategory} onValueChange={handleCategoryChange}>
+          <SelectTrigger className="w-full lg:w-[16rem]" aria-label="Filter by category">
+            <SelectValue placeholder="All categories" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All categories</SelectItem>
+            {categories.map((cat) => (
+              <SelectItem key={cat.value} value={cat.value}>
+                {cat.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        {/*
+          Delivery mode is a single-choice filter, so it is exposed as a radio
+          group rather than a row of buttons -- a screen reader otherwise gets
+          three unrelated buttons with no indication of which one is active.
+        */}
+        <div
+          role="radiogroup"
+          aria-label="Delivery format"
+          className="flex flex-1 flex-wrap gap-2"
+        >
+          {[{ value: "all" as const, label: "All formats" }, ...deliveryModes].map((mode) => {
+            const active = selectedMode === mode.value
+            return (
+              <button
+                key={mode.value}
+                type="button"
+                role="radio"
+                aria-checked={active}
+                onClick={() => handleModeChange(mode.value as DeliveryMode | "all")}
+                className={cn(
+                  "rounded-full border px-4 py-2 text-xs font-medium transition-all duration-fast ease-out-expo",
+                  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2",
+                  active
+                    ? "border-navy-700 bg-navy-700 text-white shadow-sm"
+                    : "border-line-strong bg-surface-raised text-content hover:border-navy-400 hover:text-navy-700",
+                )}
+              >
+                {mode.label}
+              </button>
+            )
+          })}
         </div>
 
-        {/* Delivery Mode Chips */}
-        <div className="flex flex-wrap gap-2 flex-1">
-          <Button
-            variant={selectedMode === "all" ? "default" : "outline"}
-            size="sm"
-            onClick={() => handleModeChange("all")}
-            className={
-              selectedMode === "all"
-                ? "bg-brand-navy text-white hover:bg-brand-navy-dark"
-                : "border-neutral-border hover:border-brand-navy"
-            }
-          >
-            All Formats
-          </Button>
-          {deliveryModes.map((mode) => (
-            <Button
-              key={mode.value}
-              variant={selectedMode === mode.value ? "default" : "outline"}
-              size="sm"
-              onClick={() => handleModeChange(mode.value)}
-              className={
-                selectedMode === mode.value
-                  ? "bg-brand-navy text-white hover:bg-brand-navy-dark"
-                  : "border-neutral-border hover:border-brand-navy"
-              }
-            >
-              {mode.label}
-            </Button>
-          ))}
-        </div>
-
-        {/* Clear Filters */}
-        {hasActiveFilters && (
+        {hasActiveFilters ? (
           <Button
             variant="ghost"
             size="sm"
             onClick={clearFilters}
-            className="text-neutral-text-muted hover:text-brand-navy whitespace-nowrap"
+            className="whitespace-nowrap text-content-muted hover:text-navy-700"
           >
-            Clear All
+            <X className="h-3.5 w-3.5" />
+            Clear all
           </Button>
-        )}
+        ) : null}
       </div>
     </div>
   )
 }
-

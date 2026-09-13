@@ -122,8 +122,20 @@ export async function middleware(request: NextRequest) {
   return response
 }
 
+/**
+ * PERF: this middleware previously matched every route.
+ *
+ * It awaits `supabase.auth.getUser()`, which is a network round-trip to
+ * Supabase, and the result is only ever used to gate `/admin`, `/dashboard`
+ * and the two auth pages below. Every public marketing page was therefore
+ * paying a full auth round-trip -- roughly a second of TTFB on each
+ * navigation -- for a value that was then discarded.
+ *
+ * Narrowing the matcher means the middleware does not run at all on public
+ * pages. Signed-in state in the header is resolved client-side by the browser
+ * Supabase client, so it is unaffected, and tokens still refresh whenever a
+ * protected or auth route is visited.
+ */
 export const config = {
-  matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
-  ],
+  matcher: ['/dashboard/:path*', '/admin/:path*', '/auth/:path*'],
 }
