@@ -1,77 +1,101 @@
-import { Briefcase, Building2, FileText, Shield, Users } from "lucide-react"
-
-import { Section, SectionHeading, Eyebrow } from "@/components/section"
+import { Section, Eyebrow } from "@/components/section"
 import { Reveal, Stagger } from "@/components/motion"
 
-const targetAudiences = [
-  { icon: Users, title: "Front-line officers & branch managers", subtitle: "First line of defence" },
-  { icon: Building2, title: "Head-office compliance & risk teams", subtitle: "Second line of defence" },
-  { icon: Shield, title: "Internal auditors", subtitle: "Third line of defence" },
-  { icon: FileText, title: "Accounts & finance professionals" },
-  { icon: Briefcase, title: "MLRO professionals" },
+/**
+ * Three lines of defence.
+ *
+ * The columns are deliberately unequal (`lg:grid-cols-[1.5fr_1.25fr_1fr]`).
+ * Equal thirds implied the three lines carry equal weight and equal copy; they
+ * do not, and the even grid was part of what made every band on the site look
+ * like the same component.
+ */
+const linesOfDefence = [
+  {
+    number: "01",
+    kicker: "First line",
+    title: "Front-line officers & branch managers",
+    description:
+      "The people who see the customer, the transaction and the red flag before anyone else does.",
+  },
+  {
+    number: "02",
+    kicker: "Second line",
+    title: "Head-office compliance & risk teams",
+    description:
+      "Policy owners, MLROs and risk teams who set the controls the first line has to run.",
+  },
+  {
+    number: "03",
+    kicker: "Third line",
+    title: "Internal auditors",
+    description: "Independent assurance — testing whether the first two lines actually work.",
+  },
 ]
 
 const industries = [
   "Banking, insurance, custodial and investment entities",
   "Virtual Asset Service Providers (VASPs)",
   "Exchange and remittance houses",
-  "DNFBPs — real estate, corporate service providers, law firms, chartered accountants",
   "DPMS — dealers in precious metals and stones",
+  "DNFBPs — real estate, corporate service providers, law firms, chartered accountants",
 ]
 
 export function AboutWhoWeServe() {
   return (
-    <Section tone="sunken" size="md">
-      <SectionHeading
-        eyebrow="Who we serve"
-        title="Across all three lines of defence"
-        lead="Our programmes are written for professionals who carry regulatory responsibility at every level of the organisation."
-      />
+    <Section tone="deep" size="md">
+      <Reveal variant="fade">
+        <Eyebrow marker="dot">Who we serve</Eyebrow>
+      </Reveal>
 
-      <Stagger className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" step={90} variant="up">
-        {targetAudiences.map((audience) => {
-          const Icon = audience.icon
-          return (
-            <div
-              key={audience.title}
-              className="group flex h-full items-start gap-4 rounded-lg border border-line bg-surface-raised p-6 shadow-sm transition-all duration-slow ease-out-expo hover:-translate-y-1 hover:border-gold-400/55 hover:shadow-lg"
+      <Reveal variant="up" delay={70}>
+        <h2 className="mt-5 max-w-measure-sm text-4xl tracking-tight text-white sm:text-5xl">
+          Across all three lines of defence
+        </h2>
+      </Reveal>
+
+      <Stagger
+        className="mt-14 grid gap-6 lg:grid-cols-[1.5fr_1.25fr_1fr]"
+        step={100}
+        variant="up"
+      >
+        {linesOfDefence.map((line) => (
+          <div key={line.number} className="panel-dark h-full rounded-2xl p-8">
+            <p
+              aria-hidden="true"
+              className="font-display text-5xl font-semibold leading-none tracking-tighter text-gold-400"
             >
-              <span
-                aria-hidden="true"
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy-900 text-gold-300"
-              >
-                <Icon className="h-5 w-5" />
-              </span>
-              <span className="flex flex-col">
-                <span className="font-display text-base leading-snug text-content-strong">
-                  {audience.title}
-                </span>
-                {audience.subtitle ? (
-                  <span className="mt-1 text-2xs font-semibold uppercase tracking-wider text-gold-ink">
-                    {audience.subtitle}
-                  </span>
-                ) : null}
-              </span>
-            </div>
-          )
-        })}
+              {line.number}
+            </p>
+            <p className="mt-5 text-xs font-medium text-gold-ink">{line.kicker}</p>
+            <h3 className="mt-2 text-xl text-white">{line.title}</h3>
+            <p className="mt-3 text-sm leading-relaxed text-white/50">{line.description}</p>
+          </div>
+        ))}
       </Stagger>
 
-      <Reveal variant="up" delay={120} className="mt-6">
-        <div className="rounded-lg border border-gold-400/30 bg-gradient-to-br from-surface-raised to-gold-50 p-8 sm:p-10">
-          <Eyebrow>Sectors served</Eyebrow>
-          <h3 className="mt-4 text-2xl ">MLRO professionals across industries</h3>
-          <ul className="mt-7 grid gap-x-8 gap-y-4 sm:grid-cols-2">
-            {industries.map((industry) => (
-              <li key={industry} className="flex items-start gap-3">
-                <span
-                  aria-hidden="true"
-                  className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold-400"
-                />
-                <span className="text-sm leading-relaxed text-content">{industry}</span>
-              </li>
-            ))}
-          </ul>
+      <Reveal variant="fade" delay={120}>
+        <p className="mt-10 max-w-measure text-[15px] leading-relaxed text-white/50">
+          Also serving accounts and finance professionals, and MLROs appointed under local
+          regulation.
+        </p>
+      </Reveal>
+
+      <Reveal variant="up" delay={80}>
+        <div className="mt-16 border-t border-white/15 pt-10">
+          <div className="grid gap-8 lg:grid-cols-[12rem_1fr] lg:gap-16">
+            <h3 className="text-lg text-white">Sectors served</h3>
+            <ul className="grid gap-x-14 gap-y-4 sm:grid-cols-2">
+              {industries.map((industry) => (
+                <li key={industry} className="flex items-start gap-3.5">
+                  <span
+                    aria-hidden="true"
+                    className="mt-[9px] h-[7px] w-[7px] shrink-0 rounded-full bg-gold-400"
+                  />
+                  <span className="text-[15px] leading-relaxed text-white/75">{industry}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </Reveal>
     </Section>

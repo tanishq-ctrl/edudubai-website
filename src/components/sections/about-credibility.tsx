@@ -1,76 +1,77 @@
-import { Award, BookOpen, Building2, Users } from "lucide-react"
+import { Section, Eyebrow } from "@/components/section"
+import { Counter, Reveal, Stagger } from "@/components/motion"
 
-import { Section, SectionHeading } from "@/components/section"
-import { Counter, Stagger } from "@/components/motion"
-
-const credibilityBlocks = [
+/**
+ * Track record.
+ *
+ * Was four equal stat columns, which gave "2,500 specialists certified" exactly
+ * as much weight as "12 jurisdictions". One number is the claim and the other
+ * three support it, so the layout now says that: one oversized figure against
+ * three subordinate rows.
+ */
+const supportingStats = [
   {
-    icon: Users,
-    value: 2500,
-    suffix: "+",
-    label: "Certified specialists",
-    description: "Professionals trained and certified through our programmes.",
-  },
-  {
-    icon: Award,
     value: 8,
     suffix: "+",
     label: "Elite certifications",
-    description: "Industry-recognised credentials issued by ACAMS, GCI and partner bodies.",
+    description: "Credentials issued with ACAMS, GCI and partner bodies.",
   },
   {
-    icon: Building2,
     value: 850,
     suffix: "+",
     label: "Professional sessions",
-    description: "Sessions delivered across international financial markets.",
+    description: "Delivered across international financial markets.",
   },
   {
-    icon: BookOpen,
     value: 12,
-    suffix: "+",
+    suffix: "",
     label: "Global jurisdictions",
-    description: "Professionals served across international regulatory jurisdictions.",
+    description: "Regulatory regimes our faculty teach to directly.",
   },
 ]
 
 export function AboutCredibility() {
   return (
-    <Section tone="ink" size="md" className="overflow-hidden">
+    <Section tone="midnight" size="md" className="overflow-hidden">
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -right-32 top-0 h-[26rem] w-[26rem] orb [--orb:rgb(var(--navy-700)/0.25)]" />
-        <div className="absolute -left-24 bottom-0 h-80 w-80 orb [--orb:rgb(var(--gold-400)/0.08)]" />
+        <div className="absolute -left-40 top-16 h-[38rem] w-[38rem] bloom-gold" />
       </div>
 
-      <SectionHeading
-        onDark
-        eyebrow="Track record"
-        title="Institutional track record"
-        lead="Eight years of delivery to regulated institutions across twelve jurisdictions."
-      />
+      <Reveal variant="fade">
+        <Eyebrow marker="dot">Track record</Eyebrow>
+      </Reveal>
 
-      <Stagger className="mt-16 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4" step={110}>
-        {credibilityBlocks.map((block) => {
-          const Icon = block.icon
-          return (
-            <div key={block.label} className="group flex min-w-0 flex-col">
-              <span
-                aria-hidden="true"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-gold-300 transition-transform duration-slow ease-out-expo group-hover:-translate-y-1"
-              >
-                <Icon className="h-5 w-5" />
-              </span>
-              <span className="mt-6 font-display text-3xl leading-none text-white sm:text-4xl">
-                <Counter value={block.value} suffix={block.suffix} />
-              </span>
-              <span className="mt-3 text-sm font-semibold text-white/90">{block.label}</span>
-              <span className="mt-1.5 text-sm leading-relaxed text-white/50">
-                {block.description}
-              </span>
+      <div className="mt-12 grid gap-16 lg:grid-cols-[minmax(0,34rem)_1fr] lg:gap-24">
+        <Reveal variant="up">
+          <div>
+            <p className="font-display text-[clamp(4rem,2rem+8vw,8.25rem)] font-semibold leading-[0.9] tracking-tighter text-white">
+              <Counter value={2500} suffix="+" />
+            </p>
+            <p className="mt-6 text-2xl text-gold-300">specialists certified</p>
+            <p className="mt-5 max-w-measure leading-relaxed text-content-on-dark-muted">
+              Eight years of delivery to regulated institutions &mdash; from front-line officers to
+              appointed MLROs, across twelve jurisdictions.
+            </p>
+          </div>
+        </Reveal>
+
+        <Stagger className="flex flex-col" step={110} variant="up">
+          {supportingStats.map((stat) => (
+            <div
+              key={stat.label}
+              className="flex flex-col gap-4 border-t border-white/15 py-8 sm:flex-row sm:gap-8"
+            >
+              <p className="font-display text-4xl font-semibold leading-none tracking-tight text-white sm:w-36 sm:shrink-0">
+                <Counter value={stat.value} suffix={stat.suffix} />
+              </p>
+              <div className="min-w-0">
+                <h3 className="text-lg text-white">{stat.label}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/50">{stat.description}</p>
+              </div>
             </div>
-          )
-        })}
-      </Stagger>
+          ))}
+        </Stagger>
+      </div>
     </Section>
   )
 }
