@@ -12,6 +12,7 @@
 
 import { createPublicClient } from "@/lib/supabase/public"
 import type { Course, Category, DeliveryMode } from "@/lib/types"
+import { logger } from "./logger"
 
 /** Shape of a row in public.courses. */
 type CourseRow = {
@@ -110,7 +111,7 @@ export async function getAllCoursesFromDb(): Promise<Course[]> {
     .order("display_order", { ascending: true })
 
   if (error) {
-    console.error("[courses-db] getAllCourses failed:", error.message)
+    logger.error("[courses-db] getAllCourses failed:", error.message)
     return []
   }
 
@@ -130,7 +131,7 @@ export async function getCourseBySlugFromDb(slug: string): Promise<Course | unde
     .maybeSingle()
 
   if (error) {
-    console.error("[courses-db] getCourseBySlug failed:", error.message)
+    logger.error("[courses-db] getCourseBySlug failed:", error.message)
     return undefined
   }
 
@@ -150,7 +151,7 @@ export async function getFeaturedCoursesFromDb(): Promise<Course[]> {
     .order("display_order", { ascending: true })
 
   if (error) {
-    console.error("[courses-db] getFeaturedCourses failed:", error.message)
+    logger.error("[courses-db] getFeaturedCourses failed:", error.message)
     return []
   }
 

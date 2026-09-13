@@ -12,7 +12,7 @@ export function openWhatsApp(message?: string) {
   const cleanNumber = phoneNumber.replace(/[^0-9]/g, "")
   
   if (!cleanNumber || cleanNumber.length < 10) {
-    console.error("Invalid WhatsApp number:", phoneNumber)
+    logger.error("Invalid WhatsApp number:", phoneNumber)
     alert("WhatsApp number is not configured. Please contact support.")
     return
   }

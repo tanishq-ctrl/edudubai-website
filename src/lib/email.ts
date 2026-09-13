@@ -113,13 +113,13 @@ export async function sendLeadNotification({
     })
 
     if (result.error) {
-      console.error("Resend API error:", result.error)
+      logger.error("Resend API error:", result.error)
       throw new Error(`Failed to send email: ${result.error.message || "Unknown error"}`)
     }
 
     logger.debug("Lead notification email sent successfully:", result.data?.id)
   } catch (error) {
-    console.error("Error sending lead notification email:", error)
+    logger.error("Error sending lead notification email:", error)
     throw error
   }
 }
@@ -174,7 +174,7 @@ export async function sendBrochureEmail({
       `,
     })
   } catch (error) {
-    console.error("Error sending brochure email:", error)
+    logger.error("Error sending brochure email:", error)
     throw error
   }
 }
@@ -216,7 +216,7 @@ export async function sendEnrollmentEmail(to: string, courseTitle: string) {
       `,
     })
   } catch (error) {
-    console.error("Error sending enrollment email:", error)
+    logger.error("Error sending enrollment email:", error)
     throw error
   }
 }
@@ -242,7 +242,7 @@ export async function sendScholarshipNotification(application: ScholarshipApplic
 
   try {
     if (!process.env.RESEND_API_KEY) {
-      console.warn("RESEND_API_KEY not configured - scholarship notification email not sent")
+      logger.warn("RESEND_API_KEY not configured - scholarship notification email not sent")
       return
     }
 
@@ -370,14 +370,14 @@ export async function sendScholarshipNotification(application: ScholarshipApplic
     })
 
     if (result.error) {
-      console.error("Resend API error:", result.error)
+      logger.error("Resend API error:", result.error)
       throw new Error(`Failed to send scholarship notification: ${result.error.message || "Unknown error"}`)
     }
 
     logger.debug("Scholarship notification email sent successfully:", result.data?.id)
     return result
   } catch (error) {
-    console.error("Error sending scholarship notification email:", error)
+    logger.error("Error sending scholarship notification email:", error)
     // Don't throw - we still want the application to be saved even if email fails
     return null
   }

@@ -80,6 +80,14 @@ export function SiteHeader() {
   const [authLoading, setAuthLoading] = React.useState(true)
 
   const pathname = usePathname()
+
+  /*
+     The dashboard is an application shell with its own topbar, sidebar and
+     account menu. Rendering the marketing header over it stacked two navs and
+     buried the dashboard's own topbar, which is `sticky top-0 z-40` under this
+     one's `fixed top-0 z-50`. The shell owns its chrome; this stands down.
+  */
+  const inAppShell = pathname.startsWith("/dashboard")
   const overlay = OVERLAY_ROUTES.has(pathname) || pathname.startsWith("/courses/")
   /** True only while floating over the hero artwork. */
   const onDark = overlay && !scrolled
@@ -125,6 +133,8 @@ export function SiteHeader() {
 
   const isActive = (item: NavItem) =>
     pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href))
+
+  if (inAppShell) return null
 
   return (
     <header

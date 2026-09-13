@@ -38,9 +38,9 @@ export default async function AdminPage() {
   ])
 
   return (
-    <div className="container mx-auto px-4 py-12 max-w-7xl">
+    <div className="container mx-auto max-w-7xl px-4 py-10">
       <div className="mb-8">
-        <h1 className="text-4xl font-bold text-content-strong mb-2">Admin Dashboard</h1>
+        <h1 className="mb-2 text-4xl font-semibold tracking-tight text-content-strong">Admin Dashboard</h1>
         <p className="text-content-muted">
           Manage courses, review inbound activity, and see who has signed up.
         </p>

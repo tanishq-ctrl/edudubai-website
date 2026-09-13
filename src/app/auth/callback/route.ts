@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
     const { error } = await supabase.auth.exchangeCodeForSession(code)
 
     if (error) {
-      console.error('[OAuth Callback] Error exchanging code:', error)
+      logger.error('[OAuth Callback] Error exchanging code:', error)
       return NextResponse.redirect(
         new URL(`/auth/login?error=${encodeURIComponent(error.message)}`, request.url)
       )
@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
           email: user.email!,
           firstName: fullName,
           courseInterest: "OAuth Registration"
-        }).catch(err => console.error("[CRM Sync] OAuth Lead failed:", err))
+        }).catch(err => logger.error("[CRM Sync] OAuth Lead failed:", err))
 
         // Ensure profile exists (in case there's no DB trigger)
         await supabase

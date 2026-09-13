@@ -1,7 +1,8 @@
+import { logger } from "./logger"
 export async function verifyTurnstile(token: string): Promise<boolean> {
   const secret = process.env.TURNSTILE_SECRET_KEY
   if (!secret) {
-    console.error("[Turnstile] TURNSTILE_SECRET_KEY is not set")
+    logger.error("[Turnstile] TURNSTILE_SECRET_KEY is not set")
     return false
   }
   if (!token) return false
@@ -15,7 +16,7 @@ export async function verifyTurnstile(token: string): Promise<boolean> {
     const data = await res.json()
     return data.success === true
   } catch (err) {
-    console.error("[Turnstile] Verification request failed:", err)
+    logger.error("[Turnstile] Verification request failed:", err)
     return false
   }
 }

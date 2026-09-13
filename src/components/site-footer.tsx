@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { usePathname } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
 import {
@@ -65,6 +66,11 @@ const phones = [
 
 export function SiteFooter() {
   const [logoError, setLogoError] = React.useState(false)
+  const pathname = usePathname()
+
+  /* The dashboard is an app shell: a marketing footer under a signed-in
+     workspace is chrome the reader did not ask for. See SiteHeader. */
+  if (pathname.startsWith("/dashboard")) return null
 
   return (
     <footer className="relative isolate overflow-hidden bg-ink-950 text-content-on-dark grain">

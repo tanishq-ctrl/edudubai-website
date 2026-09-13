@@ -51,10 +51,10 @@ export default async function DashboardPage() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl md:text-4xl font-semibold text-content-strong tracking-tight">
-            Hello, {userName}! 👋
+            {userName}
           </h1>
-          <p className="text-content-muted mt-1 font-medium">
-            Here&apos;s what&apos;s happening with your learning today.
+          <p className="mt-1 text-content-muted">
+            Your enrolments, materials and payment history.
           </p>
         </div>
         <div className="flex items-center gap-3">

@@ -12,7 +12,7 @@ export async function syncToSystemeIO(data: {
     const apiKey = process.env.SYSTEME_IO_API_KEY;
 
     if (!apiKey) {
-        console.warn("[Systeme.io] API Key not configured. Skipping sync.");
+        logger.warn("[Systeme.io] API Key not configured. Skipping sync.");
         return;
     }
 
@@ -49,7 +49,7 @@ export async function syncToSystemeIO(data: {
                 const listData = await listResponse.json();
                 contactData = listData.items?.[0];
             } else {
-                console.error("[Systeme.io] API Error Response:", errText);
+                logger.error("[Systeme.io] API Error Response:", errText);
                 return { error: errText };
             }
         } else {
@@ -72,7 +72,7 @@ export async function syncToSystemeIO(data: {
             const tagsData = await tagsResponse.json();
 
             if (!tagsData.items) {
-                console.error("[Systeme.io] Tags response missing items:", tagsData);
+                logger.error("[Systeme.io] Tags response missing items:", tagsData);
                 tagResult.error = "Tags response format unexpected";
             } else {
                 const targetTag = tagsData.items.find((t: any) => {
@@ -113,23 +113,23 @@ export async function syncToSystemeIO(data: {
                         tagResult.assigned = true;
                     } else {
                         const assignErr = await assignResponse.text();
-                        console.error("[Systeme.io] Tag assignment FAILED:", assignErr);
+                        logger.error("[Systeme.io] Tag assignment FAILED:", assignErr);
                         tagResult.error = assignErr;
                     }
                 } else {
                     const availableTags = tagsData.items.map((t: any) => t.name).join(", ");
-                    console.warn(`[Systeme.io] Tag "${tagName}" NOT FOUND. Available tags: [${availableTags}]`);
+                    logger.warn(`[Systeme.io] Tag "${tagName}" NOT FOUND. Available tags: [${availableTags}]`);
                     tagResult.error = `Tag "${tagName}" not found. Available: [${availableTags}]`;
                 }
             }
         } catch (tagErr: any) {
-            console.error("[Systeme.io] Tag assignment CRASHED:", tagErr);
+            logger.error("[Systeme.io] Tag assignment CRASHED:", tagErr);
             tagResult.error = tagErr.message;
         }
 
         return { ...contactData, tagSync: tagResult };
     } catch (error: any) {
-        console.error("[Systeme.io] API Sync failed:", error);
+        logger.error("[Systeme.io] API Sync failed:", error);
         return { error: error.message };
     }
 }
@@ -178,7 +178,7 @@ export async function syncLeadToSystemeIO(data: {
         // If 400 (Already Exists) or 422 (Validation/Duplicate), we need to handle it
         if (!contactResponse.ok) {
             const errText = await contactResponse.text();
-            console.warn(`[Systeme.io] Initial Sync Failed (${contactResponse.status}): ${errText}`);
+            logger.warn(`[Systeme.io] Initial Sync Failed (${contactResponse.status}): ${errText}`);
 
             // If it failed, check if the contact actually exists
             const emailParam = encodeURIComponent(data.email);
@@ -193,13 +193,13 @@ export async function syncLeadToSystemeIO(data: {
                 updateNeeded = true;
             } else if (contactResponse.status === 422) {
                 // Only if contact really doesn't exist and we got 422, try minimal sync as last resort
-                console.warn("[Systeme.io] Contact not found but custom fields rejected. Retrying with Core Fields...");
+                logger.warn("[Systeme.io] Contact not found but custom fields rejected. Retrying with Core Fields...");
                 contactResponse = await syncAttempt(false);
                 if (contactResponse.ok) {
                     contactData = await contactResponse.json();
                 } else {
                     const retryErr = await contactResponse.text();
-                    console.error(`[Systeme.io] Retry (Core Fields) also failed: ${retryErr}`);
+                    logger.error(`[Systeme.io] Retry (Core Fields) also failed: ${retryErr}`);
                 }
             }
         } else {
@@ -208,7 +208,7 @@ export async function syncLeadToSystemeIO(data: {
         }
 
         if (!contactData) {
-            console.error("[Systeme.io] Could not recover contact after error.");
+            logger.error("[Systeme.io] Could not recover contact after error.");
             return;
         }
 
@@ -234,7 +234,7 @@ export async function syncLeadToSystemeIO(data: {
             } else {
                 // Fallback: Try POST if PUT fails (some APIs use POST for updates)
                 // Or it might be that Systeme.io doesn't allow field updates easily via public API on existing contacts without specific flow.
-                console.warn(`[Systeme.io] Update failed: ${await updateResponse.text()}`);
+                logger.warn(`[Systeme.io] Update failed: ${await updateResponse.text()}`);
             }
         }
 
@@ -261,12 +261,12 @@ export async function syncLeadToSystemeIO(data: {
             if (assignResponse.ok || assignResponse.status === 400) {
                 logger.debug(`[Systeme.io] SUCCESS: '${targetTagName}' tag applied.`);
             } else {
-                console.error(`[Systeme.io] Tag assignment FAILED: ${await assignResponse.text()}`);
+                logger.error(`[Systeme.io] Tag assignment FAILED: ${await assignResponse.text()}`);
             }
         }
         return contactData;
     } catch (error) {
-        console.error("[Systeme.io] Lead sync CRASHED:", error);
+        logger.error("[Systeme.io] Lead sync CRASHED:", error);
     }
 }
 
@@ -312,7 +312,7 @@ export async function syncApplicationToSystemeIO(data: {
 
         if (!contactResponse.ok) {
             const errText = await contactResponse.text();
-            console.warn(`[Systeme.io] Application Sync Failed (${contactResponse.status}): ${errText}`);
+            logger.warn(`[Systeme.io] Application Sync Failed (${contactResponse.status}): ${errText}`);
 
             // Fetch existing contact
             const emailParam = encodeURIComponent(data.email);
@@ -336,7 +336,7 @@ export async function syncApplicationToSystemeIO(data: {
         }
 
         if (!contactData) {
-            console.error("[Systeme.io] Could not recover contact for application.");
+            logger.error("[Systeme.io] Could not recover contact for application.");
             return;
         }
 
@@ -379,11 +379,11 @@ export async function syncApplicationToSystemeIO(data: {
             });
             logger.debug(`[Systeme.io] SUCCESS: '${targetTagName}' tag applied.`);
         } else {
-            console.warn(`[Systeme.io] Tag '${targetTagName}' not found.`);
+            logger.warn(`[Systeme.io] Tag '${targetTagName}' not found.`);
         }
 
         return contactData;
     } catch (error) {
-        console.error("[Systeme.io] Application sync CRASHED:", error);
+        logger.error("[Systeme.io] Application sync CRASHED:", error);
     }
 }
