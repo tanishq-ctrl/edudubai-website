@@ -21,13 +21,13 @@ const faculty = [
     name: "Sonali Prabhu",
     role: "Founder & CEO",
     image: "/team/sonali-prabhu.jpg",
-    credential: "Banking operations, policy and regulatory compliance — HDFC Bank",
+    credential: "Banking operations, policy and regulatory compliance at HDFC Bank",
   },
   {
     name: "Sanjay Prabhu",
-    role: "Director — GRC consulting & training",
+    role: "Director, GRC consulting and training",
     image: "/team/sanjay-prabhu.jpg",
-    credential: "CCM (GCI), CFCS, CTP — eighteen years in trade finance and banking operations",
+    credential: "CCM (GCI), CFCS and CTP. Eighteen years in trade finance and banking operations.",
   },
 ]
 
@@ -38,15 +38,15 @@ export function HomeFaculty() {
         <div>
           <Reveal variant="up">
             <h2 className="max-w-measure-sm text-4xl tracking-tight text-white sm:text-5xl">
-              Taught by people who still do the job
+              Taught by practising compliance professionals
             </h2>
           </Reveal>
 
           <Reveal variant="up" delay={80}>
             <p className="mt-6 max-w-measure text-lg leading-relaxed text-content-on-dark-muted">
               The faculty are serving MLROs, heads of compliance and former regulators. Case
-              material comes from live enforcement actions, not textbook scenarios — which is why
-              the answer to &ldquo;what would you actually do here&rdquo; is in the room.
+              material is drawn from live enforcement actions rather than textbook scenarios, so
+              the curriculum reflects current supervisory expectations.
             </p>
           </Reveal>
 

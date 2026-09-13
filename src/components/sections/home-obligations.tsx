@@ -31,42 +31,42 @@ import type { Course } from "@/lib/types"
 const obligations: Array<{ courseId: string; obligation: string; detail: string }> = [
   {
     courseId: "aml-specialist",
-    obligation: "Know who you onboarded, and prove it",
-    detail: "Customer due diligence, enhanced diligence, and a file that stands up when it is read back to you.",
+    obligation: "Customer onboarding and due diligence",
+    detail: "Customer due diligence, enhanced due diligence, and the documentation required to evidence both.",
   },
   {
     courseId: "sanctions-compliance-specialist",
-    obligation: "Screen against the regimes, and defend the hit",
+    obligation: "Sanctions screening and match resolution",
     detail: "Screening controls, match handling and the evidence trail behind a release decision.",
   },
   {
     courseId: "cgss",
-    obligation: "Run a sanctions programme across a global book",
+    obligation: "Global sanctions programme management",
     detail: "Multi-regime exposure, ownership and control tests, and programme-level governance.",
   },
   {
     courseId: "cams",
-    obligation: "Monitor transactions, and file what the regulator expects",
-    detail: "Risk assessment, internal controls, independent audit and training — the four pillars, examined.",
+    obligation: "Transaction monitoring and regulatory reporting",
+    detail: "Risk assessment, internal controls, independent audit and training: the four examined pillars.",
   },
   {
     courseId: "tbml",
-    obligation: "Finance trade without financing crime",
+    obligation: "Trade finance and trade-based money laundering",
     detail: "Documentary fraud, price manipulation and the red flags that sit inside a legitimate trade file.",
   },
   {
     courseId: "fatca-crs-specialist",
-    obligation: "Report under FATCA and CRS without penalty",
+    obligation: "FATCA and CRS reporting obligations",
     detail: "Classification, due diligence and the reporting obligations that attach to each.",
   },
   {
     courseId: "regulatory-compliance-specialist",
-    obligation: "Test the controls before the audit does",
+    obligation: "Compliance testing and control assurance",
     detail: "Compliance testing, control design and audit strategy against global GRC standards.",
   },
   {
     courseId: "certified-compliance-manager",
-    obligation: "Own the compliance function",
+    obligation: "Compliance function leadership",
     detail: "Governance structures, board reporting and the responsibilities that come with the appointment.",
   },
 ]
@@ -93,16 +93,16 @@ export function HomeObligations({ courses }: { courses: Course[] }) {
 
       <Reveal variant="up">
         <h1 className="max-w-measure-lg text-display font-semibold leading-[1.04] tracking-tighter text-white">
-          You already carry the risk.{" "}
-          <span className="text-gold-400">Get certified for it.</span>
+          Certification for the{" "}
+          <span className="text-gold-400">obligations you hold.</span>
         </h1>
       </Reveal>
 
       <Reveal variant="up" delay={90}>
         <p className="mt-7 max-w-measure text-lg leading-relaxed text-content-on-dark-muted">
           Certification and advisory programmes for compliance, risk and audit professionals in
-          regulated institutions — 2,500 of them since 2017, across twelve jurisdictions. Start
-          from the obligation that is yours.
+          regulated institutions. Over 2,500 specialists certified since 2017, across twelve
+          jurisdictions. Select the obligation relevant to your role.
         </p>
       </Reveal>
 
@@ -174,7 +174,7 @@ export function HomeObligations({ courses }: { courses: Course[] }) {
           >
             Browse the full catalogue
           </Link>{" "}
-          — filter by issuing body, level and delivery mode.
+          to filter by issuing body, subject, level and delivery format.
         </p>
       </Reveal>
     </Section>
