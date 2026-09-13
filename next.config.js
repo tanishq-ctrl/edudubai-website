@@ -24,6 +24,21 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      /*
+       * Route merges. Both targets absorbed a near-duplicate that competed for
+       * the same intent and keyword; these are permanent so the retired URLs
+       * pass their ranking to the surviving page.
+       */
+      {
+        source: '/corporate',
+        destination: '/corporate-training',
+        permanent: true,
+      },
+      {
+        source: '/certifications',
+        destination: '/courses',
+        permanent: true,
+      },
       // Old Google Sites redirects
       {
         source: '/study-abroad',

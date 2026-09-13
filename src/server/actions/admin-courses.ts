@@ -28,7 +28,6 @@ async function assertAdmin() {
 function revalidateCourseSurfaces(slug?: string) {
   revalidatePath("/")
   revalidatePath("/courses")
-  revalidatePath("/certifications")
   revalidatePath("/sitemap.xml")
   if (slug) revalidatePath(`/courses/${slug}`)
   revalidatePath("/admin")

@@ -1,9 +1,13 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
-import { Container } from "@/components/container"
+import Link from "next/link"
+import { Section } from "@/components/section"
+import { Button } from "@/components/ui/button"
+import { Reveal, Stagger } from "@/components/motion"
 import { CourseCard } from "@/components/course-card"
 import { CourseFilters } from "@/components/course-filters"
 import { CoursesHero } from "@/components/sections/courses-hero"
+import { CertificationsCtaSection } from "@/components/sections/certifications-cta-section"
 import { getAllCoursesNew } from "@/server/actions/courses"
 import { CoursesPageClient } from "./page-client"
 import { Category, DeliveryMode } from "@/lib/types"
@@ -69,49 +73,71 @@ export default async function CoursesPage({ searchParams }: CoursesPageProps) {
     <>
       <CoursesPageClient />
       <CoursesHero />
-      <Container className="py-12 md:py-16">
-        {/* Filters Section */}
-        <div className="mb-8">
-          <Suspense fallback={<div className="h-32 animate-pulse bg-neutral-bg-subtle rounded-lg" />}>
-            <CourseFilters />
-          </Suspense>
+
+      <Section tone="sunken" size="md">
+        {/*
+          Sticky filter bar. `top` clears the fixed header so the controls stay
+          reachable while scrolling a long catalogue.
+        */}
+        <div className="sticky top-[calc(var(--header-h)+0.5rem)] z-30 -mx-gutter mb-10 px-gutter">
+          <div className="rounded-lg border border-line bg-surface-raised p-4 shadow-lg sm:p-5">
+            <Suspense
+              fallback={<div className="h-28 animate-pulse rounded-sm bg-surface-sunken" />}
+            >
+              <CourseFilters />
+            </Suspense>
+          </div>
         </div>
 
-        {/* Results Count */}
-        <div className="mb-6">
-          <p className="text-sm font-medium text-neutral-text-muted">
-            {filteredCourses.length} {filteredCourses.length === 1 ? "course" : "courses"} found
+        {/* The card titles are h3; without this the document jumped h1 -> h3.
+            Visually redundant next to the hero, so it is screen-reader only. */}
+        <h2 className="sr-only">Course results</h2>
+
+        <div className="mb-8 flex items-baseline justify-between gap-4">
+          <p className="text-sm text-content-muted">
+            <span className="font-semibold text-content-strong tabular">
+              {filteredCourses.length}
+            </span>{" "}
+            {filteredCourses.length === 1 ? "course" : "courses"}
+            {filteredCourses.length !== allCourses.length ? (
+              <span className="text-content-subtle"> of {allCourses.length}</span>
+            ) : null}
           </p>
         </div>
 
-        {/* Course Grid or Empty State */}
         {filteredCourses.length === 0 ? (
-          <div className="text-center py-16">
-            <div className="max-w-md mx-auto">
-              <div className="bg-neutral-bg-subtle rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
-                <Search className="h-12 w-12 text-neutral-text-muted" />
-              </div>
-              <h3 className="text-2xl font-semibold text-brand-navy mb-2">
-                No courses found
-              </h3>
-              <p className="text-neutral-text-muted mb-6">
-                Try adjusting your search or filters to find what you&apos;re looking for
+          <Reveal variant="up">
+            <div className="mx-auto max-w-md py-16 text-center">
+              <span
+                aria-hidden="true"
+                className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-surface-raised text-content-subtle shadow-sm"
+              >
+                <Search className="h-8 w-8" />
+              </span>
+              <h2 className="mt-7 text-2xl ">No programmes match your criteria</h2>
+              <p className="mt-3 text-content-muted">
+                Adjust your search or filters. The full catalogue contains {allCourses.length}
+                programmes.
               </p>
-              {(filters.q || filters.category || filters.mode) && (
-                <p className="text-sm text-neutral-text-muted">
-                  There are {allCourses.length} total courses available
-                </p>
-              )}
+              <Button asChild variant="outline" size="lg" className="mt-8">
+                <Link href="/courses">Clear filters</Link>
+              </Button>
             </div>
-          </div>
+          </Reveal>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredCourses.map((course) => (
-              <CourseCard key={course.id} course={course} />
+          <Stagger
+            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            step={70}
+            variant="up"
+          >
+            {filteredCourses.map((course, i) => (
+              <CourseCard key={course.id} course={course} priority={i < 3} className="h-full" />
             ))}
-          </div>
+          </Stagger>
         )}
-      </Container>
+      </Section>
+
+      <CertificationsCtaSection />
     </>
   )
 }

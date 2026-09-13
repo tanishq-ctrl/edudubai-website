@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 
 import { getAllCoursesNew } from '@/server/actions/courses'
+import { getNewsArticles } from '@/lib/news'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://edudubai.org'
@@ -15,15 +16,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.9,
   }))
 
-  // 2. Define static routes
+  // 2. News articles
+  const newsRoutes = getNewsArticles().map((article) => ({
+    url: `${baseUrl}/news/${article.slug}`,
+    lastModified: new Date(article.date),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }))
+
+  // 3. Define static routes
   const staticRoutes = [
     '',
     '/courses',
-    '/certifications',
     '/corporate-training',
     '/about',
     '/contact',
     '/become-a-trainer',
+    '/news',
+    '/events',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
@@ -31,6 +41,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === '' ? 1 : 0.8,
   }))
 
-  return [...staticRoutes, ...courseRoutes]
+  return [...staticRoutes, ...courseRoutes, ...newsRoutes]
 }
 
