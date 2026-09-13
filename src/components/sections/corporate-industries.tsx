@@ -20,7 +20,7 @@ const sectors: { sector: string; obligations: string }[] = [
 
 export function CorporateIndustries() {
   return (
-    <section className="border-b border-line bg-surface py-section-md">
+    <section className="border-b border-line bg-surface py-section-sm">
       <Container>
         <h2 className="text-[clamp(1.75rem,1.2rem+1.6vw,2.5rem)] font-bold leading-tight tracking-[-0.03em] text-navy-900">Sector experience</h2>
         <p className="mt-4 max-w-measure text-content-muted">

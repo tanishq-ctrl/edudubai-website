@@ -190,10 +190,12 @@ export function CorporateLeadForm() {
         <TurnstileWidget onToken={setTurnstileToken} />
         <Button
           type="submit"
-          className="w-full bg-brand-navy text-white hover:bg-brand-navy-dark font-black uppercase tracking-widest text-sm py-8 transition-all hover:scale-[1.01] active:scale-[0.99] shadow-xl"
+          variant="gold"
+          size="xl"
+          block
           disabled={loading || !turnstileToken}
         >
-          {loading ? "Processing..." : "Submit Proposal Request"}
+          {loading ? "Sending…" : "Submit proposal request"}
         </Button>
       </form>
     </div>

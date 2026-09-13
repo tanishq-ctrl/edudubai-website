@@ -39,7 +39,7 @@ const stages: { title: string; detail: string }[] = [
 
 export function CorporateProcess() {
   return (
-    <section className="relative isolate overflow-hidden border-b border-line bg-ink-950 py-section-md text-white">
+    <section className="relative isolate overflow-hidden border-b border-line bg-ink-950 py-section-sm text-white">
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-20 bg-[radial-gradient(110%_90%_at_100%_0%,rgb(var(--navy-700)/0.85),transparent_62%),radial-gradient(90%_80%_at_0%_100%,rgb(var(--navy-800)/0.7),transparent_60%)]"

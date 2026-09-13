@@ -42,7 +42,7 @@ export default function CorporateTrainingPage() {
       {/* One CTA path, at the end, where a scoping conversation belongs. */}
       <section
         id="request-proposal"
-        className="relative isolate scroll-mt-24 overflow-hidden border-b border-gold-400/25 bg-gradient-to-b from-gold-50 via-gold-50 to-surface py-section-md"
+        className="relative isolate scroll-mt-24 overflow-hidden border-b border-gold-400/25 bg-gradient-to-b from-gold-50 via-gold-50 to-surface py-section-sm"
       >
         <div
           aria-hidden="true"

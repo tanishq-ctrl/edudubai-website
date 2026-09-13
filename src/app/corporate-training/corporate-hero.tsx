@@ -89,7 +89,7 @@ export function CorporateHero() {
               className="mt-7 max-w-measure text-lg leading-relaxed text-white/70"
             >
               Compliance, risk and governance programmes for banks, exchange houses, VASPs and
-              DNFBPs — scoped against your own risk assessment and evidenced for audit.
+              DNFBPs, scoped against your own risk assessment and evidenced for audit.
             </motion.p>
 
             <motion.div {...rise(0.16)} className="mt-11 flex flex-col gap-3 sm:flex-row">

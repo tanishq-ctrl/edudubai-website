@@ -10,9 +10,9 @@ import { Container } from "@/components/container"
  */
 
 const accreditations = [
-  "Authorised Training Partner — Global Compliance Institute",
+  "Authorised Training Partner, Global Compliance Institute",
   "ACAMS examination preparation provider",
-  "Affiliated training provider — HOCK International",
+  "Affiliated training provider, HOCK International",
 ]
 
 const figures = [

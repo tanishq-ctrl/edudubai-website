@@ -34,7 +34,7 @@ const pillars: { term: string; definition: string }[] = [
 
 export function CorporatePillars() {
   return (
-    <section className="relative border-b border-line bg-surface-sunken py-section-md">
+    <section className="relative border-b border-line bg-surface-sunken py-section-sm">
       {/* Hairline that ties the band to the dark field above it. */}
       <div
         aria-hidden="true"
